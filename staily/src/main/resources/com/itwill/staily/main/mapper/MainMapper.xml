@@ -17,8 +17,16 @@
 		<result column="w_poster" property="wPoster"/>
 		<result column="w_name" property="wName"/>
 		<result column="w_tepisode" property="wTepisode"/>
+		<!-- 
+		<result column="wd_no" property="wdNo"/>
+		<result column="wd_episode" property="wdEpisode"/>
+		-->
 		<association property="product" javaType="com.itwill.staily.util.Product" autoMapping="true">
 			<result column="p_no" property="pNo"/>
+		<!-- 
+			<result column="p_name" property="pName"/>
+			<result column="pd_scene" property="pdScene"/>
+		-->
 		</association>
 	</resultMap>
 	
@@ -69,10 +77,10 @@
 		on wd.p_no = p.p_no
 		join product_detail pd
 		on p.p_no = pd.p_no
-		where w.w_no = #{w_no} and wd_episode=#{wd_episode}
+		where w.w_no = #{w_no} and wd.wd_episode=#{wd_episode}
 	</select>
 	<!-- 6.즐겨찾기 등록하기 -->
-	<insert id="createBookmark" parameterType="java.lang.Integer">
+	<insert id="createBookmark" parameterType="int">
 		<selectKey order="BEFORE" keyProperty="bmNo" resultType="int">
 			select BM_NO_SEQ.nextval from dual
 		</selectKey>
@@ -86,6 +94,6 @@
 	<select id="selectTepisode" parameterType="int">
 		select w_tepisode
 		from work
-		where w_no=${w_no}
+		where w_no=#{w_no}
 	</select>
 </mapper>
