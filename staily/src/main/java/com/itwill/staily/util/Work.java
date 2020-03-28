@@ -19,12 +19,16 @@ public class Work {
 	private int wView;
 	//작품상세
 	private int wdNo;
-	private int pNo;
 	private int wdEpisode;
 	private String wdImage;
+	private Product product;
+	
+	public Work() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Work(int wNo, String wName, String wCategory, String wDate, String wPoster, int wTepisode, int wView,
-			int wdNo, int pNo, int wdEpisode, String wdImage) {
+			int wdNo, int wdEpisode, String wdImage, Product product) {
 		super();
 		this.wNo = wNo;
 		this.wName = wName;
@@ -34,11 +38,11 @@ public class Work {
 		this.wTepisode = wTepisode;
 		this.wView = wView;
 		this.wdNo = wdNo;
-		this.pNo = pNo;
 		this.wdEpisode = wdEpisode;
 		this.wdImage = wdImage;
+		this.product = product;
 	}
-	
+
 	public Work(int wNo, String wName, String wCategory, String wDate, String wPoster, int wTepisode, int wView) {
 		super();
 		this.wNo = wNo;
@@ -48,19 +52,23 @@ public class Work {
 		this.wPoster = wPoster;
 		this.wTepisode = wTepisode;
 		this.wView = wView;
-	} 
+	}
+
 	public int getWdNo() {
 		return wdNo;
 	}
 	public void setWdNo(int wdNo) {
 		this.wdNo = wdNo;
 	}
-	public int getpNo() {
-		return pNo;
+
+	public Product getProduct() {
+		return product;
 	}
-	public void setpNo(int pNo) {
-		this.pNo = pNo;
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
+
 	public int getWdEpisode() {
 		return wdEpisode;
 	}

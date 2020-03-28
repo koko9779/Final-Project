@@ -1,38 +1,47 @@
 package com.itwill.staily.mypage.model.dto;
 
+import com.itwill.staily.util.Member;
+import com.itwill.staily.util.Product;
+
 public class Bookmark {
-	private int mNo;	//회원번호
-	private int pNo;	//상품번호
+	private int bmNo;			//북마크번호	 (PK)
+	private Member member;		//멤버번호   m_no(FK)
+	private Product product;	//상품번호   p_no(FK)
 	
 	public Bookmark() {
 		
 	}
 	
-
-	public Bookmark(int mNo, int pNo) {
+	public Bookmark(int bmNo, Member member, Product product) {
 		super();
-		this.mNo = mNo;
-		this.pNo = pNo;
+		this.bmNo = bmNo;
+		this.member = member;
+		this.product = product;
 	}
 
-
-	public int getmNo() {
-		return mNo;
+	public int getBmNo() {
+		return bmNo;
 	}
 
-	public void setmNo(int mNo) {
-		this.mNo = mNo;
+	public void setBmNo(int bmNo) {
+		this.bmNo = bmNo;
 	}
 
-	public int getpNo() {
-		return pNo;
+	public Member getMember() {
+		return member;
 	}
 
-	public void setpNo(int pNo) {
-		this.pNo = pNo;
-	} 
-	
-	
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 	
 	
 }
