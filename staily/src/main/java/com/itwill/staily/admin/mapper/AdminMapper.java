@@ -2,10 +2,13 @@ package com.itwill.staily.admin.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
 
+@Mapper
 public interface AdminMapper {
 	/* 회원 */
 	

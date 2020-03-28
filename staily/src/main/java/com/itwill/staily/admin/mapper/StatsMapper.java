@@ -1,5 +1,5 @@
 package com.itwill.staily.admin.mapper;
 
-public class StatsMapper {
+public interface StatsMapper {
 
 }
