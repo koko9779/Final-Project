@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.staily.detail.mapper.ProductDetailMapper">	
+	<select id="selectProductOne" parameterType="int"
+		resultType="com.itwill.staily.util.Product">
+		select p.p_no, pd.pd_scene, pd.pd_image, p.p_name, p.p_price, p.p_url, p.p_address, p.p_daddress 
+		from product p
+		inner join product_detail pd
+		on p.p_no = pd.p_no
+		where p.p_no = #{pNo};
+	</select>
+	
+	
+	
+</mapper>

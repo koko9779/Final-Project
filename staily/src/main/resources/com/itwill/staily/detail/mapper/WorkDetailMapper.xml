@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.staily.detail.mapper.WorkDetailMapper">
+	<select id="selectWorkOne" parameterType="int"
+		resultType="com.itwill.staily.util.Work">
+		select w.w_no, w.w_name, w.w_poster, w.w_date, w.w_tepisode, w.w_category, wd.wd_episode
+		from work w
+		inner join episode_detail ed
+		on w.w_no = ed.w_no
+		where w.w_no = #{wNo};	
+	</select>
+		
+</mapper>

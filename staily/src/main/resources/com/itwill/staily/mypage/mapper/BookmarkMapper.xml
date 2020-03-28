@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.staily.mypage.mapper.BookmarkMapper">
+
+
+<!-- 리스트출력 -->
+<select id="selectList"
+		parameterType="int"
+		resultType="com.itwill.staily.mypage.model.dto.Bookmark">
+	select *
+	from product p join bookmark b
+	on b.m_no = p.m_no
+	join work w
+	on p.w_no = w.w_no
+	where p.m_no = #{mNo}
+</select>
+<!-- resultMap만들기 
+	<resultMap id="studentResultMap" type="com.mybatis3.domain.Student">
+		<result column="stud_id" property="studId"/>
+		<result column="name" property="name"/>
+		<result column="email" property="email"/>
+		<result column="dob" property="dob"/>
+	</resultMap>
+	
+	<resultMap type="" id="bookmarkResultMap">
+	
+	</resultMap>
+
+리스트출력 
+<select id="selectList"
+		parameterType="int"
+		resultMap="">
+select b.bm_no, b.m_no,b.p_no,p.p_name,p.pd_scene, m.m_id
+from bookmark b
+join (select pr.p_no p_no, pr.p_name p_name, prd.pd_scene pd_scene
+      from product pr
+      join product_detail prd
+      on pr.p_no=prd.p_no) p
+on b.p_no=p.p_no
+join member m
+on b.m_no = m.m_no
+where b.m_no = #{mNo}
+</select>
+-->
+<!-- insert -->
+<insert id="createBookmark"
+		parameterType="com.itwill.staily.mypage.model.dto.Bookmark">
+	insert into bookmark (bm_no, m_no,p_no)  values(0,#{mNo},#{pNo})
+</insert>
+
+<!-- delete -->
+<delete id="deleteBookmark"
+		parameterType="int">
+	delete from bookmark
+	where bm_no = #{bmNo}
+</delete>
+
+
+
+</mapper>

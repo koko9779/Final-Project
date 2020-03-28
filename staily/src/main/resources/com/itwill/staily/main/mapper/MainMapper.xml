@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.staily.main.mapper.MainMapper">
+	<resultMap id="bookmarkWithproducAndproductDetailResultMap" type="com.itwill.staily.mypage.model.dto.Bookmark">
+		<result column="p_no" property="pNo"/>
+		<result column="m_no" property="mNo"/>
+	</resultMap>
+	
+	<select id="selectByBookmark" >
+		select b.m_no,b.p_no,p.p_name,p.pd_scene
+		from bookmark b
+		join (select pr.p_no p_no, pr.p_name p_name, prd.pd_scene pd_scene
+		      from product pr
+		      join product_detail prd
+		      on pr.p_no=prd.p_no) p
+		on b.p_no=p.p_no
+		where b.m_no = 2
+	</select>
+	<select id="selectByView" resultType="com.itwill.staily.util.Product">
+		select p.p_no,p.p_name,p.p_view,pd.pd_scene
+		from product p
+		join product_detail pd
+		on p.p_no=pd.p_no
+		order by p.p_view desc;
+	</select>
+	<select id="selectByCategory" resultType="com.itwill.staily.util.Work">
+		select w_no,w_category,w_poster
+		from work
+		where w_category='d';
+	</select>
+	<select id="selectByWork">
+		select w.w_no,w.w_category,w.w_poster,w.w_name,w.w_tepisode,p.p_no,p.p_name,p.pd_scene
+		from work w
+		join (select pr.p_no p_no,pr.w_no w_no,pr.p_name p_name,prd.pd_scene pd_scene
+		      from product pr
+		      join product_detail prd
+		      on pr.p_no=prd.p_no) p
+		on w.w_no=p.w_no
+		where w.w_no = 2
+	</select>
+	<select id="selectByEpisode">
+		select wd.wd_no,p.p_no,w.w_no,w.w_tepisode,wd_episode,w.w_poster,w.w_name,p.p_name,pd.pd_scene
+		from work w
+		join work_detail wd
+		on w.w_no=wd.w_no
+		join product p
+		on wd.p_no = p.p_no
+		join product_detail pd
+		on p.p_no = pd.p_no
+		where w.w_no = 1 and wd_episode=1
+	</select>
+	<insert id="createBookmark" parameterType="java.lang.Integer">
+		insert into bookmark (m_no,p_no)  values(#{m_no},#{p_no})
+	</insert>
+	<delete id="deleteBookmark">
+		delete from bookmark where m_no = #{m_no} and p_no = #{p_no}
+	</delete>
+	
+</mapper>

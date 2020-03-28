@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.staily.admin.mapper.AdminMapper">
+	<!-- 회원 -->
+	<select id="selectMemberAll"
+		resultType="com.itwill.staily.util.Member">
+		SELECT m_no ,m_id,
+		m_pw,m_name,m_address,m_daddress,m_email,m_type,m_phone
+		FROM member
+	</select>
+
+	<select id="selectMemberOne"
+		resultType="com.itwill.staily.util.Member" parameterType="int">
+		SELECT m_no, m_id, m_pw, m_name, m_address, m_daddress, m_email, m_type, m_phone
+		FROM member
+		WHERE m_no=#{mNo}
+	</select>
+	<delete id="deleteMember">
+		DELETE member WHERE m_no=#{mNo}
+	</delete>
+	<update id="updateMember"
+		parameterType="com.itwill.staily.util.Member">
+		UPDATE member SET
+		m_id=#{mId},m_pw=#{mPw},m_name=#{mName},m_address=#{mAddress},
+		m_daddress=#{mDaddress},m_email=#{mEmail},m_type=#{mType},m_phone=#{mPhone}
+		WHERE m_no=#{mNo}
+	</update>
+
+	<!-- 상품 -->
+	<select id="selectProductAll"
+		resultType="com.itwill.staily.util.Product">
+		SELECT
+		p_no,w_no,p_name,p_price,p_url,p_address,p_daddress,p_check,p_view,p_date
+		FROM product
+	</select>
+	
+	<select id="selectProductOne" parameterType="int" resultType="Product">
+		SELECT
+		p_no,w_no,p_name,p_price,p_url,p_address,p_daddress,p_check,p_view,p_date
+		FROM product
+		WHERE p_no=#{pNo}
+	</select>
+
+	<update id="updateProduct" parameterType="com.itwill.staily.util.Product">
+		UPDATE product SET p_name = #{pName} , p_price = #{pPrice} ,
+		p_url= #{pUrl}, p_address=#{pAddress},
+		p_daddress=#{pDaddress} , p_check=#{pCheck}, p_date=#{pDate}
+		WHERE p_no = #{pNo}
+	</update>
+	
+	<delete id="deleteProduct" parameterType="int">
+		DELETE product WHERE p_no=#{pNo}
+	</delete>
+	<!-- 작품 -->
+	
+	<insert id="createWork"
+		parameterType="com.itwill.staily.util.Work">
+		INSERT INTO work VALUES
+		(work_no_seq.nextval,#{wName},#{wCategory},#{wDate},#{wPoster},{#wTepisode},0)
+	</insert>
+	
+	<select id="selectWorkAll" resultType="com.itwill.staily.util.Work">
+		SELECT w_no,w_name,w_category,w_date,w_poster,w_tepisode
+		FROM work
+	</select>
+	
+	<select id="selectWorkOne" parameterType="int" resultType="com.itwill.staily.util.Work">
+		SELECT w_no,w_name,w_category,w_date,w_poster,w_tepisode
+		FROM work
+		WHERE w_no=#{wNo}		
+	</select>
+	
+	<update id="updateWork" parameterType="Work">
+		UPDATE work SET w_name=#{wName},w_category=#{wCategory},w_date=#{wDate},w_poster=#{wPoster},w_tepisode=#{wTepisode}
+		WHERE w_no=#{wNo}
+	</update>
+	
+	<delete id="deleteWork" parameterType="int">
+		DELETE work WHERE w_no=#{wNo}
+	</delete>
+
+
+	<!-- 게시글 -->
+
+	<!-- 통계 -->
+
+</mapper>
+

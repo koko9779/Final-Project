@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!--  https://mybatis.org/mybatis-3/ko/configuration.html 
+			settings 정보 확인-->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<!-- 
+		<setting name="cacheEnabled" value="true" />
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="defaultExecutorType" value="SIMPLE" />
+		<setting name="defaultStatementTimeout" value="25" />
+		<setting name="localCacheScope" value="SESSION" />
+		<setting name="aggressiveLazyLoading" value="" />
+		<setting name="autoMappingBehavior" value="PARTIAL" />
+		<setting name="autoMappingUnknownColumnBehavior" value="WARNING" />
+		<setting name="callSettersOnNulls" value="" />
+		<setting name="defaultScriptingLanguage" value="" />
+		<setting name="defaultFetchSize" value="100" />
+		<setting name="jdbcTypeForNull" value="OTHER" />
+		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />
+		<setting name="logImpl" value="" />
+		<setting name="logPrefix" value="" />
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<setting name="proxyFactory" value="" />
+		<setting name="safeRowBoundsEnabled" value="false" />
+		<setting name="useColumnLabel" value="true" />
+		<setting name="useGeneratedKeys" value="false" />
+		<setting name="vfsImpl" value="" />
+		 -->
+	</settings>
+	  
+	<typeAliases>
+		<typeAlias alias="Work" type="com.itwill.staily.util.Work" />
+		<typeAlias alias="Member" type="com.itwill.staily.util.Member" />
+		<typeAlias alias="Product" type="com.itwill.staily.util.Product" />
+	</typeAliases>
+	
+		<!-- 
+	<mappers>
+		 <mapper class="com.itwill.staily.admin.mapper.AdminMapper"/>
+		 <mapper class="com.itwill.staily.mypage.mapper.BookmarkMapper"/>
+		 <mapper class="com.itwill.staily.mypage.mapper.FriendMapper"/>
+		 <mapper class="com.itwill.staily.mypage.mapper.MessageMapper"/>
+		 <mapper class="com.itwill.staily.mypage.mapper.PaymentMapper"/>
+	</mappers>
+		com.itwill.guest.mapper.GuestMapper 인터페이스와 동일한패키지(디렉토리)
+		에있는(com/itwill/guest/mapper)
+		인터페이스와 동일한 이름의 GuestMapper.xml파일을 자동으로읽는다 
+		<mapper resource="com/mybatis3/mapper/GuestMapper.xml"/>
+		<mapper class="com.itwill.guest.mapper.GuestMapper"/>
+		 -->
+</configuration>
+
+
+
+
+
+
+
+
+
