@@ -37,21 +37,6 @@
 		<typeAlias alias="Member" type="com.itwill.staily.util.Member" />
 		<typeAlias alias="Product" type="com.itwill.staily.util.Product" />
 	</typeAliases>
-	
-		<!-- 
-	<mappers>
-		 <mapper class="com.itwill.staily.admin.mapper.AdminMapper"/>
-		 <mapper class="com.itwill.staily.mypage.mapper.BookmarkMapper"/>
-		 <mapper class="com.itwill.staily.mypage.mapper.FriendMapper"/>
-		 <mapper class="com.itwill.staily.mypage.mapper.MessageMapper"/>
-		 <mapper class="com.itwill.staily.mypage.mapper.PaymentMapper"/>
-	</mappers>
-		com.itwill.guest.mapper.GuestMapper 인터페이스와 동일한패키지(디렉토리)
-		에있는(com/itwill/guest/mapper)
-		인터페이스와 동일한 이름의 GuestMapper.xml파일을 자동으로읽는다 
-		<mapper resource="com/mybatis3/mapper/GuestMapper.xml"/>
-		<mapper class="com.itwill.guest.mapper.GuestMapper"/>
-		 -->
 </configuration>
 
 

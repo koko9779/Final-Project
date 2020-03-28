@@ -1,11 +1,12 @@
-package com.itwill.staily.admin.service;
+package com.itwill.staily.admin.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.itwill.staily.admin.model.dao.AdminDao;
+import com.itwill.staily.admin.mapper.AdminMapper;
+import com.itwill.staily.admin.service.AdminService;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
@@ -13,22 +14,36 @@ import com.itwill.staily.util.Work;
 @Service
 public class AdminServiceImpl implements AdminService{
 	@Autowired
-	private AdminDao adminDao;
+	private AdminMapper adminMapper;
+	
 	public AdminServiceImpl() {
 	}
 	
-	public void setAdminDao(AdminDao adminDao) {
-		this.adminDao = adminDao;
+
+	public AdminServiceImpl(AdminMapper adminMapper) {
+		super();
+		this.adminMapper = adminMapper;
 	}
+
+
+	public AdminMapper getAdminMapper() {
+		return adminMapper;
+	}
+
+
+	public void setAdminMapper(AdminMapper adminMapper) {
+		this.adminMapper = adminMapper;
+	}
+
 
 	@Override
 	public List<Member> selectMemberAll() {
-		return adminDao.selectMemberAll();
+		return adminMapper.selectMemberAll();
 	}
 
 	@Override
 	public Member selectMemberOne(int mNo) throws Exception {
-		return adminDao.selectMemberOne(mNo);
+		return adminMapper.selectMemberOne(mNo);
 	}
 
 	@Override

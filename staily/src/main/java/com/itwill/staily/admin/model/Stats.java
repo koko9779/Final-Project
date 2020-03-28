@@ -1,13 +1,13 @@
-package com.itwill.staily.admin.model.dto;
+package com.itwill.staily.admin.model;
 
 public class Stats {
-	//Åë°è¹øÈ£
+	//ï¿½ï¿½ï¿½ï¿½È£
 	private int stNo;
-	//¹æ¹®¿äÀÏ
+	//ï¿½æ¹®ï¿½ï¿½ï¿½ï¿½
 	private String stDate;
-	//¹æ¹®½Ã°£
+	//ï¿½æ¹®ï¿½Ã°ï¿½
 	private String stTime;
-	//¹æ¹®ÀÎ¿ø
+	//ï¿½æ¹®ï¿½Î¿ï¿½
 	private String stVisit;
 	
 	public int getStNo() {
