@@ -1,13 +1,13 @@
 package com.itwill.staily.admin.model;
 
 public class Stats {
-	//����ȣ
+	//통계번호
 	private int stNo;
-	//�湮����
+	//방문요일
 	private String stDate;
-	//�湮�ð�
+	//방문시간
 	private String stTime;
-	//�湮�ο�
+	//방문자수
 	private String stVisit;
 	
 	public int getStNo() {
