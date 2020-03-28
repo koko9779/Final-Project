@@ -6,7 +6,6 @@ public class Board {
 	----------- -------- -------------- 
 	B_NO        NOT NULL NUMBER         
 	M_NO        NOT NULL NUMBER         
-	P_NO        NOT NULL NUMBER         
 	B_TITLE              VARCHAR2(50)   
 	B_CONTENT            VARCHAR2(4000) 
 	B_GROUPNO            NUMBER         
@@ -19,7 +18,6 @@ public class Board {
 	 */
 	private int bNo; //게시물번호
 	private int mNo; //회원번호
-	private int pNo; //상품번호
 	private String bTitle; //제목
 	private String bContent; //내용
 	private int bGroupNo; // groupno
@@ -35,12 +33,11 @@ public class Board {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Board(int bNo, int mNo, int pNo, String bTitle, String bContent, int bGroupNo, int bStep, int bView,
+	public Board(int bNo, int mNo, String bTitle, String bContent, int bGroupNo, int bStep, int bView,
 			int bRecommend, String bType, String bDate, String bChoice, BoardDetail boardDetail) {
 		super();
 		this.bNo = bNo;
 		this.mNo = mNo;
-		this.pNo = pNo;
 		this.bTitle = bTitle;
 		this.bContent = bContent;
 		this.bGroupNo = bGroupNo;
@@ -55,7 +52,7 @@ public class Board {
 
 	@Override
 	public String toString() {
-		return "Board [bNo=" + bNo + ", mNo=" + mNo + ", pNo=" + pNo + ", bTitle=" + bTitle + ", bContent=" + bContent
+		return "Board [bNo=" + bNo + ", mNo=" + mNo + ", bTitle=" + bTitle + ", bContent=" + bContent
 				+ ", bGroupNo=" + bGroupNo + ", bStep=" + bStep + ", bView=" + bView + ", bRecommend=" + bRecommend
 				+ ", bType=" + bType + ", bDate=" + bDate + ", bChoice=" + bChoice + ", boardDetail=" + boardDetail
 				+ "]";
@@ -73,12 +70,7 @@ public class Board {
 	public void setmNo(int mNo) {
 		this.mNo = mNo;
 	}
-	public int getpNo() {
-		return pNo;
-	}
-	public void setpNo(int pNo) {
-		this.pNo = pNo;
-	}
+	
 	public String getbTitle() {
 		return bTitle;
 	}

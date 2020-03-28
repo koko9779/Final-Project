@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.itwill.staily.stylecoodination.mapper.ReplyManageMapper">
+
+<update id="updateStep" parameterType="int">
+	UPDATE board 
+	SET b_step = b_step + 1 
+	WHERE b_step > 1 
+	AND b_groupno = #{bGroupNo}
+</update>
+
+<insert id="createReply" parameterType="Board">
+	INSERT INTO board (b_no, m_no, b_title, b_content, b_groupno, b_step, 
+                   b_view, b_recommend, b_type, b_date, b_choice)
+	VALUES (board_no_seq.NEXTVAL, #{mNo}, #{bTitle}, #{bContent}, #{bGroupNo}, 2,
+       		 0, 0, 'S', SYSDATE, 'N')
+</insert>
+
+<delete id="deleteReply" parameterType="int">
+	DELETE FROM board WHERE b_no = #{bNo}
+</delete>
+
+<update id="updateChoice" parameterType="int">
+	UPDATE board
+	SET b_choice = 'Y'
+	WHERE b_no = #{bNo}
+</update>
+
+<update id="updateRecommend" parameterType="int">
+	UPDATE board 
+	SET b_recommend = b_recommend + 1
+	WHERE b_no = #{bNo}
+</update>
+
+</mapper>  

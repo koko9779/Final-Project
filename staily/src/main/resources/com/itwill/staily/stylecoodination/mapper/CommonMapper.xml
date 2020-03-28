@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.itwill.staily.stylecoodination.mapper.CommonMapper">
+	
+<select id="selectMNo" parameterType="String" resultType="int">
+	SELECT m_no
+	FROM member
+	WHERE m_id = #{mId}
+</select>
+
+<select id="selectId" parameterType="int" resultType="String">
+	SELECT m_id
+	FROM member
+	WHERE m_no = #{mNo}
+</select>
+
+<update id="updateBoardAndReply" parameterType="Board">
+	UPDATE board 
+	SET b_title = #{bTitle},
+	    b_content = #{bContent}
+	WHERE b_no = #{bNo}
+</update>
+
+<!--  
+<update id="updateBoardAndReplyDetail" parameterType="BoardDetail">
+	
+</update>
+-->
+</mapper>

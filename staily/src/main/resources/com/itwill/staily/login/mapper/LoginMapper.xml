@@ -1,3 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.itwill.staily.login.mapper.LoginMapper"></mapper>
+<mapper namespace="com.itwill.staily.login.mapper.LoginMapper">
+
+<select id="selectMemberOne" parameterType="String" resultType="Member">
+	SELECT m_id, m_pw
+	FROM member
+	WHERE m_id = #{mId}
+</select>
+
+<select id="selectIdOne" parameterType="String" resultType="String">
+	SELECT m_id
+	FROM member
+	WHERE m_phone = #{mPhone}
+</select>
+
+<select id="selectByIdAndPhone" parameterType="HashMap" resultType="int">
+	SELECT count(*)
+	FROM member
+	WHERE m_phone = #{mPhone}
+	AND m_id = #{mId}
+</select>
+
+<update id="updatePwOne">
+	UPDATE member
+	SET m_pw = #{mPw}
+	WHERE m_id = #{mId}
+</update>
+
+</mapper>

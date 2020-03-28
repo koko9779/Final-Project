@@ -36,6 +36,9 @@
 		<typeAlias alias="Work" type="com.itwill.staily.util.Work" />
 		<typeAlias alias="Member" type="com.itwill.staily.util.Member" />
 		<typeAlias alias="Product" type="com.itwill.staily.util.Product" />
+		<typeAlias alias="Board" type="com.itwill.staily.util.Board" />
+		<typeAlias alias="BoardDetail" type="com.itwill.staily.util.BoardDetail" />
+		<typeAlias alias="Company" type="com.itwill.staily.util.Company" />
 	</typeAliases>
 	
 		<!-- 

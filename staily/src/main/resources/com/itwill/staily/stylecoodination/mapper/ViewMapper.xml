@@ -2,5 +2,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.itwill.staily.stylecoodination.mapper.ViewMapper">
-<!--  -->
+<select id="selectBoardAll" parameterType="String" resultType="Board">
+	SELECT b_title, m_no, b_date, b_content, b_view, b_groupno
+	FROM board
+	WHERE b_type = #{bType}
+	AND b_step = 1
+	ORDER BY b_no DESC
+</select>
+<!--  
+<select id="selectBoardDetail" parameterType="HashMap" resultType="Board">
+	SELECT b.b_no, b.m_no, b.b_title, b.b_content,
+       b.b_view, b.b_recommend, bd.bd_image
+	FROM board b
+	LEFT JOIN board_detail bd 
+	ON (b.b_no = bd.b_no)
+	WHERE b_groupno = #{bGroupNo}
+	ORDER BY b_groupno ASC, b_step ASC
+</select>
+-->
+<select id="selectBoardCount" resultType="int">
+	SELECT count(*)
+	FROM board
+	WHERE b_step = 1
+</select>
+
+<select id="selectBoardReplyCount" resultType="int">
+	SELECT count(*)
+	FROM board
+	WHERE b_step > 1
+</select>
+
+<update id="updateView" parameterType="int">
+	UPDATE board 
+	SET b_view = b_view + 1
+	WHERE b_no = #{bNo}
+</update>
+
 </mapper>
