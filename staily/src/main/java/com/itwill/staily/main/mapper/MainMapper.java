@@ -8,7 +8,7 @@ import com.itwill.staily.util.Work;
 
 public interface MainMapper {
 	/*
-	 	1. 즐겨찾기한 목록 찾기	
+	 	1. 회원번호를 통해서 즐겨찾기한 목록 찾기	
 		2. 인기많은(조회수 높은) 상품 출력	
 		3-1. 카테고리 = 드라마인 작품 출력하기
 		3-2. 카테고리 = 영화인 작품 출력하기
@@ -25,7 +25,7 @@ public interface MainMapper {
 	public List<Product> selectByView();
 	public List<Work> selectByCategory(String category);
 	
-	public List selectByWork(int wNo);
+	public List<Work> selectByWork(int wNo);
 	public List selectByEpisode(int episode);
 	public int createBookmark(int pNo);
 	public int deleteBookmark(int pNo);

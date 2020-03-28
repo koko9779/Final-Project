@@ -15,21 +15,35 @@ public class MapperTestMain {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/application-config.xml");
 		MainMapper mainM = applicationContext.getBean(MainMapper.class);
 		
-//		1. 즐겨찾기한 목록 찾기
+		//1. 회원번호를 통해서 즐겨찾기한 목록 찾기
+		/*
 		List<Bookmark> bmList = mainM.selectByBookmark(2);
 		for (Bookmark bm : bmList) {
 			System.out.println("["+bm.getBmNo()+","+bm.getMember().getmNo()+","+bm.getProduct().getpNo()+":"
 								+bm.getProduct().getpName()+","+bm.getProduct().getPdScene()+"]");
 		}
-		
-//		3-1. 카테고리 = 드라마인 작품 출력하기		
-/*
+		*/
+		//2. 인기많은(조회수 높은) 상품 출력
+		/*
+		List<Product> productList = mainM.selectByView();
+		for (Product product : productList) {
+			System.out.println("["+product.getpNo()+":"+product.getpName()+","+product.getpView()+","+product.getPdScene()+"]");
+		}
+		*/
+		//3-1. 카테고리 = 드라마인 작품 출력하기		
+		/*
 		List<Work> workList = mainM.selectByCategory("d");
 		for (Work work : workList) {
 			System.out.println("["+work.getwNo()+":"+work.getwCategory()+","+work.getwPoster()+"]");
 		}
-*/		
-		
+		 */
+		//4.선택한 작품의 포스터,상품 출력하기
+		List<Work> workList = mainM.selectByWork(1);
+		for (Work work : workList) {
+			System.out.println(work.getwNo()+","+work.getwCategory()+","+work.getwPoster()+","+work.getwName()+","+work.getwTepisode());
+			System.out.println(work.getProduct().getpNo()+","+work.getProduct().getpName()+","+work.getProduct().getPdScene());
+			System.out.println();
+		}
 		
 		
 		
