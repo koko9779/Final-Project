@@ -32,6 +32,7 @@ public class AdminController {
 		mv.setViewName("test");
 		return mv;
 	}
+	
 	@RequestMapping("/admin")
 	public String adminTest() {
 		

@@ -29,6 +29,7 @@ public interface AdminService {
 	//작품삭제
 	public boolean deleteWork(int wNo) throws Exception;
 	
+	
 	/* 상품 */
 	//상품 전체출력
 	public List<Product> selectProductAll() throws Exception;
