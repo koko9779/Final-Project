@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwill.staily.main.mapper.MainMapper;
 import com.itwill.staily.main.service.MainService;
+import com.itwill.staily.mypage.model.dto.Bookmark;
 import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
 
@@ -29,51 +30,43 @@ public class mainServiceImpl implements MainService{
 	}
 
 	@Override
-	public List<Product> selectByBookmark(int mNo, int pNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Bookmark> selectByBookmark(int mNo) throws Exception {
+		return mainMapper.selectByBookmark(mNo);
 	}
 
 	@Override
 	public List<Product> selectByView() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return mainMapper.selectByView();
 	}
 
 	@Override
 	public List<Work> selectByCategory(String category) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return mainMapper.selectByCategory(category);
 	}
 
 	@Override
-	public List selectByWork(int wNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Work> selectByWork(int wNo) throws Exception {
+		return mainMapper.selectByWork(wNo);
 	}
 
 	@Override
-	public List selectByEpisode(int episode) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Work> selectByEpisode(int wNo, int episode) throws Exception {
+		return mainMapper.selectByEpisode(wNo, episode);
 	}
 
 	@Override
-	public boolean createBookmark(int pNo) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean createBookmark(int mNo,int pNo) throws Exception {
+		return mainMapper.createBookmark(mNo, pNo);
 	}
 
 	@Override
-	public boolean deleteBookmark(int pNo) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deleteBookmark(int mNo,int pNo) throws Exception {
+		return mainMapper.deleteBookmark(mNo, pNo);
 	}
 
 	@Override
 	public int selectTepisode(int wNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return mainMapper.selectTepisode(wNo);
 	}
 	
 }

@@ -20,7 +20,6 @@ public class Work {
 	//작품상세
 	private int wdNo;
 	private int wdEpisode;
-	private String wdImage;
 	private Product product;
 	
 	public Work() {
@@ -28,7 +27,7 @@ public class Work {
 	}
 	
 	public Work(int wNo, String wName, String wCategory, String wDate, String wPoster, int wTepisode, int wView,
-			int wdNo, int wdEpisode, String wdImage, Product product) {
+			int wdNo, int wdEpisode, Product product) {
 		super();
 		this.wNo = wNo;
 		this.wName = wName;
@@ -39,7 +38,6 @@ public class Work {
 		this.wView = wView;
 		this.wdNo = wdNo;
 		this.wdEpisode = wdEpisode;
-		this.wdImage = wdImage;
 		this.product = product;
 	}
 
@@ -75,13 +73,6 @@ public class Work {
 	public void setWdEpisode(int wdEpisode) {
 		this.wdEpisode = wdEpisode;
 	}
-	public String getWdImage() {
-		return wdImage;
-	}
-	public void setWdImage(String wdImage) {
-		this.wdImage = wdImage;
-	}
-	
 	public int getwNo() {
 		return wNo;
 	}

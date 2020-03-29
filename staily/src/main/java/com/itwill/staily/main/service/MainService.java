@@ -2,25 +2,26 @@ package com.itwill.staily.main.service;
 
 import java.util.List;
 
+import com.itwill.staily.mypage.model.dto.Bookmark;
 import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
 
 public interface MainService {
  	//1. 회원번호를 통해서 즐겨찾기한 목록 찾기	
-	public List<Product> selectByBookmark(int mNo, int pNo) throws Exception;
+	public List<Bookmark> selectByBookmark(int mNo) throws Exception;
 	//2. 인기많은(조회수 높은) 상품 출력	
 	public List<Product> selectByView() throws Exception;
 	//3. 카테고리별 작품 출력하기
 	public List<Work> selectByCategory(String category) throws Exception;
 	
 	//4.선택한 작품의 포스터,상품 출력하기
-	public List selectByWork(int wNo) throws Exception;
+	public List<Work> selectByWork(int wNo) throws Exception;
 	//5.선택한 작품의 포스터,해당 회차의 상품들 출력하기
-	public List selectByEpisode(int episode) throws Exception;
+	public List<Work> selectByEpisode(int wNo, int episode) throws Exception;
 	//6.즐겨찾기 등록하기	
-	public boolean createBookmark(int pNo) throws Exception;
+	public boolean createBookmark(int mNo, int pNo) throws Exception;
 	//7.즐겨찾기 제거하기
-	public boolean deleteBookmark(int pNo) throws Exception;
+	public boolean deleteBookmark(int mNo, int pNo) throws Exception;
 	//8.총회차 찾기
 	public int selectTepisode(int wNo);
 }

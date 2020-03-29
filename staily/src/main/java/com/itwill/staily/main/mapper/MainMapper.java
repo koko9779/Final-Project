@@ -27,8 +27,8 @@ public interface MainMapper {
 	public List<Work> selectByCategory(String category);
 	
 	public List<Work> selectByWork(int wNo);
-	public List selectByEpisode(int wNo, int episode);
-	public int createBookmark(int mNo, int pNo);
-	public int deleteBookmark(int mNo, int pNo);
+	public List<Work> selectByEpisode(int wNo, int episode);
+	public boolean createBookmark(int mNo, int pNo);
+	public boolean deleteBookmark(int mNo, int pNo);
 	public int selectTepisode(int wNo);
 }
