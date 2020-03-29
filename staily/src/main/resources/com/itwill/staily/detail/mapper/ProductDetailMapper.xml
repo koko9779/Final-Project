@@ -7,8 +7,18 @@
 		from product p
 		inner join product_detail pd
 		on p.p_no = pd.p_no
-		where p.p_no = #{pNo};
+		where p.p_no = #{pNo}
 	</select>
+	
+	<insert id="createProduct" parameterType="com.itwill.staily.util.Product">
+		insert into product (p_no, m_no, w_no, p_name, p_price, p_url, p_address, p_daddress, p_check, p_view, p_date)
+		values (product_no_seq.nextval, #{pMno}, #{pWno}, #{pName}, #{pPrice}, #{pUrl}, #{pAddress}, #{pDaddress}, #{pCheck}, #{pView}, sysdate)
+	</insert>
+	
+	<insert id="createProductDetail" parameterType="com.itwill.staily.util.Product">
+		insert into product_detail (pd_no, p_no, pd_image, pd_scene)
+		values (pd_no_seq.nextval, #{pNo}, #{pdImage}, #{pdScene})
+	</insert>
 	
 	
 	

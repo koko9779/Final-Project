@@ -1,9 +1,9 @@
 package com.itwill.staily.detail.model.dto;
 
 public class Reply {
-	private int rNno; //회원 번호
+	private int rRno; //댓글 번호
 	private int rPno; //상품 번호
-	private int rNo; //댓글 번호
+	private int rMno; //회원 번호
 	private String rContent; //댓글 내용
 	private int rRecommend; //추천 수
 	private int rReport; //신고 수
@@ -12,22 +12,38 @@ public class Reply {
 		super();
 	}
 
-	public Reply(int rNno, int rPno, int rNo, String rContent, int rRecommend, int rReport) {
+	public Reply(int rMno, int rPno, int rRno, String rContent, int rRecommend, int rReport) {
 		super();
-		this.rNno = rNno;
+		this.rMno = rMno;
 		this.rPno = rPno;
-		this.rNo = rNo;
+		this.rRno = rRno;
+		this.rContent = rContent;
+		this.rRecommend = rRecommend;
+		this.rReport = rReport;
+	}
+	
+	public Reply(int rMno, int rPno, String rContent, int rRecommend, int rReport) {
+		super();
+		this.rMno = rMno;
+		this.rPno = rPno;
 		this.rContent = rContent;
 		this.rRecommend = rRecommend;
 		this.rReport = rReport;
 	}
 
-	public int getrNno() {
-		return rNno;
+	public Reply(int rRno, int rPno, int rMno) {
+		super();
+		this.rMno = rMno;
+		this.rPno = rPno;
+		this.rRno = rRno;
+	}
+	
+	public int getrMno() {
+		return rMno;
 	}
 
-	public void setrNno(int rNno) {
-		this.rNno = rNno;
+	public void setrMno(int rMno) {
+		this.rMno = rMno;
 	}
 
 	public int getrPno() {
@@ -38,12 +54,12 @@ public class Reply {
 		this.rPno = rPno;
 	}
 
-	public int getrNo() {
-		return rNo;
+	public int getrRno() {
+		return rRno;
 	}
 
-	public void setrNo(int rNo) {
-		this.rNo = rNo;
+	public void setrRno(int rRno) {
+		this.rRno = rRno;
 	}
 
 	public String getrContent() {

@@ -9,16 +9,16 @@
 		on m.m_no = r.m_no
 		inner join product p
 		on p.p_no = r.p_no
-		where p.p_no = #{pNo};
+		where p.p_no = #{rPno}
 	</select>
 	
 	<insert id="createReply" parameterType="com.itwill.staily.detail.model.dto.Reply">
 		insert into reply
-		values (reply_no_seq.nextval, #{pNo}, #{mNo}, #{rContent}, #{rRecommend}, #{rReport});
+		values (reply_no_seq.nextval, #{rPno}, #{rMno}, #{rContent}, #{rRecommend}, #{rReport})
 	</insert>
 	
-	<delete id="deleteReply">
+	<delete id="deleteReply" parameterType="com.itwill.staily.detail.model.dto.Reply">
 		delete from reply
-		where r_no = #{rNo} and p_no = #{pNo} and m_no = #{mNo};
+		where r_no = #{rRno} and p_no = #{rPno} and m_no = #{rMno}
 	</delete>
 </mapper>

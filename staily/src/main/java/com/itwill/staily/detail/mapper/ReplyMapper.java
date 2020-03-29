@@ -11,5 +11,4 @@ public interface ReplyMapper {
 	
 	public boolean deleteReply(Reply reply);
 	
-	public boolean checkReplyUser(Reply reply, int mNo);
 }

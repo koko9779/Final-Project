@@ -7,7 +7,12 @@
 		from work w
 		inner join episode_detail ed
 		on w.w_no = ed.w_no
-		where w.w_no = #{wNo};	
+		where w.w_no = #{wNo}
+	</select>
+	
+	<select id="selectWorkAll" resultType="com.itwill.staily.util.Work">
+		select w_no, w_name, w_poster, w_date, w_tepisode, w_category
+		from work
 	</select>
 		
 </mapper>

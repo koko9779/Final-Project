@@ -53,6 +53,29 @@ public class Product {
 		this.pDaddress = pDaddress;
 		this.pCheck = pCheck;
 		this.pView = pView;
+		
+		
+		this.pdImage = pdImage;
+		this.pdScene = pdScene;
+	}
+	
+	public Product(int pMno, int pWno, String pName, int pPrice, String pUrl, String pAddress,
+			String pDaddress, String pCheck, int pView) {
+		super();
+		this.pMno = pMno;
+		this.pWno = pWno;
+		this.pName = pName;
+		this.pPrice = pPrice;
+		this.pUrl = pUrl;
+		this.pAddress = pAddress;
+		this.pDaddress = pDaddress;
+		this.pCheck = pCheck;
+		this.pView = pView;
+	}
+	
+	public Product(int pNo, String pdImage, String pdScene) {
+		super();
+		this.pNo = pNo;
 		this.pdImage = pdImage;
 		this.pdScene = pdScene;
 	}
