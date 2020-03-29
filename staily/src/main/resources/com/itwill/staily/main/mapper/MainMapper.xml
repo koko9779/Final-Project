@@ -97,4 +97,21 @@
 		from work
 		where w_no=#{w_no}
 	</select>
+	<!-- 9.작품 조회수 증가 -->
+	<update id="increaseWorkView" parameterType="int">
+		update work
+		set w_view = w_view + 1
+		where w_no = #{w_no}
+	</update>
+	<!-- 10.상품 조회수 증가 -->
+	<update id="increaseProductView" parameterType="int">
+		update product
+		set p_view = p_view + 1
+		where p_no = #{p_no}
+	</update>
+	<!-- 11.게시물 총 건수 -->		
+	<select id="selectProductCount" resultType="int">
+		select count(*) from product
+	</select>
+		
 </mapper>

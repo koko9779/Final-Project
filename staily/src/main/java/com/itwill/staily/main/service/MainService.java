@@ -19,9 +19,16 @@ public interface MainService {
 	//5.선택한 작품의 포스터,해당 회차의 상품들 출력하기
 	public List<Work> selectByEpisode(int wNo, int episode) throws Exception;
 	//6.즐겨찾기 등록하기	
-	public boolean createBookmark(int mNo, int pNo) throws Exception;
+	public int createBookmark(int mNo, int pNo) throws Exception;
 	//7.즐겨찾기 제거하기
-	public boolean deleteBookmark(int mNo, int pNo) throws Exception;
+	public int deleteBookmark(int mNo, int pNo) throws Exception;
 	//8.총회차 찾기
 	public int selectTepisode(int wNo);
+	
+	//9.작품 조회수 증가
+	public void increaseWorkView(int wNo);
+	//10.상품 조회수 증가
+	public void increaseProductView(int pNo);
+	//11.게시물 총 건수
+	public int selectProductCount();
 }

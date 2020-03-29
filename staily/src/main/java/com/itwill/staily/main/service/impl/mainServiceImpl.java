@@ -55,18 +55,33 @@ public class mainServiceImpl implements MainService{
 	}
 
 	@Override
-	public boolean createBookmark(int mNo,int pNo) throws Exception {
+	public int createBookmark(int mNo,int pNo) throws Exception {
 		return mainMapper.createBookmark(mNo, pNo);
 	}
 
 	@Override
-	public boolean deleteBookmark(int mNo,int pNo) throws Exception {
+	public int deleteBookmark(int mNo,int pNo) throws Exception {
 		return mainMapper.deleteBookmark(mNo, pNo);
 	}
 
 	@Override
 	public int selectTepisode(int wNo) {
 		return mainMapper.selectTepisode(wNo);
+	}
+
+	@Override
+	public void increaseWorkView(int wNo) {
+		mainMapper.increaseWorkView(wNo);
+	}
+
+	@Override
+	public void increaseProductView(int pNo) {
+		mainMapper.increaseProductView(pNo);
+	}
+
+	@Override
+	public int selectProductCount() {
+		return mainMapper.selectProductCount();
 	}
 	
 }

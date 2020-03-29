@@ -58,13 +58,13 @@ public class MapperTestMain {
 		*/
 		//6.즐겨찾기 등록하기(보류)
 		/*
-		boolean result = mainM.createBookmark(1,8);
+		int result = mainM.createBookmark(1,8);
 		System.out.println(result);
 		System.out.println("----------------------------------------");
 		*/
 		//7.즐겨찾기 제거하기(보류)
 		/*
-		boolean result = mainM.deleteBookmark(2,2);
+		int result = mainM.deleteBookmark(2,2);
 		System.out.println(result);
 		System.out.println("----------------------------------------");
 		*/

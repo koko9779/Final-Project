@@ -19,6 +19,10 @@ public interface MainMapper {
 		7.즐겨찾기 제거하기
 		8.총회차 찾기
 		
+		9.작품 조회수 증가
+		10.상품 조회수 증가
+		11.게시물 총 건수
+		
 		- 상품들을 최신순으로 정렬하기
 		- 상품들을 인기순으로 정렬하기
 	 */
@@ -28,7 +32,11 @@ public interface MainMapper {
 	
 	public List<Work> selectByWork(int wNo);
 	public List<Work> selectByEpisode(int wNo, int episode);
-	public boolean createBookmark(int mNo, int pNo);
-	public boolean deleteBookmark(int mNo, int pNo);
+	public int createBookmark(int mNo, int pNo);
+	public int deleteBookmark(int mNo, int pNo);
 	public int selectTepisode(int wNo);
+	
+	public void increaseWorkView(int wNo);
+	public void increaseProductView(int pNo);
+	public int selectProductCount();
 }
