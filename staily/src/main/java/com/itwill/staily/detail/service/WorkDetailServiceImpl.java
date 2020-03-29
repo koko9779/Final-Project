@@ -2,6 +2,7 @@ package com.itwill.staily.detail.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,10 +37,10 @@ public class WorkDetailServiceImpl implements WorkDetailService {
 	}
 
 	@Override
-	public boolean createWorkDetail(Work work) throws Exception {
+	public boolean createWorkDetail(@Param("pNo") int pNo, @Param("wNo") int wNo, @Param("wdEpisode") int wdEpisode) throws Exception {
 		boolean check = false;
 		
-		if(workDetailMapper.createWorkDetail(work)) {
+		if(workDetailMapper.createWorkDetail(pNo, wNo, wdEpisode)) {
 			check = true;			
 		}
 		else{

@@ -2,6 +2,8 @@ package com.itwill.staily.detail.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itwill.staily.util.Work;
 
 public interface WorkDetailMapper {
@@ -9,5 +11,5 @@ public interface WorkDetailMapper {
 	
 	public List<Work> selectWorkAll();
 	
-	public boolean createWorkDetail(Work work);
+	public boolean createWorkDetail(@Param("pNo") int pNo, @Param("wNo") int wNo, @Param("wdEpisode") int wdEpisode);
 }

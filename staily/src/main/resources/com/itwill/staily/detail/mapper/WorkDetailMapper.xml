@@ -3,16 +3,19 @@
 <mapper namespace="com.itwill.staily.detail.mapper.WorkDetailMapper">
 	<select id="selectWorkOne" parameterType="int"
 		resultType="com.itwill.staily.util.Work">
-		select w.w_no, w.w_name, w.w_poster, w.w_date, w.w_tepisode, w.w_category, wd.wd_episode
-		from work w
-		inner join episode_detail ed
-		on w.w_no = ed.w_no
-		where w.w_no = #{wNo}
+		select w_no, w_name, w_category, w_date, w_poster, w_tepisode, w_view
+		from work
+		where w_no = #{wNo}
 	</select>
 	
 	<select id="selectWorkAll" resultType="com.itwill.staily.util.Work">
 		select w_no, w_name, w_poster, w_date, w_tepisode, w_category
 		from work
 	</select>
+	
+	<insert id="createWorkDetail">
+		insert into work_detail (wd_no, p_no, w_no, wd_episode)
+		values (wd_no_seq.nextval, #{pNo}, #{wNo}, #{wdEpisode})
+	</insert>
 		
 </mapper>

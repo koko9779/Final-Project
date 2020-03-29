@@ -12,20 +12,20 @@ public class Reply {
 		super();
 	}
 
-	public Reply(int rMno, int rPno, int rRno, String rContent, int rRecommend, int rReport) {
+	public Reply(int rRno, int rPno, int rMno, String rContent, int rRecommend, int rReport) {
 		super();
-		this.rMno = rMno;
-		this.rPno = rPno;
 		this.rRno = rRno;
+		this.rPno = rPno;
+		this.rMno = rMno;
 		this.rContent = rContent;
 		this.rRecommend = rRecommend;
 		this.rReport = rReport;
 	}
 	
-	public Reply(int rMno, int rPno, String rContent, int rRecommend, int rReport) {
+	public Reply(int rPno, int rMno, String rContent, int rRecommend, int rReport) {
 		super();
-		this.rMno = rMno;
 		this.rPno = rPno;
+		this.rMno = rMno;
 		this.rContent = rContent;
 		this.rRecommend = rRecommend;
 		this.rReport = rReport;

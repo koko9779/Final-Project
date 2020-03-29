@@ -48,7 +48,7 @@ public class ReplyServiceImpl implements ReplyService {
 	public boolean deleteReply(Reply reply) throws Exception {
 		boolean check = false;
 		
-		if(replyMapper.createReply(reply)) {
+		if(replyMapper.deleteReply(reply)) {
 			check = true;			
 		}
 		else{

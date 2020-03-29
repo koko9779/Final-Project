@@ -5,7 +5,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.itwill.staily.admin.service.AdminService;
 import com.itwill.staily.admin.service.impl.AdminServiceImpl;
-import com.itwill.staily.detail.model.dao.ProductdetailDaoImpl;
 import com.itwill.staily.detail.service.ProductDetailServiceImpl;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
