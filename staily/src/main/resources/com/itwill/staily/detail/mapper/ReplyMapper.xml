@@ -21,4 +21,12 @@
 		delete from reply
 		where r_no = #{rRno} and p_no = #{rPno} and m_no = #{rMno}
 	</delete>
+	
+	<update id="increaseRecommend" parameterType="com.itwill.staily.detail.model.dto.Reply">
+		update reply set r_recommend = r_recommend + 1 where r_no = #{rNo}
+	</update>
+	
+	<update id="increaseReport" parameterType="int">
+		update reply set r_report = r_report + 1 where r_no = #{rNo}
+	</update>
 </mapper>

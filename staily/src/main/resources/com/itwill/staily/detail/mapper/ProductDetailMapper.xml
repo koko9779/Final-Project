@@ -20,6 +20,24 @@
 		values (pd_no_seq.nextval, #{pNo}, #{pdImage}, #{pdScene})
 	</insert>
 	
+	<update id="updateProduct" parameterType="com.itwill.staily.util.Product">
+		update product set p_name = #{pName}, p_price = #{pPrice}, p_url = #{pUrl}, 
+		p_address = #{pAddress}, p_daddress = #{pDaddress}, 
+		p_check = #{pCheck}, p_view = #{pView}, p_date = sysdate
+		where p_no = #{pNo}
+	</update>
 	
+	<update id="updateProductDetail" parameterType="com.itwill.staily.util.Product">
+		update product_detail set pd_image = #{pdImage}, pd_scene = #{pdScene}
+		where pd_no = #{pdNo}
+	</update>
+	
+	<delete id="deleteProduct" parameterType="int">
+		delete from product where p_no = #{pNo}
+	</delete>
+	
+	<delete id="deleteProductDetail" parameterType="int">
+		delete from product_detail where pd_no = #{pdNo}
+	</delete>
 	
 </mapper>

@@ -28,6 +28,12 @@ public class ReplyTest {
 		//boolean delete = rm.deleteReply(new Reply(2, 1, 1));
 		//System.out.println(delete);
 		
+		//boolean inc = rm.increaseRecommend(28);
+		//System.out.println(inc);
+		
+		//boolean inc = rm.increaseReport(28);
+		//System.out.println(inc);
+		
 		//상품 단위 테스트
 		//Product product = pdm.selectProductOne(1);
 		//System.out.println(product);
@@ -37,6 +43,12 @@ public class ReplyTest {
 		
 		//boolean create = pdm.createProductDetail(new Product(4, "팀장님", "스고이"));
 		//System.out.println(create);
+		
+		//boolean update = pdm.updateProduct(new Product("핸드폰 사고싶다", 1500000, "google.com", "지구", "아시아", "n", 345362, 22));
+		//System.out.println(update);
+		
+		//boolean update = pdm.updateProductDetail(new Product("히히", "ㅎㅎ헿", 1));
+		//System.out.println(update);
 		
 		//작품 단위 테스트
 		//Work work = wdm.selectWorkOne(3);

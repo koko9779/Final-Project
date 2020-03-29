@@ -58,4 +58,32 @@ public class ReplyServiceImpl implements ReplyService {
 		return check;
 	}
 
+	@Override
+	public boolean increaseRecommend(int rNo) throws Exception {
+		boolean check = false;
+		
+		if(replyMapper.increaseRecommend(rNo)) {
+			check = true;			
+		}
+		else{
+			check = false;
+		}
+		
+		return check;
+	}
+
+	@Override
+	public boolean increaseReport(int rNo) throws Exception {
+		boolean check = false;
+		
+		if(replyMapper.increaseReport(rNo)) {
+			check = true;			
+		}
+		else{
+			check = false;
+		}
+		
+		return check;
+	}
+
 }

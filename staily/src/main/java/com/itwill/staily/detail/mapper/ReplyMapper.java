@@ -11,4 +11,7 @@ public interface ReplyMapper {
 	
 	public boolean deleteReply(Reply reply);
 	
+	public boolean increaseRecommend(int rNo);
+	
+	public boolean increaseReport(int rNo);
 }

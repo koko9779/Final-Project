@@ -12,4 +12,11 @@ public interface ProductDetailMapper {
 	
 	public boolean createProductDetail(Product product);
 	
+	public boolean updateProduct(Product product);
+	
+	public boolean updateProductDetail(Product product);
+	
+	public boolean deleteProduct(int pNo);
+	
+	public boolean deleteProductDetail(int pdNo);
 }

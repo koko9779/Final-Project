@@ -15,7 +15,8 @@ package com.itwill.staily.util;
 	P_VIEW               NUMBER        
 	P_DATE               VARCHAR2(12)  
 	이름       널?       유형            
-	-------- -------- ------------- 
+	-------- -------- -------------
+	PD_NO    NOT NULL NUMBER 
 	P_NO     NOT NULL NUMBER        
 	PD_IMAGE          VARCHAR2(200) 
 	PD_SCENE          VARCHAR2(200) 
@@ -33,7 +34,7 @@ public class Product {
 	private String pCheck; //상품 승인 여부
 	private int pView; //상품 조회 수
 	
-	private int pdNo; //상품상세번호
+	private int pdNo; //상품 상세 번호
 	private String pdImage; //상품 이미지
 	private String pdScene; //상품 장면
 	
@@ -41,32 +42,6 @@ public class Product {
 		super();
 	}
 	
-	public Product(int pNo, int pMno, int pWno, String pName, int pPrice, String pUrl, String pAddress,
-			String pDaddress, String pCheck, int pView, int pdNo, String pdImage, String pdScene) {
-		super();
-		this.pNo = pNo;
-		this.pMno = pMno;
-		this.pWno = pWno;
-		this.pName = pName;
-		this.pPrice = pPrice;
-		this.pUrl = pUrl;
-		this.pAddress = pAddress;
-		this.pDaddress = pDaddress;
-		this.pCheck = pCheck;
-		this.pView = pView;
-		this.pdNo = pdNo;
-		this.pdImage = pdImage;
-		this.pdScene = pdScene;
-	}
-
-	public int getPdNo() {
-		return pdNo;
-	}
-
-	public void setPdNo(int pdNo) {
-		this.pdNo = pdNo;
-	}
-
 	public Product(int pNo, int pMno, int pWno, String pName, int pPrice, String pUrl, String pAddress,
 			String pDaddress, String pCheck, int pView, String pdImage, String pdScene) {
 		super();
@@ -79,11 +54,22 @@ public class Product {
 		this.pAddress = pAddress;
 		this.pDaddress = pDaddress;
 		this.pCheck = pCheck;
-		this.pView = pView;
-		
-		
+		this.pView = pView;		
 		this.pdImage = pdImage;
 		this.pdScene = pdScene;
+	}
+	
+	public Product(String pName, int pPrice, String pUrl, String pAddress, String pDaddress, 
+			String pCheck, int pView, int pNo) {
+		super();
+		this.pName = pName;
+		this.pPrice = pPrice;
+		this.pUrl = pUrl;
+		this.pAddress = pAddress;
+		this.pDaddress = pDaddress;
+		this.pCheck = pCheck;
+		this.pView = pView;		
+		this.pNo = pNo;
 	}
 	
 	public Product(int pMno, int pWno, String pName, int pPrice, String pUrl, String pAddress,
@@ -105,6 +91,13 @@ public class Product {
 		this.pNo = pNo;
 		this.pdImage = pdImage;
 		this.pdScene = pdScene;
+	}
+
+	public Product(String pdImage, String pdScene, int pdNo) {
+		super();
+		this.pdImage = pdImage;
+		this.pdScene = pdScene;
+		this.pdNo = pdNo;
 	}
 
 	public int getpNo() {
@@ -185,6 +178,14 @@ public class Product {
 
 	public void setpView(int pView) {
 		this.pView = pView;
+	}	
+
+	public int getPdNo() {
+		return pdNo;
+	}
+
+	public void setPdNo(int pdNo) {
+		this.pdNo = pdNo;
 	}
 
 	public String getPdImage() {

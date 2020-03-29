@@ -32,6 +32,12 @@ public class ServiceTest {
 		//boolean delete = rs.deleteReply(new Reply(21, 1, 1));
 		//System.out.println(delete);
 		
+		//boolean inc = rs.increaseRecommend(28);
+		//System.out.println(inc);
+		
+		//boolean inc = rs.increaseReport(28);
+		//System.out.println(inc);
+		
 		//»óÇ° ´ÜÀ§ Å×½ºÆ®
 		//Product pro = pd.selectProductOne(21);
 		//System.out.println(pro);
@@ -41,6 +47,12 @@ public class ServiceTest {
 		
 		//boolean create = pd.createProductDetail(new Product(6, "ÆÀÀå´Ô", "½º°íÀÌ"));
 		//System.out.println(create);
+		
+		//boolean update = pd.updateProduct(new Product("ÇÚµåÆù »ç°í½Í´Ù", 1500000, "¾ß³ÊµÎ?", "Áö±¸", "¾Æ½Ã¾Æ", "n", 345362, 22));
+		//System.out.println(update);
+				
+		//boolean update = pd.updateProductDetail(new Product("ÈÄÄoÆRÁK¤¾¤Ã¤¿", "¤¾¤¾Âm", 1));
+		//System.out.println(update);				
 		
 		//ÀÛÇ° ´ÜÀ§ Å×½ºÆ®
 		//Work work = wd.selectWorkOne(3);

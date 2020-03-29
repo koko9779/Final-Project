@@ -11,4 +11,7 @@ public interface ReplyService {
 	
 	boolean deleteReply(Reply reply) throws Exception;
 	
+	boolean increaseRecommend(int rNo) throws Exception;
+	
+	boolean increaseReport(int rNo) throws Exception;	
 }

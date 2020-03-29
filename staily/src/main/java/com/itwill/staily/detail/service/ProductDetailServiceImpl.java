@@ -56,4 +56,60 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 		return check;
 	}
 
+	@Override
+	public boolean updateProduct(Product product) throws Exception {
+		boolean check = false;
+		
+		if(productDetailMapper.updateProduct(product)) {
+			check = true;			
+		}
+		else {
+			check = false;
+		}
+		
+		return check;
+	}
+
+	@Override
+	public boolean updateProductDetail(Product product) throws Exception {
+		boolean check = false;
+		
+		if(productDetailMapper.updateProductDetail(product)) {
+			check = true;			
+		}
+		else {
+			check = false;
+		}
+		
+		return check;
+	}
+
+	@Override
+	public boolean deleteProduct(int pNo) throws Exception {
+		boolean check = false;
+		
+		if(productDetailMapper.deleteProduct(pNo)) {
+			check = true;			
+		}
+		else {
+			check = false;
+		}
+		
+		return check;
+	}
+
+	@Override
+	public boolean deleteProductDetail(int pdNo) throws Exception {
+		boolean check = false;
+		
+		if(productDetailMapper.deleteProductDetail(pdNo)) {
+			check = true;			
+		}
+		else {
+			check = false;
+		}
+		
+		return check;
+	}
+
 }
