@@ -15,7 +15,7 @@
 		FROM member
 		WHERE m_no=#{mNo}
 	</select>
-	<delete id="deleteMember">
+	<delete id="deleteMember" parameterType="int">
 		DELETE member WHERE m_no=#{mNo}
 	</delete>
 	<update id="updateMember"
@@ -25,7 +25,7 @@
 		m_daddress=#{mDaddress},m_email=#{mEmail},m_type=#{mType},m_phone=#{mPhone}
 		WHERE m_no=#{mNo}
 	</update>
-
+	
 	<!-- 상품 -->
 	<select id="selectProductAll"
 		resultType="com.itwill.staily.util.Product">
@@ -47,7 +47,10 @@
 		p_daddress=#{pDaddress} , p_check=#{pCheck}, p_date=#{pDate}
 		WHERE p_no = #{pNo}
 	</update>
-	
+	<update id="updateProductDetail" parameterType="int">
+		UPDATE product_detail SET pd_image=#{pdImage} ,pd_scene=#{pdScene}
+		WHERE pd_no = #{pdNo}
+	</update>
 	<delete id="deleteProduct" parameterType="int">
 		DELETE product WHERE p_no=#{pNo}
 	</delete>
@@ -58,7 +61,10 @@
 		INSERT INTO work VALUES
 		(work_no_seq.nextval,#{wName},#{wCategory},#{wDate},#{wPoster},{#wTepisode},0)
 	</insert>
-	
+	<insert id="createWorkDetail" parameterType="Work">
+		INSERT INTO work_detail VALUES
+		(wd_no_seq.nextval,#{pNo},#{mNo},#{wdEpisode})
+	</insert>
 	<select id="selectWorkAll" resultType="com.itwill.staily.util.Work">
 		SELECT w_no,w_name,w_category,w_date,w_poster,w_tepisode
 		FROM work

@@ -7,9 +7,25 @@ public class BoardDetail {
 	B_NO     NOT NULL NUMBER        
 	BD_IMAGE NOT NULL VARCHAR2(200) 
 	 */
+	private int bdNo; //게시물상세번호
 	private int bNo; //게시물번호
 	private String bdImage; //이미지
 	
+	public int getBdNo() {
+		return bdNo;
+	}
+
+	public void setBdNo(int bdNo) {
+		this.bdNo = bdNo;
+	}
+
+	public BoardDetail(int bdNo, int bNo, String bdImage) {
+		super();
+		this.bdNo = bdNo;
+		this.bNo = bNo;
+		this.bdImage = bdImage;
+	}
+
 	public BoardDetail() {
 		// TODO Auto-generated constructor stub
 	}

@@ -33,6 +33,7 @@ public class Product {
 	private String pCheck; //상품 승인 여부
 	private int pView; //상품 조회 수
 	
+	private int pdNo; //상품상세번호
 	private String pdImage; //상품 이미지
 	private String pdScene; //상품 장면
 	
@@ -40,6 +41,32 @@ public class Product {
 		super();
 	}
 	
+	public Product(int pNo, int pMno, int pWno, String pName, int pPrice, String pUrl, String pAddress,
+			String pDaddress, String pCheck, int pView, int pdNo, String pdImage, String pdScene) {
+		super();
+		this.pNo = pNo;
+		this.pMno = pMno;
+		this.pWno = pWno;
+		this.pName = pName;
+		this.pPrice = pPrice;
+		this.pUrl = pUrl;
+		this.pAddress = pAddress;
+		this.pDaddress = pDaddress;
+		this.pCheck = pCheck;
+		this.pView = pView;
+		this.pdNo = pdNo;
+		this.pdImage = pdImage;
+		this.pdScene = pdScene;
+	}
+
+	public int getPdNo() {
+		return pdNo;
+	}
+
+	public void setPdNo(int pdNo) {
+		this.pdNo = pdNo;
+	}
+
 	public Product(int pNo, int pMno, int pWno, String pName, int pPrice, String pUrl, String pAddress,
 			String pDaddress, String pCheck, int pView, String pdImage, String pdScene) {
 		super();

@@ -19,7 +19,7 @@ public class AdminController {
 	
 	public AdminController() {
 	}
-	@RequestMapping("/test.do")
+	@RequestMapping("/test")
 	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv =new ModelAndView();
 		try {
@@ -31,5 +31,10 @@ public class AdminController {
 		}
 		mv.setViewName("test");
 		return mv;
+	}
+	@RequestMapping("/admin")
+	public String adminTest() {
+		
+		return "admin/index";
 	}
 }
