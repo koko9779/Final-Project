@@ -11,29 +11,34 @@ public interface AdminService {
 	//회원 개별출력
 	public Member selectMemberOne(int mNo) throws Exception;
 	//회원 수정
-	public int updateMember(Work work) throws Exception;
+	public boolean updateMember(Member member) throws Exception;
 	//회원삭제
-	public int deleteMember(int mNo) throws Exception;
+	public boolean deleteMember(int mNo) throws Exception;
 	
 	/* 작품 */
 	//작품 입력
-	public int createWork(Work work) throws Exception;
+	public boolean createWork(Work work) throws Exception;
+	//작품상세 입력
+	public boolean createWorkDetail(Work work) throws Exception;
 	//작품 전체 출력
 	public List<Work>selectWorkAll() throws Exception;
 	//작품 하나 출력
 	public Work selectWorkOne(int wNo) throws Exception; 
 	//작품수정
-	public int updateWork(Work work) throws Exception;
+	public boolean updateWork(Work work) throws Exception;
 	//작품삭제
-	public int deleteWork(int wNo) throws Exception;
+	public boolean deleteWork(int wNo) throws Exception;
+	
 	/* 상품 */
 	//상품 전체출력
 	public List<Product> selectProductAll() throws Exception;
 	//상품 하나출력
 	public Product selectProductOne(int pNo) throws Exception;
 	//상품 수정
-	public int updateProduct(Product product) throws Exception;
+	public boolean updateProduct(Product product) throws Exception;
+	//상품상세 수정
+	public boolean updateProductDetail(int pdNo) throws Exception;
 	//상품 삭제
-	public int deleteProduct(int pNo) throws Exception;
+	public boolean deleteProduct(int pNo) throws Exception;
 }
 

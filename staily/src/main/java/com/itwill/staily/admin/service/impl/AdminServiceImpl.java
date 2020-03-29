@@ -47,69 +47,74 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public int updateMember(Work work) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean updateMember(Member member) throws Exception {
+		return adminMapper.updateMember(member);
 	}
 
 	@Override
-	public int deleteMember(int mNo) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean deleteMember(int mNo) throws Exception {
+		return adminMapper.deleteMember(mNo);
 	}
 
 	@Override
-	public int createWork(Work work) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean createWork(Work work) throws Exception {
+		boolean create = false;
+		adminMapper.createWork(work);
+		return create;
 	}
-
+	
+	@Override
+	public boolean createWorkDetail(Work work) throws Exception {
+		return createWorkDetail(work);
+	}
+	
 	@Override
 	public List<Work> selectWorkAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return adminMapper.selectWorkAll();
 	}
 
 	@Override
 	public Work selectWorkOne(int wNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return adminMapper.selectWorkOne(wNo);
 	}
 
 	@Override
-	public int updateWork(Work work) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean updateWork(Work work) throws Exception {
+		return adminMapper.updateWork(work);
 	}
-
 	@Override
-	public int deleteWork(int wNo) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean deleteWork(int wNo) throws Exception {
+		return adminMapper.deleteWork(wNo);
 	}
 
 	@Override
 	public List<Product> selectProductAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return adminMapper.selectProductAll();
 	}
 
 	@Override
 	public Product selectProductOne(int pNo) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return adminMapper.selectProductOne(pNo);
 	}
 
 	@Override
-	public int updateProduct(Product product) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean updateProduct(Product product) throws Exception {
+		return adminMapper.updateProduct(product);
 	}
 
 	@Override
-	public int deleteProduct(int pNo) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean updateProductDetail(int pdNo) throws Exception {
+		return adminMapper.updateProductDetail(pdNo);
 	}
+	
+	@Override
+	public boolean deleteProduct(int pNo) throws Exception {
+		return adminMapper.deleteProduct(pNo);
+	}
+
+
+
+
+
 
 }

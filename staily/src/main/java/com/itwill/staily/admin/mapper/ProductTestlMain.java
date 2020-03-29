@@ -17,10 +17,10 @@ public class ProductTestlMain {
 		AdminServiceImpl as = applicationContext.getBean(AdminServiceImpl.class);
 		Member member = as.selectMemberOne(1);
 		System.out.println(member);
-		ProductDetailServiceImpl pd = applicationContext.getBean(ProductDetailServiceImpl.class);
-		boolean pdd = pd.createProduct(new Product(0, 1, 1, "test", 27000, "test", "test", "test", "N", 0, "TEST", "TEST"));
-//		Product pdd = pd.selectProductOne(1);
-		System.out.println(pdd);
+//		ProductDetailServiceImpl pd = applicationContext.getBean(ProductDetailServiceImpl.class);
+//		boolean pdd = pd.createProduct(new Product(0, 1, 1, "test", 27000, "test", "test", "test", "N", 0, "TEST", "TEST"));
+////		Product pdd = pd.selectProductOne(1);
+//		System.out.println(pdd);
 	}
 	
 }
