@@ -84,14 +84,15 @@
 		<selectKey order="BEFORE" keyProperty="bmNo" resultType="int">
 			select BM_NO_SEQ.nextval from dual
 		</selectKey>
-		insert into bookmark (bm_no,m_no,p_no)  values(#{bm_no},#{m_no},#{p_no})
+		insert into bookmark(bm_no,m_no,p_no)
+		values(#{bmNo},#{m_no},#{p_no})
 	</insert>
 	<!-- 7.즐겨찾기 제거하기 -->
 	<delete id="deleteBookmark" parameterType="int" >
 		delete from bookmark where m_no = #{m_no} and p_no = #{p_no}
 	</delete>
 	<!-- 8.총회차 찾기 -->
-	<select id="selectTepisode" parameterType="int">
+	<select id="selectTepisode" parameterType="int" resultType="int">
 		select w_tepisode
 		from work
 		where w_no=#{w_no}
