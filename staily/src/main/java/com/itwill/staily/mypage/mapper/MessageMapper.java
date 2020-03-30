@@ -5,13 +5,22 @@ import java.util.List;
 import com.itwill.staily.mypage.model.dto.Message;
 
 public interface MessageMapper {
-	public Message selectOne(int msNo);
 	
-	public List<Message> selectList(int mNo);
+	//메시지 하나 선택
+	public Message selectOne(int msNo) throws Exception;
 	
-	public int createMessage(Message message);
+	//메시지 리스트 
+	public List<Message> selectList(int mNo) throws Exception;
 	
-	public int deleteMessage(int msNo);
+	//메시지 추가
+	public boolean createMessage(Message message) throws Exception;
 	
-	public int updateMessage(Message message);
+	//메시지 삭제
+	public boolean deleteMessage(int msNo) throws Exception;
+	
+	//메시지 수정
+	public boolean updateMessage(Message message) throws Exception;
+	
+	//메시지 화면 출력(멤버 & 메시지 조인)
+	public List<Message> selectMessageList(int mNo) throws Exception;
 }

@@ -6,10 +6,10 @@ import com.itwill.staily.mypage.model.dto.Friend;
 
 public interface FriendDao {
 	
-	public List<Friend> selectList(int mNo);
+	public List<Friend> selectList(int mNo) throws Exception;
 	
-	public int createFriend(Friend friend);
+	public int createFriend(Friend friend) throws Exception;
 	
-	public int deleteFriend(int fNo);
+	public int deleteFriend(int fNo) throws Exception;
 
 }

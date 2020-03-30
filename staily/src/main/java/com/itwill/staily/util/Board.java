@@ -35,7 +35,6 @@ public class Board {
 	
 	public Board(int bNo, int mNo, String bTitle, String bContent, int bGroupNo, int bStep, int bView,
 			int bRecommend, String bType, String bDate, String bChoice, BoardDetail boardDetail) {
-		super();
 		this.bNo = bNo;
 		this.mNo = mNo;
 		this.bTitle = bTitle;

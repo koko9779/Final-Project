@@ -2,6 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.staily.mypage.mapper.MypageMapper">
 
+<!--  
+<resultMap 	id="studentAssociateAddressAddressMapperResultMap" 
+				type="com.mybatis3.domain.Student" >
+		<result column="STUD_ID" property="studId"/>
+		<result column="NAME" property="name"/>
+		<result column="EMAIL" property="email"/>
+		<result column="dob" property="dob"/>
+		<association property="address"
+					 resultMap="com.mybatis3.mapper.AddressMapper.addressResultMap"
+					 autoMapping="true">	
+		</association>		
+	</resultMap>
+-->
+
+<!-- member출력 -->
+<select id="selectOne"
+		parameterType="int"
+		resultType="com.itwill.staily.util.Member" >
+	SELECT m_no, m_id, m_pw, m_name, m_address, m_daddress, m_email, m_type, m_phone
+	FROM member
+	WHERE m_no=#{mNo}
+</select>
+
 <!-- member삭제 -->
 <delete id="deleteMember"
 		parameterType="int">
@@ -13,7 +36,7 @@
 <update id="updateMember"
 	    parameterType="com.itwill.staily.util.Member">
 update member
-set m_id=#{mId}, m_pw=#{mPw}, m_name=#{mName}, m_address=#{mAddress}, m_daddres=#{mDaddress},
+set m_id=#{mId}, m_pw=#{mPw}, m_name=#{mName}, m_address=#{mAddress}, m_daddress=#{mDaddress},
     m_email=#{mEmail}, m_type=#{mType}, m_phone=#{mPhone}
 where m_no=#{mNo}
 </update>

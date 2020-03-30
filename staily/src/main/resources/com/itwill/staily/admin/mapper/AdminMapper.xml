@@ -50,10 +50,10 @@
 	</select>
 
 	<update id="updateProduct" parameterType="com.itwill.staily.util.Product">
-		UPDATE product SET p_name = #{pName} , p_price = #{pPrice} ,
-		p_url= #{pUrl}, p_address=#{pAddress},
-		p_daddress=#{pDaddress} , p_check=#{pCheck}, p_date=#{pDate}
-		WHERE p_no = #{pNo}
+		UPDATE product SET p_name = #{pName}, p_price = #{pPrice}, p_url = #{pUrl}, 
+		p_address = #{pAddress}, p_daddress = #{pDaddress}, 
+		p_check = #{pCheck}, p_view = #{pView}, p_date = sysdate
+		where p_no = #{pNo}
 	</update>
 	<update id="updateProductDetail" parameterType="int">
 		UPDATE product_detail SET pd_image=#{pdImage} ,pd_scene=#{pdScene}
@@ -67,7 +67,7 @@
 	<insert id="createWork"
 		parameterType="com.itwill.staily.util.Work">
 		INSERT INTO work VALUES
-		(work_no_seq.nextval,#{wName},#{wCategory},#{wDate},#{wPoster},{#wTepisode},0)
+		(work_no_seq.nextval,#{wName},#{wCategory},#{wDate},#{wPoster},#{wTepisode},0)
 	</insert>
 	<insert id="createWorkDetail" parameterType="Work">
 		INSERT INTO work_detail VALUES
