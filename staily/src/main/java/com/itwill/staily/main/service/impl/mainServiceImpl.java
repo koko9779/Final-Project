@@ -52,8 +52,8 @@ public class mainServiceImpl implements MainService{
 	}
 
 	@Override
-	public List<Work> selectByEpisode(int wNo, int episode) throws Exception {
-		return mainMapper.selectByEpisode(wNo, episode);
+	public List<Work> selectByEpisode(Map map) throws Exception {
+		return mainMapper.selectByEpisode(map);
 	}
 
 	@Override

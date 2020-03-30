@@ -1,9 +1,11 @@
-package com.itwill.staily.login.mapper;
+package com.itwill.staily.login.mapper.test;
 
 import java.util.HashMap;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.itwill.staily.login.mapper.LoginMapper;
 
 public class LoginMapperTestMain {
 
@@ -13,8 +15,8 @@ public class LoginMapperTestMain {
 		int count;
 		HashMap<String, Object> map = new HashMap<String, Object>();
 
-//		Member member = login.selectMemberIdAndPw("ehdanf91");
-//		System.out.println(member);
+//		String pw = login.selectMemberIdAndPw("시험용기업아이디");
+//		System.out.println(pw);
 		
 
 //		map.put("mPhone", "01091434908");

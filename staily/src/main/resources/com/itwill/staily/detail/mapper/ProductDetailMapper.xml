@@ -12,7 +12,7 @@
 	
 	<insert id="createProduct" parameterType="com.itwill.staily.util.Product">
 		insert into product (p_no, m_no, w_no, p_name, p_price, p_url, p_address, p_daddress, p_check, p_view, p_date)
-		values (product_no_seq.nextval, #{pMno}, #{pWno}, #{pName}, #{pPrice}, #{pUrl}, #{pAddress}, #{pDaddress}, #{pCheck}, #{pView}, sysdate)
+		values (product_no_seq.nextval, #{mNo}, #{wNo}, #{pName}, #{pPrice}, #{pUrl}, #{pAddress}, #{pDaddress}, #{pCheck}, #{pView}, sysdate)
 	</insert>
 	
 	<insert id="createProductDetail" parameterType="com.itwill.staily.util.Product">

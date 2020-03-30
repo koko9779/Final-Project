@@ -19,7 +19,7 @@ public interface MainService {
 	//4.선택한 작품의 포스터,상품 출력하기
 	public List<Work> selectByWork(int wNo) throws Exception;
 	//5.선택한 작품의 포스터,해당 회차의 상품들 출력하기
-	public List<Work> selectByEpisode(int wNo, int episode) throws Exception;
+	public List<Work> selectByEpisode(Map map) throws Exception;
 	//6.즐겨찾기 등록하기	
 	public int createBookmark(Map map) throws Exception;
 	//7.즐겨찾기 제거하기
