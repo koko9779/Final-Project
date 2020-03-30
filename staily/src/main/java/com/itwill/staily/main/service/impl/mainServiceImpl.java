@@ -47,7 +47,7 @@ public class mainServiceImpl implements MainService{
 	}
 
 	@Override
-	public List<Work> selectByWork(int wNo) throws Exception {
+	public Work selectByWork(int wNo) throws Exception {
 		return mainMapper.selectByWork(wNo);
 	}
 

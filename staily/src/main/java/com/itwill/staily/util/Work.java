@@ -1,4 +1,7 @@
 package com.itwill.staily.util;
+
+import java.util.List;
+
 /*
 W_NO	NUMBER	No		1	작품번호
 W_NAME	VARCHAR2(50 BYTE)	Yes		2	작품이름
@@ -20,21 +23,29 @@ public class Work {
 	//작품상세
 	private int wdNo;
 	private int wdEpisode;
-	private Product product;
+	private List<Product> product;
 	
 	public Work() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	@Override
-	public String toString() {
-		return "[wNo = " + wNo + ", wName = " + wName + ", wCategory = " + wCategory + ", " +
-				"wDate = " + wDate + ", wPoster = " + wPoster + ", wTepisode = " + wTepisode + ", " +
-				"wView = " + wView + ", wdNo = " + wdNo + ", wdEpisode = " + wdEpisode + "]";
+	public int getWdNo() {
+		return wdNo;
 	}
-	
+	public void setWdNo(int wdNo) {
+		this.wdNo = wdNo;
+	}	
+
+	public List<Product> getProduct() {
+		return product;
+	}
+
+	public void setProduct(List<Product> product) {
+		this.product = product;
+	}
+
+
 	public Work(int wNo, String wName, String wCategory, String wDate, String wPoster, int wTepisode, int wView,
-			int wdNo, int wdEpisode, Product product) {
+			int wdNo, int wdEpisode, List<Product> product) {
 		super();
 		this.wNo = wNo;
 		this.wName = wName;
@@ -48,31 +59,15 @@ public class Work {
 		this.product = product;
 	}
 
-	public Work(int wNo, String wName, String wCategory, String wDate, String wPoster, int wTepisode, int wView) {
-		super();
-		this.wNo = wNo;
-		this.wName = wName;
-		this.wCategory = wCategory;
-		this.wDate = wDate;
-		this.wPoster = wPoster;
-		this.wTepisode = wTepisode;
-		this.wView = wView;
+
+	@Override
+	public String toString() {
+		return "Work [wNo=" + wNo + ", wName=" + wName + ", wCategory=" + wCategory + ", wDate=" + wDate + ", wPoster="
+				+ wPoster + ", wTepisode=" + wTepisode + ", wView=" + wView + ", wdNo=" + wdNo + ", wdEpisode="
+				+ wdEpisode + ", product=" + product + "]";
 	}
 
-	public int getWdNo() {
-		return wdNo;
-	}
-	public void setWdNo(int wdNo) {
-		this.wdNo = wdNo;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
+	
 
 	public int getWdEpisode() {
 		return wdEpisode;

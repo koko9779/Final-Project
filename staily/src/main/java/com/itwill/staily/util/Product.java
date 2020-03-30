@@ -44,21 +44,6 @@ public class Product {
 		super();
 	}
 	
-	public String getpDate() {
-		return pDate;
-	}
-	
-	public void setpDate(String pDate) {
-		this.pDate = pDate;
-	}
-	@Override
-	public String toString() {
-		return "[pNo = " + pNo + ", mNo = " + mNo + ", wNo = " + wNo + ", " +
-				"pName = " + pName + ", pPrice = " + pPrice + ", pUrl = " + pUrl + ", " +
-				"pAddress = " + pAddress + ", pDaddress = " + pDaddress + ", pCheck = " + pCheck + ", " +
-				"pView = " + pView + ", pdNo = " + pdNo + ", pdImage = " + pdImage + ", pdScene = " + pdScene + "]";
-	}
-	
 	public Product(int pNo, int mNo, int wNo, String pName, int pPrice, String pUrl, String pAddress,
 			String pDaddress, String pCheck, int pView, String pdImage, String pdScene) {
 		super();
@@ -209,7 +194,15 @@ public class Product {
 
 	public void setPdScene(String pdScene) {
 		this.pdScene = pdScene;
-	} 
+	}
+
+	@Override
+	public String toString() {
+		return "Product [pNo=" + pNo + ", mNo=" + mNo + ", wNo=" + wNo + ", pName=" + pName + ", pPrice=" + pPrice
+				+ ", pUrl=" + pUrl + ", pAddress=" + pAddress + ", pDaddress=" + pDaddress + ", pCheck=" + pCheck
+				+ ", pView=" + pView + ", pdNo=" + pdNo + ", pdImage=" + pdImage + ", pdScene=" + pdScene + "]";
+	}
+
 	
 	
 }
