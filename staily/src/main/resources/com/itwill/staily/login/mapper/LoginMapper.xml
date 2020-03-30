@@ -22,7 +22,7 @@
 	AND m_id = #{mId}
 </select>
 
-<update id="updatePwOne">
+<update id="updatePwOne" parameterType="Member">
 	UPDATE member
 	SET m_pw = #{mPw}
 	WHERE m_id = #{mId}

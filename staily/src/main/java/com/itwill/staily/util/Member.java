@@ -32,7 +32,6 @@ public class Member {
 	
 	public Member(int mNo, String mId, String mPw, String mName, String mAddress, String mDaddress, String mEmail,
 			String mType, String mPhone, Company mCompany) {
-		super();
 		this.mNo = mNo;
 		this.mId = mId;
 		this.mPw = mPw;
