@@ -1,6 +1,7 @@
 package com.itwill.staily.main.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.itwill.staily.mypage.model.dto.Bookmark;
 import com.itwill.staily.util.Member;
@@ -20,7 +21,7 @@ public interface MainService {
 	//5.선택한 작품의 포스터,해당 회차의 상품들 출력하기
 	public List<Work> selectByEpisode(int wNo, int episode) throws Exception;
 	//6.즐겨찾기 등록하기	
-	public int createBookmark(Member member, Product product) throws Exception;
+	public int createBookmark(Map map) throws Exception;
 	//7.즐겨찾기 제거하기
 	public int deleteBookmark(int bmNo) throws Exception;
 	//8.총회차 찾기
