@@ -24,7 +24,7 @@
 		</association>
 	</resultMap>
 	-->
-	<resultMap id="fromWtoProductListResultMap" type="com.itwill.staily.util.Work">
+	<resultMap id="wWithpAndpdResultMap" type="com.itwill.staily.util.Work">
 		<result column="w_no" property="wNo"/>
 		<result column="w_category" property="wCategory"/>
 		<result column="w_poster" property="wPoster"/>
@@ -63,7 +63,7 @@
 		where w_category=#{w_category}
 	</select>
 	<!-- 4.선택한 작품의 포스터,상품 출력하기 -->
-	<select id="selectByWork" parameterType="int" resultMap="fromWtoProductListResultMap">
+	<select id="selectByWork" parameterType="int" resultMap="wWithpAndpdResultMap">
 		select w.w_no,w.w_category,w.w_poster,w.w_name,w.w_tepisode,p.p_no,p.p_name,p.pd_scene
 		from work w
 		join (select pr.p_no p_no,pr.w_no w_no,pr.p_name p_name,prd.pd_scene pd_scene
@@ -74,7 +74,7 @@
 		where w.w_no = #{w_no}
 	</select>
 	<!-- 5.선택한 작품의 포스터,해당 회차의 상품들 출력하기 -->
-	<select id="selectByEpisode" parameterType="map" resultMap="fromWtoProductListResultMap">
+	<select id="selectByEpisode" parameterType="map" resultMap="wWithpAndpdResultMap">
 		select wd.wd_no,p.p_no,w.w_no,w.w_tepisode,wd_episode,w.w_poster,w.w_name,p.p_name,pd.pd_scene
 		from work w
 		join work_detail wd

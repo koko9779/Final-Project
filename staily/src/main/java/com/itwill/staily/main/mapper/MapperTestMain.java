@@ -64,11 +64,10 @@ public class MapperTestMain {
 		List<Work> w = mainM.selectByEpisode(map);
 		
 		for (int i = 0; i < w.size(); i++) {
-			System.out.println(w.get(i).getWdNo());
-			System.out.println(w.get(i).getwTepisode());
-			System.out.println(w.get(i).getProduct());
+			System.out.println(w.get(i).getWdNo()+","+w.get(i).getwTepisode());
+			//System.out.println(w.get(i).getProduct());
 		}
-		w.get(1).getProduct().get(0).getPdScene();
+		System.out.println("Product Scene: "+w.get(1).getProduct().get(0).getPdScene());
 		/*
 			System.out.println("["+w.getWdNo()+","+w.getProduct().get(0).getpNo()+","+w.getwNo()+","+
 								w.getwTepisode()+","+w.getWdEpisode()+","+w.getwPoster()+","+w.getwName()+","+
