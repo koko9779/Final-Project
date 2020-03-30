@@ -10,7 +10,7 @@ public interface BookmarkMapper {
 	public List<Bookmark> selectList(int mNo) throws Exception;
 		
 	//북마크 삭제
-	public int deleteBookmark(int bmNo) throws Exception;
+	public boolean deleteBookmark(int bmNo) throws Exception;
 	
 	
 }

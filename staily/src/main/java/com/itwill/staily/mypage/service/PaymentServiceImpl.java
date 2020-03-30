@@ -22,12 +22,12 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public int createPayment(Payment payment) throws Exception {
+	public boolean createPayment(Payment payment) throws Exception {
 		return paymentMapper.createPayment(payment);
 	}
 
 	@Override
-	public int deletePayment(int py_no) throws Exception {
+	public boolean deletePayment(int py_no) throws Exception {
 		return paymentMapper.deletePayment(py_no);
 	}
 

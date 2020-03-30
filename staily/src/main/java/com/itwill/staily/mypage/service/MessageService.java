@@ -12,13 +12,13 @@ public interface MessageService {
 	public List<Message> selectList(int mNo) throws Exception;
 	
 	//메시지 생성
-	public int createMessage(Message message) throws Exception;
+	public boolean createMessage(Message message) throws Exception;
 	
 	//메시지 삭제
-	public int deleteMessage(int msNo) throws Exception;
+	public boolean deleteMessage(int msNo) throws Exception;
 	
 	//메시지 수정
-	public int updateMessage(Message message) throws Exception;
+	public boolean updateMessage(Message message) throws Exception;
 	
 	//메시지 실제 화면 출력(멤버&메시지 조인)
 	public List<Message> selectMessageList(int mNo) throws Exception;

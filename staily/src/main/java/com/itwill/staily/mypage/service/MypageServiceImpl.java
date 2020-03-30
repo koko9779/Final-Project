@@ -15,12 +15,12 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public int deleteMember(int mNo) throws Exception {
+	public boolean deleteMember(int mNo) throws Exception {
 		return mypageMapper.deleteMember(mNo);
 	}
 
 	@Override
-	public int updateMember(Member member) throws Exception {
+	public boolean updateMember(Member member) throws Exception {
 		return mypageMapper.updateMember(member);
 	}
 

@@ -8,9 +8,9 @@ public interface MypageMapper {
 	public Member selectOne(int mNo) throws Exception;
 	
 	//멤버 삭제
-	public int deleteMember(int mNo) throws Exception;
+	public boolean deleteMember(int mNo) throws Exception;
 	
 	//멤버 수정
-	public int updateMember(Member member) throws Exception;
+	public boolean updateMember(Member member) throws Exception;
 
 }

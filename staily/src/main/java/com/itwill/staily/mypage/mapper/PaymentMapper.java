@@ -13,8 +13,8 @@ public interface PaymentMapper {
 	public List<Payment> selectList(int mNo) throws Exception;
 	
 	//결제 추가
-	public int createPayment(Payment payment) throws Exception;
+	public boolean createPayment(Payment payment) throws Exception;
 	
 	//결제 삭제
-	public int deletePayment(int py_no) throws Exception;
+	public boolean deletePayment(int py_no) throws Exception;
 }
