@@ -3,23 +3,19 @@
 <mapper namespace="com.itwill.staily.detail.mapper.ReplyMapper">
 	<select id="selectReplyList" parameterType="int" 
 		resultType="com.itwill.staily.detail.model.dto.Reply">
-		select r.r_no, m.m_no, p.p_no, r.r_content, r.r_recommend, r.r_report
-		from reply r
-		inner join member m
-		on m.m_no = r.m_no
-		inner join product p
-		on p.p_no = r.p_no
-		where p.p_no = #{rPno}
+		select r_no, p_no, m_no, r_content, r_recommend, r_report
+		from reply
+		where p_no = #{pNo}
 	</select>
 	
 	<insert id="createReply" parameterType="com.itwill.staily.detail.model.dto.Reply">
 		insert into reply
-		values (reply_no_seq.nextval, #{rPno}, #{rMno}, #{rContent}, #{rRecommend}, #{rReport})
+		values (reply_no_seq.nextval, #{pNo}, #{mNo}, #{rContent}, #{rRecommend}, #{rReport})
 	</insert>
 	
 	<delete id="deleteReply" parameterType="com.itwill.staily.detail.model.dto.Reply">
 		delete from reply
-		where r_no = #{rRno} and p_no = #{rPno} and m_no = #{rMno}
+		where r_no = #{rNo} and p_no = #{pNo} and m_no = #{mNo}
 	</delete>
 	
 	<update id="increaseRecommend" parameterType="com.itwill.staily.detail.model.dto.Reply">

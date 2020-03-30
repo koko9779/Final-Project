@@ -26,6 +26,13 @@ public class Work {
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Override
+	public String toString() {
+		return "[wNo = " + wNo + ", wName = " + wName + ", wCategory = " + wCategory + ", " +
+				"wDate = " + wDate + ", wPoster = " + wPoster + ", wTepisode = " + wTepisode + ", " +
+				"wView = " + wView + ", wdNo = " + wdNo + ", wdEpisode = " + wdEpisode + "]";
+	}
+	
 	public Work(int wNo, String wName, String wCategory, String wDate, String wPoster, int wTepisode, int wView,
 			int wdNo, int wdEpisode, Product product) {
 		super();
