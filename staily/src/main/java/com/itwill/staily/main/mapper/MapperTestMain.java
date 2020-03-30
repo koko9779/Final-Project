@@ -2,6 +2,7 @@ package com.itwill.staily.main.mapper;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -61,7 +62,7 @@ public class MapperTestMain {
 		System.out.println("6.즐겨찾기 등록하기(보류)");
 //		Member m = new Member(10, "test", "test", "test", "test", "test", "test@email.com", "M", "01012341234", null);
 //		Product p = new Product(25, "이미이지", "명자앙면");
-		HashMap map = new HashMap();
+		Map map = new HashMap();
 		map.put("mNo", 1);
 		map.put("pNo", 1);
 		int result = mainM.createBookmark(map);
