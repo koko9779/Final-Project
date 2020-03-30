@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.itwill.staily.main.mapper.MainMapper;
 import com.itwill.staily.main.service.MainService;
 import com.itwill.staily.mypage.model.dto.Bookmark;
+import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
 
@@ -55,13 +56,13 @@ public class mainServiceImpl implements MainService{
 	}
 
 	@Override
-	public int createBookmark(int mNo,int pNo) throws Exception {
-		return mainMapper.createBookmark(mNo, pNo);
+	public int createBookmark(Member member, Product product) throws Exception {
+		return mainMapper.createBookmark(member,product);
 	}
 
 	@Override
-	public int deleteBookmark(int mNo,int pNo) throws Exception {
-		return mainMapper.deleteBookmark(mNo, pNo);
+	public int deleteBookmark(int bmNo) throws Exception {
+		return mainMapper.deleteBookmark(bmNo);
 	}
 
 	@Override

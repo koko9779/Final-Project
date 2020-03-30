@@ -3,6 +3,7 @@ package com.itwill.staily.main.mapper;
 import java.util.List;
 
 import com.itwill.staily.mypage.model.dto.Bookmark;
+import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
 
@@ -33,7 +34,7 @@ public interface MainMapper {
 	public List<Work> selectByWork(int wNo);
 	public List<Work> selectByEpisode(int wNo, int episode);
 	public int createBookmark(int mNo, int pNo);
-	public int deleteBookmark(int mNo, int pNo);
+	public int deleteBookmark(int bmNo);
 	public int selectTepisode(int wNo);
 	
 	public void increaseWorkView(int wNo);

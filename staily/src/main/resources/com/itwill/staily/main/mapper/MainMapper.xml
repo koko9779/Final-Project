@@ -85,11 +85,11 @@
 			select BM_NO_SEQ.nextval from dual
 		</selectKey>
 		insert into bookmark(bm_no,m_no,p_no)
-		values(#{bmNo},#{m_no},#{p_no})
+		values(#{bmNo},#{mNo},#{pNo})
 	</insert>
 	<!-- 7.즐겨찾기 제거하기 -->
 	<delete id="deleteBookmark" parameterType="int" >
-		delete from bookmark where m_no = #{m_no} and p_no = #{p_no}
+		delete from bookmark where bm_no=#{bmNo}
 	</delete>
 	<!-- 8.총회차 찾기 -->
 	<select id="selectTepisode" parameterType="int" resultType="int">
