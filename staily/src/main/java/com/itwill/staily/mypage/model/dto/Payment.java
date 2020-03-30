@@ -24,6 +24,13 @@ public class Payment {
 		this.pyPeriod = pyPeriod;
 		this.pyType = pyType;
 	}
+	
+
+	@Override
+	public String toString() {
+		return "Payment [pyNo=" + pyNo + ", mNo=" + mNo + ", pyPrice=" + pyPrice + ", pyDate=" + pyDate + ", pyName="
+				+ pyName + ", pyPeriod=" + pyPeriod + ", pyType=" + pyType + "]";
+	}
 
 
 	public int getPyNo() {
