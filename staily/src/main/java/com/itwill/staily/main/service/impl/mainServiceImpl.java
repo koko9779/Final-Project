@@ -1,6 +1,7 @@
 package com.itwill.staily.main.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.itwill.staily.main.mapper.MainMapper;
 import com.itwill.staily.main.service.MainService;
 import com.itwill.staily.mypage.model.dto.Bookmark;
+import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
 
@@ -50,18 +52,18 @@ public class mainServiceImpl implements MainService{
 	}
 
 	@Override
-	public List<Work> selectByEpisode(int wNo, int episode) throws Exception {
-		return mainMapper.selectByEpisode(wNo, episode);
+	public List<Work> selectByEpisode(Map map) throws Exception {
+		return mainMapper.selectByEpisode(map);
 	}
 
 	@Override
-	public int createBookmark(int mNo,int pNo) throws Exception {
-		return mainMapper.createBookmark(mNo, pNo);
+	public int createBookmark(Map map) throws Exception {
+		return mainMapper.createBookmark(map);
 	}
 
 	@Override
-	public int deleteBookmark(int mNo,int pNo) throws Exception {
-		return mainMapper.deleteBookmark(mNo, pNo);
+	public int deleteBookmark(int bmNo) throws Exception {
+		return mainMapper.deleteBookmark(bmNo);
 	}
 
 	@Override

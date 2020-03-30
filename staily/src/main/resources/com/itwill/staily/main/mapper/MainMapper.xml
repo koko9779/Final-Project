@@ -17,10 +17,8 @@
 		<result column="w_poster" property="wPoster"/>
 		<result column="w_name" property="wName"/>
 		<result column="w_tepisode" property="wTepisode"/>
-		<!-- 
 		<result column="wd_no" property="wdNo"/>
 		<result column="wd_episode" property="wdEpisode"/>
-		-->
 		<association property="product" javaType="com.itwill.staily.util.Product" autoMapping="true">
 			<result column="p_no" property="pNo"/>
 		<!-- 
@@ -68,7 +66,7 @@
 		where w.w_no = #{w_no}
 	</select>
 	<!-- 5.선택한 작품의 포스터,해당 회차의 상품들 출력하기 -->
-	<select id="selectByEpisode" parameterType="int" resultMap="wWithpAndpdResultMap">
+	<select id="selectByEpisode" parameterType="map" resultMap="wWithpAndpdResultMap">
 		select wd.wd_no,p.p_no,w.w_no,w.w_tepisode,wd_episode,w.w_poster,w.w_name,p.p_name,pd.pd_scene
 		from work w
 		join work_detail wd
@@ -80,19 +78,20 @@
 		where w.w_no = #{w_no} and wd.wd_episode=#{wd_episode}
 	</select>
 	<!-- 6.즐겨찾기 등록하기 -->
-	<insert id="createBookmark" parameterType="int">
+	<insert id="createBookmark" parameterType="map">
+	<!--  
 		<selectKey order="BEFORE" keyProperty="bmNo" resultType="int">
 			select BM_NO_SEQ.nextval from dual
 		</selectKey>
-		insert into bookmark(bm_no,m_no,p_no)
-		values(#{bmNo},#{m_no},#{p_no})
+		-->
+		insert into bookmark values(bm_no_seq.nextval,#{mNo},#{pNo})
 	</insert>
 	<!-- 7.즐겨찾기 제거하기 -->
 	<delete id="deleteBookmark" parameterType="int" >
-		delete from bookmark where m_no = #{m_no} and p_no = #{p_no}
+		delete from bookmark where bm_no=#{bmNo}
 	</delete>
 	<!-- 8.총회차 찾기 -->
-	<select id="selectTepisode" parameterType="int" resultType="int">
+	<select id="selectTepisode" parameterType="int" resultType="Work">
 		select w_tepisode
 		from work
 		where w_no=#{w_no}

@@ -11,7 +11,6 @@ public class Bookmark {
 	public Bookmark() {
 		
 	}
-	
 	public Bookmark(int bmNo, Member member, Product product) {
 		super();
 		this.bmNo = bmNo;

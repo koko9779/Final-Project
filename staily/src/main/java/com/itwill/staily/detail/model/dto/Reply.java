@@ -1,9 +1,9 @@
 package com.itwill.staily.detail.model.dto;
 
 public class Reply {
-	private int rRno; //댓글 번호
-	private int rPno; //상품 번호
-	private int rMno; //회원 번호
+	private int rNo; //댓글 번호
+	private int pNo; //상품 번호
+	private int mNo; //회원 번호
 	private String rContent; //댓글 내용
 	private int rRecommend; //추천 수
 	private int rReport; //신고 수
@@ -11,55 +11,61 @@ public class Reply {
 	public Reply() {
 		super();
 	}
+	
+	@Override
+	public String toString() {
+		return "[rNo = " + rNo + ", pNo = " + pNo + ", mNo = " + mNo + ", " +
+				"rContent = " + rContent + ", rRecommend = " + rRecommend + ", rReport = " + rReport + "]";
+	}
 
-	public Reply(int rRno, int rPno, int rMno, String rContent, int rRecommend, int rReport) {
+	public Reply(int rNo, int pNo, int mNo, String rContent, int rRecommend, int rReport) {
 		super();
-		this.rRno = rRno;
-		this.rPno = rPno;
-		this.rMno = rMno;
+		this.rNo = rNo;
+		this.pNo = pNo;
+		this.mNo = mNo;
 		this.rContent = rContent;
 		this.rRecommend = rRecommend;
 		this.rReport = rReport;
 	}
 	
-	public Reply(int rPno, int rMno, String rContent, int rRecommend, int rReport) {
+	public Reply(int pNo, int mNo, String rContent, int rRecommend, int rReport) {
 		super();
-		this.rPno = rPno;
-		this.rMno = rMno;
+		this.pNo = pNo;
+		this.mNo = mNo;
 		this.rContent = rContent;
 		this.rRecommend = rRecommend;
 		this.rReport = rReport;
 	}
 
-	public Reply(int rRno, int rPno, int rMno) {
+	public Reply(int rNo, int pNo, int mNo) {
 		super();
-		this.rMno = rMno;
-		this.rPno = rPno;
-		this.rRno = rRno;
+		this.mNo = mNo;
+		this.pNo = pNo;
+		this.rNo = rNo;
 	}
 	
-	public int getrMno() {
-		return rMno;
+	public int getmNo() {
+		return mNo;
 	}
 
-	public void setrMno(int rMno) {
-		this.rMno = rMno;
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
 	}
 
-	public int getrPno() {
-		return rPno;
+	public int getpNo() {
+		return pNo;
 	}
 
-	public void setrPno(int rPno) {
-		this.rPno = rPno;
+	public void setpNo(int pNo) {
+		this.pNo = pNo;
 	}
 
-	public int getrRno() {
-		return rRno;
+	public int getrNo() {
+		return rNo;
 	}
 
-	public void setrRno(int rRno) {
-		this.rRno = rRno;
+	public void setrNo(int rNo) {
+		this.rNo = rNo;
 	}
 
 	public String getrContent() {
