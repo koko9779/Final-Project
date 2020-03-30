@@ -13,8 +13,8 @@ public interface FriendMapper {
 	
 	public List<Friend> selectList(int mNo) throws Exception;
 	
-	public int createFriend(Friend friend) throws Exception;
+	public boolean createFriend(Friend friend) throws Exception;
 	
-	public int deleteFriend(int fNo) throws Exception;
+	public boolean deleteFriend(int fNo) throws Exception;
 
 }

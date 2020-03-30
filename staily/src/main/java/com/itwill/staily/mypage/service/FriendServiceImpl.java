@@ -17,12 +17,12 @@ public class FriendServiceImpl implements FriendService {
 	}
 
 	@Override
-	public int createFriend(Friend friend) throws Exception {
+	public boolean createFriend(Friend friend) throws Exception {
 		return friendMapper.createFriend(friend);
 	}
 
 	@Override
-	public int deleteFriend(int fNo) throws Exception {
+	public boolean deleteFriend(int fNo) throws Exception {
 		return friendMapper.deleteFriend(fNo);
 	}
 

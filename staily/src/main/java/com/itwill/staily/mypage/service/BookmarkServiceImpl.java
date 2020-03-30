@@ -17,7 +17,7 @@ public class BookmarkServiceImpl implements BookmarkService {
 	}
 
 	@Override
-	public int deleteBookmark(int bmNo) throws Exception {
+	public boolean deleteBookmark(int bmNo) throws Exception {
 		return bookmarkMapper.deleteBookmark(bmNo);
 	}
 

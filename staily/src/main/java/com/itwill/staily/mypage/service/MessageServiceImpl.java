@@ -37,17 +37,17 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public int createMessage(Message message) throws Exception {
+	public boolean createMessage(Message message) throws Exception {
 		return messageMapper.createMessage(message);
 	}
 
 	@Override
-	public int deleteMessage(int msNo) throws Exception {
+	public boolean deleteMessage(int msNo) throws Exception {
 		return messageMapper.deleteMessage(msNo);
 	}
 
 	@Override
-	public int updateMessage(Message message) throws Exception {
+	public boolean updateMessage(Message message) throws Exception {
 		return messageMapper.updateMessage(message);
 	}
 
