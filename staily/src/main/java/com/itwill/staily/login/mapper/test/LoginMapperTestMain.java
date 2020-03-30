@@ -1,9 +1,11 @@
-package com.itwill.staily.login.mapper;
+package com.itwill.staily.login.mapper.test;
 
 import java.util.HashMap;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.itwill.staily.login.mapper.LoginMapper;
 
 public class LoginMapperTestMain {
 
