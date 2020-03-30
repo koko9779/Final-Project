@@ -55,19 +55,27 @@ public class MapperTestMain {
 		}
 		System.out.println("----------------------------------------");
 		
-		/*
+		
 		System.out.println("5.선택한 작품의 포스터,해당 회차의 상품들 출력하기");
 		Map map = new HashMap();
 		map.put("w_no", 1);
 		map.put("wd_episode",1);
-		List<Work> wE = mainM.selectByEpisode(map);
-		for (Work w : wE) {
-			System.out.println("["+w.getWdNo()+","+w.getProduct().getpNo()+","+w.getwNo()+","+
-								w.getwTepisode()+","+w.getWdEpisode()+","+w.getwPoster()+","+w.getwName()+","+
-								w.getProduct().getpName()+","+w.getProduct().getPdScene()+"]");
+		List<Work> w = mainM.selectByEpisode(map);
+		
+		for (int i = 0; i < w.size(); i++) {
+			System.out.println(w.get(i).getWdNo());
+			System.out.println(w.get(i).getwTepisode());
+			System.out.println(w.get(i).getProduct());
 		}
-		System.out.println("----------------------------------------");
+		w.get(1).getProduct().get(0).getPdScene();
+		/*
+			System.out.println("["+w.getWdNo()+","+w.getProduct().get(0).getpNo()+","+w.getwNo()+","+
+								w.getwTepisode()+","+w.getWdEpisode()+","+w.getwPoster()+","+w.getwName()+","+
+								w.getProduct().get(0).getpName()+","+w.getProduct().get(0).getPdScene()+"]");
 		*/
+		
+		System.out.println("----------------------------------------");
+		
 		/*
 		System.out.println("6.즐겨찾기 등록하기");
 		Map map = new HashMap();
