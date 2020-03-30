@@ -13,6 +13,7 @@ public class BoardManageMapperTestMain {
 		BoardManageMapper board = applicationContext.getBean(BoardManageMapper.class);
 		int count;
 		
+		
 //		Board b = new Board();
 //		b.setmNo(5);
 //		b.setbTitle("테스트용게시글이다");
