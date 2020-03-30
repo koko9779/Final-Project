@@ -1,5 +1,7 @@
 package com.itwill.staily.mypage.model.dto;
 
+import org.apache.ibatis.annotations.Property;
+
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
 
