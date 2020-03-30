@@ -30,15 +30,23 @@
 	<select id="selectProductAll"
 		resultType="com.itwill.staily.util.Product">
 		SELECT
-		p_no,w_no,p_name,p_price,p_url,p_address,p_daddress,p_check,p_view,p_date
-		FROM product
+		p.p_no,p.w_no,p.p_name,p.p_price,p.p_url,p.p_address,
+        p.p_daddress,p.p_check,
+        p.p_view,p.p_date, pd.pd_no, pd.pd_image, pd.pd_scene
+		FROM product p, product_detail pd
+		WHERE p.p_no = pd.p_no
+
 	</select>
 	
 	<select id="selectProductOne" parameterType="int" resultType="Product">
 		SELECT
-		p_no,w_no,p_name,p_price,p_url,p_address,p_daddress,p_check,p_view,p_date
-		FROM product
-		WHERE p_no=#{pNo}
+		p.p_no,p.w_no,p.p_name,p.p_price,p.p_url,p.p_address,
+        p.p_daddress,p.p_check,
+        p.p_view,p.p_date, pd.pd_no, pd.pd_image, pd.pd_scene
+		FROM product p, product_detail pd
+		WHERE p.p_no = pd.p_no
+		AND p.p_no=#{pNo}
+
 	</select>
 
 	<update id="updateProduct" parameterType="com.itwill.staily.util.Product">

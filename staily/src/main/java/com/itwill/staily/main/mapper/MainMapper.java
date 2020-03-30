@@ -1,12 +1,17 @@
 package com.itwill.staily.main.mapper;
 
 import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.itwill.staily.mypage.model.dto.Bookmark;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
 
+@Mapper
 public interface MainMapper {
 	/*
 	 	1. 회원번호를 통해서 즐겨찾기한 목록 찾기	
@@ -33,7 +38,7 @@ public interface MainMapper {
 	
 	public List<Work> selectByWork(int wNo);
 	public List<Work> selectByEpisode(int wNo, int episode);
-	public int createBookmark(int mNo, int pNo);
+	public int createBookmark(Map map);
 	public int deleteBookmark(int bmNo);
 	public int selectTepisode(int wNo);
 	
