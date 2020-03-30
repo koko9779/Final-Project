@@ -1,6 +1,7 @@
 package com.itwill.staily.main.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,13 +52,13 @@ public class mainServiceImpl implements MainService{
 	}
 
 	@Override
-	public List<Work> selectByEpisode(int wNo, int episode) throws Exception {
-		return mainMapper.selectByEpisode(wNo, episode);
+	public List<Work> selectByEpisode(Map map) throws Exception {
+		return mainMapper.selectByEpisode(map);
 	}
 
 	@Override
-	public int createBookmark(Member member, Product product) throws Exception {
-		return mainMapper.createBookmark(member,product);
+	public int createBookmark(Map map) throws Exception {
+		return mainMapper.createBookmark(map);
 	}
 
 	@Override
