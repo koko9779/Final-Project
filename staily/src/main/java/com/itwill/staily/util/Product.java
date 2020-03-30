@@ -202,6 +202,13 @@ public class Product {
 
 	public void setPdScene(String pdScene) {
 		this.pdScene = pdScene;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [pNo=" + pNo + ", pMno=" + pMno + ", pWno=" + pWno + ", pName=" + pName + ", pPrice=" + pPrice
+				+ ", pUrl=" + pUrl + ", pAddress=" + pAddress + ", pDaddress=" + pDaddress + ", pCheck=" + pCheck
+				+ ", pView=" + pView + ", pdNo=" + pdNo + ", pdImage=" + pdImage + ", pdScene=" + pdScene + "]";
 	} 
 	
 	

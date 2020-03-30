@@ -42,11 +42,14 @@ public class MapperTestMain {
 		*/
 		System.out.println("4.선택한 작품의 포스터,상품 출력하기(보류:결과값이 다르게 출력됨)");
 		
-		List<Work> workList2 = mainM.selectByWork(2);
-		for (Work work : workList2) {
-			System.out.println("["+work.getwNo()+","+work.getwCategory()+","+work.getwPoster()+","+work.getwName()+","+work.getwTepisode()
-								+","+work.getProduct().getpNo()+","+work.getProduct().getpName()+","+work.getProduct().getPdScene()+"]");
-		}
+		Work work = mainM.selectByWork(1);
+		System.out.println(work);
+//		List<Work> workList2 = mainM.selectByWork(1);
+//		for (Work work : workList2) {
+//			System.out.println("["+work.getwNo()+","+work.getwCategory()+","+work.getwPoster()+","+work.getwName()+","+work.getwTepisode()+"]");
+//			
+//		}
+		System.out.println(work.getProduct());
 		System.out.println("----------------------------------------");
 		
 		/*

@@ -19,23 +19,20 @@
 		<result column="w_tepisode" property="wTepisode"/>
 		<result column="wd_no" property="wdNo"/>
 		<result column="wd_episode" property="wdEpisode"/>
-		<association property="product" javaType="com.itwill.staily.util.Product" autoMapping="true">
+		<collection property="product" ofType="Product"  >
 			<result column="p_no" property="pNo"/>
-		<!-- 
-			<result column="p_name" property="pName"/>
+		 	<result column="p_name" property="pName"/>
 			<result column="pd_scene" property="pdScene"/>
-		-->
-		</association>
+			<result column="m_no"
+		
+		</collection>
 	</resultMap>
 	
  	<!-- 1. 회원번호를 통해서 즐겨찾기한 목록 찾기 -->
 	<select id="selectByBookmark" parameterType="int" resultMap="bmWithpAndpdResultMap">
-		select b.bm_no,b.m_no,b.p_no,p.p_name,p.pd_scene
+		select b.bm_no,b.m_no,b.p_no,p.p_name
 		from bookmark b
-		join (select pr.p_no p_no, pr.p_name p_name, prd.pd_scene pd_scene
-		      from product pr
-		      join product_detail prd
-		      on pr.p_no=prd.p_no) p
+		join product p
 		on b.p_no=p.p_no
 		where b.m_no = #{m_no}
 	</select>
