@@ -19,13 +19,13 @@ public class LoginServiceImpl {
 	private SignUpMapper signMapper;
 	HashMap<String, Object> map;
 	
-	public Member selectMemberIdAndPw(String mId) {
-		Member member; 
-		member = loginMapper.selectMemberIdAndPw(mId);
-		if(member == null) {
+	public String selectMemberIdAndPw(String mId) { 
+		String pw;
+		pw = loginMapper.selectMemberIdAndPw(mId);
+		if(pw == null) {
 			throw new NoSearchMemberException("아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다");
 		}
-		return member;
+		return pw;
 		//세션에 박는 작업은 controller에서 진행
 	}
 	
