@@ -23,7 +23,7 @@ public class MapperTestMain {
 								+bm.getProduct().getpName()+","+bm.getProduct().getPdScene()+"]");
 		}
 		System.out.println("----------------------------------------");	
-		
+		/*
 		//2. 인기많은(조회수 높은) 상품 출력
 		List<Product> productList = mainM.selectByView();
 		for (Product product : productList) {
@@ -80,7 +80,7 @@ public class MapperTestMain {
 			System.out.println("["+bm.getBmNo()+","+bm.getMember().getmNo()+","+bm.getProduct().getpNo()+":"
 								+bm.getProduct().getpName()+","+bm.getProduct().getPdScene()+"]");
 		}
-
+		
 		
 	}
 	

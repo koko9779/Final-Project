@@ -42,6 +42,11 @@ public class Bookmark {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+
+	@Override
+	public String toString() {
+		return "Bookmark [bmNo=" + bmNo + ", member=" + member + ", product=" + product + "]";
+	}
 	
 	
 }

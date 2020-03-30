@@ -1,5 +1,7 @@
 package com.itwill.staily.mypage.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,15 @@ public class MypageController {
 		Message message = messageService.selectOne(1);
 		model.addAttribute("message", message);
 		mv.setViewName("test2");
+		return mv;
+	}
+	
+	@RequestMapping("/test3")
+	public ModelAndView message_selectList(Model model) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<Message> messageList = messageService.selectMessageList(2);
+		model.addAttribute("messageList", messageList);
+		mv.setViewName("test3");
 		return mv;
 	}
 	

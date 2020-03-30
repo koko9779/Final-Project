@@ -25,33 +25,34 @@ public class MessageDaoImpl implements MessageDao {
 
 
 	@Override
-	public Message selectOne(int msNo) {
-		Message message = messageMapper.selectOne(msNo);
-		return message;
-	}
-
-	@Override
-	public List<Message> selectList(int mNo) {
+	public List<Message> selectList(int mNo) throws Exception{
 		List<Message> messageList = messageMapper.selectList(mNo);
 		return messageList;
 	}
 
 	@Override
-	public int createMessage(Message message) {
+	public int createMessage(Message message) throws Exception {
 		int insertRow = messageMapper.createMessage(message);
 		return insertRow;
 	}
 
 	@Override
-	public int deleteMessage(int msNo) {
+	public int deleteMessage(int msNo) throws Exception{
 		int deleteRow = messageMapper.deleteMessage(msNo);
 		return deleteRow;
 	}
 
 	@Override
-	public int updateMessage(Message message) {
+	public int updateMessage(Message message) throws Exception{
 		int updateRow = messageMapper.updateMessage(message);
 		return updateRow;
+	}
+
+
+	@Override
+	public Message selectOne(int msNo) throws Exception{
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -6,14 +6,14 @@ import com.itwill.staily.mypage.model.dto.Message;
 
 public interface MessageDao {
 	
-public Message selectOne(int msNo);
+	public Message selectOne(int msNo) throws Exception;
 	
-	public List<Message> selectList(int mNo);
+	public List<Message> selectList(int mNo) throws Exception;
 	
-	public int createMessage(Message message);
+	public int createMessage(Message message) throws Exception;
 	
-	public int deleteMessage(int msNo);
+	public int deleteMessage(int msNo) throws Exception;
 	
-	public int updateMessage(Message message);
+	public int updateMessage(Message message) throws Exception;
 
 }

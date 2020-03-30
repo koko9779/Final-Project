@@ -19,6 +19,54 @@
 	where m_no = #{mNo}
 </select>
 
+<!--  
+<resultMap 	id="studentAssociateAddressAddressMapperResultMap" 
+				type="com.mybatis3.domain.Student" >
+		<result column="STUD_ID" property="studId"/>
+		<result column="NAME" property="name"/>
+		<result column="EMAIL" property="email"/>
+		<result column="dob" property="dob"/>
+		<association property="address"
+					 resultMap="com.mybatis3.mapper.AddressMapper.addressResultMap"
+					 autoMapping="true">	
+		</association>		
+	</resultMap>
+	
+	<resultMap 	id="studentExtendsWithAddressResultMap" 
+				type="com.mybatis3.domain.Student"
+				extends="studentResultMap" >
+		<result column="ADDR_ID" property="address.addrId"/>
+		<result column="STREET" property="address.street"/>
+		<result column="STATE" property="address.state"/>
+		<result column="CITY" property="address.city"/>
+		<result column="ZIP" property="address.zip"/>
+		<result column="COUNTRY" property="address.country"/>
+	</resultMap>	
+-->
+
+<!-- 메시지&멤버 조인 resultMap -->
+<resultMap id="messageResult"
+		   type="com.itwill.staily.mypage.model.dto.Message" 
+		   autoMapping="true">
+	<association property="member"
+				 javaType="com.itwill.staily.util.Member"
+				 autoMapping="true">
+	</association>
+	
+</resultMap>
+
+<!-- 메시지 화면 출력 -->
+<select id="selectMessageList"
+		parameterType="int"
+		resultMap="messageResult">
+	select ms.ms_no, ms.m_no, ms.ms_title, ms.ms_content, ms.ms_date, m.m_id 
+	from message ms
+	join member m
+	on m.m_no = ms.m_no
+	where m.m_no = #{mNo}
+</select>
+
+
 <!-- 삽입 -->
 <insert id="createMessage"
 		parameterType="com.itwill.staily.mypage.model.dto.Message">

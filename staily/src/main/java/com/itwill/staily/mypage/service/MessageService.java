@@ -19,5 +19,8 @@ public interface MessageService {
 	
 	//메시지 수정
 	public int updateMessage(Message message) throws Exception;
+	
+	//메시지 실제 화면 출력(멤버&메시지 조인)
+	public List<Message> selectMessageList(int mNo) throws Exception;
 
 }

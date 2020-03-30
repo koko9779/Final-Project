@@ -26,19 +26,19 @@ public class FriendDaoImpl implements FriendDao {
 
 
 	@Override
-	public List<Friend> selectList(int mNo) {
+	public List<Friend> selectList(int mNo) throws Exception {
 		List<Friend> friendList = friendMapper.selectList(mNo);
 		return friendList;
 	}
 
 	@Override
-	public int createFriend(Friend friend) {
+	public int createFriend(Friend friend) throws Exception{
 		int insertRow = friendMapper.createFriend(friend);
 		return insertRow;
 	}
 
 	@Override
-	public int deleteFriend(int fNo) {
+	public int deleteFriend(int fNo) throws Exception{
 		int deleteRow = friendMapper.deleteFriend(fNo);
 		return deleteRow;
 	}

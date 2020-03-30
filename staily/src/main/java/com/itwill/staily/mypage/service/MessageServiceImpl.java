@@ -51,4 +51,9 @@ public class MessageServiceImpl implements MessageService {
 		return messageMapper.updateMessage(message);
 	}
 
+	@Override
+	public List<Message> selectMessageList(int mNo) throws Exception {
+		return messageMapper.selectMessageList(mNo);
+	}
+
 }
