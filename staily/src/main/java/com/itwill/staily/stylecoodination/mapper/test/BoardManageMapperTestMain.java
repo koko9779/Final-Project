@@ -16,8 +16,8 @@ public class BoardManageMapperTestMain {
 		
 //		Board b = new Board();
 //		b.setmNo(5);
-//		b.setbTitle("테스트용게시글이다");
-//		b.setbContent("테스트용게시글 성공해라!");
+//		b.setbTitle("테스트용게시글이다222");
+//		b.setbContent("테스트용게시글 성공해라!222");
 //		count = board.createBoard(b);
 //		System.out.println(count);
 	

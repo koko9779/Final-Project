@@ -1,8 +1,10 @@
 package com.itwill.staily.stylecoodination.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.itwill.staily.util.Board;
 import com.itwill.staily.util.BoardDetail;
-
+@Mapper
 public interface CommonMapper {
 	//id를 토대로 m_no 가져오기
 	public int selectMNo(String mId);
