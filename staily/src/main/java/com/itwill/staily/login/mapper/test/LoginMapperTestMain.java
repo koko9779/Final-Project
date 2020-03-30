@@ -15,8 +15,8 @@ public class LoginMapperTestMain {
 		int count;
 		HashMap<String, Object> map = new HashMap<String, Object>();
 
-//		Member member = login.selectMemberIdAndPw("ehdanf91");
-//		System.out.println(member);
+//		String pw = login.selectMemberIdAndPw("시험용기업아이디");
+//		System.out.println(pw);
 		
 
 //		map.put("mPhone", "01091434908");
