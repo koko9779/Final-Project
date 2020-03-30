@@ -15,4 +15,5 @@ public interface LoginMapper {
 	public int isIdExist(HashMap<String, Object> map);
 	
 	public int updatePwOne(Member updatePwMember);
+	
 }
