@@ -14,5 +14,5 @@ public interface LoginMapper {
 	/************ 비밀번호 찾기 ****************/
 	public int isIdExist(HashMap<String, Object> map);
 	
-	public int updatePwOne(HashMap<String, Object> map);
+	public int updatePwOne(Member updatePwMember);
 }

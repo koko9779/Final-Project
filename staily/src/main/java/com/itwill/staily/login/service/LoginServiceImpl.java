@@ -6,99 +6,112 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwill.staily.login.exception.FailSignException;
+import com.itwill.staily.login.exception.FailUpdatePwException;
 import com.itwill.staily.login.exception.NoSearchMemberException;
 import com.itwill.staily.login.mapper.LoginMapper;
 import com.itwill.staily.login.mapper.SignUpMapper;
 import com.itwill.staily.util.Member;
 
 @Service
-public class LoginServiceImpl {
+public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private LoginMapper loginMapper;
 	@Autowired
-	private SignUpMapper signMapper;
-	HashMap<String, Object> map;
+	private SignUpMapper signMapper;	
 	
-	public String selectMemberIdAndPw(String mId) { 
+	@Override
+	public Member selectMemberIdAndPw(Member member) { 
 		String pw;
-		pw = loginMapper.selectMemberIdAndPw(mId);
+		
+		pw = loginMapper.selectMemberIdAndPw(member.getmId());
 		if(pw == null) {
 			throw new NoSearchMemberException("아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다");
+		}else {
+			if(!pw.equals(member.getmPw())) {
+				throw new NoSearchMemberException("아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다");
+			}
 		}
-		return pw;
+		return member;
 		//세션에 박는 작업은 controller에서 진행
 	}
 	
+	@Override
 	public String findId(String mPhone, String mName) {
-		map = new HashMap<String, Object>();
+		String id;
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("mPhone", mPhone);
 		map.put("mName", mName);
 		
-		String id = loginMapper.selectIdOne(map);
+		id = loginMapper.selectIdOne(map);
+		if(id == null) {
+			throw new NoSearchMemberException("일치하는 계정이 없습니다");
+		}
 		return id;
 	}
 	
-	/************************** 수정 필요 **************************/
-	public int findPw(String mId, String mPhone, String mPw) {
-		int count = 0;
-		map = new HashMap<String, Object>();
+	/************************** 비밀번호 찾기 **************************/
+	@Override
+	public int isIdExist(String mId, String mPhone) {
+		int count = -1;
+		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("mId", mId);
 		map.put("mPhone", mPhone);
-		map.put("mPw", mPw);
-		
 		
 		int existCount = loginMapper.isIdExist(map);
-		if(existCount == 1) {
-			count = loginMapper.updatePwOne(map);
+		if(existCount != 1) {
+			throw new NoSearchMemberException("일치하는 계정이 없습니다");
+		}else {
+			count = 1;
 		}
 		return count;
 	}
+	//맞으면 새비밀번호 입력창으로 이동 
+	
+	//새 비밀번호 입력창에서 입력된 비밀번호로 업데이트
+	@Override
+	public int updatePw(Member updatePwMember) {
+		int updateCount = 0;
+		
+		updateCount = loginMapper.updatePwOne(updatePwMember);
+		if(updateCount != 1) {
+			throw new FailUpdatePwException("비밀번호 변경에 실패하였습니다");
+		}
+		
+		return updateCount;
+	}
 	/******************************************************************/
 	
+	@Override
 	public int signMember(Member member) {
-		int count = 0;
-		
-		member = new Member();
-		member.setmId(member.getmId());
-		member.setmPw(member.getmPw());
-		member.setmName(member.getmName());
-		member.setmAddress(member.getmAddress());
-		member.setmDaddress(member.getmDaddress());
-		member.setmEmail(member.getmEmail());
-		member.setmType("M");
-		member.setmPhone(member.getmPhone());
+		int signCount = 0;
 	
-		count = signMapper.createMember(member);
+		signCount = signMapper.createMember(member);
+		if(signCount != 1) {
+			throw new FailSignException("회원가입에 실패하였습니다");
+		}
 		
-		return count;
+		return signCount;
 	}
 	
-	public int signCompany(Member member, int coNo) {
-		int count = 0;
+	@Override
+	public int signCompany(Member member) {
+		int successCount = 0;
+		int signCountM = 0;
+		int signCountC = 0;
 		
-		member = new Member();
-		member.setmId(member.getmId());
-		member.setmPw(member.getmPw());
-		member.setmName(member.getmName());
-		member.setmAddress(member.getmAddress());
-		member.setmDaddress(member.getmDaddress());
-		member.setmEmail(member.getmEmail());
-		member.setmType("C");
-		member.setmPhone(member.getmPhone());
-	
-		count = signMapper.createMember(member);
-		
-		if(count == 1) {
-			count = signMapper.createCompany(coNo);
-			if(count != 1) {
+		signCountM = signMapper.createMember(member);
+		if(signCountM == 1) {
+			signCountC = signMapper.createCompany(member.getmCompany().getCoNo());
+			if(signCountC != 1) {
 				throw new FailSignException("회원가입에 실패하였습니다");
 			}
 		}else {
 			throw new FailSignException("회원가입에 실패하였습니다");
 		}
-		return 0; //리턴을 뭘 해줘야할까나
+		successCount = 1;
+		return successCount;
 	}
 	
 	
