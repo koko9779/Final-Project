@@ -6,7 +6,7 @@
 <select id="selectOne"
 		parameterType="int"
 		resultType="com.itwill.staily.mypage.model.dto.Message">
-	select *
+	select ms_no as msNo, m_no as mNo, ms_title as msTitle, ms_content as msContent, ms_date as msDate
 	from message
 	where ms_no = #{msNo}
 </select>
@@ -14,7 +14,7 @@
 <!-- 리스트 출력 -->
 <select id="selectList"
 		resultType="com.itwill.staily.mypage.model.dto.Message">
-	select *
+	select ms_no as msNo, m_no as mNo, ms_title as msTitle, ms_content as msContent, ms_date as msDate
 	from message
 	where m_no = #{mNo}
 </select>
