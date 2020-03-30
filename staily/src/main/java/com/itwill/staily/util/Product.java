@@ -33,7 +33,9 @@ public class Product {
 	private String pDaddress; //상품 상세 주소
 	private String pCheck; //상품 승인 여부
 	private int pView; //상품 조회 수
+	private String pDate; //상품등록일
 	
+
 	private int pdNo; //상품 상세 번호
 	private String pdImage; //상품 이미지
 	private String pdScene; //상품 장면
@@ -42,6 +44,13 @@ public class Product {
 		super();
 	}
 	
+	public String getpDate() {
+		return pDate;
+	}
+	
+	public void setpDate(String pDate) {
+		this.pDate = pDate;
+	}
 	@Override
 	public String toString() {
 		return "[pNo = " + pNo + ", mNo = " + mNo + ", wNo = " + wNo + ", " +
@@ -67,22 +76,11 @@ public class Product {
 		this.pdScene = pdScene;
 	}
 	
-	public Product(String pName, int pPrice, String pUrl, String pAddress, String pDaddress, 
-			String pCheck, int pView, int pNo) {
-		super();
-		this.pName = pName;
-		this.pPrice = pPrice;
-		this.pUrl = pUrl;
-		this.pAddress = pAddress;
-		this.pDaddress = pDaddress;
-		this.pCheck = pCheck;
-		this.pView = pView;		
-		this.pNo = pNo;
-	}
 	
-	public Product(int mNo, int wNo, String pName, int pPrice, String pUrl, String pAddress,
-			String pDaddress, String pCheck, int pView) {
+	public Product(int pNo, int mNo, int wNo, String pName, int pPrice, String pUrl, String pAddress, String pDaddress,
+			String pCheck, int pView, String pDate) {
 		super();
+		this.pNo = pNo;
 		this.mNo = mNo;
 		this.wNo = wNo;
 		this.pName = pName;
@@ -92,8 +90,9 @@ public class Product {
 		this.pDaddress = pDaddress;
 		this.pCheck = pCheck;
 		this.pView = pView;
+		this.pDate = pDate;
 	}
-	
+
 	public Product(int pNo, String pdImage, String pdScene) {
 		super();
 		this.pNo = pNo;

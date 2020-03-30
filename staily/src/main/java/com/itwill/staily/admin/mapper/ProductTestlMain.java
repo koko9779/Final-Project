@@ -54,8 +54,10 @@ public class ProductTestlMain {
 		//9. 상품하나 출력
 //		Product product = adm.selectProductOne(1);
 //		System.out.println(product);
-		//10. 수정
-		
+		//10. 상품 수정
+//		boolean ok = adm.updateProduct(new Product(23, 1,2, "수정", 270000, "https", "태양계", "지구별", "n", 0, null));
+//		System.out.println(ok);
+		//11. 상품삭제
 	}
 	
 }
