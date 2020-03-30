@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.staily.login.mapper.LoginMapper">
 
-<select id="selectMemberIdAndPw" parameterType="String" resultType="Member">
-	SELECT m_id, m_pw
+<select id="selectMemberIdAndPw" parameterType="String" resultType="String">
+	SELECT m_pw
 	FROM member
 	WHERE m_id = #{mId}
 </select>

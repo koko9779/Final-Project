@@ -1,8 +1,9 @@
-package com.itwill.staily.login.mapper;
+package com.itwill.staily.login.mapper.test;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.itwill.staily.login.mapper.SignUpMapper;
 import com.itwill.staily.util.Member;
 
 public class SignUpMapperTestMain {
