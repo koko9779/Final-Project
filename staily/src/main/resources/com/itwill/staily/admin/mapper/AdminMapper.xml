@@ -67,7 +67,7 @@
 	<insert id="createWork"
 		parameterType="com.itwill.staily.util.Work">
 		INSERT INTO work VALUES
-		(work_no_seq.nextval,#{wName},#{wCategory},#{wDate},#{wPoster},{#wTepisode},0)
+		(work_no_seq.nextval,#{wName},#{wCategory},#{wDate},#{wPoster},#{wTepisode},0)
 	</insert>
 	<insert id="createWorkDetail" parameterType="Work">
 		INSERT INTO work_detail VALUES

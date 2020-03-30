@@ -52,6 +52,20 @@ public class Member {
 				+ ", mCompany=" + mCompany + "]";
 	}
 	
+	public Member(int mNo, String mId, String mPw, String mName, String mAddress, String mDaddress, String mEmail,
+			String mType, String mPhone) {
+		super();
+		this.mNo = mNo;
+		this.mId = mId;
+		this.mPw = mPw;
+		this.mName = mName;
+		this.mAddress = mAddress;
+		this.mDaddress = mDaddress;
+		this.mEmail = mEmail;
+		this.mType = mType;
+		this.mPhone = mPhone;
+	}
+
 	public int getmNo() {
 		return mNo;
 	}
