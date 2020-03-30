@@ -37,7 +37,7 @@ public interface MainMapper {
 	public List<Work> selectByCategory(String category);
 	
 	public List<Work> selectByWork(int wNo);
-	public List<Work> selectByEpisode(int wNo, int episode);
+	public List<Work> selectByEpisode(Map map);
 	public int createBookmark(Map map);
 	public int deleteBookmark(int bmNo);
 	public int selectTepisode(int wNo);
