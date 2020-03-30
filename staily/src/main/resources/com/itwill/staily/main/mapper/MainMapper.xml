@@ -23,8 +23,6 @@
 			<result column="p_no" property="pNo"/>
 		 	<result column="p_name" property="pName"/>
 			<result column="pd_scene" property="pdScene"/>
-			<result column="m_no"
-		
 		</collection>
 	</resultMap>
 	
@@ -75,13 +73,11 @@
 		where w.w_no = #{w_no} and wd.wd_episode=#{wd_episode}
 	</select>
 	<!-- 6.즐겨찾기 등록하기 -->
-	<insert id="createBookmark" parameterType="map">
-	<!--  
+	<insert id="createBookmark" parameterType="map"> 
 		<selectKey order="BEFORE" keyProperty="bmNo" resultType="int">
 			select BM_NO_SEQ.nextval from dual
 		</selectKey>
-		-->
-		insert into bookmark values(bm_no_seq.nextval,#{mNo},#{pNo})
+		insert into bookmark values(#{bmNo},#{mNo},#{pNo})
 	</insert>
 	<!-- 7.즐겨찾기 제거하기 -->
 	<delete id="deleteBookmark" parameterType="int" >

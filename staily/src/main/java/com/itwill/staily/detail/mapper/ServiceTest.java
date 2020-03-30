@@ -22,11 +22,11 @@ public class ServiceTest {
 		ReplyServiceImpl rs = applicationContext.getBean(ReplyServiceImpl.class);
 		WorkDetailServiceImpl wd = applicationContext.getBean(WorkDetailServiceImpl.class);
 		
-		//´ñ±Û ´ÜÀ§ Å×½ºÆ®
-		//List<Reply> rL = rs.selectReplyList(1);
+		//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®
+		//List<Reply> rL = rs.selectReplyList(2);
 		//System.out.println(rL);
 		
-		//boolean create = rs.createReply(new Reply(21, 1, "Àúµµ »ç°í ½Í¾î¿ä!!", 322353, 0));
+		//boolean create = rs.createReply(new Reply(21, 1, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Í¾ï¿½ï¿½!!", 322353, 0));
 		//System.out.println(create);
 		
 		//boolean delete = rs.deleteReply(new Reply(21, 1, 1));
@@ -38,23 +38,23 @@ public class ServiceTest {
 		//boolean inc = rs.increaseReport(28);
 		//System.out.println(inc);
 		
-		//»óÇ° ´ÜÀ§ Å×½ºÆ®
+		//ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®
 		//Product pro = pd.selectProductOne(21);
 		//System.out.println(pro);
 		
-		//boolean create = pd.createProduct(new Product(1, 2, "ÄÄÇ»ÅÍ °®°í½Í´Ù", 2000000, "¤Ð¤Ð¤Ð", "Ã¹ ¿ù±Þ ¹ÞÀ¸¸é", "»ç¾ßÁö", "n", 234253));
+		//boolean create = pd.createProduct(new Product(1, 2, "ï¿½ï¿½Ç»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Í´ï¿½", 2000000, "ï¿½Ð¤Ð¤ï¿½", "Ã¹ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½", "n", 234253));
 		//System.out.println(create);
 		
-		//boolean create = pd.createProductDetail(new Product(6, "ÆÀÀå´Ô", "½º°íÀÌ"));
+		//boolean create = pd.createProductDetail(new Product(6, "ï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"));
 		//System.out.println(create);
 		
-		//boolean update = pd.updateProduct(new Product("ÇÚµåÆù »ç°í½Í´Ù", 1500000, "¾ß³ÊµÎ?", "Áö±¸", "¾Æ½Ã¾Æ", "n", 345362, 22));
+		//boolean update = pd.updateProduct(new Product("ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í´ï¿½", 1500000, "ï¿½ß³Êµï¿½?", "ï¿½ï¿½ï¿½ï¿½", "ï¿½Æ½Ã¾ï¿½", "n", 345362, 22));
 		//System.out.println(update);
 				
-		//boolean update = pd.updateProductDetail(new Product("ÈÄÄoÆRÁK¤¾¤Ã¤¿", "¤¾¤¾Âm", 1));
+		//boolean update = pd.updateProductDetail(new Product("ï¿½ï¿½ï¿½oï¿½Rï¿½Kï¿½ï¿½ï¿½Ã¤ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½m", 1));
 		//System.out.println(update);				
 		
-		//ÀÛÇ° ´ÜÀ§ Å×½ºÆ®
+		//ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®
 		//Work work = wd.selectWorkOne(3);
 		//System.out.println(work);
 		

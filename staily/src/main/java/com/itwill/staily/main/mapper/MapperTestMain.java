@@ -49,7 +49,10 @@ public class MapperTestMain {
 //			System.out.println("["+work.getwNo()+","+work.getwCategory()+","+work.getwPoster()+","+work.getwName()+","+work.getwTepisode()+"]");
 //			
 //		}
-		System.out.println(work.getProduct());
+		List<Product> p = work.getProduct();
+		for (Product product : p) {
+			System.out.println(product.getpNo()+product.getpName());
+		}
 		System.out.println("----------------------------------------");
 		
 		/*

@@ -24,8 +24,8 @@ package com.itwill.staily.util;
 
 public class Product {
 	private int pNo; //상품 번호
-	private int pMno; //회원 번호
-	private int pWno; //작품 번호
+	private int mNo; //회원 번호
+	private int wNo; //작품 번호
 	private String pName; //상품 이름
 	private int pPrice; //상품 가격
 	private String pUrl; //상품 url
@@ -42,12 +42,12 @@ public class Product {
 		super();
 	}
 	
-	public Product(int pNo, int pMno, int pWno, String pName, int pPrice, String pUrl, String pAddress,
+	public Product(int pNo, int mNo, int wNo, String pName, int pPrice, String pUrl, String pAddress,
 			String pDaddress, String pCheck, int pView, String pdImage, String pdScene) {
 		super();
 		this.pNo = pNo;
-		this.pMno = pMno;
-		this.pWno = pWno;
+		this.mNo = mNo;
+		this.wNo = wNo;
 		this.pName = pName;
 		this.pPrice = pPrice;
 		this.pUrl = pUrl;
@@ -72,11 +72,11 @@ public class Product {
 		this.pNo = pNo;
 	}
 	
-	public Product(int pMno, int pWno, String pName, int pPrice, String pUrl, String pAddress,
+	public Product(int mNo, int wNo, String pName, int pPrice, String pUrl, String pAddress,
 			String pDaddress, String pCheck, int pView) {
 		super();
-		this.pMno = pMno;
-		this.pWno = pWno;
+		this.mNo = mNo;
+		this.wNo = wNo;
 		this.pName = pName;
 		this.pPrice = pPrice;
 		this.pUrl = pUrl;
@@ -108,20 +108,20 @@ public class Product {
 		this.pNo = pNo;
 	}
 
-	public int getpMno() {
-		return pMno;
+	public int getmNo() {
+		return mNo;
 	}
 
-	public void setpMno(int pMno) {
-		this.pMno = pMno;
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
 	}
 
-	public int getpWno() {
-		return pWno;
+	public int getwNo() {
+		return wNo;
 	}
 
-	public void setpWno(int pWno) {
-		this.pWno = pWno;
+	public void setwNo(int wNo) {
+		this.wNo = wNo;
 	}
 
 	public String getpName() {
@@ -206,10 +206,11 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [pNo=" + pNo + ", pMno=" + pMno + ", pWno=" + pWno + ", pName=" + pName + ", pPrice=" + pPrice
+		return "Product [pNo=" + pNo + ", mNo=" + mNo + ", wNo=" + wNo + ", pName=" + pName + ", pPrice=" + pPrice
 				+ ", pUrl=" + pUrl + ", pAddress=" + pAddress + ", pDaddress=" + pDaddress + ", pCheck=" + pCheck
 				+ ", pView=" + pView + ", pdNo=" + pdNo + ", pdImage=" + pdImage + ", pdScene=" + pdScene + "]";
-	} 
+	}
+
 	
 	
 }

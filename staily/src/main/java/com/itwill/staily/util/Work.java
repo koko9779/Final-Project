@@ -28,7 +28,6 @@ public class Work {
 	public Work() {
 		// TODO Auto-generated constructor stub
 	}
-	
 	public int getWdNo() {
 		return wdNo;
 	}
@@ -43,6 +42,7 @@ public class Work {
 	public void setProduct(List<Product> product) {
 		this.product = product;
 	}
+
 
 	public Work(int wNo, String wName, String wCategory, String wDate, String wPoster, int wTepisode, int wView,
 			int wdNo, int wdEpisode, List<Product> product) {
