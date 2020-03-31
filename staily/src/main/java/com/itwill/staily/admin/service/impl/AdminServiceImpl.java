@@ -113,6 +113,11 @@ public class AdminServiceImpl implements AdminService{
 		return adminMapper.deleteProduct(pNo);
 	}
 
+	@Override
+	public boolean productConfirm(int pNo) {
+		return adminMapper.productConfirm(pNo);
+	}
+
 
 
 
