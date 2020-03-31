@@ -14,6 +14,5 @@ public interface PaymentService {
 	//결제 추가
 	public boolean createPayment(Payment payment) throws Exception;
 	
-	//결제 삭제
-	public boolean deletePayment(int py_no) throws Exception;
+	
 }

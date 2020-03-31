@@ -19,6 +19,6 @@ public interface FriendMapper {
 	
 	public boolean deleteFriend(int fNo) throws Exception;
 	
-	public Member findFriend(int mNo) throws Exception;
+	public Member findFriend(String mId) throws Exception;
 
 }
