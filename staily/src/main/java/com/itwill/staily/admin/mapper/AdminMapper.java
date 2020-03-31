@@ -47,6 +47,7 @@ public interface AdminMapper {
 	public boolean updateProductDetail(int pdNo);
 	//상품 삭제
 	public boolean deleteProduct(int pNo);
+	//상품 승인 
+	public boolean productConfirm(int pNo);
 	
-	/* 게시글승인 */
 }
