@@ -3,6 +3,7 @@ package com.itwill.staily.stylecoodination.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itwill.staily.stylecoodination.exception.FailRemoveBoardException;
 import com.itwill.staily.stylecoodination.exception.FailWriteBoardException;
 import com.itwill.staily.stylecoodination.mapper.BoardManageMapper;
 import com.itwill.staily.stylecoodination.mapper.CommonMapper;
@@ -31,11 +32,36 @@ public class StyleCoodinationServiceImpl {
 		return writeCount;
 	}
 	
-	public int removeBoard() {
-		return 0;
+	public int removeBoard(int groupNo) {
+		int removeCount = 0;
+		
+		removeCount = boardManageMapper.deleteBoard(groupNo);
+		if(removeCount != 1) {
+			throw new FailRemoveBoardException("게시글 삭제에 실패하였습니다");
+		}
+		return removeCount;
 	}
 	
+	public int writeReply(Board replyBoard, String mId) {
+		int writeCount = 0;
+		int mNo = 0;
+		
+		// 1. 기존 댓글들의 step 1씩 증가
+		replyManageMapper.updateStep(replyBoard.getbGroupNo());
+		// 2. mNo를 구하기 위한 작업
+		mNo = commonMapper.selectMNo(mId);
+		replyBoard.setmNo(mNo);
+		// 3. 댓글 작성
+		writeCount = replyManageMapper.createReply(replyBoard);
+		if(writeCount != 1) {
+			throw new FailWriteBoardException("댓글 작성에 실패하였습니다");
+		}
+		return writeCount;
+	}
 	
+	public int removeReply() {
+		return 0;
+	}
 	
 	
 }
