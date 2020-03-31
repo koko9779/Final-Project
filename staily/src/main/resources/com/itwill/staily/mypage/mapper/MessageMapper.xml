@@ -83,12 +83,7 @@
 </delete>
 
 <!-- 수정 -->
-<update id="updateMessage"
-		parameterType="com.itwill.staily.mypage.model.dto.Message">
-	update message
-	set ms_title={#msTitle}, ms_content={#msContent}
-	where ms_no = #{msNo}
-</update>
+
 
 
 </mapper>

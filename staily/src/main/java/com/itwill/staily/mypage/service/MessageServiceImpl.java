@@ -25,7 +25,6 @@ public class MessageServiceImpl implements MessageService {
 		this.messageMapper = messageMapper;
 	}
 
-
 	@Override
 	public Message selectOne(int msNo) throws Exception {
 		return messageMapper.selectOne(msNo);
@@ -44,11 +43,6 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public boolean deleteMessage(int msNo) throws Exception {
 		return messageMapper.deleteMessage(msNo);
-	}
-
-	@Override
-	public boolean updateMessage(Message message) throws Exception {
-		return messageMapper.updateMessage(message);
 	}
 
 	@Override
