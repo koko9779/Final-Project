@@ -11,18 +11,21 @@ import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
 
 @SuppressWarnings("unused")
-public class ReplyTest {
+public class MapperTest {
 	public static void main(String[] args) throws Exception {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/application-config.xml");
 		ReplyMapper rm = applicationContext.getBean(ReplyMapper.class);
 		ProductDetailMapper pdm = applicationContext.getBean(ProductDetailMapper.class);
 		WorkDetailMapper wdm = applicationContext.getBean(WorkDetailMapper.class);
 		
-		//´ñ±Û ´ÜÀ§ Å×½ºÆ®
+		//ëŒ“ê¸€ ë‹¨ìœ„ í…ŒìŠ¤íŠ¸
 		//List<Reply> replyList = rm.selectReplyList(1);
 		//System.out.println(replyList);
 		
-		//boolean create = rm.createReply(new Reply(1, 1, "³»°¡ ´Ï ¾Öºñ´Ù", 9999, 1));
+		//Reply rp = rm.selectReplyOne(22);
+		//System.out.println(rp);
+		
+		//boolean create = rm.createReply(new Reply(1, 1, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öºï¿½ï¿½", 9999, 1));
 		//System.out.println(create);
 		
 		//boolean delete = rm.deleteReply(new Reply(2, 1, 1));
@@ -34,23 +37,23 @@ public class ReplyTest {
 		//boolean inc = rm.increaseReport(28);
 		//System.out.println(inc);
 		
-		//»óÇ° ´ÜÀ§ Å×½ºÆ®
+		//ìƒí’ˆ ë‹¨ìœ„ í…ŒìŠ¤íŠ¸
 		//Product product = pdm.selectProductOne(1);
 		//System.out.println(product);
 		
-		//boolean create = pdm.createProduct(new Product(4, 6, "BLOOM*IZ", 17000, "http://cafe.daum.net/official-izone", "´ëÇÑ¹Î±¹", "¼­¿ï½Ã", "n", 4234245));
+		//boolean create = pdm.createProduct(new Product(4, 6, "BLOOM*IZ", 17000, "http://cafe.daum.net/official-izone", "ï¿½ï¿½ï¿½Ñ¹Î±ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½", "n", 4234245));
 		//System.out.println(create);
 		
-		//boolean create = pdm.createProductDetail(new Product(4, "ÆÀÀå´Ô", "½º°íÀÌ"));
+		//boolean create = pdm.createProductDetail(new Product(4, "ï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"));
 		//System.out.println(create);
 		
-		//boolean update = pdm.updateProduct(new Product("ÇÚµåÆù »ç°í½Í´Ù", 1500000, "google.com", "Áö±¸", "¾Æ½Ã¾Æ", "n", 345362, 22));
+		//boolean update = pdm.updateProduct(new Product("ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í´ï¿½", 1500000, "google.com", "ï¿½ï¿½ï¿½ï¿½", "ï¿½Æ½Ã¾ï¿½", "n", 345362, 22));
 		//System.out.println(update);
 		
-		//boolean update = pdm.updateProductDetail(new Product("È÷È÷", "¤¾¤¾Âm", 1));
+		//boolean update = pdm.updateProductDetail(new Product("ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ï¿½m", 1));
 		//System.out.println(update);
 		
-		//ÀÛÇ° ´ÜÀ§ Å×½ºÆ®
+		//ì‘í’ˆ ë‹¨ìœ„ í…ŒìŠ¤íŠ¸
 		//Work work = wdm.selectWorkOne(3);
 		//System.out.println(work);
 		

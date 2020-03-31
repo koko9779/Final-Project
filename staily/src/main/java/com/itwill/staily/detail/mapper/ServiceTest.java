@@ -22,9 +22,12 @@ public class ServiceTest {
 		ReplyServiceImpl rs = applicationContext.getBean(ReplyServiceImpl.class);
 		WorkDetailServiceImpl wd = applicationContext.getBean(WorkDetailServiceImpl.class);
 		
-		//��� ���� �׽�Ʈ
+		//댓글 단위 테스트
 		//List<Reply> rL = rs.selectReplyList(2);
 		//System.out.println(rL);
+		
+		//Reply rp = rs.selectReplyOne(22);
+		//System.out.println(rp);
 		
 		//boolean create = rs.createReply(new Reply(21, 1, "���� ��� �;��!!", 322353, 0));
 		//System.out.println(create);
@@ -38,7 +41,7 @@ public class ServiceTest {
 		//boolean inc = rs.increaseReport(28);
 		//System.out.println(inc);
 		
-		//��ǰ ���� �׽�Ʈ
+		//상품 단위 테스트
 		//Product pro = pd.selectProductOne(21);
 		//System.out.println(pro);
 		
@@ -54,7 +57,7 @@ public class ServiceTest {
 		//boolean update = pd.updateProductDetail(new Product("���o�R�K���ä�", "�����m", 1));
 		//System.out.println(update);				
 		
-		//��ǰ ���� �׽�Ʈ
+		//작품 단위 테스트
 		//Work work = wd.selectWorkOne(3);
 		//System.out.println(work);
 		
