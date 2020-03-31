@@ -8,6 +8,13 @@
 		where p_no = #{pNo}
 	</select>
 	
+	<select id="selectReplyOne" parameterType="int"
+		resultType="com.itwill.staily.detail.model.dto.Reply">
+		select r_no, p_no, m_no, r_content, r_recommend, r_report
+		from reply
+		where r_no = #{rNo}
+	</select>
+	
 	<insert id="createReply" parameterType="com.itwill.staily.detail.model.dto.Reply">
 		insert into reply
 		values (reply_no_seq.nextval, #{pNo}, #{mNo}, #{rContent}, #{rRecommend}, #{rReport})

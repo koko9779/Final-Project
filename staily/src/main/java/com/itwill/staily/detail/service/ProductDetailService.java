@@ -1,17 +1,17 @@
 package com.itwill.staily.detail.service;
 
-import com.itwill.staily.util.Product;
+import com.itwill.staily.detail.model.dto.ProductEx;
 
 public interface ProductDetailService {
-	public Product selectProductOne(int pNo) throws Exception;
+	public ProductEx selectProductOne(int pNo) throws Exception;
 	
-	public boolean createProduct(Product product) throws Exception;
+	public boolean createProduct(ProductEx product) throws Exception;
 	
-	public boolean createProductDetail(Product product) throws Exception;
+	public boolean createProductDetail(ProductEx product) throws Exception;
 	
-	public boolean updateProduct(Product product) throws Exception;
+	public boolean updateProduct(ProductEx product) throws Exception;
 
-	public boolean updateProductDetail(Product product) throws Exception;
+	public boolean updateProductDetail(ProductEx product) throws Exception;
 
 	public boolean deleteProduct(int pNo) throws Exception;
 	

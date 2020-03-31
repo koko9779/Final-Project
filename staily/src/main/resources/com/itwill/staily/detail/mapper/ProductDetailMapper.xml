@@ -2,32 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.staily.detail.mapper.ProductDetailMapper">	
 	<select id="selectProductOne" parameterType="int"
-		resultType="com.itwill.staily.util.Product">
+		resultType="com.itwill.staily.detail.model.dto.ProductEx">
 		select p.p_no, pd.pd_scene, pd.pd_image, p.p_name, p.p_price, p.p_url, p.p_address, p.p_daddress 
 		from product p
 		inner join product_detail pd
 		on p.p_no = pd.p_no
-		where p.p_no = #{pNo}
+		where p.p_no = #{pNo} and p.p_check like lower('y')
 	</select>
 	
-	<insert id="createProduct" parameterType="com.itwill.staily.util.Product">
+	<insert id="createProduct" parameterType="com.itwill.staily.detail.model.dto.ProductEx">
 		insert into product (p_no, m_no, w_no, p_name, p_price, p_url, p_address, p_daddress, p_check, p_view, p_date)
 		values (product_no_seq.nextval, #{mNo}, #{wNo}, #{pName}, #{pPrice}, #{pUrl}, #{pAddress}, #{pDaddress}, #{pCheck}, #{pView}, sysdate)
 	</insert>
 	
-	<insert id="createProductDetail" parameterType="com.itwill.staily.util.Product">
+	<insert id="createProductDetail" parameterType="com.itwill.staily.detail.model.dto.ProductEx">
 		insert into product_detail (pd_no, p_no, pd_image, pd_scene)
 		values (pd_no_seq.nextval, #{pNo}, #{pdImage}, #{pdScene})
 	</insert>
 	
-	<update id="updateProduct" parameterType="com.itwill.staily.util.Product">
+	<update id="updateProduct" parameterType="com.itwill.staily.detail.model.dto.ProductEx">
 		update product set p_name = #{pName}, p_price = #{pPrice}, p_url = #{pUrl}, 
 		p_address = #{pAddress}, p_daddress = #{pDaddress}, 
 		p_check = #{pCheck}, p_view = #{pView}, p_date = sysdate
 		where p_no = #{pNo}
 	</update>
 	
-	<update id="updateProductDetail" parameterType="com.itwill.staily.util.Product">
+	<update id="updateProductDetail" parameterType="com.itwill.staily.detail.model.dto.ProductEx">
 		update product_detail set pd_image = #{pdImage}, pd_scene = #{pdScene}
 		where pd_no = #{pdNo}
 	</update>

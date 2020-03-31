@@ -2,19 +2,19 @@ package com.itwill.staily.detail.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.itwill.staily.util.Product;
+import com.itwill.staily.detail.model.dto.ProductEx;
 
 @Mapper
 public interface ProductDetailMapper {
-	public Product selectProductOne(int pNo);
+	public ProductEx selectProductOne(int pNo);
 	
-	public boolean createProduct(Product product);
+	public boolean createProduct(ProductEx product);
 	
-	public boolean createProductDetail(Product product);
+	public boolean createProductDetail(ProductEx product);
 	
-	public boolean updateProduct(Product product);
+	public boolean updateProduct(ProductEx product);
 	
-	public boolean updateProductDetail(Product product);
+	public boolean updateProductDetail(ProductEx product);
 	
 	public boolean deleteProduct(int pNo);
 	

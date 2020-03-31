@@ -2,6 +2,7 @@ package com.itwill.staily.detail.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,11 @@ public class ReplyServiceImpl implements ReplyService {
 	public List<Reply> selectReplyList(int pNo) throws Exception {
 		return replyMapper.selectReplyList(pNo);
 	}
+	
+	@Override
+	public Reply selectReplyOne(int rNo) throws Exception {
+		return replyMapper.selectReplyOne(rNo);
+	}
 
 	@Override
 	public boolean createReply(Reply reply) throws Exception {
@@ -45,10 +51,10 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public boolean deleteReply(Reply reply) throws Exception {
+	public boolean deleteReply(@Param("rNo") int rNo, @Param("pNo") int pNo, @Param("mNo") int mNo) throws Exception {
 		boolean check = false;
 		
-		if(replyMapper.deleteReply(reply)) {
+		if(replyMapper.deleteReply(rNo, pNo, mNo)) {
 			check = true;			
 		}
 		else{
