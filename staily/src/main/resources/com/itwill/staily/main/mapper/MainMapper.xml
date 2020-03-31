@@ -46,6 +46,7 @@
 		join product p
 		on b.p_no=p.p_no
 		where b.m_no = #{m_no}
+		and p.p_check='T'
 	</select>
 	<!-- 2. 인기많은(조회수 높은) 상품 출력 -->
 	<select id="selectByView" resultType="com.itwill.staily.util.Product">
@@ -53,6 +54,7 @@
 		from product p
 		join product_detail pd
 		on p.p_no=pd.p_no
+		where p.p_check='T'
 		order by p.p_view desc
 	</select>
 	<!-- 3-1. 카테고리 = 드라마인 작품 출력하기 -->
@@ -68,8 +70,9 @@
 		from work w
 		join (select pr.p_no p_no,pr.w_no w_no,pr.p_name p_name,prd.pd_scene pd_scene
 		      from product pr
-		      join product_detail prd
-		      on pr.p_no=prd.p_no) p
+			  join product_detail prd
+			  on pr.p_no=prd.p_no
+		      where pr.p_check='T') p
 		on w.w_no=p.w_no
 		where w.w_no = #{w_no}
 	</select>
@@ -83,7 +86,7 @@
 		on wd.p_no = p.p_no
 		join product_detail pd
 		on p.p_no = pd.p_no
-		where w.w_no = #{w_no} and wd.wd_episode=#{wd_episode}
+		where w.w_no = #{w_no} and wd.wd_episode=#{wd_episode} and p.p_check='T'
 	</select>
 	<!-- 6.즐겨찾기 등록하기 -->
 	<insert id="createBookmark" parameterType="map"> 
@@ -113,10 +116,11 @@
 		update product
 		set p_view = p_view + 1
 		where p_no = #{p_no}
+		and p_check='T'
 	</update>
 	<!-- 11.게시물 총 건수 -->		
 	<select id="selectProductCount" resultType="int">
-		select count(*) from product
+		select count(*) from product where p_check='T'
 	</select>
 		
 </mapper>
