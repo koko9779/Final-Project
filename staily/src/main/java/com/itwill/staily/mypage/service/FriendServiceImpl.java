@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.itwill.staily.mypage.mapper.FriendMapper;
 import com.itwill.staily.mypage.model.dto.Friend;
+import com.itwill.staily.util.Member;
 
 public class FriendServiceImpl implements FriendService {
 	@Autowired
@@ -24,6 +25,11 @@ public class FriendServiceImpl implements FriendService {
 	@Override
 	public boolean deleteFriend(int fNo) throws Exception {
 		return friendMapper.deleteFriend(fNo);
+	}
+
+	@Override
+	public Member findFriend(int mNo) throws Exception {
+		return friendMapper.findFriend(mNo);
 	}
 
 }

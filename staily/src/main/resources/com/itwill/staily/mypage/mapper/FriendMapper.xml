@@ -26,6 +26,17 @@
 	where f_no = #{fNo}
 </delete>
 
+<!-- 친구 검색 -->
+
+<select id="findFriend"
+		parameterType="String"
+		resultType="com.itwill.staily.util.Member">
+	select m_id
+	from member
+	where m_id=#{mId}		
+		
+</select>
+
 
 
 </mapper>

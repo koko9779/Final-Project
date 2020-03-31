@@ -3,6 +3,7 @@ package com.itwill.staily.mypage.service;
 import java.util.List;
 
 import com.itwill.staily.mypage.model.dto.Friend;
+import com.itwill.staily.util.Member;
 
 public interface FriendService {
 	//친구 1명 출력(Pk로)
@@ -15,4 +16,6 @@ public interface FriendService {
 	public boolean createFriend(Friend friend) throws Exception;
 	
 	public boolean deleteFriend(int fNo) throws Exception;
+	
+	public Member findFriend(int mNo) throws Exception;
 }

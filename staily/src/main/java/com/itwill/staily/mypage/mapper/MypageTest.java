@@ -17,6 +17,13 @@ public class MypageTest {
 		BookmarkMapper bk = applicationContext.getBean(BookmarkMapper.class);
 		MypageMapper mp = applicationContext.getBean(MypageMapper.class);
 		MessageMapper ms = applicationContext.getBean(MessageMapper.class);
+		FriendMapper fm = applicationContext.getBean(FriendMapper.class);
+		
+		
+		
+		
+		
+		/*
 		List<Message> messageList = ms.selectMessageList(2);
 		for (Message message : messageList) {
 			System.out.println(message.getmNo()+", "+message.getMsContent()+","+message.getMember().getmId());
@@ -26,6 +33,8 @@ public class MypageTest {
 		for (Bookmark bookmark : bookmarkList) {
 			System.out.println(bookmark.getBmNo()+","+bookmark.getMember().getmId()+","+bookmark.getProduct().getpName());
 		}
+		*/
+		
 		//System.out.println(mp.selectOne(2));
 		
 		
