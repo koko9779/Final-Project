@@ -16,6 +16,15 @@
 	</resultMap>
 -->
 
+<resultMap id="findCompayMap" 
+		   type="com.itwill.staily.util.Member"
+		   autoMapping="true" >
+	<association property="mCompany"
+				 javaType="com.itwill.staily.util.Company"
+				 autoMapping="true">
+	</association>
+</resultMap>
+
 <!-- member출력 -->
 <select id="selectOne"
 		parameterType="int"
@@ -40,6 +49,17 @@ set m_id=#{mId}, m_pw=#{mPw}, m_name=#{mName}, m_address=#{mAddress}, m_daddress
     m_email=#{mEmail}, m_type=#{mType}, m_phone=#{mPhone}
 where m_no=#{mNo}
 </update>
+
+<!-- 멤버&회사 조인 출력 -->
+<select id="selectMemberCompany"
+  		parameterType="int"
+  		resultMap="findCompayMap">
+  	select m.m_no, m.m_id, m_pw, m.m_name, m.m_address, m_daddress, m_email, m_type, m_phone, co_no, co_check
+	from member m
+	join company c
+	on m.m_no = c.m_no
+	where m.m_no = #{mNo}
+</select>
 
 
 

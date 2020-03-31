@@ -19,8 +19,14 @@ public class MypageTest {
 		MessageMapper ms = applicationContext.getBean(MessageMapper.class);
 		FriendMapper fm = applicationContext.getBean(FriendMapper.class);
 		
+		Member m = mp.selectMemberCompany(7);
+		System.out.println(m);
+					
 		
-		
+		/*
+		Member member = fm.findFriend("hiphopmy");
+		System.out.println(member.getmId());
+		*/
 		
 		
 		/*

@@ -24,4 +24,9 @@ public class MypageServiceImpl implements MypageService {
 		return mypageMapper.updateMember(member);
 	}
 
+	@Override
+	public Member selectMemberCompany(int mNo) throws Exception {
+		return mypageMapper.selectMemberCompany(mNo);
+	}
+
 }

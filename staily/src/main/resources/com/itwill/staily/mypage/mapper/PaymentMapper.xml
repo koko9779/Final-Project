@@ -22,11 +22,7 @@
 </select>
 
 <!-- 삭제 -->
-<delete id="deletePayment"
-		parameterType="int">
-	delete from payment
-	where py_no= #{pyNo}
-</delete>
+
 
 <!-- 추가 -->
 <insert id="createPayment"

@@ -26,9 +26,5 @@ public class PaymentServiceImpl implements PaymentService {
 		return paymentMapper.createPayment(payment);
 	}
 
-	@Override
-	public boolean deletePayment(int py_no) throws Exception {
-		return paymentMapper.deletePayment(py_no);
-	}
 
 }

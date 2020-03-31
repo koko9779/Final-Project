@@ -28,8 +28,8 @@ public class FriendServiceImpl implements FriendService {
 	}
 
 	@Override
-	public Member findFriend(int mNo) throws Exception {
-		return friendMapper.findFriend(mNo);
+	public Member findFriend(String mId) throws Exception {
+		return friendMapper.findFriend(mId);
 	}
 
 }
