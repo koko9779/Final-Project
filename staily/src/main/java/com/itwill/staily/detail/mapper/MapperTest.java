@@ -56,6 +56,9 @@ public class MapperTest {
 		//boolean update = pdm.updateProductDetail(new Product("����", "�����m", 1));
 		//System.out.println(update);
 		
+		//boolean inc = pdm.increaseProductView(3);
+		//System.out.println(inc);
+		
 		//int check = pdm.checkCompany(7);
 		//System.out.println(check);
 		
@@ -69,8 +72,10 @@ public class MapperTest {
 		//boolean create = wdm.createWorkDetail(21, 3, 10);
 		//System.out.println(create);
 		
+		//int sel = wdm.selectTepisode(1);
+		//System.out.println(sel);
+				
 		((ConfigurableApplicationContext)applicationContext).close();
-
 		
 	}
 

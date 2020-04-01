@@ -63,6 +63,9 @@ public class ServiceTest {
 		//int check = pd.checkCompany(7);
 		//System.out.println(check);
 		
+		//boolean inc = pd.increaseProductView(3);
+		//System.out.println(inc);
+		
 		//작품 단위 테스트
 		//Work work = wd.selectWorkOne(3);
 		//System.out.println(work);
@@ -73,8 +76,10 @@ public class ServiceTest {
 		//boolean create = wd.createWorkDetail(21, 3, 10);
 		//System.out.println(create);
 		
+		//int sel = wd.selectTepisode(1);
+		//System.out.println(sel);
+		
 		((ConfigurableApplicationContext)applicationContext).close();
 
 	}
-
 }

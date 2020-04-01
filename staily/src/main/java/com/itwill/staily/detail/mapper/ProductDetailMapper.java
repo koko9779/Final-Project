@@ -21,4 +21,7 @@ public interface ProductDetailMapper {
 	public boolean deleteProductDetail(int pdNo);
 	
 	public int checkCompany(int mNo);
+	
+	public boolean increaseProductView(int pNo);
+	
 }

@@ -3,11 +3,13 @@
 <mapper namespace="com.itwill.staily.detail.mapper.ProductDetailMapper">	
 	<select id="selectProductOne" parameterType="int"
 		resultType="com.itwill.staily.detail.model.dto.ProductEx">
-		select p.p_no, pd.pd_scene, pd.pd_image, p.p_name, p.p_price, p.p_url, p.p_address, p.p_daddress 
+		select p.p_no, p.m_no, m.m_id, p.p_name, p.p_price, p.p_url, p.p_address, p.p_daddress, pd.pd_scene, pd.pd_image
 		from product p
 		inner join product_detail pd
 		on p.p_no = pd.p_no
-		where p.p_no = #{pNo} and p.p_check like lower('y')
+		inner join member m
+		on p.m_no = m.m_no
+		where p.p_no = #{pNo} and p.p_check = 'Y'
 	</select>
 	
 	<insert id="createProduct" parameterType="com.itwill.staily.detail.model.dto.ProductEx">
@@ -49,4 +51,10 @@
 		and lower(c.co_check) = 'y'
 	</select>
 	
+	<update id="increaseProductView" parameterType="int">
+		update product
+		set p_view = p_view + 1
+		where p_no = #{pNo}
+		and p_check = 'Y'
+	</update>	
 </mapper>
