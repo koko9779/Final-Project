@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.itwill.staily.stylecoodination.exception.FailRemoveBoardException;
 import com.itwill.staily.stylecoodination.exception.FailWriteBoardException;
 import com.itwill.staily.stylecoodination.mapper.BoardManageMapper;
-import com.itwill.staily.stylecoodination.mapper.CommonMapper;
+import com.itwill.staily.stylecoodination.mapper.BoardCommonMapper;
 import com.itwill.staily.stylecoodination.mapper.ReplyManageMapper;
 import com.itwill.staily.stylecoodination.mapper.ViewMapper;
 import com.itwill.staily.util.Board;
@@ -16,7 +16,7 @@ public class StyleCoodinationServiceImpl {
 	@Autowired
 	private BoardManageMapper boardManageMapper;
 	@Autowired
-	private CommonMapper commonMapper;
+	private BoardCommonMapper boardCommonMapper;
 	@Autowired
 	private ReplyManageMapper replyManageMapper;
 	@Autowired
@@ -54,7 +54,7 @@ public class StyleCoodinationServiceImpl {
 		// 1. 기존 댓글들의 step 1씩 증가
 		replyManageMapper.updateStep(replyBoard.getbGroupNo());
 		// 2. mNo를 구하기 위한 작업
-		mNo = commonMapper.selectMNo(mId);
+		mNo = boardCommonMapper.selectMNo(mId);
 		replyBoard.setmNo(mNo);
 		// 3. 댓글 작성
 		writeCount = replyManageMapper.createReply(replyBoard);
