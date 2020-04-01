@@ -60,37 +60,6 @@ public class Product {
 		this.pdImage = pdImage;
 		this.pdScene = pdScene;
 	}
-	
-	
-	public Product(int pNo, int mNo, int wNo, String pName, int pPrice, String pUrl, String pAddress, String pDaddress,
-			String pCheck, int pView, String pDate) {
-		super();
-		this.pNo = pNo;
-		this.mNo = mNo;
-		this.wNo = wNo;
-		this.pName = pName;
-		this.pPrice = pPrice;
-		this.pUrl = pUrl;
-		this.pAddress = pAddress;
-		this.pDaddress = pDaddress;
-		this.pCheck = pCheck;
-		this.pView = pView;
-		this.pDate = pDate;
-	}
-
-	public Product(int pNo, String pdImage, String pdScene) {
-		super();
-		this.pNo = pNo;
-		this.pdImage = pdImage;
-		this.pdScene = pdScene;
-	}
-
-	public Product(String pdImage, String pdScene, int pdNo) {
-		super();
-		this.pdImage = pdImage;
-		this.pdScene = pdScene;
-		this.pdNo = pdNo;
-	}
 
 	public int getpNo() {
 		return pNo;
