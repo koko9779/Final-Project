@@ -49,4 +49,10 @@
 		and lower(c.co_check) = 'y'
 	</select>
 	
+	<update id="increaseProductView" parameterType="int">
+		update product
+		set p_view = p_view + 1
+		where p_no = #{p_no}
+	</update>	
+	
 </mapper>
