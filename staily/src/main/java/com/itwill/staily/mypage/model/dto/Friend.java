@@ -14,6 +14,12 @@ public class Friend {
 		
 	}
 	
+	public Friend(int fNo, int mNo) {
+		super();
+		this.fNo = fNo;
+		this.mNo = mNo;
+	}
+
 	public String getmName() {
 		return mName;
 	}
