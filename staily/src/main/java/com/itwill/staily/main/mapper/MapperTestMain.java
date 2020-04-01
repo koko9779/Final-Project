@@ -20,7 +20,7 @@ public class MapperTestMain {
 		MainMapper mainM = applicationContext.getBean(MainMapper.class);
 		
 		System.out.println("1. 회원번호를 통해서 즐겨찾기한 목록 찾기");
-		List<Bookmark> bmList = mainM.selectByBookmark(1);
+		List<Bookmark> bmList = mainM.selectByBookmark(2);
 		System.out.println(bmList.size());
 		for (Bookmark bm : bmList) {
 			System.out.println(bm.getBmNo()+" "+bm.getMember().getmNo()+" "+bm.getProduct().getpNo());

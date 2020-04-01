@@ -12,8 +12,4 @@ public interface WorkDetailService {
 	public List<Work> selectWorkAll() throws Exception;
 	
 	public boolean createWorkDetail(@Param("pNo") int pNo, @Param("wNo") int wNo, @Param("wdEpisode") int wdEpisode) throws Exception;
-	
-	public int selectTepisode(int wNo) throws Exception;
-	
-	public boolean increaseWorkView(int wNo) throws Exception;
 }

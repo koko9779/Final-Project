@@ -50,24 +50,17 @@ set m_id=#{mId}, m_pw=#{mPw}, m_name=#{mName}, m_address=#{mAddress}, m_daddress
 where m_no=#{mNo}
 </update>
 
-<!-- Company No 수정 -->
-<update id="updateCompanyNo"
-		parameterType="com.itwill.staily.util.Company">
-Update company
-Set co_no=#{coNo}
-Where m_no=#{mNo}
-</update>
-
 <!-- 멤버&회사 조인 출력 -->
 <select id="selectMemberCompany"
   		parameterType="int"
   		resultMap="findCompayMap">
   	select m.m_no, m.m_id, m_pw, m.m_name, m.m_address, m_daddress, m_email, m_type, m_phone, co_no, co_check
 	from member m
-	left outer join company c
+	join company c
 	on m.m_no = c.m_no
 	where m.m_no = #{mNo}
 </select>
+
 
 <!--  
 <resultMap type="com.itwill.staily.util.Product" id="selectWriteMap" autoMapping="true">
@@ -94,6 +87,6 @@ Where m_no=#{mNo}
 	delete from product
 	where p_no=#{pNo}
 
-</delete>
+
 
 </mapper>

@@ -19,10 +19,9 @@ public class MypageTest {
 		MessageMapper ms = applicationContext.getBean(MessageMapper.class);
 		FriendMapper fm = applicationContext.getBean(FriendMapper.class);
 		
-		/*
 		Member m = mp.selectMemberCompany(7);
 		System.out.println(m);
-		*/		
+					
 		
 		/*
 		Member member = fm.findFriend("hiphopmy");
@@ -35,12 +34,12 @@ public class MypageTest {
 		for (Message message : messageList) {
 			System.out.println(message.getmNo()+", "+message.getMsContent()+","+message.getMember().getmId());
 		}
-		*/
+		
 		List<Bookmark> bookmarkList = bk.selectList(2);
 		for (Bookmark bookmark : bookmarkList) {
-			System.out.println(bookmark.getBmNo()+","+bookmark.getMember().getmNo()+","+bookmark.getMember().getmId()+","+bookmark.getProduct().getpName());
+			System.out.println(bookmark.getBmNo()+","+bookmark.getMember().getmId()+","+bookmark.getProduct().getpName());
 		}
-		
+		*/
 		
 		//System.out.println(mp.selectOne(2));
 		

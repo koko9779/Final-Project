@@ -17,17 +17,5 @@
 		insert into work_detail (wd_no, p_no, w_no, wd_episode)
 		values (wd_no_seq.nextval, #{pNo}, #{wNo}, #{wdEpisode})
 	</insert>
-	
-	<select id="selectTepisode" parameterType="int" resultType="int">
-		select w_tepisode
-		from work
-		where w_no = #{w_no}
-	</select>
-	
-	<update id="increaseWorkView" parameterType="int">
-		update work
-		set w_view = w_view + 1
-		where w_no = #{w_no}
-	</update>
 		
 </mapper>

@@ -39,7 +39,44 @@ public class Product {
 	private int pdNo; //상품 상세 번호
 	private String pdImage; //상품 이미지
 	private String pdScene; //상품 장면
+	private String mId; //회원 아이디
 	
+	public Product(int pNo, int mNo, int wNo, String pName, int pPrice, String pUrl, String pAddress, String pDaddress,
+			String pCheck, int pView, String pDate, int pdNo, String pdImage, String pdScene, String mId) {
+		super();
+		this.pNo = pNo;
+		this.mNo = mNo;
+		this.wNo = wNo;
+		this.pName = pName;
+		this.pPrice = pPrice;
+		this.pUrl = pUrl;
+		this.pAddress = pAddress;
+		this.pDaddress = pDaddress;
+		this.pCheck = pCheck;
+		this.pView = pView;
+		this.pDate = pDate;
+		this.pdNo = pdNo;
+		this.pdImage = pdImage;
+		this.pdScene = pdScene;
+		this.mId = mId;
+	}
+
+	public String getpDate() {
+		return pDate;
+	}
+
+	public void setpDate(String pDate) {
+		this.pDate = pDate;
+	}
+
+	public String getmId() {
+		return mId;
+	}
+
+	public void setmId(String mId) {
+		this.mId = mId;
+	}
+
 	public Product() {
 		super();
 	}
