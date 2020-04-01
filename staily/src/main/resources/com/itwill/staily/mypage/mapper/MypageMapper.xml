@@ -62,6 +62,7 @@ where m_no=#{mNo}
 </select>
 
 
+
 <!--  
 <resultMap type="com.itwill.staily.util.Product" id="selectWriteMap" autoMapping="true">
 	
@@ -87,6 +88,8 @@ where m_no=#{mNo}
 	delete from product
 	where p_no=#{pNo}
 </delete>
+
+
 
 
 </mapper>

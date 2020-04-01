@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.itwill.staily.stylecoodination.mapper.BoardManageMapper;
 import com.itwill.staily.stylecoodination.mapper.ReplyManageMapper;
-import com.itwill.staily.stylecoodination.mapper.CommonMapper;
+import com.itwill.staily.stylecoodination.mapper.BoardCommonMapper;
 import com.itwill.staily.stylecoodination.mapper.ViewMapper;
 import com.itwill.staily.util.Board;
 import com.itwill.staily.util.BoardDetail;
@@ -14,7 +14,7 @@ import com.itwill.staily.util.BoardDetail;
 public class StyleCoodinationDaoImpl implements StyleCoodinationDao {
 	private BoardManageMapper boardManageMapper;
 	private ReplyManageMapper replyManageMapper;
-	private CommonMapper commonMapper;
+	private BoardCommonMapper commonMapper;
 	private ViewMapper viewMapper;
 	
 	public StyleCoodinationDaoImpl() {
@@ -23,7 +23,7 @@ public class StyleCoodinationDaoImpl implements StyleCoodinationDao {
 	
 	@Autowired
 	public StyleCoodinationDaoImpl(BoardManageMapper boardManageMapper, ReplyManageMapper replyManageMapper,
-			CommonMapper commonMapper, ViewMapper viewMapper) {
+			BoardCommonMapper commonMapper, ViewMapper viewMapper) {
 		super();
 		this.boardManageMapper = boardManageMapper;
 		this.replyManageMapper = replyManageMapper;
@@ -41,7 +41,7 @@ public class StyleCoodinationDaoImpl implements StyleCoodinationDao {
 		return replyManageMapper;
 	}
 
-	public CommonMapper getUtilMapper() {
+	public BoardCommonMapper getUtilMapper() {
 		return commonMapper;
 	}
 
@@ -57,7 +57,7 @@ public class StyleCoodinationDaoImpl implements StyleCoodinationDao {
 		this.replyManageMapper = replyManageMapper;
 	}
 
-	public void setUtilMapper(CommonMapper utilMapper) {
+	public void setUtilMapper(BoardCommonMapper utilMapper) {
 		this.commonMapper = utilMapper;
 	}
 
