@@ -59,9 +59,6 @@ public class MapperTest {
 		//int check = pdm.checkCompany(7);
 		//System.out.println(check);
 		
-		//boolean inc = pdm.increaseProductView(1);
-		//System.out.println(inc);
-		
 		//작품 단위 테스트
 		//Work work = wdm.selectWorkOne(3);
 		//System.out.println(work);
@@ -71,9 +68,6 @@ public class MapperTest {
 		
 		//boolean create = wdm.createWorkDetail(21, 3, 10);
 		//System.out.println(create);
-		
-		//int sel = wdm.selectTepisode(1);
-		//System.out.println(sel);
 		
 		((ConfigurableApplicationContext)applicationContext).close();
 

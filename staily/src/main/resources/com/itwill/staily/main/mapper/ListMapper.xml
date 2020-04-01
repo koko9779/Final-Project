@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.staily.main.mapper.ListMapper">
+	<resultMap id="wWithpAndpdResultMap" type="Work" autoMapping="true">
+		<collection property="product" ofType="Product" autoMapping="true">
+		</collection>
+	</resultMap>
+	<!-- 4.작품상세페이지 작품정보(작품이름,작품 포스터) 출력하기 -->
+	<!-- 5-1.작품상세페이지 상품정보(상품이름, 상품에피소드,상품씬,작성자) 출력하기 -->
+	<!-- 5-2.작품상세페이지 상품정보 회차별 출력하기 -->
+	
+	<!-- 4.선택한 작품의 포스터,상품이름 출력하기 -->
+	<select id="selectByWork" parameterType="int" resultMap="wWithpAndpdResultMap">
+		select w.w_no,w.w_category,w.w_poster,w.w_name,w.w_tepisode,p.p_no,p.p_name,p.pd_scene
+		from work w
+		join (select pr.p_no p_no,pr.w_no w_no,pr.p_name p_name,prd.pd_scene pd_scene
+		      from product pr
+			  join product_detail prd
+			  on pr.p_no=prd.p_no
+		      where pr.p_check='Y') p
+		on w.w_no=p.w_no
+		where w.w_no = #{wNo}
+	</select>
+	<!-- 5.선택한 작품의 포스터,해당 회차의 상품들 출력하기 -->
+	<select id="selectByEpisode" parameterType="map" resultMap="wWithpAndpdResultMap">
+		select wd.wd_no,p.p_no,w.w_no,w.w_tepisode,wd_episode,w.w_poster,w.w_name,p.p_name,pd.pd_scene
+		from work w
+		join work_detail wd
+		on w.w_no=wd.w_no
+		join product p
+		on wd.p_no = p.p_no
+		join product_detail pd
+		on p.p_no = pd.p_no
+		where w.w_no = #{wNo} and wd.wd_episode=#{wdEpisode} and p.p_check='Y'
+	</select>
+	<!-- 6.즐겨찾기 등록하기 -->
+	<insert id="createBookmark" parameterType="map"> 
+		<selectKey order="BEFORE" keyProperty="bmNo" resultType="int">
+			select BM_NO_SEQ.nextval from dual
+		</selectKey>
+		insert into bookmark values(#{bmNo},#{mNo},#{pNo})
+	</insert>
+	<!-- 7.즐겨찾기 제거하기 -->
+	<delete id="deleteBookmark" parameterType="int" >
+		delete from bookmark where bm_no=#{bmNo}
+	</delete>
+	<!-- 8.총회차 찾기 -->
+	<select id="selectTepisode" parameterType="int" resultType="Work">
+		select w_tepisode
+		from work
+		where w_no=#{wNo}
+	</select>
+	<!-- 9.작품 조회수 증가 -->
+	<update id="increaseWorkView" parameterType="int">
+		update work
+		set w_view = w_view + 1
+		where w_no = #{wNo}
+	</update>
+	<!-- 10.상품 조회수 증가 -->
+	<update id="increaseProductView" parameterType="int">
+		update product
+		set p_view = p_view + 1
+		where p_no = #{pNo}
+		and p_check='Y'
+	</update>
+	<!-- 11.게시물 총 건수 -->		
+	<select id="selectProductCount" resultType="int">
+		select count(*) from product where p_check='Y'
+	</select>
+</mapper>

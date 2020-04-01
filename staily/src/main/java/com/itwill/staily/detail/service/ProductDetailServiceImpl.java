@@ -117,18 +117,4 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 		return productDetailMapper.checkCompany(mNo);
 	}
 
-	@Override
-	public boolean increaseProductView(int pNo) throws Exception {
-		boolean check = false;
-		
-		if(productDetailMapper.increaseProductView(pNo)) {
-			check = true;			
-		}
-		else {
-			check = false;
-		}
-		
-		return check;
-	}
-
 }
