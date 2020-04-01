@@ -3,8 +3,10 @@ package com.itwill.staily.stylecoodination.mapper;
 import java.util.HashMap;
 import java.util.List;
 
-import com.itwill.staily.util.Board;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.itwill.staily.util.Board;
+@Mapper
 public interface ViewMapper {
 	public List<Board> selectBoardAll(String bType);
 	

@@ -33,21 +33,15 @@ public class Product {
 	private String pDaddress; //상품 상세 주소
 	private String pCheck; //상품 승인 여부
 	private int pView; //상품 조회 수
+	private String pDate; //상품등록일
 	
+
 	private int pdNo; //상품 상세 번호
 	private String pdImage; //상품 이미지
 	private String pdScene; //상품 장면
 	
 	public Product() {
 		super();
-	}
-	
-	@Override
-	public String toString() {
-		return "[pNo = " + pNo + ", mNo = " + mNo + ", wNo = " + wNo + ", " +
-				"pName = " + pName + ", pPrice = " + pPrice + ", pUrl = " + pUrl + ", " +
-				"pAddress = " + pAddress + ", pDaddress = " + pDaddress + ", pCheck = " + pCheck + ", " +
-				"pView = " + pView + ", pdNo = " + pdNo + ", pdImage = " + pdImage + ", pdScene = " + pdScene + "]";
 	}
 	
 	public Product(int pNo, int mNo, int wNo, String pName, int pPrice, String pUrl, String pAddress,
@@ -169,7 +163,15 @@ public class Product {
 
 	public void setPdScene(String pdScene) {
 		this.pdScene = pdScene;
-	} 
+	}
+
+	@Override
+	public String toString() {
+		return "Product [pNo=" + pNo + ", mNo=" + mNo + ", wNo=" + wNo + ", pName=" + pName + ", pPrice=" + pPrice
+				+ ", pUrl=" + pUrl + ", pAddress=" + pAddress + ", pDaddress=" + pDaddress + ", pCheck=" + pCheck
+				+ ", pView=" + pView + ", pdNo=" + pdNo + ", pdImage=" + pdImage + ", pdScene=" + pdScene + "]";
+	}
+
 	
 	
 }

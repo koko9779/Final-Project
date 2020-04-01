@@ -1,7 +1,9 @@
 package com.itwill.staily.stylecoodination.mapper;
 
-import com.itwill.staily.util.Board;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.itwill.staily.util.Board;
+@Mapper
 public interface BoardManageMapper {
 	public int createBoard(Board b);
 

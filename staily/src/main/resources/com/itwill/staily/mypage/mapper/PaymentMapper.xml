@@ -7,7 +7,7 @@
 <select id="selectOne"
 		parameterType="int"
 		resultType="com.itwill.staily.mypage.model.dto.Payment">
-	select *
+	select py_no, m_no, py_name, py_price, py_period, py_type, py_date
 	from payment
 	where py_no= #{pyNo}
 </select>
@@ -16,17 +16,13 @@
 <select id="selectList"
 		parameterType="int"
 		resultType="com.itwill.staily.mypage.model.dto.Payment">
-	select *
+	select py_no, m_no, py_name, py_price, py_period, py_type, py_date
 	from payment
 	where m_no= #{mNo}
 </select>
 
 <!-- 삭제 -->
-<delete id="deletePayment"
-		parameterType="int">
-	delete from payment
-	where py_no= #{pyNo}
-</delete>
+
 
 <!-- 추가 -->
 <insert id="createPayment"

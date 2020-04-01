@@ -10,36 +10,43 @@
 			<result column="p_no" property="pNo"/>
 		</association>
 	</resultMap>
-	
+	<!-- 
 	<resultMap id="wWithpAndpdResultMap" type="com.itwill.staily.util.Work">
 		<result column="w_no" property="wNo"/>
 		<result column="w_category" property="wCategory"/>
 		<result column="w_poster" property="wPoster"/>
 		<result column="w_name" property="wName"/>
 		<result column="w_tepisode" property="wTepisode"/>
-		<!-- 
 		<result column="wd_no" property="wdNo"/>
 		<result column="wd_episode" property="wdEpisode"/>
-		-->
-		<association property="product" javaType="com.itwill.staily.util.Product" autoMapping="true">
+		<association property="product">
 			<result column="p_no" property="pNo"/>
-		<!-- 
-			<result column="p_name" property="pName"/>
-			<result column="pd_scene" property="pdScene"/>
-		-->
 		</association>
+	</resultMap>
+	-->
+	<resultMap id="wWithpAndpdResultMap" type="com.itwill.staily.util.Work">
+		<result column="w_no" property="wNo"/>
+		<result column="w_category" property="wCategory"/>
+		<result column="w_poster" property="wPoster"/>
+		<result column="w_name" property="wName"/>
+		<result column="w_tepisode" property="wTepisode"/>
+		<result column="wd_no" property="wdNo"/>
+		<result column="wd_episode" property="wdEpisode"/>
+		<collection property="product" ofType="Product"  >
+			<result column="p_no" property="pNo"/>
+		 	<result column="p_name" property="pName"/>
+			<result column="pd_scene" property="pdScene"/>
+		</collection>
 	</resultMap>
 	
  	<!-- 1. 회원번호를 통해서 즐겨찾기한 목록 찾기 -->
 	<select id="selectByBookmark" parameterType="int" resultMap="bmWithpAndpdResultMap">
-		select b.bm_no,b.m_no,b.p_no,p.p_name,p.pd_scene
+		select b.bm_no,b.m_no,b.p_no,p.p_name
 		from bookmark b
-		join (select pr.p_no p_no, pr.p_name p_name, prd.pd_scene pd_scene
-		      from product pr
-		      join product_detail prd
-		      on pr.p_no=prd.p_no) p
+		join product p
 		on b.p_no=p.p_no
 		where b.m_no = #{m_no}
+		and p.p_check='T'
 	</select>
 	<!-- 2. 인기많은(조회수 높은) 상품 출력 -->
 	<select id="selectByView" resultType="com.itwill.staily.util.Product">
@@ -47,6 +54,7 @@
 		from product p
 		join product_detail pd
 		on p.p_no=pd.p_no
+		where p.p_check='T'
 		order by p.p_view desc
 	</select>
 	<!-- 3-1. 카테고리 = 드라마인 작품 출력하기 -->
@@ -62,13 +70,14 @@
 		from work w
 		join (select pr.p_no p_no,pr.w_no w_no,pr.p_name p_name,prd.pd_scene pd_scene
 		      from product pr
-		      join product_detail prd
-		      on pr.p_no=prd.p_no) p
+			  join product_detail prd
+			  on pr.p_no=prd.p_no
+		      where pr.p_check='T') p
 		on w.w_no=p.w_no
 		where w.w_no = #{w_no}
 	</select>
 	<!-- 5.선택한 작품의 포스터,해당 회차의 상품들 출력하기 -->
-	<select id="selectByEpisode" parameterType="int" resultMap="wWithpAndpdResultMap">
+	<select id="selectByEpisode" parameterType="map" resultMap="wWithpAndpdResultMap">
 		select wd.wd_no,p.p_no,w.w_no,w.w_tepisode,wd_episode,w.w_poster,w.w_name,p.p_name,pd.pd_scene
 		from work w
 		join work_detail wd
@@ -77,22 +86,21 @@
 		on wd.p_no = p.p_no
 		join product_detail pd
 		on p.p_no = pd.p_no
-		where w.w_no = #{w_no} and wd.wd_episode=#{wd_episode}
+		where w.w_no = #{w_no} and wd.wd_episode=#{wd_episode} and p.p_check='T'
 	</select>
 	<!-- 6.즐겨찾기 등록하기 -->
-	<insert id="createBookmark" parameterType="int">
+	<insert id="createBookmark" parameterType="map"> 
 		<selectKey order="BEFORE" keyProperty="bmNo" resultType="int">
 			select BM_NO_SEQ.nextval from dual
 		</selectKey>
-		insert into bookmark(bm_no,m_no,p_no)
-		values(#{bmNo},#{mNo},#{pNo})
+		insert into bookmark values(#{bmNo},#{mNo},#{pNo})
 	</insert>
 	<!-- 7.즐겨찾기 제거하기 -->
 	<delete id="deleteBookmark" parameterType="int" >
 		delete from bookmark where bm_no=#{bmNo}
 	</delete>
 	<!-- 8.총회차 찾기 -->
-	<select id="selectTepisode" parameterType="int" resultType="int">
+	<select id="selectTepisode" parameterType="int" resultType="Work">
 		select w_tepisode
 		from work
 		where w_no=#{w_no}
@@ -108,10 +116,11 @@
 		update product
 		set p_view = p_view + 1
 		where p_no = #{p_no}
+		and p_check='T'
 	</update>
 	<!-- 11.게시물 총 건수 -->		
 	<select id="selectProductCount" resultType="int">
-		select count(*) from product
+		select count(*) from product where p_check='T'
 	</select>
 		
 </mapper>

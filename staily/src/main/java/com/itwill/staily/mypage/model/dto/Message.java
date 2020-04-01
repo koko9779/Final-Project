@@ -1,5 +1,7 @@
 package com.itwill.staily.mypage.model.dto;
 
+import com.itwill.staily.util.Member;
+
 public class Message {
 	private int msNo;			//메시지번호
 	private int mNo;			//멤버번호
@@ -7,10 +9,21 @@ public class Message {
 	private String msContent;	//메시지내용
 	private String msDate;		//메시지일시
 	
+	private Member member;
+	
 	public Message() {
 		
 	}
-	
+
+	public Member getMember() {
+		return member;
+	}
+
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
 
 	public Message(int msNo, int mNo, String msTitle, String msContent, String msDate) {
 		super();
