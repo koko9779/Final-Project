@@ -8,34 +8,38 @@ import org.springframework.stereotype.Service;
 import com.itwill.staily.login.exception.FailSignException;
 import com.itwill.staily.login.exception.FailUpdatePwException;
 import com.itwill.staily.login.exception.NoSearchMemberException;
+import com.itwill.staily.login.mapper.LoginCommonMapper;
 import com.itwill.staily.login.mapper.LoginMapper;
 import com.itwill.staily.login.mapper.SignUpMapper;
 import com.itwill.staily.util.Member;
 
 @Service
-public class LoginServiceImpl implements LoginService {
+public class LoginServiceImpl {
 	@Autowired
 	private LoginMapper loginMapper;
 	@Autowired
 	private SignUpMapper signMapper;	
+	@Autowired
+	private LoginCommonMapper loginCommonMapper;
 	
-	@Override
-	public Member selectMemberIdAndPw(Member member) { 
+	public Member login(Member member) { 
 		String pw;
+		int isExisted = 0;
 		
-		pw = loginMapper.selectMemberIdAndPw(member.getmId());
-		if(pw == null) {
-			throw new NoSearchMemberException("아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다");
-		}else {
-			if(!pw.equals(member.getmPw())) {
-				throw new NoSearchMemberException("아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다");
+		isExisted = loginCommonMapper.isExistedId(member.getmId());
+		if(isExisted == 1) {
+			pw = loginMapper.selectMemberPw(member.getmId());
+			if(pw.equals(member.getmPw())) {
+				//기업회원인지 검사하는 메소드, 기업회원이면 상수오빠 메소드 실행하고 memberDTO 리턴, 아니면 바로 memberDTO 리턴
+				return member;
+			}else {
+				throw new FailSignException("아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다");
 			}
+ 		}else {
+			throw new FailSignException("아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다");
 		}
-		return member;
-		//세션에 박는 작업은 controller에서 진행
 	}
 	
-	@Override
 	public String findId(String mPhone, String mName) {
 		String id;
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -51,7 +55,6 @@ public class LoginServiceImpl implements LoginService {
 	}
 	
 	/************************** 비밀번호 찾기 **************************/
-	@Override
 	public int isIdExist(String mId, String mPhone) {
 		int count = -1;
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -59,7 +62,7 @@ public class LoginServiceImpl implements LoginService {
 		map.put("mId", mId);
 		map.put("mPhone", mPhone);
 		
-		int existCount = loginMapper.isIdExist(map);
+		int existCount = loginMapper.isExistedIdForPw(map);
 		if(existCount != 1) {
 			throw new NoSearchMemberException("일치하는 계정이 없습니다");
 		}else {
@@ -70,7 +73,6 @@ public class LoginServiceImpl implements LoginService {
 	//맞으면 새비밀번호 입력창으로 이동 
 	
 	//새 비밀번호 입력창에서 입력된 비밀번호로 업데이트
-	@Override
 	public int updatePw(Member updatePwMember) {
 		int updateCount = 0;
 		
@@ -83,7 +85,6 @@ public class LoginServiceImpl implements LoginService {
 	}
 	/******************************************************************/
 	
-	@Override
 	public int signMember(Member member) {
 		int signCount = 0;
 	
@@ -95,7 +96,6 @@ public class LoginServiceImpl implements LoginService {
 		return signCount;
 	}
 	
-	@Override
 	public int signCompany(Member member) {
 		int successCount = 0;
 		int signCountM = 0;
