@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwill.staily.login.exception.FailSignException;
-import com.itwill.staily.login.exception.FailUpdatePwException;
 import com.itwill.staily.login.exception.NoSearchMemberException;
 import com.itwill.staily.login.mapper.LoginCommonMapper;
 import com.itwill.staily.login.mapper.LoginMapper;
@@ -14,7 +13,7 @@ import com.itwill.staily.login.mapper.SignUpMapper;
 import com.itwill.staily.util.Member;
 
 @Service
-public class LoginServiceImpl {
+public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private LoginMapper loginMapper;
 	@Autowired
@@ -22,6 +21,7 @@ public class LoginServiceImpl {
 	@Autowired
 	private LoginCommonMapper loginCommonMapper;
 	
+	@Override
 	public Member login(Member member) { 
 		String pw;
 		int isExisted = 0;
@@ -40,6 +40,7 @@ public class LoginServiceImpl {
 		}
 	}
 	
+	@Override
 	public String findId(String mPhone, String mName) {
 		String id;
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -55,6 +56,7 @@ public class LoginServiceImpl {
 	}
 	
 	/************************** 비밀번호 찾기 **************************/
+	@Override
 	public int isIdExist(String mId, String mPhone) {
 		int count = 0;
 		int existCount = 0;
@@ -69,50 +71,34 @@ public class LoginServiceImpl {
 		}else {
 			count = 1;
 		}
-		return count;
+		return count; 
 	}
 	//맞으면 새비밀번호 입력창으로 이동 
 	
 	//새 비밀번호 입력창에서 입력된 비밀번호로 업데이트
+	@Override
 	public int updatePw(Member updatePwMember) {
-		int updateCount = 0;
-		
-		updateCount = loginMapper.updatePwOne(updatePwMember);
-		if(updateCount != 1) {
-			throw new FailUpdatePwException("비밀번호 변경에 실패하였습니다");
-		}
-		
-		return updateCount;
+		return loginMapper.updatePwOne(updatePwMember);
 	}
 	/******************************************************************/
 	
+	@Override
 	public int signMember(Member member) {
-		int signCount = 0;
-	
-		signCount = signMapper.createMember(member);
-		if(signCount != 1) {
-			throw new FailSignException("회원가입에 실패하였습니다");
-		}
-		
-		return signCount;
+		return signMapper.createMember(member);
 	}
 	
+	@Override
 	public int signCompany(Member member) {
-		int successCount = 0;
 		int signCountM = 0;
 		int signCountC = 0;
 		
 		signCountM = signMapper.createMember(member);
 		if(signCountM == 1) {
 			signCountC = signMapper.createCompany(member.getmCompany().getCoNo());
-			if(signCountC != 1) {
-				throw new FailSignException("회원가입에 실패하였습니다");
-			}
 		}else {
 			throw new FailSignException("회원가입에 실패하였습니다");
 		}
-		successCount = 1;
-		return successCount;
+		return signCountC;
 	}
 	
 	
