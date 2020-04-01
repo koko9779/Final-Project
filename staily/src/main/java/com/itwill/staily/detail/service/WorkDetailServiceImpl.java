@@ -50,4 +50,23 @@ public class WorkDetailServiceImpl implements WorkDetailService {
 		return check;
 	}
 
+	@Override
+	public int selectTepisode(int wNo) throws Exception {
+		return workDetailMapper.selectTepisode(wNo);
+	}
+
+	@Override
+	public boolean increaseWorkView(int wNo) throws Exception {
+		boolean check = false;
+		
+		if(workDetailMapper.increaseWorkView(wNo)) {
+			check = true;			
+		}
+		else{
+			check = false;
+		}
+		
+		return check;
+	}
+
 }
