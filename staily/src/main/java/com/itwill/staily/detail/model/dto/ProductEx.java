@@ -3,6 +3,7 @@ package com.itwill.staily.detail.model.dto;
 public class ProductEx extends com.itwill.staily.util.Product {	
 	private int pNo; //상품 번호
 	private int mNo; //회원 번호
+	private String mId; //회원 아이디
 	private int wNo; //작품 번호
 	private String pName; //상품 이름
 	private int pPrice; //상품 가격
@@ -92,6 +93,14 @@ public class ProductEx extends com.itwill.staily.util.Product {
 
 	public void setmNo(int mNo) {
 		this.mNo = mNo;
+	}	
+
+	public String getmId() {
+		return mId;
+	}
+
+	public void setmId(String mId) {
+		this.mId = mId;
 	}
 
 	public int getwNo() {
@@ -181,5 +190,12 @@ public class ProductEx extends com.itwill.staily.util.Product {
 	public void setPdScene(String pdScene) {
 		this.pdScene = pdScene;
 	}	
+
+	@Override
+	public String toString() {
+		return "[pNo=" + pNo + ", mNo=" + mNo + ", mId=" + mId + ", pName=" + pName + ", pPrice=" + pPrice
+				+ ", pUrl=" + pUrl + ", pAddress=" + pAddress + ", pDaddress=" + pDaddress
+				+ ", pView=" + pView + ", pdNo=" + pdNo + ", pdImage=" + pdImage + ", pdScene=" + pdScene + "]";
+	}
 
 }

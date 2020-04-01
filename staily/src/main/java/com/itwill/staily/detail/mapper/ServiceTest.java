@@ -18,65 +18,65 @@ public class ServiceTest {
 
 	public static void main(String[] args) throws Exception {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/application-config.xml");
-		ProductDetailServiceImpl pd = applicationContext.getBean(ProductDetailServiceImpl.class);
-		ReplyServiceImpl rs = applicationContext.getBean(ReplyServiceImpl.class);
-		WorkDetailServiceImpl wd = applicationContext.getBean(WorkDetailServiceImpl.class);
+		ProductDetailServiceImpl pdm = applicationContext.getBean(ProductDetailServiceImpl.class);
+		ReplyServiceImpl rm = applicationContext.getBean(ReplyServiceImpl.class);
+		WorkDetailServiceImpl wdm = applicationContext.getBean(WorkDetailServiceImpl.class);
 		
 		//댓글 단위 테스트
-		//List<Reply> rL = rs.selectReplyList(2);
-		//System.out.println(rL);
+		//List<Reply> replyList = rm.selectReplyList(1);
+		//System.out.println(replyList);
 		
-		//Reply rp = rs.selectReplyOne(22);
+		//Reply rp = rm.selectReplyOne(10);
 		//System.out.println(rp);
 		
-		//boolean create = rs.createReply(new Reply(21, 1, "���� ��� �;��!!", 322353, 0));
+		//boolean create = rm.createReply(new Reply(1, 1, "test", 3, 0));
 		//System.out.println(create);
 		
-		//boolean delete = rs.deleteReply(new Reply(21, 1, 1));
+		//boolean delete = rm.deleteReply(2, 1, 1);
 		//System.out.println(delete);
 		
-		//boolean inc = rs.increaseRecommend(28);
+		//boolean inc = rm.increaseRecommend(10);
 		//System.out.println(inc);
 		
-		//boolean inc = rs.increaseReport(28);
+		//boolean inc = rm.increaseReport(10);
 		//System.out.println(inc);
-		
-		//boolean create = rs.createFriend(1, 6);
+
+		//boolean create = rm.createFriend(3, 6);
 		//System.out.println(create);
 		
 		//상품 단위 테스트
-		Product pro = pd.selectProductOne(2);
-		System.out.println(pro);
-		
-		//boolean create = pd.createProduct(new Product(1, 2, "��ǻ�� ����ʹ�", 2000000, "�ФФ�", "ù ���� ������", "�����", "n", 234253));
+		//ProductEx product = pdm.selectProductOne(3);
+		//System.out.println(product);
+    
+		//boolean create = pdm.createProduct(new ProductEx(4, 6, "BLOOM*IZ", 17000, "http://cafe.daum.net/official-izone", "서울시", "강남구", "N", 4234245));
 		//System.out.println(create);
 		
-		//boolean create = pd.createProductDetail(new Product(6, "�����", "������"));
+		//boolean create = pdm.createProductDetail(new ProductEx(4, "우핳하", "신난다"));
 		//System.out.println(create);
 		
-		//boolean update = pd.updateProduct(new Product("�ڵ��� ���ʹ�", 1500000, "�߳ʵ�?", "����", "�ƽþ�", "n", 345362, 22));
-		//System.out.println(update);
-				
-		//boolean update = pd.updateProductDetail(new Product("���o�R�K���ä�", "�����m", 1));
+		//boolean update = pdm.updateProduct(new ProductEx("테슷트", 1500000, "google.com", "서울", "시", "N", 345362, 4));
 		//System.out.println(update);
 		
-		//int check = pd.checkCompany(7);
-		//System.out.println(check);
+		//boolean update = pdm.updateProductDetail(new ProductEx("ㅇㅇ", "ㅋㅋ", 33));
+		//System.out.println(update);
 		
-		//boolean inc = pd.increaseProductView(3);
+		//boolean inc = pdm.increaseProductView(3);
 		//System.out.println(inc);
 		
+		//int check = pdm.checkCompany(7);
+		//System.out.println(check);
+		
 		//작품 단위 테스트
-		//Work work = wd.selectWorkOne(3);
+		//Work work = wdm.selectWorkOne(3);
 		//System.out.println(work);
 		
-		//List<Work> wL = wd.selectWorkAll();
+		//List<Work> wL = wdm.selectWorkAll();
 		//System.out.println(wL);
 		
-		//boolean create = wd.createWorkDetail(21, 3, 10);
+		//boolean create = wdm.createWorkDetail(21, 3, 10);
 		//System.out.println(create);
 		
-		//int sel = wd.selectTepisode(1);
+		//int sel = wdm.selectTepisode(1);
 		//System.out.println(sel);
 		
 		((ConfigurableApplicationContext)applicationContext).close();

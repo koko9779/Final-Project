@@ -3,7 +3,7 @@
 <mapper namespace="com.itwill.staily.detail.mapper.ProductDetailMapper">	
 	<select id="selectProductOne" parameterType="int"
 		resultType="com.itwill.staily.detail.model.dto.ProductEx">
-		select p.p_no, p.m_no, m.m_id, p.p_name, p.p_price, p.p_url, p.p_address, p.p_daddress, pd.pd_scene, pd.pd_image
+		select p.p_no, p.m_no, m.m_id, p.p_name, p.p_price, p.p_url, p.p_address, p.p_daddress, p.p_view, pd.pd_no, pd.pd_image, pd.pd_scene
 		from product p
 		inner join product_detail pd
 		on p.p_no = pd.p_no

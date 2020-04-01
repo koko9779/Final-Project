@@ -7,7 +7,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.itwill.staily.detail.model.dto.Reply;
-import com.itwill.staily.util.Product;
+import com.itwill.staily.detail.model.dto.ProductEx;
 import com.itwill.staily.util.Work;
 
 @SuppressWarnings("unused")
@@ -22,38 +22,38 @@ public class MapperTest {
 		//List<Reply> replyList = rm.selectReplyList(1);
 		//System.out.println(replyList);
 		
-		//Reply rp = rm.selectReplyOne(22);
+		//Reply rp = rm.selectReplyOne(10);
 		//System.out.println(rp);
 		
-		//boolean create = rm.createReply(new Reply(1, 1, "���� �� �ֺ��", 9999, 1));
+		//boolean create = rm.createReply(new Reply(1, 1, "test", 3, 0));
 		//System.out.println(create);
 		
-		//boolean delete = rm.deleteReply(new Reply(2, 1, 1));
+		//boolean delete = rm.deleteReply(2, 1, 1);
 		//System.out.println(delete);
 		
-		//boolean inc = rm.increaseRecommend(28);
+		//boolean inc = rm.increaseRecommend(10);
 		//System.out.println(inc);
 		
-		//boolean inc = rm.increaseReport(28);
+		//boolean inc = rm.increaseReport(10);
 		//System.out.println(inc);
-		
-		//boolean create = rm.createFriend(1, 5);
+
+		//boolean create = rm.createFriend(3, 6);
 		//System.out.println(create);
 		
 		//상품 단위 테스트
-		//Product product = pdm.selectProductOne(1);
+		//ProductEx product = pdm.selectProductOne(3);
 		//System.out.println(product);
 		
-		//boolean create = pdm.createProduct(new Product(4, 6, "BLOOM*IZ", 17000, "http://cafe.daum.net/official-izone", "���ѹα�", "�����", "n", 4234245));
+		//boolean create = pdm.createProduct(new ProductEx(4, 6, "BLOOM*IZ", 17000, "http://cafe.daum.net/official-izone", "서울시", "강남구", "N", 4234245));
 		//System.out.println(create);
 		
-		//boolean create = pdm.createProductDetail(new Product(4, "�����", "������"));
+		//boolean create = pdm.createProductDetail(new ProductEx(4, "우핳하", "신난다"));
 		//System.out.println(create);
 		
-		//boolean update = pdm.updateProduct(new Product("�ڵ��� ���ʹ�", 1500000, "google.com", "����", "�ƽþ�", "n", 345362, 22));
+		//boolean update = pdm.updateProduct(new ProductEx("테슷트", 1500000, "google.com", "서울", "시", "N", 345362, 4));
 		//System.out.println(update);
 		
-		//boolean update = pdm.updateProductDetail(new Product("����", "�����m", 1));
+		//boolean update = pdm.updateProductDetail(new ProductEx("ㅇㅇ", "ㅋㅋ", 33));
 		//System.out.println(update);
 		
 		//boolean inc = pdm.increaseProductView(3);
