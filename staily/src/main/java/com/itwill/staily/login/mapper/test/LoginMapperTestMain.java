@@ -15,18 +15,18 @@ public class LoginMapperTestMain {
 		int count;
 		HashMap<String, Object> map = new HashMap<String, Object>();
 
-//		String pw = login.selectMemberIdAndPw("시험용기업아이디");
+//		String pw = login.selectMemberPw("ehdanf91");
 //		System.out.println(pw);
 		
 
 //		map.put("mPhone", "01091434908");
-//		map.put("mName", "천영주");
+//		map.put("mName", "천영");
 //		String id = login.selectIdOne(map);
 //		System.out.println(id);
 		
 //		map.put("mPhone", "112");
 //		map.put("mId", "hiphopmy");
-//		count = login.isIdExist(map);
+//		count = login.isExistedIdForPw(map);
 //		System.out.println(count);
 		
 //		map.put("mPw", "1234");
