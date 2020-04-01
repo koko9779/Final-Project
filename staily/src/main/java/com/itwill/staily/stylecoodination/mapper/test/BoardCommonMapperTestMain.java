@@ -6,7 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.itwill.staily.stylecoodination.mapper.BoardCommonMapper;
 import com.itwill.staily.util.Board;
 
-public class CommonMapperTestMain {
+public class BoardCommonMapperTestMain {
 
 	public static void main(String[] args) throws Exception {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/application-config.xml");

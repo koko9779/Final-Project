@@ -18,6 +18,7 @@ public class Board {
 	 */
 	private int bNo; //게시물번호
 	private int mNo; //회원번호
+	private String mId;
 	private String bTitle; //제목
 	private String bContent; //내용
 	private int bGroupNo; // groupno
@@ -33,10 +34,12 @@ public class Board {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Board(int bNo, int mNo, String bTitle, String bContent, int bGroupNo, int bStep, int bView,
+	public Board(int bNo, int mNo, String mId, String bTitle, String bContent, int bGroupNo, int bStep, int bView,
 			int bRecommend, String bType, String bDate, String bChoice, BoardDetail boardDetail) {
+		super();
 		this.bNo = bNo;
 		this.mNo = mNo;
+		this.mId = mId;
 		this.bTitle = bTitle;
 		this.bContent = bContent;
 		this.bGroupNo = bGroupNo;
@@ -55,6 +58,14 @@ public class Board {
 				+ ", bGroupNo=" + bGroupNo + ", bStep=" + bStep + ", bView=" + bView + ", bRecommend=" + bRecommend
 				+ ", bType=" + bType + ", bDate=" + bDate + ", bChoice=" + bChoice + ", boardDetail=" + boardDetail
 				+ "]";
+	}
+	
+	public String getmId() {
+		return mId;
+	}
+
+	public void setmId(String mId) {
+		this.mId = mId;
 	}
 	
 	public int getbNo() {
