@@ -16,4 +16,5 @@ public interface WorkDetailMapper {
 	public int selectTepisode(int wNo);
 	
 	public boolean increaseWorkView(int wNo);
+	
 }

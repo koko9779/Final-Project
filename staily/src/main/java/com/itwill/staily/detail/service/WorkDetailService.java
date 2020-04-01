@@ -16,4 +16,5 @@ public interface WorkDetailService {
 	public int selectTepisode(int wNo) throws Exception;
 	
 	public boolean increaseWorkView(int wNo) throws Exception;
+	
 }

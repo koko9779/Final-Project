@@ -68,5 +68,4 @@ public class WorkDetailServiceImpl implements WorkDetailService {
 		
 		return check;
 	}
-
 }

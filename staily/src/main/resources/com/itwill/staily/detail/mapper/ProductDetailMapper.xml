@@ -56,6 +56,5 @@
 		set p_view = p_view + 1
 		where p_no = #{pNo}
 		and p_check = 'Y'
-	</update>
-	
+	</update>	
 </mapper>

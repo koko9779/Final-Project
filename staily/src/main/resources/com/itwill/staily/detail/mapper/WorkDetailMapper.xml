@@ -28,6 +28,5 @@
 		update work
 		set w_view = w_view + 1
 		where w_no = #{wNo}
-	</update>
-		
+	</update>		
 </mapper>

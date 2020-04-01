@@ -20,4 +20,5 @@ public interface ProductDetailService {
 	public int checkCompany(int mNo) throws Exception;
 	
 	public boolean increaseProductView(int pNo) throws Exception;
+	
 }

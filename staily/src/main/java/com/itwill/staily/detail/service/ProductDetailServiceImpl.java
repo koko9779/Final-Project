@@ -130,5 +130,4 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 		
 		return check;
 	}
-
 }

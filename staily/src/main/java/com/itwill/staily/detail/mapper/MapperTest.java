@@ -76,7 +76,6 @@ public class MapperTest {
 		//System.out.println(sel);
 				
 		((ConfigurableApplicationContext)applicationContext).close();
-
 		
 	}
 

@@ -23,4 +23,5 @@ public interface ProductDetailMapper {
 	public int checkCompany(int mNo);
 	
 	public boolean increaseProductView(int pNo);
+	
 }
