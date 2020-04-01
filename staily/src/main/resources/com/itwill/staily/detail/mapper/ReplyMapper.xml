@@ -32,4 +32,10 @@
 	<update id="increaseReport" parameterType="int">
 		update reply set r_report = r_report + 1 where r_no = #{rNo}
 	</update>
+	
+	<insert id="createFriend" parameterType="int">
+		insert into friend (f_pk, m_no, f_no)
+		values (friend_no_seq.nextval, #{mNo}, #{fNo})
+		
+	</insert>
 </mapper>

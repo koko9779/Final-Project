@@ -19,4 +19,6 @@ public interface ProductDetailMapper {
 	public boolean deleteProduct(int pNo);
 	
 	public boolean deleteProductDetail(int pdNo);
+	
+	public int checkCompany(int mNo);
 }

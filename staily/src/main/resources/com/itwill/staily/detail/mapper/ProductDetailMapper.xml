@@ -40,4 +40,13 @@
 		delete from product_detail where pd_no = #{pdNo}
 	</delete>
 	
+	<select id="checkCompany" parameterType="int" resultType="int">
+		select count(*)
+		from member m
+		inner join company c
+		on m.m_no = c.m_no
+		where m.m_no = #{mNo}
+		and lower(c.co_check) = 'n'
+	</select>
+	
 </mapper>

@@ -41,6 +41,9 @@ public class ServiceTest {
 		//boolean inc = rs.increaseReport(28);
 		//System.out.println(inc);
 		
+		//boolean create = rs.createFriend(1, 6);
+		//System.out.println(create);
+		
 		//상품 단위 테스트
 		//Product pro = pd.selectProductOne(21);
 		//System.out.println(pro);
@@ -55,7 +58,10 @@ public class ServiceTest {
 		//System.out.println(update);
 				
 		//boolean update = pd.updateProductDetail(new Product("���o�R�K���ä�", "�����m", 1));
-		//System.out.println(update);				
+		//System.out.println(update);
+		
+		//int check = pd.checkCompany(7);
+		//System.out.println(check);
 		
 		//작품 단위 테스트
 		//Work work = wd.selectWorkOne(3);

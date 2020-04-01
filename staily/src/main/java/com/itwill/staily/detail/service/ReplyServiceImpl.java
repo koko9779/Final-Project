@@ -92,4 +92,18 @@ public class ReplyServiceImpl implements ReplyService {
 		return check;
 	}
 
+	@Override
+	public boolean createFriend(int mNo, int fNo) throws Exception {
+		boolean check = false;
+		
+		if(replyMapper.createFriend(mNo, fNo)) {
+			check = true;			
+		}
+		else{
+			check = false;
+		}
+		
+		return check;
+	}
+
 }

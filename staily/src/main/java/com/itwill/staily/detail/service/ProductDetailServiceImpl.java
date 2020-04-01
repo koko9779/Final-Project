@@ -112,4 +112,9 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 		return check;
 	}
 
+	@Override
+	public int checkCompany(int mNo) throws Exception {
+		return productDetailMapper.checkCompany(mNo);
+	}
+
 }

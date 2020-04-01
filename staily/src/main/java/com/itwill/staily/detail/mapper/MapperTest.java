@@ -37,6 +37,9 @@ public class MapperTest {
 		//boolean inc = rm.increaseReport(28);
 		//System.out.println(inc);
 		
+		//boolean create = rm.createFriend(1, 5);
+		//System.out.println(create);
+		
 		//상품 단위 테스트
 		//Product product = pdm.selectProductOne(1);
 		//System.out.println(product);
@@ -52,6 +55,9 @@ public class MapperTest {
 		
 		//boolean update = pdm.updateProductDetail(new Product("����", "�����m", 1));
 		//System.out.println(update);
+		
+		//int check = pdm.checkCompany(7);
+		//System.out.println(check);
 		
 		//작품 단위 테스트
 		//Work work = wdm.selectWorkOne(3);

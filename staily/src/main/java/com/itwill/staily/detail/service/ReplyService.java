@@ -18,4 +18,6 @@ public interface ReplyService {
 	boolean increaseRecommend(int rNo) throws Exception;
 	
 	boolean increaseReport(int rNo) throws Exception;	
+	
+	boolean createFriend(@Param("mNo") int mNo, @Param("fNo") int fNo) throws Exception;
 }
