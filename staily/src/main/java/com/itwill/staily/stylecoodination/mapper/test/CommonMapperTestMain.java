@@ -3,14 +3,14 @@ package com.itwill.staily.stylecoodination.mapper.test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.itwill.staily.stylecoodination.mapper.CommonMapper;
+import com.itwill.staily.stylecoodination.mapper.BoardCommonMapper;
 import com.itwill.staily.util.Board;
 
 public class CommonMapperTestMain {
 
 	public static void main(String[] args) throws Exception {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/application-config.xml");
-		CommonMapper common = applicationContext.getBean(CommonMapper.class);
+		BoardCommonMapper common = applicationContext.getBean(BoardCommonMapper.class);
 		int count;
 		
 //		int mNo = common.selectMNo("koko97");
