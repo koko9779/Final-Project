@@ -69,14 +69,15 @@ Where m_no=#{mNo}
 	where m.m_no = #{mNo}
 </select>
 
+<!--  
 <resultMap type="com.itwill.staily.util.Product" id="selectWriteMap" autoMapping="true">
 	
 </resultMap>
-
+-->
 <!-- 내가 쓴글 리스트 -->
 <select id="selectWriteList"
 		parameterType="int"
-		resultMap="selectWriteMap">
+		resultType="com.itwill.staily.util.Product">
 	select p.p_no, p.m_no, p.w_no, pd_scene, m.m_id
 	from product p
 	join product_detail pd
