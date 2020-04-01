@@ -47,48 +47,8 @@ public class MainServiceImpl implements MainService{
 	}
 
 	@Override
-	public Work selectByWork(int wNo) throws Exception {
-		return mainMapper.selectByWork(wNo);
-	}
-
-	@Override
-	public List<Work> selectByEpisode(Map map) throws Exception {
-		return mainMapper.selectByEpisode(map);
-	}
-
-	@Override
-	public int createBookmark(Map map) throws Exception {
-		return mainMapper.createBookmark(map);
-	}
-
-	@Override
-	public int deleteBookmark(int bmNo) throws Exception {
-		return mainMapper.deleteBookmark(bmNo);
-	}
-
-	@Override
-	public int selectTepisode(int wNo) {
-		return mainMapper.selectTepisode(wNo);
-	}
-
-	@Override
-	public void increaseWorkView(int wNo) {
-		mainMapper.increaseWorkView(wNo);
-	}
-
-	@Override
-	public void increaseProductView(int pNo) {
-		mainMapper.increaseProductView(pNo);
-	}
-
-	@Override
-	public int selectProductCount() {
-		return mainMapper.selectProductCount();
-	}
-
-	@Override
-	public List<Work> selectTodayofWork() {
-		return mainMapper.selectTodayofWork();
+	public List selectTodayOfWork() throws Exception {
+		return null;
 	}
 	
 }
