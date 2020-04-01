@@ -22,7 +22,6 @@
 	<association property="mCompany"
 				 javaType="com.itwill.staily.util.Company"
 				 autoMapping="true">
-
 	</association>
 </resultMap>
 
