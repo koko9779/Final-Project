@@ -20,7 +20,7 @@ public class LoginMapperTestMain {
 		
 
 //		map.put("mPhone", "01091434908");
-//		map.put("mName", "천영주");
+//		map.put("mName", "천영");
 //		String id = login.selectIdOne(map);
 //		System.out.println(id);
 		

@@ -56,13 +56,14 @@ public class LoginServiceImpl {
 	
 	/************************** 비밀번호 찾기 **************************/
 	public int isIdExist(String mId, String mPhone) {
-		int count = -1;
+		int count = 0;
+		int existCount = 0;
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("mId", mId);
 		map.put("mPhone", mPhone);
 		
-		int existCount = loginMapper.isExistedIdForPw(map);
+		existCount = loginMapper.isExistedIdForPw(map);
 		if(existCount != 1) {
 			throw new NoSearchMemberException("일치하는 계정이 없습니다");
 		}else {
