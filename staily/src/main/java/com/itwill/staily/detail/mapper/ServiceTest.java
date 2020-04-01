@@ -45,8 +45,8 @@ public class ServiceTest {
 		//System.out.println(create);
 		
 		//상품 단위 테스트
-		//Product pro = pd.selectProductOne(21);
-		//System.out.println(pro);
+		Product pro = pd.selectProductOne(2);
+		System.out.println(pro);
 		
 		//boolean create = pd.createProduct(new Product(1, 2, "��ǻ�� ����ʹ�", 2000000, "�ФФ�", "ù ���� ������", "�����", "n", 234253));
 		//System.out.println(create);
