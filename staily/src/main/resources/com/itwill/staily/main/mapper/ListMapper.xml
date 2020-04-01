@@ -1,37 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.staily.main.mapper.ListMapper">
-	<resultMap id="wWithpAndpdResultMap" type="Work" autoMapping="true">
+	<resultMap id="fiveTableResultMap" type="Work" autoMapping="true">
 		<collection property="product" ofType="Product" autoMapping="true">
 		</collection>
-	</resultMap>
+	</resultMap>	
 	<!-- 2.작품상세페이지 상품정보(상품이름, 상품에피소드,상품씬,작성자) 출력하기 -->
-	<!-- 3.작품상세페이지 상품정보 회차별 출력하기 -->
-	
-	<!-- 4.선택한 작품의 포스터,상품이름 출력하기 -->
-	<select id="selectByWork" parameterType="int" resultMap="wWithpAndpdResultMap">
-		select w.w_no,w.w_category,w.w_poster,w.w_name,w.w_tepisode,p.p_no,p.p_name,p.pd_scene
-		from work w
-		join (select pr.p_no p_no,pr.w_no w_no,pr.p_name p_name,prd.pd_scene pd_scene
-		      from product pr
-			  join product_detail prd
-			  on pr.p_no=prd.p_no
-		      where pr.p_check='Y') p
-		on w.w_no=p.w_no
-		where w.w_no = #{wNo}
-	</select>
-	<!-- 5.선택한 작품의 포스터,해당 회차의 상품들 출력하기 -->
-	<select id="selectByEpisode" parameterType="map" resultMap="wWithpAndpdResultMap">
-		select wd.wd_no,p.p_no,w.w_no,w.w_tepisode,wd_episode,w.w_poster,w.w_name,p.p_name,pd.pd_scene
-		from work w
-		join work_detail wd
-		on w.w_no=wd.w_no
-		join product p
-		on wd.p_no = p.p_no
+	<select id="selectProductList" parameterType="int" resultMap="fiveTableResultMap">
+		select p.p_no,p.w_no,p.m_no,p.p_name,p.p_view,p.p_check,pd.pd_scene,m.m_id,wd.wd_episode
+		from product p
 		join product_detail pd
-		on p.p_no = pd.p_no
-		where w.w_no = #{wNo} and wd.wd_episode=#{wdEpisode} and p.p_check='Y'
+		on p.p_no=pd.p_no
+		join work w
+		on p.w_no=w.w_no
+		join work_detail wd
+		on p.p_no=wd.p_no
+		join member m
+		on m.m_no=p.m_no
+		where p.p_check='Y'
+		and w.w_no=#{wNo} 
 	</select>
+	<!-- 3.작품상세페이지 상품정보 회차별 출력하기 -->
+	<select id="selectProductListByEpisode" parameterType="map" resultMap="fiveTableResultMap">
+	select p.p_no,p.w_no,p.m_no,p.p_name,p.p_view,p.p_check,pd.pd_scene,m.m_id,wd.wd_episode
+	from product p
+	join product_detail pd
+	on p.p_no=pd.p_no
+	join work w
+	on p.w_no=w.w_no
+	join work_detail wd
+	on p.p_no=wd.p_no
+	join member m
+	on m.m_no=p.m_no
+	where p.p_check='Y'
+	and w.w_no=#{wNo} 
+	and wd.wd_episode=#{wdEpisode}
+	</select> 
 	<!-- 3.즐겨찾기 등록 -->
 	<insert id="createBookmark" parameterType="map"> 
 		<selectKey order="BEFORE" keyProperty="bmNo" resultType="int">
