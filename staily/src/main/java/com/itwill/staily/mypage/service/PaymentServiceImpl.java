@@ -26,5 +26,25 @@ public class PaymentServiceImpl implements PaymentService {
 		return paymentMapper.createPayment(payment);
 	}
 
+	@Override
+	public boolean updateCompanyY(int mNo) throws Exception {
+		return paymentMapper.updateCompanyY(mNo);
+	}
+
+	@Override
+	public boolean updateProductY(int mNo) throws Exception {
+		return paymentMapper.updateProductY(mNo);
+	}
+
+	@Override
+	public boolean updateCompanyN(int mNo) throws Exception {
+		return paymentMapper.updateCompanyN(mNo);
+	}
+
+	@Override
+	public boolean updateProductN(int mNo) throws Exception {
+		return paymentMapper.updateProductN(mNo);
+	}
+
 
 }
