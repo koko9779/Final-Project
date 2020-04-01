@@ -14,12 +14,12 @@ import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
 
 @Service
-public class mainServiceImpl implements MainService{
+public class MainServiceImpl implements MainService{
 	
 	@Autowired
 	private MainMapper mainMapper;
 	
-	public mainServiceImpl() {
+	public MainServiceImpl() {
 	
 	}
 	
@@ -84,6 +84,11 @@ public class mainServiceImpl implements MainService{
 	@Override
 	public int selectProductCount() {
 		return mainMapper.selectProductCount();
+	}
+
+	@Override
+	public List<Work> selectTodayofWork() {
+		return mainMapper.selectTodayofWork();
 	}
 	
 }

@@ -28,6 +28,7 @@ public interface MainMapper {
 		9.작품 조회수 증가
 		10.상품 조회수 증가
 		11.게시물 총 건수
+		12.오늘의 작품 출력
 		
 		- 상품들을 최신순으로 정렬하기
 		- 상품들을 인기순으로 정렬하기
@@ -45,4 +46,5 @@ public interface MainMapper {
 	public void increaseWorkView(int wNo);
 	public void increaseProductView(int pNo);
 	public int selectProductCount();
+	public List selectTodayofWork();
 }
