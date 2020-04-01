@@ -2,12 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="com.itwill.staily.stylecoodination.mapper.ViewMapper">
+
+<select id="selectBoardTop10" resultType="Board">
+	SELECT *
+	FROM (SELECT B.b_title, B.b_no, B.b_view, M.m_id
+	      FROM board B
+	      JOIN member M
+	      ON B.m_no = M.m_no
+	      ORDER BY B.b_view DESC, B.b_no DESC)
+	WHERE ROWNUM &lt;= 10
+	<!-- 10보다 작거나 같다 -->
+</select>
+
 <select id="selectBoardAll" parameterType="String" resultType="Board">
-	SELECT b_title, m_no, b_date, b_content, b_view, b_groupno
-	FROM board
-	WHERE b_type = #{bType}
-	AND b_step = 1
-	ORDER BY b_no DESC
+	SELECT B.b_title, B.b_date, B.b_view, B.b_groupno, M.m_id
+	FROM board B
+	JOIN member M
+	ON B.m_no = M.m_no
+	WHERE B.b_type = 'S'
+	AND B.b_step = 1
+	ORDER BY B.b_no DESC
 </select>
 <!--  
 <select id="selectBoardDetail" parameterType="HashMap" resultType="Board">
