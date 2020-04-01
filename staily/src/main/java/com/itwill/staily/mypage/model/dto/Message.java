@@ -15,6 +15,14 @@ public class Message {
 	public Message() {
 		
 	}
+	
+	public Message(int mNo, String msTitle, String msContent) {
+		super();
+		this.mNo = mNo;
+		this.msTitle = msTitle;
+		this.msContent = msContent;
+	}
+
 
 	public String getmId() {
 		return mId;
