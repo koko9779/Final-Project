@@ -6,31 +6,31 @@
 <select id="selectList"
 		parameterType="int"
 		resultType="com.itwill.staily.mypage.model.dto.Friend">
-	select m.m_no, f.f_no, m.m_name
+	select f.m_no, f.f_no, m.m_name ,f.f_pk
 	from friend f 
 	join member m
-	on m.m_no = f.m_no
-	where m.m_no = #{mNo}	
+	on m.m_no = f.f_no
+	where f.m_no=#{mNo}	
 </select>
 
 <!-- 삽입 -->
 <insert id="createFriend"
 		parameterType="com.itwill.staily.mypage.model.dto.Friend">
-	insert into friend (f_no,m_no) values(#{fNo},#{mNo})
+	insert into friend (f_pk,f_no,m_no) values(friend_no_seq.nextval,#{fNo},#{mNo})
 </insert>
 
 <!-- 삭제 -->
 <delete id="deleteFriend"
 		parameterType="int">
 	delete from friend
-	where f_no = #{fNo}
+	where f_pk = #{fPk}
 </delete>
 
 <!-- 친구 검색 -->
 
 <select id="findFriend"
 		parameterType="String"
-		resultType="com.itwill.staily.util.Member">
+		resultType="String">
 	select m_id
 	from member
 	where m_id=#{mId}		

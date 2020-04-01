@@ -8,11 +8,21 @@ public class Message {
 	private String msTitle;	//메시지타이틀
 	private String msContent;	//메시지내용
 	private String msDate;		//메시지일시
+	private String mId;			//회원아이디
 	
 	private Member member;
 	
 	public Message() {
 		
+	}
+
+	public String getmId() {
+		return mId;
+	}
+
+
+	public void setmId(String mId) {
+		this.mId = mId;
 	}
 
 	public Member getMember() {

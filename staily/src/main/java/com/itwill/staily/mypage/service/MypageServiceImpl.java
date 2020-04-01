@@ -35,19 +35,16 @@ public class MypageServiceImpl implements MypageService {
 
 	@Override
 	public boolean updateCompanyNo(Company company) throws Exception {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public List<Product> selectWriteList(int mNo) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean deleteWrite(int pNo) throws Exception {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

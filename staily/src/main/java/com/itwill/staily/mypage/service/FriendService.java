@@ -15,7 +15,7 @@ public interface FriendService {
 	
 	public boolean createFriend(Friend friend) throws Exception;
 	
-	public boolean deleteFriend(int fNo) throws Exception;
+	public boolean deleteFriend(int fPk) throws Exception;
 	
-	public Member findFriend(String mId) throws Exception;
+	public String findFriend(String mId) throws Exception;
 }
