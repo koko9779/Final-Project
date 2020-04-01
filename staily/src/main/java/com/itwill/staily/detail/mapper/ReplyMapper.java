@@ -18,4 +18,6 @@ public interface ReplyMapper {
 	public boolean increaseRecommend(int rNo);
 	
 	public boolean increaseReport(int rNo);
+	
+	public boolean createFriend(@Param("mNo") int mNo, @Param("fNo") int fNo);
 }
