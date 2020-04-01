@@ -6,13 +6,24 @@ public class Friend {
 	private int fPk;	//친구pk
 	private int fNo;	//친구번호
 	private int mNo;	//회원번호
-	
+	private String mName; //회원이름
+		
 	private Member member;
 	
 	public Friend() {
 		
 	}
 	
+	public String getmName() {
+		return mName;
+	}
+
+	public void setmName(String mName) {
+		this.mName = mName;
+	}
+
+
+
 	public Friend(int fPk, int fNo, int mNo) {
 		super();
 		this.fPk = fPk;

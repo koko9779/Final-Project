@@ -23,12 +23,12 @@ public class FriendServiceImpl implements FriendService {
 	}
 
 	@Override
-	public boolean deleteFriend(int fNo) throws Exception {
-		return friendMapper.deleteFriend(fNo);
+	public boolean deleteFriend(int fPk) throws Exception {
+		return friendMapper.deleteFriend(fPk);
 	}
 
 	@Override
-	public Member findFriend(String mId) throws Exception {
+	public String findFriend(String mId) throws Exception {
 		return friendMapper.findFriend(mId);
 	}
 
