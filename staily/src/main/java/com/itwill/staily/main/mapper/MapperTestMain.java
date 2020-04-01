@@ -8,7 +8,7 @@ import java.util.Map;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.itwill.staily.main.service.impl.mainServiceImpl;
+import com.itwill.staily.main.service.impl.MainServiceImpl;
 import com.itwill.staily.mypage.model.dto.Bookmark;
 import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
@@ -18,15 +18,16 @@ public class MapperTestMain {
 	public static void main(String[] args) throws Exception {
 		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring/application-config.xml");
 		MainMapper mainM = applicationContext.getBean(MainMapper.class);
-		/*
+		
 		System.out.println("1. 회원번호를 통해서 즐겨찾기한 목록 찾기");
-		List<Bookmark> bmList = mainM.selectByBookmark(2);
+		List<Bookmark> bmList = mainM.selectByBookmark(1);
+		System.out.println(bmList.size());
 		for (Bookmark bm : bmList) {
-			System.out.println("["+bm.getBmNo()+","+bm.getMember().getmNo()+","+bm.getProduct().getpNo()+":"
-								+bm.getProduct().getpName()+","+bm.getProduct().getPdScene()+"]");
+			System.out.println(bm.getBmNo()+" "+bm.getMember().getmNo()+" "+bm.getProduct().getpNo());
+			System.out.println(":"+bm.getProduct().getpName()+","+bm.getProduct().getPdScene());
 		}
 		System.out.println("----------------------------------------");	
-		
+		/*
 		System.out.println("2. 인기많은(조회수 높은) 상품 출력");
 		List<Product> productList = mainM.selectByView();
 		for (Product product : productList) {
@@ -41,10 +42,12 @@ public class MapperTestMain {
 		}
 		System.out.println("----------------------------------------");
 		*/
+		/*
 		System.out.println("4.선택한 작품의 포스터,상품 출력하기(보류:결과값이 다르게 출력됨)");
 		
 		Work work = mainM.selectByWork(1);
 		System.out.println(work);
+		
 //		List<Work> workList2 = mainM.selectByWork(1);
 //		for (Work work : workList2) {
 //			System.out.println("["+work.getwNo()+","+work.getwCategory()+","+work.getwPoster()+","+work.getwName()+","+work.getwTepisode()+"]");
@@ -68,13 +71,13 @@ public class MapperTestMain {
 			//System.out.println(w.get(i).getProduct());
 		}
 		System.out.println("Product Scene: "+w.get(1).getProduct().get(0).getPdScene());
+		 */
 		/*
 			System.out.println("["+w.getWdNo()+","+w.getProduct().get(0).getpNo()+","+w.getwNo()+","+
 								w.getwTepisode()+","+w.getWdEpisode()+","+w.getwPoster()+","+w.getwName()+","+
 								w.getProduct().get(0).getpName()+","+w.getProduct().get(0).getPdScene()+"]");
-		*/
-		
 		System.out.println("----------------------------------------");
+		*/
 		
 		/*
 		System.out.println("6.즐겨찾기 등록하기");
@@ -95,6 +98,14 @@ public class MapperTestMain {
 		int t = mainM.selectTepisode(1);
 		System.out.println(t);
 		System.out.println("----------------------------------------");
+		*/
+		/*
+		System.out.println("12.오늘의 작품찾기");
+		List tw = mainM.selectTodayofWork();
+		System.out.println(tw.size());
+		for (Object o: tw) {
+			System.out.println(o);
+		}
 		*/
 		/*
 		mainServiceImpl ms = applicationContext.getBean(mainServiceImpl.class);

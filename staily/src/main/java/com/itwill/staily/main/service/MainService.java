@@ -33,4 +33,6 @@ public interface MainService {
 	public void increaseProductView(int pNo);
 	//11.게시물 총 건수
 	public int selectProductCount();
+	//12.오늘의 작품 출력
+	public List<Work> selectTodayofWork();
 }
