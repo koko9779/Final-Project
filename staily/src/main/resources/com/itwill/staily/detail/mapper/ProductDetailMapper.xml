@@ -46,7 +46,7 @@
 		inner join company c
 		on m.m_no = c.m_no
 		where m.m_no = #{mNo}
-		and lower(c.co_check) = 'n'
+		and lower(c.co_check) = 'y'
 	</select>
 	
 </mapper>
