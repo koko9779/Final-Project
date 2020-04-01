@@ -86,7 +86,7 @@ where m_no=#{mNo}
 		parameterType="int">
 	delete from product
 	where p_no=#{pNo}
-
+</delete>
 
 
 </mapper>

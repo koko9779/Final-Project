@@ -18,4 +18,6 @@ public interface ProductDetailService {
 	public boolean deleteProductDetail(int pdNo) throws Exception;
 	
 	public int checkCompany(int mNo) throws Exception;
+	
+	public boolean increaseProductView(int pNo) throws Exception;
 }
