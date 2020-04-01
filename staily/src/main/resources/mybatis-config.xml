@@ -39,6 +39,7 @@
 		<typeAlias alias="Board" type="com.itwill.staily.util.Board" />
 		<typeAlias alias="BoardDetail" type="com.itwill.staily.util.BoardDetail" />
 		<typeAlias alias="Company" type="com.itwill.staily.util.Company" />
+		<typeAlias alias="Bookmark" type="com.itwill.staily.mypage.model.dto.Bookmark"/>
 	</typeAliases>
 </configuration>
 
