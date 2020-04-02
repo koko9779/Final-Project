@@ -46,8 +46,8 @@ public class ServiceTest {
 		//System.out.println(create);
 		
 		//상품 단위 테스트
-//		ProductEx product = pdm.selectProductOne(3);
-//		System.out.println(product);
+		//List<ProductEx> product = pdm.selectProductOne(1);
+		//System.out.println(product);
     
 		//boolean create = pdm.createProduct(new ProductEx(4, 6, "BLOOM*IZ", 17000, "http://cafe.daum.net/official-izone", "서울시", "강남구", "N", 4234245));
 		//System.out.println(create);
@@ -61,24 +61,24 @@ public class ServiceTest {
 		//boolean update = pdm.updateProductDetail(new ProductEx("ㅇㅇ", "ㅋㅋ", 33));
 		//System.out.println(update);
 		
-//		boolean inc = pdm.increaseProductView(3);
-//		System.out.println(inc);
+    //boolean inc = pdm.increaseProductView(3);
+    //System.out.println(inc);
 		
 		//int check = pdm.checkCompany(7);
 		//System.out.println(check);
 		
 		//작품 단위 테스트
-//		Work work = wdm.selectWorkOne(3);
-//		System.out.println(work);
+    //Work work = wdm.selectWorkOne(3);
+    //System.out.println(work);
 		
-//		List<Work> wL = wdm.selectWorkAll();
-//		System.out.println(wL.size());
+    //List<Work> wL = wdm.selectWorkAll();
+    //System.out.println(wL.size());
 		
 		//boolean create = wdm.createWorkDetail(21, 3, 10);
 		//System.out.println(create);
 		
-//		int sel = wdm.selectTepisode(1);
-//		System.out.println(sel);
+    //int sel = wdm.selectTepisode(1);
+    //System.out.println(sel);
 		
 		((ConfigurableApplicationContext)applicationContext).close();
 
