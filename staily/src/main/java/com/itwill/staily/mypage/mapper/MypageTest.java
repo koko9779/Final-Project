@@ -24,20 +24,42 @@ public class MypageTest {
 		MessageMapper ms = applicationContext.getBean(MessageMapper.class);
 		FriendMapper fm = applicationContext.getBean(FriendMapper.class);
 		
+		Member m = mp.selectOne(5);
+		//System.out.println(m.getmId()+m.getmName()+m.getmNo()+m.getmType());
+		//m.setmName("수정");
+		//m.setmId("수정");
 		
+		//System.out.println(mp.updateMember(m));
+		//System.out.println(m.getmId()+m.getmName()+m.getmNo()+m.getmType());
+		
+		Member m2 = mp.selectMemberCompany(1);
+		//System.out.println(m2.getmNo()+","+m2.getmId()+","+m2.getmType()+","+m2.getmCompany().getCoCheck());
+		//System.out.println(mp.deleteMember(22));
+		
+		List<Product> writeList = mp.selectWriteList(1);
+		for (Product product : writeList) {
+			System.out.println(product.getpNo()+","+product.getPdScene()+","+product.getpName()+","+product.getmId());
+		}
+		System.out.println("-----");
+		
+		
+		
+		
+		
+		
+		
+		/*********************************Friend**************************************
 		System.out.println(fm.findFriend("hiphopmy"));
+		//System.out.println(fm.deleteFriend(9));
+		Friend f = new Friend(2, 3);
+		//System.out.println(fm.createFriend(f));
+		List<Friend> friendList = fm.selectList(1);
+		for (Friend friend : friendList) {
+			System.out.println(friend.getfPk()+","+friend.getmNo()+","+friend.getfNo()+","+friend.getmName());
+		}
+		******************************************************************************/
 		
-		System.out.println(fm.deleteFriend(9));
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/*
+		/*****************************Message****************************************
 		List<Message> messageList = ms.selectMessageList(2);
 		for (Message message : messageList) {
 			System.out.println(message.getMsNo()+","+message.getmNo()+","+message.getMsTitle()+","+message.getmId());
@@ -47,20 +69,7 @@ public class MypageTest {
 		Message m = new Message(0,2,"제목4","안녕4",null);
 		//ms.createMessage(m);
 		System.out.println(ms.deleteMessage(6));
-		*/
-		  
-		
-		
-		
-		/*
-		List<Friend> friendList = fm.selectList(1);
-		for (Friend friend : friendList) {
-			System.out.println(friend.getfPk()+","+friend.getmName()+","+friend.getmNo()+","+friend.getfNo()+","+friend.getmName());
-		}
-		*/
-		
-		
-		
+		****************************************************************************/
 		
 		/******************Bookmark***********************************
 		List<Bookmark> bookmarkList1 = bk.selectList(1);
