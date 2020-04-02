@@ -40,7 +40,7 @@ public class MypageTest {
 		for (Product product : writeList) {
 			System.out.println(product.getpNo()+","+product.getPdScene()+","+product.getpName()+","+product.getmId());
 		}
-		
+		System.out.println("-----");
 		
 		
 		
