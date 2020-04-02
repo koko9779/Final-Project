@@ -29,6 +29,19 @@ public class MypageServiceImpl implements MypageService {
 	public boolean updateMember(Member member) throws Exception {
 		return mypageMapper.updateMember(member);
 	}
+	
+	@Override
+	public boolean updateMember(Member member, int coNo) throws Exception{
+		boolean result = false;
+		if(member.getmType()=="M") {
+			result = mypageMapper.updateMember(member);
+		}else if(member.getmType()=="C") {
+			mypageMapper.updateMember(member);
+			mypageMapper.updateCompanyNo(coNo, member.getmNo());
+			result = true;
+		}
+		return result;
+	}
 
 	@Override
 	public Member selectMemberCompany(int mNo) throws Exception {

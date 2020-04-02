@@ -29,5 +29,7 @@ public interface MypageService {
 	
 	//내가 쓴글 삭제
 	public boolean deleteWrite(int pNo) throws Exception;
+	
+	public boolean updateMember(Member member, int coNo) throws Exception;
 
 }
