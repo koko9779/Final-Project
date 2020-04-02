@@ -16,7 +16,8 @@ public interface LoginService {
 	int updatePw(Member updatePwMember);
 
 	/******************************************************************/
-
+	int isEmailExist(String mEmail);
+	
 	int signMember(Member member);
 
 	int signCompany(Member member);

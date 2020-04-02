@@ -88,6 +88,10 @@ public class LoginServiceImpl implements LoginService {
 		return loginMapper.updatePwOne(updatePwMember);
 	}
 	/******************************************************************/
+	@Override
+	public int isEmailExist(String mEmail) {
+		return loginCommonMapper.isExistedEmail(mEmail);
+	}
 	
 	@Override
 	public int signMember(Member member) {
