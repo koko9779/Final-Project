@@ -49,7 +49,7 @@ public class ServiceTest {
 		//List<ProductEx> product = pdm.selectProductOne(1);
 		//System.out.println(product);
     
-		//boolean create = pdm.createProduct(new ProductEx(4, 6, "BLOOM*IZ", 17000, "http://cafe.daum.net/official-izone", "서울시", "강남구", "N", 4234245, "나코"));
+		//boolean create = pdm.createProduct(new ProductEx(1, 5, "테스트1", 123456, "ㅇㄴ", "경기도", "고양시", "Y", 25, "ㅇㅇ"));
 		//System.out.println(create);
 		
 		//boolean create = pdm.createProductDetail(new ProductEx(4, "신난다"));

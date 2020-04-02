@@ -38,6 +38,7 @@ public class ProductEx extends com.itwill.staily.util.Product {
 		this.pScene = pScene;
 	}
 	
+	
 	public ProductEx(String pName, int pPrice, String pUrl, String pAddress, String pDaddress, 
 			String pCheck, int pView, String pScene, int pNo) {
 		super();
@@ -64,8 +65,7 @@ public class ProductEx extends com.itwill.staily.util.Product {
 		this.pDaddress = pDaddress;
 		this.pCheck = pCheck;
 		this.pView = pView;
-		this.pScene = pScene;
-		
+		this.pScene = pScene;		
 	}
 	
 	public ProductEx(int pNo, String pdImage) {
@@ -178,11 +178,11 @@ public class ProductEx extends com.itwill.staily.util.Product {
 		this.pdImage = pdImage;
 	}
 
-	public String getPdScene() {
+	public String getpScene() {
 		return pScene;
 	}
 
-	public void setPdScene(String pScene) {
+	public void setpScene(String pScene) {
 		this.pScene = pScene;
 	}	
 

@@ -14,6 +14,7 @@ import com.itwill.staily.detail.model.dto.Reply;
 import com.itwill.staily.detail.service.ReplyService;
 
 @Controller
+@SuppressWarnings("unused")
 public class ReplyController {
 	@Autowired
 	private ReplyService replyService;
@@ -22,7 +23,7 @@ public class ReplyController {
 		
 	}
 	
-	
+	/*
 	@RequestMapping("/detailtest")
 	public ModelAndView selectReplyList(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
@@ -42,6 +43,7 @@ public class ReplyController {
 		
 		return mv;		
 	}	
+	*/
 	/*
 	@RequestMapping("/createReply")
 	public ModelAndView selectReplyOne(HttpServletRequest request, HttpServletResponse response) {
@@ -68,7 +70,7 @@ public class ReplyController {
 		return mv;
 	}
 	*/
-	
+	/*
 	@RequestMapping("/deleteReply")
 	public ModelAndView deleteReply(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
@@ -90,8 +92,33 @@ public class ReplyController {
 		
 		return mv;
 	}
+	*/
+	/*
+	@RequestMapping("/detailtest")
+	public ModelAndView increaseReply(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView();
+		
+		try {
+			Reply sR = replyService.selectReplyOne(3);
+			request.setAttribute("replyOne", sR);
+			
+			boolean inc = replyService.increaseRecommend(3);
+			boolean inc2 = replyService.increaseReport(3);
+			
+			request.setAttribute("reco", sR.getrRecommend());
+			request.setAttribute("repo", sR.getrReport());
+			
+			if(inc && inc2) {
+				mv.setViewName("detailtest");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	
-	
+		return mv;
+	}
+	*/
 	
 	
 }

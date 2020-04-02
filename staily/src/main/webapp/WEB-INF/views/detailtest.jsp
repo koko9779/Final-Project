@@ -15,11 +15,19 @@ function createReply() {
 	
 }
 */
-
+/*
 function deleteReply() {
 	document.r2.action = 'deleteReply';
 	document.r2.submit();
 }
+*/
+/*
+function increaseReply() {
+	document.r3.action = 'detailtest';
+	document.r3.submit();
+}
+*/
+
 
 </script>
 </head>
@@ -36,11 +44,20 @@ function deleteReply() {
 		<input type="button" value="createReply" onClick="createReply()">
 	</form>
 	 -->
+	<!--
 	<form name="r2" method="get">
 		r_no <input type="text" name="r_no" maxlength="50"/><br>
 		p_no <input type="text" name="p_no" maxlength="50"/><br>
 		m_no <input type="text" name="m_no" maxlength="50"/><br>
 		<input type="button" value="deleteReply" onClick="deleteReply()">				
 	</form>
+	 -->
+	<!--
+	<form name="r3" method="get">
+		${reco }<br>
+		${repo }<br>
+		<input type="button" value="increaseReply" onClick="increaseReply()"> 
+	</form>
+	 -->
 </body>
 </html>
