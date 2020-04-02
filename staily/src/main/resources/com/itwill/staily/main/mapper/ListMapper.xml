@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.staily.main.mapper.ListMapper">
-	<resultMap id="fiveTableResultMap" type="Work" autoMapping="true">
+	<resultMap id="fourTableResultMap" type="Work" autoMapping="true">
 		<collection property="product" ofType="Product" autoMapping="true">
 		</collection>
 	</resultMap>	
-	<!-- 2.작품상세페이지 상품정보(상품이름, 상품에피소드,상품씬,작성자) 출력하기 -->
-	<select id="selectProductList" parameterType="int" resultMap="fiveTableResultMap">
-		select p.p_no,p.w_no,p.m_no,p.p_name,p.p_view,p.p_check,pd.pd_scene,m.m_id,wd.wd_episode
+	<!-- 2.작품상세페이지 상품리스트 출력(기업) -->
+	<select id="selectCProductList" parameterType="int" resultMap="fourTableResultMap">
+		select p.p_no,p.w_no,p.m_no,p.p_scene,p.p_name,m.m_id,wd.wd_episode,p.p_view
 		from product p
-		join product_detail pd
-		on p.p_no=pd.p_no
 		join work w
 		on p.w_no=w.w_no
 		join work_detail wd
@@ -18,36 +16,69 @@
 		join member m
 		on m.m_no=p.m_no
 		where p.p_check='Y'
-		and w.w_no=#{wNo} 
+		and m.m_type='C'
+		and w.w_no=#{wNo}
+		ORDER BY p.p_date
 	</select>
-	<!-- 3.작품상세페이지 상품정보 회차별 출력하기 -->
-	<select id="selectProductListByEpisode" parameterType="map" resultMap="fiveTableResultMap">
-	select p.p_no,p.w_no,p.m_no,p.p_name,p.p_view,p.p_check,pd.pd_scene,m.m_id,wd.wd_episode
-	from product p
-	join product_detail pd
-	on p.p_no=pd.p_no
-	join work w
-	on p.w_no=w.w_no
-	join work_detail wd
-	on p.p_no=wd.p_no
-	join member m
-	on m.m_no=p.m_no
-	where p.p_check='Y'
-	and w.w_no=#{wNo} 
-	and wd.wd_episode=#{wdEpisode}
+	<!-- 3. 작품상세페이지 상품리스트 출력(일반) -->
+	<select id="selectMProductList" parameterType="int" resultMap="fourTableResultMap">
+		select p.p_no,p.w_no,p.m_no,p.p_scene,p.p_name,m.m_id,wd.wd_episode,p.p_view
+		from product p
+		join work w
+		on p.w_no=w.w_no
+		join work_detail wd
+		on p.p_no=wd.p_no
+		join member m
+		on m.m_no=p.m_no
+		where p.p_check='Y'
+		and m.m_type='M'
+		and w.w_no=#{wNo}
+		ORDER BY p.p_date
+	</select>
+	<!-- 4.작품상세페이지 상품리스트 회차별 출력(기업) -->
+	<select id="selectCProductListByEpisode" parameterType="map" resultMap="fourTableResultMap">
+		select p.p_no,p.w_no,p.m_no,p.p_scene,p.p_name,m.m_id,wd.wd_episode,p.p_view
+		from product p
+		join work w
+		on p.w_no=w.w_no
+		join work_detail wd
+		on p.p_no=wd.p_no
+		join member m
+		on m.m_no=p.m_no
+		where p.p_check='Y'
+		and m.m_type='C'
+		and w.w_no=#{wNo}
+		and wd.wd_episode=#{wdEpisode}
+		ORDER BY p.p_date
 	</select> 
-	<!-- 3.즐겨찾기 등록 -->
+	<!-- 5.작품상세페이지 상품리스트 회차별 출력(일반) -->
+	<select id="selectMProductListByEpisode" parameterType="map" resultMap="fourTableResultMap">
+		select p.p_no,p.w_no,p.m_no,p.p_scene,p.p_name,m.m_id,wd.wd_episode,p.p_view
+		from product p
+		join work w
+		on p.w_no=w.w_no
+		join work_detail wd
+		on p.p_no=wd.p_no
+		join member m
+		on m.m_no=p.m_no
+		where p.p_check='Y'
+		and m.m_type='M'
+		and w.w_no=#{wNo}
+		and wd.wd_episode=#{wdEpisode}
+		ORDER BY p.p_date
+	</select> 
+	<!-- 6.즐겨찾기 등록 -->
 	<insert id="createBookmark" parameterType="map"> 
 		<selectKey order="BEFORE" keyProperty="bmNo" resultType="int">
 			select BM_NO_SEQ.nextval from dual
 		</selectKey>
 		insert into bookmark values(#{bmNo},#{mNo},#{pNo})
 	</insert>
-	<!-- 4.즐겨찾기 제거 -->
+	<!-- 7.즐겨찾기 제거 -->
 	<delete id="deleteBookmark" parameterType="int" >
 		delete from bookmark where bm_no=#{bmNo}
 	</delete>
-	<!-- 5.게시물 총 건수 -->		
+	<!-- 8.게시물 총 건수 -->		
 	<select id="selectProductCount" resultType="int">
 		select count(*) from product where p_check='Y'
 	</select>
