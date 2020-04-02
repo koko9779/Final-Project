@@ -34,7 +34,7 @@ public interface AdminService {
 	//상품 전체출력
 	public List<Product> selectProductAll() throws Exception;
 	//상품 하나출력
-	public Product selectProductOne(int pNo) throws Exception;
+	public List<Product> selectProductOne(int pNo) throws Exception;
 	//상품 수정
 	public boolean updateProduct(Product product) throws Exception;
 	//상품상세 수정

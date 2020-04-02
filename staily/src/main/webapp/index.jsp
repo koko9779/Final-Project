@@ -1,89 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Movie Star - Cinema HTML Template</title>
-		<link rel="icon" type="image/png" href="images/favicon.png" />
-		<link href="css/slick.css" rel="stylesheet">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/venobox.css" rel="stylesheet">
-		<link href="css/style.css" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-		<!--[if IE 9]>
-			<link href="css/ie9.css" rel="stylesheet">
-		<![endif]-->
-		<!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/include_css.jsp" %>
+<%@ include file="/WEB-INF/views/include/include_js.jsp" %>
+<%@ include file="/WEB-INF/views/include/include_navbar.jsp" %>
+<%@ include file="/WEB-INF/views/include/tags.jspf" %>
+
+<html>
+	<head>	
 	</head>
 	<body>
 		
 		<!-- Wrapper -->
-		<div class="wrapper">
-
-			<!-- Navigation -->
-			<div class="navbar" role="navigation">
-				<!-- Heading -->
-				<div class="heading">
-					<div class="container">
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="search">
-									<a href="#">
-										<i class="material-icons">search</i>
-									</a>
-								</div>
-								<div class="tel">
-									<a href="tel:03301234567">
-										<i class="material-icons">phone in talk</i> 0330  123 4567
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="container">
-					<div class="navbar-header">
-						<a href="index.html" class="logo" title="Craft beer landing page">
-							<img src="images/logo.svg" alt="Craft Beer HTML Template">
-						</a>
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar top-bar"></span>
-							<span class="icon-bar middle-bar"></span>
-							<span class="icon-bar bottom-bar"></span>
-						</button>
-					</div>  
-					<div class="navbar-collapse collapse">
-						<ul id="menu-primary" class="nav navbar-nav">
-							<li class="active">
-									<a href="index.html">Home</a>
-							</li>
-							<li>
-								<a href="whats-on.html">What's on</a>
-							</li>
-							<li>
-								<a href="shortcodes.html">Shortcodes</a>
-							</li>
-							<li class="dropdown">
-								<a href="news.html">News</a>
-								<ul class="dropdown-menu">
-									<li><a href="news-single.html">News single</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="contact.html">Contact</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-
 			<!-- Hero -->
 			<div id="hero" class="carousel slide carousel-fade" data-ride="carousel">
 				
@@ -1480,72 +1407,7 @@
 					</div>
 				</div>
 			</section>
-
-			<!-- Section -->
-			<div class="container section small-padding">
-				<div class="row">
-					<div class="col-sm-12 cta">
-						<p>Need help? Contact our support team on</p>
-						<p class="gradient-text">0330 123 4567</p>
-					</div>
-				</div>
-			</div>
-
-			<!-- Footer -->
-			<footer>
-				<div class="container">
-					<div class="row">
-						<div class="col-sm-3">
-							<h6>Get in touch</h6>
-							<ul>
-								<li><a href="#">FAQs</a></li>
-								<li><a href="#">Give us feedback</a></li>
-								<li><a href="#">Contact us</a></li>
-							</ul>
-						</div>
-						<div class="col-sm-3">
-							<h6>About Movie star</h6>
-							<ul>
-								<li><a href="#">About us</a></li>
-								<li><a href="#">Find us</a></li>
-								<li><a href="#">Schedule</a></li>
-								<li><a href="#">News</a></li>
-							</ul>
-						</div>
-						<div class="col-sm-3">
-							<h6>Legal stuff</h6>
-							<ul>
-								<li><a href="#">Terms &amp; Conditions</a></li>
-								<li><a href="#">Privacy policy</a></li>
-								<li><a href="#">Cookie policy</a></li>
-							</ul>
-						</div>
-						<div class="col-sm-3">
-							<h6>Connect with us</h6>
-							<ul>
-								<li><a href="#"><i class="fa fa-facebook"></i> Facebook</a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i> Twitter</a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i> Google +</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="copyright">
-						<p>2017 &copy; Movie Star  /  <a href="http://www.klevermedia.co.uk">Web design by Klever media</a></p>
-					</div>
-				</div>
-			</footer>
-
-		</div>
-		
-		<script src="js/jquery-2.2.4.min.js"></script>
-		<script src="js/jquery-ui.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/headhesive.min.js"></script>
-		<script src="js/matchHeight.min.js"></script>
-		<script src="js/modernizr.custom.js"></script>
-		<script src="js/slick.min.js"></script>
-		<script src="js/venobox.min.js"></script>
-		<script src="https://use.fontawesome.com/4dfd2d448a.js"></script>
-		<script src="js/custom.js"></script>
+			
 	</body>
+<%@ include file="/WEB-INF/views/include/include_footer.jsp" %>
 </html>

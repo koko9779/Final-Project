@@ -40,7 +40,7 @@ public interface AdminMapper {
 	//상품 전체출력
 	public List<Product> selectProductAll();
 	//상품 하나출력
-	public Product selectProductOne(int pNo);
+	public List<Product> selectProductOne(int pNo);
 	//상품 수정
 	public boolean updateProduct(Product product);
 	//상품상세 수정
