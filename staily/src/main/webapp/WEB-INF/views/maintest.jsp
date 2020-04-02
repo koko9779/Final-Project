@@ -8,8 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:forEach var="bmList" items="${bmList}">
-		<c:out value="${bmList[0].bmNo}"/>
+	
+	${bmList} 데이터 전송
+	<c:forEach var="bm" items="${bmList}">
+	${bm}
 	</c:forEach>
 </body>
 </html>
