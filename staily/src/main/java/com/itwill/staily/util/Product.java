@@ -1,5 +1,7 @@
 package com.itwill.staily.util;
 
+import org.springframework.stereotype.Component;
+
 /*
 		이름          널?       유형            
 	----------- -------- ------------- 
@@ -21,7 +23,7 @@ package com.itwill.staily.util;
 	PD_IMAGE          VARCHAR2(200) 
 	PD_SCENE          VARCHAR2(200) 
  */
-
+@Component("Product")
 public class Product {
 	private int pNo; //상품 번호
 	private int mNo; //회원 번호
@@ -34,15 +36,14 @@ public class Product {
 	private String pCheck; //상품 승인 여부
 	private int pView; //상품 조회 수
 	private String pDate; //상품등록일
+	private String pScene; //상품 장면
 	
 
 	private int pdNo; //상품 상세 번호
 	private String pdImage; //상품 이미지
-	private String pdScene; //상품 장면
 	private String mId; //회원 아이디
-	
 	public Product(int pNo, int mNo, int wNo, String pName, int pPrice, String pUrl, String pAddress, String pDaddress,
-			String pCheck, int pView, String pDate, int pdNo, String pdImage, String pdScene, String mId) {
+			String pCheck, int pView, String pDate, String pScene, int pdNo, String pdImage, String mId) {
 		super();
 		this.pNo = pNo;
 		this.mNo = mNo;
@@ -55,159 +56,110 @@ public class Product {
 		this.pCheck = pCheck;
 		this.pView = pView;
 		this.pDate = pDate;
+		this.pScene = pScene;
 		this.pdNo = pdNo;
 		this.pdImage = pdImage;
-		this.pdScene = pdScene;
 		this.mId = mId;
 	}
-
-	public String getpDate() {
-		return pDate;
-	}
-
-	public void setpDate(String pDate) {
-		this.pDate = pDate;
-	}
-
-	public String getmId() {
-		return mId;
-	}
-
-	public void setmId(String mId) {
-		this.mId = mId;
-	}
-
-	public Product() {
-		super();
-	}
-	
-	public Product(int pNo, int mNo, int wNo, String pName, int pPrice, String pUrl, String pAddress,
-			String pDaddress, String pCheck, int pView, String pdImage, String pdScene) {
-		super();
-		this.pNo = pNo;
-		this.mNo = mNo;
-		this.wNo = wNo;
-		this.pName = pName;
-		this.pPrice = pPrice;
-		this.pUrl = pUrl;
-		this.pAddress = pAddress;
-		this.pDaddress = pDaddress;
-		this.pCheck = pCheck;
-		this.pView = pView;		
-		this.pdImage = pdImage;
-		this.pdScene = pdScene;
-	}
-
 	public int getpNo() {
 		return pNo;
 	}
-
 	public void setpNo(int pNo) {
 		this.pNo = pNo;
 	}
-
 	public int getmNo() {
 		return mNo;
 	}
-
 	public void setmNo(int mNo) {
 		this.mNo = mNo;
 	}
-
 	public int getwNo() {
 		return wNo;
 	}
-
 	public void setwNo(int wNo) {
 		this.wNo = wNo;
 	}
-
 	public String getpName() {
 		return pName;
 	}
-
 	public void setpName(String pName) {
 		this.pName = pName;
 	}
-
 	public int getpPrice() {
 		return pPrice;
 	}
-
 	public void setpPrice(int pPrice) {
 		this.pPrice = pPrice;
 	}
-
 	public String getpUrl() {
 		return pUrl;
 	}
-
 	public void setpUrl(String pUrl) {
 		this.pUrl = pUrl;
 	}
-
 	public String getpAddress() {
 		return pAddress;
 	}
-
 	public void setpAddress(String pAddress) {
 		this.pAddress = pAddress;
 	}
-
 	public String getpDaddress() {
 		return pDaddress;
 	}
-
 	public void setpDaddress(String pDaddress) {
 		this.pDaddress = pDaddress;
 	}
-
 	public String getpCheck() {
 		return pCheck;
 	}
-
 	public void setpCheck(String pCheck) {
 		this.pCheck = pCheck;
 	}
-
 	public int getpView() {
 		return pView;
 	}
-
 	public void setpView(int pView) {
 		this.pView = pView;
-	}	
-
+	}
+	public String getpDate() {
+		return pDate;
+	}
+	public void setpDate(String pDate) {
+		this.pDate = pDate;
+	}
+	public String getpScene() {
+		return pScene;
+	}
+	public void setpScene(String pScene) {
+		this.pScene = pScene;
+	}
 	public int getPdNo() {
 		return pdNo;
 	}
-
 	public void setPdNo(int pdNo) {
 		this.pdNo = pdNo;
 	}
-
 	public String getPdImage() {
 		return pdImage;
 	}
-
 	public void setPdImage(String pdImage) {
 		this.pdImage = pdImage;
 	}
-
-	public String getPdScene() {
-		return pdScene;
+	public String getmId() {
+		return mId;
 	}
-
-	public void setPdScene(String pdScene) {
-		this.pdScene = pdScene;
+	public void setmId(String mId) {
+		this.mId = mId;
 	}
-
 	@Override
 	public String toString() {
 		return "Product [pNo=" + pNo + ", mNo=" + mNo + ", wNo=" + wNo + ", pName=" + pName + ", pPrice=" + pPrice
 				+ ", pUrl=" + pUrl + ", pAddress=" + pAddress + ", pDaddress=" + pDaddress + ", pCheck=" + pCheck
-				+ ", pView=" + pView + ", pdNo=" + pdNo + ", pdImage=" + pdImage + ", pdScene=" + pdScene + "]";
+				+ ", pView=" + pView + ", pDate=" + pDate + ", pScene=" + pScene + ", pdNo=" + pdNo + ", pdImage="
+				+ pdImage + ", mId=" + mId + "]";
 	}
+	
+	
 
 	
 	
