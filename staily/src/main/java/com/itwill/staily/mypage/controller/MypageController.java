@@ -2,6 +2,8 @@ package com.itwill.staily.mypage.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +25,7 @@ public class MypageController {
 	
 	@Autowired
 	private FriendService friendService;
-	
+	@Autowired
 	private MypageService mypageService;
 	
 	@RequestMapping("/test2")
@@ -36,7 +38,7 @@ public class MypageController {
 		return mv;
 	}
 	
-	@RequestMapping("/test3")
+	//@RequestMapping("/test3")
 	public ModelAndView message_selectList(Model model) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<Message> messageList = messageService.selectMessageList(2);
@@ -45,7 +47,7 @@ public class MypageController {
 		return mv;
 	}
 	
-	@RequestMapping("/test4")
+	//@RequestMapping("/test4")
 	public ModelAndView friend_find(Model model) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		String name = friendService.findFriend("hiphopmy");
@@ -54,11 +56,11 @@ public class MypageController {
 		return mv;
 	}
 	
+	@RequestMapping("/test3")
 	public ModelAndView member_update() throws Exception{
 		ModelAndView mv = new ModelAndView();
-		Member m = new Member();
-		//mypageService.updateMember(member);
-		//mypageService.updateCompanyNo(company);
+		
+		
 		return null;
 	}
 	

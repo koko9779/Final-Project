@@ -17,9 +17,13 @@
 	<li>${message.msDate}</li>
 	
 </ul>
-	<form id="hi" name="hi" action="test3">
-		<input type="text" name="message" value="${message}">
-		<input type="submit" value="가입" name="join">
+	<form name="f" method="get" action="test3">
+		회원번호<input type="text" name ="mNo">
+		아이디 <input type="text" name="mId">
+		비밀번호 <input type="text" name="mPw">
+		사업자등록번호 <input type="text" name="coNo">
+		<input type="submit">
+		
 	</form>
 </body>
 </html>
