@@ -2,6 +2,9 @@ package com.itwill.staily.main.service;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.sql.DataSource;
 
 import org.junit.After;
@@ -55,8 +58,8 @@ public class MainServiceTest {
 	
 	@Test
 	public void testSelectByBookmark() throws Exception {
-		assertNotNull(mainServiceImpl.selectByBookmark(1));
-		assertNotSame(0,mainServiceImpl.selectByBookmark(1).size());
+		assertNotNull(mainServiceImpl.selectByBookmark(2));
+		assertNotSame(0,mainServiceImpl.selectByBookmark(2).size());
 	}
 
 	@Test
@@ -72,80 +75,59 @@ public class MainServiceTest {
 	}
 
 	@Test
-	@Ignore
-	public void testSelectTodayOfWork() {
-		fail("Not yet implemented");
+	public void testSelectTodayOfWork() throws Exception {
+		assertNotNull(mainServiceImpl.selectTodayOfWork());
+		assertNotSame(0,mainServiceImpl.selectTodayOfWork());
 	}
-	
+
 	@Test
-	@Ignore
-	public void testListServiceImpl() {
-		fail("Not yet implemented");
+	public void testSelectCProductList() throws Exception{
+		assertNotNull(listServiceImpl.selectCProductList(4));
+		assertNotSame(0, listServiceImpl.selectCProductList(4));
 	}
 
 	@Test
 	@Ignore
-	public void testGetListMapper() {
-		fail("Not yet implemented");
+	public void testSelectMProductList() throws Exception{
+		assertNotNull(listServiceImpl.selectMProductList(4));
+		assertSame(1, listServiceImpl.selectMProductList(4));
 	}
 
 	@Test
 	@Ignore
-	public void testSetListMapper() {
-		fail("Not yet implemented");
+	public void testSelectCProductListByEpisode() throws Exception{
+		Map map2 = new HashMap();
+		map2.put("wNo", 1);
+		map2.put("wdEpisode", 1);
+		assertNotNull(listServiceImpl.selectCProductListByEpisode(map2));
+		assertNotSame(0, listServiceImpl.selectCProductListByEpisode(map2));
+	}
+
+	@Test
+	public void testSelectMProductListByEpisode() throws Exception{
+		Map map3 = new HashMap();
+		map3.put("wNo", 1);
+		map3.put("wdEpisode", 1);
+		assertNotNull(listServiceImpl.selectMProductListByEpisode(map3));
 	}
 
 	@Test
 	@Ignore
-	public void testGetWorkDetailMapper() {
-		fail("Not yet implemented");
+	public void testCreateBookmark() throws Exception{
+		Map map = new HashMap();
+		map.put("mNo", 2);
+		map.put("pNo", 2);
+		assertNotNull(listServiceImpl.createBookmark(map));
 	}
 
 	@Test
 	@Ignore
-	public void testSetWorkDetailMapper() {
-		fail("Not yet implemented");
+	public void testDeleteBookmark() throws Exception{
+		assertNotNull(listServiceImpl.deleteBookmark(2));
 	}
 
 	@Test
-	@Ignore
-	public void testSelectCProductList() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	@Ignore
-	public void testSelectMProductList() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	@Ignore
-	public void testSelectCProductListByEpisode() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	@Ignore
-	public void testSelectMProductListByEpisode() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	@Ignore
-	public void testCreateBookmark() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	@Ignore
-	public void testDeleteBookmark() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	@Ignore
-	public void testSelectProductCount() {
-		fail("Not yet implemented");
+	public void testSelectProductCount() throws Exception{
+		assertSame(5, listServiceImpl.selectProductCount());
 	}
 }

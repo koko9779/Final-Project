@@ -112,8 +112,8 @@ public class ListMapperTest {
 	/*
 	System.out.println("6.즐겨찾기 등록");
 	Map map = new HashMap();
-	map.put("mNo", 1);
-	map.put("pNo", 1);
+	map.put("mNo", 2);
+	map.put("pNo", 7);
 	int result = listM.createBookmark(map);
 	System.out.println(result);
 	System.out.println("----------------------------------------");
