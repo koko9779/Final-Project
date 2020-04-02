@@ -6,7 +6,7 @@ public class Payment {
 	private int pyPrice;		//결제가격
 	private String pyDate;		//결제일시
 	private String pyName;		//결제상품이름
-	private String pyPeriod;	//결제기간
+	private int pyPeriod;		//결제기간
 	private String pyType;		//결제타입
 	
 	public Payment() {
@@ -14,7 +14,7 @@ public class Payment {
 	}
 	
 
-	public Payment(int pyNo, int mNo, int pyPrice, String pyDate, String pyName, String pyPeriod, String pyType) {
+	public Payment(int pyNo, int mNo, int pyPrice, String pyDate, String pyName, int pyPeriod, String pyType) {
 		super();
 		this.pyNo = pyNo;
 		this.mNo = mNo;
@@ -73,11 +73,11 @@ public class Payment {
 		this.pyName = pyName;
 	}
 
-	public String getPyPeriod() {
+	public int getPyPeriod() {
 		return pyPeriod;
 	}
 
-	public void setPyPeriod(String pyPeriod) {
+	public void setPyPeriod(int pyPeriod) {
 		this.pyPeriod = pyPeriod;
 	}
 
