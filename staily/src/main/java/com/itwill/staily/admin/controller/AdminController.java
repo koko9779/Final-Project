@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.staily.admin.service.AdminService;
@@ -25,17 +26,14 @@ public class AdminController {
 		try {
 			Member member = adminService.selectMemberOne(1);
 			request.setAttribute("member", member);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		mv.setViewName("test");
 		return mv;
 	}
-	
 	@RequestMapping("/admin")
 	public String adminTest() {
-		
 		return "admin/index";
 	}
 }

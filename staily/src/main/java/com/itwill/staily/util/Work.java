@@ -28,21 +28,17 @@ public class Work {
 	public Work() {
 		// TODO Auto-generated constructor stub
 	}
-	public int getWdNo() {
-		return wdNo;
+	
+	public Work(int wNo, String wName, String wCategory, String wDate, String wPoster, int wTepisode, int wView) {
+		super();
+		this.wNo = wNo;
+		this.wName = wName;
+		this.wCategory = wCategory;
+		this.wDate = wDate;
+		this.wPoster = wPoster;
+		this.wTepisode = wTepisode;
+		this.wView = wView;
 	}
-	public void setWdNo(int wdNo) {
-		this.wdNo = wdNo;
-	}	
-
-	public List<Product> getProduct() {
-		return product;
-	}
-
-	public void setProduct(List<Product> product) {
-		this.product = product;
-	}
-
 
 	public Work(int wNo, String wName, String wCategory, String wDate, String wPoster, int wTepisode, int wView,
 			int wdNo, int wdEpisode, List<Product> product) {
@@ -56,6 +52,20 @@ public class Work {
 		this.wView = wView;
 		this.wdNo = wdNo;
 		this.wdEpisode = wdEpisode;
+		this.product = product;
+	}
+	public int getWdNo() {
+		return wdNo;
+	}
+	public void setWdNo(int wdNo) {
+		this.wdNo = wdNo;
+	}	
+
+	public List<Product> getProduct() {
+		return product;
+	}
+
+	public void setProduct(List<Product> product) {
 		this.product = product;
 	}
 

@@ -45,7 +45,23 @@ public class Product {
 	
 	
 	public Product(int pNo, int mNo, int wNo, String pName, int pPrice, String pUrl, String pAddress, String pDaddress,
-			String pCheck, int pView, String pDate, String pScene, int pdNo, String pdImage, String mId) {
+			String pCheck, int pView, String pDate, String pScene) {
+		super();
+		this.pNo = pNo;
+		this.mNo = mNo;
+		this.wNo = wNo;
+		this.pName = pName;
+		this.pPrice = pPrice;
+		this.pUrl = pUrl;
+		this.pAddress = pAddress;
+		this.pDaddress = pDaddress;
+		this.pCheck = pCheck;
+		this.pView = pView;
+		this.pDate = pDate;
+		this.pScene = pScene;
+	}
+	public Product(int pNo, int mNo, int wNo, String pName, int pPrice, String pUrl, String pAddress, String pDaddress,
+			String pCheck, int pView, String pDate, String pScene, int pdNo, String pdImage) {
 		super();
 		this.pNo = pNo;
 		this.mNo = mNo;

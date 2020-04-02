@@ -2,14 +2,19 @@ package com.itwill.staily.admin.service.impl;
 
 import java.util.List;
 
+import org.springframework.aop.ThrowsAdvice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.staily.admin.mapper.AdminMapper;
 import com.itwill.staily.admin.service.AdminService;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
+import com.itwill.staily.util.exception.FailCreateException;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -58,16 +63,16 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public boolean createWork(Work work) throws Exception {
-		boolean create = false;
-		adminMapper.createWork(work);
+		boolean create = adminMapper.createWork(work);
 		return create;
 	}
 	
-	@Override
-	public boolean createWorkDetail(Work work) throws Exception {
-		return createWorkDetail(work);
-	}
+//	@Override
+//	public boolean createWorkDetail(Work work) throws Exception {
+//		return createWorkDetail(work);
+//	}
 	
 	@Override
 	public List<Work> selectWorkAll() throws Exception {
@@ -99,14 +104,23 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public boolean updateProduct(Product product) throws Exception {
-		return adminMapper.updateProduct(product);
+		boolean update = false ; 
+		boolean updateOk = adminMapper.updateProduct(product);
+		if (updateOk) {
+			adminMapper.updateProductDetail(product);
+			update = true;
+		}else {
+			throw new FailCreateException("업데이트에 실패하였습니다.");
+		}
+		return update;
 	}
 
-	@Override
-	public boolean updateProductDetail(int pdNo) throws Exception {
-		return adminMapper.updateProductDetail(pdNo);
-	}
+//	@Override
+//	public boolean updateProductDetail(Product product) throws Exception {
+//		return adminMapper.updateProductDetail(product);
+//	}
 	
 	@Override
 	public boolean deleteProduct(int pNo) throws Exception {

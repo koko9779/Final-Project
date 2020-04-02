@@ -52,7 +52,7 @@
 		AND p.p_no=#{pNo}
 	</select>
 
-	<update id="updateProduct" parameterType="com.itwill.staily.util.Product">
+	<update id="updateProduct" parameterType="Product">
 		UPDATE product SET p_name = #{pName}, p_price = #{pPrice}, p_url = #{pUrl}, 
 		p_address = #{pAddress}, p_daddress = #{pDaddress}, 
 		p_check = #{pCheck}, p_view = #{pView}, p_date = sysdate,p_scene=#{pScene}
@@ -60,7 +60,7 @@
 	</update>
 	
 	
-	<update id="updateProductDetail" parameterType="int">
+	<update id="updateProductDetail" parameterType="Product">
 		UPDATE product_detail SET pd_image=#{pdImage}
 		WHERE pd_no = #{pdNo}
 	</update>
@@ -86,12 +86,12 @@
 		INSERT INTO work_detail VALUES
 		(wd_no_seq.nextval,#{pNo},#{mNo},#{wdEpisode})
 	</insert>
-	<select id="selectWorkAll" resultType="com.itwill.staily.util.Work">
+	<select id="selectWorkAll" resultType="Work">
 		SELECT w_no,w_name,w_category,w_date,w_poster,w_tepisode
 		FROM work
 	</select>
 	
-	<select id="selectWorkOne" parameterType="int" resultType="com.itwill.staily.util.Work">
+	<select id="selectWorkOne" parameterType="int" resultType="Work">
 		SELECT w_no,w_name,w_category,w_date,w_poster,w_tepisode
 		FROM work
 		WHERE w_no=#{wNo}		
