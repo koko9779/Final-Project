@@ -71,7 +71,7 @@ public class AdminServiceImpl implements AdminService{
 	
 //	@Override
 //	public boolean createWorkDetail(Work work) throws Exception {
-//		return createWorkDetail(work);
+//		return createWorkDetail(work); 
 //	}
 	
 	@Override
