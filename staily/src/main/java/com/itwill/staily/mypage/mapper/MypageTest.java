@@ -11,6 +11,7 @@ import com.itwill.staily.main.mapper.ListMapper;
 import com.itwill.staily.mypage.model.dto.Bookmark;
 import com.itwill.staily.mypage.model.dto.Friend;
 import com.itwill.staily.mypage.model.dto.Message;
+import com.itwill.staily.mypage.model.dto.Payment;
 import com.itwill.staily.util.Company;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
@@ -23,7 +24,34 @@ public class MypageTest {
 		MypageMapper mp = applicationContext.getBean(MypageMapper.class);
 		MessageMapper ms = applicationContext.getBean(MessageMapper.class);
 		FriendMapper fm = applicationContext.getBean(FriendMapper.class);
+		PaymentMapper pm = applicationContext.getBean(PaymentMapper.class);
 		
+		Payment p = pm.selectOne(1);
+		
+		//System.out.println(p.getmNo()+","+p.getPyName()+","+p.getPyPeriod()+","+p.getPyPrice());
+		
+		Payment p2 = new Payment(0, 7, 2500, null, "25일이용권", 25, "C");
+		
+		//System.out.println(pm.createPayment(p2));
+		
+		//System.out.println(pm.updateCompanyN(3));
+		//System.out.println(pm.updateProductY(3));
+		
+		List<Payment> paymentList = pm.selectList(7);
+		for (Payment payment : paymentList) {
+			System.out.println(payment.getmNo()+","+payment.getPyName()+","+payment.getPyPeriod()+","+payment.getPyPrice());
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		/***********************MYpage**********************************************
 		Member m = mp.selectOne(5);
 		//System.out.println(m.getmId()+m.getmName()+m.getmNo()+m.getmType());
 		//m.setmName("수정");
@@ -36,15 +64,15 @@ public class MypageTest {
 		//System.out.println(m2.getmNo()+","+m2.getmId()+","+m2.getmType()+","+m2.getmCompany().getCoCheck());
 		//System.out.println(mp.deleteMember(22));
 		
-		List<Product> writeList = mp.selectWriteList(1);
-		for (Product product : writeList) {
-			System.out.println(product.getpNo()+","+product.getPdScene()+","+product.getpName()+","+product.getmId());
-		}
-		System.out.println("-----");
+		//List<Product> writeList = mp.selectWriteList(1);
+		//for (Product product : writeList) {
+		//	System.out.println(product.getpNo()+","+product.getPdScene()+","+product.getpName()+","+product.getmId());
+		//}
+		//System.out.println("-----");
 		
-		
-		
-		
+		Company c = new Company(1,2222,"Y");
+		System.out.println(mp.updateCompanyNo(c));
+		************************************************************************/
 		
 		
 		
