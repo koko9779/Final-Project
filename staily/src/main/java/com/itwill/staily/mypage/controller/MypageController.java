@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itwill.staily.mypage.model.dto.Message;
 import com.itwill.staily.mypage.service.FriendService;
 import com.itwill.staily.mypage.service.MessageService;
+import com.itwill.staily.mypage.service.MypageService;
+import com.itwill.staily.util.Member;
 
 @Controller
 public class MypageController {
@@ -21,6 +23,8 @@ public class MypageController {
 	
 	@Autowired
 	private FriendService friendService;
+	
+	private MypageService mypageService;
 	
 	@RequestMapping("/test2")
 	public ModelAndView message_selectOne(Model model) throws Exception {
@@ -48,6 +52,14 @@ public class MypageController {
 		model.addAttribute("name", name);
 		mv.setViewName("test3");
 		return mv;
+	}
+	
+	public ModelAndView member_update() throws Exception{
+		ModelAndView mv = new ModelAndView();
+		Member m = new Member();
+		//mypageService.updateMember(member);
+		//mypageService.updateCompanyNo(company);
+		return null;
 	}
 	
 }

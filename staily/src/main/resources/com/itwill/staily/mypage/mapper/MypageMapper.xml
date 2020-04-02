@@ -83,7 +83,7 @@ where m_no=#{mNo}
 
 <!-- 회사 정보 수정 -->
 <update id="updateCompanyNo"
-		parameterType="com.itwill.staily.util.Company">
+		parameterType="int">
 Update company
 Set co_no=#{coNo}
 Where m_no=#{mNo}

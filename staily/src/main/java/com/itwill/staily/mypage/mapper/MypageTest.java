@@ -26,6 +26,7 @@ public class MypageTest {
 		FriendMapper fm = applicationContext.getBean(FriendMapper.class);
 		PaymentMapper pm = applicationContext.getBean(PaymentMapper.class);
 		
+		/*
 		Payment p = pm.selectOne(1);
 		
 		//System.out.println(p.getmNo()+","+p.getPyName()+","+p.getPyPeriod()+","+p.getPyPrice());
@@ -41,6 +42,7 @@ public class MypageTest {
 		for (Payment payment : paymentList) {
 			System.out.println(payment.getmNo()+","+payment.getPyName()+","+payment.getPyPeriod()+","+payment.getPyPrice());
 		}
+		*/
 		
 		
 		
@@ -50,8 +52,7 @@ public class MypageTest {
 		
 		
 		
-		
-		/***********************MYpage**********************************************
+		/***********************MYpage**********************************************/
 		Member m = mp.selectOne(5);
 		//System.out.println(m.getmId()+m.getmName()+m.getmNo()+m.getmType());
 		//m.setmName("수정");
@@ -70,21 +71,21 @@ public class MypageTest {
 		//}
 		//System.out.println("-----");
 		
-		Company c = new Company(1,2222,"Y");
-		System.out.println(mp.updateCompanyNo(c));
-		************************************************************************/
+		//Company c = new Company(1,2222,"Y");
+		System.out.println(mp.updateCompanyNo(3333,3));
+		/************************************************************************/
 		
 		
 		
 		/*********************************Friend**************************************
 		System.out.println(fm.findFriend("hiphopmy"));
 		//System.out.println(fm.deleteFriend(9));
-		Friend f = new Friend(2, 3);
-		//System.out.println(fm.createFriend(f));
-		List<Friend> friendList = fm.selectList(1);
-		for (Friend friend : friendList) {
-			System.out.println(friend.getfPk()+","+friend.getmNo()+","+friend.getfNo()+","+friend.getmName());
-		}
+		//Friend f = new Friend(2, 3);
+		System.out.println(fm.createFriend(4,3));
+		//List<Friend> friendList = fm.selectList(1);
+		//for (Friend friend : friendList) {
+		//	System.out.println(friend.getfPk()+","+friend.getmNo()+","+friend.getfNo()+","+friend.getmName());
+		//}
 		******************************************************************************/
 		
 		/*****************************Message****************************************

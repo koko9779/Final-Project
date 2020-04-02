@@ -2,6 +2,8 @@ package com.itwill.staily.mypage.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itwill.staily.util.Company;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
@@ -27,5 +29,5 @@ public interface MypageMapper {
 	public boolean deleteWrite(int pNo) throws Exception;
 	
 	//회사 co_no수정
-	public boolean updateCompanyNo(Company company) throws Exception;
+	public boolean updateCompanyNo(@Param("coNo") int coNo, @Param("mNo") int mNo) throws Exception;
 }

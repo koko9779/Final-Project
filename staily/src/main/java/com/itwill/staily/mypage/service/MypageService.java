@@ -2,6 +2,8 @@ package com.itwill.staily.mypage.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itwill.staily.util.Company;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
@@ -17,7 +19,7 @@ public interface MypageService {
 	public boolean updateMember(Member member) throws Exception;
 	
 	//멤버 회사 수정
-	public boolean updateCompanyNo(Company company) throws Exception;
+	public boolean updateCompanyNo(@Param("coNo") int coNo, @Param("mNo") int mNo) throws Exception;
 	
 	//멤버 선택 (회사정보포함)
 	public Member selectMemberCompany(int mNo) throws Exception;

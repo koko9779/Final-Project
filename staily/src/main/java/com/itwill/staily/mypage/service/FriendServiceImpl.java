@@ -20,8 +20,8 @@ public class FriendServiceImpl implements FriendService {
 	}
 
 	@Override
-	public boolean createFriend(Friend friend) throws Exception {
-		return friendMapper.createFriend(friend);
+	public boolean createFriend(int fNo, int mNo) throws Exception {
+		return friendMapper.createFriend(fNo,mNo);
 	}
 
 	@Override

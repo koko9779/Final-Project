@@ -2,6 +2,8 @@ package com.itwill.staily.mypage.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itwill.staily.mypage.model.dto.Friend;
 import com.itwill.staily.util.Member;
 
@@ -13,7 +15,7 @@ public interface FriendService {
 	
 	public List<Friend> selectList(int mNo) throws Exception;
 	
-	public boolean createFriend(Friend friend) throws Exception;
+	public boolean createFriend(@Param("mNo") int mNo, @Param("fNo") int fNo) throws Exception;
 	
 	public boolean deleteFriend(int fPk) throws Exception;
 	

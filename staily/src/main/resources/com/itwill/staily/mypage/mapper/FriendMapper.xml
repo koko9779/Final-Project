@@ -15,7 +15,7 @@
 
 <!-- 삽입 -->
 <insert id="createFriend"
-		parameterType="com.itwill.staily.mypage.model.dto.Friend">
+		parameterType="int">
 	insert into friend (f_pk,f_no,m_no) values(friend_no_seq.nextval,#{fNo},#{mNo})
 </insert>
 
