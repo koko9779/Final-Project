@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 import com.itwill.staily.util.Board;
 @Mapper
 public interface ViewMapper {
+	public List<Board> selectBoardTop10();
+	
 	public List<Board> selectBoardAll(String bType);
 	
 	//bType과 bGroupNo 받아야함
