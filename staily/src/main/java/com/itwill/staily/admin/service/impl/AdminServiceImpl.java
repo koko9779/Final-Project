@@ -94,7 +94,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public Product selectProductOne(int pNo) throws Exception {
+	public List<Product> selectProductOne(int pNo) throws Exception {
 		return adminMapper.selectProductOne(pNo);
 	}
 

@@ -45,9 +45,10 @@
 		SELECT
 		p.p_no,p.w_no,p.p_name,p.p_price,p.p_url,p.p_address,
         p.p_daddress,p.p_check,
-        p.p_view,p.p_date, pd.pd_no, pd.pd_image, pd.pd_scene
-		FROM product p, product_detail pd
+        p.p_view,p.p_date, pd.pd_no, pd.pd_image, pd.pd_scene, m.m_id
+		FROM product p, product_detail pd, member m 
 		WHERE p.p_no = pd.p_no
+		AND p.m_no = m.m_no
 		AND p.p_no=#{pNo}
 	</select>
 

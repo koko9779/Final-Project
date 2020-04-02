@@ -1,6 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/include_css.jsp" %>
+<%@ include file="/WEB-INF/views/include/include_js.jsp" %>
+<%@ include file="/WEB-INF/views/include/tags.jspf" %>
+<html>
 	<head>
+	<!--  
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,6 +17,7 @@
 		<link href="css/style.css" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		-->
 		<!--[if IE 9]>
 			<link href="css/ie9.css" rel="stylesheet">
 		<![endif]-->
@@ -1536,7 +1542,7 @@
 			</footer>
 
 		</div>
-		
+		<!--  
 		<script src="js/jquery-2.2.4.min.js"></script>
 		<script src="js/jquery-ui.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -1547,5 +1553,6 @@
 		<script src="js/venobox.min.js"></script>
 		<script src="https://use.fontawesome.com/4dfd2d448a.js"></script>
 		<script src="js/custom.js"></script>
+		-->
 	</body>
 </html>
