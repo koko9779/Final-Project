@@ -3,12 +3,14 @@ package com.itwill.staily.mypage.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.itwill.staily.mypage.mapper.MypageMapper;
 import com.itwill.staily.util.Company;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
 
+@Service
 public class MypageServiceImpl implements MypageService {
 	@Autowired
 	private MypageMapper mypageMapper;

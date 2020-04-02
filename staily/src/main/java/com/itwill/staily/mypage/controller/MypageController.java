@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.staily.mypage.model.dto.Message;
+import com.itwill.staily.mypage.service.FriendService;
 import com.itwill.staily.mypage.service.MessageService;
 
 @Controller
@@ -17,6 +18,9 @@ public class MypageController {
 	
 	@Autowired
 	private MessageService messageService;
+	
+	@Autowired
+	private FriendService friendService;
 	
 	@RequestMapping("/test2")
 	public ModelAndView message_selectOne(Model model) throws Exception {
@@ -33,6 +37,15 @@ public class MypageController {
 		ModelAndView mv = new ModelAndView();
 		List<Message> messageList = messageService.selectMessageList(2);
 		model.addAttribute("messageList", messageList);
+		mv.setViewName("test3");
+		return mv;
+	}
+	
+	@RequestMapping("/test4")
+	public ModelAndView friend_find(Model model) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		String name = friendService.findFriend("hiphopmy");
+		model.addAttribute("name", name);
 		mv.setViewName("test3");
 		return mv;
 	}

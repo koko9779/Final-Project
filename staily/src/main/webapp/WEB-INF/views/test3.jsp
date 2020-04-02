@@ -10,6 +10,13 @@
 <body>
 <h1>안녕</h1>
 <ul>
+	<li>${message.msNo}</li>
+	<li>${message.mNo}</li>
+	<li>${message.msTitle}</li>
+	<li>${message.msContent}</li>
+	<li>${message.msDate}</li>
+	<li>${name}</li>
+	<!--  
 	<c:forEach var="message" items="${messageList}">
 		<li>${message.msNo}</li>
 		<li>${message.mNo}</li>
@@ -18,6 +25,7 @@
 		<li>${message.member.mId}</li>
 		<li>${message.member.mNo}</li>
 	</c:forEach>
+	-->
 </ul>
 </body>
 </html>
