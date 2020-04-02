@@ -65,7 +65,7 @@ where m_no=#{mNo}
 <select id="selectWriteList"
 		parameterType="int"
 		resultType="com.itwill.staily.util.Product">
-	select p.p_no, p.m_no, p.w_no, pd_scene, m.m_id
+	select p.p_no, p.m_no, p.w_no, pd_scene, m.m_id,p.p_name
 	from product p
 	join product_detail pd
 	on p.p_no = pd.p_no
@@ -97,7 +97,7 @@ Where m_no=#{mNo}
 	
 </resultMap>
 -->
-<!-- 내가 쓴글 리스트 -->
+<!-- 내가 쓴글 리스트 
 <select id="selectWriteList"
 		parameterType="int"
 		resultType="com.itwill.staily.util.Product">
@@ -110,15 +110,13 @@ Where m_no=#{mNo}
 	where p.m_no = #{mNo}
 
 </select>
-
-<!-- 내가 쓴 글 삭제 -->
+-->
+<!-- 내가 쓴 글 삭제 
 <delete id="deleteWrite"
 		parameterType="int">
 	delete from product
 	where p_no=#{pNo}
 </delete>
-
-
-
+-->
 
 </mapper>
