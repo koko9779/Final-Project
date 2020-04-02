@@ -3,11 +3,13 @@ package com.itwill.staily.admin.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
 
+@Repository("adminMapper")
 @Mapper
 public interface AdminMapper {
 	/* 회원 */
@@ -44,7 +46,7 @@ public interface AdminMapper {
 	//상품 수정
 	public boolean updateProduct(Product product);
 	//상품상세 수정
-	public boolean updateProductDetail(int pdNo);
+	public boolean updateProductDetail(Product product);
 	//상품 삭제
 	public boolean deleteProduct(int pNo);
 	//상품 승인 

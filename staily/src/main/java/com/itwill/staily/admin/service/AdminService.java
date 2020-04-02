@@ -19,7 +19,7 @@ public interface AdminService {
 	//작품 입력
 	public boolean createWork(Work work) throws Exception;
 	//작품상세 입력
-	public boolean createWorkDetail(Work work) throws Exception;
+//	public boolean createWorkDetail(Work work) throws Exception;
 	//작품 전체 출력
 	public List<Work>selectWorkAll() throws Exception;
 	//작품 하나 출력
@@ -38,7 +38,7 @@ public interface AdminService {
 	//상품 수정
 	public boolean updateProduct(Product product) throws Exception;
 	//상품상세 수정
-	public boolean updateProductDetail(int pdNo) throws Exception;
+//	public boolean updateProductDetail(int pdNo) throws Exception;
 	//상품 삭제
 	public boolean deleteProduct(int pNo) throws Exception;
 	
