@@ -1,12 +1,12 @@
 package com.itwill.staily.stylecoodination.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.itwill.staily.stylecoodination.exception.FailRemoveBoardException;
-import com.itwill.staily.stylecoodination.exception.FailWriteBoardException;
-import com.itwill.staily.stylecoodination.mapper.BoardManageMapper;
 import com.itwill.staily.stylecoodination.mapper.BoardCommonMapper;
+import com.itwill.staily.stylecoodination.mapper.BoardManageMapper;
 import com.itwill.staily.stylecoodination.mapper.ReplyManageMapper;
 import com.itwill.staily.stylecoodination.mapper.ViewMapper;
 import com.itwill.staily.util.Board;
@@ -22,29 +22,16 @@ public class StyleCoodinationServiceImpl {
 	@Autowired
 	private ViewMapper viewMapper;
 	
-	public int modifyBoardAndReply() {
-		
-		return 0;
+	public int modifyBoardAndReply(Board updateBoard) {
+		return boardCommonMapper.updateBoardAndReply(updateBoard);
 	}
 	
 	public int writeBoard(Board board) {
-		int writeCount = 0;
-		
-		writeCount = boardManageMapper.createBoard(board);
-		if(writeCount != 1) {
-			throw new FailWriteBoardException("게시글 작성에 실패하였습니다");
-		}
-		return writeCount;
+		return boardManageMapper.createBoard(board);
 	}
 	
-	public int removeBoard(int groupNo) {
-		int removeCount = 0;
-		
-		removeCount = boardManageMapper.deleteBoard(groupNo);
-		if(removeCount != 1) {
-			throw new FailRemoveBoardException("게시글 삭제에 실패하였습니다");
-		}
-		return removeCount;
+	public int removeBoard(int bNo) {
+		return boardManageMapper.deleteBoard(bNo);
 	}
 	
 	public int writeReply(Board replyBoard, String mId) {
@@ -57,40 +44,43 @@ public class StyleCoodinationServiceImpl {
 		mNo = boardCommonMapper.selectMNo(mId);
 		replyBoard.setmNo(mNo);
 		// 3. 댓글 작성
-		writeCount = replyManageMapper.createReply(replyBoard);
-		if(writeCount != 1) {
-			throw new FailWriteBoardException("댓글 작성에 실패하였습니다");
-		}
-		return writeCount;
+		return replyManageMapper.createReply(replyBoard);
 	}
 	
 	public int removeReply(int bNo) {
-		int removeCount = 0;
-		
-		removeCount = replyManageMapper.deleteReply(bNo);
-		if(removeCount != 1) {
-			throw new FailRemoveBoardException("게시글 삭제에 실패하였습니다");
-		}
-		return removeCount;
+		return replyManageMapper.deleteReply(bNo);
 	}
 	
 	public int checkChoice(int bNo) {
-		int updateCount = 0;
-		
-		updateCount = replyManageMapper.updateChoice(bNo);
 		//업데이트 안되면 0인 상태로 controller에서 
-		//ui에 영향을 미칠 데이터 작업
-		return updateCount;
+		//ui에 영향을 미칠 데이터를 작업하자
+		return replyManageMapper.updateChoice(bNo);
 	}
 	
 	public int checkRecommend(int bNo) {
-		int updateCount = 0;
-		
-		updateCount= replyManageMapper.updateRecommend(bNo);
 		//업데이트 안되면 0인 상태로 controller에서 
 		//ui에 영향을 미칠 데이터 작업
-		return 0;
+		return replyManageMapper.updateRecommend(bNo);
+	}
+
+	public List<Board> findBoardTop10() {
+		return viewMapper.selectBoardTop10();
 	}
 	
+	public List<Board> findBoardAll() {
+		return viewMapper.selectBoardAll();
+	}
+	
+	public int findBoardCount() {
+		return viewMapper.selectBoardCount();
+	}
+	
+	public int findBoardReplyCount() {
+		return viewMapper.selectBoardReplyCount();
+	}
+	
+	public int updateViewCount(int bNo) {
+		return viewMapper.updateView(bNo);
+	}
 	
 }

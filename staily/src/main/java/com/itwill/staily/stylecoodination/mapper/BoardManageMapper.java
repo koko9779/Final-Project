@@ -9,6 +9,6 @@ public interface BoardManageMapper {
 
 	//원글 수정은 CommonMapper에 있음
 	
-	public int deleteBoard(int groupNo);
+	public int deleteBoard(int bNo);
 	
 }

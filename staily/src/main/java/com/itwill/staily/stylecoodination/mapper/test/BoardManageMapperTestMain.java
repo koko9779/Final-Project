@@ -21,9 +21,8 @@ public class BoardManageMapperTestMain {
 //		count = board.createBoard(b);
 //		System.out.println(count);
 	
-//		count = board.deleteBoard(35);
+//		count = board.deleteBoard(30);
 //		System.out.println(count);
-		
 		
 		
 		

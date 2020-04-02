@@ -15,7 +15,7 @@
 
 <delete id="deleteBoard" parameterType="int">
 	DELETE FROM board 
-	WHERE b_groupno = #{bGroupNo}
+	WHERE b_groupno = #{bNo}
 </delete>
 
 </mapper>
