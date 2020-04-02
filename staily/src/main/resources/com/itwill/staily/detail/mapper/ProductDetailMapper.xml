@@ -3,7 +3,7 @@
 <mapper namespace="com.itwill.staily.detail.mapper.ProductDetailMapper">	
 	<select id="selectProductOne" parameterType="int"
 		resultType="com.itwill.staily.detail.model.dto.ProductEx">
-		select p.p_no, p.m_no, m.m_id, p.p_name, p.p_price, p.p_url, p.p_address, p.p_daddress, p.p_view, pd.pd_no, pd.pd_image, pd.pd_scene
+		select p.p_no, p.m_no, m.m_id, p.p_name, p.p_price, p.p_url, p.p_address, p.p_daddress, p.p_view, pd.pd_no, pd.pd_image, p.p_scene
 		from product p
 		inner join product_detail pd
 		on p.p_no = pd.p_no
@@ -13,24 +13,24 @@
 	</select>
 	
 	<insert id="createProduct" parameterType="com.itwill.staily.detail.model.dto.ProductEx">
-		insert into product (p_no, m_no, w_no, p_name, p_price, p_url, p_address, p_daddress, p_check, p_view, p_date)
-		values (product_no_seq.nextval, #{mNo}, #{wNo}, #{pName}, #{pPrice}, #{pUrl}, #{pAddress}, #{pDaddress}, #{pCheck}, #{pView}, sysdate)
+		insert into product (p_no, m_no, w_no, p_name, p_price, p_url, p_address, p_daddress, p_check, p_view, p_date, p_scene)
+		values (product_no_seq.nextval, #{mNo}, #{wNo}, #{pName}, #{pPrice}, #{pUrl}, #{pAddress}, #{pDaddress}, #{pCheck}, #{pView}, sysdate, #{pScene})
 	</insert>
 	
 	<insert id="createProductDetail" parameterType="com.itwill.staily.detail.model.dto.ProductEx">
-		insert into product_detail (pd_no, p_no, pd_image, pd_scene)
-		values (pd_no_seq.nextval, #{pNo}, #{pdImage}, #{pdScene})
+		insert into product_detail (pd_no, p_no, pd_image)
+		values (pd_no_seq.nextval, #{pNo}, #{pdImage})
 	</insert>
 	
 	<update id="updateProduct" parameterType="com.itwill.staily.detail.model.dto.ProductEx">
 		update product set p_name = #{pName}, p_price = #{pPrice}, p_url = #{pUrl}, 
 		p_address = #{pAddress}, p_daddress = #{pDaddress}, 
-		p_check = #{pCheck}, p_view = #{pView}, p_date = sysdate
+		p_check = #{pCheck}, p_view = #{pView}, p_date = sysdate, pScene = #{pScene}
 		where p_no = #{pNo}
 	</update>
 	
 	<update id="updateProductDetail" parameterType="com.itwill.staily.detail.model.dto.ProductEx">
-		update product_detail set pd_image = #{pdImage}, pd_scene = #{pdScene}
+		update product_detail set pd_image = #{pdImage}
 		where pd_no = #{pdNo}
 	</update>
 	

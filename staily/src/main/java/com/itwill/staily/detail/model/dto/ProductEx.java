@@ -12,17 +12,17 @@ public class ProductEx extends com.itwill.staily.util.Product {
 	private String pDaddress; //상품 상세 주소
 	private String pCheck; //상품 승인 여부
 	private int pView; //상품 조회 수
+	private String pScene; //상품 장면
 	
 	private int pdNo; //상품 상세 번호
 	private String pdImage; //상품 이미지
-	private String pdScene; //상품 장면
 	
 	public ProductEx() {
 		super();
 	}
 	
 	public ProductEx(int pNo, int mNo, int wNo, String pName, int pPrice, String pUrl, String pAddress,
-			String pDaddress, String pCheck, int pView, String pdImage, String pdScene) {
+			String pDaddress, String pCheck, int pView, String pdImage, String pScene) {
 		super();
 		this.pNo = pNo;
 		this.mNo = mNo;
@@ -35,11 +35,11 @@ public class ProductEx extends com.itwill.staily.util.Product {
 		this.pCheck = pCheck;
 		this.pView = pView;		
 		this.pdImage = pdImage;
-		this.pdScene = pdScene;
+		this.pScene = pScene;
 	}
 	
 	public ProductEx(String pName, int pPrice, String pUrl, String pAddress, String pDaddress, 
-			String pCheck, int pView, int pNo) {
+			String pCheck, int pView, String pScene, int pNo) {
 		super();
 		this.pName = pName;
 		this.pPrice = pPrice;
@@ -48,11 +48,12 @@ public class ProductEx extends com.itwill.staily.util.Product {
 		this.pDaddress = pDaddress;
 		this.pCheck = pCheck;
 		this.pView = pView;		
+		this.pScene = pScene;
 		this.pNo = pNo;
 	}
 	
 	public ProductEx(int mNo, int wNo, String pName, int pPrice, String pUrl, String pAddress,
-			String pDaddress, String pCheck, int pView) {
+			String pDaddress, String pCheck, int pView, String pScene) {
 		super();
 		this.mNo = mNo;
 		this.wNo = wNo;
@@ -63,19 +64,13 @@ public class ProductEx extends com.itwill.staily.util.Product {
 		this.pDaddress = pDaddress;
 		this.pCheck = pCheck;
 		this.pView = pView;
+		this.pScene = pScene;
+		
 	}
 	
-	public ProductEx(int pNo, String pdImage, String pdScene) {
-		super();
-		this.pNo = pNo;
-		this.pdImage = pdImage;
-		this.pdScene = pdScene;
-	}
-
-	public ProductEx(String pdImage, String pdScene, int pdNo) {
+	public ProductEx(String pdImage, int pdNo) {
 		super();
 		this.pdImage = pdImage;
-		this.pdScene = pdScene;
 		this.pdNo = pdNo;
 	}
 	
@@ -184,18 +179,18 @@ public class ProductEx extends com.itwill.staily.util.Product {
 	}
 
 	public String getPdScene() {
-		return pdScene;
+		return pScene;
 	}
 
-	public void setPdScene(String pdScene) {
-		this.pdScene = pdScene;
+	public void setPdScene(String pScene) {
+		this.pScene = pScene;
 	}	
 
 	@Override
 	public String toString() {
 		return "[pNo=" + pNo + ", mNo=" + mNo + ", mId=" + mId + ", pName=" + pName + ", pPrice=" + pPrice
 				+ ", pUrl=" + pUrl + ", pAddress=" + pAddress + ", pDaddress=" + pDaddress
-				+ ", pView=" + pView + ", pdNo=" + pdNo + ", pdImage=" + pdImage + ", pdScene=" + pdScene + "]";
+				+ ", pView=" + pView + ", pdNo=" + pdNo + ", pdImage=" + pdImage + ", pScene=" + pScene + "]";
 	}
 
 }
