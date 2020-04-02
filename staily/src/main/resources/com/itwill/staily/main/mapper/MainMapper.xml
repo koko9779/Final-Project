@@ -9,20 +9,16 @@
 	</resultMap>	
  	<!-- 1. 즐겨찾기한 상품 출력 -->
 	<select id="selectByBookmark" parameterType="int" resultMap="bmWithpAndpdResultMap">
-		select b.bm_no,b.m_no,b.p_no,p.p_name,pd.pd_scene
+		select b.bm_no,b.m_no,b.p_no,p.p_name,p.p_scene
 		from bookmark b
 		join product p
 		on b.p_no=p.p_no
-		join product_detail pd
-		on p.p_no=pd.p_no
 		where b.m_no = #{mNo}
 	</select>
 	<!-- 2. HOT 상품 출력 -->
 	<select id="selectByView" resultType="Product">
-		select p.p_no,p.p_name,p.p_view,pd.pd_scene
+		select p.p_no,p.p_name,p.p_view,p.p_scene
 		from product p
-		join product_detail pd
-		on p.p_no=pd.p_no
 		where p.p_check='Y'
 		order by p.p_view desc
 	</select>

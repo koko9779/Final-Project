@@ -20,14 +20,14 @@ public class MainMapperTest {
 		List<Bookmark> bmList = mainM.selectByBookmark(2);
 		for (Bookmark bm : bmList) {
 			System.out.println("bmNo="+bm.getBmNo()+", mNo="+bm.getMember().getmNo()+", pNo="+bm.getProduct().getpNo()
-							   +":"+bm.getProduct().getpName()+","+bm.getProduct().getPdScene());
+							   +":"+bm.getProduct().getpName()+","+bm.getProduct().getpScene());
 		}
 		System.out.println("----------------------------------------");	
 		
 		System.out.println("2. HOT 상품 출력");
 		List<Product> productList = mainM.selectByView();
 		for (Product product : productList) {
-			System.out.println("["+product.getpNo()+":"+product.getpName()+","+product.getpView()+","+product.getPdScene()+"]");
+			System.out.println("["+product.getpNo()+":"+product.getpName()+","+product.getpView()+","+product.getpScene()+"]");
 		}
 		System.out.println("----------------------------------------");
 		
