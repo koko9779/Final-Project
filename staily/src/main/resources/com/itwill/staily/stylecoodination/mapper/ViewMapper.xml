@@ -10,6 +10,7 @@
 	      JOIN member M
 	      ON B.m_no = M.m_no
 	      WHERE B.b_type = 'S'
+	      AND B.b_step = 1
 	      ORDER BY B.b_view DESC, B.b_no DESC)
 	WHERE ROWNUM &lt;= 10
 	<!-- 10보다 작거나 같다 -->
