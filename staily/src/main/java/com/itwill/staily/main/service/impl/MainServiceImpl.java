@@ -1,15 +1,14 @@
 package com.itwill.staily.main.service.impl;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.itwill.staily.detail.mapper.WorkDetailMapper;
 import com.itwill.staily.main.mapper.MainMapper;
 import com.itwill.staily.main.service.MainService;
 import com.itwill.staily.mypage.model.dto.Bookmark;
-import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
 
@@ -18,6 +17,8 @@ public class MainServiceImpl implements MainService{
 	
 	@Autowired
 	private MainMapper mainMapper;
+	@Autowired
+	private WorkDetailMapper workDetailMapper;
 	
 	public MainServiceImpl() {
 	
@@ -29,6 +30,14 @@ public class MainServiceImpl implements MainService{
 
 	public void setMainMapper(MainMapper mainMapper) {
 		this.mainMapper = mainMapper;
+	}
+
+	public WorkDetailMapper getWorkDetailMapper() {
+		return workDetailMapper;
+	}
+
+	public void setWorkDetailMapper(WorkDetailMapper workDetailMapper) {
+		this.workDetailMapper = workDetailMapper;
 	}
 
 	@Override
@@ -48,7 +57,7 @@ public class MainServiceImpl implements MainService{
 
 	@Override
 	public List selectTodayOfWork() throws Exception {
-		return null;
+		return mainMapper.selectTodayOfWork();
 	}
 	
 }
