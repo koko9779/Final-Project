@@ -2,8 +2,10 @@ package com.itwill.staily.mypage.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itwill.staily.mypage.model.dto.Friend;
-import com.itwill.staily.util.Member;
+
 
 public interface FriendMapper {
 	
@@ -15,7 +17,7 @@ public interface FriendMapper {
 	
 	public List<Friend> selectList(int mNo) throws Exception;
 	
-	public boolean createFriend(Friend friend) throws Exception;
+	public boolean createFriend(@Param("fNo") int fNo, @Param("mNo") int mNo) throws Exception;
 	
 	public boolean deleteFriend(int fPk) throws Exception;
 	

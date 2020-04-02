@@ -36,18 +36,18 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public boolean updateCompanyNo(Company company) throws Exception {
-		return false;
+	public boolean updateCompanyNo(int coNo, int mNo) throws Exception {
+		return mypageMapper.updateCompanyNo(coNo, mNo);
 	}
 
 	@Override
 	public List<Product> selectWriteList(int mNo) throws Exception {
-		return null;
+		return mypageMapper.selectWriteList(mNo);
 	}
 
 	@Override
 	public boolean deleteWrite(int pNo) throws Exception {
-		return false;
+		return mypageMapper.deleteWrite(pNo);
 	}
 
 }
