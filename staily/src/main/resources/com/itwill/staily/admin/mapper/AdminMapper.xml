@@ -34,7 +34,7 @@
 		SELECT
 		p.p_no,p.w_no,p.p_name,p.p_price,p.p_url,p.p_address,
         p.p_daddress,p.p_check,
-        p.p_view,p.p_date, pd.pd_no, pd.pd_image, pd.pd_scene, m.m_id
+        p.p_view,p.p_date, pd.pd_no, pd.pd_image, p.p_scene, m.m_id
 		FROM product p, product_detail pd, member m 
 		WHERE p.p_no = pd.p_no
 		AND p.m_no = m.m_no
@@ -45,7 +45,7 @@
 		SELECT
 		p.p_no,p.w_no,p.p_name,p.p_price,p.p_url,p.p_address,
         p.p_daddress,p.p_check,
-        p.p_view,p.p_date, pd.pd_no, pd.pd_image, pd.pd_scene, m.m_id
+        p.p_view,p.p_date, pd.pd_no, pd.pd_image, p.p_scene, m.m_id
 		FROM product p, product_detail pd, member m 
 		WHERE p.p_no = pd.p_no
 		AND p.m_no = m.m_no
@@ -55,13 +55,13 @@
 	<update id="updateProduct" parameterType="com.itwill.staily.util.Product">
 		UPDATE product SET p_name = #{pName}, p_price = #{pPrice}, p_url = #{pUrl}, 
 		p_address = #{pAddress}, p_daddress = #{pDaddress}, 
-		p_check = #{pCheck}, p_view = #{pView}, p_date = sysdate
+		p_check = #{pCheck}, p_view = #{pView}, p_date = sysdate,p_scene=#{pScene}
 		where p_no = #{pNo}
 	</update>
 	
 	
 	<update id="updateProductDetail" parameterType="int">
-		UPDATE product_detail SET pd_image=#{pdImage} ,pd_scene=#{pdScene}
+		UPDATE product_detail SET pd_image=#{pdImage}
 		WHERE pd_no = #{pdNo}
 	</update>
 	
