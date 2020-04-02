@@ -10,7 +10,7 @@ import com.itwill.staily.util.Board;
 public interface ViewMapper {
 	public List<Board> selectBoardTop10();
 	
-	public List<Board> selectBoardAll(String bType);
+	public List<Board> selectBoardAll();
 	
 	//bType과 bGroupNo 받아야함
 	//public List<Board> selectBoardDetail(HashMap<String, Object> map);
