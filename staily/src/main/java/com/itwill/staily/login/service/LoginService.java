@@ -4,7 +4,7 @@ import com.itwill.staily.util.Member;
 
 public interface LoginService {
 
-	Member login(Member member);
+	String login(Member member);
 
 	String findId(String mPhone, String mName);
 

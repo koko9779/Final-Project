@@ -12,7 +12,7 @@ import com.itwill.staily.login.mapper.LoginMapper;
 import com.itwill.staily.login.mapper.SignUpMapper;
 import com.itwill.staily.util.Member;
 
-@Service
+@Service("loginService")
 public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private LoginMapper loginMapper;
@@ -21,8 +21,12 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private LoginCommonMapper loginCommonMapper;
 	
+	public LoginServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Override
-	public Member login(Member member) { 
+	public String login(Member member) { 
 		String pw;
 		int isExisted = 0;
 		
@@ -31,7 +35,7 @@ public class LoginServiceImpl implements LoginService {
 			pw = loginMapper.selectMemberPw(member.getmId());
 			if(pw.equals(member.getmPw())) {
 				//기업회원인지 검사하는 메소드, 기업회원이면 상수오빠 메소드 실행하고 memberDTO 리턴, 아니면 바로 memberDTO 리턴
-				return member;
+				return member.getmId();
 			}else {
 				throw new FailSignException("아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다");
 			}
