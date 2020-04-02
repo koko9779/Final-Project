@@ -68,10 +68,10 @@ public class ProductEx extends com.itwill.staily.util.Product {
 		
 	}
 	
-	public ProductEx(String pdImage, int pdNo) {
+	public ProductEx(int pNo, String pdImage) {
 		super();
+		this.pNo = pNo;
 		this.pdImage = pdImage;
-		this.pdNo = pdNo;
 	}
 	
 	public int getpNo() {

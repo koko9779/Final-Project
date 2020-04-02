@@ -42,6 +42,8 @@ public class Product {
 	private int pdNo; //상품 상세 번호
 	private String pdImage; //상품 이미지
 	private String mId; //회원 아이디
+	
+	
 	public Product(int pNo, int mNo, int wNo, String pName, int pPrice, String pUrl, String pAddress, String pDaddress,
 			String pCheck, int pView, String pDate, String pScene, int pdNo, String pdImage, String mId) {
 		super();
@@ -60,6 +62,9 @@ public class Product {
 		this.pdNo = pdNo;
 		this.pdImage = pdImage;
 		this.mId = mId;
+	}
+	public Product() {
+		
 	}
 	public int getpNo() {
 		return pNo;
