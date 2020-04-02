@@ -11,19 +11,19 @@ import com.itwill.staily.util.Work;
 public interface ListService {
 	
 	//작품상세페이지 상품리스트 출력(기업)
-	public List<Work> selectCProductList(int wNo);
+	public List<Work> selectCProductList(int wNo) throws Exception;
 	//작품상세페이지 상품리스트 출력(일반)
-	public List<Work> selectMProductList(int wNo);
+	public List<Work> selectMProductList(int wNo) throws Exception;
 	//작품상세페이지 상품리스트 회차별 출력(기업)
-	public List<Work> selectCProductListByEpisode(Map map);
+	public List<Work> selectCProductListByEpisode(Map map) throws Exception;
 	//작품상세페이지 상품리스트 회차별 출력(일반)
-	public List<Work> selectMProductListByEpisode(Map map);
+	public List<Work> selectMProductListByEpisode(Map map) throws Exception;
 			
 	//즐겨찾기 등록	
-	public int createBookmark(Map map);
+	public int createBookmark(Map map) throws Exception;
 	//즐겨찾기 제거
-	public int deleteBookmark(int bmNo);
+	public int deleteBookmark(int bmNo) throws Exception;
 	//게시물 총 건수
-	public int selectProductCount();		
+	public int selectProductCount() throws Exception;		
 
 }
