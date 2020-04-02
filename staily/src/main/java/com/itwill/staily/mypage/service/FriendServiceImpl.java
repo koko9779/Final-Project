@@ -3,11 +3,13 @@ package com.itwill.staily.mypage.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.itwill.staily.mypage.mapper.FriendMapper;
 import com.itwill.staily.mypage.model.dto.Friend;
 import com.itwill.staily.util.Member;
 
+@Service
 public class FriendServiceImpl implements FriendService {
 	@Autowired
 	private FriendMapper friendMapper;
