@@ -26,16 +26,19 @@ public class LoginServiceImpl implements LoginService {
 	}
 	
 	@Override
-	public String login(Member member) { 
+	public Member login(Member member) { 
 		String pw;
 		int isExisted = 0;
+		int mNo = 0;
 		
 		isExisted = loginCommonMapper.isExistedId(member.getmId());
 		if(isExisted == 1) {
 			pw = loginMapper.selectMemberPw(member.getmId());
 			if(pw.equals(member.getmPw())) {
 				//기업회원인지 검사하는 메소드, 기업회원이면 상수오빠 메소드 실행하고 memberDTO 리턴, 아니면 바로 memberDTO 리턴
-				return member.getmId();
+				mNo = loginCommonMapper.selectMNo(member.getmId());
+				member.setmNo(mNo);
+				return member;
 			}else {
 				throw new FailSignException("아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다");
 			}
@@ -88,7 +91,13 @@ public class LoginServiceImpl implements LoginService {
 	
 	@Override
 	public int signMember(Member member) {
-		return signMapper.createMember(member);
+		int successCount = 0;
+		
+		successCount = signMapper.createMember(member);
+		if(successCount != 1) {
+			throw new FailSignException("회원가입에 실패하였습니다");
+		}
+ 		return successCount;
 	}
 	
 	@Override
@@ -98,6 +107,9 @@ public class LoginServiceImpl implements LoginService {
 		
 		signCountM = signMapper.createMember(member);
 		if(signCountM == 1) {
+			if(member.getmCompany().getCoNo() == 0) {
+				throw new FailSignException("회원가입에 실패하였습니다");
+			}
 			signCountC = signMapper.createCompany(member.getmCompany().getCoNo());
 		}else {
 			throw new FailSignException("회원가입에 실패하였습니다");

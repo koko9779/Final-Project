@@ -14,4 +14,10 @@
 	WHERE m_email = #{mEmail}
 </select>
 
+<select id="selectMNo" parameterType="String" resultType="int">
+	SELECT m_no
+	FROM member
+	WHERE m_id = #{mId}
+</select>
+
 </mapper>
