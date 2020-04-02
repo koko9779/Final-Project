@@ -96,6 +96,10 @@ public class LoginServiceTest {
 		assertEquals(1, loginService.signCompany(member));
 	}
 	
+	@Test
+	public void isEmailExist() {
+		assertEquals(1, loginService.isEmailExist("mint8711@naver.com"));
+	}
 	
 	
 	
