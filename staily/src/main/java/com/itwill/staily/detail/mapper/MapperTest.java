@@ -41,8 +41,8 @@ public class MapperTest {
 		//System.out.println(create);
 		
 		//상품 단위 테스트
-		List<ProductEx> product = pdm.selectProductOne(1);
-		System.out.println(product);
+		//List<ProductEx> product = pdm.selectProductOne(1);
+		//System.out.println(product);
 		
 		//boolean create = pdm.createProduct(new ProductEx(4, 6, "BLOOM*IZ", 17000, "http://cafe.daum.net/official-izone", "서울시", "강남구", "N", 4234245, "나코"));
 		//System.out.println(create);
