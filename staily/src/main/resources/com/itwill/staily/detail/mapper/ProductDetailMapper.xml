@@ -13,8 +13,8 @@
 	</select>
 	
 	<insert id="createProduct" parameterType="com.itwill.staily.detail.model.dto.ProductEx">
-		insert into product (p_no, m_no, w_no, p_name, p_price, p_url, p_address, p_daddress, p_check, p_view, p_date, p_scene)
-		values (product_no_seq.nextval, #{mNo}, #{wNo}, #{pName}, #{pPrice}, #{pUrl}, #{pAddress}, #{pDaddress}, #{pCheck}, #{pView}, sysdate, #{pScene})
+		insert into product (p_no, m_no, w_no, p_name, p_price, p_url, p_address, p_daddress, p_check, p_view, p_scene, p_date)
+		values (product_no_seq.nextval, #{mNo}, #{wNo}, #{pName}, #{pPrice}, #{pUrl}, #{pAddress}, #{pDaddress}, #{pCheck}, #{pView}, #{pScene}, sysdate)
 	</insert>
 	
 	<insert id="createProductDetail" parameterType="com.itwill.staily.detail.model.dto.ProductEx">
