@@ -41,13 +41,13 @@ public class MapperTest {
 		//System.out.println(create);
 		
 		//상품 단위 테스트
-		//ProductEx product = pdm.selectProductOne(3);
+		//List<ProductEx> product = pdm.selectProductOne(1);
 		//System.out.println(product);
 		
 		//boolean create = pdm.createProduct(new ProductEx(4, 6, "BLOOM*IZ", 17000, "http://cafe.daum.net/official-izone", "서울시", "강남구", "N", 4234245));
 		//System.out.println(create);
 		
-		//boolean create = pdm.createProductDetail(new ProductEx(4, "우핳하", "신난다"));
+		//boolean create = pdm.createProductDetail(new ProductEx(1, "팀장님", "스고이"));
 		//System.out.println(create);
 		
 		//boolean update = pdm.updateProduct(new ProductEx("테슷트", 1500000, "google.com", "서울", "시", "N", 345362, 4));

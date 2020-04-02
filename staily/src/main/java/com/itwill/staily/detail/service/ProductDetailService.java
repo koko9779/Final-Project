@@ -1,9 +1,11 @@
 package com.itwill.staily.detail.service;
 
+import java.util.List;
+
 import com.itwill.staily.detail.model.dto.ProductEx;
 
 public interface ProductDetailService {
-	public ProductEx selectProductOne(int pNo) throws Exception;
+	public List<ProductEx> selectProductOne(int pNo) throws Exception;
 	
 	public boolean createProduct(ProductEx product) throws Exception;
 	
