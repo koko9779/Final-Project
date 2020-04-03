@@ -6,26 +6,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function memberUpdate(){
+		ㅇ
+	}
+</script>
 </head>
 <body>
-<h1>안녕</h1>
-<ul>
-	<li>${message.msNo}</li>
-	<li>${message.mNo}</li>
-	<li>${message.msTitle}</li>
-	<li>${message.msContent}</li>
-	<li>${message.msDate}</li>
-	<li>${name}</li>
-	  
-	<c:forEach var="message" items="${messageList}">
-		<li>${message.msNo}</li>
-		<li>${message.mNo}</li>
-		<li>${message.msTitle}</li>
-		<li>${message.msContent}</li>
-		<li>${message.member.mId}</li>
-		<li>${message.member.mNo}</li>
-	</c:forEach>
+<h1>MypageTest</h1>
+	<ul>
+		<li>${member}<li>
+	</ul>
 	
-</ul>
+	
+	
+	<form name="r" method="get">
+		m_no <input type="text" name="mNo" maxlength="50"/><br>
+		m_no <input type="text" name="m_no" maxlength="50"/><br>
+		r_content <input type="text" name="r_content" maxlength="50"/><br>
+		r_recommend <input type="text" name="r_recommend" maxlength="50"/><br>
+		r_report <input type="text" name="r_report" maxlength="50"/><br>
+		<input type="button" value="수정" onClick="memberUpdate()">
+	</form>
+	 
 </body>
 </html>
