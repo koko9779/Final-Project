@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itwill.staily.mypage.model.dto.Bookmark;
 import com.itwill.staily.mypage.model.dto.Message;
+import com.itwill.staily.mypage.service.BookmarkService;
 import com.itwill.staily.mypage.service.FriendService;
 import com.itwill.staily.mypage.service.MessageService;
 import com.itwill.staily.mypage.service.MypageService;
@@ -27,6 +29,33 @@ public class MypageController {
 	private FriendService friendService;
 	@Autowired
 	private MypageService mypageService;
+	@Autowired
+	private BookmarkService bookmarkService;
+	
+	@RequestMapping("/bookmarkList")
+	public ModelAndView bookmark_list(HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		List<Bookmark> bookmarkList = bookmarkService.selectList(5);
+		session.setAttribute("bookmarkList", bookmarkList);
+		mv.setViewName("test2");
+		return mv;
+	}
+	
+	@RequestMapping("/memberSelect")
+	public ModelAndView member_select(@RequestParam int mNo, Model model)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		Member member = new Member();
+		member = mypageService.selectOne(mNo);
+		if(member.getmType().equals("M")) {
+			model.addAttribute("member", member);
+		}else if(member.getmType().equals("C")) {
+			//mypageService
+		}
+		mv.setViewName("test2");
+		return mv;
+	}
+	
+	
 	
 	@RequestMapping("/test2")
 	public ModelAndView message_selectOne(Model model) throws Exception {
@@ -56,12 +85,6 @@ public class MypageController {
 		return mv;
 	}
 	
-	@RequestMapping("/test3")
-	public ModelAndView member_update() throws Exception{
-		ModelAndView mv = new ModelAndView();
-		
-		
-		return null;
-	}
+	
 	
 }

@@ -16,16 +16,13 @@
 <select id="selectList"
 		parameterType="int"
 		resultMap="bmResultMap">
-	select b.bm_no, b.m_no,b.p_no,p.p_name,p.pd_scene, m.m_id
-	from bookmark b
-	join (select pr.p_no p_no, pr.p_name p_name, prd.pd_scene pd_scene
-	      from product pr
-	      join product_detail prd
-	      on pr.p_no=prd.p_no) p
-	on b.p_no=p.p_no
-	join member m
-	on b.m_no = m.m_no
-	where b.m_no = #{mNo}
+	select b.bm_no, b.m_no,b.p_no,p.p_name,p.p_scene, m.m_id
+	 from product p
+	 join member m
+	 on p.m_no = m.m_no
+	 join bookmark b
+	 on b.p_no = p.p_no
+	 where b.m_no = #{mNo}
 </select>
 <!-- 리스트출력 
 <select id="selectList"
