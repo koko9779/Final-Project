@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h3>${member}</h3>
-	
+	<h3>${productList }</h3>
 	<form action=""></form>
 </body>
 </html>
