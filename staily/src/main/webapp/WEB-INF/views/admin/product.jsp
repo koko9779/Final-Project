@@ -75,23 +75,25 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>회원번호</th>
-                      <th>회원아이디</th>
-                      <th>회원이름</th>
-                      <th>이메일</th>
-                      <th>가입일</th>
-                      <th>회원구분</th>
+                      <th>상품이름</th>
+                      <th>상품가격</th>
+                      <th>상품URL</th>
+                      <th>상품주소</th>
+                      <th>상품상세주소</th>
+                      <th>상품조회수</th>
+                      <th>상품등록일</th>
                     </tr>
                   </thead>
                   <tbody>
-                  	<c:forEach var="member" items="${data }">
-                  	 <tr style = "cursor:pointer;" onClick = " location.href='admin/'">
-                      <td>${member.mNo}</td>
-                      <td>${member.mId}</td>
-                      <td>${member.mName}</td>
-                      <td>${member.mEmail}</td>
-                      <td>${member.mAddress}</td>
-                      <td>${member.mType}</td>
+                  	<c:forEach var="product" items="${data }">
+                  	 <tr style = "cursor:pointer;" onClick = " location.href='admin/'" >
+                      <td>${product.pName}</td>
+                      <td>${product.pPrice}</td>
+                      <td>${product.pUrl}</td>
+                      <td>${product.pAddress}</td>
+                      <td>${product.pDaddress}</td>
+                      <td>${product.pView}</td>
+                      <td>${product.pDate}</td>
                     </tr>
                   	</c:forEach>
                   </tbody>
