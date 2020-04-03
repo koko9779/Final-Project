@@ -32,7 +32,7 @@ public class ReplyController {
 			List<Reply> rL = replyService.selectReplyList(2);
 			request.setAttribute("replyList", rL);
 			
-			Reply sR = replyService.selectReplyOne(22);
+			Reply sR = replyService.selectReplyOne  szdawsd(22);
 			request.setAttribute("replyOne", sR);
 			
 		} catch (Exception e) {
