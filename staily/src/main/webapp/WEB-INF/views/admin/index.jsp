@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="en">
 
 <head>
@@ -9,7 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Dashboard</title>
+  <title>관리자 페이지</title>
 
   <!-- Custom fonts for this template-->
   <link href="../../../${pageContext.request.contextPath}/css/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -41,7 +42,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="admin/">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -125,7 +126,7 @@
       <li class="nav-item">
         <a class="nav-link" href="admin_member">
           <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+          <span>회원리스트</span></a>
       </li>
 
       <!-- Divider -->

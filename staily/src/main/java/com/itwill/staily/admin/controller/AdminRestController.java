@@ -24,17 +24,5 @@ public class AdminRestController {
 	  
 	 
 	 */
-	@RequestMapping("/admin_member")
-	public ModelAndView adminBoardForm(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv =new ModelAndView();
-		try {
-			List<Member> memberList = new ArrayList();
-			memberList = adminService.selectMemberAll();
-			request.setAttribute("memberList", memberList);
-		} catch (Exception e) {
-			e.printStackTrace(); 
-		}
-		mv.setViewName("/admin/member");
-		return mv;
-	}
+
 }
