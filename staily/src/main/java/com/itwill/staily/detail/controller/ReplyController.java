@@ -12,6 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.staily.detail.model.dto.Reply;
 import com.itwill.staily.detail.service.ReplyService;
+import com.itwill.staily.mypage.mapper.FriendMapper;
+import com.itwill.staily.mypage.model.dto.Friend;
+import com.itwill.staily.mypage.service.FriendService;
 
 @Controller
 @SuppressWarnings("unused")
@@ -19,9 +22,14 @@ public class ReplyController {
 	@Autowired
 	private ReplyService replyService;
 	
+	@Autowired
+	private FriendService friendService;
+	
 	public ReplyController() {
 		
 	}
+	
+	
 	
 	/*
 	@RequestMapping("/detailtest")
@@ -119,6 +127,30 @@ public class ReplyController {
 		return mv;
 	}
 	*/
+	/*
+	@RequestMapping("/detailtest")
+	public ModelAndView createFriend(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView();
+		
+		try {
+			List<Friend> fL = friendService.selectList(1);
+			request.setAttribute("friendList", fL);
+			
+			String m_no = request.getParameter("mNo");
+			String f_no = request.getParameter("fNo");
+			
+			boolean create = replyService.createFriend(Integer.parseInt(m_no), Integer.parseInt(f_no));
+			
+			if(create) {
+				mv.setViewName("detailtest");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	
+		return mv;
+	}
+	*/
 	
 }

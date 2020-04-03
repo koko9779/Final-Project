@@ -25,7 +25,7 @@
 	<update id="updateProduct" parameterType="com.itwill.staily.detail.model.dto.ProductEx">
 		update product set p_name = #{pName}, p_price = #{pPrice}, p_url = #{pUrl}, 
 		p_address = #{pAddress}, p_daddress = #{pDaddress}, 
-		p_check = #{pCheck}, p_view = #{pView}, p_date = sysdate, pScene = #{pScene}
+		p_check = #{pCheck}, p_view = #{pView}, p_date = sysdate, p_scene = #{pScene}
 		where p_no = #{pNo}
 	</update>
 	
