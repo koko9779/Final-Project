@@ -59,7 +59,7 @@ public class MainServiceTest {
 	@Test
 	public void testSelectByBookmark() throws Exception {
 		assertNotNull(mainServiceImpl.selectByBookmark(2));
-		assertNotSame(0,mainServiceImpl.selectByBookmark(2).size());
+		assertSame(1,mainServiceImpl.selectByBookmark(2).size());
 	}
 
 	@Test
@@ -127,6 +127,7 @@ public class MainServiceTest {
 	}
 
 	@Test
+	@Ignore
 	public void testSelectProductCount() throws Exception{
 		assertSame(5, listServiceImpl.selectProductCount());
 	}

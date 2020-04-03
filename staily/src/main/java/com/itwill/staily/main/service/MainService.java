@@ -15,8 +15,8 @@ public interface MainService {
 	//HOT 상품 출력
 	public List<Product> selectByView() throws Exception;
 	//TODAY 작품 출력
-	public List<Work> selectByCategory(String category) throws Exception;
+	public List<Work> selectTodayOfWork() throws Exception;		
 	//카테고리별 작품 출력
-	public List selectTodayOfWork() throws Exception;		
+	public List<Work> selectByCategory(String category) throws Exception;
 
 }

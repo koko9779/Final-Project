@@ -17,13 +17,17 @@
 	</select>
 	<!-- 2. HOT 상품 출력 -->
 	<select id="selectByView" resultType="Product">
+	<![CDATA[
 		select p.p_no,p.p_name,p.p_view,p.p_scene
-		from product p
-		where p.p_check='Y'
-		order by p.p_view desc
+		from (select *
+		      from product p
+		      where p.p_check='Y'
+		      order by p.p_view desc) p
+		where rownum <= 10
+	 ]]>
 	</select>
 	<!-- 3. TODAY 작품 출력 -->
-	<select id="selectTodayOfWork" resultType="String">
+	<select id="selectTodayOfWork" resultType="Work">
 		select w.w_poster
 		from work w
 		where to_char(to_date(w.w_date),'dy')=to_char(sysdate, 'dy')

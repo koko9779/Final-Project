@@ -18,7 +18,7 @@ public interface MainMapper {
 	 */
 	public List<Bookmark> selectByBookmark(int mNo);
 	public List<Product> selectByView();
+	public List<Work> selectTodayOfWork();
 	public List<Work> selectByCategory(String category);
-	public List selectTodayOfWork();
 
 }

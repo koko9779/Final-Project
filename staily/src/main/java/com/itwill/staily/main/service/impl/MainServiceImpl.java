@@ -56,7 +56,7 @@ public class MainServiceImpl implements MainService{
 	}
 
 	@Override
-	public List selectTodayOfWork() throws Exception {
+	public List<Work> selectTodayOfWork() throws Exception {
 		return mainMapper.selectTodayOfWork();
 	}
 	
