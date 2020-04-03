@@ -14,7 +14,7 @@
 	WHERE m_phone = #{mPhone}
 	AND m_name = #{mName}
 </select>
-
+  
 <select id="isExistedIdForPw" parameterType="HashMap" resultType="int">
 	SELECT count(*) 
 	FROM member
