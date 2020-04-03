@@ -73,7 +73,7 @@ public class LoginServiceTest {
 		member.setmName("이름짓기구찮");
 		member.setmPhone("01011112222");
 		member.setmType("M");
-		assertEquals(1, loginService.signMember(member));
+		assertEquals(1, loginService.signUpMember(member));
 	}
 	
 	@Test
@@ -93,7 +93,7 @@ public class LoginServiceTest {
 		//company.setCoNo(12345678);
 		
 		member.setmCompany(company);
-		assertEquals(1, loginService.signCompany(member));
+		assertEquals(1, loginService.signUpCompany(member));
 	}
 	
 	@Test

@@ -94,7 +94,7 @@ public class LoginServiceImpl implements LoginService {
 	}
 	
 	@Override
-	public int signMember(Member member) {
+	public int signUpMember(Member member) {
 		int successCount = 0;
 		
 		successCount = signMapper.createMember(member);
@@ -105,20 +105,24 @@ public class LoginServiceImpl implements LoginService {
 	}
 	
 	@Override
-	public int signCompany(Member member) {
-		int signCountM = 0;
-		int signCountC = 0;
+	public int signUpCompany(Member member) {
+		int signUpCountM = 0;
+		int signUpCountC = 0;
 		
-		signCountM = signMapper.createMember(member);
-		if(signCountM == 1) {
-			if(member.getmCompany().getCoNo() == 0) {
+		if(member.getmCompany().getCoNo() == 0) {
+			throw new FailSignException("회원가입에 실패하였습니다");
+		}
+		
+		signUpCountM = signMapper.createMember(member);
+		if(signUpCountM == 1) {
+			signUpCountC = signMapper.createCompany(member.getmCompany().getCoNo());
+			if(signUpCountC != 1) {
 				throw new FailSignException("회원가입에 실패하였습니다");
 			}
-			signCountC = signMapper.createCompany(member.getmCompany().getCoNo());
 		}else {
 			throw new FailSignException("회원가입에 실패하였습니다");
 		}
-		return signCountC;
+		return signUpCountC;
 	}
 	
 	
