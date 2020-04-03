@@ -37,15 +37,15 @@ public class MapperTest {
 		//boolean inc = rm.increaseReport(10);
 		//System.out.println(inc);
 
-		//boolean create = rm.createFriend(3, 6);
+		//boolean create = rm.createFriend(1, 7);
 		//System.out.println(create);
 		
 		//상품 단위 테스트
 		//List<ProductEx> product = pdm.selectProductOne(1);
 		//System.out.println(product);
 		
-		boolean create = pdm.createProduct(new ProductEx(1, 5, "테스트1", 123456, "ㅇㄴ", "경기도", "고양시", "Y", 25, "aa"));
-		System.out.println(create);
+		//boolean create = pdm.createProduct(new ProductEx(1, 5, "테스트1", 123456, "ㅇㄴ", "경기도", "고양시", "Y", 25, "aa"));
+		//System.out.println(create);
 		
 		//boolean create = pdm.createProductDetail(new ProductEx(1, "스고이"));
 		//System.out.println(create);
