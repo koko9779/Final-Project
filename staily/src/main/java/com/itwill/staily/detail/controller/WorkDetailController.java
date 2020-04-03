@@ -100,7 +100,7 @@ public class WorkDetailController {
 		return mv;		
 	}
 	*/
-	
+	/*
 	@RequestMapping("/detailtest")
 	public ModelAndView increaseWorkView(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
@@ -121,4 +121,5 @@ public class WorkDetailController {
 		
 		return mv;		
 	}
+	*/
 }

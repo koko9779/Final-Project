@@ -19,7 +19,6 @@ public class ProductDetailController {
 	@Autowired
 	private ProductDetailService productDetailService;
 	
-	/*
 	@RequestMapping("/detailtest")
 	public ModelAndView selectProductOne(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
@@ -32,11 +31,11 @@ public class ProductDetailController {
 			e.printStackTrace();
 		}
 		
-		mv.setViewName("detailtest");
+		mv.setViewName("commons/shortcodes");
 		
 		return mv;		
 	}	
-	*/
+	
 	/*
 	@RequestMapping("/detailtest")
 	public ModelAndView createProduct(HttpServletRequest request, HttpServletResponse response) {
