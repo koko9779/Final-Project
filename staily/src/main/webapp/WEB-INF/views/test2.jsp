@@ -12,7 +12,6 @@
 	<h1>MypageTest</h1>
 	<!-- 북마크 리스트 출력페이지 -->
 	<h3>북마크 리스트 출력</h3>
-
 		<c:choose>
 			<c:when test="${bookmarkList.size() != 0}">
 				<c:forEach var="book" items="${bookmarkList}">
@@ -31,6 +30,11 @@
 				</div>
 			</c:otherwise>
 		</c:choose>
+	<!-- 멤버 정보 출력 -->
+	<h3>멤버 정보 출력</h3>
+	<div>
+		${member}
+	</div>
 	
 	
 	<div>
@@ -40,15 +44,18 @@
 		${message.msContent}
 		${message.msDate}
 	</div>
+	<!-- 내가 쓴글 목록 -->
+	
 
 
+	<!-- 
 	<form name="f" method="get" action="test3">
 		회원번호<input type="text" name="mNo"> 아이디 <input type="text"
 			name="mId"> 비밀번호 <input type="text" name="mPw">
 		사업자등록번호 <input type="text" name="coNo"> <input type="submit">
 
 	</form>
-
+ 	-->
 
 </body>
 </html>
