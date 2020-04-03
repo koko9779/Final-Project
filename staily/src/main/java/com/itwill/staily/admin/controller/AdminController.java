@@ -1,5 +1,8 @@
 package com.itwill.staily.admin.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,20 +23,34 @@ public class AdminController {
 	
 	public AdminController() {
 	}
-	@RequestMapping("/test")
-	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mv =new ModelAndView();
-		try {
-			Member member = adminService.selectMemberOne(1);
-			request.setAttribute("member", member);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		mv.setViewName("test");
-		return mv;
-	}
+//	@RequestMapping("/test")
+//	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		ModelAndView mv =new ModelAndView();
+//		try {
+//			Member member = adminService.selectMemberOne(1);
+//			request.setAttribute("member", member);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		mv.setViewName("test");
+//		return mv;
+//	}
 	@RequestMapping("/admin")
 	public String adminTest() {
 		return "admin/index";
+	}
+	
+	@RequestMapping("/admin_member")
+	public ModelAndView adminBoardForm(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv =new ModelAndView();
+		try {
+			List<Member> memberList = new ArrayList();
+			memberList = adminService.selectMemberAll();
+			request.setAttribute("data", memberList);
+		} catch (Exception e) {
+			e.printStackTrace(); 
+		}
+		mv.setViewName("/admin/member");
+		return mv;
 	}
 }
