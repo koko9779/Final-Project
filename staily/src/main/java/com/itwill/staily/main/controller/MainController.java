@@ -24,8 +24,7 @@ public class MainController {
 		
 	}
 	@RequestMapping("/maintest")
-	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mv =new ModelAndView();
+	public String test(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
 			List<Bookmark> bmList = mainService.selectByBookmark(2);
 			request.setAttribute("bmList", bmList);
@@ -37,29 +36,16 @@ public class MainController {
 			List<Work> todayList = mainService.selectTodayOfWork();
 			request.setAttribute("todayList", todayList);
 			
-			List<Work> dramaList = mainService.selectByCategory("d");
+			List<Work> dramaList = mainService.selectByCategory("D");
 			request.setAttribute("dramaList", dramaList);
 			
-			List<Work> movieList = mainService.selectByCategory("m");
+			List<Work> movieList = mainService.selectByCategory("M");
 			request.setAttribute("movieList", movieList);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		mv.setViewName("maintest");
-		return mv;
+
+		return "maintest";
 	}
-	/*
-	@RequestMapping("/maintest2")
-	public ModelAndView test2(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		try {
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		mv.setViewName("maintest2");
-		return mv;
-	}
-	*/
 }
