@@ -96,7 +96,7 @@ public class LoginController {
 		return "login/login";
 	}
 	
-	@RequestMapping(value = "/singup", method = RequestMethod.GET)
+	@RequestMapping(value = "/singup", method = RequestMethod.POST)
 	public String singup_member_action() {
 		
 		return "login/login";
