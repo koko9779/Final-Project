@@ -13,7 +13,7 @@
 	<c:forEach var="cw" items="${cw}">
 		<div>
 			<c:out value="에피소드:${cw.wdEpisode}"/>
-			<c:forEach var="p" items="${cp}">
+			<c:forEach var="p" items="${cw.product}">
 				<c:out value="상품이름:${p.pName}"/>
 				<c:out value="장면(이미지):${p.pScene}"/>
 				<c:out value="작성자:${p.mId}"/>
@@ -26,7 +26,7 @@
 		<c:forEach var="mw" items="${mw}">
 		<div>
 			<c:out value="에피소드:${mw.wdEpisode}"/>
-			<c:forEach var="p" items="${mp}">
+			<c:forEach var="p" items="${mw.product}">
 				<c:out value="상품이름:${p.pName}"/>
 				<c:out value="장면(이미지):${p.pScene}"/>
 				<c:out value="작성자:${p.mId}"/>
@@ -39,7 +39,7 @@
 		<c:forEach var="cwe" items="${cwe}">
 		<div>
 			<c:out value="에피소드:${cwe.wdEpisode}"/>
-			<c:forEach var="p" items="${cpe}">
+			<c:forEach var="p" items="${cwe.product}">
 				<c:out value="상품이름:${p.pName}"/>
 				<c:out value="장면(이미지):${p.pScene}"/>
 				<c:out value="작성자:${p.mId}"/>
@@ -52,7 +52,7 @@
 		<c:forEach var="mwe" items="${mwe}">
 		<div>
 			<c:out value="에피소드:${mwe.wdEpisode}"/>
-			<c:forEach var="p" items="${mpe}">
+			<c:forEach var="p" items="${mwe.product}">
 				<c:out value="상품이름:${p.pName}"/>
 				<c:out value="장면(이미지):${p.pScene}"/>
 				<c:out value="작성자:${p.mId}"/>
@@ -62,6 +62,9 @@
 	</c:forEach>
 	<br/>
 	<h2>게시물 총 건수</h2>
+	<div>
+		${pCnt}건
+	</div>
 	
 </body>
 </html>
