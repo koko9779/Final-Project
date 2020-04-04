@@ -78,7 +78,6 @@ public class ListMapperTest {
 		p2 = w2.get(i).getProduct();
 		for (int j = 0; j < p2.size(); j++) {
 			System.out.println("product이름:"+p2.get(j).getpName());
-			System.out.println("product이름:"+p2.get(j).getpName());
 			System.out.println("장면(이미지):"+p2.get(j).getpScene());
 			System.out.println("작성자:"+p2.get(j).getmId());
 			System.out.println("조회수:"+p2.get(j).getpView());
