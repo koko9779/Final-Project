@@ -36,41 +36,24 @@ public class ListController {
 			 */
 			
 			List<Work> cw = listService.selectCProductList(4);
-			List<Product> cp = new ArrayList<Product>();
-			for (int i = 0; i < cw.size(); i++) {
-				cp = cw.get(i).getProduct();				
-			}
 			request.setAttribute("cw", cw);
-			request.setAttribute("cp", cp);
 			
 			List<Work> mw = listService.selectMProductList(4);
-			List<Product> mp = new ArrayList<Product>();
-			for (int i = 0; i < mw.size(); i++) {
-				mp = mw.get(i).getProduct();
-			}
 			request.setAttribute("mw", mw);
-			request.setAttribute("mp", mp);
 			
 			Map map1 = new HashMap();
 			map1.put("wNo", 4);
 			map1.put("wdEpisode", 1);
 			List<Work> cwe = listService.selectCProductListByEpisode(map1);
-			List<Product> cpe = new ArrayList<Product>();
-			for (int i = 0; i < cwe.size(); i++) {
-				cpe = cwe.get(i).getProduct();
-			}
 			request.setAttribute("cwe", cwe);
-			request.setAttribute("cpe", cpe);
-			
-			List<Work> mwe = listService.selectCProductListByEpisode(map1);
-			List<Product> mpe = new ArrayList<Product>();
-			for (int i = 0; i < mwe.size(); i++) {
-				mpe = mwe.get(i).getProduct();
-			}
+
+			map1.put("wNo", 4);
+			map1.put("wdEpisode", 1);
+			List<Work> mwe = listService.selectMProductListByEpisode(map1);
 			request.setAttribute("mwe", mwe);
-			request.setAttribute("mpe", mpe);
-			
-			
+	
+			int pCnt = listService.selectProductCount();
+			request.setAttribute("pCnt", pCnt);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
