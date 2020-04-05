@@ -92,12 +92,12 @@ public class AdminController {
 		}
 		return "/admin/work";
 	}
-	@RequestMapping(value= "/admin_work_create", method =RequestMethod.GET )
+	@RequestMapping(value= "/work_create", method =RequestMethod.GET )
 	public String workAdminCreate() {
 		return"/admin/work_create";
 	}
 	
-	@RequestMapping("/admin_work_create")
+	@RequestMapping("/work_create_action")
 	@ResponseBody
 	public String workAdminCreateAction(HttpServletRequest request, HttpServletResponse response) {
 		Work work = (Work) request.getAttribute("work");

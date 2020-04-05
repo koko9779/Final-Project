@@ -85,8 +85,8 @@
                   </thead>
                   <tbody>
                   	<c:forEach var="member" items="${data }">
-                  	 <tr style = "cursor:pointer;" onClick = " location.href='admin/'">
-                      <td>${member.mNo}</td>
+                  	 <tr style = "cursor:pointer;" onClick = " location.href='admin/${member.mNo}'">
+                  	  <td>${member.mNo}</td>
                       <td>${member.mId}</td>
                       <td>${member.mName}</td>
                       <td>${member.mEmail}</td>
