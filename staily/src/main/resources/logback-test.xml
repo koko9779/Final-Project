@@ -32,10 +32,18 @@
 	</appender>
 	-->
 	<!-- RULES for logging DEBUG < INFO < WARN < ERROR < FATAL. -->
-	<logger name="org.springframework" level="info" additivity="false"/>
-	<logger name="org.mybatis.spring" level="info" additivity="false"/>
-	<logger name="java.sql" level="info" additivity="false"/>
-	<logger name="com.itwill.staily" level="info" additivity="false"/>
+	<logger name="org.springframework" level="info" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+	<logger name="org.mybatis.spring" level="info" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+	<logger name="java.sql" level="info" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+	<logger name="com.itwill.staily" level="info" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
 
 	<!-- root는 글로벌 로거를 의미하며, 위의 logger에 해당하지 않으면 root 로거가 실행된다. -->
 	<root level="warn">
