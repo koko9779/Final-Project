@@ -5,17 +5,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script>
+function bookmark_remove(bmNo){
+	var bookmark_form = document.getElementById('bookmark_'+bmNo);
+	bookmark_form.action = "bookmark_remove";
+	bookmark_form.submit();
+}
+</script>
 <title>Insert title here</title>
 </head>
 <body>
 	<h1>회원번호 ${mNo}의 즐겨찾기 목록</h1>
 	<c:forEach var="bm" items="${bmList}">
-		<div>
+		<form id="bookmark_${bm.bmNo}" method="get">
 			<c:out value="북마크번호:${bm.bmNo}" />
 			<c:out value="상품번호:${bm.product.pNo}" />
 			<c:out value="상품이름:${bm.product.pName}" />
 			<c:out value="작품장면:${bm.product.pScene}" />
-		</div>
+			<input type="button" value="즐겨찾기 제거" onclick="bookmark_remove(${bmNo})">
+		</form>
 	</c:forEach>
 	<br />
 	<h1>HOT</h1>
