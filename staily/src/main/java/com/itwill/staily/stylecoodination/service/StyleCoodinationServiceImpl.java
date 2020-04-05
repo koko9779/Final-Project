@@ -80,6 +80,12 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 	}
 	
 	@Override
+	public List<Board> findBoardOne(int bNo) {
+		return viewMapper.selectBoardOne(bNo);
+	}
+
+	
+	@Override
 	public int findBoardCount() {
 		return viewMapper.selectBoardCount();
 	}

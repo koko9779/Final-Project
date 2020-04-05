@@ -23,6 +23,8 @@ public interface StyleCoodinationService {
 	List<Board> findBoardTop10();
 
 	List<Board> findBoardAll();
+	
+	List<Board> findBoardOne(int bNo);
 
 	int findBoardCount();
 

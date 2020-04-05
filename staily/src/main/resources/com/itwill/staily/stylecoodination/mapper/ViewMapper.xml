@@ -27,14 +27,14 @@
 	ORDER BY B.b_no DESC
 </select>
 
-<select id="selectBoardOne" parameterType="HashMap" resultType="Board">
-	SELECT b.b_no, b.m_no, b.b_title, b.b_content,
-       b.b_view, b.b_recommend, bd.bd_image
-	FROM board b
-	LEFT JOIN board_detail bd 
-	ON (b.b_no = bd.b_no)
-	WHERE b_groupno = #{bGroupNo}
-	ORDER BY b_groupno ASC, b_step ASC
+<select id="selectBoardOne" parameterType="int" resultType="Board">
+	SELECT B.b_no, B.m_no, B.b_title, B.b_content,
+	       B.b_view, B.b_recommend, B.b_date, M.m_id
+	FROM board B
+	JOIN member M
+	ON (b.m_no = m.m_no)
+	WHERE b_groupno = #{bNo]
+	ORDER BY b_step ASC
 </select>
 
 <select id="selectBoardCount" resultType="int">
