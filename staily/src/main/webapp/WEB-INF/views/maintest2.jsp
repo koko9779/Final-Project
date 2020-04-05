@@ -6,9 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <script type="text/javascript">
-	function bookmarking{
-		
-	}
+
+function bookmark_create(mNo,pNo){
+	var bookmark_form = document.getElementById('bookmark_create_'+pNo);
+	alert(mNo+" "+pNo);
+	alert(bookmark_form);
+	bookmark_form.action = "/main/bookmark_create";
+	bookmark_form.submit();
+}
 </script>
 <title>Insert title here</title>
 </head>
@@ -24,16 +29,17 @@
 	</div>	
 	<h2>상품리스트 출력(기업)</h2>
 	<c:forEach var="cw" items="${cw}">
-		<div>
-			<c:out value="에피소드:${cw.wdEpisode}"/>
-			<c:forEach var="p" items="${cw.product}">
-				<c:out value="상품이름:${p.pName}"/>
-				<c:out value="장면(이미지):${p.pScene}"/>
-				<c:out value="작성자:${p.mId}"/>
-				<c:out value="조회수:${p.pView}"/>
-				<input type="button" value="즐겨찾기" onclick="bookmarking()">
-			</c:forEach>
-		</div>
+		<form id="bookmark_create_${cw.product[0].pNo}" method="get">
+			<input type="hidden" value="${mNo}" name="mNo">
+			<input type="hidden" value="${cw.product[0].pNo}" name="pNo">
+			에피소드:<c:out value="${cw.wdEpisode}"/>
+			상품이름:<c:out value="${cw.product[0].pName}"/>
+			장면(이미지):<c:out value="${cw.product[0].pScene}"/>
+			작성자:<c:out value="${cw.product[0].mId}" />
+			조회수:<c:out value="${cw.product[0].pView}" />
+			
+			<input type="button" value="즐겨찾기" onclick="bookmark_create(${mNo},${cw.product[0].pNo})">
+		</form>
 	</c:forEach>
 	<br/>
 	<h2>상품리스트 출력(일반)</h2>

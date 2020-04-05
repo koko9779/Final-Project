@@ -23,7 +23,7 @@ public class MainController {
 	public MainController() {
 		
 	}
-	@RequestMapping("/maintest")
+	@RequestMapping("/main/main")
 	public String test(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
 			List<Bookmark> bmList = mainService.selectByBookmark(2);

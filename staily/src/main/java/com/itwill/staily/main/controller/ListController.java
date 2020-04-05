@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.staily.main.service.ListService;
@@ -25,9 +26,11 @@ public class ListController {
 	public ListController() {
 		
 	}
-	@RequestMapping("/maintest2")
-	public String test2(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping("/main/worklist")
+	public String workList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
+			
+			request.setAttribute("mNo", 4);
 			
 			Work w = listService.selectWorkOne(1);
 			request.setAttribute("w", w);
@@ -64,4 +67,25 @@ public class ListController {
 		}
 		return "maintest2";
 	}
+
+	@RequestMapping("/main/bookmark_create")
+	public String bookmarkCreate(@RequestParam int mNo, @RequestParam int pNo) {
+		try {
+			//(Integer)request.getAttribute("");
+			//String mNo = request.getParameter("mNo");
+			Map map1 = new HashMap();
+			//int mNo = (Integer)request.getAttribute("mNo");
+			//int pNo = (Integer)request.getAttribute("pNo");
+			System.out.println(mNo+" "+pNo);
+			map1.put("mNo", mNo);
+			map1.put("pNo", pNo);
+			int success = listService.createBookmark(map1);
+			System.out.println(success);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "forward:/main/main";
+	}
+	
 }
