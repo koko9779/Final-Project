@@ -50,16 +50,16 @@ public class MypageTest {
 		
 		
 		
-		
+		//MypageService
 		
 		/***********************MYpage**********************************************/
 		Member m = mp.selectOne(5);
-		//System.out.println(m.getmId()+m.getmName()+m.getmNo()+m.getmType());
-		//m.setmName("수정");
-		//m.setmId("수정");
+		System.out.println(m.getmId()+m.getmName()+m.getmNo()+m.getmType());
+		m.setmName("수수정정");
+		m.setmId("수수정수정");
 		
-		//System.out.println(mp.updateMember(m));
-		//System.out.println(m.getmId()+m.getmName()+m.getmNo()+m.getmType());
+		System.out.println(mp.updateMember(m));
+		System.out.println(m.getmId()+m.getmName()+m.getmNo()+m.getmType());
 		
 		Member m2 = mp.selectMemberCompany(1);
 		//System.out.println(m2.getmNo()+","+m2.getmId()+","+m2.getmType()+","+m2.getmCompany().getCoCheck());
@@ -72,7 +72,7 @@ public class MypageTest {
 		//System.out.println("-----");
 		
 		//Company c = new Company(1,2222,"Y");
-		System.out.println(mp.updateCompanyNo(3333,3));
+		//System.out.println(mp.updateCompanyNo(3333,3));
 		/************************************************************************/
 		
 		

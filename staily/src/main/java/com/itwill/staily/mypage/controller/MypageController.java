@@ -39,9 +39,12 @@ public class MypageController {
 	
 	//회원정보출력
 	@RequestMapping("/member_select")
-	public String member_select(HttpSession session, Model model)throws Exception{
+	public String member_select(HttpSession session, Model model, HttpServletRequest request)throws Exception{
 		//int mNo = (Integer)session.getAttribute("mNo");
-		int mNo = 1;
+		Integer mNo = (Integer)request.getAttribute("mNo");
+		if(mNo==null) {
+			mNo = 7;
+		}
 		Member member = mypageService.selectOne(mNo);
 		
 		if(member.getmType().equals("M")) {
@@ -49,18 +52,30 @@ public class MypageController {
 		}else if(member.getmType().equals("C")) {
 			Member memberCompany = mypageService.selectMemberCompany(mNo);
 			model.addAttribute("member", memberCompany);
+			System.out.println(memberCompany);
 		}
 		return "test2";
 	}
 	
 	//회원정보업데이트
 	@RequestMapping("/member_update")
-	public String member_update(HttpServletResponse response, HttpServletRequest request) {
-		request.getParameter("mNo");
-		request.getParameter("mId");
-		request.getParameter("mPw");
-		request.getParameter("mName");
-		return "test2";
+	public String member_update(HttpServletResponse response, HttpServletRequest request) throws Exception {
+		Integer mNo =(Integer)request.getAttribute("mNo");
+		Member member = new Member(mNo, 
+									request.getParameter("mId"), 
+									request.getParameter("mPw"), 
+									request.getParameter("mName"), 
+									request.getParameter("mAddress"), 
+									request.getParameter("mDaddress"), 
+									request.getParameter("mEmail"), 
+									request.getParameter("mType"), 
+									request.getParameter("mPhone"));
+		System.out.println(member);
+		boolean result = mypageService.updateMember(member);
+		System.out.println(result);
+		request.setAttribute("mNo", mNo);
+	
+		return "forward:/mypage/member_select";
 	}
 	
 	//북마크리스트
@@ -78,7 +93,7 @@ public class MypageController {
 	public String bookmark_delete(@RequestParam int bmNo, Model model) throws Exception{
 		boolean result = bookmarkService.deleteBookmark(bmNo);
 		model.addAttribute("result", result);
-		return "forward:/bookmark_list";
+		return "forward:/mypage/bookmark_list";
 	}
 	
 	//친구리스트
