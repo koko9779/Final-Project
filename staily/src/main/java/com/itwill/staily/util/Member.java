@@ -15,7 +15,7 @@ public class Member {
 	M_PHONE             VARCHAR2(18)  
 	 */
 	
-	private int mNo; // 회원번호
+	private Integer mNo; // 회원번호
 	private String mId; //아이디
 	private String mPw; //비밀번호
 	private String mName; //이름
