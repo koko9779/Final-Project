@@ -5,7 +5,8 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.itwill.staily.login.exception.FailSignException;
+import com.itwill.staily.login.exception.FailCreateException;
+import com.itwill.staily.login.exception.FailSigninException;
 import com.itwill.staily.login.exception.NoSearchMemberException;
 import com.itwill.staily.login.mapper.LoginCommonMapper;
 import com.itwill.staily.login.mapper.LoginMapper;
@@ -40,10 +41,10 @@ public class LoginServiceImpl implements LoginService {
 				member.setmNo(mNo);
 				return member;
 			}else {
-				throw new FailSignException("아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다");
+				throw new FailSigninException("아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다");
 			}
  		}else {
-			throw new FailSignException("아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다");
+			throw new FailSigninException("아이디가 존재하지 않거나 비밀번호가 일치하지 않습니다");
 		}
 	}
 	
@@ -94,33 +95,30 @@ public class LoginServiceImpl implements LoginService {
 	}
 	
 	@Override
-	public int signUpMember(Member member) {
+	public int signUpMember(Member member) throws Exception {
 		int successCount = 0;
 		
 		successCount = signMapper.createMember(member);
 		if(successCount != 1) {
-			throw new FailSignException("회원가입에 실패하였습니다");
+			throw new FailCreateException("회원가입에 실패하였습니다");
 		}
  		return successCount;
 	}
 	
 	@Override
-	public int signUpCompany(Member member) {
+	public int signUpCompany(Member member) throws Exception {
 		int signUpCountM = 0;
 		int signUpCountC = 0;
 		
-		if(member.getmCompany().getCoNo() == 0) {
-			throw new FailSignException("회원가입에 실패하였습니다");
-		}
-		
+		// coNo를 입력하지 않으면 들어올 수 없도록 유효성체크 필수!!
 		signUpCountM = signMapper.createMember(member);
 		if(signUpCountM == 1) {
 			signUpCountC = signMapper.createCompany(member.getmCompany().getCoNo());
 			if(signUpCountC != 1) {
-				throw new FailSignException("회원가입에 실패하였습니다");
+				throw new FailCreateException("회원가입에 실패하였습니다");
 			}
 		}else {
-			throw new FailSignException("회원가입에 실패하였습니다");
+			throw new FailCreateException("회원가입에 실패하였습니다");
 		}
 		return signUpCountC;
 	}

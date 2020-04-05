@@ -18,8 +18,8 @@ public interface LoginService {
 	/******************************************************************/
 	int isEmailExist(String mEmail);
 	
-	int signUpMember(Member member);
+	int signUpMember(Member member) throws Exception;
 
-	int signUpCompany(Member member);
+	int signUpCompany(Member member) throws Exception;
 
 }
