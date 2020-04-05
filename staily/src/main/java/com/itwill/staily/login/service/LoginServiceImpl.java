@@ -27,7 +27,7 @@ public class LoginServiceImpl implements LoginService {
 	}
 	
 	@Override
-	public Member login(Member member) { 
+	public Member login(Member member) throws Exception { 
 		String pw;
 		int isExisted = 0;
 		int mNo = 0;
@@ -49,7 +49,7 @@ public class LoginServiceImpl implements LoginService {
 	}
 	
 	@Override
-	public String findId(String mPhone, String mName) {
+	public String findId(String mPhone, String mName) throws Exception{
 		String id;
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
@@ -65,7 +65,7 @@ public class LoginServiceImpl implements LoginService {
 	
 	/************************** 비밀번호 찾기 **************************/
 	@Override
-	public int isIdExist(String mId, String mPhone) {
+	public int isIdExist(String mId, String mPhone) throws Exception{
 		int count = 0;
 		int existCount = 0;
 		HashMap<String, Object> map = new HashMap<String, Object>();

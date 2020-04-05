@@ -34,7 +34,7 @@ public class LoginServiceTest {
 	}
 	
 	@Test
-	public void loginTest() { 
+	public void loginTest() throws Exception { 
 		Member member = new Member();
 		member.setmId("hiphopmy");
 		member.setmPw("1234");
@@ -43,17 +43,17 @@ public class LoginServiceTest {
 	}
 	
 	@Test
-	public void findId() {
+	public void findId() throws Exception {
 		Assert.assertEquals("ehdanf91", loginService.findId("01091434908", "천영주"));
 	}
 	
 	@Test
-	public void isIdExist() {
+	public void isIdExist() throws Exception {
 		assertEquals(1, loginService.isIdExist("ehdanf91", "01091434908"));
 	}
 	
 	@Test
-	public void updatePw() {
+	public void updatePw() throws Exception {
 		Member updateMember = new Member();
 		updateMember.setmId("ehdanf91");
 		updateMember.setmPw("1030");
@@ -97,7 +97,7 @@ public class LoginServiceTest {
 	}
 	
 	@Test
-	public void isEmailExist() {
+	public void isEmailExist() throws Exception {
 		assertEquals(1, loginService.isEmailExist("mint8711@naver.com"));
 	}
 	

@@ -30,7 +30,9 @@
 			<div>
 				<c:out value="${b.bNo}"/>
 				<c:out value="${b.mId}"/>
+				<a href="">
 				<c:out value="${b.bTitle}"/>
+				</a>
 				<c:out value="${b.bDate}"/>
 				<c:out value="${b.bView}"/>
 			</div>
