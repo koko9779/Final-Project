@@ -11,21 +11,34 @@ import com.itwill.staily.stylecoodination.service.StyleCoodinationService;
 import com.itwill.staily.util.Board;
 
 @Controller
+@RequestMapping("/style")
 public class StyleCoodinationController {
 	@Autowired
 	 private StyleCoodinationService styleCoodinationService;
 	
-	@RequestMapping("/styleCoodination_main")
-	public String styleCoodinationMain(Model model) {
+	@RequestMapping("/style_main")
+	public String style_main(Model model) {
 		List<Board> boardTop10;
 		List<Board> boardList;
+		int boardCount = 0;
+		int replyCount = 0;
 		
 		boardTop10 = styleCoodinationService.findBoardTop10();
 		boardList = styleCoodinationService.findBoardAll();
+		boardCount = styleCoodinationService.findBoardCount();
+		replyCount = styleCoodinationService.findBoardReplyCount();
 		
 		model.addAttribute("boardTop10", boardTop10);
 		model.addAttribute("boardList", boardList);
+		model.addAttribute("boardCount", boardCount);
+		model.addAttribute("replyCount", replyCount);
 		
+		return "style/style_main";
+	}
+	
+	@RequestMapping("style_view")
+	public String style_view() {
+		//styleCoodinationService.
 		return "";
 	}
 	

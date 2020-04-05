@@ -13,7 +13,7 @@ public interface ViewMapper {
 	public List<Board> selectBoardAll();
 	
 	//bType과 bGroupNo 받아야함
-	//public List<Board> selectBoardDetail(HashMap<String, Object> map);
+	public List<Board> selectBoardOne(HashMap<String, Object> map);
 	
 	//누적 질문 수
 	public int selectBoardCount();
