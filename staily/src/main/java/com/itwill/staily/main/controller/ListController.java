@@ -85,7 +85,7 @@ public class ListController {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "forward:/main/main";
+		return "/main/main";
 	}
 	
 }
