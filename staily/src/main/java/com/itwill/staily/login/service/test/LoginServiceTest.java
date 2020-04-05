@@ -63,7 +63,7 @@ public class LoginServiceTest {
 	
 	@Test
 	@Ignore
-	public void signMember() {
+	public void signMember() throws Exception {
 		Member member = new Member();
 		member.setmId("제이유닛테스뚜아이디");
 		member.setmPw("1111");
@@ -78,7 +78,7 @@ public class LoginServiceTest {
 	
 	@Test
 	@Ignore
-	public void signCompany() {
+	public void signCompany() throws Exception {
 		Member member = new Member();
 		member.setmId("제이유닛테스뚜기업");
 		member.setmPw("1111");

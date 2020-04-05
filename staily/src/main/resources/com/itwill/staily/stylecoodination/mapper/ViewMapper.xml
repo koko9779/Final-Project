@@ -11,13 +11,14 @@
 	      ON B.m_no = M.m_no
 	      WHERE B.b_type = 'S'
 	      AND B.b_step = 1
+	      AND B.b_date >= SYSDATE - 7
 	      ORDER BY B.b_view DESC, B.b_no DESC)
 	WHERE ROWNUM &lt;= 10
 	<!-- 10보다 작거나 같다 -->
 </select>
 
 <select id="selectBoardAll" resultType="Board">
-	SELECT B.b_title, B.b_date, B.b_view, B.b_groupno, M.m_id
+	SELECT B.b_no, B.b_title, B.b_date, B.b_view, B.b_groupno, M.m_id
 	FROM board B
 	JOIN member M
 	ON B.m_no = M.m_no
@@ -25,17 +26,17 @@
 	AND B.b_step = 1
 	ORDER BY B.b_no DESC
 </select>
-<!--  
-<select id="selectBoardDetail" parameterType="HashMap" resultType="Board">
-	SELECT b.b_no, b.m_no, b.b_title, b.b_content,
-       b.b_view, b.b_recommend, bd.bd_image
-	FROM board b
-	LEFT JOIN board_detail bd 
-	ON (b.b_no = bd.b_no)
-	WHERE b_groupno = #{bGroupNo}
-	ORDER BY b_groupno ASC, b_step ASC
+
+<select id="selectBoardOne" parameterType="int" resultType="Board">
+	SELECT B.b_no, B.m_no, B.b_title, B.b_content,
+	       B.b_view, B.b_recommend, B.b_date, M.m_id
+	FROM board B
+	JOIN member M
+	ON (b.m_no = m.m_no)
+	WHERE b_groupno = #{bNo]
+	ORDER BY b_step ASC
 </select>
--->
+
 <select id="selectBoardCount" resultType="int">
 	SELECT count(*)
 	FROM board
