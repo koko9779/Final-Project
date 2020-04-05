@@ -11,7 +11,7 @@ function bookmark_create(mNo,pNo){
 	var bookmark_form = document.getElementById('bookmark_create_'+pNo);
 	alert(mNo+" "+pNo);
 	alert(bookmark_form);
-	bookmark_form.action = "bookmark_create";
+	bookmark_form.action = "bookmark_create/";
 	bookmark_form.submit();
 }
 </script>
