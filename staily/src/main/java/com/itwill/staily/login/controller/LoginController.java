@@ -35,19 +35,30 @@ public class LoginController {
 		return "login/login";
 	}
 	
+	//에러 떳을 시 부분 아작스
 	@RequestMapping(value = "/login_action", method = RequestMethod.POST)
-	public String login_action_post(@RequestParam String userId, String userPw, HttpSession session) {
+	public String login_action_post(@RequestParam String userId, String userPw, HttpSession session, Model model) {
+		String forwardPath = "";
 		Member member = new Member();
 		Member successMember;
 		member.setmId(userId);
 		member.setmPw(userPw);
 		
-		successMember = loginService.login(member);
-		
-		session.setAttribute("userId", successMember.getmId());
-		session.setAttribute("userNo", successMember.getmNo());
-		
-		return "login/main";
+		try {
+			successMember = loginService.login(member);
+			session.setAttribute("userId", successMember.getmId());
+			session.setAttribute("userNo", successMember.getmNo());
+			
+			forwardPath = "login/main(홈페이지 메인)";
+		} catch (FailSigninException e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			forwardPath = "login/login";
+		} catch (Exception e) {
+			e.printStackTrace();
+			forwardPath = "에러...";
+		}
+		return forwardPath;
 	}
 	
 	@RequestMapping(value = "/logout_action")
@@ -69,12 +80,20 @@ public class LoginController {
 	//아작스...?
 	@RequestMapping(value = "/find_id_action", method = RequestMethod.POST)
 	public String find_id_action_post(@RequestParam String name, String phone, Model model) {
+		String forwardPath = "";
 		String findId = "login/find_id";
 		
-		findId = loginService.findId(phone, name);
-		model.addAttribute("findId", findId);
+		try {
+			findId = loginService.findId(phone, name);
+			model.addAttribute("findId", findId);
+			
+			forwardPath = "";
+		} catch (Exception e) {
+			e.printStackTrace();
+			forwardPath = "/에러페이지..";
+		}
 		//알럿창으로 띄우기 id 보여주기...
-		return "";
+		return forwardPath;
 	}
 
 	@RequestMapping(value = "/find_pw")

@@ -1,5 +1,6 @@
 package com.itwill.staily.stylecoodination.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,29 +20,38 @@ public class StyleCoodinationController {
 	
 	@RequestMapping("/style_main")
 	public String style_main(Model model) {
-		List<Board> boardTop10;
-		List<Board> boardList;
+		List<Board> boardTop10 = new ArrayList<Board>();
+		List<Board> data = new ArrayList<Board>();;
 		int boardCount = 0;
 		int replyCount = 0;
 		
 		boardTop10 = styleCoodinationService.findBoardTop10();
-		boardList = styleCoodinationService.findBoardAll();
+		data = styleCoodinationService.findBoardAll();
 		boardCount = styleCoodinationService.findBoardCount();
 		replyCount = styleCoodinationService.findBoardReplyCount();
 		
 		model.addAttribute("boardTop10", boardTop10);
-		model.addAttribute("boardList", boardList);
+		model.addAttribute("data", data);
 		model.addAttribute("boardCount", boardCount);
 		model.addAttribute("replyCount", replyCount);
 		
 		return "style/style_main";
 	}
 	
-	@RequestMapping("style_view")
-	public String style_view(@RequestParam int bNo) {
-		styleCoodinationService.findBoardOne(bNo);
-		return "";
+	// 구현 차분히 생각해보고 나머지 작업하기
+	@RequestMapping("/style_view")
+	public String style_view(@RequestParam int bNo, Model model) {
+		List<Board> boardOneList = new ArrayList<Board>();
+		
+		boardOneList = styleCoodinationService.findBoardOne(bNo);
+		model.addAttribute("boardOneList", boardOneList);
+		
+		return "forward:WEB-INF/views/style/style_view.jsp?bNo="+bNo;
 	}
+	
+	
+	
+	
 	
 	
 }
