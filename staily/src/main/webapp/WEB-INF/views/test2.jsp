@@ -6,30 +6,61 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
 
+function booklist(bmNo){
+	var book_form = document.getElementById("f_"+bmNo);
+	book_form.action = "bookmark_delete";
+	book_form.submit();
+};
+
+function member_list(){
+	document.getElementById("member_list").action = "bookmark_list";
+	document.getElementById("member_list").submit();
+}
+</script>
 </head>
 <body>
 	<h1>MypageTest</h1>
+	
+	<!-- 회원정보 -> 북마크 리스트 -->
+	<form id="member_list">
+		<input type="hidden" name="mNo" value="${member.mNo}">
+		<input type="button" value="북마크" onclick="member_list()">
+	
+	</form>
+	
 	<!-- 북마크 리스트 출력페이지 -->
 	<h3>북마크 리스트 출력</h3>
-		<c:choose>
-			<c:when test="${bookmarkList.size() != 0}">
-				<c:forEach var="book" items="${bookmarkList}">
-					<div>
-						북마크번호 :${book.bmNo}
-						회원번호 :${book.member.mNo}
-						상품번호 :${book.product.pNo}
-						상품장면 :${book.product.pScene}
-						회원아이디 :${book.member.mId}
-					</div>
-				</c:forEach>
-			</c:when>
-			<c:otherwise>
-				<div>
-					즐겨찾기 목록이 없습니다
-				</div>
-			</c:otherwise>
-		</c:choose>
+	
+	<c:forEach var="book" items="${bookmarkList}">
+		<form id="f_${book.bmNo}" method="GET">
+			bmNo<input type="text" name="bmNo" value="${book.bmNo}"><br>
+			mNo<input type="text" name="mNo" value="${book.member.mNo}"><br>
+			pNo<input type="text" name="pNo" value="${book.product.pNo}"><br>
+			mId<input type="text" name="mId" value="${book.member.mId}"><br>
+			pSence<input type="text" name="pSence" value="${book.product.pScene}"><br>
+			<input type="button" value="delete" onClick="booklist(${book.bmNo})">
+		</form>
+	</c:forEach>
+	
+	<!--  
+	<form name="r5" method="get">
+		mNo <input type="text" name="mNo"><br>
+		wNo <input type="text" name="wNo"><br>
+		pName <input type="text" name="pName"><br>
+		pPrice <input type="text" name="pPrice"><br>
+		pUrl <input type="text" name="pUrl"><br>
+		pAddress <input type="text" name="pAddress"><br>
+		pDaddress <input type="text" name="pDaddress"><br>
+		pCheck <input type="text" name="pCheck"><br>
+		pView <input type="text" name="pView"><br>
+		pScene <input type="text" name="pScene"><br>
+		<input type="button" value="createProduct" onClick="createProduct()">
+	</form>
+	-->	
+		
+		
 	<!-- 멤버 정보 출력 -->
 	<h3>멤버 정보 출력</h3>
 	<div>
