@@ -6,6 +6,7 @@
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
 
+
 <html>
 <head>
 </head>

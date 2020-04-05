@@ -34,7 +34,8 @@ public class ProductDetailController {
 		
 		mv.setViewName("commons/shortcodes");
 		
-		return mv;		
+		return mv;
+		
 	}	
 	
 	/*
