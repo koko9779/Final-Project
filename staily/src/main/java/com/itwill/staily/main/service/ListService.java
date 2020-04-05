@@ -9,7 +9,10 @@ import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
 
 public interface ListService {
-	
+	//작품상세페이지 작품정보(작품이름,작품 포스터) 출력 
+	public Work selectWorkOne(int wNo);
+	//총회차 출력
+	public int selectTepisode(int wNo);
 	//작품상세페이지 상품리스트 출력(기업)
 	public List<Work> selectCProductList(int wNo) throws Exception;
 	//작품상세페이지 상품리스트 출력(일반)

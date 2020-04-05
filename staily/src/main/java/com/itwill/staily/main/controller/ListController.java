@@ -29,6 +29,10 @@ public class ListController {
 	public String test2(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
 			
+			Work w = listService.selectWorkOne(1);
+			request.setAttribute("w", w);
+			int tepisode = listService.selectTepisode(1);
+			request.setAttribute("tepisode", tepisode);
 			/*
 			 * wNo값을 받아서 상품뽑아내기
 			 * wdEpisode 값이 null이라면 일반정렬

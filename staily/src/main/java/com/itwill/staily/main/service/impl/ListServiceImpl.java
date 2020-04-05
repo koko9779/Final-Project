@@ -74,6 +74,16 @@ public class ListServiceImpl implements ListService{
 		return listMapper.selectProductCount();
 	}
 
+	@Override
+	public Work selectWorkOne(int wNo) {
+		return workDetailMapper.selectWorkOne(wNo);
+	}
+
+	@Override
+	public int selectTepisode(int wNo) {
+		return workDetailMapper.selectTepisode(wNo);
+	}
+
 
 
 
