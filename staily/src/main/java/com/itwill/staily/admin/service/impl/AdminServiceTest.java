@@ -67,7 +67,7 @@ public class AdminServiceTest {
 	
 	@Test
 	@Ignore
-	public void loginTest() { 
+	public void loginTest() throws Exception { 
 		Member member = new Member();
 		member.setmId("hiphopmy");
 		member.setmPw("1234");
