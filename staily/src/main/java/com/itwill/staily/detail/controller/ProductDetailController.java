@@ -15,11 +15,12 @@ import com.itwill.staily.detail.service.ProductDetailService;
 
 @SuppressWarnings("unused")
 @Controller
+@RequestMapping("/detail")
 public class ProductDetailController {
 	@Autowired
 	private ProductDetailService productDetailService;
 	
-	@RequestMapping("/detailtest")
+	@RequestMapping("/detail")
 	public ModelAndView selectProductOne(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		
