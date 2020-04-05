@@ -59,8 +59,11 @@ public class MypageController {
 	
 	//회원정보업데이트
 	@RequestMapping("/member_update")
-	public String member_update(HttpServletResponse response, HttpServletRequest request) throws Exception {
-		Integer mNo =(Integer)request.getAttribute("mNo");
+	public String member_update(HttpServletResponse response, HttpServletRequest request, Model model) throws Exception {
+		//Integer mNo =(Integer)request.getAttribute("mNo");
+		String mNoStr = request.getParameter("mNo");
+		Integer mNo = Integer.parseInt(mNoStr);
+		System.out.println(mNo);
 		Member member = new Member(mNo, 
 									request.getParameter("mId"), 
 									request.getParameter("mPw"), 
@@ -70,9 +73,8 @@ public class MypageController {
 									request.getParameter("mEmail"), 
 									request.getParameter("mType"), 
 									request.getParameter("mPhone"));
-		System.out.println(member);
+		
 		boolean result = mypageService.updateMember(member);
-		System.out.println(result);
 		request.setAttribute("mNo", mNo);
 	
 		return "forward:/mypage/member_select";
