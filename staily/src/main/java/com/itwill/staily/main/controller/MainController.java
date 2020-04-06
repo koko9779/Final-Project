@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.staily.main.service.ListService;
@@ -98,29 +99,8 @@ public class MainController {
 		return "maintest2";
 	}
 
-	@RequestMapping("/create_bookmark")
-	public String createBookmark(@RequestParam int mNo, @RequestParam int pNo) {
-		try {
-			//(Integer)request.getAttribute("");
-			//String mNo = request.getParameter("mNo");
-			Map map1 = new HashMap();
-			//int mNo = (Integer)request.getAttribute("mNo");
-			//int pNo = (Integer)request.getAttribute("pNo");
-			System.out.println(mNo+" "+pNo);
-			map1.put("mNo", mNo);
-			map1.put("pNo", pNo);
-			int success = listService.createBookmark(map1);
-			System.out.println(success);
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "forward:/main/index";
-	}
-	
-//	@RequestMapping("/bookmark_create")
-//	@ResponseBody
-//	public String bookmarkCreate(@RequestParam int mNo, @RequestParam int pNo) {
+//	@RequestMapping("/create_bookmark")
+//	public String createBookmark(@RequestParam int mNo, @RequestParam int pNo) {
 //		try {
 //			//(Integer)request.getAttribute("");
 //			//String mNo = request.getParameter("mNo");
@@ -136,8 +116,30 @@ public class MainController {
 //		}catch (Exception e) {
 //			e.printStackTrace();
 //		}
-//		return "forward:/worklist";
+//		return "forward:/main/index";
 //	}
+	
+	@ResponseBody
+	@RequestMapping(value="/create_bookmark", produces = "text/plain;charset=UTF-8")
+	public String createBookmark(@RequestParam int mNo, @RequestParam int pNo) throws Exception{
+		String result = "false";
+		try {
+			
+			Map map1 = new HashMap();
+			map1.put("mNo", mNo);
+			map1.put("pNo", pNo);
+			int success = listService.createBookmark(map1);
+			if(success==1) {
+				result = "true";
+			}else {
+				result = "false";
+			}
+			
+		}catch (Exception e) {
+			result = "false";
+		}
+		return result;
+	}
 	
 	@RequestMapping("/delete_bookmark")
 	public String deleteBookmark(@RequestParam int bmNo) {
