@@ -3,8 +3,10 @@
 <mapper namespace="com.itwill.staily.detail.mapper.ReplyMapper">
 	<select id="selectReplyList" parameterType="int" 
 		resultType="com.itwill.staily.detail.model.dto.Reply">
-		select r_no, p_no, m_no, r_content, r_recommend, r_report
-		from reply
+		select r.r_no, r.p_no, r.m_no, m.m_name, r.r_content, r.r_recommend, r.r_report
+		from reply r
+		inner join member m
+		on r.m_no = m.m_no
 		where p_no = #{pNo}
 	</select>
 	

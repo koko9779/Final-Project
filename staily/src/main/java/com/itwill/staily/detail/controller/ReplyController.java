@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.staily.detail.model.dto.Reply;
@@ -16,8 +16,9 @@ import com.itwill.staily.mypage.mapper.FriendMapper;
 import com.itwill.staily.mypage.model.dto.Friend;
 import com.itwill.staily.mypage.service.FriendService;
 
-@Controller
 @SuppressWarnings("unused")
+@RestController
+@RequestMapping("detail")
 public class ReplyController {
 	@Autowired
 	private ReplyService replyService;
@@ -29,29 +30,26 @@ public class ReplyController {
 		
 	}
 	
-	
-	
-	/*
-	@RequestMapping("/detailtest")
+	@RequestMapping("/reply_list")
 	public ModelAndView selectReplyList(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		
 		try {
-			List<Reply> rL = replyService.selectReplyList(2);
+			List<Reply> rL = replyService.selectReplyList(1);
 			request.setAttribute("replyList", rL);
 			
-			Reply sR = replyService.selectReplyOne  szdawsd(22);
+			Reply sR = replyService.selectReplyOne(22);
 			request.setAttribute("replyOne", sR);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		mv.setViewName("detailtest");
+		mv.setViewName("detail/reply_list");
 		
 		return mv;		
-	}	
-	*/
+	}
+	
 	/*
 	@RequestMapping("/createReply")
 	public ModelAndView selectReplyOne(HttpServletRequest request, HttpServletResponse response) {
