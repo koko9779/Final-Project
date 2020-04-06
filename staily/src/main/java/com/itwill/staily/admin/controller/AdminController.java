@@ -53,7 +53,7 @@ public class AdminController {
 		return "admin/index";
 	}
 	
-	@RequestMapping("/admin_member")
+	@RequestMapping("/admin_member.do")
 	public String memberAdminForm(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			List<Member> memberList = new ArrayList();
@@ -64,7 +64,7 @@ public class AdminController {
 		}
 		return "/admin/member";
 	}
-	@RequestMapping("/admin_delete")
+	@RequestMapping("/admin_delete.do")
 	public String memberAdminDelete(HttpServletRequest request) {
 		try {
 			int mNo= Integer.parseInt(request.getParameter("mNo"));
@@ -80,7 +80,7 @@ public class AdminController {
 		
 		return "/admin/member";
 	}
-	@RequestMapping("/admin_product")
+	@RequestMapping("/admin_product.do")
 	public String productAdminForm(HttpServletRequest request) {
 		try {
 			List<Product> productList= new ArrayList();
