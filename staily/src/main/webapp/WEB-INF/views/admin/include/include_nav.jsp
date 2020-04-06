@@ -51,19 +51,19 @@
       </li>
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="admin_member.do">
+        <a class="nav-link" href="/admin_member.do/">
           <i class="fas fa-fw fa-table"></i>
           <span>회원리스트</span></a>
       </li>
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="admin_product.do">
+        <a class="nav-link" href="/admin_product">
           <i class="fas fa-fw fa-table"></i>
           <span>상품리스트</span></a>
       </li>
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="admin_work.do">
+        <a class="nav-link" href="/admin_work">
           <i class="fas fa-fw fa-table"></i>
           <span>작품리스트</span></a>
       </li>

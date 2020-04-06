@@ -32,8 +32,8 @@
 
 			<div class="container">
 				<div class="navbar-header">
-					<a href="index.html" class="logo" title="Craft beer landing page">
-						<img src="images/logo.svg" alt="Craft Beer HTML Template">
+					<a href="index.jsp" class="logo" title="Craft beer landing page">
+						<img src="${pageContext.request.contextPath}/images/staily-logo.png" alt="Craft Beer HTML Template">
 					</a>
 					<button type="button" class="navbar-toggle" data-toggle="collapse"
 						data-target=".navbar-collapse">
