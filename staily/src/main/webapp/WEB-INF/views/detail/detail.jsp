@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/include_css.jsp"%>
+<%@ include file="/WEB-INF/views/include/include_css_detail.jsp"%>
 <%@ include file="/WEB-INF/views/include/include_js.jsp"%>
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
@@ -28,85 +28,55 @@
 
 </div>
 
+<!-- Section -->
+<div class="container section news">
+	<div class="row">
+		<div class="col-sm-12">
+			<h2>이 상품이 나온 장면</h2>
+			<hr class="space-40" />
+			<div class="row">
+				<!--  
+				<img src="${pageContext.request.contextPath}${productOne.get(0).getpScene()}">
+				-->
+				<img src="${pageContext.request.contextPath}/images/product/scene/1.jpg">
+			</div>
+		</div>
+	</div>
+</div>
+
 
 <!-- Section -->
 <div class="container section news">
 	<div class="row">
 		<div class="col-sm-12">
 			<h2>상품 사진</h2>
-			<hr class="space-40" />
+			<hr class="space-40"/>
 			<div class="row">
 				<div class="col-sm-12">
-
 					<div class="slick-carousel news-carousel">
-						<div>
-							<div class="movie-poster">
-								<aside>
-									<div>
-										<a href="#" class="play"> <i class="material-icons">link</i>
-										</a> <a href="single-movie.html" class="read-more">read more</a>
-									</div>
-								</aside>
-								<a href="#"> <img src="http://via.placeholder.com/360x225"
-									alt="Lorem ipsum delor sit amet">
-								</a>
-							</div>
-							<span class="date">8 March, 2017</span>
-							<h4>Lorem ipsum delor sit amet</h4>
-							<p>Classified advertising is a form of advertising that is
-								particularly common in newspapers and other periodicals.</p>
-						</div>
-						<div>
-							<div class="movie-poster">
-								<aside>
-									<div>
-										<a href="#" class="play"> <i class="material-icons">link</i>
-										</a> <a href="single-movie.html" class="read-more">read more</a>
-									</div>
-								</aside>
-								<a href="#"> <img src="http://via.placeholder.com/360x225"
-									alt="Lorem ipsum delor sit amet">
-								</a>
-							</div>
-							<span class="date">2 March, 2017</span>
-							<h4>Lorem ipsum delor sit amet</h4>
-							<p>Classified advertising is a form of advertising that is
-								particularly common in newspapers and other periodicals.</p>
-						</div>
-						<div>
-							<div class="movie-poster">
-								<aside>
-									<div>
-										<a href="#" class="play"> <i class="material-icons">link</i>
-										</a> <a href="single-movie.html" class="read-more">read more</a>
-									</div>
-								</aside>
-								<a href="#"> <img src="http://via.placeholder.com/360x225"
-									alt="Lorem ipsum delor sit amet">
-								</a>
-							</div>
-							<span class="date">14 February, 2017</span>
-							<h4>Lorem ipsum delor sit amet</h4>
-							<p>Classified advertising is a form of advertising that is
-								particularly common in newspapers and other periodicals.</p>
-						</div>
-						<div>
-							<div class="movie-poster">
-								<aside>
-									<div>
-										<a href="#" class="play"> <i class="material-icons">link</i>
-										</a> <a href="single-movie.html" class="read-more">read more</a>
-									</div>
-								</aside>
-								<a href="#"> <img src="http://via.placeholder.com/360x225"
-									alt="Lorem ipsum delor sit amet">
-								</a>
-							</div>
-							<span class="date">2 March, 2017</span>
-							<h4>Lorem ipsum delor sit amet</h4>
-							<p>Classified advertising is a form of advertising that is
-								particularly common in newspapers and other periodicals.</p>
-						</div>
+						
+						<c:forEach var="product" items="${productOne}">
+							<!--  
+							<c:out value="${product.pdImage }"/>
+							-->					
+							<div>
+								<img src="${pageContext.request.contextPath}${product.pdImage}">
+							</div>	
+						</c:forEach>
+						<!--  
+							<div>
+								<img src="${pageContext.request.contextPath}/images/product/image/1_1.jpg">
+							</div>						
+							<div>
+								<img src="${pageContext.request.contextPath}/images/product/image/1_2.jpg">
+							</div>						
+							<div>
+								<img src="${pageContext.request.contextPath}/images/product/image/1_3.jpg">
+							</div>						
+							<div>
+								<img src="${pageContext.request.contextPath}/images/product/image/1_4.jpg">
+							</div>						
+							-->					
 					</div>
 				</div>
 			</div>
@@ -118,8 +88,6 @@
 <div class="container section news">
 	<div class="row">
 		<div class="col-sm-12">
-			<h2>Tabs</h2>
-			<hr class="space-40" />
 			<div class="row">
 				<div class="col-sm-5" style="width: auto;">
 					<div class="tabs">
@@ -147,14 +115,6 @@
 								대충 지도가 있다는 내용<br>
 							</div>
 						</c:if>
-						<div id="reply_list">
-							<c:forEach var="replyList" items="${replyList}">
-								<c:out value="${replyList.getmName()}"></c:out><br>
-								<c:out value="${replyList.getrContent()}"></c:out><br>
-								<c:out value="${replyList.getrRecommend()}"></c:out><br>
-								<c:out value="${replyList.getrReport()}"></c:out><br>
-							</c:forEach>
-						</div>
 					</div>
 				</div>
 			</div>
