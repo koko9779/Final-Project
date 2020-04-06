@@ -49,7 +49,7 @@ public class LoginServiceTest {
 	
 	@Test
 	public void isIdExist() throws Exception {
-		assertEquals(1, loginService.isIdExist("ehdanf91", "01091434908"));
+		assertEquals(1, loginService.isIdExistForPw("ehdanf91", "01091434908"));
 	}
 	
 	@Test
