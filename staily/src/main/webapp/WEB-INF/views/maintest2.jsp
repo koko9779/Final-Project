@@ -5,41 +5,44 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <script type="text/javascript">
+
 /*
-function ajax_bookmark_create(mNo,pNo){
-	var bookmark_form = document.getElementById('bookmark_'+pNo);
-	
-	//1. XMLHttpRequest객체생성
-	
-	xhr=new XMLHttpRequest();
-	
-	//2. 요청속성설정 
-	
-	var method='GET';
-	var params ='mNo='+mNo+'&pNo='+pNo;
-	var url='maintest2?'+params;
-	var async = true;
-	xhr.open(method, url, async);
-	
-	//응답이 도착했을때 실행되는 콜백함수등록
-	
-	xhr.onreadystatechange = responseCallBack;
-	
-	//3.요청
-	
-	xhr.send(null);
-	
-	bookmark_form.action = "bookmark_create";
-	bookmark_form.submit();
-}
-*/
-function bookmark_create(mNo,pNo){
+function create_bookmark(mNo,pNo){
 	var bookmark_form = document.getElementById('bookmark_'+pNo);
 	alert(mNo+" "+pNo);
 	alert(bookmark_form);
-	bookmark_form.action = "bookmark_create";
+	bookmark_form.action = "create_bookmark";
 	bookmark_form.submit();
+}
+*/
+function displayWorkListHTML(){
+	if(xhr.readyState==4){
+		if(xhr.status==200){
+			var html = xhr.responseText;
+			console.log(html);
+			if(html.trim()=='true'){
+				document.getElementById('heart').innerHTML = html;
+			}
+		}
+	}
+}
+function create_bookmark(mNo,pNo){
+	var bookmark_form = document.getElementById('bookmark_'+pNo);
+	bookmark_form.addEventListener('click',function(e){
+		var url = 'create_bookmark';
+		var params = 'mNo='+bookmark_form.mNo.value+'&'+
+					 'pNo='+bookmark_form.pNo.value;
+		console.log(params);
+		var callback = displayWorkListHTML;
+		var method = 'POST';
+		var async = true;
+		
+		sendRequest('create_bookmark', params, callback, method, async);
+		e.preventDefault();
+	});
+	
 }
 
 </script>
@@ -57,7 +60,7 @@ function bookmark_create(mNo,pNo){
 	</div>	
 	<h2>상품리스트 출력(기업)</h2>
 	<c:forEach var="cw" items="${cw}">
-		<form id="bookmark_${cw.product[0].pNo}" method="get">
+		<form id="bookmark_${cw.product[0].pNo}">
 			<input type="hidden" value="${mNo}" name="mNo">
 			<input type="hidden" value="${cw.product[0].pNo}" name="pNo">
 			에피소드:<c:out value="${cw.wdEpisode}"/>
@@ -65,7 +68,10 @@ function bookmark_create(mNo,pNo){
 			장면(이미지):<c:out value="${cw.product[0].pScene}"/>
 			작성자:<c:out value="${cw.product[0].mId}" />
 			조회수:<c:out value="${cw.product[0].pView}" />
-			<input type="button" value="즐겨찾기" onclick="bookmark_create(${mNo},${cw.product[0].pNo})">
+			<div id="heart">
+				즐찾=
+			</div>
+			<input type="button" value="즐겨찾기" onclick="create_bookmark(${mNo},${cw.product[0].pNo})">
 		</form>
 	</c:forEach>
 	<br/>
@@ -113,6 +119,6 @@ function bookmark_create(mNo,pNo){
 	<div>
 		${pCnt}건
 	</div>
-	
+<script src="${pageContext.request.contextPath}/js/httpRequest.js" type="text/javascript"></script>
 </body>
 </html>

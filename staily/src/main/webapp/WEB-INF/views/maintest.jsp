@@ -8,7 +8,8 @@
 <script>
 function bookmark_remove(bmNo){
 	var bookmark_form = document.getElementById('bookmark_'+bmNo);
-	bookmark_form.action = "bookmark_remove";
+	alert(bmNo);
+	bookmark_form.action = "delete_bookmark";
 	bookmark_form.submit();
 }
 </script>
@@ -18,11 +19,12 @@ function bookmark_remove(bmNo){
 	<h1>회원번호 ${mNo}의 즐겨찾기 목록</h1>
 	<c:forEach var="bm" items="${bmList}">
 		<form id="bookmark_${bm.bmNo}" method="get">
-			<c:out value="북마크번호:${bm.bmNo}" />
-			<c:out value="상품번호:${bm.product.pNo}" />
-			<c:out value="상품이름:${bm.product.pName}" />
-			<c:out value="작품장면:${bm.product.pScene}" />
-			<input type="button" value="즐겨찾기 제거" onclick="bookmark_remove(${bmNo})">
+			<input type="hidden" value="${bm.bmNo}" name="bmNo"/>
+			북마크번호:<c:out value="${bm.bmNo}"/>
+			상품번호:<c:out value="${bm.product.pNo}" />
+			상품이름:<c:out value="${bm.product.pName}" />
+			작품장면:<c:out value="${bm.product.pScene}" />
+			<input type="button" value="즐겨찾기 제거" onclick="bookmark_remove(${bm.bmNo})">
 		</form>
 	</c:forEach>
 	<br />
