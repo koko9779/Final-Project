@@ -55,11 +55,11 @@ public class LoginController {
 		} catch (NoExistedIdException e) {
 				e.printStackTrace();
 				model.addAttribute("msg", e.getMessage());
-				forwardPath = "redirect:login/login_error_id";
+				forwardPath = "login/login";
 		} catch (PasswordMissmatchException e) {
 			e.printStackTrace();
 			model.addAttribute("msg", e.getMessage());
-			forwardPath = "redirect:login/login_error_ps";
+			forwardPath = "login/login";
 		} catch (Exception e) {
 			e.printStackTrace();
 			forwardPath = "에러...";
@@ -113,7 +113,7 @@ public class LoginController {
 		int successCount = 0;
 		
 		try {
-			successCount = loginService.isIdExist(id, phone);
+			successCount = loginService.isIdExistForPw(id, phone);
 			if(successCount == 1) {
 				forwardPath = "login/modify_pw";
 			}else {

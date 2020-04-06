@@ -27,6 +27,7 @@ public class LoginServiceImpl implements LoginService {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
 	@Override
 	public Member login(Member member) throws Exception { 
 		String pw;
@@ -64,9 +65,13 @@ public class LoginServiceImpl implements LoginService {
 		return id;
 	}
 	
+	public int isExistedId(String mId) throws Exception {
+		return loginCommonMapper.isExistedId(mId);
+	}
+	
 	/************************** 비밀번호 찾기 **************************/
 	@Override
-	public int isIdExist(String mId, String mPhone) throws Exception{
+	public int isIdExistForPw(String mId, String mPhone) throws Exception{
 		int count = 0;
 		int existCount = 0;
 		HashMap<String, Object> map = new HashMap<String, Object>();

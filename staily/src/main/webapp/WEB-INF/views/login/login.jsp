@@ -6,6 +6,17 @@
 <html>
 
 <head>
+<style>
+  .error_msg {
+    float: right;
+    font-size: 12px;
+    color: red;
+  }
+  
+  #id_margin{
+  	margin-bottom: 9px;
+  }
+</style>
   <!-- Bootstrap core JavaScript-->
   <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/css/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -22,6 +33,13 @@
 
   <!-- Page level custom scripts -->
   <script src="${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
+  <script type="text/javascript">
+  	function login_action() {
+  		document.f.action="login_action";
+  		document.f.method="POST";
+  		document.f.submit();
+  	}
+  </script>
 </head>
 
 <body class="bg-gradient-primary">
@@ -43,20 +61,24 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
-                  <form class="user">
-                    <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                  <form class="user" name="f">
+                    <div class="form-group" id="id_margin">
+                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="userId">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" name="userPw">
                     </div>
+                    <div class="error_msg" id="error_msg">
+                    	${msg}
+                    </div>
+                    
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
                         <input type="checkbox" class="custom-control-input" id="customCheck">
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
-                    <a href="index.html" class="btn btn-primary btn-user btn-block">
+                    <a href="javascript:login_action();" role="button" class="btn btn-primary btn-user btn-block">
                       Login
                     </a>
                     <hr>
