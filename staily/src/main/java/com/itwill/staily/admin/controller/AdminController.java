@@ -64,7 +64,17 @@ public class AdminController {
 		}
 		return "/admin/member";
 	}
-	
+	@RequestMapping("/admin_delete")
+	public String memberAdminDelete(HttpServletRequest request) {
+		try {
+			int mNo= Integer.parseInt(request.getParameter("mNo"));
+			System.out.println(mNo+"뭐가문제냐아!");
+			adminService.deleteMember(mNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "/";
+	}
 	@RequestMapping
 	public String memberAdminUpdate() {
 		

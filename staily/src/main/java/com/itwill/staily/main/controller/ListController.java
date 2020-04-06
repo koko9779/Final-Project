@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.staily.main.service.ListService;
@@ -19,6 +20,7 @@ import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
 
 @Controller
+@RequestMapping("/main")
 public class ListController {
 	@Autowired
 	private ListService listService;
@@ -26,7 +28,7 @@ public class ListController {
 	public ListController() {
 		
 	}
-	@RequestMapping("/main/worklist")
+	@RequestMapping("/worklist")
 	public String workList(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		try {
 			
@@ -68,7 +70,7 @@ public class ListController {
 		return "maintest2";
 	}
 
-	@RequestMapping("/main/bookmark_create")
+	@RequestMapping("/bookmark_create")
 	public String bookmarkCreate(@RequestParam int mNo, @RequestParam int pNo) {
 		try {
 			//(Integer)request.getAttribute("");
@@ -88,4 +90,37 @@ public class ListController {
 		return "forward:/main/main";
 	}
 	
+//	@RequestMapping("/bookmark_create")
+//	@ResponseBody
+//	public String bookmarkCreate(@RequestParam int mNo, @RequestParam int pNo) {
+//		try {
+//			//(Integer)request.getAttribute("");
+//			//String mNo = request.getParameter("mNo");
+//			Map map1 = new HashMap();
+//			//int mNo = (Integer)request.getAttribute("mNo");
+//			//int pNo = (Integer)request.getAttribute("pNo");
+//			System.out.println(mNo+" "+pNo);
+//			map1.put("mNo", mNo);
+//			map1.put("pNo", pNo);
+//			int success = listService.createBookmark(map1);
+//			System.out.println(success);
+//			
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return "forward:/worklist";
+//	}
+	
+	@RequestMapping("/bookmark_remove")
+	public String bookmarkCreate(@RequestParam int bmNo) {
+		try {
+
+			int success = listService.deleteBookmark(bmNo);
+			System.out.println(success);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "forward:/main/main";
+	}
 }

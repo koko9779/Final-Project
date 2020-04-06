@@ -2,11 +2,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
 <%@ include file="/WEB-INF/views/admin/include/include_top.jsp" %>
+
 <html>
 
 <head>
 </head>
-
+<script type="text/javascript">
+function member_delete(mNo) {
+	var updateForm = document.getElementById("member_"+mNo);
+	console.log(updateForm);
+	updateForm.action="admin_delete";
+	updateForm.method="POST";
+	updateForm.submit;
+};
+</script>
 <body id="page-top">
 
   <!-- Page Wrapper -->
@@ -81,18 +90,24 @@
                       <th>이메일</th>
                       <th>가입일</th>
                       <th>회원구분</th>
+                      <th>회원수정</th>
+                      <th>회원탈퇴</th>
                     </tr>
                   </thead>
                   <tbody>
                   	<c:forEach var="member" items="${data }">
-                  	 <tr style = "cursor:pointer;" onClick = " location.href='admin/${member.mNo}'">
+                  	<form id="member_${member.mNo}" >
+                  	 <tr>
                   	  <td>${member.mNo}</td>
                       <td>${member.mId}</td>
                       <td>${member.mName}</td>
                       <td>${member.mEmail}</td>
                       <td>${member.mAddress}</td>
                       <td>${member.mType}</td>
+                      <td><input type="button" value="회원수정" onclick="member_update(${member.mNo})"></td>
+                      <td><input type="button" value="회원탈퇴" onclick="member_delete(${member.mNo})"></td>
                     </tr>
+                    </form>
                   	</c:forEach>
                   </tbody>
                 </table>
@@ -163,7 +178,6 @@
 
   <!-- Page level custom scripts -->
   <script src="../../../${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
-
 </body>
 
 </html>
