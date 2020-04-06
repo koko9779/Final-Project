@@ -31,6 +31,7 @@ public class LoginController {
 		return "login/login";
 	}
 	
+	
 	@RequestMapping(value = "/login_action", method = RequestMethod.GET)
 	public String login_action_get() {
 		return "login/login";
