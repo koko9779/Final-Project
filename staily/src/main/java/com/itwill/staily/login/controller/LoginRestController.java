@@ -20,7 +20,7 @@ public class LoginRestController {
 		return errorMsg;
 	}
 	
-	@RequestMapping(value = "/login_error_id", produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/login_error_pw", produces = "text/plain;charset=UTF-8")
 	public String login_error_pw(@RequestParam String msg) {
 		String errorMsg = 
 		"<label id='user_pw-error' class='error' for='user_pw'>"+msg+"</label>";
