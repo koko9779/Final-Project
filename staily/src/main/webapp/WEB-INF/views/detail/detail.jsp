@@ -13,7 +13,7 @@
 <div id="content_hero"
 	style="background-image: url(http://via.placeholder.com/1440x435)">
 
-	<img src="images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
+	<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
 
 	<!-- Content -->
 	<div class="container">

@@ -6,16 +6,24 @@
 <html>
 
 <head>
+  <!-- Bootstrap core JavaScript-->
+  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
+  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="../../../${pageContext.request.contextPath}/css/admin/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="../../../${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
 </head>
-<script type="text/javascript">
-function member_delete(mNo) {
-	var updateForm = document.getElementById("member_"+mNo);
-	console.log(updateForm);
-	updateForm.action="admin_delete";
-	updateForm.method="POST";
-	updateForm.submit;
-};
-</script>
+
 <body id="page-top">
 
   <!-- Page Wrapper -->
@@ -96,7 +104,6 @@ function member_delete(mNo) {
                   </thead>
                   <tbody>
                   	<c:forEach var="member" items="${data }">
-                  	<form id="member_${member.mNo}" >
                   	 <tr>
                   	  <td>${member.mNo}</td>
                       <td>${member.mId}</td>
@@ -104,10 +111,9 @@ function member_delete(mNo) {
                       <td>${member.mEmail}</td>
                       <td>${member.mAddress}</td>
                       <td>${member.mType}</td>
-                      <td><input type="button" value="회원수정" onclick="member_update(${member.mNo})"></td>
-                      <td><input type="button" value="회원탈퇴" onclick="member_delete(${member.mNo})"></td>
+                      <td><input type="button" class="checkBtn" value="클릭" /></td>
+                      <td><input type="button" class="checkBTS" value="쿨럭" /></td>
                     </tr>
-                    </form>
                   	</c:forEach>
                   </tbody>
                 </table>
@@ -162,22 +168,28 @@ function member_delete(mNo) {
   </div>
 
 
-	<!-- Bootstrap core JavaScript-->
-  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
-  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+function member_delete(mNo) {
+	var updateForm = document.getElementById("member_"+mNo);
+	console.log(updateForm);
+	updateForm.action="admin_delete";
+	updateForm.method="POST";
+	updateForm.submit;
+};
 
-  <!-- Core plugin JavaScript-->
-  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="../../../${pageContext.request.contextPath}/css/admin/js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="../../../${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
+//버튼 클릭시 Row 값 가져오기
+$(".checkBtn").click(function(){ 
+    var str = ""
+    var tdArr = new Array();    
+    var checkBtn = $(this);
+    
+    var tr = checkBtn.parent().parent();
+    var td = tr.children();
+    
+    console.log(tr.text());
+    console.log(td.text())
+});
+</script>
 </body>
 
 </html>

@@ -224,6 +224,7 @@
 				</div>
 			</div>
 		</div>
+		
 	</div>
 <div class="container section remove-top-padding">
 		<div class="row">
