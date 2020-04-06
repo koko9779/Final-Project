@@ -28,20 +28,20 @@ public class AdminController {
 	
 	public AdminController() {
 	}
-//	@RequestMapping("/test")
-//	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		ModelAndView mv =new ModelAndView();
-//		try {
-//			Member member = adminService.selectMemberOne(1);
-//			List<Product>productList = adminService.selectProductAll();
-//			request.setAttribute("productList", productList);
-//			request.setAttribute("member", member);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		mv.setViewName("test");
-//		return mv;
-//	}
+	@RequestMapping("/test")
+	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mv =new ModelAndView();
+		try {
+			Member member = adminService.selectMemberOne(1);
+			List<Product>productList = adminService.selectProductAll();
+			request.setAttribute("productList", productList);
+			request.setAttribute("member", member);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.setViewName("/admin/register");
+		return mv;
+	}
 	/*
 	 만들어야할거...
 	 회원 ,작품, 상품 수정 form(아에 form.jsp도 만들어야함) action  
