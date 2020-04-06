@@ -13,7 +13,9 @@ function create_bookmark(mNo,pNo){
 	var bookmark_form = document.getElementById('bookmark_'+pNo);
 	alert(mNo+" "+pNo);
 	alert(bookmark_form);
+
 	bookmark_form.action = "create_bookmark";
+
 	bookmark_form.submit();
 }
 */
