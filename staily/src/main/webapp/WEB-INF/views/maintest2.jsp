@@ -70,9 +70,7 @@ function create_bookmark(mNo,pNo){
 			장면(이미지):<c:out value="${cw.product[0].pScene}"/>
 			작성자:<c:out value="${cw.product[0].mId}" />
 			조회수:<c:out value="${cw.product[0].pView}" />
-			<div id="heart">
-				즐찾=
-			</div>
+			<div id="heart" ><div/>
 			<input type="button" value="즐겨찾기" onclick="create_bookmark(${mNo},${cw.product[0].pNo})">
 		</form>
 	</c:forEach>
