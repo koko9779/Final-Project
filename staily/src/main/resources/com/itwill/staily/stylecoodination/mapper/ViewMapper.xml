@@ -28,12 +28,12 @@
 </select>
 
 <select id="selectBoardOne" parameterType="int" resultType="Board">
-	SELECT B.b_no, B.m_no, B.b_title, B.b_content,
+	SELECT B.b_no, B.m_no, B.b_title, B.b_content, B.b_step,
 	       B.b_view, B.b_recommend, B.b_date, M.m_id
 	FROM board B
 	JOIN member M
 	ON (b.m_no = m.m_no)
-	WHERE b_groupno = #{bNo]
+	WHERE b_groupno = #{bNo}
 	ORDER BY b_step ASC
 </select>
 

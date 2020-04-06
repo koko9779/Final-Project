@@ -23,7 +23,6 @@
   <!-- Page level custom scripts -->
   <script src="${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
 </head>
-
 <body class="bg-gradient-primary">
 
   <div class="container">
@@ -95,7 +94,6 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
-
 </body>
 
 </html>

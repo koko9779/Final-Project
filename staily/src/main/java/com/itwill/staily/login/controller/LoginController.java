@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.itwill.staily.login.exception.FailSigninException;
+import com.itwill.staily.login.exception.NoExistedIdException;
 import com.itwill.staily.login.exception.NoSearchMemberException;
+import com.itwill.staily.login.exception.PasswordMissmatchException;
 import com.itwill.staily.login.service.LoginService;
 import com.itwill.staily.util.Member;
 
@@ -29,6 +30,7 @@ public class LoginController {
 	public String login() {
 		return "login/login";
 	}
+	
 	
 	@RequestMapping(value = "/login_action", method = RequestMethod.GET)
 	public String login_action_get() {
@@ -49,11 +51,15 @@ public class LoginController {
 			session.setAttribute("userId", successMember.getmId());
 			session.setAttribute("userNo", successMember.getmNo());
 			
-			forwardPath = "login/main(홈페이지 메인)";
-		} catch (FailSigninException e) {
+			forwardPath = "login/main";
+		} catch (NoExistedIdException e) {
+				e.printStackTrace();
+				model.addAttribute("msg", e.getMessage());
+				forwardPath = "redirect:login/login_error_id";
+		} catch (PasswordMissmatchException e) {
 			e.printStackTrace();
 			model.addAttribute("msg", e.getMessage());
-			forwardPath = "login/login";
+			forwardPath = "redirect:login/login_error_ps";
 		} catch (Exception e) {
 			e.printStackTrace();
 			forwardPath = "에러...";
@@ -82,12 +88,11 @@ public class LoginController {
 	public String find_id_action_post(@RequestParam String name, String phone, Model model) {
 		String forwardPath = "";
 		String findId = "login/find_id";
-		
 		try {
 			findId = loginService.findId(phone, name);
 			model.addAttribute("findId", findId);
 			
-			forwardPath = "";
+			forwardPath = "login/find_id_show";
 		} catch (Exception e) {
 			e.printStackTrace();
 			forwardPath = "/에러페이지..";
@@ -113,7 +118,7 @@ public class LoginController {
 				forwardPath = "login/modify_pw";
 			}else {
 				//알럿창으로 아이디가 존재하지 않습니다
-				forwardPath = "login/...";
+				forwardPath = "login/에러...";
 			}
 		}catch(NoSearchMemberException e) {
 			e.printStackTrace();
@@ -147,7 +152,7 @@ public class LoginController {
 				loginService.signUpCompany(signupMember);
 			}
 			forwardPath = "login/login";
-		}catch(FailSigninException e) {
+		}catch(PasswordMissmatchException e) {
 			e.printStackTrace();
 			model.addAttribute("msg", e.getMessage());
 			forwardPath = "login/signup";

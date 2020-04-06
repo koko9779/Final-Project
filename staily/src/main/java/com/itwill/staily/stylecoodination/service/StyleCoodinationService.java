@@ -6,30 +6,32 @@ import com.itwill.staily.util.Board;
 
 public interface StyleCoodinationService {
 
-	int modifyBoardAndReply(Board updateBoard);
+	public int modifyBoardAndReply(Board updateBoard);
 
-	int writeBoard(Board board);
-
-	int removeBoard(int bNo);
-
-	int writeReply(Board replyBoard, String mId);
-
-	int removeReply(int bNo);
-
-	int checkChoice(int bNo);
-
-	int checkRecommend(int bNo);
-
-	List<Board> findBoardTop10();
-
-	List<Board> findBoardAll();
+	public int writeBoard(Board board);
 	
-	List<Board> findBoardOne(int bNo);
+	public Board selectUpdateBoard(int bNo);
 
-	int findBoardCount();
+	public int removeBoard(int bNo);
 
-	int findBoardReplyCount();
+	public int writeReply(Board replyBoard, String mId);
 
-	int updateViewCount(int bNo);
+	public int removeReply(int bNo);
+
+	public int checkChoice(int bNo);
+
+	public int checkRecommend(int bNo);
+
+	public List<Board> findBoardTop10();
+
+	public List<Board> findBoardAll();
+	
+	public List<Board> findBoardOne(int bNo);
+
+	public int findBoardCount();
+
+	public int findBoardReplyCount();
+
+	public int updateViewCount(int bNo);
 
 }
