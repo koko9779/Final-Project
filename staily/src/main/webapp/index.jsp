@@ -109,947 +109,10 @@
 	</div>
 
 	<!-- Section -->
-	<div class="container section" id="afterHeader">
-		<div class="row">
-			<div class="col-sm-12">
-
-				<div class="tabs movies">
-					<ul>
-						<li><a href="#mon">Mon</a></li>
-						<li><a href="#tue">Tue</a></li>
-						<li><a href="#wed">Today</a></li>
-						<li><a href="#thu">Thu</a></li>
-						<li><a href="#fri">Fri</a></li>
-						<li><a href="#sat">Sat</a></li>
-						<li><a href="#sun">Sun</a></li>
-					</ul>
-					<div id="mon">
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Action, Adventure, Fantasy</span>
-								<h3 class="no-underline">It's over</h3>
-								<p>European mercenaries searching for black powder become
-									embroiled in the defense of It's over of China against a horde
-									of monstrous creatures.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">14:45</span> <span class="time">18:30</span>
-										<span class="time">20:30</span> <span class="time">24:45</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										105 mins <span class="certificate">15</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Action, Adventure, Sci-Fi </span>
-								<h3 class="no-underline">Captain America: The First Avenger</h3>
-								<p>Steve Rogers, a rejected military soldier transforms into
-									Captain America after taking a dose of a "Super-Soldier serum".
-									But being Captain America comes at a price as he attempts to
-									take down a war monger and a terrorist organization.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">11:00</span> <span class="time">16:00</span>
-										<span class="time">18:00</span> <span class="time">21:00</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										120 mins <span class="certificate">PG</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Drama</span>
-								<h3 class="no-underline">Fences</h3>
-								<p>A working-class African-American father tries to raise
-									his family in the 1950s, while coming to terms with the events
-									of his life.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">10:00</span> <span class="time past">12:45</span>
-										<span class="time">17:00</span> <span class="time">21:15</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										135 mins <span class="certificate">18</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="#"> <img src="http://via.placeholder.com/265x340"
-									alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Drama</span>
-								<h3 class="no-underline">Daylight</h3>
-								<p>A chronicle of the childhood, adolescence and burgeoning
-									adulthood of a young black man growing up in a rough
-									neighborhood of Miami.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">11:00</span> <span class="time past">14:30</span>
-										<span class="time">20:00</span> <span class="time">21:15</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										117 mins <span class="certificate">U</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="tue">
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Drama</span>
-								<h3 class="no-underline">Daylight</h3>
-								<p>A chronicle of the childhood, adolescence and burgeoning
-									adulthood of a young black man growing up in a rough
-									neighborhood of Miami.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">11:00</span> <span class="time past">14:30</span>
-										<span class="time">20:00</span> <span class="time">21:15</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										117 mins <span class="certificate">U</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Action, Adventure, Sci-Fi </span>
-								<h3 class="no-underline">Captain America: The First Avenger</h3>
-								<p>Steve Rogers, a rejected military soldier transforms into
-									Captain America after taking a dose of a "Super-Soldier serum".
-									But being Captain America comes at a price as he attempts to
-									take down a war monger and a terrorist organization.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">11:00</span> <span class="time">16:00</span>
-										<span class="time">18:00</span> <span class="time">21:00</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										120 mins <span class="certificate">PG</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Action, Adventure, Fantasy</span>
-								<h3 class="no-underline">It's over</h3>
-								<p>European mercenaries searching for black powder become
-									embroiled in the defense of It's over of China against a horde
-									of monstrous creatures.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">14:45</span> <span class="time">18:30</span>
-										<span class="time">20:30</span> <span class="time">24:45</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										105 mins <span class="certificate">15</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Drama</span>
-								<h3 class="no-underline">Fences</h3>
-								<p>A working-class African-American father tries to raise
-									his family in the 1950s, while coming to terms with the events
-									of his life.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">10:00</span> <span class="time past">12:45</span>
-										<span class="time">17:00</span> <span class="time">21:15</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										135 mins <span class="certificate">18</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="wed">
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Action, Adventure, Fantasy</span>
-								<h3 class="no-underline">It's over</h3>
-								<p>European mercenaries searching for black powder become
-									embroiled in the defense of It's over of China against a horde
-									of monstrous creatures.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">14:45</span> <span class="time">18:30</span>
-										<span class="time">20:30</span> <span class="time">24:45</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										105 mins <span class="certificate">15</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Action, Adventure, Sci-Fi </span>
-								<h3 class="no-underline">Captain America: The First Avenger</h3>
-								<p>Steve Rogers, a rejected military soldier transforms into
-									Captain America after taking a dose of a "Super-Soldier serum".
-									But being Captain America comes at a price as he attempts to
-									take down a war monger and a terrorist organization.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">11:00</span> <span class="time">16:00</span>
-										<span class="time">18:00</span> <span class="time">21:00</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										120 mins <span class="certificate">PG</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Drama</span>
-								<h3 class="no-underline">Daylight</h3>
-								<p>A chronicle of the childhood, adolescence and burgeoning
-									adulthood of a young black man growing up in a rough
-									neighborhood of Miami.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">11:00</span> <span class="time past">14:30</span>
-										<span class="time">20:00</span> <span class="time">21:15</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										117 mins <span class="certificate">U</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Drama</span>
-								<h3 class="no-underline">Fences</h3>
-								<p>A working-class African-American father tries to raise
-									his family in the 1950s, while coming to terms with the events
-									of his life.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">10:00</span> <span class="time past">12:45</span>
-										<span class="time">17:00</span> <span class="time">21:15</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										135 mins <span class="certificate">18</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="thu">
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Action, Adventure, Sci-Fi </span>
-								<h3 class="no-underline">Captain America: The First Avenger</h3>
-								<p>Steve Rogers, a rejected military soldier transforms into
-									Captain America after taking a dose of a "Super-Soldier serum".
-									But being Captain America comes at a price as he attempts to
-									take down a war monger and a terrorist organization.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">11:00</span> <span class="time">16:00</span>
-										<span class="time">18:00</span> <span class="time">21:00</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										120 mins <span class="certificate">PG</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Drama</span>
-								<h3 class="no-underline">Daylight</h3>
-								<p>A chronicle of the childhood, adolescence and burgeoning
-									adulthood of a young black man growing up in a rough
-									neighborhood of Miami.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">11:00</span> <span class="time past">14:30</span>
-										<span class="time">20:00</span> <span class="time">21:15</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										117 mins <span class="certificate">U</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Action, Adventure, Fantasy</span>
-								<h3 class="no-underline">It's over</h3>
-								<p>European mercenaries searching for black powder become
-									embroiled in the defense of It's over of China against a horde
-									of monstrous creatures.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">14:45</span> <span class="time">18:30</span>
-										<span class="time">20:30</span> <span class="time">24:45</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										105 mins <span class="certificate">15</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Drama</span>
-								<h3 class="no-underline">Fences</h3>
-								<p>A working-class African-American father tries to raise
-									his family in the 1950s, while coming to terms with the events
-									of his life.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">10:00</span> <span class="time past">12:45</span>
-										<span class="time">17:00</span> <span class="time">21:15</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										135 mins <span class="certificate">18</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="fri">
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Action, Adventure, Sci-Fi </span>
-								<h3 class="no-underline">Captain America: The First Avenger</h3>
-								<p>Steve Rogers, a rejected military soldier transforms into
-									Captain America after taking a dose of a "Super-Soldier serum".
-									But being Captain America comes at a price as he attempts to
-									take down a war monger and a terrorist organization.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">11:00</span> <span class="time">16:00</span>
-										<span class="time">18:00</span> <span class="time">21:00</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										120 mins <span class="certificate">PG</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Action, Adventure, Fantasy</span>
-								<h3 class="no-underline">It's over</h3>
-								<p>European mercenaries searching for black powder become
-									embroiled in the defense of It's over of China against a horde
-									of monstrous creatures.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">14:45</span> <span class="time">18:30</span>
-										<span class="time">20:30</span> <span class="time">24:45</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										105 mins <span class="certificate">15</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Drama</span>
-								<h3 class="no-underline">Daylight</h3>
-								<p>A chronicle of the childhood, adolescence and burgeoning
-									adulthood of a young black man growing up in a rough
-									neighborhood of Miami.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">11:00</span> <span class="time past">14:30</span>
-										<span class="time">20:00</span> <span class="time">21:15</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										117 mins <span class="certificate">U</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Drama</span>
-								<h3 class="no-underline">Fences</h3>
-								<p>A working-class African-American father tries to raise
-									his family in the 1950s, while coming to terms with the events
-									of his life.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">10:00</span> <span class="time past">12:45</span>
-										<span class="time">17:00</span> <span class="time">21:15</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										135 mins <span class="certificate">18</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="sat">
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Action, Adventure, Fantasy</span>
-								<h3 class="no-underline">It's over</h3>
-								<p>European mercenaries searching for black powder become
-									embroiled in the defense of It's over of China against a horde
-									of monstrous creatures.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">14:45</span> <span class="time">18:30</span>
-										<span class="time">20:30</span> <span class="time">24:45</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										105 mins <span class="certificate">15</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Drama</span>
-								<h3 class="no-underline">Daylight</h3>
-								<p>A chronicle of the childhood, adolescence and burgeoning
-									adulthood of a young black man growing up in a rough
-									neighborhood of Miami.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">11:00</span> <span class="time past">14:30</span>
-										<span class="time">20:00</span> <span class="time">21:15</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										117 mins <span class="certificate">U</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Action, Adventure, Sci-Fi </span>
-								<h3 class="no-underline">Captain America: The First Avenger</h3>
-								<p>Steve Rogers, a rejected military soldier transforms into
-									Captain America after taking a dose of a "Super-Soldier serum".
-									But being Captain America comes at a price as he attempts to
-									take down a war monger and a terrorist organization.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">11:00</span> <span class="time">16:00</span>
-										<span class="time">18:00</span> <span class="time">21:00</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										120 mins <span class="certificate">PG</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Drama</span>
-								<h3 class="no-underline">Fences</h3>
-								<p>A working-class African-American father tries to raise
-									his family in the 1950s, while coming to terms with the events
-									of his life.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">10:00</span> <span class="time past">12:45</span>
-										<span class="time">17:00</span> <span class="time">21:15</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										135 mins <span class="certificate">18</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="sun">
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Action, Adventure, Sci-Fi </span>
-								<h3 class="no-underline">Captain America: The First Avenger</h3>
-								<p>Steve Rogers, a rejected military soldier transforms into
-									Captain America after taking a dose of a "Super-Soldier serum".
-									But being Captain America comes at a price as he attempts to
-									take down a war monger and a terrorist organization.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">11:00</span> <span class="time">16:00</span>
-										<span class="time">18:00</span> <span class="time">21:00</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										120 mins <span class="certificate">PG</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Action, Adventure, Fantasy</span>
-								<h3 class="no-underline">It's over</h3>
-								<p>European mercenaries searching for black powder become
-									embroiled in the defense of It's over of China against a horde
-									of monstrous creatures.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">14:45</span> <span class="time">18:30</span>
-										<span class="time">20:30</span> <span class="time">24:45</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										105 mins <span class="certificate">15</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Drama</span>
-								<h3 class="no-underline">Daylight</h3>
-								<p>A chronicle of the childhood, adolescence and burgeoning
-									adulthood of a young black man growing up in a rough
-									neighborhood of Miami.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">11:00</span> <span class="time past">14:30</span>
-										<span class="time">20:00</span> <span class="time">21:15</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										117 mins <span class="certificate">U</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row movie-tabs">
-							<div class="col-md-2 col-sm-3">
-								<a href="single-movie.html"> <img
-									src="http://via.placeholder.com/265x340" alt="Movie title" />
-								</a>
-							</div>
-							<div class="col-md-10 col-sm-9">
-								<span class="title">Drama</span>
-								<h3 class="no-underline">Fences</h3>
-								<p>A working-class African-American father tries to raise
-									his family in the 1950s, while coming to terms with the events
-									of his life.</p>
-								<p>
-									<a href="single-movie.html" class="arrow-button">Full
-										synopsis</a>
-								</p>
-
-								<div class="row">
-									<div class="col-md-8 col-sm-9">
-										<hr class="space-10" />
-										<span class="viewing-times"> <i class="material-icons">access_time</i>
-											Viewing times
-										</span> <span class="time past">10:00</span> <span class="time past">12:45</span>
-										<span class="time">17:00</span> <span class="time">21:15</span>
-									</div>
-									<div class="col-md-4 col-sm-3 running-time">
-										<hr class="space-10" />
-										135 mins <span class="certificate">18</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Section -->
-	<div class="container section remove-top-padding">
+	<div class="container section">
 		<div class="row">
 			<div class="col-sm-12" id="afterHeader">
-				<h2>New in</h2>
+				<h2>BOOKMARK</h2>
 
 				<div class="slick-carousel" id="newIn">
 					<div class="movie-slide">
@@ -1161,8 +224,940 @@
 				</div>
 			</div>
 		</div>
+		
 	</div>
+<div class="container section remove-top-padding">
+		<div class="row">
+			<div class="col-sm-12" id="afterHeader">
+				<h2>HOT</h2>
 
+				<div class="slick-carousel slick-initialized slick-slider" id="newIn"><i class="material-icons left slick-arrow" style="display: flex;">keyboard_arrow_left</i>
+					<div aria-live="polite" class="slick-list draggable"><div class="slick-track" role="listbox" style="opacity: 1; width: 3159px; transform: translate3d(-1215px, 0px, 0px);"><div class="movie-slide slick-slide slick-cloned" data-slick-index="-4" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Dark and lonely</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="-3" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Hush</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons grey">star_rate</i> <i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide" data-slick-index="0" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide00" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340.jpg" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">The last post</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-current slick-active" data-slick-index="1" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide01" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="0"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="0">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="0"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Dark and lonely</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-active" data-slick-index="2" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide02" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="0"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="0">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="0"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-active" data-slick-index="3" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide03" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="0"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="0">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="0"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Hush</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons grey">star_rate</i> <i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-active" data-slick-index="4" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide04" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="0"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="0">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="0"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="5" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340.jpg" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">The last post</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="6" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Dark and lonely</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="7" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="8" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Hush</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons grey">star_rate</i> <i class="material-icons grey">star_rate</i>
+						</div>
+					</div></div></div>
+					
+					
+					
+					
+				<i class="material-icons right slick-arrow" style="display: flex;">keyboard_arrow_right</i></div>
+			</div>
+		</div>
+	</div>
+<div class="container section remove-top-padding">
+		<div class="row">
+			<div class="col-sm-12" id="afterHeader">
+				<h2>TODAY</h2>
+
+				<div class="slick-carousel slick-initialized slick-slider" id="newIn"><i class="material-icons left slick-arrow" style="display: flex;">keyboard_arrow_left</i>
+					<div aria-live="polite" class="slick-list draggable"><div class="slick-track" role="listbox" style="opacity: 1; width: 3159px; transform: translate3d(-1215px, 0px, 0px);"><div class="movie-slide slick-slide slick-cloned" data-slick-index="-4" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Dark and lonely</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="-3" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Hush</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons grey">star_rate</i> <i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide" data-slick-index="0" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide00" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340.jpg" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">The last post</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-current slick-active" data-slick-index="1" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide01" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="0"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="0">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="0"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Dark and lonely</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-active" data-slick-index="2" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide02" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="0"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="0">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="0"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-active" data-slick-index="3" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide03" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="0"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="0">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="0"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Hush</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons grey">star_rate</i> <i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-active" data-slick-index="4" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide04" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="0"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="0">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="0"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="5" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340.jpg" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">The last post</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="6" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Dark and lonely</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="7" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="8" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Hush</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons grey">star_rate</i> <i class="material-icons grey">star_rate</i>
+						</div>
+					</div></div></div>
+					
+					
+					
+					
+				<i class="material-icons right slick-arrow" style="display: flex;">keyboard_arrow_right</i></div>
+			</div>
+		</div>
+	</div>
+	<div class="container section remove-top-padding">
+		<div class="row">
+			<div class="col-sm-12" id="afterHeader">
+				<h2>DRAMA</h2>
+
+				<div class="slick-carousel slick-initialized slick-slider" id="newIn"><i class="material-icons left slick-arrow" style="display: flex;">keyboard_arrow_left</i>
+					<div aria-live="polite" class="slick-list draggable"><div class="slick-track" role="listbox" style="opacity: 1; width: 3159px; transform: translate3d(-972px, 0px, 0px);"><div class="movie-slide slick-slide slick-cloned" data-slick-index="-4" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Dark and lonely</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="-3" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Hush</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons grey">star_rate</i> <i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide00" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="0"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="0">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="0"> <img src="http://via.placeholder.com/265x340.jpg" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">The last post</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-active" data-slick-index="1" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide01" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="0"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="0">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="0"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Dark and lonely</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-active" data-slick-index="2" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide02" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="0"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="0">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="0"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-active" data-slick-index="3" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide03" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="0"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="0">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="0"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Hush</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons grey">star_rate</i> <i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide" data-slick-index="4" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide04" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="5" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340.jpg" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">The last post</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="6" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Dark and lonely</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="7" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="8" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Hush</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons grey">star_rate</i> <i class="material-icons grey">star_rate</i>
+						</div>
+					</div></div></div>
+					
+					
+					
+					
+				<i class="material-icons right slick-arrow" style="display: flex;">keyboard_arrow_right</i></div>
+			</div>
+		</div>
+	</div>
+	<div class="container section remove-top-padding">
+		<div class="row">
+			<div class="col-sm-12" id="afterHeader">
+				<h2>MOVIE</h2>
+
+				<div class="slick-carousel slick-initialized slick-slider" id="newIn"><i class="material-icons left slick-arrow" style="display: flex;">keyboard_arrow_left</i>
+					<div aria-live="polite" class="slick-list draggable"><div class="slick-track" role="listbox" style="opacity: 1; width: 3159px; transform: translate3d(-972px, 0px, 0px);"><div class="movie-slide slick-slide slick-cloned" data-slick-index="-4" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Dark and lonely</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="-3" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Hush</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons grey">star_rate</i> <i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide00" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="0"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="0">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="0"> <img src="http://via.placeholder.com/265x340.jpg" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">The last post</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-active" data-slick-index="1" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide01" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="0"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="0">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="0"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Dark and lonely</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-active" data-slick-index="2" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide02" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="0"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="0">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="0"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-active" data-slick-index="3" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide03" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="0"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="0">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="0"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Hush</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons grey">star_rate</i> <i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide" data-slick-index="4" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide04" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="5" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340.jpg" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">The last post</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="6" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Dark and lonely</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons grey">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="7" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Venture</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i>
+						</div>
+					</div><div class="movie-slide slick-slide slick-cloned" data-slick-index="8" aria-hidden="true" tabindex="-1" style="width: 213px;">
+						<div class="movie-poster">
+							<aside>
+								<div>
+									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype=" video"="" class="venobox play vbox-item" tabindex="-1"> <i class="material-icons">play_arrow</i>
+									</a> <a href="single-movie.html" class="read-more" tabindex="-1">read more</a> <span class="date">Released: 7 Mar, 2017</span>
+								</div>
+							</aside>
+							<a href="#" tabindex="-1"> <img src="http://via.placeholder.com/265x340" alt="Movie title">
+							</a>
+						</div>
+						<h4 class="no-underline">Hush</h4>
+						<div class="star-rating">
+							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+							<i class="material-icons">star_rate</i> <i class="material-icons grey">star_rate</i> <i class="material-icons grey">star_rate</i>
+						</div>
+					</div></div></div>
+					
+					
+					
+					
+				<i class="material-icons right slick-arrow" style="display: flex;">keyboard_arrow_right</i></div>
+			</div>
+		</div>
+	</div>
 	<!-- Section -->
 	<section class="dark">
 		<div class="container section remove-bottom-padding">

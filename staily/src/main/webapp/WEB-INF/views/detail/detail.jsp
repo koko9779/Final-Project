@@ -13,7 +13,7 @@
 <div id="content_hero"
 	style="background-image: url(http://via.placeholder.com/1440x435)">
 
-	<img src="images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
+	<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
 
 	<!-- Content -->
 	<div class="container">
@@ -33,7 +33,7 @@
 <div class="container section news">
 	<div class="row">
 		<div class="col-sm-12">
-			<h2>News carousel</h2>
+			<h2>상품 사진</h2>
 			<hr class="space-40" />
 			<div class="row">
 				<div class="col-sm-12">
@@ -125,37 +125,35 @@
 					<div class="tabs">
 						<ul>
 							<li><a href="#one">상품 정보</a></li>
-							<li><a href="#two">지도</a></li>
-							<li><a href="#three">댓글</a></li>
+							<c:if test="${not empty productOne.get(0).getpAddress()}">
+								<li><a href="#two">매장 지도</a></li>
+							</c:if>
+							<li><a href="reply_list">댓글</a></li>
 						</ul>
 						<div id="one">
-							<p>Typi non habent claritatem insitam; est usus legentis in
-								iis qui facit eorum claritatem. Investigationes demonstraverunt
-								lectores legere me lius quod ii legunt saepius.</p>
-
-							<p>Claritas est etiam processus dynamicus, qui sequitur
-								mutationem consuetudium lectorum. Mirum est notare quam littera
-								gothica, quam nunc putamus parum claram, anteposuerit litterarum
-								formas humanitatis per seacula quarta decima et quinta decima.</p>
+							■상품명<br>
+							${productOne.get(0).getpName()}<br>
+							■가격<br>
+							${productOne.get(0).getpPrice()}<br>
+							■쇼핑몰 URL<br>
+							${productOne.get(0).getpUrl()}<br>
+							<c:if test="${not empty productOne.get(0).getpAddress()}">
+								■매장 오프라인 주소<br>
+								${productOne.get(0).getpAddress()} ${productOne.get(0).getpDaddress()}<br>
+							</c:if>				
 						</div>
-						<div id="two">
-							<p>Claritas est etiam processus dynamicus, qui sequitur
-								mutationem consuetudium lectorum. Mirum est notare quam littera
-								gothica, quam nunc putamus parum claram, anteposuerit litterarum
-								formas humanitatis per seacula quarta decima et quinta decima.</p>
-
-							<p>Typi non habent claritatem insitam; est usus legentis in
-								iis qui facit eorum claritatem. Investigationes demonstraverunt
-								lectores legere me lius quod ii legunt saepius.</p>
-						</div>
-						<div id="three">
-							<p>Typi non habent claritatem insitam; est usus legentis in
-								iis qui facit eorum claritatem. Investigationes demonstraverunt
-								lectores legere me lius quod ii legunt saepius.</p>
-							<p>Claritas est etiam processus dynamicus, qui sequitur
-								mutationem consuetudium lectorum. Mirum est notare quam littera
-								gothica, quam nunc putamus parum claram, anteposuerit litterarum
-								formas humanitatis per seacula quarta decima et quinta decima.</p>
+						<c:if test="${not empty productOne.get(0).getpAddress()}">
+							<div id="two">
+								대충 지도가 있다는 내용<br>
+							</div>
+						</c:if>
+						<div id="reply_list">
+							<c:forEach var="replyList" items="${replyList}">
+								<c:out value="${replyList.getmName()}"></c:out><br>
+								<c:out value="${replyList.getrContent()}"></c:out><br>
+								<c:out value="${replyList.getrRecommend()}"></c:out><br>
+								<c:out value="${replyList.getrReport()}"></c:out><br>
+							</c:forEach>
 						</div>
 					</div>
 				</div>

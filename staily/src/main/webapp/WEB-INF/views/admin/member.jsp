@@ -2,9 +2,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
 <%@ include file="/WEB-INF/views/admin/include/include_top.jsp" %>
+
 <html>
 
 <head>
+  <!-- Bootstrap core JavaScript-->
+  <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/css/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="${pageContext.request.contextPath}/css/admin/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="${pageContext.request.contextPath}/css/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="${pageContext.request.contextPath}/css/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
 </head>
 
 <body id="page-top">
@@ -81,17 +98,21 @@
                       <th>이메일</th>
                       <th>가입일</th>
                       <th>회원구분</th>
+                      <th>회원수정</th>
+                      <th>회원탈퇴</th>
                     </tr>
                   </thead>
                   <tbody>
                   	<c:forEach var="member" items="${data }">
-                  	 <tr style = "cursor:pointer;" onClick = " location.href='admin/${member.mNo}'">
+                  	 <tr>
                   	  <td>${member.mNo}</td>
                       <td>${member.mId}</td>
                       <td>${member.mName}</td>
                       <td>${member.mEmail}</td>
                       <td>${member.mAddress}</td>
                       <td>${member.mType}</td>
+                      <td><input type="button" class="checkBtn" value="클릭" /></td>
+                      <td><input type="button" class="checkBTS" value="쿨럭" /></td>
                     </tr>
                   	</c:forEach>
                   </tbody>
@@ -147,23 +168,28 @@
   </div>
 
 
-	<!-- Bootstrap core JavaScript-->
-  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
-  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+function member_delete(mNo) {
+	var updateForm = document.getElementById("member_"+mNo);
+	console.log(updateForm);
+	updateForm.action="admin_delete";
+	updateForm.method="POST";
+	updateForm.submit;
+};
 
-  <!-- Core plugin JavaScript-->
-  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="../../../${pageContext.request.contextPath}/css/admin/js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="../../../${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
-
+//버튼 클릭시 Row 값 가져오기
+$(".checkBtn").click(function(){ 
+    var str = ""
+    var tdArr = new Array();    
+    var checkBtn = $(this);
+    
+    var tr = checkBtn.parent().parent();
+    var td = tr.children();
+    
+    console.log(tr.text());
+    console.log(td.text())
+});
+</script>
 </body>
 
 </html>

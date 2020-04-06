@@ -28,20 +28,20 @@ public class AdminController {
 	
 	public AdminController() {
 	}
-//	@RequestMapping("/test")
-//	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		ModelAndView mv =new ModelAndView();
-//		try {
-//			Member member = adminService.selectMemberOne(1);
-//			List<Product>productList = adminService.selectProductAll();
-//			request.setAttribute("productList", productList);
-//			request.setAttribute("member", member);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		mv.setViewName("test");
-//		return mv;
-//	}
+	@RequestMapping("/test")
+	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mv =new ModelAndView();
+		try {
+			Member member = adminService.selectMemberOne(1);
+			List<Product>productList = adminService.selectProductAll();
+			request.setAttribute("productList", productList);
+			request.setAttribute("member", member);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		mv.setViewName("/admin/register");
+		return mv;
+	}
 	/*
 	 만들어야할거...
 	 회원 ,작품, 상품 수정 form(아에 form.jsp도 만들어야함) action  
@@ -53,7 +53,7 @@ public class AdminController {
 		return "admin/index";
 	}
 	
-	@RequestMapping("/admin_member")
+	@RequestMapping("/admin_member.do")
 	public String memberAdminForm(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			List<Member> memberList = new ArrayList();
@@ -64,13 +64,23 @@ public class AdminController {
 		}
 		return "/admin/member";
 	}
-	
+	@RequestMapping("/admin_delete.do")
+	public String memberAdminDelete(HttpServletRequest request) {
+		try {
+			int mNo= Integer.parseInt(request.getParameter("mNo"));
+			System.out.println(mNo+"뭐가문제냐아!");
+			adminService.deleteMember(mNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "/";
+	}
 	@RequestMapping
 	public String memberAdminUpdate() {
 		
 		return "/admin/member";
 	}
-	@RequestMapping("/admin_product")
+	@RequestMapping("/admin_product.do")
 	public String productAdminForm(HttpServletRequest request) {
 		try {
 			List<Product> productList= new ArrayList();
