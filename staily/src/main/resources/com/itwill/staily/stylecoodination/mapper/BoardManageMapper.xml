@@ -18,4 +18,12 @@
 	WHERE b_groupno = #{bNo}
 </delete>
 
+<select id="selectUpdateBoard" parameterType="int" resultType="Board">
+	SELECT B.b_no, M.m_id, B.b_title, B.b_content
+	FROM board B
+	JOIN member M
+	ON (B.m_no = M.m_no)
+	WHERE B.b_no = #{bNo}
+</select>
+
 </mapper>

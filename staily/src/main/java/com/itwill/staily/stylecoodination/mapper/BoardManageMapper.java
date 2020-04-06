@@ -11,4 +11,6 @@ public interface BoardManageMapper {
 	
 	public int deleteBoard(int bNo);
 	
+	//수정 폼에서 데이터를 가져오기 위한 sql
+	public Board selectUpdateBoard(int bNo);
 }

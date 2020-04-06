@@ -26,17 +26,18 @@
 	</div><hr>
 	<div>
 		<h3>게시글 원글 출력</h3>
-		<c:forEach var="b" items="${boardList}">
+		<c:forEach var="data" items="${data}">
 			<div>
-				<c:out value="${b.bNo}"/>
-				<c:out value="${b.mId}"/>
-				<a href="">
-				<c:out value="${b.bTitle}"/>
+				<c:out value="${data.bNo}"/>
+				<c:out value="${data.mId}"/>
+				<a href="style_view?bNo=${data.bNo}">
+				<c:out value="${data.bTitle}"/>
 				</a>
-				<c:out value="${b.bDate}"/>
-				<c:out value="${b.bView}"/>
+				<c:out value="${data.bView}"/>
+				<c:out value="${data.bDate}"/>
+				<c:out value="${data.bGroupNo}"/>
 			</div>
-		</c:forEach>
+		</c:forEach><hr>
 	</div>
 	
 </body>

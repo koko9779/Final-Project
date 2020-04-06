@@ -38,6 +38,11 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 	}
 	
 	@Override
+	public Board selectUpdateBoard(int bNo) {
+		return boardManageMapper.selectUpdateBoard(bNo); 
+	}
+	
+	@Override
 	public int writeReply(Board replyBoard, String mId) {
 		int mNo = 0;
 		
