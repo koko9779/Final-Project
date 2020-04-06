@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itwill.staily.detail.model.dto.ProductEx;
 import com.itwill.staily.detail.service.ProductDetailService;
 
-@SuppressWarnings("unused")
 @Controller
 @RequestMapping("/detail")
 public class ProductDetailController {
@@ -26,6 +25,7 @@ public class ProductDetailController {
 		
 		try {			
 			List<ProductEx> p = productDetailService.selectProductOne(1);
+			
 			request.setAttribute("productOne", p);			
 			
 		} catch (Exception e) {
