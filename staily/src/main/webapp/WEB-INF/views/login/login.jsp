@@ -14,7 +14,7 @@
 				<label for="user_id">아이디:</label> 
 				<input type="text" placeholder="아이디" id="user_id" name="user_id" />
 				<label id='user_id-error' class='error' for='user_id'>"+msg+"</label>
-			</p>
+			</p> 
 			<p>  
 				<label for="user_pass">패쓰워드:</label> 
 				<input type="text" placeholder="패쓰워드" name="user_pw" id="user_pw" />
