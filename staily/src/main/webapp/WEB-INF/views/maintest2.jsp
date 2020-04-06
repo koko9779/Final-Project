@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<script src="${pageContext.request.contextPath}/js/httpRequest.js" type="text/javascript"></script>
 <script type="text/javascript">
 
 /*
@@ -119,6 +119,6 @@ function create_bookmark(mNo,pNo){
 	<div>
 		${pCnt}건
 	</div>
-<script src="${pageContext.request.contextPath}/js/httpRequest.js" type="text/javascript"></script>
+
 </body>
 </html>
