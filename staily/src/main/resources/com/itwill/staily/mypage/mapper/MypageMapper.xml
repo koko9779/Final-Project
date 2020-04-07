@@ -65,8 +65,8 @@ where m_no=#{mNo}
 <select id="selectWriteList"
 		parameterType="int"
 		resultType="com.itwill.staily.util.Product">
-	select p.p_no, p.m_no, p.w_no, p_scene, m.m_id, p.p_name
-	from product p
+	select p.p_no, p.m_no, p.w_no, p.p_scene, m.m_id, p.p_name, p.p_date
+	from product p					  
 	join member m
 	on p.m_no = m.m_no
 	where p.m_no = #{mNo}
