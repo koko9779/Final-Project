@@ -8,6 +8,7 @@
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/venobox.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/main/main_style_custom.css" rel="stylesheet">
 <link
 	href="${pageContext.request.contextPath}/css/fonts/GodoM.ttf"
 	rel="stylesheet">
