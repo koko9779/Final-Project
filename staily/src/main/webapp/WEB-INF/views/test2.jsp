@@ -28,6 +28,8 @@ function member_update(){
 	//document.getElementById("member_u").submit();
 }
 
+
+
 </script>
 </head>
 <body>
