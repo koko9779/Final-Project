@@ -53,7 +53,7 @@ public class AdminController {
 		return "admin/index";
 	}
 	
-	@RequestMapping("/admin_member.do")
+	@RequestMapping("/admin_member")
 	public String memberAdminForm(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			List<Member> memberList = new ArrayList();
@@ -64,12 +64,15 @@ public class AdminController {
 		}
 		return "/admin/member";
 	}
-	@RequestMapping("/admin_delete.do")
+	@RequestMapping("/admin_delete")
 	public String memberAdminDelete(HttpServletRequest request) {
+		String [] arrayNo = request.getParameterValues("noArray");
 		try {
-			int mNo= Integer.parseInt(request.getParameter("mNo"));
-			System.out.println(mNo+"뭐가문제냐아!");
-			adminService.deleteMember(mNo);
+			for (String no : arrayNo) {
+				String [] tempNo= no.split("-");
+				int mNo = Integer.parseInt(tempNo[0]);
+				adminService.deleteMember(mNo);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

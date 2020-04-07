@@ -26,59 +26,61 @@
 
 <body id="page-top">
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
-	<%@ include file="/WEB-INF/views/admin/include/include_nav.jsp" %>
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+		<%@ include file="/WEB-INF/views/mypage/include/include_nav.jsp"%>
+		<!-- Content Wrapper -->
+		<div id="content-wrapper" class="d-flex flex-column">
 
-      <!-- Main Content -->
-      <div id="content">
+			<!-- Main Content -->
+			<div id="content">
 
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+				<!-- Topbar -->
+				<nav
+					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
+					<!-- Topbar Navbar -->
+					<ul class="navbar-nav ml-auto">
 
 
-            
 
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">관리자</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
-                </a>
-              </div>
-            </li>
 
-          </ul>
+						<!-- Nav Item - User Information -->
+						<li class="nav-item dropdown no-arrow"><a
+							class="nav-link dropdown-toggle" href="#" id="userDropdown"
+							role="button" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false"> <span
+								class="mr-2 d-none d-lg-inline text-gray-600 small">관리자</span> <img
+								class="img-profile rounded-circle"
+								src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+						</a> <!-- Dropdown - User Information -->
+							<div
+								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+								aria-labelledby="userDropdown">
+								<a class="dropdown-item" href="#"> <i
+									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
+								</a> <a class="dropdown-item" href="#"> <i
+									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+									Settings
+								</a> <a class="dropdown-item" href="#"> <i
+									class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+									Activity Log
+								</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#" data-toggle="modal"
+									data-target="#logoutModal"> <i
+									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+									Logout
+								</a>
+							</div></li>
 
-        </nav>
-        <!-- End of Topbar -->
+					</ul>
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
+				</nav>
+				<!-- End of Topbar -->
+
+				<!-- Begin Page Content -->
+				<div class="container-fluid">
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">회원관리페이지</h1>
@@ -92,31 +94,34 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                      <th></th>
                       <th>회원번호</th>
                       <th>회원아이디</th>
                       <th>회원이름</th>
                       <th>이메일</th>
                       <th>가입일</th>
                       <th>회원구분</th>
-                      <th>회원수정</th>
                       <th>회원탈퇴</th>
+                      <th>회원수정</th>
                     </tr>
                   </thead>
                   <tbody>
                   	<c:forEach var="member" items="${data }">
                   	 <tr>
+                  	  <td><input type="checkbox" name="user_CheckBox" ></td>
                   	  <td>${member.mNo}</td>
-                      <td>${member.mId}</td>
+                      <td onclick="location.href='/+${member.mNo}'" style="cursor:pointer;">${member.mId}</td>
                       <td>${member.mName}</td>
                       <td>${member.mEmail}</td>
                       <td>${member.mAddress}</td>
                       <td>${member.mType}</td>
-                      <td><input type="button" class="checkBtn" value="클릭" /></td>
                       <td><input type="button" class="checkBTS" value="쿨럭" /></td>
+                      <td><input type="button" class="checkBtn" value="클릭" /></td>
                     </tr>
                   	</c:forEach>
                   </tbody>
                 </table>
+                <button type="button" class="btn btn-outline btn-primary pull-right" id="selectBtn" >삭제</button>
               </div>
             </div>
           </div>
@@ -188,6 +193,29 @@ $(".checkBtn").click(function(){
     
     console.log(tr.text());
     console.log(td.text())
+});
+$("#selectBtn").click(function(){ 
+    var checkbox = $("input[name=user_CheckBox]:checked");
+    // 체크된 체크박스 값을 가져온다
+    var tdArray = new Array();
+    checkbox.each(function(i) {
+        // checkbox.parent() : checkbox의 부모는 <td>이다.
+        // checkbox.parent().parent() : <td>의 부모이므로 <tr>이다.
+        var tr = checkbox.parent().parent().eq(i);
+        var td = tr.children();
+        var mNo = td.eq(1).text();
+        var noArray = 'noArray='+mNo+'-'
+        console.log(noArray);
+        console.log(mNo);
+        $.ajax({
+    		url:'admin_delete',
+    		data:noArray,
+    		method:'POST',
+    		success:function(params){
+    		}
+    	});
+    });
+    location.reload();
 });
 </script>
 </body>
