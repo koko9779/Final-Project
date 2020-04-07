@@ -42,6 +42,11 @@ public class MypageController {
 	private PaymentService paymentService;
 	
 	
+	@RequestMapping("/mypage")
+	public String mypageTest() {
+		return "mypage/index";
+	}
+	
 	//회원정보출력
 	@RequestMapping("/member_select")
 	public String member_select(HttpSession session, Model model, HttpServletRequest request)throws Exception{
@@ -59,12 +64,16 @@ public class MypageController {
 			model.addAttribute("member", memberCompany);
 			System.out.println(memberCompany);
 		}
-		return "test2";
+		session.setAttribute("mNo", mNo);
+		return "mypage/member";
 	}
 	
 	//회원정보업데이트
 	@RequestMapping("/member_update")
-	public String member_update(HttpServletResponse response, HttpServletRequest request, Model model) throws Exception {
+	public String member_update(HttpServletResponse response, 
+								HttpServletRequest request, 
+								Model model,
+								HttpSession session) throws Exception {
 		//Integer mNo =(Integer)request.getAttribute("mNo");
 		String mNoStr = request.getParameter("mNo");
 		Integer mNo = Integer.parseInt(mNoStr);
@@ -82,18 +91,19 @@ public class MypageController {
 		boolean result = mypageService.updateMember(member);
 		request.setAttribute("result", result);
 		request.setAttribute("mNo", mNo);
-	
+		session.setAttribute("mNo", mNo);
 		return "forward:/mypage/member_select";
 	}
 	
 	//북마크리스트
 	@RequestMapping("/bookmark_list")
-	public String bookmark_list(@RequestParam int mNo, HttpServletRequest request) throws Exception{
+	public String bookmark_list(HttpSession session, HttpServletRequest request) throws Exception{
 		//int mNo = (Integer)request.getAttribute("mNo");
+		int mNo = (Integer)session.getAttribute("mNo");
 		List<Bookmark> bookmarkList = bookmarkService.selectList(mNo);
 		request.setAttribute("bookmarkList", bookmarkList);
-		
-		return "test2";
+		session.setAttribute("mNo", mNo);
+		return "mypage/bookmark";
 	}
 	
 	//북마크삭제
@@ -106,11 +116,14 @@ public class MypageController {
 	
 	//친구리스트
 	@RequestMapping("/friend_list")
-	public String friend_list(HttpServletResponse response, HttpServletRequest request) throws Exception{
-		int mNo = (Integer)request.getAttribute("mNo");
+	public String friend_list(HttpServletResponse response, 
+							  HttpServletRequest request,
+							  HttpSession session) throws Exception{
+		//int mNo = (Integer)request.getAttribute("mNo");
+		int mNo = (Integer)session.getAttribute("mNo");
 		List<Friend> friendList = friendService.selectList(mNo);
 		request.setAttribute("friendList", friendList);
-		return "test2";
+		return "mypage/friend_list";
 	}
 	
 	//친구추가
@@ -154,11 +167,12 @@ public class MypageController {
 	
 	//메시지리스트(멤버&메시지 조인)
 	@RequestMapping("/message_list")
-	public ModelAndView message_selectList(Model model) throws Exception{
+	public ModelAndView message_selectList(HttpSession session, Model model) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<Message> messageList = messageService.selectMessageList(2);
+		int mNo = (Integer)session.getAttribute("mNo");
+		List<Message> messageList = messageService.selectMessageList(mNo);
 		model.addAttribute("messageList", messageList);
-		mv.setViewName("test2");
+		mv.setViewName("mypage/message_list");
 		return mv;
 	}
 	
@@ -186,12 +200,16 @@ public class MypageController {
 	
 	//내가쓴글리스트
 	@RequestMapping("/member_write")
-	public String member_write(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
-		int mNo = (Integer)request.getAttribute("mNo");
+	public String member_write(HttpServletRequest request, 
+							   HttpServletResponse response, 
+							   Model model,
+							   HttpSession session) throws Exception {
+		//int mNo = (Integer)request.getAttribute("mNo");
+		int mNo = (Integer)session.getAttribute("mNo");
 		List<Product> writeList = mypageService.selectWriteList(mNo);
 		//model.addAttribute("writeList", writeList);
 		request.setAttribute("writeList", writeList);
-		return "test2";
+		return "mypage/member_write";
 	}
 	
 	//내가쓴글삭제
@@ -209,14 +227,19 @@ public class MypageController {
 	@RequestMapping("/payment_list")
 	public String payment_list(HttpServletRequest request, 
 							   HttpServletResponse response,
-							   @RequestParam int mNo) throws Exception{
-		
+							   HttpSession session) throws Exception{
+		int mNo = (Integer)session.getAttribute("mNo");
 		List<Payment> paymentList = paymentService.selectList(mNo);
 		request.setAttribute("paymentList", paymentList);
-		return "test2";
+		return "mypage/payment_list";
 	}
 	
-	//결제
+	//결제화면
+	@RequestMapping("/payment")
+	public String payment() {
+		return "mypage/payment";
+	}
+	
 	
 	//@RequestMapping("/test4")
 	public ModelAndView friend_find(Model model) throws Exception{
