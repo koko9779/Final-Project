@@ -33,7 +33,7 @@ public class WorkDetailController {
 			e.printStackTrace();
 		}
 		
-		mv.setViewName("detail/work_confirm");
+		mv.setViewName("detail/work_search");
 		
 		return mv;		
 	}
