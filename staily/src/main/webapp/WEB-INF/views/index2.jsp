@@ -170,25 +170,25 @@ function bookmark_remove(bmNo){
 
 				<div class="slick-carousel" id="newIn1">
 					<c:forEach var="hot" items="${hotList}">
-						<div class="movie-slide">
-							<div class="movie-poster2">
-								<a href="#"> <img
-									src="${pageContext.request.contextPath}${hot.pScene}"
-									alt="${hot.pName}" />
-								</a>
+							<div class="movie-slide">
+								<div class="movie-poster2">
+									<a href="#"> <img
+										src="${pageContext.request.contextPath}${hot.pScene}"
+										alt="${hot.pName}" />
+									</a>
+								</div>
+								<h4 class="no-underline">${hot.pName}</h4>
+								<div>조회수: ${hot.pView}</div>
+								<!-- 별점 -->
+								<!-- 
+								<div class="star-rating">
+									<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+									<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+									<i class="material-icons">star_rate</i>
+								</div>
+								-->
+								<!--  -->
 							</div>
-							<h4 class="no-underline">${hot.pName}</h4>
-							<div>조회수: ${hot.pView}</div>
-							<!-- 별점 -->
-							<!-- 
-							<div class="star-rating">
-								<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-								<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-								<i class="material-icons">star_rate</i>
-							</div>
-							-->
-							<!--  -->
-						</div>
 					</c:forEach>
 				</div>
 			</div>
@@ -202,6 +202,7 @@ function bookmark_remove(bmNo){
 
 				<div class="slick-carousel" id="newIn2">
 					<c:forEach var="today" items="${todayList}">
+						<input type="hidden" value="${bm.bmNo}" name="wNo" />
 						<div class="movie-slide">
 							<div class="movie-poster2">
 								<a href="#"> <img
