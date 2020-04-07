@@ -75,25 +75,23 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>상품이름</th>
-                      <th>상품가격</th>
-                      <th>상품URL</th>
-                      <th>상품주소</th>
-                      <th>상품상세주소</th>
-                      <th>상품조회수</th>
-                      <th>상품등록일</th>
+                      <th></th>
+                      <th>화면</th>
+                      <th>북마크번호</th>
+                      <th>멤버번호</th>
+                      <th>상품번호</th>
+                      <th>작성자</th>
                     </tr>
                   </thead>
                   <tbody>
-                  	<c:forEach var="product" items="${data }">
-                  	 <tr style = "cursor:pointer;" onClick = " location.href='admin/'" >
-                      <td>${product.pName}</td>
-                      <td>${product.pPrice}</td>
-                      <td>${product.pUrl}</td>
-                      <td>${product.pAddress}</td>
-                      <td>${product.pDaddress}</td>
-                      <td>${product.pView}</td>
-                      <td>${product.pDate}</td>
+                  	<c:forEach var="bookmark" items="${data}">
+                  	 <tr>
+                  	  <td><input type="checkbox" name="book_check"></td>
+                  	  <td style = "cursor:pointer;" onClick = " location.href='admin/'">${bookmark.product.pScene}</td>
+                      <td>${bookmark.bmNo}</td>
+                      <td>${bookmark.member.mNo}</td>
+                      <td>${bookmark.product.pNo}</td>
+                      <td>${bookmark.member.mId}</td>
                     </tr>
                   	</c:forEach>
                   </tbody>

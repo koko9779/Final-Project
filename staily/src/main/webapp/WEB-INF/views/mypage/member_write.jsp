@@ -75,24 +75,22 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                      <th></th>
+                      <th>상품화면</th>
                       <th>상품이름</th>
-                      <th>상품가격</th>
-                      <th>상품URL</th>
-                      <th>상품주소</th>
-                      <th>상품상세주소</th>
-                      <th>상품조회수</th>
-                      <th>상품등록일</th>
+                      <th>상품번호</th>
+                      <th>회원번호</th>
+                      <th>작성일</th>
                     </tr>
                   </thead>
                   <tbody>
-                  	<c:forEach var="product" items="${data }">
-                  	 <tr style = "cursor:pointer;" onClick = " location.href='admin/'" >
+                  	<c:forEach var="product" items="${data}">
+                  	 <tr>
+                  	  <td><input type="checkbox" name="member_write_check"></td>
+                      <td style = "cursor:pointer;" onClick = " location.href='admin/'">${product.pScene}</td>
                       <td>${product.pName}</td>
-                      <td>${product.pPrice}</td>
-                      <td>${product.pUrl}</td>
-                      <td>${product.pAddress}</td>
-                      <td>${product.pDaddress}</td>
-                      <td>${product.pView}</td>
+                      <td>${product.pNo}</td>
+                      <td>${product.mNo}</td>
                       <td>${product.pDate}</td>
                     </tr>
                   	</c:forEach>

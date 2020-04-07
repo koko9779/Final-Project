@@ -101,8 +101,8 @@ public class MypageController {
 		//int mNo = (Integer)request.getAttribute("mNo");
 		int mNo = (Integer)session.getAttribute("mNo");
 		List<Bookmark> bookmarkList = bookmarkService.selectList(mNo);
-		request.setAttribute("bookmarkList", bookmarkList);
-		session.setAttribute("mNo", mNo);
+		request.setAttribute("data", bookmarkList);
+		//session.setAttribute("mNo", mNo);
 		return "mypage/bookmark";
 	}
 	
@@ -208,7 +208,7 @@ public class MypageController {
 		int mNo = (Integer)session.getAttribute("mNo");
 		List<Product> writeList = mypageService.selectWriteList(mNo);
 		//model.addAttribute("writeList", writeList);
-		request.setAttribute("writeList", writeList);
+		request.setAttribute("data", writeList);
 		return "mypage/member_write";
 	}
 	
