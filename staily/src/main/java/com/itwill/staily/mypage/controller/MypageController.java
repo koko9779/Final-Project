@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,10 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itwill.staily.mypage.model.dto.Bookmark;
 import com.itwill.staily.mypage.model.dto.Friend;
 import com.itwill.staily.mypage.model.dto.Message;
+import com.itwill.staily.mypage.model.dto.Payment;
 import com.itwill.staily.mypage.service.BookmarkService;
 import com.itwill.staily.mypage.service.FriendService;
 import com.itwill.staily.mypage.service.MessageService;
 import com.itwill.staily.mypage.service.MypageService;
+import com.itwill.staily.mypage.service.PaymentService;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
 
@@ -35,6 +38,8 @@ public class MypageController {
 	private MypageService mypageService;
 	@Autowired
 	private BookmarkService bookmarkService;
+	@Autowired
+	private PaymentService paymentService;
 	
 	
 	//회원정보출력
@@ -75,6 +80,7 @@ public class MypageController {
 									request.getParameter("mPhone"));
 		
 		boolean result = mypageService.updateMember(member);
+		request.setAttribute("result", result);
 		request.setAttribute("mNo", mNo);
 	
 		return "forward:/mypage/member_select";
@@ -158,16 +164,24 @@ public class MypageController {
 	
 	//메시지 추가
 	@RequestMapping("/message_create")
-	public String message_create(HttpServletResponse response, HttpServletRequest request, Model model) throws Exception {
+	public String message_create(HttpServletResponse response, 
+								 HttpServletRequest request, 
+								 Model model,
+								 @ModelAttribute Message message) throws Exception {
 		
-		return "";
+		boolean result = messageService.createMessage(message);
+		request.setAttribute("result", result);
+		return "test2";
 	}
 	
 	//메시지 삭제
 	@RequestMapping("/message_delete")
 	public String message_delete(HttpServletResponse response, HttpServletRequest request) throws Exception{
-		int msNo = (Integer)request.getAttribute("msNo");
-		return "";
+		String msNoStr = request.getParameter("msNo");
+		Integer msNo = Integer.parseInt(msNoStr);
+		boolean result = messageService.deleteMessage(msNo);
+		request.setAttribute("result", result);
+		return "test2";
 	}
 	
 	//내가쓴글리스트
@@ -179,6 +193,30 @@ public class MypageController {
 		request.setAttribute("writeList", writeList);
 		return "test2";
 	}
+	
+	//내가쓴글삭제
+	@RequestMapping("/member_write_delete")
+	public String member_write_delete(HttpServletRequest request, 
+									  HttpServletResponse response,
+									  @RequestParam int pNo) throws Exception{
+		
+		boolean result = mypageService.deleteWrite(pNo);
+		request.setAttribute("result", result);
+		return "test2";
+	}
+	
+	//결제리스트출력
+	@RequestMapping("/payment_list")
+	public String payment_list(HttpServletRequest request, 
+							   HttpServletResponse response,
+							   @RequestParam int mNo) throws Exception{
+		
+		List<Payment> paymentList = paymentService.selectList(mNo);
+		request.setAttribute("paymentList", paymentList);
+		return "test2";
+	}
+	
+	//결제
 	
 	//@RequestMapping("/test4")
 	public ModelAndView friend_find(Model model) throws Exception{
