@@ -1,10 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <body>
 	<!-- Section -->
 	<div class="container section small-padding">
 		<div class="row">
 			<div class="col-sm-12 cta">
-				<p>Need help? Contact our support team on</p>
-				<p class="gradient-text">0330 123 4567</p>
+				<p>도움이 필요하신가요? 게으른 치타가 도와드립니다!</p>
+				<p class="gradient-text">010 4101 6809</p>
 			</div>
 		</div>
 	</div>

@@ -3,7 +3,6 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/include_css.jsp"%>
 <%@ include file="/WEB-INF/views/include/include_js.jsp"%>
-<%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
 
 <html>
@@ -20,6 +19,7 @@ function bookmark_remove(bmNo){
 <body>
 
 	<!-- Wrapper -->
+<%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 	<!-- Hero -->
 	<div id="hero" class="carousel slide carousel-fade"
 		data-ride="carousel">
