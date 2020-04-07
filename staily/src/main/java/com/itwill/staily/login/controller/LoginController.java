@@ -37,7 +37,6 @@ public class LoginController {
 		return "login/login";
 	}
 	
-	//에러 떳을 시 부분 아작스
 	@RequestMapping(value = "/login_action", method = RequestMethod.POST)
 	public String login_action_post(@RequestParam String userId, String userPw, HttpSession session, Model model) {
 		String forwardPath = "";
@@ -83,7 +82,6 @@ public class LoginController {
 		return "login/find_id";
 	}
 	
-	//아작스...?
 	@RequestMapping(value = "/find_id_action", method = RequestMethod.POST)
 	public String find_id_action_post(@RequestParam String name, String phone, Model model) {
 		String forwardPath = "";
@@ -131,17 +129,17 @@ public class LoginController {
 		return forwardPath;
 	}
 	
-	@RequestMapping(value = "/signup")
+	@RequestMapping(value = "/register")
 	public String singup_member() {
-		return "login/signup";
+		return "login/register";
 	}
 	
-	@RequestMapping(value = "/signup_action", method = RequestMethod.GET)
+	@RequestMapping(value = "/register_action", method = RequestMethod.GET)
 	public String singup_member_action_get() {
-		return "login/signup";
+		return "login/register";
 	}
 	
-	@RequestMapping(value = "/signup_action", method = RequestMethod.POST)
+	@RequestMapping(value = "/register_action", method = RequestMethod.POST)
 	public String singup_member_action_post(@ModelAttribute Member signupMember, Model model) {
 		String forwardPath = "";
 		
@@ -155,7 +153,7 @@ public class LoginController {
 		}catch(PasswordMissmatchException e) {
 			e.printStackTrace();
 			model.addAttribute("msg", e.getMessage());
-			forwardPath = "login/signup";
+			forwardPath = "login/register";
 		}catch(Exception e) {
 			e.printStackTrace();
 			forwardPath = "/에러페이지..";
