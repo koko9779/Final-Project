@@ -55,7 +55,7 @@ public class MainController {
 			e.printStackTrace();
 		}
 
-		return "maintest";
+		return "index2";
 	}
 	@RequestMapping("/worklist")
 	public String workList(HttpServletRequest request, HttpServletResponse response) throws Exception {
