@@ -25,7 +25,7 @@ function bookmark_remove(bmNo){
 		data-ride="carousel">
 
 		<a href="#afterHeader" class="anchor"> <img
-			src="images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
+			src="${pageContext.request.contextPath}/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
 		</a>
 
 		<!-- Indicators -->
@@ -122,7 +122,7 @@ function bookmark_remove(bmNo){
 	<div class="container section">
 		<div class="row">
 			<div class="col-sm-12" id="afterHeader">
-				<h2>BOOKMARK</h2>
+				<h2>즐겨찾기</h2>
 
 				<div class="slick-carousel" id="newIn">
 					<c:forEach var="bm" items="${bmList}">
@@ -232,7 +232,7 @@ function bookmark_remove(bmNo){
 	<div class="container section remove-top-padding">
 		<div class="row">
 			<div class="col-sm-12" id="afterHeader">
-				<h2>DRAMA</h2>
+				<h2>드라마</h2>
 
 				<div class="slick-carousel" id="newIn3">
 					<c:forEach var="drama" items="${dramaList}">
@@ -266,7 +266,7 @@ function bookmark_remove(bmNo){
 	<div class="container section remove-top-padding">
 		<div class="row">
 			<div class="col-sm-12" id="afterHeader">
-				<h2>MOVIE</h2>
+				<h2>영화</h2>
 
 				<div class="slick-carousel" id="newIn4">
 					<c:forEach var="movie" items="${movieList}">

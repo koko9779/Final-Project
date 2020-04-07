@@ -96,7 +96,7 @@ public class MainController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "maintest2";
+		return "work_detail";
 	}
 
 //	@RequestMapping("/create_bookmark")
