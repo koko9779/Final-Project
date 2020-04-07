@@ -28,7 +28,7 @@
 	</select>
 	<!-- 3. TODAY 작품 출력 -->
 	<select id="selectTodayOfWork" resultType="Work">
-		select w.w_poster
+		select w.w_no,w.w_poster
 		from work w
 		where to_char(to_date(w.w_date),'dy')=to_char(sysdate, 'dy')
 	</select>
