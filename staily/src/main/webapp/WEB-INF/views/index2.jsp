@@ -202,7 +202,7 @@ function bookmark_remove(bmNo){
 
 				<div class="slick-carousel" id="newIn2">
 					<c:forEach var="today" items="${todayList}">
-						<input type="hidden" value="${bm.bmNo}" name="wNo" />
+						<input type="hidden" value="${today.wNo}" name="wNo" />
 						<div class="movie-slide">
 							<div class="movie-poster2">
 								<a href="#"> <img
@@ -237,6 +237,7 @@ function bookmark_remove(bmNo){
 
 				<div class="slick-carousel" id="newIn3">
 					<c:forEach var="drama" items="${dramaList}">
+						<input type="hidden" value="${drama.wNo}" name="wNo" />
 						<div class="movie-slide">
 							<div class="movie-poster2">
 								<a href="#"> <img
@@ -244,6 +245,7 @@ function bookmark_remove(bmNo){
 									alt="Movie title" />
 								</a>
 							</div>
+							
 							<!-- 이름 -->
 							<!-- 
 								<h4 class="no-underline">The last post</h4>
@@ -271,6 +273,7 @@ function bookmark_remove(bmNo){
 
 				<div class="slick-carousel" id="newIn4">
 					<c:forEach var="movie" items="${movieList}">
+						<input type="hidden" value="${movie.wNo}" name="wNo" />
 						<div class="movie-slide">
 							<div class="movie-poster2">
 								<a href="#"> <img
