@@ -93,7 +93,7 @@ public class LoginController {
 			forwardPath = "login/find_id_show";
 		} catch (Exception e) {
 			e.printStackTrace();
-			forwardPath = "/에러페이지..";
+			forwardPath = "login/에러페이지..";
 		}
 		//알럿창으로 띄우기 id 보여주기...
 		return forwardPath;
@@ -124,7 +124,7 @@ public class LoginController {
 			forwardPath = "login/...";
 		}catch(Exception e) {
 			e.printStackTrace();
-			forwardPath = "/에러페이지..";
+			forwardPath = "login/에러페이지..";
 		}
 		return forwardPath;
 	}
@@ -156,7 +156,7 @@ public class LoginController {
 			forwardPath = "login/register";
 		}catch(Exception e) {
 			e.printStackTrace();
-			forwardPath = "/에러페이지..";
+			forwardPath = "login/에러페이지..";
 		}
 		return forwardPath;
 	}
