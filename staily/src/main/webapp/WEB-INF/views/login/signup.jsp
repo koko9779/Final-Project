@@ -11,7 +11,7 @@
 	$(function() {
 		$("#inputId").keyup(function(e) {
 			 $.ajax({
-			        url: "signup_Id_check",
+			        url: "Id_check",
 			       	data: {mId:e.target.value},
 			       	type: "POST",
 			        success: function(result){
