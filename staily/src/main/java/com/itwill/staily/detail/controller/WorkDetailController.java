@@ -13,14 +13,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itwill.staily.detail.service.WorkDetailService;
 import com.itwill.staily.util.Work;
 
-@SuppressWarnings("unused")
 @Controller
+@RequestMapping("/detail")
 public class WorkDetailController {
 	@Autowired
 	private WorkDetailService workDetailService;
 	
-	/*
-	@RequestMapping("/detailtest")
+	
+	@RequestMapping("/work_confirm")
 	public ModelAndView selectWorkOne(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		
@@ -33,29 +33,29 @@ public class WorkDetailController {
 			e.printStackTrace();
 		}
 		
-		mv.setViewName("detailtest");
+		mv.setViewName("detail/work_confirm");
 		
 		return mv;		
 	}
-	*/
-	/*
-	@RequestMapping("/detailtest")
+	
+	
+	@RequestMapping("/work_search")
 	public ModelAndView selectWorkAll(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		
 		try {
 			List<Work> wL = workDetailService.selectWorkAll();
-			request.setAttribute("workList", wL);			
+			request.setAttribute("data", wL);			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		mv.setViewName("detailtest");
+		mv.setViewName("detail/work_search");
 		
 		return mv;		
 	}
-	*/
+	
 	/*
 	@RequestMapping("/detailtest")
 	public ModelAndView createWorkDetail(HttpServletRequest request, HttpServletResponse response) {
