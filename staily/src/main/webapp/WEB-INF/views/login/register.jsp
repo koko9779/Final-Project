@@ -22,6 +22,13 @@
 
   <!-- Page level custom scripts -->
   <script src="${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
+  <script type="text/javascript">
+  	function register_action() {
+  		document.registerF.action = "register_action";
+  		document.registerF.method = "POST";
+  		document.registerF.submit();
+  	}
+  </script>
 </head>
 
 <body class="bg-gradient-primary">
@@ -38,27 +45,35 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
-              <form class="user">
-                <div class="form-group row">
+              <form name="registerF" class="user">
+              <input type="hidden" name="mType" value="M">
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-user" id="InputId" name="mId" placeholder="Write id here">
+                </div>
+                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
+                    <input type="password" class="form-control form-control-user" id="inputPw" name="mPw" placeholder="Write password here">
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
+                    <input type="password" class="form-control form-control-user" id="repeatPw" placeholder="Repeat password">
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
+                  <input type="text" class="form-control form-control-user" id="InputName" name="mName" placeholder="Write name Here">
                 </div>
-                <div class="form-group row">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
-                  </div>
-                  <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
-                  </div>
+                <div class="form-group">
+                  <input type="email" class="form-control form-control-user" id="InputEmail" name="mEmail" placeholder="Write email here">
                 </div>
-                <a href="login.html" class="btn btn-primary btn-user btn-block">
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-user" id="InputAddress" name="mAddress" placeholder="Write address here">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-user" id="InputDaddress" name="mDaddress" placeholder="Write detail address here">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-user" id="InputPhone" name="mPhone" placeholder="Write phone number without  '-'">
+                </div>
+                <a href="javascript:register_action();" role="button" class="btn btn-primary btn-user btn-block">
                   Register Account
                 </a>
                 <hr>
@@ -71,29 +86,20 @@
               </form>
               <hr>
               <div class="text-center">
+                <a class="small" href="forgot-password.html">Forgot Id?</a>
+              </div>
+              <div class="text-center">
                 <a class="small" href="forgot-password.html">Forgot Password?</a>
               </div>
               <div class="text-center">
-                <a class="small" href="login.html">Already have an account? Login!</a>
+                <a class="small" href="login">Already have an account? Login!</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
-
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
-
 </body>
 
 </html>
