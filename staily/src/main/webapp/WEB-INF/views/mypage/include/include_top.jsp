@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>관리자 페이지</title>
+  <title>Mypage</title>
 
   <!-- Custom fonts for this template-->
   <link href="../../../${pageContext.request.contextPath}/css/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

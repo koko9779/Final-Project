@@ -68,7 +68,6 @@ function member_update(){
 		mType<input type="text" name="mType" value="${member.mType}"><br>
 		mPhone<input type="text" name="mPhone" value="${member.mPhone}"><br>
 		<input type="button" value="멤버수정" onclick="member_update()">
-	
 	</form>
 	
 	
