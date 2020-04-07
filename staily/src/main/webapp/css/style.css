@@ -1081,10 +1081,9 @@ a.arrow-button:hover {
             transition: .5s ease-in-out;
 }
 
-.slick-slide .movie-poster:hover img {
+.slick-slide .movie-poster:hover iii {
     filter: grayscale(100%);
 }
-
 .slick-slide .movie-poster:before {
     position: absolute;
     z-index: 1;
@@ -1180,6 +1179,35 @@ a.arrow-button:hover {
     display: block;
 
     color: #fff;
+}
+.slick-slide .movie-poster2 {
+    position: relative;
+
+    overflow: hidden;
+
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+}
+
+.slick-slide .movie-poster2 img {
+    -webkit-transition: .5s ease-in-out;
+            transition: .5s ease-in-out;
+}
+.slick-slide .movie-poster2 img:hover {
+        cursor:pointer;
+       transform:scale(1.1); /* 마우스 오버시 이미지 크기를 1.1 배만큼 확대시킨다. */
+       -o-transform:scale(1.1); 
+       -moz-transform:scale(1.1);
+       -webkit-transform:scale(1.1);
+       
+        transition: transform .35s;  
+       -o-transition: transform .35s;
+       -moz-transition: transform .35s;
+       -webkit-transition: transform .35s;
+    /* 마우스 오버시 이미지가 즉시 커지지않고 30.5 second 의 시간에 걸쳐 커진다 애니메이션 효과*/
+
+
 }
 
 .star-rating {
