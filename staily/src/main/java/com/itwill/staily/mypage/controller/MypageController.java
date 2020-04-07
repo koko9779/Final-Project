@@ -216,6 +216,8 @@ public class MypageController {
 		return "test2";
 	}
 	
+	//결제
+	
 	//@RequestMapping("/test4")
 	public ModelAndView friend_find(Model model) throws Exception{
 		ModelAndView mv = new ModelAndView();
