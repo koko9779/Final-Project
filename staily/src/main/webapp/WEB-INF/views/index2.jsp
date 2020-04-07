@@ -8,6 +8,14 @@
 
 <html>
 <head>
+<script>
+function bookmark_remove(bmNo){
+	var bookmark_form = document.getElementById('bookmark_'+bmNo);
+	alert(bmNo);
+	bookmark_form.action = "delete_bookmark";
+	bookmark_form.submit();
+}
+</script>
 </head>
 <body>
 
@@ -115,112 +123,42 @@
 				<h2>BOOKMARK</h2>
 
 				<div class="slick-carousel" id="newIn">
-					<div class="movie-slide">
-						<div class="movie-poster">
-							<aside>
-								<div>
-									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype="
-										video" class="venobox play"> <i class="material-icons">play_arrow</i>
-									</a> <a href="single-movie.html" class="read-more">read more</a> <span
-										class="date">Released: 7 Mar, 2017</span>
+					<c:forEach var="bm" items="${bmList}">
+						<form id="bookmark_${bm.bmNo}" method="get">
+							<input type="hidden" value="${bm.bmNo}" name="bmNo"/>
+							<div class="movie-slide">
+								<div class="movie-poster">
+									<aside>
+										<div>
+											<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype="
+												video" class="venobox play"> <i class="material-icons">play_arrow</i>
+											</a> <a href="single-movie.html" class="read-more">read more</a> <span
+												class="date">Released: 7 Mar, 2017</span>
+										</div>
+									</aside>
+									<a href="#"> <img
+										src="${pageContext.request.contextPath}${bm.product.pScene}" alt="Movie title" />
+									</a>
+									<!-- 
+									작품장면: <c:out value="${bm.product.pScene}" />
+									 -->
 								</div>
-							</aside>
-							<a href="#"> <img
-								src="${pageContext.request.contextPath}/images/1.jpg" alt="Movie title" />
-							</a>
-						</div>
-						<h4 class="no-underline">The last post</h4>
-						<div class="star-rating">
-							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-							<i class="material-icons">star_rate</i>
-						</div>
-					</div>
-					<div class="movie-slide">
-						<div class="movie-poster">
-							<aside>
+								<h4 class="no-underline">${bm.product.pName}</h4>
 								<div>
-									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype="
-										video" class="venobox play"> <i class="material-icons">play_arrow</i>
-									</a> <a href="single-movie.html" class="read-more">read more</a> <span
-										class="date">Released: 7 Mar, 2017</span>
+									<input type="button" value="즐겨찾기 제거" onclick="bookmark_remove(${bm.bmNo})">
 								</div>
-							</aside>
-							<a href="#"> <img src="${pageContext.request.contextPath}/images/2.jpg" 
-								alt="Movie title" />
-							</a>
-						</div>
-						<h4 class="no-underline">Dark and lonely</h4>
-						<div class="star-rating">
-							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-							<i class="material-icons grey">star_rate</i>
-						</div>
-					</div>
-					<div class="movie-slide">
-						<div class="movie-poster">
-							<aside>
-								<div>
-									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype="
-										video" class="venobox play"> <i class="material-icons">play_arrow</i>
-									</a> <a href="single-movie.html" class="read-more">read more</a> <span
-										class="date">Released: 7 Mar, 2017</span>
+								<!-- 별점 -->
+								<!-- 
+								<div class="star-rating">
+									<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+									<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+									<i class="material-icons">star_rate</i>
 								</div>
-							</aside>
-							<a href="#"> <img src="${pageContext.request.contextPath}/images/1.jpg" 
-								alt="Movie title" />
-							</a>
-						</div>
-						<h4 class="no-underline">Venture</h4>
-						<div class="star-rating">
-							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-							<i class="material-icons">star_rate</i>
-						</div>
-					</div>
-					<div class="movie-slide">
-						<div class="movie-poster">
-							<aside>
-								<div>
-									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype="
-										video" class="venobox play"> <i class="material-icons">play_arrow</i>
-									</a> <a href="single-movie.html" class="read-more">read more</a> <span
-										class="date">Released: 7 Mar, 2017</span>
-								</div>
-							</aside>
-							<a href="#"> <img src="${pageContext.request.contextPath}/images/2.jpg" 
-								alt="Movie title" />
-							</a>
-						</div>
-						<h4 class="no-underline">Hush</h4>
-						<div class="star-rating">
-							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-							<i class="material-icons">star_rate</i> <i
-								class="material-icons grey">star_rate</i> <i
-								class="material-icons grey">star_rate</i>
-						</div>
-					</div>
-					<div class="movie-slide">
-						<div class="movie-poster">
-							<aside>
-								<div>
-									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype="
-										video" class="venobox play"> <i class="material-icons">play_arrow</i>
-									</a> <a href="single-movie.html" class="read-more">read more</a> <span
-										class="date">Released: 7 Mar, 2017</span>
-								</div>
-							</aside>
-							<a href="#"> <img src="http://via.placeholder.com/265x340"
-								alt="Movie title" />
-							</a>
-						</div>
-						<h4 class="no-underline">Venture</h4>
-						<div class="star-rating">
-							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-							<i class="material-icons">star_rate</i>
-						</div>
-					</div>
+								-->
+								<!--  -->
+							</div>
+						</form>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -234,113 +172,36 @@
 				<h2>HOT</h2>
 
 				<div class="slick-carousel" id="newIn1">
-					<div class="movie-slide">
-						<div class="movie-poster">
-							<aside>
-								<div>
-									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype="
-										video" class="venobox play"> <i class="material-icons">play_arrow</i>
-									</a> <a href="single-movie.html" class="read-more">read more</a> <span
-										class="date">Released: 7 Mar, 2017</span>
-								</div>
-							</aside>
-							<a href="#"> <img
-								src="http://via.placeholder.com/265x340.jpg" alt="Movie title" />
-							</a>
+					<c:forEach var="hot" items="${hotList}">
+						<div class="movie-slide">
+							<div class="movie-poster">
+								<aside>
+									<div>
+										<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype="
+											video" class="venobox play"> <i class="material-icons">play_arrow</i>
+										</a> <a href="single-movie.html" class="read-more">read more</a> <span
+											class="date">Released: 7 Mar, 2017</span>
+									</div>
+								</aside>
+								<a href="#"> <img
+									src="${pageContext.request.contextPath}/images/product/scene/2.jpg" alt="Movie title" />
+								</a>
+							</div>
+							<h4 class="no-underline">${hot.pName}</h4>
+							<div>
+								조회수: ${hot.pView}
+							</div>
+							<!-- 별점 -->
+							<!-- 
+							<div class="star-rating">
+								<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+								<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
+								<i class="material-icons">star_rate</i>
+							</div>
+							-->
+							<!--  -->
 						</div>
-						<h4 class="no-underline">The last post</h4>
-						<div class="star-rating">
-							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-							<i class="material-icons">star_rate</i>
-						</div>
-					</div>
-					<div class="movie-slide">
-						<div class="movie-poster">
-							<aside>
-								<div>
-									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype="
-										video" class="venobox play"> <i class="material-icons">play_arrow</i>
-									</a> <a href="single-movie.html" class="read-more">read more</a> <span
-										class="date">Released: 7 Mar, 2017</span>
-								</div>
-							</aside>
-							<a href="#"> <img src="http://via.placeholder.com/265x340"
-								alt="Movie title" />
-							</a>
-						</div>
-						<h4 class="no-underline">Dark and lonely</h4>
-						<div class="star-rating">
-							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-							<i class="material-icons grey">star_rate</i>
-						</div>
-					</div>
-					<div class="movie-slide">
-						<div class="movie-poster">
-							<aside>
-								<div>
-									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype="
-										video" class="venobox play"> <i class="material-icons">play_arrow</i>
-									</a> <a href="single-movie.html" class="read-more">read more</a> <span
-										class="date">Released: 7 Mar, 2017</span>
-								</div>
-							</aside>
-							<a href="#"> <img src="http://via.placeholder.com/265x340"
-								alt="Movie title" />
-							</a>
-						</div>
-						<h4 class="no-underline">Venture</h4>
-						<div class="star-rating">
-							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-							<i class="material-icons">star_rate</i>
-						</div>
-					</div>
-					<div class="movie-slide">
-						<div class="movie-poster">
-							<aside>
-								<div>
-									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype="
-										video" class="venobox play"> <i class="material-icons">play_arrow</i>
-									</a> <a href="single-movie.html" class="read-more">read more</a> <span
-										class="date">Released: 7 Mar, 2017</span>
-								</div>
-							</aside>
-							<a href="#"> <img src="http://via.placeholder.com/265x340"
-								alt="Movie title" />
-							</a>
-						</div>
-						<h4 class="no-underline">Hush</h4>
-						<div class="star-rating">
-							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-							<i class="material-icons">star_rate</i> <i
-								class="material-icons grey">star_rate</i> <i
-								class="material-icons grey">star_rate</i>
-						</div>
-						
-					</div>
-					<div class="movie-slide">
-						<div class="movie-poster">
-							<aside>
-								<div>
-									<a href="https://youtu.be/ScMzIvxBSi4 data-vbtype="
-										video" class="venobox play"> <i class="material-icons">play_arrow</i>
-									</a> <a href="single-movie.html" class="read-more">read more</a> <span
-										class="date">Released: 7 Mar, 2017</span>
-								</div>
-							</aside>
-							<a href="#"> <img src="http://via.placeholder.com/265x340"
-								alt="Movie title" />
-							</a>
-						</div>
-						<h4 class="no-underline">Venture</h4>
-						<div class="star-rating">
-							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-							<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-							<i class="material-icons">star_rate</i>
-						</div>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
