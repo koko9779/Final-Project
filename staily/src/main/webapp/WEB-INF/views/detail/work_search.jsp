@@ -21,7 +21,45 @@
 
 <!-- Page level custom scripts -->
 <script src="${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
+
 </head>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			 <a id="modal-424823" href="#modal-container-424823" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
+			
+			<div class="modal fade" id="modal-container-424823" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="myModalLabel">
+								Modal title
+							</h5> 
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							...
+						</div>
+						<div class="modal-footer">
+							 
+							<button type="button" class="btn btn-primary">
+								Save changes
+							</button> 
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">
+								Close
+							</button>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+			
+		</div>
+	</div>
+</div>
 
 <body id="page-top">
 
@@ -85,32 +123,18 @@
   </div>
   <!-- End of Page Wrapper -->
 
+
+
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  
+		
 
 
 <script type="text/javascript">
+
 function member_delete(mNo) {
 	var updateForm = document.getElementById("member_"+mNo);
 	console.log(updateForm);
@@ -132,8 +156,10 @@ $(".confirm").click(function(){
     var no = td.eq(0).text();
     
     console.log(no);
+    
 
 });
+
 </script>
 </body>
 
