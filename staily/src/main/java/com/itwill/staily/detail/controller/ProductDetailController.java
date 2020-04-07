@@ -39,8 +39,8 @@ public class ProductDetailController {
 		
 	}	
 	
-	/*
-	@RequestMapping("/detailtest")
+	
+	@RequestMapping("/product_create")
 	public ModelAndView createProduct(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		
@@ -62,18 +62,18 @@ public class ProductDetailController {
 			boolean create = productDetailService.createProduct(p);
 			
 			if(create) {
-				request.setAttribute("productOne", p);				
+				request.setAttribute("productEx", p);				
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		mv.setViewName("detailtest");
+		mv.setViewName("detail/create_product");
 		
 		return mv;		
 	}	
-	*/
+	
 	/*
 	@RequestMapping("/detailtest")
 	public ModelAndView createProductDetail(HttpServletRequest request, HttpServletResponse response) {
