@@ -35,10 +35,7 @@
 			<h2>이 상품이 나온 장면</h2>
 			<hr class="space-40" />
 			<div class="row">
-				<!--  
 				<img src="${pageContext.request.contextPath}${productOne.get(0).getpScene()}">
-				-->
-				<img src="${pageContext.request.contextPath}/images/product/scene/1.jpg">
 			</div>
 		</div>
 	</div>
@@ -56,33 +53,17 @@
 					<div class="slick-carousel news-carousel">
 						
 						<c:forEach var="product" items="${productOne}">
-							<!--  
-							<c:out value="${product.pdImage }"/>
-							-->					
 							<div>
 								<img src="${pageContext.request.contextPath}${product.pdImage}">
 							</div>	
-						</c:forEach>
-						<!--  
-							<div>
-								<img src="${pageContext.request.contextPath}/images/product/image/1_1.jpg">
-							</div>						
-							<div>
-								<img src="${pageContext.request.contextPath}/images/product/image/1_2.jpg">
-							</div>						
-							<div>
-								<img src="${pageContext.request.contextPath}/images/product/image/1_3.jpg">
-							</div>						
-							<div>
-								<img src="${pageContext.request.contextPath}/images/product/image/1_4.jpg">
-							</div>						
-							-->					
+						</c:forEach>		
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
 
 <!-- Section -->
 <div class="container section news">
