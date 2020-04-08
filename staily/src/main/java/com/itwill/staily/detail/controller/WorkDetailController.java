@@ -20,7 +20,7 @@ public class WorkDetailController {
 	private WorkDetailService workDetailService;
 	
 	
-	@RequestMapping("/work_confirm")
+	@RequestMapping("/work_search#work_confirm")
 	public ModelAndView selectWorkOne(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		
