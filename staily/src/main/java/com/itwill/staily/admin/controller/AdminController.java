@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.itwill.staily.admin.service.AdminService;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
@@ -65,6 +68,20 @@ public class AdminController {
 			e.printStackTrace(); 
 		}
 		return "admin/member";
+	}
+	@RequestMapping("/member_select")
+	@ResponseBody
+	public String memberAdminSelect(HttpServletRequest request, HttpSession session, ModelAndView mv) {
+		int mNo = Integer.parseInt(request.getParameter("mNo"));
+		String result = null;
+		try {
+			Member member = adminService.selectMemberOne(mNo);
+			mv.addObject("member", member);
+			result = "fowardPath:admin/member_update";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 	@RequestMapping("/member_delete")
 	public String memberAdminDelete(HttpServletRequest request) {
