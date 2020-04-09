@@ -15,6 +15,23 @@
 	    font-size: 12px;
 	    visibility: hidden;
      }
+     
+    .type-button {
+	    color: #fff;
+	    background-color: #4e73df;
+	    border-color: #4e73df;
+	    border-radius: 10rem;
+    }
+    
+    .type-button:hover {
+    color: #fff;
+    background-color: #2e59d9;
+    border-color: #2653d4;
+}
+    
+    .gaip-top {
+    	margin-top: 1.5rem
+    }
 </style>
   <!-- Bootstrap core JavaScript-->
   <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
@@ -29,9 +46,9 @@
   <!-- Page level plugins -->
   <script src="${pageContext.request.contextPath}/css/admin/vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="${pageContext.request.contextPath}/css/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
   <!-- Page level custom scripts -->
   <script src="${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script type="text/javascript">
   	function register_action() {
   		if($("#check_register").css("visibility") === "hidden" &&
@@ -43,6 +60,14 @@
   			$("#inputAddress").val() != ""  &&
   			$("#inputDaddress").val() != ""  &&
   			$("#inputPhone").val() != "" ) {
+  			
+  			var coNoE = $("#inputCono");
+  			
+  			if(coNoE != null && coNoE.val() === null) {
+  				alert("모든 입력창에 알맞게 정보를 넣어야만 가입 가능합니다");
+  				return;
+  			}
+  			
 	  		document.registerF.action = "register_action";
 	  		document.registerF.method = "POST";
 	  		document.registerF.submit();
@@ -50,6 +75,56 @@
   			alert("모든 입력창에 알맞게 정보를 넣어야만 가입 가능합니다");
   		}
   	}
+  	
+	function sample6_execDaumPostcode() {
+	    new daum.Postcode({
+	        oncomplete: function(data) {
+	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+	            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+	            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	            var addr = ''; // 주소 변수
+	            var extraAddr = ''; // 참고항목 변수
+
+	            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+	                addr = data.roadAddress;
+	            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+	                addr = data.jibunAddress;
+	            }
+
+	            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	           // document.getElementById('new_address_zipcode').value = data.zonecode;
+	            document.getElementById("inputAddress").value = addr;
+	            // 커서를 상세주소 필드로 이동한다.
+	            document.getElementById("inputDaddress").focus();
+	        }
+	    }).open();
+	}
+	
+	function mType_company() {
+		var phoneGroupE = document.getElementById("phoneGroupE");
+		
+		if(document.getElementById("inputCono")==null) {
+			$("#inputType").attr("value", "C");
+			$("<div class='form-group'>" +
+	                "<input type='text' class='form-control form-control-user' id='inputCono' name='coNo' placeholder=\"'-'  없이 사업자등록번호 입력해주세요\">" +
+	          "</div>").insertAfter(phoneGroupE);
+			return;
+		}else {
+			return;
+		}
+	}
+	
+	function mType_member() {
+		var phoneGroupE = document.getElementById("phoneGroupE");
+		var coNoE = document.getElementById("inputCono");
+		
+		if(coNoE!=null) {
+			$("#inputType").attr("value", "M");
+			coNoE.remove();
+		}
+	}
   	
   </script>
 </head>
@@ -65,11 +140,19 @@
           <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
           <div class="col-lg-7">
             <div class="p-5">
+            <div class="btn-group" role="group">
+				<button class="btn btn-secondary type-button" type="button" onclick="mType_member();">
+					일반 회원
+				</button> 
+				<button class="btn btn-secondary type-button" type="button" onclick="mType_company();">
+					기업 회원
+				</button> 
+			</div>
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">회원 가입</h1>
+                <h1 class="h4 text-gray-900 mb-4 gaip-top">회원 가입</h1>
               </div>
               <form name="registerF" id="registerF" class="user">
-              <input type="hidden" name="mType" value="M">
+              <input type="hidden" id="inputType" name="mType" value="M">
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="inputId" name="mId" placeholder="아이디">
                 </div>
@@ -88,12 +171,12 @@
                   <input type="email" class="form-control form-control-user" id="inputEmail" name="mEmail" placeholder="이메일">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="inputAddress" name="mAddress" placeholder="주소">
+                  <input type="text" class="form-control form-control-user" id="inputAddress" name="mAddress" placeholder="주소" onclick="sample6_execDaumPostcode();">
                 </div>
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="inputDaddress" name="mDaddress" placeholder="상세주소">
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="phoneGroupE">
                   <input type="text" class="form-control form-control-user" id="inputPhone" name="mPhone" placeholder="'-'  없이 핸드폰번호 입력해주세요">
                 </div>
                 <div class="check_register" id="check_register">
@@ -199,7 +282,6 @@
 			  $('#check_register').html("이메일 형식으로 입력해주세요");
 		  }else {
 			  var paramStr = $("#registerF").serialize();
-			  alert(paramStr);
 				$.ajax({
 					url: "email_check",
 					method: 'POST',
