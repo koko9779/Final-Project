@@ -30,14 +30,15 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<h4 class="modal-title" id="myModalLabel">
-								작품 선택
+								작품 확인
 							</h4>
 						</div>
-						<div class="modal-body">
-						
+						<div class="modal-body" id="body">
+							
 						</div>
 						<div class="modal-footer">							 
-							<button type="button" class="btn btn-primary">
+							<input type="text" id="modal-wNo" name="modal-wNo" value="" readonly>
+							<button type="button" class="btn btn-primary" onClick="modal_click()">
 								확인
 							</button> 
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -76,6 +77,7 @@
                       <th>카테고리</th>
                       <th>처음 방영(개봉)일</th>
                       <th>전체 회차</th>
+                      <th hidden="bb"></th>
                       <th></th>
                     </tr>
                   </thead>
@@ -95,7 +97,8 @@
                       <fmt:parseDate value="${work.wDate}" var="dateFormat" pattern="yyyy-MM-dd"/>
 					  <td><fmt:formatDate value="${dateFormat}" pattern="yyyy-MM-dd(E)" type="both"/></td>
                       <td>${work.wTepisode}부작</td>
-                      <td><a id="modal-424823" href="#work_confirm" role="button" class="btn" data-toggle="modal" data-wName="${work.wName }" data-target="#work_confirm">선택</a></td>
+                      <td hidden="aa">${work.wPoster}</td>
+                      <td><a id="modal-424823" href="#work_confirm" role="button" class="btn" data-toggle="modal" data-target="#work_confirm">선택</a></td>
                     </tr>
                   	</c:forEach>
                   </tbody>
@@ -124,9 +127,14 @@
 
 
 <script type="text/javascript">
+$(function() {
+	$("#hide1").hide();
+	$("#hide2").hide();
+});
 
 //버튼 클릭시 Row에 있는 작품 번호 값 전달
 $(".btn").click(function() { 
+	
     var str = ""
     var tdArr = new Array();    
     var confirm = $(this);
@@ -135,44 +143,43 @@ $(".btn").click(function() {
     var td = tr.children();    
     
     var no = td.eq(0).text();
-    
-	console.log(no);
+    var name = td.eq(1).text();
+    var category = td.eq(2).text();
+    var date = td.eq(3).text();
+    var tepisode = td.eq(4).text();
+    var poster = td.eq(5).text();	
 	
 	$('#work_confirm').on('show.bs.modal', function(e) {
-		$.ajax({
-			type : "POST",
-			url : "work_confirm",
-			data : {"wNo" : no},
-			async : false,
-			dataType : "json",
-			success : function(w) {
-				var result = JSON.parse(JSON.stringify(w));
-				
-				var wNo = result.wNo;
-				var wName = result.wName;
-				var wCategory = result.wCategory;
-				var wDate = result.wDate;
-				var wTepisode = result.wTepisode;
-				
-				$('.modal-body').text("이 작품이 맞습니까?");
-				$('.modal-body').append("<br>");
-				$('.modal-body').append("<br>");
-				$('.modal-body').append("작품명 : " + wName);
-				$('.modal-body').append("<br>");
-				$('.modal-body').append("처음 방영(개봉)일 : " + wDate);
-				$('.modal-body').append("<br>");
-				$('.modal-body').append("전체 회차 : " + wTepisode);
-				$('.modal-body').append("<br>");
-				$('.modal-body').append("작품 포스터 : ");
-				$('.modal-body').append("<br>");
-				$('.modal-body').append("<img src=" + "'/staily/images/work/poster/" + wNo + ".jpg' width='350px' height='500px'>");
-			}
-			
-		});
+		
+		var main = document.getElementById("body");
+		
+		main.innerHTML = "이 작품이 맞습니까?<br><br>작품명 : " + name + "<br>카테고리 : " + category + "<br>처음 방영(개봉)일 : " + date +
+		"<br>전체 회차 : " + tepisode + "<br>작품 포스터<br>" + "<img src='/staily" + poster + "' width='465px' height='664px'>";
+		
+		$('#modal-wNo').val(no);
 	});
-	
-
 });
+
+function modal_click() {
+	
+};
+
+//확인 버튼 클릭 시 상품 등록으로 다시 값 전달
+$(".btn-primary").click(function() {
+	var wNo = $("#modal-wNo").val();
+	console.log(wNo);
+	
+	$.ajax({
+		type : "POST",
+		url : "work_confirm",
+		data : {"wNo" : wNo},
+		async : false,
+		dataType : "json",
+		success : function(w) {
+			
+		}
+	});
+}); 
 
 </script>
 </body>
