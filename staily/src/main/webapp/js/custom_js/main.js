@@ -11,19 +11,44 @@ $(function(){
 			dataType:'json',
 			success:function(jsonData){
 				var html = "";
-				var cweProduct = jsonData.cwe[0].product[0];
-				var mweProduct = jsonData.mwe[0].product[0];
+				console.log(jsonData);
+				var cweArray = jsonData.cwe;
+				var mweArray = jsonData.mwe;
+				console.log(cweArray);
 				
-				var cpScene = cweProduct.pScene;
-				var cpName = cweProduct.pName;
-				var cpView = cweProduct.pView;
+				for (var i = 0; i < cweArray.length; i++) {
+					var cweProduct =cweArray[i].product;
+					
+					console.log(cweProduct);
+					
+					var cpScene = cweProduct.pScene;
+					var cpName = cweProduct.pName;
+					var cpView = cweProduct.pView;
+					var cpMid = cweProduct.mId;
+					
+					console.log(cpScene+" "+cpName);
+				}
 				
-				var mpScene = mweProduct.pScene;
-				var mpName = mweProduct.pName;
-				var mpView = mweProduct.pView;
+				
+//				var mweProduct = mweArray.product;
+				
+				//console.log(cweProduct);
+				
+				
+//				var mpScene = mweProduct[0].pScene;
+//				var mpName = mweProduct[0].pName;
+//				var mpView = mweProduct[0].pView;
+//				var mpMid = mweProduct[0].mId;
 				
 				html += "<div class='col-sm-9 col-sm-push-1'>";
 				html += "<div class='slick-carousel' id='newIn5'>";
+				html += "<c:forEach var='cwe' items="+cweArray+">";
+				html += "<div class='movie-slide'>";
+				html += "<div class='movie-poster2'>";
+				html += "<a href='#'>";
+				html += "<img src='${pageContext.request.contextPath}"+cpScene+"' alt="+cpName+" /></a></div>";
+				html += "<h4 class='no-underline'>"+cpName+"</h4></div></c:forEach></div>";
+				html += "<h2></h2>";
 				/*
 				<div class="col-sm-9 col-sm-push-1">
 					<div class="slick-carousel" id="newIn5">
@@ -60,7 +85,7 @@ $(function(){
 				</div>
 				*/
 				
-				$('#work_list_main').html(jsonData);
+				$('#work_list_main').html(html);
 			}
 		});
 		
