@@ -4,22 +4,23 @@
 $(window).on("load", function() {
 	
 	//버튼 클릭시 Row 값 가져오기
-	$(".checkBtn").click(function(){ 
+	$(".checkBtn").click(function(e){ 
+		
 	    var checkBtn = $(this);
 	    var tr = checkBtn.parent().parent();
 	    var td = tr.children();
-	    var noStr = td.eq(1).text();
-	    var no = 'mNo='+noStr;
-	    console.log(no);
-	    $.ajax({
-	    	url:'member_select',
-	    	data:no,
-	    	method:'POST',
-	    	dataType: "text",
-	    	success:function(result){
-	    		alert(result);
-	    	}
-	    });
+	    var no = td.eq(1).text();
+//	    $.ajax({
+//	    	url:'member_select',
+//	    	data:{"mNo":no},
+//	    	method:'GET',	
+//	    	dataType: "json",
+//	    	async: false,
+//	    	success: function() {
+//			}
+//	    	
+//	    });
+	    window.open("member_select?"+"mNo="+no,"width=500,height=600")
 	});
 	$("#selectBtn").click(function(){ 
 	    var checkbox = $("input[name=user_CheckBox]:checked");
@@ -38,7 +39,7 @@ $(window).on("load", function() {
 	    		method:'POST',
 	    		dataType: "text",
 	    		success:function(result){
-	    				location.reload();
+	    			 location.reload();
 	    			}		
 	    		});
 	    	});
@@ -124,7 +125,7 @@ $(window).on("load", function() {
 		document.getElementById("memberInfoFrm").action = "member_update";
 		document.getElementById("memberInfoFrm").submit();
 	  }
-	  
+
 
 			/*
 			$(function() {

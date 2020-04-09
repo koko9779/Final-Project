@@ -14,6 +14,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                      <th></th>
                       <th>상품이름</th>
                       <th>상품가격</th>
                       <th>상품URL</th>
@@ -25,7 +26,8 @@
                   </thead>
                   <tbody>
                   	<c:forEach var="product" items="${data }">
-                  	 <tr style = "cursor:pointer;" onClick = " location.href='admin/'" >
+                  	 <tr style = "cursor:pointer;" onClick = " location.href='admin/member_update'+${product.pNo}" >
+                      <td>${product.pNo}</td>
                       <td>${product.pName}</td>
                       <td>${product.pPrice}</td>
                       <td>${product.pUrl}</td>

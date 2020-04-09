@@ -69,19 +69,17 @@ public class AdminController {
 		}
 		return "admin/member";
 	}
-	@RequestMapping("/member_select")
-	@ResponseBody
-	public String memberAdminSelect(HttpServletRequest request, HttpSession session, ModelAndView mv) {
+	@RequestMapping(value = "/member_select", method = RequestMethod.GET)
+	public String memberAdminSelect(HttpServletRequest request, HttpSession session) {
 		int mNo = Integer.parseInt(request.getParameter("mNo"));
-		String result = null;
+		Member member = null;
 		try {
-			Member member = adminService.selectMemberOne(mNo);
-			mv.addObject("member", member);
-			result = "fowardPath:admin/member_update";
+			member = adminService.selectMemberOne(mNo);
+			request.setAttribute("member", member);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return result;
+		return "admin/member_update";
 	}
 	@RequestMapping("/member_delete")
 	public String memberAdminDelete(HttpServletRequest request) {
