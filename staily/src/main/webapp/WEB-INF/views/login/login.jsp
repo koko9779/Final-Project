@@ -1,22 +1,14 @@
-<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/tags.jspf" %>
-<%@ include file="/WEB-INF/views/admin/include/include_top.jsp" %>
+<!DOCTYPE html>
 
 <html>
 
 <head>
-<style>
-  .error_msg {
-    float: right;
-    font-size: 12px;
-    color: red;
-  }
-  
-  #id_margin {
-  	margin-bottom: 9px;
-  }
-</style>
+<%@ include file="/WEB-INF/views/include/tags.jspf" %>
+<%@ include file="/WEB-INF/views/admin/include/include_top.jsp" %>
+  <!-- custom css  -->
+  <link href="${pageContext.request.contextPath}/css/login/login_custom.css" rel="stylesheet" type="text/css">
+   
   <!-- Bootstrap core JavaScript-->
   <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/css/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -39,6 +31,18 @@
   		document.f.method="POST";
   		document.f.submit();
   	}
+  	
+  	$(function() {
+		var id = $("#findIdE").val();
+		if(id === "") {
+			return;
+		}else {
+			alert("고객님의 아이디는 " + id + "입니다");
+			location.href="login";
+			return;
+		}
+	});
+  	
   </script>
 </head>
 
@@ -59,27 +63,21 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                    <h1 class="h4 text-gray-900 mb-4">환영합니다</h1>
                   </div>
+                  <input type="hidden" value="${findId}" id="findIdE">
                   <form class="user" name="f">
                     <div class="form-group" id="id_margin">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="userId">
+                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="아이디" name="userId">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" name="userPw">
+                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="비밀번호" name="userPw">
                     </div>
                     <div class="error_msg" id="error_msg">
                     	${msg}
                     </div>
-                    
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Remember Me</label>
-                      </div>
-                    </div>
                     <a href="javascript:login_action();" role="button" class="btn btn-primary btn-user btn-block">
-                      Login
+                      로그인
                     </a>
                     <hr>
                     <a href="index.html" class="btn btn-google btn-user btn-block">
@@ -91,13 +89,13 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Id?</a>
+                    <a class="small" href="find_id">아이디를 잊어버리셨나요?</a>
                   </div>
                   <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                    <a class="small" href="find_pw">비밀번호를 잊어버리셨나요?</a>
                   </div>
                   <div class="text-center">
-                    <a class="small" href="register">Create an Account!</a>
+                    <a class="small" href="register">회원가입을 하고 싶으신가요?</a>
                   </div>
                 </div>
               </div>
