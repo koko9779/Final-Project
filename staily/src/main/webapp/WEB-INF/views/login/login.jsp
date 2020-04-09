@@ -38,6 +38,7 @@
 			return;
 		}else {
 			alert("고객님의 아이디는 " + id + "입니다");
+			location.href="login";
 			return;
 		}
 	});

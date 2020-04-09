@@ -44,6 +44,7 @@
 				return;
 			}else {
 				alert(msgE);
+				location.href = "find_id"
 				return;
 			}
 		});

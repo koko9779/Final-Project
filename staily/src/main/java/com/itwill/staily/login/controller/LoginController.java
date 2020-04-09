@@ -100,7 +100,6 @@ public class LoginController {
 			e.printStackTrace();
 			forwardPath = "login/에러페이지..";
 		}
-		//알럿창으로 띄우기 id 보여주기...
 		return forwardPath;
 	}
 
@@ -109,7 +108,6 @@ public class LoginController {
 		return "login/forgot_pw";
 	}
 	
-	//아작스...?
 	@RequestMapping(value = "/find_pw_action", method = RequestMethod.POST)
 	public String find_pw_action_post(@RequestParam String id, String phone, Model model) {
 		String forwardPath = "";
