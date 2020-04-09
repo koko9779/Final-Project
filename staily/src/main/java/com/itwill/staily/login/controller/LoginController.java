@@ -14,6 +14,7 @@ import com.itwill.staily.login.exception.NoExistedIdException;
 import com.itwill.staily.login.exception.NoSearchMemberException;
 import com.itwill.staily.login.exception.PasswordMissmatchException;
 import com.itwill.staily.login.service.LoginService;
+import com.itwill.staily.util.Company;
 import com.itwill.staily.util.Member;
 
 @Controller
@@ -140,13 +141,18 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/register_action", method = RequestMethod.POST)
-	public String singup_member_action_post(@ModelAttribute Member signupMember, Model model) {
+	public String singup_member_action_post(@ModelAttribute Member signupMember, String coNo, Model model) {
 		String forwardPath = "";
 		
 		try {
 			if(signupMember.getmType().equals("M")) {
 				loginService.signUpMember(signupMember);
 			}else if(signupMember.getmType().equals("C")) {
+				Company com = new Company();
+				int intCoNo = Integer.parseInt(coNo);
+				com.setCoNo(intCoNo);
+				
+				signupMember.setmCompany(com);
 				loginService.signUpCompany(signupMember);
 			}
 			forwardPath = "login/login";
@@ -158,7 +164,7 @@ public class LoginController {
 			e.printStackTrace();
 			forwardPath = "login/에러페이지..";
 		}
-		return forwardPath;
+		return forwardPath; 
 	}
 	
 	
