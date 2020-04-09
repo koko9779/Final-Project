@@ -76,6 +76,11 @@ public class MypageController {
 								HttpSession session) throws Exception {
 		//Integer mNo =(Integer)request.getAttribute("mNo");
 		String mNoStr = request.getParameter("mNo");
+		
+		String phn1 = request.getParameter("phn1");
+		String phn2 = request.getParameter("phn2");
+		String phn3 = request.getParameter("phn3");
+		String mPhone = phn1 + phn2 + phn3;
 		Integer mNo = Integer.parseInt(mNoStr);
 		System.out.println(mNo);
 		Member member = new Member(mNo, 
@@ -86,10 +91,13 @@ public class MypageController {
 									request.getParameter("mDaddress"), 
 									request.getParameter("mEmail"), 
 									request.getParameter("mType"), 
-									request.getParameter("mPhone"));
+									mPhone);
 		
 		boolean result = mypageService.updateMember(member);
 		request.setAttribute("result", result);
+		request.setAttribute("phn1", phn1);
+		request.setAttribute("phn2", phn2);
+		request.setAttribute("phn3", phn3);
 		request.setAttribute("mNo", mNo);
 		session.setAttribute("mNo", mNo);
 		return "forward:/mypage/member_select";
@@ -97,11 +105,17 @@ public class MypageController {
 	
 	//북마크리스트
 	@RequestMapping("/bookmark_list")
-	public String bookmark_list(HttpSession session, HttpServletRequest request) throws Exception{
+	public String bookmark_list(HttpSession session, HttpServletRequest request) {
 		//int mNo = (Integer)request.getAttribute("mNo");
 		int mNo = (Integer)session.getAttribute("mNo");
-		List<Bookmark> bookmarkList = bookmarkService.selectList(mNo);
-		request.setAttribute("data", bookmarkList);
+		List<Bookmark> bookmarkList;
+		try {
+			bookmarkList = bookmarkService.selectList(mNo);
+			request.setAttribute("data", bookmarkList);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "main/index";
+		}
 		//session.setAttribute("mNo", mNo);
 		return "mypage/bookmark";
 	}
@@ -118,11 +132,17 @@ public class MypageController {
 	@RequestMapping("/friend_list")
 	public String friend_list(HttpServletResponse response, 
 							  HttpServletRequest request,
-							  HttpSession session) throws Exception{
+							  HttpSession session) {
 		//int mNo = (Integer)request.getAttribute("mNo");
 		int mNo = (Integer)session.getAttribute("mNo");
-		List<Friend> friendList = friendService.selectList(mNo);
-		request.setAttribute("friendList", friendList);
+		List<Friend> friendList;
+		try {
+			friendList = friendService.selectList(mNo);
+			request.setAttribute("friendList", friendList);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "main/index";
+		}
 		return "mypage/friend_list";
 	}
 	
@@ -167,11 +187,18 @@ public class MypageController {
 	
 	//메시지리스트(멤버&메시지 조인)
 	@RequestMapping("/message_list")
-	public ModelAndView message_selectList(HttpSession session, Model model) throws Exception{
+	public ModelAndView message_selectList(HttpSession session, Model model) {
 		ModelAndView mv = new ModelAndView();
 		int mNo = (Integer)session.getAttribute("mNo");
-		List<Message> messageList = messageService.selectMessageList(mNo);
-		model.addAttribute("messageList", messageList);
+		List<Message> messageList;
+		try {
+			messageList = messageService.selectMessageList(mNo);
+			model.addAttribute("messageList", messageList);
+		} catch (Exception e) {
+			e.printStackTrace();
+			mv.setViewName("main/index");
+			return mv;
+		}
 		mv.setViewName("mypage/message_list");
 		return mv;
 	}
@@ -203,12 +230,18 @@ public class MypageController {
 	public String member_write(HttpServletRequest request, 
 							   HttpServletResponse response, 
 							   Model model,
-							   HttpSession session) throws Exception {
+							   HttpSession session) {
 		//int mNo = (Integer)request.getAttribute("mNo");
 		int mNo = (Integer)session.getAttribute("mNo");
-		List<Product> writeList = mypageService.selectWriteList(mNo);
+		List<Product> writeList;
+		try {
+			writeList = mypageService.selectWriteList(mNo);
+			request.setAttribute("data", writeList);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "main/index";
+		}
 		//model.addAttribute("writeList", writeList);
-		request.setAttribute("data", writeList);
 		return "mypage/member_write";
 	}
 	
@@ -227,10 +260,16 @@ public class MypageController {
 	@RequestMapping("/payment_list")
 	public String payment_list(HttpServletRequest request, 
 							   HttpServletResponse response,
-							   HttpSession session) throws Exception{
+							   HttpSession session) {
 		int mNo = (Integer)session.getAttribute("mNo");
-		List<Payment> paymentList = paymentService.selectList(mNo);
-		request.setAttribute("paymentList", paymentList);
+		List<Payment> paymentList;
+		try {
+			paymentList = paymentService.selectList(mNo);
+			request.setAttribute("paymentList", paymentList);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "main/index";
+		}
 		return "mypage/payment_list";
 	}
 	
