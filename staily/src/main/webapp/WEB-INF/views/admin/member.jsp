@@ -3,11 +3,12 @@
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
 <%@ include file="/WEB-INF/views/admin/include/include_top.jsp" %>
 <%@ include file="/WEB-INF/views/admin/include/include_js.jsp" %>
+
 <html>
 <body id="page-top">
 	<!-- Page Wrapper -->
 	<div id="wrapper">
-		<%@ include file="/WEB-INF/views/admin/include/include_nav.jsp"%>WS
+		<%@ include file="/WEB-INF/views/admin/include/include_nav.jsp"%>
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
 
