@@ -23,10 +23,8 @@
 			<div class="container section news">
 				<div class="row">
 					<%@ include file="/WEB-INF/views/include/include_work_sidebar.jsp"%>
-					<div class="col-sm-7 col-sm-push-1">
-					
-						<h2>기업</h2>
-		
+					<!-- 기업회원 -->					
+					<div class="col-sm-9 col-sm-push-1">
 						<div class="slick-carousel" id="newIn5">
 							<c:forEach var="cw" items="${cw}">
 									<div class="movie-slide">
@@ -41,13 +39,15 @@
 									</div>
 							</c:forEach>
 						</div>
+						<h2></h2>
+						<!-- 일반회원 -->
 						<article>
 							<c:forEach var="mw" items="${mw}">
-							<form id="bookmark_${mw.product[0].pNo}">
+							<form id="bookmark_${mw.product[0].pNo}" style="margin-top:10%;">
 								<input type="hidden" value="${mNo}" name="mNo">
 								<input type="hidden" value="${mw.product[0].pNo}" name="pNo">
 								<img src="${pageContext.request.contextPath}${mw.product[0].pScene}" class="news-single-img" alt="" />
-								<h2 class="no-underline" value="상품이름" style="margin:0">${mw.product[0].pName}</h2>
+								<h2 value="상품이름" style="margin:0px;">${mw.product[0].pName}</h2>
 								<div style="float:right;">
 									<span value="작성자">작성자: ${mw.product[0].mId}</span>
 									<span class="categories tag" value="조회수">조회수: ${mw.product[0].pView}</span>
