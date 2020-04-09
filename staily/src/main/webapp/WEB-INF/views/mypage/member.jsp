@@ -6,19 +6,26 @@
 <head>
 <%@ include file="/WEB-INF/views/mypage/include/include_top.jsp"%>
 <!-- Bootstrap core JavaScript-->
-  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
-  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script
+	src="../../../${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
+<script
+	src="../../../${pageContext.request.contextPath}/css/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script
+	src="../../../${pageContext.request.contextPath}/css/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="../../../${pageContext.request.contextPath}/css/admin/js/sb-admin-2.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script
+	src="../../../${pageContext.request.contextPath}/css/admin/js/sb-admin-2.min.js"></script>
 
-  <!-- Page level plugins -->
-  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<!-- Page level plugins -->
+<script
+	src="../../../${pageContext.request.contextPath}/css/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+<script
+	src="../../../${pageContext.request.contextPath}/css/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="../../../${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
+<!-- Page level custom scripts -->
+<script
+	src="../../../${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
 <script
 	src="../../../${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.validate.min.js"></script>
 <script
@@ -182,12 +189,14 @@
 													</div>
 													<div class="col">
 														<input type="text" name="phn2" id="phn2"
-															class="hphead form-control" value="${phn2}" maxlength="4">
+															class="hphead form-control" value="${phn2}" maxlength="4"
+															onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 
 													</div>
 													<div class="col">
 														<input type="text" name="phn3" id="phn3"
-															class="hphead form-control" value="${phn3}" maxlength="4">
+															class="hphead form-control" value="${phn3}" maxlength="4"
+															onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 													</div>
 												</div>
 
@@ -233,9 +242,7 @@
 															class="form-control" value="${member.mDaddress}"
 															maxlength="20">
 													</div>
-
 												</div>
-
 											</td>
 										</tr>
 									</tbody>
@@ -247,7 +254,7 @@
 						<div class="text-center">
 							<button type="button"
 								class="btn btn-default btn-lg io-data io-fn-nextStep"
-								data-step="2" onclick="member_update()">수정</button>
+								data-step="2" onclick="check()">수정</button>
 						</div>
 					</div>
 
@@ -314,34 +321,39 @@
 		}
 	</script>
 	<script type="text/javascript">
-		$(function() {
+		function check() {
+			var mPw = $('#mPw').val();
+			var repeatPw = $('#repeatPw').val();
+			var mEmail = $('#mEmail').val();
 
-			//alert($.validate);
-			$('#memberInfoFrm')
-					.validate(
-							{
-								rules : {
-									mPw : {
-										required : true
-									},
-									repeatPw : {
-										equalTo : "#mPw"
-									}
-								},
-								messages : {
-									mPw : {
-										required : "비밀번호를 입력하세요",
+			//이메일 체크
+			var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+			
+			if (regExp.test(mEmail)) {
+				//alert('잘입력했어요');
+			} else {
+				alert('이메일 형식으로 입력하세요');
+				return false;
+			}
+			
+			if(mPw != repeatPw || mPw == "" || repeatPw == ""){
+				alert('비밀번호가 일치하지 않습니다');
+				return;
+			}
+			
+			//비밀번호 체크
+			var getCheck = RegExp(/^[a-zA-Z0-9]{8,15}$/);
+			if(getCheck.test(mPw)){
+				
+			}else{
+				alert("비밀번호는 대소문자와 숫자만 입력가능하고, 8 ~ 15글자 사이입니다");
+				return;
+			}
+			alert('회원정보가 수정되었습니다');
+			document.getElementById("memberInfoFrm").action = "member_update";
+			document.getElementById("memberInfoFrm").submit();
 
-									}
-								},
-								submitHandler : function() {
-									alert("수정완료");
-									document.getElementById("memberInfoFrm").action = "member_update";
-									document.getElementById("memberInfoFrm")
-											.submit();
-								}
-							})
-		});
+		}
 
 		function execDaumPostcode() {
 			new daum.Postcode({
@@ -362,54 +374,6 @@
 					document.getElementById("mDaddress").focus();
 				}
 			}).open();
-		}
-
-		function register_action() {
-			$('#mPw').keyup(function() {
-				var getCheck = RegExp(/^[a-zA-Z0-9]{8,15}$/);
-
-				if (!getCheck.test($('#inputPw').val())) {
-					alert("비밀번호는 대소문자와 숫자만 입력가능하고, 8 ~ 15글자 사이입니다");
-					return;
-				}
-			});
-
-			$('#repeatPw').keyup(function() {
-				var getCheck = RegExp(/^[a-zA-Z0-9]{6,10}$/);
-
-				if ($('#mPw').val() != $('#repeatPw').val()) {
-					alert("비밀번호가 일치하지 않습니다");
-					return;
-				}
-			});
-
-			$('#mEmail')
-					.keyup(
-							function() {
-								var getCheck = RegExp(/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i);
-
-								if (!getCheck.test($("#mEmail").val())) {
-									alert("이메일 형식으로 입력해주세요");
-									return;
-								}
-							});
-
-			$('#mPhone').keyup(function() {
-				var getCheck = RegExp(/^[0-9]{9,11}$/);
-
-				if (!getCheck.test($("#mPhone").val())) {
-					alert("알맞은 전화번호를 입력해주세요");
-					return;
-				}
-			});
-
-			if ($('#mPw').val() != $('#repeatPw').val()) {
-				alert("비밀번호가 일치하지 않습니다");
-				return;
-			}
-			alert("수정완료");
-			document.getElementById("memberInfoFrm").action = "member_update";
-			document.getElementById("memberInfoFrm").submit();
 		}
 	</script>
 </body>

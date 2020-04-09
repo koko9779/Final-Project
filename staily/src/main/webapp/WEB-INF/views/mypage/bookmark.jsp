@@ -93,6 +93,8 @@
                   	</c:forEach>
                   </tbody>
                 </table>
+                <input type="button" class="btn btn-outline btn-primary pull-right" value="삭제" id="deleteBtn">
+                <!--  <button type="button" class="btn btn-outline btn-primary pull-right" id="selectBtn" >삭제</button>-->
               </div>
             </div>
           </div>
@@ -160,7 +162,38 @@
 
   <!-- Page level custom scripts -->
   <script src="../../../${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
+<script type="text/javascript">
+function book_list_json(bmNo){
+	$.ajax({
+		url : "bookmark_delete",
+		method : "GET",
+		data : 'bmNo='+bmNo,
+		dataType: "json",
+		success : function(jsonArray){
+			alert("##"+jsonArray);
+			
+		}
+	})
+}
 
+</script>
+<script type="text/javascript">
+$(function(){
+	$('#deleteBtn').click(function(e){
+		var size = document.getElementsByName("book_check").length;
+		for (var i =0; i < size; i++){
+			if(document.getElementsByName("book_check")[i].checked == true){
+				var bmNo = document.getElementsByName("book_check")[i].value;
+				book_list_json(bmNo);
+			}
+		}
+		//alert("no"+noStr);
+		//alert('삭제완료');
+		//book_list_delete();
+		//e.preventDefault();
+	});
+})
+</script>
 </body>
 
 </html>
