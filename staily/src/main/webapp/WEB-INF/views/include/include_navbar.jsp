@@ -17,7 +17,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="tel">
-								<a href="/staily/admin"> <i class="material-icons"></i> 관리자페이지
+								<a href="/staily/admin/main"> <i class="material-icons"></i> 관리자페이지
 								</a>
 							</div>
 						</div>

@@ -50,12 +50,12 @@ public class AdminController {
 	 삭제 action들
 	   
 	 */
-	@RequestMapping("/admin")
+	@RequestMapping("/main")
 	public String adminTest() {
 		return "admin/index";
 	}
 	
-	@RequestMapping("/admin_member")
+	@RequestMapping("/member")
 	public String memberAdminForm(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			List<Member> memberList = new ArrayList();
@@ -66,26 +66,29 @@ public class AdminController {
 		}
 		return "admin/member";
 	}
-	@RequestMapping("/admin_delete")
+	@RequestMapping("/member_delete")
 	public String memberAdminDelete(HttpServletRequest request) {
 		String [] arrayNo = request.getParameterValues("noArray");
+		String result = "fail";
 		try {
 			for (String no : arrayNo) {
 				String [] tempNo= no.split("-");
 				int mNo = Integer.parseInt(tempNo[0]);
 				adminService.deleteMember(mNo);
 			}
+			result = "success";
 		} catch (Exception e) {
 			e.printStackTrace();
+			result = "fail";
 		}
-		return "/";
+		return result;
 	}
-	@RequestMapping
+	
+	@RequestMapping("/member_update")
 	public String memberAdminUpdate() {
-		
-		return "admin/member";
+		return "admin/member_update";
 	}
-	@RequestMapping("/admin_product")
+	@RequestMapping("/product")
 	public String productAdminForm(HttpServletRequest request) {
 		try {
 			List<Product> productList= new ArrayList();
@@ -96,7 +99,7 @@ public class AdminController {
 		}
 		return "admin/product";
 	}
-	@RequestMapping("/admin_work")
+	@RequestMapping("/work")
 	public String workAdminForm(HttpServletRequest request) {
 		try {
 			List<Product> productList= new ArrayList();
@@ -107,12 +110,12 @@ public class AdminController {
 		}
 		return "admin/work";
 	}
-	@RequestMapping(value= "/work_create", method =RequestMethod.GET )
+	@RequestMapping(value= "/create", method =RequestMethod.GET )
 	public String workAdminCreate() {
 		return"admin/work_create";
 	}
 	
-	@RequestMapping("/work_create_action")
+	@RequestMapping("/create_action")
 	@ResponseBody
 	public String workAdminCreateAction(HttpServletRequest request, HttpServletResponse response) {
 		Work work = (Work) request.getAttribute("work");
@@ -123,7 +126,7 @@ public class AdminController {
 		}
 		return"admin/work";
 	}
-	@RequestMapping("/admin_work_update")
+	@RequestMapping("/work_update")
 	public String workAdminUpdate() {
 		return "admin/work_update";
 	}

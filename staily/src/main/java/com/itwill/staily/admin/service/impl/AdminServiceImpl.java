@@ -58,6 +58,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public boolean deleteMember(int mNo) throws Exception {
 		return adminMapper.deleteMember(mNo);
 	}

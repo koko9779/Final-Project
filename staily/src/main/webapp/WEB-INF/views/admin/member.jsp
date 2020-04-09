@@ -2,48 +2,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
 <%@ include file="/WEB-INF/views/admin/include/include_top.jsp" %>
-
+<%@ include file="/WEB-INF/views/admin/include/include_js.jsp" %>
 <html>
-
-<head>
-  <!-- Bootstrap core JavaScript-->
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="${pageContext.request.contextPath}/css/admin/js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
-</head>
-
 <body id="page-top">
-
 	<!-- Page Wrapper -->
 	<div id="wrapper">
-		<%@ include file="/WEB-INF/views/mypage/include/include_nav.jsp"%>
+		<%@ include file="/WEB-INF/views/admin/include/include_nav.jsp"%>WS
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
 
 			<!-- Main Content -->
 			<div id="content">
-
 				<!-- Topbar -->
 				<nav
 					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
 					<!-- Topbar Navbar -->
 					<ul class="navbar-nav ml-auto">
-
-
-
 
 						<!-- Nav Item - User Information -->
 						<li class="nav-item dropdown no-arrow"><a
@@ -73,9 +47,7 @@
 									Logout
 								</a>
 							</div></li>
-
 					</ul>
-
 				</nav>
 				<!-- End of Topbar -->
 
@@ -101,7 +73,6 @@
                       <th>이메일</th>
                       <th>가입일</th>
                       <th>회원구분</th>
-                      <th>회원탈퇴</th>
                       <th>회원수정</th>
                     </tr>
                   </thead>
@@ -110,12 +81,11 @@
                   	 <tr>
                   	  <td><input type="checkbox" name="user_CheckBox" ></td>
                   	  <td>${member.mNo}</td>
-                      <td onclick="location.href='/+${member.mNo}'" style="cursor:pointer;">${member.mId}</td>
+                      <td>${member.mId}</td>
                       <td>${member.mName}</td>
                       <td>${member.mEmail}</td>
                       <td>${member.mAddress}</td>
                       <td>${member.mType}</td>
-                      <td><input type="button" class="checkBTS" value="쿨럭" /></td>
                       <td><input type="button" class="checkBtn" value="클릭" /></td>
                     </tr>
                   	</c:forEach>
@@ -173,51 +143,5 @@
   </div>
 
 
-<script type="text/javascript">
-function member_delete(mNo) {
-	var updateForm = document.getElementById("member_"+mNo);
-	console.log(updateForm);
-	updateForm.action="admin_delete";
-	updateForm.method="POST";
-	updateForm.submit;
-};
-
-//버튼 클릭시 Row 값 가져오기
-$(".checkBtn").click(function(){ 
-    var str = ""
-    var tdArr = new Array();    
-    var checkBtn = $(this);
-    
-    var tr = checkBtn.parent().parent();
-    var td = tr.children();
-    
-    console.log(tr.text());
-    console.log(td.text())
-});
-$("#selectBtn").click(function(){ 
-    var checkbox = $("input[name=user_CheckBox]:checked");
-    // 체크된 체크박스 값을 가져온다
-    var tdArray = new Array();
-    checkbox.each(function(i) {
-        // checkbox.parent() : checkbox의 부모는 <td>이다.
-        // checkbox.parent().parent() : <td>의 부모이므로 <tr>이다.
-        var tr = checkbox.parent().parent().eq(i);
-        var td = tr.children();
-        var mNo = td.eq(1).text();
-        var noArray = 'noArray='+mNo+'-'
-        console.log(noArray);
-        console.log(mNo);
-        $.ajax({
-    		url:'admin_delete',
-    		data:noArray,
-    		method:'POST',
-    		success:function(params){
-    		}
-    	});
-    });
-    location.reload();
-});
-</script>
 </body>
-
 </html>
