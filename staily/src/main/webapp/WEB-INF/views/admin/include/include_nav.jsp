@@ -22,7 +22,7 @@
       <!-- Divider -->
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="admin.do">
+        <a class="nav-link" href="/admin">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>관리자메인</span></a>
       </li>
@@ -51,19 +51,19 @@
       </li>
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="/admin_member.do/">
+        <a class="nav-link" href="admin_member">
           <i class="fas fa-fw fa-table"></i>
           <span>회원리스트</span></a>
       </li>
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="/admin_product">
+        <a class="nav-link" href="admin_product">
           <i class="fas fa-fw fa-table"></i>
           <span>상품리스트</span></a>
       </li>
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="/admin_work">
+        <a class="nav-link" href="admin_work">
           <i class="fas fa-fw fa-table"></i>
           <span>작품리스트</span></a>
       </li>

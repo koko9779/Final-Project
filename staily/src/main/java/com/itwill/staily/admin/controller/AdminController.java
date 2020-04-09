@@ -20,7 +20,7 @@ import com.itwill.staily.util.Work;
 
 
 @Controller
-@RequestMapping("/admin/**")
+@RequestMapping("/admin")
 public class AdminController {
 	
 	@Autowired
@@ -28,6 +28,7 @@ public class AdminController {
 	
 	public AdminController() {
 	}
+	/*
 	@RequestMapping("/test")
 	public ModelAndView test(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mv =new ModelAndView();
@@ -42,6 +43,7 @@ public class AdminController {
 		mv.setViewName("/admin/register");
 		return mv;
 	}
+	*/
 	/*
 	 만들어야할거...
 	 회원 ,작품, 상품 수정 form(아에 form.jsp도 만들어야함) action  
@@ -62,7 +64,7 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace(); 
 		}
-		return "/admin/member";
+		return "admin/member";
 	}
 	@RequestMapping("/admin_delete")
 	public String memberAdminDelete(HttpServletRequest request) {
@@ -81,9 +83,9 @@ public class AdminController {
 	@RequestMapping
 	public String memberAdminUpdate() {
 		
-		return "/admin/member";
+		return "admin/member";
 	}
-	@RequestMapping("/admin_product.do")
+	@RequestMapping("/admin_product")
 	public String productAdminForm(HttpServletRequest request) {
 		try {
 			List<Product> productList= new ArrayList();
@@ -92,7 +94,7 @@ public class AdminController {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/admin/product";
+		return "admin/product";
 	}
 	@RequestMapping("/admin_work")
 	public String workAdminForm(HttpServletRequest request) {
@@ -103,11 +105,11 @@ public class AdminController {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/admin/work";
+		return "admin/work";
 	}
 	@RequestMapping(value= "/work_create", method =RequestMethod.GET )
 	public String workAdminCreate() {
-		return"/admin/work_create";
+		return"admin/work_create";
 	}
 	
 	@RequestMapping("/work_create_action")
@@ -119,10 +121,10 @@ public class AdminController {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return"/admin/work";
+		return"admin/work";
 	}
 	@RequestMapping("/admin_work_update")
 	public String workAdminUpdate() {
-		return "/admin/work_update";
+		return "admin/work_update";
 	}
 }
