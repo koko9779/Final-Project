@@ -76,26 +76,14 @@
                   <thead>
                     <tr>
                       <th></th>
-                      <th>회원이름</th>
-                      <th>상품가격</th>
-                      <th>상품URL</th>
-                      <th>상품주소</th>
-                      <th>상품상세주소</th>
-                      <th>상품조회수</th>
-                      <th>상품등록일</th>
+                      <th>친구</th>
                     </tr>
                   </thead>
                   <tbody>
-                  	<c:forEach var="product" items="${data}">
+                  	<c:forEach var="friend" items="${data}">
                   	 <tr style = "cursor:pointer;" onClick = " location.href='admin/'" >
-                  	  <td><input type="checkbox" name="book_check"></td>
-                      <td>${product.pName}</td>
-                      <td>${product.pPrice}</td>
-                      <td>${product.pUrl}</td>
-                      <td>${product.pAddress}</td>
-                      <td>${product.pDaddress}</td>
-                      <td>${product.pView}</td>
-                      <td>${product.pDate}</td>
+                  	  <td><input type="checkbox" name="friend_check"></td>
+                      <td>${friend.mName}</td>
                     </tr>
                   	</c:forEach>
                   </tbody>

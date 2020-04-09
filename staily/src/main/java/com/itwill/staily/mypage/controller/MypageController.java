@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.staily.mypage.model.dto.Bookmark;
@@ -112,20 +113,26 @@ public class MypageController {
 		try {
 			bookmarkList = bookmarkService.selectList(mNo);
 			request.setAttribute("data", bookmarkList);
+			return "mypage/bookmark";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "main/index";
 		}
 		//session.setAttribute("mNo", mNo);
-		return "mypage/bookmark";
+		//return "mypage/bookmark";
 	}
 	
 	//북마크삭제
 	@RequestMapping("/bookmark_delete")
-	public String bookmark_delete(@RequestParam int bmNo, Model model) throws Exception{
+	@ResponseBody
+	public List<Bookmark> bookmark_delete(@RequestParam int bmNo, Model model,
+								  HttpSession session) throws Exception{
+		int mNo = (Integer)session.getAttribute("mNo");
 		boolean result = bookmarkService.deleteBookmark(bmNo);
 		model.addAttribute("result", result);
-		return "forward:/mypage/bookmark_list";
+		List<Bookmark> bookmarkList;
+		bookmarkList = bookmarkService.selectList(mNo);
+		return bookmarkList;
 	}
 	
 	//친구리스트
@@ -138,12 +145,12 @@ public class MypageController {
 		List<Friend> friendList;
 		try {
 			friendList = friendService.selectList(mNo);
-			request.setAttribute("friendList", friendList);
+			request.setAttribute("data", friendList);
+			return "mypage/friend_list";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "main/index";
 		}
-		return "mypage/friend_list";
 	}
 	
 	//친구추가
