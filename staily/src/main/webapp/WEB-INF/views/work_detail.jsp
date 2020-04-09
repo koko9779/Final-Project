@@ -2,6 +2,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
+<script>
+function workEpisode(wNo,wdEpisode){
+	var workEpisode_form = document.getElementById('workEpisode_'+wNo);
+	alert("작품번호:"+wNo+" 회차:"+wdEpisode);
+}
+</script>
 			<!-- Hero -->
 			<div id="content_hero" style="background-image: url(http://via.placeholder.com/1440x435)">
 				
@@ -22,7 +28,32 @@
 			<!-- Section -->
 			<div class="container section news">
 				<div class="row">
-					<%@ include file="/WEB-INF/views/include/include_work_sidebar.jsp"%>
+				
+				
+				<aside class="col-sm-3 col-sm-pull-2 sidebar">
+					<div class="widget">
+						<img src="${pageContext.request.contextPath}${w.wPoster}" alt="${w.wName}" />
+						<h3 style="margin:50px auto;">${w.wName}</h3>
+					</div>
+					<div class="widget">
+						<select class="form-control">
+							<c:forEach begin="1" end="${tepisode}" step="1" varStatus="status">
+								<form id="workEpisode_${w.wNo}" method="get">
+							 		<option onclick="workEpisode(${w.wNo},${status.current})">${status.current}회</option>
+									<input type="hidden" value="${w.wNo}" name="wNo"/>
+							 		<input type="hidden" value="${status.current}" name="wdEpisode" />
+								</form>
+							</c:forEach>
+						</select>
+					</div>	
+					<div class="widget">
+						<form>
+							<input type="text" placeholder="Search..." class="search" />
+							<i class="material-icons">search</i>
+						</form>
+					</div>
+				</aside>
+
 					<!-- 기업회원 -->					
 					<div class="col-sm-9 col-sm-push-1">
 						<div class="slick-carousel" id="newIn5">
