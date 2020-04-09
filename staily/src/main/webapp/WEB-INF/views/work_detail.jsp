@@ -2,12 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
-<script>
-function workEpisode(wNo,wdEpisode){
-	var workEpisode_form = document.getElementById('workEpisode_'+wNo);
-	alert("작품번호:"+wNo+" 회차:"+wdEpisode);
-}
-</script>
+<script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
+
 			<!-- Hero -->
 			<div id="content_hero" style="background-image: url(http://via.placeholder.com/1440x435)">
 				
@@ -36,13 +32,9 @@ function workEpisode(wNo,wdEpisode){
 						<h3 style="margin:50px auto;">${w.wName}</h3>
 					</div>
 					<div class="widget">
-						<select class="form-control">
+						<select class="form-control" id="workEpisode">
 							<c:forEach begin="1" end="${tepisode}" step="1" varStatus="status">
-								<form id="workEpisode_${w.wNo}" method="get">
-							 		<option onclick="workEpisode(${w.wNo},${status.current})">${status.current}회</option>
-									<input type="hidden" value="${w.wNo}" name="wNo"/>
-							 		<input type="hidden" value="${status.current}" name="wdEpisode" />
-								</form>
+					 			<option value="${status.current}" wNo="${w.wNo}">${status.current}회</option>
 							</c:forEach>
 						</select>
 					</div>	
@@ -53,8 +45,7 @@ function workEpisode(wNo,wdEpisode){
 						</form>
 					</div>
 				</aside>
-
-					<!-- 기업회원 -->					
+									<!-- 기업회원 -->					
 					<div class="col-sm-9 col-sm-push-1">
 						<div class="slick-carousel" id="newIn5">
 							<c:forEach var="cw" items="${cw}">
@@ -89,9 +80,11 @@ function workEpisode(wNo,wdEpisode){
 							</c:forEach>
 						</article>
 					</div>
+				<div id="work_list_main">
+				
 				</div>
 			</div>
 		</div>
 		<%@ include file="/WEB-INF/views/include/include_js.jsp" %>
-	</body>
+	</body>	
 </html>
