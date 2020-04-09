@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col-sm-12 cta">
 				<p>도움이 필요하신가요? 게으른 치타가 도와드립니다!</p>
-				<p class="gradient-text">010 4101 6809</p>
+				<p class="gradient-text">010 1234 5678</p>
 			</div>
 		</div>
 	</div>
