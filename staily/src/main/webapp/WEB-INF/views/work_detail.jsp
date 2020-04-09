@@ -4,8 +4,9 @@
 <%@ include file="/WEB-INF/views/include/include_js.jsp" %>
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
 <html>
-	<head>
-	</head>
+<head>
+
+</head>
 	<body>
 		
 		<!-- Wrapper -->
@@ -33,8 +34,28 @@
 				<div class="row">
 					<%@ include file="/WEB-INF/views/include/include_work_sidebar.jsp"%>
 					<div class="col-sm-7 col-sm-push-1">
+					
+						<h2>기업</h2>
+		
+						<div class="slick-carousel" id="newIn5">
+							<c:forEach var="cw" items="${cw}">
+									<div class="movie-slide">
+										<div class="movie-poster2">
+											<a href="#"> <img
+												src="${pageContext.request.contextPath}${cw.product[0].pScene}"
+												alt="${cw.product[0].pName}" />
+											</a>
+										</div>
+										<h4 class="no-underline">${cw.product[0].pName}</h4>
+										<div>조회수: ${cw.product[0].pView}</div>
+									</div>
+							</c:forEach>
+						</div>
 						<article>
 							<c:forEach var="mw" items="${mw}">
+							<form id="bookmark_${mw.product[0].pNo}">
+								<input type="hidden" value="${mNo}" name="mNo">
+								<input type="hidden" value="${mw.product[0].pNo}" name="pNo">
 								<img src="${pageContext.request.contextPath}${mw.product[0].pScene}" class="news-single-img" alt="" />
 								<h2 class="no-underline" value="상품이름" style="margin:0">${mw.product[0].pName}</h2>
 								<div style="float:right;">
@@ -42,6 +63,8 @@
 									<span class="categories tag" value="조회수">조회수: ${mw.product[0].pView}</span>
 									<span class="categories tag" value="에피소드">${mw.wdEpisode}회</span>
 								</div>
+								<input type="button" value="즐겨찾기 등록" onclick="create_bookmark(${mNo},${mw.product[0].pNo})">
+							</form>
 							</c:forEach>
 						</article>
 					</div>
