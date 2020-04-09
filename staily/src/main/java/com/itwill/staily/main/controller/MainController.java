@@ -62,33 +62,22 @@ public class MainController {
 		try {
 			
 			request.setAttribute("mNo", 4);
+			/*
+			 * wNo값을 받아서 상품뽑아내기
+			 * 임시 (mNo=4, wNo=1)
+			 */
 			
 			Work w = listService.selectWorkOne(1);
 			request.setAttribute("w", w);
+			
 			int tepisode = listService.selectTepisode(1);
 			request.setAttribute("tepisode", tepisode);
-			/*
-			 * wNo값을 받아서 상품뽑아내기
-			 * wdEpisode 값이 null이라면 일반정렬
-			 * 				 null이 아니라면 회차별 정렬
-			 */
 			
 			List<Work> cw = listService.selectCProductList(4);
 			request.setAttribute("cw", cw);
 			
 			List<Work> mw = listService.selectMProductList(4);
 			request.setAttribute("mw", mw);
-			
-			Map map1 = new HashMap();
-			map1.put("wNo", 4);
-			map1.put("wdEpisode", 1);
-			List<Work> cwe = listService.selectCProductListByEpisode(map1);
-			request.setAttribute("cwe", cwe);
-
-			map1.put("wNo", 4);
-			map1.put("wdEpisode", 1);
-			List<Work> mwe = listService.selectMProductListByEpisode(map1);
-			request.setAttribute("mwe", mwe);
 	
 			int pCnt = listService.selectProductCount();
 			request.setAttribute("pCnt", pCnt);
@@ -98,7 +87,61 @@ public class MainController {
 		}
 		return "work_detail";
 	}
-
+	
+	@RequestMapping(value="worklist/detail", produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public Map worklist_detail(@RequestParam("wNo") int wNo, @RequestParam("wdEpisode") int wdEpisode) throws Exception{
+		Map map1 = new HashMap();
+		map1.put("wNo", wNo);
+		map1.put("wdEpisode", wdEpisode);
+		
+		List<Work> cwe = listService.selectCProductListByEpisode(map1);
+		List<Work> mwe = listService.selectMProductListByEpisode(map1);
+		
+		Map map2 = new HashMap();
+		map2.put("cwe", cwe);
+		map2.put("mwe", mwe);
+		/*
+		 {
+			"cwe": [
+					{
+					"wNo": 4,
+					"wdEpisode": 1,
+					"product": [
+							{
+							"pNo": 2,
+							"mNo": 2,
+							"wNo": 4,
+							"pName": "한정연게을러",
+							"pScene": "/images/product/scene/3.jpg",
+							"mId": "mint8711"
+							}
+						]
+					},
+					....
+			],
+			"mwe": [
+					{
+					"wNo": 4,
+					"wdEpisode": 1,
+					"product": [
+							{
+							"pNo": 1,
+							"mNo": 4,
+							"wNo": 4,
+							"pName": "BLOOM*IZ",
+							"pView": 345354,
+							"pScene": "/images/product/scene/1.jpg",
+							"mId": "koko97"
+							}
+						]
+					}
+					]
+			}
+		 */
+		return map2;
+	}
+	
 //	@RequestMapping("/create_bookmark")
 //	public String createBookmark(@RequestParam int mNo, @RequestParam int pNo) {
 //		try {
