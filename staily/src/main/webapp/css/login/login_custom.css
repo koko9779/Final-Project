@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.error_msg {
+   	float: right;
+    font-size: 12px;
+    color: red;
+  }
+  
+ #id_margin {
+ 	margin-bottom: 9px;
+ }

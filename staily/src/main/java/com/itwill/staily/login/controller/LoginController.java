@@ -75,12 +75,12 @@ public class LoginController {
 	
 	@RequestMapping(value = "/find_id")
 	public String find_id() {
-		return "login/find_id";
+		return "login/forgot_id";
 	}
 	
 	@RequestMapping(value = "/find_id_action", method = RequestMethod.GET)
 	public String find_id_action_get() {
-		return "login/find_id";
+		return "login/forgot_id";
 	}
 	
 	@RequestMapping(value = "/find_id_action", method = RequestMethod.POST)
@@ -91,7 +91,11 @@ public class LoginController {
 			findId = loginService.findId(phone, name);
 			model.addAttribute("findId", findId);
 			
-			forwardPath = "login/find_id_show";
+			forwardPath = "login/login";
+		} catch(NoSearchMemberException e) {
+			e.printStackTrace();
+			model.addAttribute("msg", e.getMessage());
+			forwardPath = "login/forgot_id";
 		} catch (Exception e) {
 			e.printStackTrace();
 			forwardPath = "login/에러페이지..";
@@ -102,7 +106,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/find_pw")
 	public String find_pw() {
-		return "login/find_pw";
+		return "login/forgot_pw";
 	}
 	
 	//아작스...?
@@ -156,10 +160,6 @@ public class LoginController {
 				loginService.signUpCompany(signupMember);
 			}
 			forwardPath = "login/login";
-		}catch(PasswordMissmatchException e) {
-			e.printStackTrace();
-			model.addAttribute("msg", e.getMessage());
-			forwardPath = "login/register";
 		}catch(Exception e) {
 			e.printStackTrace();
 			forwardPath = "login/에러페이지..";
