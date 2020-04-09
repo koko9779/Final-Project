@@ -35,7 +35,7 @@
 							</h4>
 						</div>
 						<div class="modal-body">
-							작품명 : ${workOne.wName}
+						
 						</div>
 						<div class="modal-footer">							 
 							<button type="button" class="btn btn-primary">
@@ -96,7 +96,7 @@
                       <fmt:parseDate value="${work.wDate}" var="dateFormat" pattern="yyyy-MM-dd"/>
 					  <td><fmt:formatDate value="${dateFormat}" pattern="yyyy-MM-dd(E)" type="both"/></td>
                       <td>${work.wTepisode}부작</td>
-                      <td><a id="modal-424823" href="#work_confirm" role="button" class="btn" data-toggle="modal">선택</a></td>
+                      <td><a id="modal-424823" href="#work_confirm" role="button" class="btn" data-toggle="modal" data-wName="${work.wName }" data-target="#work_confirm">선택</a></td>
                     </tr>
                   	</c:forEach>
                   </tbody>
@@ -139,7 +139,39 @@ $(".btn").click(function() {
     
 	console.log(no);
 	
-	$(document).on("")
+	$('#work_confirm').on('show.bs.modal', function(e) {
+		$.ajax({
+			type : "POST",
+			url : "work_confirm",
+			data : {"wNo" : no},
+			async : false,
+			dataType : "json",
+			success : function(w) {
+				var result = JSON.parse(JSON.stringify(w));
+				
+				var wNo = result.wNo;
+				var wName = result.wName;
+				var wCategory = result.wCategory;
+				var wDate = result.wDate;
+				var wTepisode = result.wTepisode;
+				
+				$('.modal-body').text("이 작품이 맞습니까?");
+				$('.modal-body').append("<br>");
+				$('.modal-body').append("<br>");
+				$('.modal-body').append("작품명 : " + wName);
+				$('.modal-body').append("<br>");
+				$('.modal-body').append("처음 방영(개봉)일 : " + wDate);
+				$('.modal-body').append("<br>");
+				$('.modal-body').append("전체 회차 : " + wTepisode);
+				$('.modal-body').append("<br>");
+				$('.modal-body').append("작품 포스터 : ");
+				$('.modal-body').append("<br>");
+				$('.modal-body').append("<img src=" + "'/staily/images/work/poster/" + wNo + ".jpg' width='350px' height='500px'>");
+			}
+			
+		});
+	});
+	
 
 });
 

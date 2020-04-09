@@ -1,13 +1,13 @@
 package com.itwill.staily.detail.controller;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.staily.detail.service.WorkDetailService;
@@ -19,23 +19,15 @@ public class WorkDetailController {
 	@Autowired
 	private WorkDetailService workDetailService;
 	
-	
-	@RequestMapping("/work_search#work_confirm")
-	public ModelAndView selectWorkOne(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView();
+	@ResponseBody
+	@RequestMapping("/work_confirm")
+	public Work selectWorkOne(HttpServletRequest request, HttpServletResponse response, String wNo) throws Exception {
+		Work w = workDetailService.selectWorkOne(Integer.parseInt(wNo));
 		
-		try {
-			String wNo = request.getParameter("wNo");
-			Work w = workDetailService.selectWorkOne(Integer.parseInt(wNo));
-			request.setAttribute("workOne", w);			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		request.setAttribute("workOne", w);	
 		
-		mv.setViewName("detail/work_search");
 		
-		return mv;		
+		return w;
 	}
 	
 	
