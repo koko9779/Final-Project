@@ -5,6 +5,8 @@
 <%@ include file="/WEB-INF/views/admin/include/include_js.jsp" %>
 
 <html>
+
+
 <body id="page-top">
 	<!-- Page Wrapper -->
 	<div id="wrapper">

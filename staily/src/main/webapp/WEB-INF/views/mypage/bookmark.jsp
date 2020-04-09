@@ -77,8 +77,6 @@
                     <tr>
                       <th></th>
                       <th>화면</th>
-                      <th>북마크번호</th>
-                      <th>멤버번호</th>
                       <th>상품번호</th>
                       <th>작성자</th>
                     </tr>
@@ -86,10 +84,9 @@
                   <tbody>
                   	<c:forEach var="bookmark" items="${data}">
                   	 <tr>
-                  	  <td><input type="checkbox" name="book_check"></td>
-                  	  <td style = "cursor:pointer;" onClick = " location.href='admin/'">${bookmark.product.pScene}</td>
-                      <td>${bookmark.bmNo}</td>
-                      <td>${bookmark.member.mNo}</td>
+                  	  <td><input type="checkbox" name="book_check" value="${bookmark.bmNo}"></td>
+                  	  <td style = "cursor:pointer;" onClick = " location.href='admin/'">
+                  	  <img src="${pageContext.request.contextPath}/${bookmark.product.pScene}" width="50px" height="50px"> </td>
                       <td>${bookmark.product.pNo}</td>
                       <td>${bookmark.member.mId}</td>
                     </tr>

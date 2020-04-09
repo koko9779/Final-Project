@@ -68,14 +68,15 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">친구크리스트</h6>
+              <h6 class="m-0 font-weight-bold text-primary">친구리스트</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>상품이름</th>
+                      <th></th>
+                      <th>회원이름</th>
                       <th>상품가격</th>
                       <th>상품URL</th>
                       <th>상품주소</th>
@@ -85,8 +86,9 @@
                     </tr>
                   </thead>
                   <tbody>
-                  	<c:forEach var="product" items="${data }">
+                  	<c:forEach var="product" items="${data}">
                   	 <tr style = "cursor:pointer;" onClick = " location.href='admin/'" >
+                  	  <td><input type="checkbox" name="book_check"></td>
                       <td>${product.pName}</td>
                       <td>${product.pPrice}</td>
                       <td>${product.pUrl}</td>
