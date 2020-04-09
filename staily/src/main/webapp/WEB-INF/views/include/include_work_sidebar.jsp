@@ -6,7 +6,9 @@
 		<h3 style="margin:50px auto;">${w.wName}</h3>
 	</div>
 	<div class="widget">
-		총회차: ${tepisode} 회
+		<c:forEach var="episode" items="${tepisode}" begin="1" end="${tepisode}" step="1" varStatus="status">
+			<p>총회차: ${status.current}회</p>
+		</c:forEach>
 	</div>	
 	<div class="widget">
 		<form>
