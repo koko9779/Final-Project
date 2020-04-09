@@ -92,11 +92,19 @@ public class MainController {
 	@ResponseBody
 	public Map worklist_detail(@RequestParam("wNo") int wNo, @RequestParam("wdEpisode") int wdEpisode) throws Exception{
 		Map map1 = new HashMap();
-		map1.put("wNo", wNo);
-		map1.put("wdEpisode", wdEpisode);
+		//map1.put("wNo", wNo);
+		//map1.put("wdEpisode", wdEpisode);
+		
+		map1.put("wNo", 4);
+		map1.put("wdEpisode", 1);
+		System.out.println(wNo);
+		System.out.println(wdEpisode);
 		
 		List<Work> cwe = listService.selectCProductListByEpisode(map1);
 		List<Work> mwe = listService.selectMProductListByEpisode(map1);
+		
+		System.out.println(cwe);
+		System.out.println(mwe);
 		
 		Map map2 = new HashMap();
 		map2.put("cwe", cwe);
