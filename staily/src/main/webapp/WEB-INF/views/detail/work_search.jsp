@@ -26,37 +26,28 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			 <a id="modal-424823" href="#modal-container-424823" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
-			
-			<div class="modal fade" id="modal-container-424823" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal fade" id="work_confirm" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="myModalLabel">
-								Modal title
-							</h5> 
-							<button type="button" class="close" data-dismiss="modal">
-								<span aria-hidden="true">×</span>
-							</button>
+							<h4 class="modal-title" id="myModalLabel">
+								작품 선택
+							</h4>
 						</div>
 						<div class="modal-body">
-							...
+						
 						</div>
-						<div class="modal-footer">
-							 
+						<div class="modal-footer">							 
 							<button type="button" class="btn btn-primary">
-								Save changes
+								확인
 							</button> 
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">
-								Close
+								취소
 							</button>
 						</div>
-					</div>
-					
-				</div>
-				
-			</div>
-			
+					</div>					
+				</div>				
+			</div>			
 		</div>
 	</div>
 </div>
@@ -84,7 +75,7 @@
                       <th>번호</th>
                       <th>작품명</th>
                       <th>카테고리</th>
-                      <th>처음 방영일</th>
+                      <th>처음 방영(개봉)일</th>
                       <th>전체 회차</th>
                       <th></th>
                     </tr>
@@ -105,7 +96,7 @@
                       <fmt:parseDate value="${work.wDate}" var="dateFormat" pattern="yyyy-MM-dd"/>
 					  <td><fmt:formatDate value="${dateFormat}" pattern="yyyy-MM-dd(E)" type="both"/></td>
                       <td>${work.wTepisode}부작</td>
-                      <td><input type="button" class="confirm" value="선택"/></td>
+                      <td><a id="modal-424823" href="#work_confirm" role="button" class="btn" data-toggle="modal" data-wName="${work.wName }" data-target="#work_confirm">선택</a></td>
                     </tr>
                   	</c:forEach>
                   </tbody>
@@ -135,17 +126,8 @@
 
 <script type="text/javascript">
 
-function member_delete(mNo) {
-	var updateForm = document.getElementById("member_"+mNo);
-	console.log(updateForm);
-	updateForm.action="admin_delete";
-	updateForm.method="POST";
-	updateForm.submit;
-};
-
-
 //버튼 클릭시 Row에 있는 작품 번호 값 전달
-$(".confirm").click(function(){ 
+$(".btn").click(function() { 
     var str = ""
     var tdArr = new Array();    
     var confirm = $(this);
@@ -155,8 +137,41 @@ $(".confirm").click(function(){
     
     var no = td.eq(0).text();
     
-    console.log(no);
-    
+	console.log(no);
+	
+	$('#work_confirm').on('show.bs.modal', function(e) {
+		$.ajax({
+			type : "POST",
+			url : "work_confirm",
+			data : {"wNo" : no},
+			async : false,
+			dataType : "json",
+			success : function(w) {
+				var result = JSON.parse(JSON.stringify(w));
+				
+				var wNo = result.wNo;
+				var wName = result.wName;
+				var wCategory = result.wCategory;
+				var wDate = result.wDate;
+				var wTepisode = result.wTepisode;
+				
+				$('.modal-body').text("이 작품이 맞습니까?");
+				$('.modal-body').append("<br>");
+				$('.modal-body').append("<br>");
+				$('.modal-body').append("작품명 : " + wName);
+				$('.modal-body').append("<br>");
+				$('.modal-body').append("처음 방영(개봉)일 : " + wDate);
+				$('.modal-body').append("<br>");
+				$('.modal-body').append("전체 회차 : " + wTepisode);
+				$('.modal-body').append("<br>");
+				$('.modal-body').append("작품 포스터 : ");
+				$('.modal-body').append("<br>");
+				$('.modal-body').append("<img src=" + "'/staily/images/work/poster/" + wNo + ".jpg' width='350px' height='500px'>");
+			}
+			
+		});
+	});
+	
 
 });
 

@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang=>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Staily</title>
+<%@ include file="/WEB-INF/views/include/include_css.jsp"%>
 </head>
 <body>
+
+	<!-- Wrapper -->
 	<div class="wrapper">
 
 		<!-- Navigation -->
@@ -17,7 +22,8 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="tel">
-								<a href="/staily/admin"> <i class="material-icons"></i> 관리자페이지
+								<a href="/staily/admin/main"> <i class="material-icons"></i>
+									관리자페이지
 								</a>
 							</div>
 						</div>
@@ -27,8 +33,10 @@
 
 			<div class="container">
 				<div class="navbar-header">
-					<a href="index.jsp" class="logo" title="Craft beer landing page">
-						<img src="${pageContext.request.contextPath}/images/logo.svg" alt="Craft Beer HTML Template">
+					<a href="/staily/main/index" class="logo"
+						title="Craft beer landing page"> <img
+						src="${pageContext.request.contextPath}/images/8.png"
+						alt="Craft Beer HTML Template">
 					</a>
 					<button type="button" class="navbar-toggle" data-toggle="collapse"
 						data-target=".navbar-collapse">
@@ -55,5 +63,3 @@
 				</div>
 			</div>
 		</div>
-</body>
-</html>
