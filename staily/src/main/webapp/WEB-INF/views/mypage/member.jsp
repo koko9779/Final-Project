@@ -253,7 +253,7 @@
 						<br>
 						<div class="text-center">
 							<button type="button"
-								class="btn btn-default btn-lg io-data io-fn-nextStep"
+								class="btn btn-outline btn-primary pull-right"
 								data-step="2" onclick="check()">수정</button>
 						</div>
 					</div>
@@ -325,33 +325,65 @@
 			var mPw = $('#mPw').val();
 			var repeatPw = $('#repeatPw').val();
 			var mEmail = $('#mEmail').val();
+			var mAddress = $('#mAddress').val();
+			var mDaddress = $('#mDaddress').val();
+			var phn1 = $('#phn1').val();
+			var phn2 = $('#phn2').val();
+			var phn3 = $('#phn3').val();
 
 			//이메일 체크
 			var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 			
-			if (regExp.test(mEmail)) {
-				//alert('잘입력했어요');
-			} else {
-				alert('이메일 형식으로 입력하세요');
-				return false;
+			if (!regExp.test(mEmail)) {
+				alert('이메일을 입력하세요');
+				return;
 			}
 			
-			if(mPw != repeatPw || mPw == "" || repeatPw == ""){
+			if(mPw != repeatPw){
 				alert('비밀번호가 일치하지 않습니다');
+				return;
+			}else if(mPw == "" || repeatPw == ""){
+				alert('비밀번호를 입력하세요');
 				return;
 			}
 			
 			//비밀번호 체크
 			var getCheck = RegExp(/^[a-zA-Z0-9]{8,15}$/);
-			if(getCheck.test(mPw)){
-				
-			}else{
+			if(!getCheck.test(mPw)){
 				alert("비밀번호는 대소문자와 숫자만 입력가능하고, 8 ~ 15글자 사이입니다");
 				return;
 			}
+			
+			//주소 체크
+			if(mAddress == ""){
+				alert('주소를 입력하세요');
+				return;
+			}
+			
+			//상세주소 체크
+			if(mDaddress == ""){
+				alert('상세주소를 입력하세요');
+				return;
+			}
+			
+			//전화번호 체크
+			if(phn1 == ""){
+				alert("전화번호를 입력하세요");
+				return;
+			}
+			if(phn2 == ""){
+				alert("전화번호를 입력하세요");
+				return;
+			}
+			if(phn3 == ""){
+				alert("전화번호를 입력하세요");
+				return;
+			}
+			
 			alert('회원정보가 수정되었습니다');
 			document.getElementById("memberInfoFrm").action = "member_update";
 			document.getElementById("memberInfoFrm").submit();
+			
 
 		}
 

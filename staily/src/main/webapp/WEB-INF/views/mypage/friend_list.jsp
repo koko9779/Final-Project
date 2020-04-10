@@ -81,13 +81,14 @@
                   </thead>
                   <tbody>
                   	<c:forEach var="friend" items="${data}">
-                  	 <tr style = "cursor:pointer;" onClick = " location.href='admin/'" >
-                  	  <td><input type="checkbox" name="friend_check"></td>
+                  	 <tr>
+                  	  <td><input type="checkbox" name="friend_check" value="${friend.fPk}"></td>
                       <td>${friend.mName}</td>
                     </tr>
                   	</c:forEach>
                   </tbody>
                 </table>
+                <input type="button" class="btn btn-outline btn-primary pull-right" value="삭제" id="deleteFriendBtn">
               </div>
             </div>
           </div>
@@ -155,6 +156,34 @@
 
   <!-- Page level custom scripts -->
   <script src="../../../${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
+
+<script type="text/javascript">
+	$(function(){
+		$('#deleteFriendBtn').click(function(e){
+			var size = document.getElementsByName("friend_check").length;
+			for (var i = 0; i < size; i++) {
+				if(document.getElementsByName("friend_check")[i].checked == true){
+					var fPk = document.getElementsByName("friend_check")[i].value;
+					friend_delete_function(fPk);
+				}
+			}
+			
+		});
+		function friend_delete_function(fPk){
+			$.ajax({
+				url : "friend_delete",
+				method : "GET",
+				data : "fPk="+fPk,
+				dataType : "text",
+				success : function(result){
+					location.reload();
+				}
+			})
+		}
+		
+	})
+</script>
+
 
 </body>
 

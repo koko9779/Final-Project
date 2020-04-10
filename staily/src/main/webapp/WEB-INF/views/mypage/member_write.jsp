@@ -86,8 +86,9 @@
                   <tbody>
                   	<c:forEach var="product" items="${data}">
                   	 <tr>
-                  	  <td><input type="checkbox" name="member_write_check"></td>
-                      <td style = "cursor:pointer;" onClick = " location.href='admin/'">${product.pScene}</td>
+                  	  <td><input type="checkbox" name="member_write_check" value="${product.pNo}"></td>
+                      <td style = "cursor:pointer;" onClick = " location.href='admin/'">
+                      <img src="${pageContext.request.contextPath}/${product.pScene}" width="50px" height="50px"></td>
                       <td>${product.pName}</td>
                       <td>${product.pNo}</td>
                       <td>${product.mNo}</td>
@@ -96,6 +97,7 @@
                   	</c:forEach>
                   </tbody>
                 </table>
+                <input type="button" class="btn btn-outline btn-primary pull-right" value="삭제" id="deleteWriteBtn">
               </div>
             </div>
           </div>
@@ -146,7 +148,6 @@
     </div>
   </div>
 
-
 	<!-- Bootstrap core JavaScript-->
   <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
   <script src="../../../${pageContext.request.contextPath}/css/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -164,6 +165,34 @@
   <!-- Page level custom scripts -->
   <script src="../../../${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
 
+<script type="text/javascript">
+$(function(){
+	$('#deleteWriteBtn').click(function(e){
+		var size = document.getElementsByName("member_write_check").length;
+		for (var i = 0; i < size; i++) {
+			if(document.getElementsByName("member_write_check")[i].checked == true){
+				var pNo = document.getElementsByName("member_write_check")[i].value;
+				member_write_delete_function(pNo);
+			}
+			
+		}
+		
+	});
+	function member_write_delete_function(pNo){
+		$.ajax({
+			url : "member_write_delete",
+			method : "GET",
+			data : 'pNo='+pNo,
+			dataType : "text",
+			success : function(result){
+				location.reload();
+			}
+		})
+	}
+	
+	
+})
+</script>
 </body>
 
 </html>

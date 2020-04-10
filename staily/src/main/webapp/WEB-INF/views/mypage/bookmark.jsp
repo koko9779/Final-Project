@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
-<%@ include file="/WEB-INF/views/mypage/include/include_top.jsp" %>
 <html>
+<%@ include file="/WEB-INF/views/mypage/include/include_top.jsp" %>
 
 <head>
 </head>
@@ -23,9 +23,6 @@
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-
-
-            
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
@@ -162,21 +159,7 @@
 
   <!-- Page level custom scripts -->
   <script src="../../../${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
-<script type="text/javascript">
-function book_list_json(bmNo){
-	$.ajax({
-		url : "bookmark_delete",
-		method : "GET",
-		data : 'bmNo='+bmNo,
-		dataType: "json",
-		success : function(jsonArray){
-			alert("##"+jsonArray);
-			
-		}
-	})
-}
 
-</script>
 <script type="text/javascript">
 $(function(){
 	$('#deleteBtn').click(function(e){
@@ -184,14 +167,24 @@ $(function(){
 		for (var i =0; i < size; i++){
 			if(document.getElementsByName("book_check")[i].checked == true){
 				var bmNo = document.getElementsByName("book_check")[i].value;
-				book_list_json(bmNo);
+				book_delete_function(bmNo);
 			}
 		}
-		//alert("no"+noStr);
-		//alert('삭제완료');
-		//book_list_delete();
-		//e.preventDefault();
+
 	});
+	function book_delete_function(bmNo){
+		$.ajax({
+			url : "bookmark_delete",
+			method : "POST",
+			data : 'bmNo='+bmNo,
+			dataType: "text",
+			success : function(result){
+				//alert("삭제완료");
+				location.reload();
+			}
+		})
+	}
+	
 })
 </script>
 </body>

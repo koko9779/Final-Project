@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -123,16 +125,22 @@ public class MypageController {
 	}
 	
 	//북마크삭제
-	@RequestMapping("/bookmark_delete")
+	@RequestMapping(value = "/bookmark_delete")
 	@ResponseBody
-	public List<Bookmark> bookmark_delete(@RequestParam int bmNo, Model model,
+	public boolean bookmark_delete(@RequestParam int bmNo, HttpServletRequest request, Model model,
 								  HttpSession session) throws Exception{
+		boolean result = false;
 		int mNo = (Integer)session.getAttribute("mNo");
-		boolean result = bookmarkService.deleteBookmark(bmNo);
-		model.addAttribute("result", result);
-		List<Bookmark> bookmarkList;
-		bookmarkList = bookmarkService.selectList(mNo);
-		return bookmarkList;
+		//String [] noStr = request.getParameterValues("noArray");
+		//for (String bm : noStr) {
+		//	int bmNo = Integer.parseInt(bm);
+		//	System.out.println(bmNo);
+		//}
+		result = bookmarkService.deleteBookmark(bmNo);
+		//model.addAttribute("result", result);
+		//List<Bookmark> bookmarkList;
+		//bookmarkList = bookmarkService.selectList(mNo);
+		return result;
 	}
 	
 	//친구리스트
@@ -164,12 +172,14 @@ public class MypageController {
 	}
 	
 	//친구삭제
-	@RequestMapping("/friend_delete") 
-	public String friend_delete(HttpServletResponse response, HttpServletRequest request) throws Exception{
-		int fPk = (Integer)request.getAttribute("fPk");
-		boolean result = friendService.deleteFriend(fPk);
-		request.setAttribute("result", result);
-		return "test2";
+	@RequestMapping("/friend_delete")
+	@ResponseBody
+	public boolean friend_delete(@RequestParam int fPk, HttpServletResponse response, HttpServletRequest request) throws Exception{
+		//int fPk = (Integer)request.getAttribute("fPk");
+		boolean result = false;
+		result = friendService.deleteFriend(fPk);
+		//request.setAttribute("result", result);
+		return result;
 	}
 	
 	//친구찾기 -- RestController로 이동필요
@@ -200,14 +210,15 @@ public class MypageController {
 		List<Message> messageList;
 		try {
 			messageList = messageService.selectMessageList(mNo);
-			model.addAttribute("messageList", messageList);
+			model.addAttribute("data", messageList);
+			mv.setViewName("mypage/message_list");
+			return mv;
 		} catch (Exception e) {
 			e.printStackTrace();
 			mv.setViewName("main/index");
 			return mv;
 		}
-		mv.setViewName("mypage/message_list");
-		return mv;
+		
 	}
 	
 	//메시지 추가
@@ -254,13 +265,14 @@ public class MypageController {
 	
 	//내가쓴글삭제
 	@RequestMapping("/member_write_delete")
-	public String member_write_delete(HttpServletRequest request, 
+	@ResponseBody
+	public boolean member_write_delete(HttpServletRequest request, 
 									  HttpServletResponse response,
 									  @RequestParam int pNo) throws Exception{
-		
-		boolean result = mypageService.deleteWrite(pNo);
-		request.setAttribute("result", result);
-		return "test2";
+		boolean result = false;
+		result = mypageService.deleteWrite(pNo);
+		//request.setAttribute("result", result);
+		return result;
 	}
 	
 	//결제리스트출력
@@ -272,7 +284,7 @@ public class MypageController {
 		List<Payment> paymentList;
 		try {
 			paymentList = paymentService.selectList(mNo);
-			request.setAttribute("paymentList", paymentList);
+			request.setAttribute("data", paymentList);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "main/index";

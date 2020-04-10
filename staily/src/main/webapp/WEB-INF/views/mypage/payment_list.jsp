@@ -75,25 +75,22 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>상품이름</th>
-                      <th>상품가격</th>
-                      <th>상품URL</th>
-                      <th>상품주소</th>
-                      <th>상품상세주소</th>
-                      <th>상품조회수</th>
-                      <th>상품등록일</th>
+                      <th>결제 이용권</th>
+                      <th>결제가격</th>
+                      <th>이용권기간</th>
+                      <th>결제방법</th>
+                      <th>결제일</th>
                     </tr>
                   </thead>
                   <tbody>
-                  	<c:forEach var="product" items="${data }">
+                  	<c:forEach var="payment" items="${data }">
                   	 <tr style = "cursor:pointer;" onClick = " location.href='admin/'" >
-                      <td>${product.pName}</td>
-                      <td>${product.pPrice}</td>
-                      <td>${product.pUrl}</td>
-                      <td>${product.pAddress}</td>
-                      <td>${product.pDaddress}</td>
-                      <td>${product.pView}</td>
-                      <td>${product.pDate}</td>
+                      <td>${payment.pyName}</td>
+                      <td>${payment.pyPrice}</td>
+                      <td>${payment.pyPeriod}</td>
+                      <td>${payment.pyType}</td>
+                      <td>${payment.pyDate}</td>
+                     
                     </tr>
                   	</c:forEach>
                   </tbody>
