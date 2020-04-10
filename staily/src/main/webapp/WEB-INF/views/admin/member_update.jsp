@@ -2,14 +2,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
-<%@ include file="/WEB-INF/views/mypage/include/include_top.jsp"%>
+<head>
+<%@ include file="/WEB-INF/views/admin/include/include_css.jsp"%>
+</head>
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">회원정보페이지</h1>
 <!-- DataTales Example -->
 <div class="join-step2">
 	<!--<div class="text-header">기본정보 ( * 필수 입력 항목)</div>-->
 	<div class="border border-secondary">
-		<form id="memberInfoFrm" name="memberInfoFrm" autocomplete="off">
+		<form id="memberInfoFrm" name="memberInfoFrm" autocomplete="off" >
 			<input type="hidden" name="mNo" id="mNo" value="${member.mNo}">
 			<input type="hidden" name="mId" id="mId" value="${member.mId}">
 			<input type="hidden" name="mName" id="mName" value="${member.mName}">
@@ -156,15 +158,14 @@
 					</tr>
 				</tbody>
 			</table>
+	<div class="text-center">
+		<input type="submit"
+			class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"></input>
+	</div>
 		</form>
 	</div>
 
 	<br>
-	<div class="text-center">
-		<button type="button"
-			class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
-			onclick="check()">수정</button>
-	</div>
 </div>
 
 
@@ -175,64 +176,6 @@
 </div>
 <!-- End of Main Content -->
 <%@ include file="/WEB-INF/views/admin/include/include_bottom.jsp"%>
-<script type="text/javascript">
-		function check() {
-			var mPw = $('#mPw').val();
-			var repeatPw = $('#repeatPw').val();
-			var mEmail = $('#mEmail').val();
-
-			//이메일 체크
-			var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-			
-			if (regExp.test(mEmail)) {
-				//alert('잘입력했어요');
-			} else {
-				alert('이메일 형식으로 입력하세요');
-				return false;
-			}
-			
-			if(mPw != repeatPw || mPw == "" || repeatPw == ""){
-				alert('비밀번호가 일치하지 않습니다');
-				return;
-			}
-			
-			//비밀번호 체크
-			var getCheck = RegExp(/^[a-zA-Z0-9]{8,15}$/);
-			if(getCheck.test(mPw)){
-				
-			}else{
-				alert("비밀번호는 대소문자와 숫자만 입력가능하고, 8 ~ 15글자 사이입니다");
-				return;
-			}
-			document.getElementById("memberInfoFrm").action = "member_update_action";
-			document.getElementById("memberInfoFrm").method = "POST"
-			document.getElementById("memberInfoFrm").submit();
-			alert("회원정보 수정이 완료되었습니다");
-			window.opener.location.reload();
-			window.close();
-		}
-
-		function execDaumPostcode() {
-			new daum.Postcode({
-				oncomplete : function(data) {
-					var addr = ''; // 주소 변수
-					var extraAddr = ''; // 참고항목 변수
-
-					//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-					if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-						addr = data.roadAddress;
-					} else { // 사용자가 지번 주소를 선택했을 경우(J)
-						addr = data.jibunAddress;
-					}
-					// 우편번호와 주소 정보를 해당 필드에 넣는다.
-					// document.getElementById('new_address_zipcode').value = data.zonecode;
-					document.getElementById("mAddress").value = addr;
-					// 커서를 상세주소 필드로 이동한다.
-					document.getElementById("mDaddress").focus();
-				}
-			}).open();
-		}
-	</script>
 </body>
 
 </html>
