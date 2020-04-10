@@ -68,36 +68,31 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">메시지크리스트</h6>
+              <h6 class="m-0 font-weight-bold text-primary">메시지리스트</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>상품이름</th>
-                      <th>상품가격</th>
-                      <th>상품URL</th>
-                      <th>상품주소</th>
-                      <th>상품상세주소</th>
-                      <th>상품조회수</th>
-                      <th>상품등록일</th>
+                      <th></th>
+                      <th>메시지제목</th>
+                      <th>작성자</th>
+                      <th>보낸 일시</th>
                     </tr>
                   </thead>
                   <tbody>
-                  	<c:forEach var="product" items="${data }">
-                  	 <tr style = "cursor:pointer;" onClick = " location.href='admin/'" >
-                      <td>${product.pName}</td>
-                      <td>${product.pPrice}</td>
-                      <td>${product.pUrl}</td>
-                      <td>${product.pAddress}</td>
-                      <td>${product.pDaddress}</td>
-                      <td>${product.pView}</td>
-                      <td>${product.pDate}</td>
+                  	<c:forEach var="message" items="${data}">
+                  	 <tr>
+                  	  <td><input type="checkbox" name="message_check" value="${message.msNo}"></td>
+                      <td style = "cursor:pointer;" onClick = " location.href='admin/'">${message.msTitle}</td>
+                      <td>${message.mId}</td>
+                      <td>${message.msDate}</td>
                     </tr>
                   	</c:forEach>
                   </tbody>
                 </table>
+                <input type="button" class="btn btn-outline btn-primary pull-right" value="삭제" id="messageDeleteBtn">
               </div>
             </div>
           </div>
