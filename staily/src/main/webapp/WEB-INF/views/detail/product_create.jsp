@@ -8,8 +8,9 @@
 <meta charset="UTF-8">
 <script type="text/javascript">
 function work_search() {
-	window.open('work_search');
-	window.close();
+	location.href = 'work_select';
+	//window.open('work_select');
+	//window.close();
 };
 
 function product_create() {

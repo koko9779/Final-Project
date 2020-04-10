@@ -20,7 +20,7 @@ public class ProductDetailController {
 	@Autowired
 	private ProductDetailService productDetailService;
 	
-	@RequestMapping("/detail_main")
+	@RequestMapping("/product_detail")
 	public ModelAndView selectProductOne(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		
@@ -33,7 +33,7 @@ public class ProductDetailController {
 			e.printStackTrace();
 		}
 		
-		mv.setViewName("detail/detail");
+		mv.setViewName("detail/product_detail");
 		
 		return mv;
 		
