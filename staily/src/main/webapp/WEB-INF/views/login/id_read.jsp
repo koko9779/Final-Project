@@ -22,34 +22,7 @@
 
    <!-- Javascript -->
     <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
-    
-	<script type="text/javascript">
-		function find_id() {
-			var name = $("#inputName").val();
-			var phone = $("#inputPhone").val();
-			
-			if(name == "" || phone == ""){
-				alert("이름과 번호를 입력해주세요");
-				return;
-			}
-			
-			document.forgotIdF.action = "id_read_action";
-			document.forgotIdF.method= "POST";
-			document.forgotIdF.submit();
-		}
-		
-		$(function() {
-			var msgE = $("#msgE").val();
-			if(msgE === "") {
-				return;
-			}else {
-				alert(msgE);
-				location.href = "id_read"
-				return;
-			}
-		});
-		
-	</script>
+    <script src="${pageContext.request.contextPath}/js/custom_js/login.js"></script>
 </head>
 
 <body class="bg-gradient-primary">

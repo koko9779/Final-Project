@@ -1,49 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-
-<html>
-
-<head>
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
 <%@ include file="/WEB-INF/views/login/include/include_top_login.jsp" %>
-  <!-- custom css  -->
-  <link href="${pageContext.request.contextPath}/css/login/login_custom.css" rel="stylesheet" type="text/css">
-   
-  <!-- Bootstrap core JavaScript-->
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="${pageContext.request.contextPath}/css/admin/js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
-  <script type="text/javascript">
-  	function update_pw_action() {
-  		
-  		if($("#inputPw").val() != $("#inputRepeatPw").val()) {
-  			alert("비밀번호가 일치하지 않습니다");
-  			return;
-  		}
-  		document.f.action="pw_update";
-  		document.f.method="POST";
-  		document.f.submit();
-  	}
-  	
-  </script>
+ 
 </head>
-
-<body class="bg-gradient-primary">
-
   <div class="container">
-
     <!-- Outer Row -->
     <div class="row justify-content-center">
 

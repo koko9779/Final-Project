@@ -51,7 +51,7 @@ public class LoginController {
 			session.setAttribute("userId", successMember.getmId());
 			session.setAttribute("userNo", successMember.getmNo());
 			
-			forwardPath = "login/main";
+			forwardPath = "index";
 		} catch (NoExistedIdException e) {
 				e.printStackTrace();
 				model.addAttribute("msg", e.getMessage());
@@ -70,7 +70,7 @@ public class LoginController {
 	@RequestMapping(value = "/logout_action")
 	public String logout_action(HttpSession session) {
 		session.invalidate();
-		return "login/main";
+		return "index";
 	}
 	
 	@RequestMapping(value = "/id_read")

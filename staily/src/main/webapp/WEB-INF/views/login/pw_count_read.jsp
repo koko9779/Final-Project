@@ -1,60 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
 <%@ include file="/WEB-INF/views/login/include/include_top_login.jsp" %>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>비밀번호 찾기</title>
-
-  <!-- Custom fonts for this template-->
-  <link href="${pageContext.request.contextPath}/css/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-  <!-- Custom styles for this template-->
-  <link href="${pageContext.request.contextPath}/css/admin/css/sb-admin-2.min.css" rel="stylesheet">
-
-   <!-- Javascript -->
-    <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
-    
-	<script type="text/javascript">
-		function find_pw() {
-			var id = $("#inputId").val();
-			var phone = $("#inputPhone").val();
-			
-			
-			if(id == "" || phone == ""){
-				alert("아이디와 번호를 입력해주세요");
-				return;
-			}
-			
-			document.forgotIdF.action = "pw_count_read_action";
-			document.forgotIdF.method= "POST";
-			document.forgotIdF.submit();
-		}
-		
-		$(function() {
-			var msgE = $("#msgE").val();
-			if(msgE === "") {
-				return;
-			}else {
-				alert(msgE);
-				location.href="pw_count_read";
-				return;
-			}
-		});
-		
-	</script>
-</head>
-
-<body class="bg-gradient-primary">
-
+ 
   <div class="container">
 
     <!-- Outer Row -->
@@ -73,7 +20,7 @@
                     <h1 class="h4 text-gray-900 mb-2">비밀번호를 잊어버리셨나요?</h1>
                     <p class="mb-4">회원가입 시 입력하셨던 아이디와 전화번호<br>(혹은 핸드폰번호)를 입력하시면<br> 비밀번호를 찾을 수 있습니다</p>
                   </div>
-                  <input type="hidden" value="${msg}" id="msgE">
+                  <input type="hidden" value="${msg}" id="msg2E">
                   <form name="forgotIdF" class="user">
                     <div class="form-group">
                       <input type="text" class="form-control form-control-user" id="inputId" name="id" placeholder="아이디">

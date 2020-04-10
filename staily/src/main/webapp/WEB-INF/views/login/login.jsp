@@ -1,52 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
 <%@ include file="/WEB-INF/views/login/include/include_top_login.jsp" %>
-<!DOCTYPE html>
-
-<html>
-
-<head>
-  <!-- custom css  -->
-  <link href="${pageContext.request.contextPath}/css/login/login_custom.css" rel="stylesheet" type="text/css">
-   
-  <!-- Bootstrap core JavaScript-->
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- Core plugin JavaScript-->
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="${pageContext.request.contextPath}/css/admin/js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
-  <script type="text/javascript">
-  	function login_action() {
-  		document.f.action="login_action";
-  		document.f.method="POST";
-  		document.f.submit();
-  	}
-  	
-  	$(function() {
-		var id = $("#findIdE").val();
-		if(id === "") {
-			return;
-		}else {
-			alert("고객님의 아이디는 " + id + "입니다");
-			location.href="login";
-			return;
-		}
-	});
-  	
-  </script>
-</head>
-
-<body class="bg-gradient-primary">
 
   <div class="container">
 
