@@ -43,6 +43,10 @@ public interface AdminMapper {
 	public List<Product> selectProductAll();
 	//상품 하나출력
 	public List<Product> selectProductOne(int pNo);
+	//상품만 출력(하나)
+	public Product selectProductOnly(int pNo);
+	//상풍만 출력(전체)
+	public List<Product>selectProductOnlyAll();
 	//상품 수정
 	public boolean updateProduct(Product product);
 	//상품상세 수정
