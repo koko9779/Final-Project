@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/detail/include_css_detail.jsp"%>
+<%@ include file="/WEB-INF/views/include/detail/include_css_product_detail.jsp"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
+<html>
+<body>
 <!-- Hero -->
 <div id="content_hero"
    style="background-image: url(http://via.placeholder.com/1440x435)">

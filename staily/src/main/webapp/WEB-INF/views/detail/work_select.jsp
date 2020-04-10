@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/admin/include/include_css.jsp"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
-<%@ include file="/WEB-INF/views/detail/include/include_js.jsp" %>
+<%@ include file="/WEB-INF/views/detail/include/include_work_select_js.jsp" %>
 
 <html>
 <head>
