@@ -13,7 +13,9 @@
 <div id="content_hero"
    style="background-image: url(http://via.placeholder.com/1440x435)">
 
-   <img src="${pageContext.request.contextPath}/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
+   <a href="#afterHeader" class="anchor">
+					<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
+				</a>
 
    <!-- Content -->
    <div class="container">
@@ -29,7 +31,7 @@
 </div>
 
 <!-- Section -->
-<div class="container section news">
+<div class="container section news" id="afterHeader">
    <div class="row">
    <%@ include file="/WEB-INF/views/include/include_work_sidebar.jsp"%>
       <div class="col-sm-9 col-sm-push-1">

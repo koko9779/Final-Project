@@ -66,8 +66,8 @@
 					<ul id="menu-primary" class="nav navbar-nav">
 						<li class="active"><a href="/staily">메인페이지</a></li>
 						<li><a href=#>상품목록</a></li>
-						<li><a href="/staily/detail/detail_main">상품상세</a></li>
-						<li class="dropdown"><a href="/staily/style/style_main">게시판</a>
+						<li><a href="/staily/detail/product_detail">상품상세</a></li>
+						<li class="dropdown"><a href="/staily/style/style_main_read">게시판</a>
 							<ul class="dropdown-menu">
 								<li><a href="/staily/style/style_main">스타일제안</a></li>
 								<li><a href="/staily/style/style_main">질문답변</a></li>
