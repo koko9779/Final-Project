@@ -1,4 +1,4 @@
-  $(function(){
+$(function(){
 	//worklist 회차 출력
 	$('#workEpisode').change(function(e){
 		var contextPath = $("option:selected").attr("contextPath");
@@ -6,7 +6,7 @@
 		var wdEpisode = $("option:selected").val();
 		var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode;
 		$.ajax({
-			url:'worklist/detail',
+			url:'worklist_read/detail',
 			method:'GET',
 			data:params,
 			dataType:'json',
@@ -99,3 +99,4 @@
 	});
 	
 });
+

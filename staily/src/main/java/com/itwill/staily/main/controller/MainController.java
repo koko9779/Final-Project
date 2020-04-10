@@ -58,7 +58,7 @@ public class MainController {
 
 		return "index";
 	}
-	@RequestMapping("/worklist")
+	@RequestMapping("/worklist_read")
 	public String workList(@RequestParam("wNo") int wNo, HttpServletRequest request, HttpSession session) throws Exception {
 		try {
 			session.setAttribute("mNo", 4);
@@ -85,10 +85,10 @@ public class MainController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "work_detail";
+		return "main/worklist";
 	}
 	
-	@RequestMapping(value="worklist/detail", produces="application/json;charset=UTF-8")
+	@RequestMapping(value="worklist_read/detail", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public Map worklist_detail(@RequestParam("wNo") int wNo, @RequestParam("wdEpisode") int wdEpisode) throws Exception{
 		Map map1 = new HashMap();
