@@ -16,6 +16,7 @@ public class Board {
 	B_DATE               VARCHAR2(12)   
 	B_CHOICE             CHAR(1)        
 	 */
+	private int bIdx; //게시물 인덱스(화면에 출력될 번호)
 	private int bNo; //게시물번호
 	private int mNo; //회원번호
 	private String mId;
@@ -34,9 +35,10 @@ public class Board {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Board(int bNo, int mNo, String mId, String bTitle, String bContent, int bGroupNo, int bStep, int bView,
-			int bRecommend, String bType, String bDate, String bChoice, BoardDetail boardDetail) {
+	public Board(int bIdx, int bNo, int mNo, String mId, String bTitle, String bContent, int bGroupNo, int bStep,
+			int bView, int bRecommend, String bType, String bDate, String bChoice, BoardDetail boardDetail) {
 		super();
+		this.bIdx = bIdx;
 		this.bNo = bNo;
 		this.mNo = mNo;
 		this.mId = mId;
@@ -51,15 +53,23 @@ public class Board {
 		this.bChoice = bChoice;
 		this.boardDetail = boardDetail;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Board [bNo=" + bNo + ", mNo=" + mNo + ", bTitle=" + bTitle + ", bContent=" + bContent
-				+ ", bGroupNo=" + bGroupNo + ", bStep=" + bStep + ", bView=" + bView + ", bRecommend=" + bRecommend
-				+ ", bType=" + bType + ", bDate=" + bDate + ", bChoice=" + bChoice + ", boardDetail=" + boardDetail
-				+ "]";
+		return "Board [bIdx=" + bIdx + ", bNo=" + bNo + ", mNo=" + mNo + ", mId=" + mId + ", bTitle=" + bTitle
+				+ ", bContent=" + bContent + ", bGroupNo=" + bGroupNo + ", bStep=" + bStep + ", bView=" + bView
+				+ ", bRecommend=" + bRecommend + ", bType=" + bType + ", bDate=" + bDate + ", bChoice=" + bChoice
+				+ ", boardDetail=" + boardDetail + "]";
 	}
-	
+
+	public int getbIdx() {
+		return bIdx;
+	}
+
+	public void setbIdx(int bIdx) {
+		this.bIdx = bIdx;
+	}
+
 	public String getmId() {
 		return mId;
 	}

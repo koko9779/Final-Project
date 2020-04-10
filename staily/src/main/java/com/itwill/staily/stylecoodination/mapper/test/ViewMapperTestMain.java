@@ -24,10 +24,12 @@ public class ViewMapperTestMain {
 //		count = view.selectBoardCount();
 //		System.out.println(count);
 		
-//		List<Board> bList= view.selectBoardAll("S");
+//		List<Board> bList= view.selectBoardAll();
 //		for (Board board : bList) {
 //			System.out.println(board.toString());
 //		}
+		
+		
 		
 		
 		

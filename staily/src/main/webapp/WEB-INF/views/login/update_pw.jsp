@@ -5,7 +5,7 @@
 
 <head>
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
-<%@ include file="/WEB-INF/views/admin/include/include_top.jsp" %>
+<%@ include file="/WEB-INF/views/login/include/include_top_login.jsp" %>
   <!-- custom css  -->
   <link href="${pageContext.request.contextPath}/css/login/login_custom.css" rel="stylesheet" type="text/css">
    
