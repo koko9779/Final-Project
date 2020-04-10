@@ -69,18 +69,6 @@ public class AdminController {
 		}
 		return "admin/member";
 	}
-	@RequestMapping(value = "/member_select", method = RequestMethod.GET)
-	public String memberAdminSelect(HttpServletRequest request, HttpSession session) {
-		int mNo = Integer.parseInt(request.getParameter("mNo"));
-		Member member = null;
-		try {
-			member = adminService.selectMemberOne(mNo);
-			request.setAttribute("member", member);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "admin/member_update";
-	}
 	@RequestMapping("/member_delete")
 	public String memberAdminDelete(HttpServletRequest request) {
 		String [] arrayNo = request.getParameterValues("noArray");
@@ -100,7 +88,15 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/member_update")
-	public String memberAdminUpdate() {
+	public String memberAdminUpdate(HttpServletRequest request) {
+		int mNo = Integer.parseInt(request.getParameter("mNo"));
+		Member member = null;
+		try {
+			member = adminService.selectMemberOne(mNo);
+			request.setAttribute("member", member);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "admin/member_update";
 	}
 	@RequestMapping("/product")

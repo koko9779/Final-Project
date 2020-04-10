@@ -10,17 +10,7 @@ $(window).on("load", function() {
 	    var tr = checkBtn.parent().parent();
 	    var td = tr.children();
 	    var no = td.eq(1).text();
-//	    $.ajax({
-//	    	url:'member_select',
-//	    	data:{"mNo":no},
-//	    	method:'GET',	
-//	    	dataType: "json",
-//	    	async: false,
-//	    	success: function() {
-//			}
-//	    	
-//	    });
-	    window.open("member_select?"+"mNo="+no,"width=500,height=600")
+	    window.open("member_update?"+"mNo="+no,"회원정보수정","width=870, height=800, toolbar=no, menubar=no, scrollbars=no, resizable=yes")
 	});
 	$("#selectBtn").click(function(){ 
 	    var checkbox = $("input[name=user_CheckBox]:checked");

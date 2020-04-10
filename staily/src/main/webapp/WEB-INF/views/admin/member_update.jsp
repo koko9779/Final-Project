@@ -4,7 +4,7 @@
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
 <%@ include file="/WEB-INF/views/mypage/include/include_top.jsp"%>
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">결제페이지</h1>
+					<h1 class="h3 mb-2 text-gray-800">${member.mId} 회원 정보수정</h1>
 					<!-- DataTales Example -->
 					<div class="join-step2">
 						<!--<div class="text-header">기본정보 ( * 필수 입력 항목)</div>-->
