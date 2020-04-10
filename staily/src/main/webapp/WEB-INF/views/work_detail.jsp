@@ -25,29 +25,12 @@
 			<div class="container section news">
 				<div class="row">
 				
-				
-				<aside class="col-sm-3 col-sm-pull-2 sidebar">
-					<div class="widget">
-						<img src="${pageContext.request.contextPath}${w.wPoster}" alt="${w.wName}" />
-						<h3 style="margin:50px auto;">${w.wName}</h3>
-					</div>
-					<div class="widget">
-						<select class="form-control" id="workEpisode">
-							<c:forEach begin="1" end="${tepisode}" step="1" varStatus="status">
-					 			<option value="${status.current}" wNo="${w.wNo}">${status.current}회</option>
-							</c:forEach>
-						</select>
-					</div>	
-					<div class="widget">
-						<form>
-							<input type="text" placeholder="Search..." class="search" />
-							<i class="material-icons">search</i>
-						</form>
-					</div>
-				</aside>
-									<!-- 기업회원 -->					
-					<div class="col-sm-9 col-sm-push-1">
-						<div class="slick-carousel" id="newIn5">
+				<%@ include file="/WEB-INF/views/include/include_work_sidebar.jsp"%>
+
+				<!-- 기업회원 -->					
+					<div class="col-sm-9 col-sm-push-1" id="work_list_main">
+						<div class="slick-carousel newIn" >
+						<!-- <div class="slick-carousel" id="newIn5">-->
 							<c:forEach var="cw" items="${cw}">
 									<div class="movie-slide">
 										<div class="movie-poster2">
@@ -80,9 +63,6 @@
 							</c:forEach>
 						</article>
 					</div>
-				<div id="work_list_main">
-				
-				</div>
 			</div>
 		</div>
 		<%@ include file="/WEB-INF/views/include/include_js.jsp" %>

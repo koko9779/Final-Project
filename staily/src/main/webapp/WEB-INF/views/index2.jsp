@@ -104,7 +104,7 @@ function bookmark_remove(bmNo){
 			<div class="col-sm-12" id="afterHeader">
 				<h2>즐겨찾기</h2>
 
-				<div class="slick-carousel" id="newIn">
+				<div class="slick-carousel newIn">
 					<c:forEach var="bm" items="${bmList}">
 						<form id="bookmark_${bm.bmNo}" method="get">
 							<input type="hidden" value="${bm.bmNo}" name="bmNo" />
@@ -148,7 +148,7 @@ function bookmark_remove(bmNo){
 			<div class="col-sm-12" id="afterHeader">
 				<h2>HOT</h2>
 
-				<div class="slick-carousel" id="newIn1">
+				<div class="slick-carousel newIn">
 					<c:forEach var="hot" items="${hotList}">
 							<div class="movie-slide">
 								<div class="movie-poster2">
@@ -180,7 +180,7 @@ function bookmark_remove(bmNo){
 			<div class="col-sm-12" id="afterHeader">
 				<h2>TODAY</h2>
 
-				<div class="slick-carousel" id="newIn2">
+				<div class="slick-carousel newIn">
 					<c:forEach var="today" items="${todayList}">
 						<input type="hidden" value="${today.wNo}" name="wNo" />
 						<div class="movie-slide">
@@ -215,7 +215,7 @@ function bookmark_remove(bmNo){
 			<div class="col-sm-12" id="afterHeader">
 				<h2>드라마</h2>
 
-				<div class="slick-carousel" id="newIn3">
+				<div class="slick-carousel newIn" >
 					<c:forEach var="drama" items="${dramaList}">
 						<input type="hidden" value="${drama.wNo}" name="wNo" />
 						<div class="movie-slide">
@@ -251,7 +251,7 @@ function bookmark_remove(bmNo){
 			<div class="col-sm-12" id="afterHeader">
 				<h2>영화</h2>
 
-				<div class="slick-carousel" id="newIn4">
+				<div class="slick-carousel newIn">
 					<c:forEach var="movie" items="${movieList}">
 						<input type="hidden" value="${movie.wNo}" name="wNo" />
 						<div class="movie-slide">
