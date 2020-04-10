@@ -23,7 +23,7 @@ public class StyleCoodinationController {
 	@RequestMapping("/style_main")
 	public String style_main(Model model) {
 		List<Board> boardTop10 = new ArrayList<Board>();
-		List<Board> data = new ArrayList<Board>();;
+		List<Board> data = new ArrayList<Board>();
 		int boardCount = 0;
 		int replyCount = 0;
 		

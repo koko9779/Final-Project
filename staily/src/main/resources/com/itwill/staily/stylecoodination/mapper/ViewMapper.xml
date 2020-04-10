@@ -18,13 +18,16 @@
 </select>
 
 <select id="selectBoardAll" resultType="Board">
-	SELECT B.b_no, B.b_title, B.b_date, B.b_view, B.b_groupno, M.m_id
-	FROM board B
-	JOIN member M
-	ON B.m_no = M.m_no
-	WHERE B.b_type = 'S'
-	AND B.b_step = 1
-	ORDER BY B.b_no DESC
+	SELECT * 
+	FROM (SELECT ROWNUM b_idx, X.*
+      	  FROM ( SELECT B.b_no, B.b_title, B.b_date, B.b_view, B.b_groupno, M.m_id
+             FROM board B
+             JOIN member M
+             ON B.m_no = M.m_no
+             WHERE B.b_type = 'S'
+             AND B.b_step = 1
+             ORDER BY B.b_no ASC ) X)
+	ORDER BY b_idx DESC
 </select>
 
 <select id="selectBoardOne" parameterType="int" resultType="Board">
