@@ -6,9 +6,11 @@
 		<h3 style="margin:50px auto;">${w.wName}</h3>
 	</div>
 	<div class="widget">
-		<c:forEach var="episode" items="${tepisode}" begin="1" end="${tepisode}" step="1" varStatus="status">
-			<p>총회차: ${status.current}회</p>
-		</c:forEach>
+		<select class="form-control" id="workEpisode">
+			<c:forEach begin="1" end="${tepisode}" step="1" varStatus="status">
+	 			<option value="${status.current}" wNo="${w.wNo}" contextPath = "${pageContext.request.contextPath}">${status.current}회</option>
+			</c:forEach>
+		</select>
 	</div>	
 	<div class="widget">
 		<form>

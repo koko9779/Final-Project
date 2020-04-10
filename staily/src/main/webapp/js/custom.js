@@ -46,7 +46,7 @@ jQuery(function ($) {
 	// Slick carousel
 	$(window).on('load resize scroll', function(){  
 		
-		$('#newIn').not('.slick-initialized').slick({
+		$('.newIn').not('.slick-initialized').slick({
 			autoplay: false,
 			autoplaySpeed: 3000,
 			slidesToShow: 4,
@@ -68,116 +68,7 @@ jQuery(function ($) {
 			    }
 			  ]
 		});
-		$('#newIn1').not('.slick-initialized').slick({
-			autoplay: false,
-			autoplaySpeed: 3000,
-			slidesToShow: 4,
-			centerPadding: '60px',
-			prevArrow: '<i class="material-icons left">keyboard_arrow_left</i>',
-			nextArrow: '<i class="material-icons right">keyboard_arrow_right</i>',
-			responsive: [
-				{
-					breakpoint: 768,
-					settings: {
-						slidesToShow: 2
-					}
-				},
-				{
-					breakpoint: 480,
-					settings: {
-						slidesToShow: 1
-					}
-				}
-				]
-		});
-		$('#newIn2').not('.slick-initialized').slick({
-			autoplay: false,
-			autoplaySpeed: 3000,
-			slidesToShow: 4,
-			centerPadding: '60px',
-			prevArrow: '<i class="material-icons left">keyboard_arrow_left</i>',
-			nextArrow: '<i class="material-icons right">keyboard_arrow_right</i>',
-			responsive: [
-				{
-					breakpoint: 768,
-					settings: {
-						slidesToShow: 2
-					}
-				},
-				{
-					breakpoint: 480,
-					settings: {
-						slidesToShow: 1
-					}
-				}
-				]
-		});
-		$('#newIn3').not('.slick-initialized').slick({
-			autoplay: false,
-			autoplaySpeed: 3000,
-			slidesToShow: 4,
-			centerPadding: '60px',
-			prevArrow: '<i class="material-icons left">keyboard_arrow_left</i>',
-			nextArrow: '<i class="material-icons right">keyboard_arrow_right</i>',
-			responsive: [
-				{
-					breakpoint: 768,
-					settings: {
-						slidesToShow: 2
-					}
-				},
-				{
-					breakpoint: 480,
-					settings: {
-						slidesToShow: 1
-					}
-				}
-				]
-		});
-		$('#newIn4').not('.slick-initialized').slick({
-			autoplay: false,
-			autoplaySpeed: 3000,
-			slidesToShow: 4,
-			centerPadding: '60px',
-			prevArrow: '<i class="material-icons left">keyboard_arrow_left</i>',
-			nextArrow: '<i class="material-icons right">keyboard_arrow_right</i>',
-			responsive: [
-				{
-					breakpoint: 768,
-					settings: {
-						slidesToShow: 2
-					}
-				},
-				{
-					breakpoint: 480,
-					settings: {
-						slidesToShow: 1
-					}
-				}
-				]
-		});
-		$('#newIn5').not('.slick-initialized').slick({
-			autoplay: false,
-			autoplaySpeed: 3000,
-			slidesToShow: 4,
-			centerPadding: '60px',
-			prevArrow: '<i class="material-icons left">keyboard_arrow_left</i>',
-			nextArrow: '<i class="material-icons right">keyboard_arrow_right</i>',
-			responsive: [
-				{
-					breakpoint: 768,
-					settings: {
-						slidesToShow: 2
-					}
-				},
-				{
-					breakpoint: 480,
-					settings: {
-						slidesToShow: 1
-					}
-				}
-				]
-		});
+
 
 		$('#comingSoon').not('.slick-initialized').slick({
 			autoplay: false,

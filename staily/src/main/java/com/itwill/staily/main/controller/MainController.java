@@ -92,11 +92,11 @@ public class MainController {
 	@ResponseBody
 	public Map worklist_detail(@RequestParam("wNo") int wNo, @RequestParam("wdEpisode") int wdEpisode) throws Exception{
 		Map map1 = new HashMap();
-		//map1.put("wNo", wNo);
-		//map1.put("wdEpisode", wdEpisode);
+		map1.put("wNo", wNo);
+		map1.put("wdEpisode", wdEpisode);
 		
-		map1.put("wNo", 4);
-		map1.put("wdEpisode", 1);
+		//map1.put("wNo", 4);
+		//map1.put("wdEpisode", 1);
 		System.out.println(wNo);
 		System.out.println(wdEpisode);
 		
@@ -109,44 +109,7 @@ public class MainController {
 		Map map2 = new HashMap();
 		map2.put("cwe", cwe);
 		map2.put("mwe", mwe);
-		/*
-		 {
-			"cwe": [
-					{
-					"wNo": 4,
-					"wdEpisode": 1,
-					"product": [
-							{
-							"pNo": 2,
-							"mNo": 2,
-							"wNo": 4,
-							"pName": "한정연게을러",
-							"pScene": "/images/product/scene/3.jpg",
-							"mId": "mint8711"
-							}
-						]
-					},
-					....
-			],
-			"mwe": [
-					{
-					"wNo": 4,
-					"wdEpisode": 1,
-					"product": [
-							{
-							"pNo": 1,
-							"mNo": 4,
-							"wNo": 4,
-							"pName": "BLOOM*IZ",
-							"pView": 345354,
-							"pScene": "/images/product/scene/1.jpg",
-							"mId": "koko97"
-							}
-						]
-					}
-					]
-			}
-		 */
+
 		return map2;
 	}
 	
