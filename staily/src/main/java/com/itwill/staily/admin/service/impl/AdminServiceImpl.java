@@ -135,6 +135,20 @@ public class AdminServiceImpl implements AdminService{
 
 
 
+	@Override
+	public Product selectProductOnly(int pNo) throws Exception {
+		return adminMapper.selectProductOnly(pNo);
+	}
+
+
+
+	@Override
+	public List<Product> selectProductOnlyAll() throws Exception {
+		return adminMapper.selectProductOnlyAll();
+	}
+
+
+
 
 
 

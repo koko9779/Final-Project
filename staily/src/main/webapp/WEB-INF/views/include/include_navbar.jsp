@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/tags.jspf"%>	
 <!DOCTYPE html>
 <html lang=>
 <head>
@@ -11,12 +12,12 @@
 <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
+
 </head>
 <body>
 
 	<!-- Wrapper -->
 	<div class="wrapper">
-
 		<!-- Navigation -->
 		<div class="navbar" role="navigation">
 			<!-- Heading -->
@@ -25,9 +26,20 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="tel">
-								<a href="/staily/admin/main"> <i class="material-icons"></i>
-									관리자페이지
-								</a>
+								<c:choose>
+									<c:when test="${userNo ==null}">
+										<a href="/staily/login/login"> <i class="material-icons"></i>
+											로그인
+										</a>
+									</c:when>
+									<c:when test="${userNo !=null}">
+										<font color="black">${userId }</font> 님 환영합니다.
+										<a href="/staily/login//logout_action"> <i class="material-icons"></i>
+											로그아웃
+										</a>
+									</c:when>
+								</c:choose>
+								
 							</div>
 						</div>
 					</div>
@@ -49,6 +61,7 @@
 							class="icon-bar bottom-bar"></span>
 					</button>
 				</div>
+				<br>
 				<div class="navbar-collapse collapse">
 					<ul id="menu-primary" class="nav navbar-nav">
 						<li class="active"><a href="/staily">메인페이지</a></li>
@@ -61,7 +74,14 @@
 								<li><a href="/staily/style/style_main">영주괴롭히기</a></li>
 								<li><a href="/staily/style/style_main">영주괴롭히기</a></li>
 							</ul></li>
-						<li><a href="/staily/mypage/member_select">마이페이지</a></li>
+						<c:choose>
+							<c:when test="${userId eq 'admin'}">
+								<li><a href="/staily/admin/main">관리자페이지</a></li>
+							</c:when>
+							<c:when test="${userId != null && userId !='admin' }">
+								<li><a href="/staily/mypage/member_select">마이페이지</a></li>
+							</c:when>
+						</c:choose>
 					</ul>
 				</div>
 			</div>

@@ -30,20 +30,20 @@
 				<tbody>
 					<c:forEach var="member" items="${data }">
 						<tr>
-							<td><input type="checkbox" name="user_CheckBox"></td>
+							<td><input type="checkbox" name="member_CheckBox"></td>
 							<td>${member.mNo}</td>
 							<td>${member.mId}</td>
 							<td>${member.mName}</td>
 							<td>${member.mEmail}</td>
 							<td>${member.mAddress}</td>
 							<td>${member.mType}</td>
-							<td><input type="button" class="mCheckBtn" value="클릭" /></td>
+							<td><input type="button" class="mCheckBtn" value="수정" /></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 			<button type="button" class="btn btn-outline btn-primary pull-right"
-				id="selectBtn">삭제</button><div id="msg"></div>
+				id="mSelectBtn">삭제</button>
 		</div>
 	</div>
 </div>

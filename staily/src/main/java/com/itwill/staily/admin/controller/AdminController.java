@@ -134,7 +134,7 @@ public class AdminController {
 	public String productAdminForm(HttpServletRequest request) {
 		try {
 			List<Product> productList= new ArrayList();
-			productList = adminService.selectProductAll();
+			productList = adminService.selectProductOnlyAll();
 			request.setAttribute("data", productList);
 		}catch (Exception e) {
 			e.printStackTrace();

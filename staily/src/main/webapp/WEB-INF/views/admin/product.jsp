@@ -3,11 +3,11 @@
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
 <%@ include file="/WEB-INF/views/admin/include/include_top.jsp" %>
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">회원관리페이지</h1>
+          <h1 class="h3 mb-2 text-gray-800">상품관리페이지</h1>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">회원리스트 출력</h6>
+              <h6 class="m-0 font-weight-bold text-primary">전체상품수 : ${data.size() }</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -15,6 +15,7 @@
                   <thead>
                     <tr>
                       <th></th>
+                      <th hidden="pNo1"></th>
                       <th>상품이름</th>
                       <th>상품가격</th>
                       <th>상품URL</th>
@@ -26,11 +27,12 @@
                   </thead>
                   <tbody>
                   	<c:forEach var="product" items="${data }">
-                  	 <tr style = "cursor:pointer;" onClick = " location.href='admin/member_update'+${product.pNo}" >
-                      <td>${product.pNo}</td>
-                      <td>${product.pName}</td>
+                  	 <tr>
+                  	  <td><input type="checkbox" name="product_CheckBox"></td>
+                      <td hidden="pNo2">${product.pNo}</td>
+                      <td style = "cursor:pointer;" onclick="pCheckBtn(${product.pNo})">${product.pName}</td>
                       <td>${product.pPrice}</td>
-                      <td>${product.pUrl}</td>
+                      <td style = "cursor:pointer;" onclick="location.href='${product.pUrl}'">${product.pUrl}</td>
                       <td>${product.pAddress}</td>
                       <td>${product.pDaddress}</td>
                       <td>${product.pView}</td>
@@ -39,6 +41,8 @@
                   	</c:forEach>
                   </tbody>
                 </table>
+                <button type="button" class="btn btn-outline btn-primary pull-right"
+				id="pSelectBtn">삭제</button>
               </div>
             </div>
           </div>
@@ -49,6 +53,13 @@
       </div>
       <!-- End of Main Content -->
 <%@ include file="/WEB-INF/views/admin/include/include_bottom.jsp"%>
+<script type="text/javascript">
+function pCheckBtn(pNo) {
+	console.log(pNo);
+	window.open("","상품정보수정",
+			"width=870, height=800, toolbar=no, menubar=no, scrollbars=no, resizable=yes")
+}
+</script>
 </body>
 
 </html>
