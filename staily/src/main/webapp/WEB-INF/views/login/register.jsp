@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
-<%@ include file="/WEB-INF/views/admin/include/include_top.jsp" %>
+<%@ include file="/WEB-INF/views/login/include/include_top_login.jsp" %>
 
 <html>
   
@@ -195,10 +195,10 @@
               </form>
               <hr>
               <div class="text-center">
-                <a class="small" href="forgot-password.html">아이디를 잊어버리셨나요?</a>
+                <a class="small" href="find_id">아이디를 잊어버리셨나요?</a>
               </div>
               <div class="text-center">
-                <a class="small" href="forgot-password.html">비밀번호를 잊어버리셨나요?</a>
+                <a class="small" href="find_pw">비밀번호를 잊어버리셨나요?</a>
               </div>
               <div class="text-center">
                 <a class="small" href="login">계정이 있으신가요? 로그인하러 갑시다!</a>

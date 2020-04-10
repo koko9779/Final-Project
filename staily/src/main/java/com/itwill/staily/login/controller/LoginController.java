@@ -102,7 +102,7 @@ public class LoginController {
 		}
 		return forwardPath;
 	}
-
+	
 	@RequestMapping(value = "/find_pw")
 	public String find_pw() {
 		return "login/forgot_pw";
@@ -111,26 +111,44 @@ public class LoginController {
 	@RequestMapping(value = "/find_pw_action", method = RequestMethod.POST)
 	public String find_pw_action_post(@RequestParam String id, String phone, Model model) {
 		String forwardPath = "";
-		int successCount = 0;
 		
 		try {
-			successCount = loginService.isIdExistForPw(id, phone);
-			if(successCount == 1) {
-				forwardPath = "login/modify_pw";
-			}else {
-				//알럿창으로 아이디가 존재하지 않습니다
-				forwardPath = "login/에러...";
-			}
+			loginService.isIdExistForPw(id, phone);
+			model.addAttribute("id", id);
+			forwardPath = "login/update_pw";
 		}catch(NoSearchMemberException e) {
 			e.printStackTrace();
 			model.addAttribute("msg", e.getMessage());
-			forwardPath = "login/...";
+			forwardPath = "login/forgot_pw";
 		}catch(Exception e) {
 			e.printStackTrace();
 			forwardPath = "login/에러페이지..";
 		}
 		return forwardPath;
 	}
+	
+	@RequestMapping(value = "/update_pw", method = RequestMethod.GET)
+	public String update_pw_get() {
+		return "login/forgot_pw";
+	}
+	
+	@RequestMapping(value = "/update_pw", method = RequestMethod.POST)
+	public String update_pw_post(@RequestParam String id, String pw) {
+		String forwardPath = "";
+		Member updateMember = new Member();
+		updateMember.setmId(id);
+		updateMember.setmPw(pw);
+		
+		try {
+			loginService.updatePw(updateMember);
+			forwardPath = "login/login";
+		} catch(Exception e) {
+			e.printStackTrace();
+			forwardPath = "/에러페이지..";
+		}
+		return forwardPath;
+	}
+	
 	
 	@RequestMapping(value = "/register")
 	public String singup_member() {
