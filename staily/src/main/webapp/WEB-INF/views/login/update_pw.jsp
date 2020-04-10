@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/tags.jspf" %>
-<%@ include file="/WEB-INF/views/login/include/include_top_login.jsp" %>
 <!DOCTYPE html>
 
 <html>
 
 <head>
+<%@ include file="/WEB-INF/views/include/tags.jspf" %>
+<%@ include file="/WEB-INF/views/admin/include/include_top.jsp" %>
   <!-- custom css  -->
   <link href="${pageContext.request.contextPath}/css/login/login_custom.css" rel="stylesheet" type="text/css">
    
   <!-- Bootstrap core JavaScript-->
   <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/css/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  
+
   <!-- Core plugin JavaScript-->
   <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
@@ -26,22 +26,16 @@
   <!-- Page level custom scripts -->
   <script src="${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
   <script type="text/javascript">
-  	function login_action() {
-  		document.f.action="login_action";
+  	function update_pw_action() {
+  		
+  		if($("#inputPw").val() != $("#inputRepeatPw").val()) {
+  			alert("비밀번호가 일치하지 않습니다");
+  			return;
+  		}
+  		document.f.action="update_pw";
   		document.f.method="POST";
   		document.f.submit();
   	}
-  	
-  	$(function() {
-		var id = $("#findIdE").val();
-		if(id === "") {
-			return;
-		}else {
-			alert("고객님의 아이디는 " + id + "입니다");
-			location.href="login";
-			return;
-		}
-	});
   	
   </script>
 </head>
@@ -63,21 +57,22 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">환영합니다</h1>
+                    <h1 class="h4 text-gray-900 mb-4">비밀번호 수정</h1>
+                    <h6>수정할 비밀번호를 입력해주세요</h6>
                   </div>
-                  <input type="hidden" value="${findId}" id="findIdE">
                   <form class="user" name="f">
-                    <div class="margin">
-                      <input type="text" class="form-control form-control-user" id="inputId" placeholder="아이디" name="userId">
+                 	<input type="hidden" value="${id}" id="idE" name="id">
+                    <div class="form-group" id="id_margin">
+                      <input type="password" class="form-control form-control-user" id="inputPw" placeholder="새 비밀번호" name="pw">
                     </div>
-                    <div>
-                      <input type="password" class="form-control form-control-user" id="inputPw" placeholder="비밀번호" name="userPw">
+                    <div class="form-group">
+                      <input type="password" class="form-control form-control-user" id="inputRepeatPw" placeholder="비밀번호 확인">
                     </div>
                     <div class="error_msg" id="error_msg">
                     	${msg}
                     </div>
-                    <a href="javascript:login_action();" role="button" class="btn btn-primary btn-user btn-block">
-                      로그인
+                    <a href="javascript:update_pw_action();" role="button" class="btn btn-primary btn-user btn-block">
+                      비밀번호 수정
                     </a>
                     <hr>
                     <a href="index.html" class="btn btn-google btn-user btn-block">
