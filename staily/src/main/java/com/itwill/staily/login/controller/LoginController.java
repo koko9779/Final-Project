@@ -51,7 +51,7 @@ public class LoginController {
 			session.setAttribute("userId", successMember.getmId());
 			session.setAttribute("userNo", successMember.getmNo());
 			
-			forwardPath = "login/main";
+			forwardPath = "index";
 		} catch (NoExistedIdException e) {
 				e.printStackTrace();
 				model.addAttribute("msg", e.getMessage());
