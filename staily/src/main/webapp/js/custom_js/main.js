@@ -1,5 +1,4 @@
-$(window).on('load resize scroll', function(){  
-//$(function(){
+  $(function(){
 	//worklist 회차 출력
 	$('#workEpisode').change(function(e){
 		var contextPath = $("option:selected").attr("contextPath");
@@ -36,7 +35,10 @@ $(window).on('load resize scroll', function(){
 				}
 				html += "</div><h2></h2></div>";
 				
+				
+				
 				html += "<article>";
+				
 				
 				for (var i = 0; i < mweArray.length; i++) {
 					var mweProduct = mweArray[i].product;
@@ -66,9 +68,34 @@ $(window).on('load resize scroll', function(){
 				
 				$('#work_list_main').empty();
 				$('#work_list_main').append(html);
+				/******************************/
+				$('.slick-carousel.newIn').not('.slick-initialized').slick({
+					autoplay: false,
+					autoplaySpeed: 3000,
+					slidesToShow: 4,
+					centerPadding: '60px',
+					prevArrow: '<i class="material-icons left">keyboard_arrow_left</i>',
+					nextArrow: '<i class="material-icons right">keyboard_arrow_right</i>',
+					responsive: [
+					    {
+					      breakpoint: 768,
+					      settings: {
+					        slidesToShow: 2
+					      }
+					    },
+					    {
+					      breakpoint: 480,
+					      settings: {
+					        slidesToShow: 1
+					      }
+					    }
+					  ]
+				});
+				/******************************/
 			}
 		});
 		
 		e.preventDefault();
 	});
+	
 });
