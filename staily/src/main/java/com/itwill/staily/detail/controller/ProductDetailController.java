@@ -41,7 +41,7 @@ public class ProductDetailController {
 	}	
 	
 	
-	@RequestMapping("/product_create")
+	@RequestMapping("/product_create_action")
 	public ModelAndView createProduct(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		
@@ -70,7 +70,7 @@ public class ProductDetailController {
 			e.printStackTrace();
 		}
 		
-		mv.setViewName("detail/product_create");
+		mv.setViewName("/");
 		
 		return mv;		
 	}	
