@@ -4,7 +4,7 @@
 $(window).on("load", function() {
 	
 	//버튼 클릭시 Row 값 가져오기
-	$(".checkBtn").click(function(e){ 
+	$(".mCheckBtn").click(function(e){ 
 		
 	    var checkBtn = $(this);
 	    var tr = checkBtn.parent().parent();
@@ -34,8 +34,8 @@ $(window).on("load", function() {
 	    		});
 	    	});
 	    });
-	function member_update(){
-		if($('#mPw').val() != $('#repeatPw').val()){
+	function member_update() {
+		if ($('#mPw').val() != $('#repeatPw').val()) {
 			alert("비밀번호가 일치하지 않습니다");
 			return;
 		}
@@ -43,140 +43,58 @@ $(window).on("load", function() {
 		document.getElementById("memberInfoFrm").action = "member_update";
 		document.getElementById("memberInfoFrm").submit();
 	}
-		function sample6_execDaumPostcode() {
-		    new daum.Postcode({
-		        oncomplete: function(data) {
-		            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	function check() {
+		var mPw = $('#mPw').val();
+		var repeatPw = $('#repeatPw').val();
+		var mEmail = $('#mEmail').val();
 
-		            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-		            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-		            var addr = ''; // 주소 변수
-		            var extraAddr = ''; // 참고항목 변수
-
-		            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-		            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-		                addr = data.roadAddress;
-		            } else { // 사용자가 지번 주소를 선택했을 경우(J)
-		                addr = data.jibunAddress;
-		            }
-
-		            // 우편번호와 주소 정보를 해당 필드에 넣는다.
-		           // document.getElementById('new_address_zipcode').value = data.zonecode;
-		            document.getElementById("mAddress").value = addr;
-		            // 커서를 상세주소 필드로 이동한다.
-		            document.getElementById("mDaddress").focus();
-		        }
-		    }).open();
+		//이메일 체크
+		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		
+		if (regExp.test(mEmail)) {
+			//alert('잘입력했어요');
+		} else {
+			alert('이메일 형식으로 입력하세요');
+			return false;
 		}
 		
-	function register_action(){
-	  $('#mPw').keyup(function() {
-			var getCheck = RegExp(/^[a-zA-Z0-9]{8,15}$/);
-			
-			if(!getCheck.test($('#inputPw').val())){
-				alert("비밀번호는 대소문자와 숫자만 입력가능하고, 8 ~ 15글자 사이입니다");
-				return;
-			}
-		});
-	  
-	  $('#repeatPw').keyup(function() {
-			var getCheck = RegExp(/^[a-zA-Z0-9]{6,10}$/);
-			
-	  		if($('#mPw').val() != $('#repeatPw').val()) {
-	  			alert("비밀번호가 일치하지 않습니다");
-				return;
-	  		}
-	   });
-	  
-	  
-	  $('#mEmail').keyup(function() {
-		  var getCheck = RegExp(/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i);
-		  
-		  if(!getCheck.test($("#mEmail").val())){
-			  alert("이메일 형식으로 입력해주세요");
-			  return;
-		  }
-	   });
-	  
-	  $('#mPhone').keyup(function() {
-		  var getCheck = RegExp(/^[0-9]{9,11}$/);
-		  
-		  if(!getCheck.test($("#mPhone").val())){
-			  alert("알맞은 전화번호를 입력해주세요");
-			  return;
-	   		}
-		});
-	  
-	  	if($('#mPw').val() != $('#repeatPw').val()){
-			alert("비밀번호가 일치하지 않습니다");
+		if(mPw != repeatPw || mPw == "" || repeatPw == ""){
+			alert('비밀번호가 일치하지 않습니다');
 			return;
 		}
-		alert("수정완료");
+		
+		//비밀번호 체크
+		var getCheck = RegExp(/^[a-zA-Z0-9]{8,15}$/);
+		if(getCheck.test(mPw)){
+			
+		}else{
+			alert("비밀번호는 대소문자와 숫자만 입력가능하고, 8 ~ 15글자 사이입니다");
+			return;
+		}
+		alert('회원정보가 수정되었습니다');
 		document.getElementById("memberInfoFrm").action = "member_update";
 		document.getElementById("memberInfoFrm").submit();
-	  }
 
+	}
 
-			/*
-			$(function() {
-				//유효성확인
-				$('#memberInfoFrm').validate({
-					rules : {
-						userid : {
-							required : true,
-							minlength : 5,
-							maxlength : 10
-						},
-						joinPwd : {
-							required : true,
-							minlength : 8,
-							maxlength : 15
-						}
-						/*
-						mName : {
-							required : true,
-							minlength : 8,
-							maxlength : 15
-						},
-						mEmail : {
-							email : true
-						}
-						*/
-						/*
-					},
-					messages : {
-						userid : {
-							required : "아이디를 입력하세요",
-							minlength : "{0}글자 이상 입력하세요",
-							maxlength : "{0}글자 이하 입력하세요"
-						},
-						joinPwd : {
-							required : "비밀번호를 입력하세요",
-							minlength : "{0}글자 이상 입력하세요",
-							maxlength : "{0}글자 이하 입력하세요"
-						},
-						mName : {
-							required : "이름을 입력하세요",
-							minlength : "{0}글자 이상 입력하세요",
-							maxlength : "{0}글자 이하 입력하세요"
-						}
-						/*
-						mEmail : {
-							email : "이메일을 입력하세요"
-						}
-						*/
-						/*
-					},
-					submitHandler : function() {
-						member_update();
-					},
-					errorClass : "error",
-					validClass : "valid"
-				});
-				
-				$('#memberInfoFrm').on('submit',function(e){
-					alert("ff");
-				})
-			})
-			*/
+	function execDaumPostcode() {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				var addr = ''; // 주소 변수
+				var extraAddr = ''; // 참고항목 변수
+
+				//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+				if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+					addr = data.roadAddress;
+				} else { // 사용자가 지번 주소를 선택했을 경우(J)
+					addr = data.jibunAddress;
+				}
+				// 우편번호와 주소 정보를 해당 필드에 넣는다.
+				// document.getElementById('new_address_zipcode').value = data.zonecode;
+				document.getElementById("mAddress").value = addr;
+				// 커서를 상세주소 필드로 이동한다.
+				document.getElementById("mDaddress").focus();
+			}
+		}).open();
+	}
 });
