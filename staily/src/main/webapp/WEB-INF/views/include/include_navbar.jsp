@@ -8,6 +8,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Staily</title>
 <%@ include file="/WEB-INF/views/include/include_css.jsp"%>
+<script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 

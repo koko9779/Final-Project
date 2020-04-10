@@ -50,7 +50,7 @@
 										autocomplete="new-password" value="" maxlength="15">
 								</div>
 							</div>
-							<div>* 영문, 숫자, 특수문자중 2가지 포함하여 8자리 이상, 16자리 미만으로 구성해야 합니다.</div>
+							<small>* 영문, 숫자, 특수문자중 2가지 포함하여 8자리 이상, 16자리 미만으로 구성해야 합니다.</small>
 						</td>
 					</tr>
 					<tr>
