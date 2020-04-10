@@ -19,5 +19,5 @@
 			<i class="material-icons">search</i>
 		</form>
 	</div>
-	<input type="button" value="상품 등록" onClick="location.href='work_search'"/>
+	<input type="button" value="상품 등록" onClick="window.open('work_search')"/>
 </aside>
