@@ -4,27 +4,27 @@
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 <script>
-function remove_bookmark(bmNo){
-	  var bookmark_form = document.getElementById('bookmark_'+bmNo);
-	  alert("즐겨찾기에서 상품이 제거됐습니다");
-	  bookmark_form.action = "delete_bookmark";
-	  bookmark_form.submit();
-}
-function bmMoveToProduct(bmNo,pNo){
-	var product_form = document.getElementById('bookmark_'+bmNo);
-	product_form.action = "../detail/detail_main";
-	product_form.submit();
-}
-function hotMoveToProduct(pNo){
-	var product_form = document.getElementById('product_'+pNo);
-	product_form.action = "../detail/detail_main";
-	product_form.submit();
-}
-function moveToWork(wNo){
-	var work_form = document.getElementById('work_'+wNo);
-	work_form.action = "worklist";
-	work_form.submit();
-}
+	function remove_bookmark(bmNo){
+		  var bookmark_form = document.getElementById('bookmark_'+bmNo);
+		  alert("즐겨찾기에서 상품이 제거됐습니다");
+		  bookmark_form.action = "delete_bookmark";
+		  bookmark_form.submit();
+	};
+	function bm_productpage(bmNo,pNo){
+		var product_form = document.getElementById('bookmark_'+bmNo);
+		product_form.action = "../detail/detail_main";
+		product_form.submit();
+	};
+	function hot_productpage(pNo){
+		var product_form = document.getElementById('product_'+pNo);
+		product_form.action = "../detail/detail_main";
+		product_form.submit();
+	};
+	function workpage(wNo){
+		var work_form = document.getElementById('work_'+wNo);
+		work_form.action = "worklist_read";
+		work_form.submit();
+	};
 </script>
 <!-- Hero -->
 			<div id="hero" class="carousel slide carousel-fade" data-ride="carousel">
@@ -137,7 +137,7 @@ function moveToWork(wNo){
 											</div>
 										</aside>
 										-->
-										<a href="#" onclick="bmMoveToProduct(${bm.bmNo},${bm.product.pNo})"> <img
+										<a href="#" onclick="bm_productpage(${bm.bmNo},${bm.product.pNo})"> <img
 											src="${pageContext.request.contextPath}${bm.product.pScene}"
 											alt="${bm.product.pName}" />
 										</a>
@@ -169,7 +169,7 @@ function moveToWork(wNo){
 							<input type="hidden" value="${hot.pNo}" name="pNo"/>
 							<div class="movie-slide">
 								<div class="movie-poster2">
-									<a href="#" onclick="hotMoveToProduct(${hot.pNo})"> <img
+									<a href="#" onclick="hot_productpage(${hot.pNo})"> <img
 										src="${pageContext.request.contextPath}${hot.pScene}"
 										alt="${hot.pName}" />
 									</a>
@@ -195,7 +195,7 @@ function moveToWork(wNo){
 							<input type="hidden" value="${today.wNo}" name="wNo" />
 							<div class="movie-slide">
 								<div class="movie-poster2">
-									<a href="#" onclick="moveToWork(${today.wNo})"> <img
+									<a href="#" onclick="workpage(${today.wNo})"> <img
 										src="${pageContext.request.contextPath}${today.wPoster}"
 										alt="Movie title" />
 									</a>
@@ -220,7 +220,7 @@ function moveToWork(wNo){
 							<input type="hidden" value="${drama.wNo}" name="wNo" />
 							<div class="movie-slide">
 								<div class="movie-poster2">
-									<a href="#" onclick="moveToWork(${drama.wNo})"> <img
+									<a href="#" onclick="workpage(${drama.wNo})"> <img
 										src="${pageContext.request.contextPath}${drama.wPoster}"
 										alt="Movie title" />
 									</a>
@@ -245,7 +245,7 @@ function moveToWork(wNo){
 							<input type="hidden" value="${movie.wNo}" name="wNo" />
 							<div class="movie-slide">
 								<div class="movie-poster2">
-									<a href="#" onclick="moveToWork(${movie.wNo})"> <img
+									<a href="#" onclick="workpage(${movie.wNo})"> <img
 										src="${pageContext.request.contextPath}${movie.wPoster}"
 										alt="Movie title" />
 									</a>
