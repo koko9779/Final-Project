@@ -23,17 +23,17 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 	private ViewMapper viewMapper;
 	
 	@Override
-	public int modifyBoardAndReply(Board updateBoard) {
+	public int modifyBoardAndReply(Board updateBoard) throws Exception{
 		return boardCommonMapper.updateBoardAndReply(updateBoard);
 	}
 	
 	@Override
-	public int writeBoard(Board board) {
+	public int writeBoard(Board board) throws Exception{
 		return boardManageMapper.createBoard(board);
 	}
 	
 	@Override
-	public int removeBoard(int bNo) {
+	public int removeBoard(int bNo) throws Exception{
 		return boardManageMapper.deleteBoard(bNo);
 	}
 	
@@ -43,7 +43,7 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 	}
 	
 	@Override
-	public int writeReply(Board replyBoard, String mId) {
+	public int writeReply(Board replyBoard, String mId) throws Exception{
 		int mNo = 0;
 		
 		// 1. 기존 댓글들의 step 1씩 증가
@@ -56,19 +56,19 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 	}
 	
 	@Override
-	public int removeReply(int bNo) {
+	public int removeReply(int bNo) throws Exception{
 		return replyManageMapper.deleteReply(bNo);
 	}
 	
 	@Override
-	public int checkChoice(int bNo) {
+	public int checkChoice(int bNo) throws Exception{
 		//업데이트 안되면 0인 상태로 controller에서 
 		//ui에 영향을 미칠 데이터를 작업하자
 		return replyManageMapper.updateChoice(bNo);
 	}
 	
 	@Override
-	public int checkRecommend(int bNo) {
+	public int checkRecommend(int bNo) throws Exception{
 		//업데이트 안되면 0인 상태로 controller에서 
 		//ui에 영향을 미칠 데이터 작업
 		return replyManageMapper.updateRecommend(bNo);
@@ -101,7 +101,7 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 	}
 	
 	@Override
-	public int updateViewCount(int bNo) {
+	public int updateViewCount(int bNo) throws Exception{
 		return viewMapper.updateView(bNo);
 	}
 	

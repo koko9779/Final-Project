@@ -66,12 +66,27 @@ public class StyleCoodinationController {
 	public int modifyBoardAndReply(Board updateBoard) {
 		return boardCommonMapper.updateBoardAndReply(updateBoard);
 	}
+	*/
 	
-	@Override
-	public int writeBoard(Board board) {
-		return boardManageMapper.createBoard(board);
+	@RequestMapping("/style_create_board")
+	public String style_create(Board board) {
+		return "/style/style_create_board";
 	}
 	
+	@RequestMapping("/style_create")
+	public String style_create_action(Board board) {
+		String forwardPath = "";
+		try {
+			styleCoodinationService.writeBoard(board);
+			forwardPath = "style/style_main";
+		} catch (Exception e) {
+			e.printStackTrace();
+			forwardPath = "redirect:/404.jsp";
+		}
+		return forwardPath;
+	}
+	
+	/*
 	@Override
 	public int removeBoard(int bNo) {
 		return boardManageMapper.deleteBoard(bNo);

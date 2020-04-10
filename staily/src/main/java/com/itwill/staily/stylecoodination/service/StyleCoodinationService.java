@@ -6,21 +6,21 @@ import com.itwill.staily.util.Board;
 
 public interface StyleCoodinationService {
 
-	public int modifyBoardAndReply(Board updateBoard);
+	public int modifyBoardAndReply(Board updateBoard) throws Exception;
 
-	public int writeBoard(Board board);
+	public int writeBoard(Board board) throws Exception;
 	
 	public Board selectUpdateBoard(int bNo);
 
-	public int removeBoard(int bNo);
+	public int removeBoard(int bNo) throws Exception;
 
-	public int writeReply(Board replyBoard, String mId);
+	public int writeReply(Board replyBoard, String mId) throws Exception;
 
-	public int removeReply(int bNo);
+	public int removeReply(int bNo) throws Exception;
 
-	public int checkChoice(int bNo);
+	public int checkChoice(int bNo) throws Exception;
 
-	public int checkRecommend(int bNo);
+	public int checkRecommend(int bNo) throws Exception;
 
 	public List<Board> findBoardTop10();
 
@@ -32,6 +32,6 @@ public interface StyleCoodinationService {
 
 	public int findBoardReplyCount();
 
-	public int updateViewCount(int bNo);
+	public int updateViewCount(int bNo) throws Exception;
 
 }
