@@ -34,11 +34,13 @@ public class MainController {
 	}
 
 	@RequestMapping("/index")
-	public String test(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String test(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
 		try {
-			List<Bookmark> bmList = mainService.selectByBookmark(4);
+			int userNo = (Integer)session.getAttribute("userNo");
+			request.setAttribute("mNo", userNo);
+			
+			List<Bookmark> bmList = mainService.selectByBookmark(userNo);
 			request.setAttribute("bmList", bmList);
-			request.setAttribute("mNo", 4);
 			
 			List<Product> hotList = mainService.selectByView();
 			request.setAttribute("hotList", hotList);
@@ -58,14 +60,11 @@ public class MainController {
 
 		return "index";
 	}
-	@RequestMapping("/worklist_read")
+	@RequestMapping("/worklist_select")
 	public String workList(@RequestParam("wNo") int wNo, HttpServletRequest request, HttpSession session) throws Exception {
 		try {
-			session.setAttribute("mNo", 4);
-			/*
-			 * wNo값을 받아서 상품뽑아내기
-			 * 임시 (mNo=4, wNo=1)
-			 */
+			int userNo = (Integer)session.getAttribute("userNo");
+			request.setAttribute("mNo", userNo);
 			
 			Work w = listService.selectWorkOne(wNo);
 			request.setAttribute("w", w);
@@ -94,17 +93,9 @@ public class MainController {
 		Map map1 = new HashMap();
 		map1.put("wNo", wNo);
 		map1.put("wdEpisode", wdEpisode);
-		
-		//map1.put("wNo", 4);
-		//map1.put("wdEpisode", 1);
-		System.out.println(wNo);
-		System.out.println(wdEpisode);
-		
+				
 		List<Work> cwe = listService.selectCProductListByEpisode(map1);
 		List<Work> mwe = listService.selectMProductListByEpisode(map1);
-		
-		System.out.println(cwe);
-		System.out.println(mwe);
 		
 		Map map2 = new HashMap();
 		map2.put("cwe", cwe);
