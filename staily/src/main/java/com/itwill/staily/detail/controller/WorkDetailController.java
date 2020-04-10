@@ -50,7 +50,7 @@ public class WorkDetailController {
 	}
 	
 	
-	@RequestMapping("/work_search")
+	@RequestMapping("/work_select")
 	public ModelAndView selectWorkAll(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		
@@ -62,7 +62,7 @@ public class WorkDetailController {
 			e.printStackTrace();
 		}
 		
-		mv.setViewName("detail/work_search");
+		mv.setViewName("detail/work_select");
 		
 		return mv;		
 	}

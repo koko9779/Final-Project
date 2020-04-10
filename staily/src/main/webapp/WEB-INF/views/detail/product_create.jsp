@@ -11,6 +11,11 @@ function work_search() {
 	window.close();
 };
 
+function product_create() {
+	alert('작품 등록 성공!');
+	location.href = "../main/index";
+}
+
 </script>
 </head>
 <body>
@@ -34,6 +39,17 @@ function work_search() {
 		전체 회차 : ${workOne.getwTepisode()}부작<br>
 		작품 포스터 <br>
 		<img src='/staily${workOne.getwPoster()}' width='465px' height='664px'><br>
+	</form>
+	<form name="ff" method="post">
+		상품이 나온 장면 <input type="button" value="파일 업로드"><br>
+		상품명 <input type="text" name="pName"><br>
+		가격 <input type="text" name="pPrice"><br>
+		쇼핑몰 URL <input type="text" name="pUrl"><br>
+		<input type="button" value="주소 검색" onClick=""><br>
+		주소 <input type="text" name="pAddress"><br>
+		상세 주소 <input type="text" name="pDaddress"><br>
+		<input type="button" value="작성" onClick="product_create()">
+		<input type="reset" value="다시 작성">
 	</form>
 	
 </div>
