@@ -33,14 +33,11 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-           <!-- <h6 class="collapse-header">Login Screens:</h6> -->
             <a class="collapse-item" href="member_select">정보수정</a>
             <a class="collapse-item" href="friend_list">친구리스트</a>
             <a class="collapse-item" href="message_list">메시지보관</a>
             <div class="collapse-divider"></div>
-           <!--   <h6 class="collapse-header">Other Pages:</h6> -->
             <a class="collapse-item" href="payment_list">결제내역</a>
-            <!--  <a class="collapse-item" href="blank.html">Blank Page</a>-->
           </div>
         </div>
       </li>
