@@ -52,20 +52,29 @@ public class MypageController {
 	
 	//회원정보출력
 	@RequestMapping("/member_select")
-	public String member_select(HttpSession session, Model model, HttpServletRequest request)throws Exception{
-		Integer mNo = (Integer)session.getAttribute("userNo");
-//		Integer mNo = (Integer)request.getAttribute("mNo");
-		Member member = mypageService.selectOne(mNo);
-		
-		if(member.getmType().equals("M")) {
-			model.addAttribute("member", member);
-		}else if(member.getmType().equals("C")) {
-			Member memberCompany = mypageService.selectMemberCompany(mNo);
-			model.addAttribute("member", memberCompany);
-			System.out.println(memberCompany);
+	public String member_select(HttpSession session, Model model, HttpServletRequest request){
+		Member member;
+		try {
+			Integer mNo = (Integer)session.getAttribute("userNo");
+			if(mNo==null) {
+				mNo = 7;
+			}
+			member = mypageService.selectOne(mNo);
+			if(member.getmType().equals("M")) {
+				model.addAttribute("member", member);
+			}else if(member.getmType().equals("C")) {
+				Member memberCompany = mypageService.selectMemberCompany(mNo);
+				model.addAttribute("member", memberCompany);
+				System.out.println(memberCompany);
+			}
+			session.setAttribute("mNo", mNo);
+			return "mypage/member";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "redirect:/main/index";
 		}
-		session.setAttribute("mNo", mNo);
-		return "mypage/member";
+		
+		
 	}
 	
 	//회원정보업데이트
@@ -107,15 +116,18 @@ public class MypageController {
 	@RequestMapping("/bookmark_list")
 	public String bookmark_list(HttpSession session, HttpServletRequest request) {
 		//int mNo = (Integer)request.getAttribute("mNo");
-		int mNo = (Integer)session.getAttribute("mNo");
 		List<Bookmark> bookmarkList;
 		try {
+			Integer mNo = (Integer)session.getAttribute("userNo");
+			if(mNo==null) {
+				mNo = 7;
+			}
 			bookmarkList = bookmarkService.selectList(mNo);
 			request.setAttribute("data", bookmarkList);
 			return "mypage/bookmark";
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "main/index";
+			return "redirect:/main/index";
 		}
 		//session.setAttribute("mNo", mNo);
 		//return "mypage/bookmark";
@@ -127,7 +139,7 @@ public class MypageController {
 	public boolean bookmark_delete(@RequestParam int bmNo, HttpServletRequest request, Model model,
 								  HttpSession session) throws Exception{
 		boolean result = false;
-		int mNo = (Integer)session.getAttribute("mNo");
+		//int mNo = (Integer)session.getAttribute("userNo");
 		//String [] noStr = request.getParameterValues("noArray");
 		//for (String bm : noStr) {
 		//	int bmNo = Integer.parseInt(bm);
@@ -146,23 +158,26 @@ public class MypageController {
 							  HttpServletRequest request,
 							  HttpSession session) {
 		//int mNo = (Integer)request.getAttribute("mNo");
-		int mNo = (Integer)session.getAttribute("mNo");
 		List<Friend> friendList;
 		try {
+			Integer mNo = (Integer)session.getAttribute("userNo");
+			if(mNo==null) {
+				mNo = 7;
+			}
 			friendList = friendService.selectList(mNo);
 			request.setAttribute("data", friendList);
 			return "mypage/friend_list";
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "main/index";
+			return "redirect:/main/index";
 		}
 	}
 	
 	//친구추가
 	@RequestMapping("/friend_create")
 	public String friend_create(HttpServletResponse response, HttpServletRequest request) throws Exception{
-		int fNo = (Integer)request.getAttribute("fNo");
-		int mNo = (Integer)request.getAttribute("mNo");
+		Integer fNo = (Integer)request.getAttribute("fNo");
+		Integer mNo = (Integer)request.getAttribute("mNo");
 		boolean result = friendService.createFriend(mNo, fNo);
 		request.setAttribute("result", result);
 		return "test2";
@@ -203,16 +218,19 @@ public class MypageController {
 	@RequestMapping("/message_list")
 	public ModelAndView message_selectList(HttpSession session, Model model) {
 		ModelAndView mv = new ModelAndView();
-		int mNo = (Integer)session.getAttribute("mNo");
 		List<Message> messageList;
 		try {
+			Integer mNo = (Integer)session.getAttribute("userNo");
+			if(mNo==null) {
+				mNo = 7;
+			}
 			messageList = messageService.selectMessageList(mNo);
 			model.addAttribute("data", messageList);
 			mv.setViewName("mypage/message_list");
 			return mv;
 		} catch (Exception e) {
 			e.printStackTrace();
-			mv.setViewName("main/index");
+			mv.setViewName("redirect:/main/index");
 			return mv;
 		}
 		
@@ -247,17 +265,20 @@ public class MypageController {
 							   Model model,
 							   HttpSession session) {
 		//int mNo = (Integer)request.getAttribute("mNo");
-		int mNo = (Integer)session.getAttribute("mNo");
 		List<Product> writeList;
 		try {
+			Integer mNo = (Integer)session.getAttribute("userNo");
+			if(mNo==null) {
+				mNo = 7;
+			}
 			writeList = mypageService.selectWriteList(mNo);
 			request.setAttribute("data", writeList);
+			return "mypage/member_write";
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "main/index";
+			return "redirect:/main/index";
 		}
 		//model.addAttribute("writeList", writeList);
-		return "mypage/member_write";
 	}
 	
 	//내가쓴글삭제
@@ -277,22 +298,31 @@ public class MypageController {
 	public String payment_list(HttpServletRequest request, 
 							   HttpServletResponse response,
 							   HttpSession session) {
-		int mNo = (Integer)session.getAttribute("mNo");
 		List<Payment> paymentList;
 		try {
+			Integer mNo = (Integer)session.getAttribute("userNo");
+			if(mNo==null) {
+				mNo = 7;
+			}
 			paymentList = paymentService.selectList(mNo);
 			request.setAttribute("data", paymentList);
+			return "mypage/payment_list";
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "main/index";
+			return "redirect:/main/index";
 		}
-		return "mypage/payment_list";
 	}
 	
 	//결제화면
 	@RequestMapping("/payment")
 	public String payment() {
 		return "mypage/payment";
+	}
+	
+	//테스트화면
+	@RequestMapping("/screen")
+	public String test() {
+		return "mypage/test2";
 	}
 	
 	
