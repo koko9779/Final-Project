@@ -32,7 +32,7 @@ public class ProductDetailController {
 			e.printStackTrace();
 		}
 		
-		mv.setViewName("detail/detail");
+		mv.setViewName("forward:detail/detail");
 		
 		return mv;
 		

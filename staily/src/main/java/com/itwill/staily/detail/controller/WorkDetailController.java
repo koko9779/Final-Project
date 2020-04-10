@@ -30,6 +30,24 @@ public class WorkDetailController {
 		return w;
 	}
 	
+	@RequestMapping("/work_request")
+	public ModelAndView selectWork(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView();
+		
+		try {
+			String wNo = request.getParameter("wNo");
+			Work w = workDetailService.selectWorkOne(Integer.parseInt(wNo));
+			request.setAttribute("workOne", w);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.setViewName("forward:detail/product_create");
+		
+		return mv;		
+	}
+	
 	
 	@RequestMapping("/work_search")
 	public ModelAndView selectWorkAll(HttpServletRequest request, HttpServletResponse response) {

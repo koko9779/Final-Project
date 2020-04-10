@@ -1,26 +1,11 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/admin/include/include_css.jsp"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
+<%@ include file="/WEB-INF/views/detail/include/include_js.jsp" %>
 
 <html>
 <head>
-<!-- Bootstrap core JavaScript-->
-<script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/css/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="${pageContext.request.contextPath}/css/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="${pageContext.request.contextPath}/css/admin/js/sb-admin-2.min.js"></script>
-
-<!-- Page level plugins -->
-<script src="${pageContext.request.contextPath}/css/admin/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="${pageContext.request.contextPath}/css/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
-
 </head>
 <div class="container-fluid">
 	<div class="row">
@@ -36,11 +21,11 @@
 						<div class="modal-body" id="body">
 							
 						</div>
-						<div class="modal-footer">							 
-							<input type="text" id="modal-wNo" name="modal-wNo" value="" readonly>
-							<button type="button" class="btn btn-primary" onClick="modal_click()">
-								확인
-							</button> 
+						<div class="modal-footer">
+							<form name="wNo_request" method="POST">
+								<input type="text" id="wNo" name="wNo" readonly>
+								<button type="button" class="btn btn-primary" onClick="modal_click()">확인</button> 
+							</form>			 
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">
 								취소
 							</button>
@@ -127,11 +112,6 @@
 
 
 <script type="text/javascript">
-$(function() {
-	$("#hide1").hide();
-	$("#hide2").hide();
-});
-
 //버튼 클릭시 Row에 있는 작품 번호 값 전달
 $(".btn").click(function() { 
 	
@@ -156,30 +136,17 @@ $(".btn").click(function() {
 		main.innerHTML = "이 작품이 맞습니까?<br><br>작품명 : " + name + "<br>카테고리 : " + category + "<br>처음 방영(개봉)일 : " + date +
 		"<br>전체 회차 : " + tepisode + "<br>작품 포스터<br>" + "<img src='/staily" + poster + "' width='465px' height='664px'>";
 		
-		$('#modal-wNo').val(no);
+		$('#wNo').val(no);
 	});
 });
 
 function modal_click() {
-	
+	document.wNo_request.action = "work_request";
+	document.wNo_request.submit();
+	opener.location.reload();
+	window.close();
 };
 
-//확인 버튼 클릭 시 상품 등록으로 다시 값 전달
-$(".btn-primary").click(function() {
-	var wNo = $("#modal-wNo").val();
-	console.log(wNo);
-	
-	$.ajax({
-		type : "POST",
-		url : "work_confirm",
-		data : {"wNo" : wNo},
-		async : false,
-		dataType : "json",
-		success : function(w) {
-			
-		}
-	});
-}); 
 
 </script>
 </body>
