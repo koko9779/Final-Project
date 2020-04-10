@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.staily.stylecoodination.service.StyleCoodinationService;
@@ -20,7 +21,7 @@ public class StyleCoodinationController {
 	@Autowired
 	 private StyleCoodinationService styleCoodinationService;
 	
-	@RequestMapping("/style_main")
+	@RequestMapping("/style_main_read")
 	public String style_main(Model model) {
 		List<Board> boardTop10 = new ArrayList<Board>();
 		List<Board> data = new ArrayList<Board>();
@@ -37,10 +38,10 @@ public class StyleCoodinationController {
 		model.addAttribute("boardCount", boardCount);
 		model.addAttribute("replyCount", replyCount);
 		
-		return "style/style_main";
+		return "style/style_main_read";
 	}
 	
-	@RequestMapping("/style_view")
+	@RequestMapping("/style_detail_read")
 	public String style_view(@RequestParam String bNo, Model model) {
 		List<Board> boardOneList = new ArrayList<Board>();
 		
@@ -48,10 +49,11 @@ public class StyleCoodinationController {
 		boardOneList = styleCoodinationService.findBoardOne(intBNo);
 		model.addAttribute("boardOneList", boardOneList);
 		
-		return "style/style_view";
+		return "style/style_detail_read";
 	}
 	
-	@RequestMapping("/style_update")
+	/*
+	@RequestMapping("/style_board_update")
 	public String style_update(@RequestParam String bNo, Model model) {
 		int intBNo = Integer.parseInt(bNo);
 		Board updateBoard;
@@ -61,6 +63,7 @@ public class StyleCoodinationController {
 		
 		return "style/style_update";
 	}
+	*/
 	/*
 	@Override
 	public int modifyBoardAndReply(Board updateBoard) {
@@ -68,17 +71,22 @@ public class StyleCoodinationController {
 	}
 	*/
 	
-	@RequestMapping("/style_create_board")
+	@RequestMapping("/style_board_create")
 	public String style_create(Board board) {
-		return "/style/style_create_board";
+		return "/style/style_board_create";
 	}
 	
-	@RequestMapping("/style_create")
-	public String style_create_action(Board board) {
+	@RequestMapping(value = "/style_board_create_action", method = RequestMethod.GET)
+	public String style_create_action_get(Board board) {
+		return "/style/style_board_create";
+	}
+	
+	@RequestMapping(value = "/style_create_board_action", method = RequestMethod.POST)
+	public String style_create_action_post(Board board) {
 		String forwardPath = "";
 		try {
 			styleCoodinationService.writeBoard(board);
-			forwardPath = "style/style_main";
+			forwardPath = "style/style_main_read";
 		} catch (Exception e) {
 			e.printStackTrace();
 			forwardPath = "redirect:/404.jsp";
@@ -135,7 +143,6 @@ public class StyleCoodinationController {
 	}
 	
 }
-
 	 */
 	
 	
