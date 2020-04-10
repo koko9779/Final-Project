@@ -32,7 +32,7 @@
 						<tr>
 							<td>${board.bIdx}</td>
 							<td>
-								<a href="style_view?bNo=${board.bNo}">
+								<a href="style_detail_read?bNo=${board.bNo}">
 									${board.bTitle}
 								</a>
 							</td>

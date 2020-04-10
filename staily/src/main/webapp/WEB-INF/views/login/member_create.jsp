@@ -68,7 +68,7 @@
   				return;
   			}
   			
-	  		document.registerF.action = "register_action";
+	  		document.registerF.action = "member_create_action";
 	  		document.registerF.method = "POST";
 	  		document.registerF.submit();
   		}else {
@@ -110,8 +110,6 @@
 			$("<div class='form-group'>" +
 	                "<input type='text' class='form-control form-control-user' id='inputCono' name='coNo' placeholder=\"'-'  없이 사업자등록번호 입력해주세요\">" +
 	          "</div>").insertAfter(phoneGroupE);
-			return;
-		}else {
 			return;
 		}
 	}
@@ -195,10 +193,10 @@
               </form>
               <hr>
               <div class="text-center">
-                <a class="small" href="find_id">아이디를 잊어버리셨나요?</a>
+                <a class="small" href="id_read">아이디를 잊어버리셨나요?</a>
               </div>
               <div class="text-center">
-                <a class="small" href="find_pw">비밀번호를 잊어버리셨나요?</a>
+                <a class="small" href="pw_count_read">비밀번호를 잊어버리셨나요?</a>
               </div>
               <div class="text-center">
                 <a class="small" href="login">계정이 있으신가요? 로그인하러 갑시다!</a>
@@ -264,7 +262,7 @@
 	  
 	  $('#inputName').keyup(function() {
 		  var koreanCheck = RegExp(/^[가-힣]{2,10}$/);
-		  var englichCheck = RegExp(/^[a-zA-Z]{5,25}$/); // 영문이름 당최 어찌 주어야할까 글자수
+		  var englichCheck = RegExp(/^[a-zA-Z]{5,25}$/); 
 		  
 		  if(!koreanCheck.test($("#inputName").val()) && !englichCheck.test($("#inputName").val())){
 			  $('#check_register').css("visibility", "visible");

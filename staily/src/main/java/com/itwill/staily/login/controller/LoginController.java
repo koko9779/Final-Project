@@ -62,7 +62,7 @@ public class LoginController {
 			forwardPath = "login/login";
 		} catch (Exception e) {
 			e.printStackTrace();
-			forwardPath = "에러...";
+			forwardPath = "redirect:/404.jsp";
 		}
 		return forwardPath;
 	}
@@ -73,20 +73,20 @@ public class LoginController {
 		return "login/main";
 	}
 	
-	@RequestMapping(value = "/find_id")
-	public String find_id() {
-		return "login/forgot_id";
+	@RequestMapping(value = "/id_read")
+	public String id_read() {
+		return "login/id_read";
 	}
 	
-	@RequestMapping(value = "/find_id_action", method = RequestMethod.GET)
-	public String find_id_action_get() {
-		return "login/forgot_id";
+	@RequestMapping(value = "/id_read_action", method = RequestMethod.GET)
+	public String id_read_action_get() {
+		return "login/id_read";
 	}
 	
-	@RequestMapping(value = "/find_id_action", method = RequestMethod.POST)
+	@RequestMapping(value = "/id_read_action", method = RequestMethod.POST)
 	public String find_id_action_post(@RequestParam String name, String phone, Model model) {
 		String forwardPath = "";
-		String findId = "login/find_id";
+		String findId = "";
 		try {
 			findId = loginService.findId(phone, name);
 			model.addAttribute("findId", findId);
@@ -95,44 +95,49 @@ public class LoginController {
 		} catch(NoSearchMemberException e) {
 			e.printStackTrace();
 			model.addAttribute("msg", e.getMessage());
-			forwardPath = "login/forgot_id";
+			forwardPath = "login/id_read";
 		} catch (Exception e) {
 			e.printStackTrace();
-			forwardPath = "login/에러페이지..";
+			forwardPath = "redirect:/404.jsp";
 		}
 		return forwardPath;
 	}
 	
-	@RequestMapping(value = "/find_pw")
-	public String find_pw() {
-		return "login/forgot_pw";
+	@RequestMapping(value = "/pw_count_read")
+	public String pw_read() {
+		return "login/pw_count_read";
 	}
 	
-	@RequestMapping(value = "/find_pw_action", method = RequestMethod.POST)
-	public String find_pw_action_post(@RequestParam String id, String phone, Model model) {
+	@RequestMapping(value = "/pw_count_read_action", method = RequestMethod.GET)
+	public String pw_count_read_action_get() {
+		return "login/pw_count_read";
+	}
+	
+	@RequestMapping(value = "/pw_count_read_action", method = RequestMethod.POST)
+	public String pw_count_read_action_post(@RequestParam String id, String phone, Model model) {
 		String forwardPath = "";
 		
 		try {
 			loginService.isIdExistForPw(id, phone);
 			model.addAttribute("id", id);
-			forwardPath = "login/update_pw";
+			forwardPath = "login/pw_update";
 		}catch(NoSearchMemberException e) {
 			e.printStackTrace();
 			model.addAttribute("msg", e.getMessage());
-			forwardPath = "login/forgot_pw";
+			forwardPath = "login/pw_count_read";
 		}catch(Exception e) {
 			e.printStackTrace();
-			forwardPath = "login/에러페이지..";
+			forwardPath = "redirect:/404.jsp";
 		}
 		return forwardPath;
 	}
 	
-	@RequestMapping(value = "/update_pw", method = RequestMethod.GET)
+	@RequestMapping(value = "/pw_update", method = RequestMethod.GET)
 	public String update_pw_get() {
-		return "login/forgot_pw";
+		return "login/pw_count_read";
 	}
 	
-	@RequestMapping(value = "/update_pw", method = RequestMethod.POST)
+	@RequestMapping(value = "/pw_update", method = RequestMethod.POST)
 	public String update_pw_post(@RequestParam String id, String pw) {
 		String forwardPath = "";
 		Member updateMember = new Member();
@@ -144,24 +149,24 @@ public class LoginController {
 			forwardPath = "login/login";
 		} catch(Exception e) {
 			e.printStackTrace();
-			forwardPath = "/에러페이지..";
+			forwardPath = "redirect:/404.jsp";
 		}
 		return forwardPath;
 	}
 	
 	
-	@RequestMapping(value = "/register")
-	public String singup_member() {
-		return "login/register";
+	@RequestMapping(value = "/member_create")
+	public String member_create() {
+		return "login/member_create";
 	}
 	
-	@RequestMapping(value = "/register_action", method = RequestMethod.GET)
-	public String singup_member_action_get() {
-		return "login/register";
+	@RequestMapping(value = "/member_create_action", method = RequestMethod.GET)
+	public String member_create_action_get() {
+		return "login/member_create";
 	}
 	
-	@RequestMapping(value = "/register_action", method = RequestMethod.POST)
-	public String singup_member_action_post(@ModelAttribute Member signupMember, String coNo, Model model) {
+	@RequestMapping(value = "/member_creater_action", method = RequestMethod.POST)
+	public String member_create_action_post(@ModelAttribute Member signupMember, String coNo, Model model) {
 		String forwardPath = "";
 		
 		try {
@@ -178,7 +183,7 @@ public class LoginController {
 			forwardPath = "login/login";
 		}catch(Exception e) {
 			e.printStackTrace();
-			forwardPath = "login/에러페이지..";
+			forwardPath = "redirect:/404.jsp";
 		}
 		return forwardPath; 
 	}

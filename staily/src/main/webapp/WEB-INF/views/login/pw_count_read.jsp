@@ -34,7 +34,7 @@
 				return;
 			}
 			
-			document.forgotIdF.action = "find_pw_action";
+			document.forgotIdF.action = "pw_count_read_action";
 			document.forgotIdF.method= "POST";
 			document.forgotIdF.submit();
 		}
@@ -45,7 +45,7 @@
 				return;
 			}else {
 				alert(msgE);
-				location.href="find_pw";
+				location.href="pw_count_read";
 				return;
 			}
 		});
@@ -87,7 +87,7 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="register">회원가입을 하고 싶으신가요?</a>
+                    <a class="small" href="member_create">회원가입을 하고 싶으신가요?</a>
                   </div>
                   <div class="text-center">
                     <a class="small" href="login">계정이 있으신가요? 로그인하러 갑시다!</a>

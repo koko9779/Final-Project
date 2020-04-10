@@ -32,7 +32,7 @@ public class StyleCoodinationServiceTest {
 	
 	@Test
 	@Ignore
-	public void testModifyBoardAndReply() {
+	public void testModifyBoardAndReply() throws Exception {
 		Board updateBoard = new Board();
 		updateBoard.setbTitle("제이유닛바꾸기");
 		updateBoard.setbContent("바꾸기성공?");
@@ -43,7 +43,7 @@ public class StyleCoodinationServiceTest {
 	
 	@Test
 	@Ignore
-	public void testWriteBoard() {
+	public void testWriteBoard() throws Exception {
 		Board board = new Board();
 		board.setbTitle("글쓰기");
 		board.setbContent("글쓰기에용");
@@ -55,13 +55,13 @@ public class StyleCoodinationServiceTest {
 	
 	@Test
 	@Ignore
-	public void testRemoveBoard() {
+	public void testRemoveBoard() throws Exception {
 		styleCoodinationService.removeBoard(62);
 	}
 	
 	@Test
 	@Ignore
-	public void testWriteReply() {
+	public void testWriteReply() throws Exception {
 		Board board = new Board();
 		board.setbTitle("글쓰기");
 		board.setbContent("글쓰기에용");
@@ -75,19 +75,19 @@ public class StyleCoodinationServiceTest {
 	
 	@Test
 	@Ignore
-	public void testRemoveReply() {
+	public void testRemoveReply() throws Exception {
 		styleCoodinationService.removeReply(64);
 	}
 	
 	@Test
 	@Ignore
-	public void testCheckChoice() {
+	public void testCheckChoice() throws Exception {
 		styleCoodinationService.checkChoice(23);
 	}
 	
 	@Test
 	@Ignore
-	public void testCheckRecommend() {
+	public void testCheckRecommend() throws Exception {
 		styleCoodinationService.checkRecommend(32);
 	}
 	
@@ -124,7 +124,7 @@ public class StyleCoodinationServiceTest {
 	}
 	
 	@Test
-	public void testUpdateViewCount() {
+	public void testUpdateViewCount() throws Exception {
 		int count = styleCoodinationService.updateViewCount(22);
 		System.out.println(count);
 	}
