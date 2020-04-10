@@ -198,7 +198,7 @@ public class MypageController {
 		ModelAndView mv = new ModelAndView();
 		Message message = messageService.selectOne(1);
 		model.addAttribute("message", message);
-		mv.setViewName("test2");
+		mv.setViewName("mypage/message");
 		return mv;
 	}
 	
