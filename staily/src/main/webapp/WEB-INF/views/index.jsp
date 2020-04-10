@@ -4,11 +4,26 @@
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 <script>
-function bookmark_remove(bmNo){
+function remove_bookmark(bmNo){
 	  var bookmark_form = document.getElementById('bookmark_'+bmNo);
-	  //alert("즐겨찾기에서 상품이 제거됐습니다.");
+	  alert("즐겨찾기에서 상품이 제거됐습니다");
 	  bookmark_form.action = "delete_bookmark";
 	  bookmark_form.submit();
+}
+function bmMoveToProduct(bmNo,pNo){
+	var product_form = document.getElementById('bookmark_'+bmNo);
+	product_form.action = "../detail/detail_main";
+	product_form.submit();
+}
+function hotMoveToProduct(pNo){
+	var product_form = document.getElementById('product_'+pNo);
+	product_form.action = "../detail/detail_main";
+	product_form.submit();
+}
+function moveToWork(wNo){
+	var work_form = document.getElementById('work_'+wNo);
+	work_form.action = "worklist";
+	work_form.submit();
 }
 </script>
 <!-- Hero -->
@@ -106,42 +121,34 @@ function bookmark_remove(bmNo){
 
 				<div class="slick-carousel newIn">
 					<c:forEach var="bm" items="${bmList}">
-						<form id="bookmark_${bm.bmNo}" method="get">
+						<form id="bookmark_${bm.bmNo}" method="post">
 							<input type="hidden" value="${bm.bmNo}" name="bmNo" />
+							<input type="hidden" value="${bm.product.pNo}" name="pNo"/>
 							<div class="movie-slide">
-								<div class="movie-poster2">
-									<!-- 커버 -->
-									<!-- 
-									<aside>
-										<div>
-											<input class="material-icons" type="image"
-												style="border: none; width: 50%;" alt="즐겨찾기 제거"
-												src="${pageContext.request.contextPath}/images/emptystar.png"
-												onclick="bookmark_remove(${bm.bmNo})">
-										</div>
-									</aside>
-									-->
-									<a href="#"> <img
-										src="${pageContext.request.contextPath}${bm.product.pScene}"
-										alt="${bm.product.pName}" />
-									</a>
-								</div>
+									<div class="movie-poster2">
+										<!-- 커버 -->
+										<!-- 
+										<aside>
+											<div>
+												<input class="material-icons" type="image"
+													style="border: none; width: 50%;" alt="즐겨찾기 제거"
+													src="${pageContext.request.contextPath}/images/emptystar.png"
+													onclick="bookmark_remove(${bm.bmNo})">
+											</div>
+										</aside>
+										-->
+										<a href="#" onclick="bmMoveToProduct(${bm.bmNo},${bm.product.pNo})"> <img
+											src="${pageContext.request.contextPath}${bm.product.pScene}"
+											alt="${bm.product.pName}" />
+										</a>
+									</div>
 								<div>
 									<input class="material-icons" type="image"
 										style="border: none; width: 10%; float:left; padding: 0px; margin: 0 5%;" alt="즐겨찾기 제거"
 										src="${pageContext.request.contextPath}/images/star.png"
-										onclick="bookmark_remove(${bm.bmNo})">
+										onclick="remove_bookmark(${bm.bmNo})">
 									<span class="no-underline" style="margin: 2% 0px;float:left;">${bm.product.pName}</span>
 								</div>
-								<!-- 별점 -->
-								<!-- 
-								<div class="star-rating">
-									<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-									<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-									<i class="material-icons">star_rate</i>
-								</div>
-								-->
-								<!--  -->
 							</div>
 						</form>
 					</c:forEach>
@@ -158,25 +165,19 @@ function bookmark_remove(bmNo){
 
 				<div class="slick-carousel newIn">
 					<c:forEach var="hot" items="${hotList}">
+						<form id="product_${hot.pNo}" method="post">
+							<input type="hidden" value="${hot.pNo}" name="pNo"/>
 							<div class="movie-slide">
 								<div class="movie-poster2">
-									<a href="#"> <img
+									<a href="#" onclick="hotMoveToProduct(${hot.pNo})"> <img
 										src="${pageContext.request.contextPath}${hot.pScene}"
 										alt="${hot.pName}" />
 									</a>
 								</div>
 								<h4 class="no-underline">${hot.pName}</h4>
 								<div>조회수: ${hot.pView}</div>
-								<!-- 별점 -->
-								<!-- 
-								<div class="star-rating">
-									<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-									<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-									<i class="material-icons">star_rate</i>
-								</div>
-								-->
-								<!--  -->
 							</div>
+						</form>
 					</c:forEach>
 				</div>
 			</div>
@@ -190,27 +191,17 @@ function bookmark_remove(bmNo){
 
 				<div class="slick-carousel newIn">
 					<c:forEach var="today" items="${todayList}">
-						<input type="hidden" value="${today.wNo}" name="wNo" />
-						<div class="movie-slide">
-							<div class="movie-poster2">
-								<a href="#"> <img
-									src="${pageContext.request.contextPath}${today.wPoster}"
-									alt="Movie title" />
-								</a>
-							</div>
-							<!-- 이름 -->
-							<!-- 
-								<h4 class="no-underline">The last post</h4>
-							-->
-							<!-- 별점 -->
-							<!-- 
-								<div class="star-rating">
-								<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-								<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-								<i class="material-icons">star_rate</i>
+						<form id="work_${today.wNo}" method="post">
+							<input type="hidden" value="${today.wNo}" name="wNo" />
+							<div class="movie-slide">
+								<div class="movie-poster2">
+									<a href="#" onclick="moveToWork(${today.wNo})"> <img
+										src="${pageContext.request.contextPath}${today.wPoster}"
+										alt="Movie title" />
+									</a>
 								</div>
-							-->
-						</div>
+							</div>
+						</form>
 					</c:forEach>
 				</div>
 			</div>
@@ -225,28 +216,17 @@ function bookmark_remove(bmNo){
 
 				<div class="slick-carousel newIn" >
 					<c:forEach var="drama" items="${dramaList}">
-						<input type="hidden" value="${drama.wNo}" name="wNo" />
-						<div class="movie-slide">
-							<div class="movie-poster2">
-								<a href="#"> <img
-									src="${pageContext.request.contextPath}${drama.wPoster}"
-									alt="Movie title" />
-								</a>
-							</div>
-							
-							<!-- 이름 -->
-							<!-- 
-								<h4 class="no-underline">The last post</h4>
-								-->
-							<!-- 별점 -->
-							<!-- 
-								<div class="star-rating">
-									<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-									<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-									<i class="material-icons">star_rate</i>
+						<form id="work_${drama.wNo}" method="post">
+							<input type="hidden" value="${drama.wNo}" name="wNo" />
+							<div class="movie-slide">
+								<div class="movie-poster2">
+									<a href="#" onclick="moveToWork(${drama.wNo})"> <img
+										src="${pageContext.request.contextPath}${drama.wPoster}"
+										alt="Movie title" />
+									</a>
 								</div>
-							-->
-						</div>
+							</div>
+						</form>
 					</c:forEach>
 				</div>
 			</div>
@@ -261,27 +241,17 @@ function bookmark_remove(bmNo){
 
 				<div class="slick-carousel newIn">
 					<c:forEach var="movie" items="${movieList}">
-						<input type="hidden" value="${movie.wNo}" name="wNo" />
-						<div class="movie-slide">
-							<div class="movie-poster2">
-								<a href="#"> <img
-									src="${pageContext.request.contextPath}${movie.wPoster}"
-									alt="Movie title" />
-								</a>
-							</div>
-							<!-- 이름 -->
-							<!-- 
-								<h4 class="no-underline">The last post</h4>
-							-->
-							<!-- 별점 -->
-							<!-- 
-								<div class="star-rating">
-									<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-									<i class="material-icons">star_rate</i> <i class="material-icons">star_rate</i>
-									<i class="material-icons">star_rate</i>
+						<form id="work_${movie.wNo}" method="post">
+							<input type="hidden" value="${movie.wNo}" name="wNo" />
+							<div class="movie-slide">
+								<div class="movie-poster2">
+									<a href="#" onclick="moveToWork(${movie.wNo})"> <img
+										src="${pageContext.request.contextPath}${movie.wPoster}"
+										alt="Movie title" />
+									</a>
 								</div>
-							-->
-						</div>
+							</div>
+						</form>
 					</c:forEach>
 				</div>
 			</div>
