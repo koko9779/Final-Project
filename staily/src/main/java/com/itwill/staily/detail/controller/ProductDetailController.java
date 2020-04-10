@@ -12,10 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.staily.detail.model.dto.ProductEx;
 import com.itwill.staily.detail.service.ProductDetailService;
-
+ 
 @Controller
 @RequestMapping("/detail")
 public class ProductDetailController {
+	
 	@Autowired
 	private ProductDetailService productDetailService;
 	
@@ -32,7 +33,7 @@ public class ProductDetailController {
 			e.printStackTrace();
 		}
 		
-		mv.setViewName("forward:detail/detail");
+		mv.setViewName("detail/detail");
 		
 		return mv;
 		
@@ -69,7 +70,7 @@ public class ProductDetailController {
 			e.printStackTrace();
 		}
 		
-		mv.setViewName("detail/create_product");
+		mv.setViewName("detail/product_create");
 		
 		return mv;		
 	}	

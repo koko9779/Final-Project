@@ -26,7 +26,8 @@
 <!-- Section -->
 <div class="container section news">
    <div class="row">
-      <div class="col-sm-12">
+   <%@ include file="/WEB-INF/views/include/include_work_sidebar.jsp"%>
+      <div class="col-sm-9 col-sm-push-1">
          <h2>이 상품이 나온 장면</h2>
          <hr class="space-40" />
          <div class="row">

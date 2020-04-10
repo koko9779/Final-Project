@@ -30,6 +30,7 @@ public class WorkDetailController {
 		return w;
 	}
 	
+	
 	@RequestMapping("/work_request")
 	public ModelAndView selectWork(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
@@ -43,7 +44,7 @@ public class WorkDetailController {
 			e.printStackTrace();
 		}
 		
-		mv.setViewName("forward:detail/product_create");
+		mv.setViewName("detail/product_create");
 		
 		return mv;		
 	}
