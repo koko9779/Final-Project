@@ -12,17 +12,17 @@
 	};
 	function bm_productpage(bmNo,pNo){
 		var product_form = document.getElementById('bookmark_'+bmNo);
-		product_form.action = "../detail/detail_main";
+		product_form.action = "../detail/product_detail";
 		product_form.submit();
 	};
 	function hot_productpage(pNo){
 		var product_form = document.getElementById('product_'+pNo);
-		product_form.action = "../detail/detail_main";
+		product_form.action = "../detail/product_detail";
 		product_form.submit();
 	};
 	function workpage(wNo){
 		var work_form = document.getElementById('work_'+wNo);
-		work_form.action = "worklist_read";
+		work_form.action = "worklist_select";
 		work_form.submit();
 	};
 </script>
