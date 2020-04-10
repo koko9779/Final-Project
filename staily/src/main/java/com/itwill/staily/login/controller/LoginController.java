@@ -70,7 +70,7 @@ public class LoginController {
 	@RequestMapping(value = "/logout_action")
 	public String logout_action(HttpSession session) {
 		session.invalidate();
-		return "login/main";
+		return "index";
 	}
 	
 	@RequestMapping(value = "/id_read")

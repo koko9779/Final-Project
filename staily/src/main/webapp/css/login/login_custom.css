@@ -10,3 +10,34 @@
  .margin {
  	margin-bottom: 9px;
  }
+ 
+/************** member_create.jsp ****************/
+.check_register {
+		color: red;
+  		margin-top: -0.8rem;
+	    margin-bottom: 0.4rem;
+	    margin-left: 0.7rem;
+	    font-size: 12px;
+		visibility: hidden;
+ }
+ 
+.type-button {
+	 color: #fff;
+	 background-color: #4e73df;
+	 border-color: #4e73df;
+	 border-radius: 10rem;
+}
+
+.type-button:hover {
+	color: #fff;
+	background-color: #2e59d9;
+	border-color: #2653d4;
+}
+    
+.gaip-top {
+	margin-top: 1.5rem
+}
+/************************************************/
+/************************************************/
+ 
+ 
