@@ -6,6 +6,7 @@
 
 <html>
 <head>
+<title>작품 선택</title>
 </head>
 <div class="container-fluid">
 	<div class="row">

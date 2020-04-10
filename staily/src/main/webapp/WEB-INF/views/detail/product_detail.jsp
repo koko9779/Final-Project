@@ -5,6 +5,9 @@
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 <html>
+<head>
+<title>작품 상세</title>
+</head>
 <body>
 <!-- Hero -->
 <div id="content_hero"
