@@ -165,7 +165,7 @@ public class LoginController {
 		return "login/member_create";
 	}
 	
-	@RequestMapping(value = "/member_creater_action", method = RequestMethod.POST)
+	@RequestMapping(value = "/member_create_action", method = RequestMethod.POST)
 	public String member_create_action_post(@ModelAttribute Member signupMember, String coNo, Model model) {
 		String forwardPath = "";
 		
