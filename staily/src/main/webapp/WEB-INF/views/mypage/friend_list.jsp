@@ -84,6 +84,7 @@
                   	 <tr>
                   	  <td><input type="checkbox" name="friend_check" value="${friend.fPk}"></td>
                       <td>${friend.mName}</td>
+                      
                     </tr>
                   	</c:forEach>
                   </tbody>
@@ -97,6 +98,7 @@
         <!-- /.container-fluid -->
 
       </div>
+      
       <!-- End of Main Content -->
 
       <!-- Footer -->

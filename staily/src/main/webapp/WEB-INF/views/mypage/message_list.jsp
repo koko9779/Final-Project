@@ -85,7 +85,9 @@
                   	<c:forEach var="message" items="${data}">
                   	 <tr>
                   	  <td><input type="checkbox" name="message_check" value="${message.msNo}"></td>
-                      <td style = "cursor:pointer;" onClick = " location.href='admin/'">${message.msTitle}</td>
+                      <td style = "cursor:pointer;" 
+                       onclick="window.open('message','window_name','width=500,height=500,left= 1000 location=no,status=no,scrollbars=yes');">
+                       ${message.msTitle}</td>
                       <td>${message.mId}</td>
                       <td>${message.msDate}</td>
                     </tr>
