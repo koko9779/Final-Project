@@ -145,8 +145,7 @@
 															maxlength="15">
 													</div>
 												</div>
-												<div>* 영문, 숫자, 특수문자중 2가지 포함하여 8자리 이상, 16자리 미만으로 구성해야
-													합니다.</div>
+												<div>* 비밀번호는 대소문자와 숫자만 입력가능하고, 8 ~ 15글자 사이입니다</div>
 											</td>
 										</tr>
 										<tr>
@@ -162,13 +161,13 @@
 												</div>
 											</td>
 										</tr>
-
+										<c:if test="${member.mType =='C'}">
 										<tr>
 											<th scope="row" class="bg-light essentia"><label>※
 													결제여부</label></th>
 											<td class="text-left">${member.mCompany.coCheck}</td>
 										</tr>
-
+										</c:if>
 										<tr>
 											<th scope="row" class="bg-light essentia"><label
 												for="phnno1N1">※ 휴대폰</label></th>

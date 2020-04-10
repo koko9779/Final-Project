@@ -23,7 +23,9 @@
 					location.reload();
 				}
 			})
-		}
+		};
+		
+		
 		
 	})
 </script>
@@ -53,7 +55,17 @@
                   	<c:forEach var="friend" items="${data}">
                   	 <tr>
                   	  <td><input type="checkbox" name="friend_check" value="${friend.fPk}"></td>
-                      <td>${friend.mName}</td>
+                      <td >
+                      <div class="dropdown">
+							<buttion class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+							 	${friend.mName}
+							 </button>
+							 <div class="dropdown-menu">
+							  	<a class="dropdown-item" href="#">쪽지보내기</a>
+							</div>
+					  </div>
+	
+                    </td>
                       
                     </tr>
                   	</c:forEach>
