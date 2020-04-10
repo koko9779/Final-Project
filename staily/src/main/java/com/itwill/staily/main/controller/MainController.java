@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,25 +59,24 @@ public class MainController {
 		return "index";
 	}
 	@RequestMapping("/worklist")
-	public String workList(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String workList(@RequestParam("wNo") int wNo, HttpServletRequest request, HttpSession session) throws Exception {
 		try {
-			
-			request.setAttribute("mNo", 4);
+			session.setAttribute("mNo", 4);
 			/*
 			 * wNo값을 받아서 상품뽑아내기
 			 * 임시 (mNo=4, wNo=1)
 			 */
 			
-			Work w = listService.selectWorkOne(1);
+			Work w = listService.selectWorkOne(wNo);
 			request.setAttribute("w", w);
 			
-			int tepisode = listService.selectTepisode(1);
+			int tepisode = listService.selectTepisode(wNo);
 			request.setAttribute("tepisode", tepisode);
 			
-			List<Work> cw = listService.selectCProductList(4);
+			List<Work> cw = listService.selectCProductList(wNo);
 			request.setAttribute("cw", cw);
 			
-			List<Work> mw = listService.selectMProductList(4);
+			List<Work> mw = listService.selectMProductList(wNo);
 			request.setAttribute("mw", mw);
 	
 			int pCnt = listService.selectProductCount();
@@ -113,47 +113,47 @@ public class MainController {
 		return map2;
 	}
 	
-//	@RequestMapping("/create_bookmark")
-//	public String createBookmark(@RequestParam int mNo, @RequestParam int pNo) {
-//		try {
-//			//(Integer)request.getAttribute("");
-//			//String mNo = request.getParameter("mNo");
-//			Map map1 = new HashMap();
-//			//int mNo = (Integer)request.getAttribute("mNo");
-//			//int pNo = (Integer)request.getAttribute("pNo");
-//			System.out.println(mNo+" "+pNo);
-//			map1.put("mNo", mNo);
-//			map1.put("pNo", pNo);
-//			int success = listService.createBookmark(map1);
-//			System.out.println(success);
-//			
-//		}catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return "forward:/main/index";
-//	}
-	
-	@ResponseBody
-	@RequestMapping(value="/create_bookmark", produces = "text/plain;charset=UTF-8")
-	public String createBookmark(@RequestParam int mNo, @RequestParam int pNo) throws Exception{
-		String result = "false";
+	@RequestMapping("/create_bookmark")
+	public String createBookmark(@RequestParam int mNo, @RequestParam int pNo) {
 		try {
-			
+			//(Integer)request.getAttribute("");
+			//String mNo = request.getParameter("mNo");
 			Map map1 = new HashMap();
+			//int mNo = (Integer)request.getAttribute("mNo");
+			//int pNo = (Integer)request.getAttribute("pNo");
+			System.out.println(mNo+" "+pNo);
 			map1.put("mNo", mNo);
 			map1.put("pNo", pNo);
 			int success = listService.createBookmark(map1);
-			if(success==1) {
-				result = "true";
-			}else {
-				result = "false";
-			}
+			System.out.println(success);
 			
 		}catch (Exception e) {
-			result = "false";
+			e.printStackTrace();
 		}
-		return result;
+		return "forward:/main/index";
 	}
+	
+//	@ResponseBody
+//	@RequestMapping(value="/create_bookmark", produces = "text/plain;charset=UTF-8")
+//	public String createBookmark(@RequestParam int mNo, @RequestParam int pNo) throws Exception{
+//		String result = "false";
+//		try {
+//			
+//			Map map1 = new HashMap();
+//			map1.put("mNo", mNo);
+//			map1.put("pNo", pNo);
+//			int success = listService.createBookmark(map1);
+//			if(success==1) {
+//				result = "true";
+//			}else {
+//				result = "false";
+//			}
+//			
+//		}catch (Exception e) {
+//			result = "false";
+//		}
+//		return result;
+//	}
 	
 	@RequestMapping("/delete_bookmark")
 	public String deleteBookmark(@RequestParam int bmNo) {
