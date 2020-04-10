@@ -113,10 +113,7 @@
 
 <script type="text/javascript">
 //버튼 클릭시 Row에 있는 작품 번호 값 전달
-$(".btn").click(function() { 
-	
-    var str = ""
-    var tdArr = new Array();    
+$(".btn").click(function() { 	
     var confirm = $(this);
     
     var tr = confirm.parent().parent();
@@ -129,8 +126,7 @@ $(".btn").click(function() {
     var tepisode = td.eq(4).text();
     var poster = td.eq(5).text();	
 	
-	$('#work_confirm').on('show.bs.modal', function(e) {
-		
+	$('#work_confirm').on('show.bs.modal', function(e) {		
 		var main = document.getElementById("body");
 		
 		main.innerHTML = "이 작품이 맞습니까?<br><br>작품명 : " + name + "<br>카테고리 : " + category + "<br>처음 방영(개봉)일 : " + date +
@@ -143,8 +139,9 @@ $(".btn").click(function() {
 function modal_click() {
 	document.wNo_request.action = "work_request";
 	document.wNo_request.submit();
-	opener.location.reload();
-	window.close();
+	//opener.parent.location = "product_create";
+	//opener.parent.location.reload();
+	//window.close();
 };
 
 
