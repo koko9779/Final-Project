@@ -67,7 +67,7 @@ function create_bookmark(mNo,pNo){
 
 				<!-- 기업회원 -->					
 					<div class="col-sm-9 col-sm-push-1" id="work_list_main" >
-						
+						<h2>기업특권이다~~맨위야~</h2>
 						<div class="slick-carousel newIn" >
 						<!-- <div class="slick-carousel" id="newIn5">-->
 							<c:forEach var="cw" items="${cw}">
@@ -83,7 +83,7 @@ function create_bookmark(mNo,pNo){
 										</div>
 										<div>
 											<input class="material-icons" type="image"
-												style="border: none; width: 10%; float:left; padding: 0px; margin: 0 5%;" alt="즐겨찾기 제거"
+												style="border: none; width: 10%; float:left; padding: 0px; margin: 0 5%;" alt="즐겨찾기 등록"
 												src="${pageContext.request.contextPath}/images/emptystar.png"
 												onclick="create_bookmark(${mNo},${cw.product[0].pNo})">
 											<span class="no-underline" style="margin: 2% 0px;float:left;">${cw.product[0].pName}</span>
@@ -94,21 +94,26 @@ function create_bookmark(mNo,pNo){
 								</form>
 							</c:forEach>
 						</div>
-						<h2></h2>
+						
 					<!-- 일반회원 -->
 					<article>
 						<c:forEach var="mw" items="${mw}">
 						<form id="product_${mw.product[0].pNo}" style="margin-top:10%;">
+							<h2 value="상품이름" >${mw.product[0].pName}</h2>
 							<input type="hidden" value="${mNo}" name="mNo">
 							<input type="hidden" value="${mw.product[0].pNo}" name="pNo">
 							<img src="${pageContext.request.contextPath}${mw.product[0].pScene}" class="news-single-img" alt="" />
-							<h2 value="상품이름" style="margin:0px;">${mw.product[0].pName}</h2>
+							<div >
+							<input class="material-icons" type="image"
+									style="border: none; width: 5%; padding: 0px; margin: 0 5%; float:left;" alt="즐겨찾기 등록"
+									src="${pageContext.request.contextPath}/images/emptystar.png"
+									onclick="create_bookmark(${mNo},${mw.product[0].pNo})">
 							<div style="float:right;">
 								<span value="작성자">작성자: ${mw.product[0].mId}</span>
 								<span class="categories tag" value="조회수">조회수: ${mw.product[0].pView}</span>
 								<span class="categories tag" value="에피소드">${mw.wdEpisode}회</span>
 							</div>
-							<input type="button" value="즐겨찾기 등록" onclick="create_bookmark(${mNo},${mw.product[0].pNo})">
+							</div>
 						</form>
 						</c:forEach>
 					</article>

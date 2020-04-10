@@ -24,6 +24,7 @@ $(window)
 									function() {
 										var checkbox = $("input[name=member_CheckBox]:checked");
 										var tdArray = new Array();
+										console.log(checkbox);
 										checkbox.each(function(i) {
 											var tr = checkbox.parent().parent()
 													.eq(i);

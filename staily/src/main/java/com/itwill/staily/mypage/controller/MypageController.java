@@ -53,11 +53,8 @@ public class MypageController {
 	//회원정보출력
 	@RequestMapping("/member_select")
 	public String member_select(HttpSession session, Model model, HttpServletRequest request)throws Exception{
-		//int mNo = (Integer)session.getAttribute("mNo");
-		Integer mNo = (Integer)request.getAttribute("mNo");
-		if(mNo==null) {
-			mNo = 7;
-		}
+		Integer mNo = (Integer)session.getAttribute("userNo");
+//		Integer mNo = (Integer)request.getAttribute("mNo");
 		Member member = mypageService.selectOne(mNo);
 		
 		if(member.getmType().equals("M")) {

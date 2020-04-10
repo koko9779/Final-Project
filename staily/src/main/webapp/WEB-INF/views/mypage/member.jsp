@@ -1,88 +1,96 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
-<!DOCTYPE html>
-<html>
-<head>
 <%@ include file="/WEB-INF/views/mypage/include/include_top.jsp"%>
-<!-- Bootstrap core JavaScript-->
-<script
-	src="../../../${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
-<script
-	src="../../../${pageContext.request.contextPath}/css/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-<script
-	src="../../../${pageContext.request.contextPath}/css/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript">
+	function check() {
+		var mPw = $('#mPw').val();
+		var repeatPw = $('#repeatPw').val();
+		var mEmail = $('#mEmail').val();
+		var mAddress = $('#mAddress').val();
+		var mDaddress = $('#mDaddress').val();
+		var phn1 = $('#phn1').val();
+		var phn2 = $('#phn2').val();
+		var phn3 = $('#phn3').val();
 
-<!-- Custom scripts for all pages-->
-<script
-	src="../../../${pageContext.request.contextPath}/css/admin/js/sb-admin-2.min.js"></script>
+		//이메일 체크
+		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		
+		if (!regExp.test(mEmail)) {
+			alert('이메일을 입력하세요');
+			return;
+		}
+		
+		if(mPw != repeatPw){
+			alert('비밀번호가 일치하지 않습니다');
+			return;
+		}else if(mPw == "" || repeatPw == ""){
+			alert('비밀번호를 입력하세요');
+			return;
+		}
+		
+		//비밀번호 체크
+		var getCheck = RegExp(/^[a-zA-Z0-9]{8,15}$/);
+		if(!getCheck.test(mPw)){
+			alert("비밀번호는 대소문자와 숫자만 입력가능하고, 8 ~ 15글자 사이입니다");
+			return;
+		}
+		
+		//주소 체크
+		if(mAddress == ""){
+			alert('주소를 입력하세요');
+			return;
+		}
+		
+		//상세주소 체크
+		if(mDaddress == ""){
+			alert('상세주소를 입력하세요');
+			return;
+		}
+		
+		//전화번호 체크
+		if(phn1 == ""){
+			alert("전화번호를 입력하세요");
+			return;
+		}
+		if(phn2 == ""){
+			alert("전화번호를 입력하세요");
+			return;
+		}
+		if(phn3 == ""){
+			alert("전화번호를 입력하세요");
+			return;
+		}
+		
+		alert('회원정보가 수정되었습니다');
+		document.getElementById("memberInfoFrm").action = "member_update";
+		document.getElementById("memberInfoFrm").submit();
+		
 
-<!-- Page level plugins -->
-<script
-	src="../../../${pageContext.request.contextPath}/css/admin/vendor/datatables/jquery.dataTables.min.js"></script>
-<script
-	src="../../../${pageContext.request.contextPath}/css/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+	}
 
-<!-- Page level custom scripts -->
-<script
-	src="../../../${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
-<script
-	src="../../../${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.validate.min.js"></script>
-<script
-	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	function execDaumPostcode() {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				var addr = ''; // 주소 변수
+				var extraAddr = ''; // 참고항목 변수
 
-</head>
-
-<body id="page-top">
-
-	<!-- Page Wrapper -->
-	<div id="wrapper">
-		<%@ include file="/WEB-INF/views/mypage/include/include_nav.jsp"%>
-		<!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column">
-
-			<!-- Main Content -->
-			<div id="content">
-
-				<!-- Topbar -->
-				<nav
-					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-					<!-- Topbar Navbar -->
-					<ul class="navbar-nav ml-auto">
-
-						<!-- Nav Item - User Information -->
-						<li class="nav-item dropdown no-arrow"><a
-							class="nav-link dropdown-toggle" href="#" id="userDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small">관리자</span> <img
-								class="img-profile rounded-circle"
-								src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-						</a> <!-- Dropdown - User Information -->
-							<div
-								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#"> <i
-									class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-									Settings
-								</a> <a class="dropdown-item" href="#"> <i
-									class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-									Activity Log
-								</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#" data-toggle="modal"
-									data-target="#logoutModal"> <i
-									class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-									Logout
-								</a>
-							</div></li>
-
-					</ul>
-
-				</nav>
+				//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+				if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+					addr = data.roadAddress;
+				} else { // 사용자가 지번 주소를 선택했을 경우(J)
+					addr = data.jibunAddress;
+				}
+				// 우편번호와 주소 정보를 해당 필드에 넣는다.
+				// document.getElementById('new_address_zipcode').value = data.zonecode;
+				document.getElementById("mAddress").value = addr;
+				// 커서를 상세주소 필드로 이동한다.
+				document.getElementById("mDaddress").focus();
+			}
+		}).open();
+	}
+</script>
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->
@@ -267,146 +275,4 @@
 			<!-- End of Main Content -->
 
 			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Your Website 2019</span>
-					</div>
-				</div>
-			</footer>
-			<!-- End of Footer -->
-
-		</div>
-		<!-- End of Content Wrapper -->
-
-	</div>
-	<!-- End of Page Wrapper -->
-
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<script type="text/javascript">
-		function member_update() {
-			if ($('#mPw').val() != $('#repeatPw').val()) {
-				alert("비밀번호가 일치하지 않습니다");
-				return;
-			}
-			alert("수정완료");
-			document.getElementById("memberInfoFrm").action = "member_update";
-			document.getElementById("memberInfoFrm").submit();
-		}
-	</script>
-	<script type="text/javascript">
-		function check() {
-			var mPw = $('#mPw').val();
-			var repeatPw = $('#repeatPw').val();
-			var mEmail = $('#mEmail').val();
-			var mAddress = $('#mAddress').val();
-			var mDaddress = $('#mDaddress').val();
-			var phn1 = $('#phn1').val();
-			var phn2 = $('#phn2').val();
-			var phn3 = $('#phn3').val();
-
-			//이메일 체크
-			var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-			
-			if (!regExp.test(mEmail)) {
-				alert('이메일을 입력하세요');
-				return;
-			}
-			
-			if(mPw != repeatPw){
-				alert('비밀번호가 일치하지 않습니다');
-				return;
-			}else if(mPw == "" || repeatPw == ""){
-				alert('비밀번호를 입력하세요');
-				return;
-			}
-			
-			//비밀번호 체크
-			var getCheck = RegExp(/^[a-zA-Z0-9]{8,15}$/);
-			if(!getCheck.test(mPw)){
-				alert("비밀번호는 대소문자와 숫자만 입력가능하고, 8 ~ 15글자 사이입니다");
-				return;
-			}
-			
-			//주소 체크
-			if(mAddress == ""){
-				alert('주소를 입력하세요');
-				return;
-			}
-			
-			//상세주소 체크
-			if(mDaddress == ""){
-				alert('상세주소를 입력하세요');
-				return;
-			}
-			
-			//전화번호 체크
-			if(phn1 == ""){
-				alert("전화번호를 입력하세요");
-				return;
-			}
-			if(phn2 == ""){
-				alert("전화번호를 입력하세요");
-				return;
-			}
-			if(phn3 == ""){
-				alert("전화번호를 입력하세요");
-				return;
-			}
-			
-			alert('회원정보가 수정되었습니다');
-			document.getElementById("memberInfoFrm").action = "member_update";
-			document.getElementById("memberInfoFrm").submit();
-			
-
-		}
-
-		function execDaumPostcode() {
-			new daum.Postcode({
-				oncomplete : function(data) {
-					var addr = ''; // 주소 변수
-					var extraAddr = ''; // 참고항목 변수
-
-					//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-					if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-						addr = data.roadAddress;
-					} else { // 사용자가 지번 주소를 선택했을 경우(J)
-						addr = data.jibunAddress;
-					}
-					// 우편번호와 주소 정보를 해당 필드에 넣는다.
-					// document.getElementById('new_address_zipcode').value = data.zonecode;
-					document.getElementById("mAddress").value = addr;
-					// 커서를 상세주소 필드로 이동한다.
-					document.getElementById("mDaddress").focus();
-				}
-			}).open();
-		}
-	</script>
-</body>
-</html>
+			<%@ include file="/WEB-INF/views/mypage/include/include_footer.jsp" %>
