@@ -99,6 +99,37 @@ public class AdminController {
 		}
 		return "admin/member_update";
 	}
+	@RequestMapping("/member_update_action")
+	public String memberAdminUpdateA(HttpServletRequest request) {
+		String phn1 = request.getParameter("phn1");
+		String phn2 = request.getParameter("phn2");
+		String phn3 = request.getParameter("phn3");
+		String mPhone = phn1 + phn2 + phn3;
+		Integer mNo = Integer.parseInt(request.getParameter("mNo"));
+		Member member = new Member(mNo, 
+									request.getParameter("mId"), 
+									request.getParameter("mPw"), 
+									request.getParameter("mName"), 
+									request.getParameter("mAddress"), 
+									request.getParameter("mDaddress"), 
+									request.getParameter("mEmail"), 
+									request.getParameter("mType"), 
+									mPhone);
+		String result = "";
+		try {
+			boolean updateOk = adminService.updateMember(member);
+			if (updateOk) {
+				result = "success";
+			}else {
+				result="fail";
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			result = "fail";
+		}
+		return result;
+	}
+	
 	@RequestMapping("/product")
 	public String productAdminForm(HttpServletRequest request) {
 		try {
@@ -113,9 +144,9 @@ public class AdminController {
 	@RequestMapping("/work")
 	public String workAdminForm(HttpServletRequest request) {
 		try {
-			List<Product> productList= new ArrayList();
-			productList = adminService.selectProductAll();
-			request.setAttribute("data", productList);
+			List<Work> workList= new ArrayList();
+			workList = adminService.selectWorkAll();
+			request.setAttribute("data", workList);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

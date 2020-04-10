@@ -24,6 +24,7 @@
 
   <!-- Page level custom scripts -->
   <script src="${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script>
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="${pageContext.request.contextPath}/js/custom_js/admin.js"></script>
   <script src=https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js></script>
   <script src=https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js></script>

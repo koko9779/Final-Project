@@ -37,7 +37,7 @@
 							<td>${member.mEmail}</td>
 							<td>${member.mAddress}</td>
 							<td>${member.mType}</td>
-							<td><input type="button" class="checkBtn" value="클릭" /></td>
+							<td><input type="button" class="mCheckBtn" value="클릭" /></td>
 						</tr>
 					</c:forEach>
 				</tbody>
