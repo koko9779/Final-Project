@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>상품 등록</title>
 <meta charset="UTF-8">
 <script type="text/javascript">
 function work_search() {

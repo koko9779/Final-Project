@@ -23,6 +23,5 @@
 <script src="${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script><title>Insert title here</title>
 </head>
 <body>
-
 </body>
 </html>
