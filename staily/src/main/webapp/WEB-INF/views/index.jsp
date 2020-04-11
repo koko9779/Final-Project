@@ -112,7 +112,7 @@
 				</div>
 			</div>
 	<!-- Section -->
-	<c:if test="${not empty mNo}">
+	<c:if test="${not empty userNo}">
 	<!-- BOOKMARK -->
 	<div class="container section">
 		<div class="row">
@@ -189,21 +189,29 @@
 			<div class="col-sm-12" id="afterHeader">
 				<h2>TODAY</h2>
 
-				<div class="slick-carousel newIn">
-					<c:forEach var="today" items="${todayList}">
-						<form id="work_${today.wNo}" method="post">
-							<input type="hidden" value="${today.wNo}" name="wNo" />
-							<div class="movie-slide">
-								<div class="movie-poster2">
-									<a href="#" onclick="workpage(${today.wNo})"> <img
-										src="${pageContext.request.contextPath}${today.wPoster}"
-										alt="Movie title" />
-									</a>
-								</div>
-							</div>
-						</form>
-					</c:forEach>
-				</div>
+					<c:choose>
+						<c:when test="${not empty todayList}">
+						<div class="slick-carousel newIn">
+							<c:forEach var="today" items="${todayList}">
+								<form id="work_${today.wNo}" method="post">
+									<input type="hidden" value="${today.wNo}" name="wNo" />
+									<div class="movie-slide">
+										<div class="movie-poster2">
+											<a href="#" onclick="workpage(${today.wNo})"> <img
+												src="${pageContext.request.contextPath}${today.wPoster}"
+												alt="Movie title" />
+											</a>
+										</div>
+									</div>
+								</form>
+							</c:forEach>
+						</div>
+						</c:when>
+						<c:when test="${empty todayList}">
+							<div style="text-align:center;margin-top:75px;">오늘의 작품이 없습니다</div>
+						</c:when>
+					</c:choose>
+					
 			</div>
 		</div>
 
