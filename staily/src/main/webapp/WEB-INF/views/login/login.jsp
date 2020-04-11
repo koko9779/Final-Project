@@ -31,7 +31,7 @@
                     	${msg}
                     </div>
                     <a href="javascript:login_action();" role="button" class="btn btn-primary btn-user btn-block">
-                      로그인
+                    	 로그인
                     </a>
                     <hr>
                     <a href="index.html" class="btn btn-google btn-user btn-block">
@@ -62,6 +62,20 @@
     </div>
 
   </div>
-</body>
+ <%@ include file="/WEB-INF/views/login/include/include_bottom_login.jsp" %>
+<script type="text/javascript">
+$(function() {
+	var id = $("#findIdE").val();
+	if(id === "" || id === undefined) {
+		return;
+	}else {
+		alert("고객님의 아이디는 " + id + "입니다");
+		location.href="login";
+		return;
+	}
+});
+</script>
+ 
+   </body>
 
-</html>
+</html> 
