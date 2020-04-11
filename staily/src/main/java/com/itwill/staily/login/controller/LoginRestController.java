@@ -17,7 +17,6 @@ public class LoginRestController {
 	@RequestMapping(value = "/Id_check", produces = "application/json", method = RequestMethod.POST)
 	public int Id_check(@RequestParam String mId) throws Exception {
 		return loginService.isExistedId(mId);
-		//signup_Id_check
 	}
 	
 	@RequestMapping(value = "/email_check", produces = "application/json")

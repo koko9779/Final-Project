@@ -12,7 +12,6 @@
 
   <!-- custom css  -->
   <link href="${pageContext.request.contextPath}/css/login/login_custom.css" rel="stylesheet" type="text/css">
-   
 </head>
 
 <body class="bg-gradient-primary" id="page-top">

@@ -50,17 +50,19 @@
     </div>
 
   </div>
+ <%@ include file="/WEB-INF/views/login/include/include_bottom_login.jsp" %>
+ <script type="text/javascript">
+ $(function() {
+	var msg2E = $("#msg2E").val();
+	if(msg2E === "" || msg2E === undefined) {
+		return;
+	}else {
+		alert(msg2E);
+		location.href="pw_count_read";
+		return;
+	}
+});
+</script>
+   </body>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="${pageContext.request.contextPath}/css/admin/js/sb-admin-2.min.js"></script>
-
-</body>
-
-</html>
+</html> 
