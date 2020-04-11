@@ -25,7 +25,7 @@
 									</c:when>
 									<c:when test="${userNo !=null}">
 										<font color="black">${userId }</font> 님 환영합니다.
-										<a href="/staily/login//logout_action"> <i class="material-icons"></i>
+										<a href="/staily/login/logout_action"> <i class="material-icons"></i>
 											로그아웃
 										</a>
 									</c:when>

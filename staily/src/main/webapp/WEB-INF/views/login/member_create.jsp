@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
           <div class="col-lg-7">
-            <div class="p-5">
+            <div class="p-5">  
             <div class="btn-group" role="group">
 				<button class="btn btn-secondary type-button" type="button" onclick="mType_member();">
 					일반 회원
@@ -33,7 +33,7 @@
                     <input type="password" class="form-control form-control-user" id="inputPw" name="mPw" placeholder="패스워드">
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="repeatPw" placeholder="패스워드 확인">
+                    <input type="password" class="form-control form-control-user" id="repeatPw" name="repeatPw" placeholder="패스워드 확인">
                   </div>
                 </div>
                 <div class="form-group">
@@ -82,6 +82,7 @@
     </div>
   </div>
   <script type="text/javascript">
+  /*
 	  $('#inputId').keyup(function() {
 			var getCheck = RegExp(/^[a-zA-Z0-9]{8,15}$/);
 			
@@ -179,7 +180,7 @@
 			  $('#check_register').css("visibility", "hidden");
 		  }
 	   });
-	  
+*/
   </script>
 </body>
 
