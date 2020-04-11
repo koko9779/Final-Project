@@ -33,7 +33,7 @@
                     <input type="password" class="form-control form-control-user" id="inputPw" name="mPw" placeholder="패스워드">
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="repeatPw" placeholder="패스워드 확인">
+                    <input type="password" class="form-control form-control-user" id="repeatPw" name="repeatPw" placeholder="패스워드 확인">
                   </div>
                 </div>
                 <div class="form-group">
@@ -82,6 +82,7 @@
     </div>
   </div>
   <script type="text/javascript">
+  /*
 	  $('#inputId').keyup(function() {
 			var getCheck = RegExp(/^[a-zA-Z0-9]{8,15}$/);
 			
@@ -179,7 +180,7 @@
 			  $('#check_register').css("visibility", "hidden");
 		  }
 	   });
-	  
+*/
   </script>
 </body>
 

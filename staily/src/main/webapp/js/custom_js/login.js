@@ -42,6 +42,63 @@ $(function() {
 	}
 });
 /***************** member_create.jsp ******************/
+
+$(window)
+.on(
+		"load",
+		function() {
+			alert("실험");
+			$('#registerF').validate({
+				rules:{
+					mPw:{
+						required: true,
+						passwordCk : true,
+						minlength: 8,
+						maxlength: 15
+					},
+					repeatPw:{
+						required: true,
+						equalTo : '#inputPw'
+						
+					},
+					mEmail:{
+						required: true,
+						email : true
+					}
+				},
+				messages:{
+					mPw:{
+						required: "비밀번호를 입력해주세요",
+						passwordCk: "영문, 숫자, 특수문자를 조합해서 입력해야 합니다.",
+						minlength:"비밀번호는 8자리 이상으로 구성해야 합니다." ,
+						maxlength:"비밀번호는 16자리 미만으로 구성해야 합니다"
+					},
+					repeatPw:{
+						required: "비밀번호를 확인해주세요",
+						equalTo : '비밀번호가 다릅니다.'
+						
+					},
+					mEmail:{
+						required: "이메일을 입력해주세요",
+						email : "이메일 형식으로 입력하셔야합니다."
+					}
+				},
+				submitHandler:function(){
+					member_update();
+				},
+				errorClass:"error_msg",
+				validClass:"valid"
+			});
+			$.validator.addMethod("passwordCk",  function( value, element ) {
+				   return this.optional(element) ||  /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/.test(value);
+				});
+			function member_update() {
+				document.getElementById("registerF").action = "member_create_action";
+				document.getElementById("registerF").submit();
+				alert("가입 성공");
+			}
+		});
+
 function register_action() {
 	if($("#check_register").css("visibility") === "hidden" &&
 		$("#inputId").val() != "" &&
@@ -151,4 +208,4 @@ function update_pw_action() {
 		document.f.method="POST";
 		document.f.submit();
 }
-/******************************************************/
+
