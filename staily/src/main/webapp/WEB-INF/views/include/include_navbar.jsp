@@ -2,29 +2,20 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>	
 <!DOCTYPE html>
-<html lang=>
+<html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Staily</title>
 <%@ include file="/WEB-INF/views/include/include_css.jsp"%>
-<script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
-
 </head>
 <body>
-
 	<!-- Wrapper -->
-	<div class="wrapper">
-		<!-- Navigation -->
-		<div class="navbar" role="navigation">
-			<!-- Heading -->
-			<div class="heading">
-				<div class="container">
-					<div class="row">
-						<div class="col-sm-12">
+		<div class="wrapper">
+			<!-- Navigation -->
+			<div class="navbar" role="navigation">
+				<!-- Heading -->
+				<div class="heading">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-12">
 							<div class="tel">
 								<c:choose>
 									<c:when test="${userNo ==null}">

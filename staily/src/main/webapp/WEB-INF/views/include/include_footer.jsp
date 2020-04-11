@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<body>
-	<!-- Section -->
 	<div class="container section small-padding">
 		<div class="row">
 			<div class="col-sm-12 cta">
@@ -58,5 +56,3 @@
 		</div>
 	</footer>
 <%@ include file="/WEB-INF/views/include/include_js.jsp"%>
-</body>
-</html>

@@ -538,11 +538,11 @@ hr.space-40 {
 
 .navbar.banner--clone .logo img {
 	max-height: 40px;
-	margin: 15px 0;
+	margin: 35px 0;
 }
 
 .navbar.banner--clone .nav li a {
-	font-size: 12px;
+	font-size: 17px;
 }
 
 .navbar.banner--clone .nav li.active a {
@@ -602,7 +602,7 @@ hr.space-40 {
 }
 
 .nav li a {
-	font-size: 16px;
+	font-size: 17px;
 	font-weight: normal;
 	line-height: .8em;
 	display: inline-block;
