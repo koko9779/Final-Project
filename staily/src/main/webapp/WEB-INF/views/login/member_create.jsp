@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
           <div class="col-lg-7">
-            <div class="p-5">
+            <div class="p-5">  
             <div class="btn-group" role="group">
 				<button class="btn btn-secondary type-button" type="button" onclick="mType_member();">
 					일반 회원
