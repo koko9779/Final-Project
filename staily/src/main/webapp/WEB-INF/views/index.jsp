@@ -18,6 +18,7 @@
 	function hot_productpage(pNo){
 		var product_form = document.getElementById('product_'+pNo);
 		product_form.action = "../detail/product_detail";
+		product_form.method = "POST";
 		product_form.submit();
 	};
 	function workpage(wNo){
