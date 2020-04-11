@@ -84,7 +84,7 @@ $(window)
 						phoneCk: "핸드폰 번호는 숫자로만 이루어져야 합니다",
 						rangelength: "핸드폰 번호는 10~11 숫자로 이루어져야 합니다"
 					}
-				},
+				}, 
 				submitHandler:function(){
 					member_create();
 				},
