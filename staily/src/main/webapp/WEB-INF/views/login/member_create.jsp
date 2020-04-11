@@ -182,6 +182,4 @@
 	   });
 */
   </script>
-</body>
-
-</html>
+ <%@ include file="/WEB-INF/views/login/include/include_bottom_login.jsp" %>
