@@ -4,10 +4,6 @@
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
 <%@ include file="/WEB-INF/views/detail/include/include_work_select_js.jsp" %>
 
-<html>
-<head>
-<title>작품 선택</title>
-</head>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -24,7 +20,7 @@
 						</div>
 						<div class="modal-footer">
 							<form name="wNo_request" method="POST">
-								<input type="text" id="wNo" name="wNo" readonly>
+								<input type="hidden" id="wNo" name="wNo">
 								<button type="button" class="btn btn-primary" onClick="modal_click()">확인</button> 
 							</form>			 
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">
@@ -140,9 +136,6 @@ $(".btn").click(function() {
 function modal_click() {
 	document.wNo_request.action = "work_request";
 	document.wNo_request.submit();
-	//opener.parent.location = "product_create";
-	//opener.parent.location.reload();
-	//window.close();
 };
 
 
