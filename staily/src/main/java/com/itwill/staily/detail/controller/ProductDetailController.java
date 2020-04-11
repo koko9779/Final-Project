@@ -21,21 +21,20 @@ public class ProductDetailController {
 	private ProductDetailService productDetailService;
 	
 	@RequestMapping("/product_detail")
-	public ModelAndView selectProductOne(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView();
+	public String selectProductOne(HttpServletRequest request, HttpServletResponse response) {
 		
 		try {			
-			List<ProductEx> p = productDetailService.selectProductOne(1);
+			String pNo = request.getParameter("pNo");
+			List<ProductEx> p = productDetailService.selectProductOne(Integer.parseInt(pNo));
 			
-			request.setAttribute("productOne", p);			
+			request.setAttribute("productOne", p);
 			
+			return "detail/product_detail";
 		} catch (Exception e) {
 			e.printStackTrace();
+			
+			return "redirect:../404.jsp";
 		}
-		
-		mv.setViewName("detail/product_detail");
-		
-		return mv;
 		
 		
 	}	
