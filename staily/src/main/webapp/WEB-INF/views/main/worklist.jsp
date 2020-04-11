@@ -6,7 +6,7 @@
 <script type="text/javascript">
 
 
-function create_bookmark(mNo,pNo){
+function create_bookmark(userNo,pNo){
 	var product_form = document.getElementById('product_'+pNo);
 	alert('즐겨찾기에 상품이 추가되었습니다');
 	product_form.action = "create_bookmark";
@@ -24,11 +24,11 @@ function displayWorkListHTML(){
 		}
 	}
 }
-function create_bookmark(mNo,pNo){
+function create_bookmark(userNo,pNo){
 	var bookmark_form = document.getElementById('bookmark_'+pNo);
 	bookmark_form.addEventListener('click',function(e){
 		var url = 'create_bookmark';
-		var params = 'mNo='+bookmark_form.mNo.value+'&'+
+		var params = 'userNo='+bookmark_form.userNo.value+'&'+
 					 'pNo='+bookmark_form.pNo.value;
 		console.log(params);
 		var callback = displayWorkListHTML;
@@ -72,7 +72,7 @@ function create_bookmark(mNo,pNo){
 						<!-- <div class="slick-carousel" id="newIn5">-->
 							<c:forEach var="cw" items="${cw}">
 								<form id="product_${cw.product[0].pNo}">
-									<input type="hidden" value="${mNo}" name="mNo">
+									<input type="hidden" value="${userNo}" name="userNo">
 									<input type="hidden" value="${cw.product[0].pNo}" name="pNo">
 									<div class="movie-slide">
 										<div class="movie-poster2">
@@ -85,7 +85,7 @@ function create_bookmark(mNo,pNo){
 											<input class="material-icons" type="image"
 												style="border: none; width: 10%; float:left; padding: 0px; margin: 0 5%;" alt="즐겨찾기 등록"
 												src="${pageContext.request.contextPath}/images/emptystar.png"
-												onclick="create_bookmark(${mNo},${cw.product[0].pNo})">
+												onclick="create_bookmark(${userNo},${cw.product[0].pNo})">
 											<span class="no-underline" style="margin: 2% 0px;float:left;">${cw.product[0].pName}</span>
 											
 											<div>조회수: ${cw.product[0].pView}</div>
@@ -100,14 +100,14 @@ function create_bookmark(mNo,pNo){
 						<c:forEach var="mw" items="${mw}">
 						<form id="product_${mw.product[0].pNo}" style="margin-top:10%;">
 							<h2 value="상품이름" >${mw.product[0].pName}</h2>
-							<input type="hidden" value="${mNo}" name="mNo">
+							<input type="hidden" value="${userNo}" name="userNo">
 							<input type="hidden" value="${mw.product[0].pNo}" name="pNo">
 							<img src="${pageContext.request.contextPath}${mw.product[0].pScene}" class="news-single-img" alt="" />
 							<div >
 							<input class="material-icons" type="image"
 									style="border: none; width: 5%; padding: 0px; margin: 0 5%; float:left;" alt="즐겨찾기 등록"
 									src="${pageContext.request.contextPath}/images/emptystar.png"
-									onclick="create_bookmark(${mNo},${mw.product[0].pNo})">
+									onclick="create_bookmark(${userNo},${mw.product[0].pNo})">
 							<div style="float:right;">
 								<span value="작성자">작성자: ${mw.product[0].mId}</span>
 								<span class="categories tag" value="조회수">조회수: ${mw.product[0].pView}</span>

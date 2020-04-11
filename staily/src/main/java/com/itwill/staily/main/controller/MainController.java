@@ -36,12 +36,15 @@ public class MainController {
 	@RequestMapping("/index")
 	public String test(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
 		try {
-			int userNo = (Integer)session.getAttribute("userNo");
-			request.setAttribute("mNo", userNo);
 			
-			List<Bookmark> bmList = mainService.selectByBookmark(userNo);
-			request.setAttribute("bmList", bmList);
+			Integer userNo = (Integer)session.getAttribute("userNo");
+			request.setAttribute("userNo", userNo);							
 			
+			if(userNo!=null) {
+				List<Bookmark> bmList = mainService.selectByBookmark(userNo);
+				request.setAttribute("bmList", bmList);		
+			}
+
 			List<Product> hotList = mainService.selectByView();
 			request.setAttribute("hotList", hotList);
 			
@@ -53,7 +56,7 @@ public class MainController {
 			
 			List<Work> movieList = mainService.selectByCategory("M");
 			request.setAttribute("movieList", movieList);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -63,8 +66,7 @@ public class MainController {
 	@RequestMapping("/worklist_select")
 	public String workList(@RequestParam("wNo") int wNo, HttpServletRequest request, HttpSession session) throws Exception {
 		try {
-			int userNo = (Integer)session.getAttribute("userNo");
-			request.setAttribute("mNo", userNo);
+			session.getAttribute("userNo");
 			
 			Work w = listService.selectWorkOne(wNo);
 			request.setAttribute("w", w);
@@ -105,15 +107,15 @@ public class MainController {
 	}
 	
 	@RequestMapping("/create_bookmark")
-	public String createBookmark(@RequestParam int mNo, @RequestParam int pNo) {
+	public String createBookmark(@RequestParam("userNo") int userNo, @RequestParam("pNo") int pNo) {
 		try {
 			//(Integer)request.getAttribute("");
 			//String mNo = request.getParameter("mNo");
 			Map map1 = new HashMap();
 			//int mNo = (Integer)request.getAttribute("mNo");
 			//int pNo = (Integer)request.getAttribute("pNo");
-			System.out.println(mNo+" "+pNo);
-			map1.put("mNo", mNo);
+			System.out.println(userNo+" "+pNo);
+			map1.put("mNo", userNo);
 			map1.put("pNo", pNo);
 			int success = listService.createBookmark(map1);
 			System.out.println(success);
