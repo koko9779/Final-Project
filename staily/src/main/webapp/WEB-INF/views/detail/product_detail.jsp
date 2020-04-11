@@ -101,8 +101,7 @@
                      </div>
                   </c:if>
                   <div id="three">
-                  	<div id="replyList">
-                  	</div>
+                  	<p id="replyList"></p>
                   <!--  
                   	 <form name="reply">
                   	 	아이디 : <input type="text" id="mName" value=""><br>
@@ -132,14 +131,17 @@ $("#reply").on("click", function(e) {
 		async : false,
 		dataType : "json",
 		success: function(data) {
-			var data_length = data.length;
-			var reply = JSON.stringify(data);
-			/*
-			$("#mName").val(reply.mName);
-			$("#rContent").val(reply.rContent);
-			$("#rRecommend").val(reply.rRecommend);
-			$("#rReport").val(reply.rReport);
-			*/
+				var first = $("#replyList").text(data[0].mName + "\n");
+				first.html(first.html().replace(/\n/g, '<br>'));
+				$("#replyList").append(data[0].rContent + "<br>");
+				$("#replyList").append(data[0].rRecommend + "<br>");
+				$("#replyList").append(data[0].rReport + "<br>");
+			for(i = 1; i < data.length; i++) {
+				$("#replyList").append(data[i].mName + "<br>");
+				$("#replyList").append(data[i].rContent + "<br>");
+				$("#replyList").append(data[i].rRecommend + "<br>");
+				$("#replyList").append(data[i].rReport + "<br>");
+			}
 		}
 	});
 });
