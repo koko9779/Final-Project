@@ -129,7 +129,7 @@ function bm_productpage(bmNo,pNo){
 	product_form.action = "../detail/product_detail";
 	product_form.submit();
 };
-function hot_productpage(pNo){
+function productpage(pNo){
 	var product_form = document.getElementById('product_'+pNo);
 	product_form.action = "../detail/product_detail";
 	product_form.submit();
