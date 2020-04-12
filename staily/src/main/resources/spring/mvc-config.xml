@@ -14,13 +14,16 @@
 	
 	<!-- Interceptor Mapping -->
 	<mvc:interceptors> 
-		<mvc:interceptor> 
-			<mvc:mapping path="/mypage/**"/> 
+		<mvc:interceptor>
+			<mvc:mapping path="/mypage/**"/>
+			<mvc:mapping path="/admin/**"/>
+			<mvc:mapping path="/detail/work_request"/>
+			<mvc:mapping path="/detail/work_select"/>
 			<!--  
 			<mvc:exclude-mapping path="/login/**"/> 
 			-->
 			<beans:ref bean="LoginCheckInterceptor"/> 
-		</mvc:interceptor> 
+		</mvc:interceptor>
 	</mvc:interceptors>
 
 	<!-- Controller Mapping -->
