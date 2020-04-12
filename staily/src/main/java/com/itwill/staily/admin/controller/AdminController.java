@@ -58,7 +58,7 @@ public class AdminController {
 	public String adminTest() {
 		return "admin/index";
 	}
-	
+	//회원
 	@RequestMapping("/member")
 	public String memberAdminForm(HttpServletRequest request, HttpServletResponse response) {
 		try {
@@ -127,12 +127,12 @@ public class AdminController {
 		}
 		return result;
 	}
-	
+	//상품
 	@RequestMapping("/product")
 	public String productAdminForm(HttpServletRequest request) {
 		try {
 			List<Product> productList= new ArrayList();
-			productList = adminService.selectProductOnlyAll();
+			productList = adminService.selectProductAll();
 			request.setAttribute("data", productList);
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -140,7 +140,7 @@ public class AdminController {
 		return "admin/product";
 	}
 	@RequestMapping("/product_select")
-	public String productAdminUpdate(@RequestParam int pNo, HttpServletRequest request) {
+	public String productAdminSelect(@RequestParam int pNo, HttpServletRequest request) {
 		try {
 			List<Product> productList= new ArrayList();
 			productList = adminService.selectProductOne(pNo);
@@ -150,6 +150,36 @@ public class AdminController {
 		}
 		return "admin/product_update";
 	}
+	@RequestMapping("/product_update")
+	public String productAdminUpdate() {
+		Product product = null;
+		String forwardPath = "";
+		try {
+			adminService.updateProduct(product);
+			forwardPath="success";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return forwardPath;
+	}
+	@RequestMapping(value = "/product_confirm", method = {RequestMethod.POST,RequestMethod.GET},produces="text/plain; charset=UTF-8")
+	public String productAdminConfirm(@RequestParam ("pNo")int pNo,HttpServletRequest request) {
+		String result = "";
+		try {
+			boolean confirmOk = adminService.productConfirm(pNo);
+			if (confirmOk) {
+				result = "success";
+			}else {
+				result= "fail";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			result= "fail";
+		}
+		return result;
+	}
+	//작품
 	@RequestMapping("/work")
 	public String workAdminForm(HttpServletRequest request) {
 		try {

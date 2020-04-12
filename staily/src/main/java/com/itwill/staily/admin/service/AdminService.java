@@ -46,16 +46,16 @@ public interface AdminService {
 	// 상품 수정
 	public boolean updateProduct(Product product) throws Exception;
 
-	// 상품상세 수정
-//	public boolean updateProductDetail(int pdNo) throws Exception;
 	// 상품 삭제
 	public boolean deleteProduct(int pNo) throws Exception;
 
-	public boolean productConfirm(int pNo);
 
 	// 상품만 출력(하나)
 	public Product selectProductOnly(int pNo) throws Exception;
 
-	// 상풍만 출력(전체)
-	public List<Product> selectProductOnlyAll() throws Exception;
+	// 승인안된상품 출력(전체)
+	public List<Product> selectUnconfirmProduct() throws Exception;
+	
+	// 상품 승인
+	public boolean productConfirm(int pNo);
 }

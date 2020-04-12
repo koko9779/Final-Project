@@ -29,18 +29,12 @@
 	</update>
 	
 	<!-- 상품 -->
-	<select id="selectProductAll"
-		resultType="Product">
-		SELECT
-		p.p_no,p.w_no,p.p_name,p.p_price,p.p_url,p.p_address,
-        p.p_daddress,p.p_check,
-        p.p_view,p.p_date, pd.pd_no, pd.pd_image, p.p_scene, m.m_id
-		FROM product p, product_detail pd, member m 
-		WHERE p.p_no = pd.p_no
-		AND p.m_no = m.m_no
-
-	</select>
 	
+	<select id="selectProductAll" resultType="Product">
+		SELECT
+		p_no,p_name,p_price,p_url,p_address,p_daddress,p_check,p_view,p_date,p_scene
+		FROM product
+	</select>
 	<select id="selectProductOne" parameterType="int" resultType="Product">
 		SELECT
 		p.p_no,p.w_no,p.p_name,p.p_price,p.p_url,p.p_address,
@@ -50,17 +44,25 @@
 		WHERE p.p_no = pd.p_no
 		AND p.m_no = m.m_no
 		AND p.p_no=#{pNo}
+		
+	</select>
+	<select id="selectUnconfirmProduct"
+		resultType="Product">
+		SELECT
+		p.p_no,p.w_no,p.p_name,p.p_price,p.p_url,p.p_address,
+        p.p_daddress,p.p_check,
+        p.p_view,p.p_date, pd.pd_no, pd.pd_image, p.p_scene, m.m_id
+		FROM product p, product_detail pd, member m 
+		WHERE p.p_no = pd.p_no
+		AND p.m_no = m.m_no
+		AND p.p_check='N'
+
 	</select>
 	<select id="selectProductOnly" parameterType="int" resultType="Product">
-	SELECT
-	p_no,p_name,p_price,p_url,p_address,p_daddress,p_check,p_view,p_date,p_scene
-	FROM product
-	WHERE p_no=#{pNo}
-	</select>
-	<select id="selectProductOnlyAll" resultType="Product">
-	SELECT
-	p_no,p_name,p_price,p_url,p_address,p_daddress,p_check,p_view,p_date,p_scene
-	FROM product
+		SELECT
+		p_no,p_name,p_price,p_url,p_address,p_daddress,p_check,p_view,p_date,p_scene
+		FROM product
+		WHERE p_no=#{pNo}
 	</select>
 	
 	<update id="updateProduct" parameterType="Product">

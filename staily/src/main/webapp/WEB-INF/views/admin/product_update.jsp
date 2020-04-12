@@ -13,7 +13,7 @@ image {
 	height: 300px;
 }
 </style>
-<form id="product_detail">
+<form id="product_detail" name="product_detail" method="post">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
@@ -31,8 +31,10 @@ image {
 				</div>
 			</div>
 		</div>
-		<input type="hidden" name="pNo" id="pNo" value=""> <input
-			type="hidden" name="pdNo" id="pdNo" value="">
+		<input type="hidden" name="pNo" id="pNo" value="${productList[0].pNo}"> 
+		<c:forEach var="product" items="${productList }">
+			<input type="hidden" name="pdNo" id="pdNo" value="${product.pdNo }">
+		</c:forEach>
 		<table class="table table-hover">
 			<colgroup>
 				<col class="col_wp25">
@@ -107,6 +109,8 @@ image {
 		<div class="text-center">
 			<button type="submit" value="submit"
 				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2">수정</button>
+			<button type="button" 
+				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2" onclick="product_confirm(${productList[0].pNo})">승인</button>
 		</div>
 </form>
 <%@ include file="/WEB-INF/views/admin/include/include_bottom.jsp"%>
