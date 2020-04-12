@@ -36,7 +36,7 @@ function product_confirm(pNo) {
 	alert("승인되었습니다");
 	location.reload();
 }
-$(window).on("load",function() {
+$(document).ready(function() {
 					/** *****멤버 펑션 시작********** */
 					$('#memberInfoFrm').validate({
 						rules:{
