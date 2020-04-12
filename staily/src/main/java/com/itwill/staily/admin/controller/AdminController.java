@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -78,8 +79,8 @@ public class AdminController {
 				String [] tempNo= no.split("-");
 				int mNo = Integer.parseInt(tempNo[0]);
 				adminService.deleteMember(mNo);
+				result = "success";
 			}
-			result = "success";
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = "fail";
@@ -87,7 +88,7 @@ public class AdminController {
 		return result;
 	}
 	
-	@RequestMapping("/member_update")
+	@RequestMapping("/member_select")
 	public String memberAdminUpdate(HttpServletRequest request) {
 		int mNo = Integer.parseInt(request.getParameter("mNo"));
 		Member member = null;
@@ -99,22 +100,19 @@ public class AdminController {
 		}
 		return "admin/member_update";
 	}
-	@RequestMapping("/member_update_action")
-	public String memberAdminUpdateA(HttpServletRequest request) {
+	@RequestMapping(value= "/member_update", method = {RequestMethod.POST,RequestMethod.GET},produces="text/plain; charset=UTF-8")
+	@ResponseBody
+	public String memberAdminUpdateA(@RequestParam("mNo")int mNo,
+			 						 @RequestParam("mId")String mId, @RequestParam("mPw")String mPw
+			 					   , @RequestParam("mName")String mName, @RequestParam("mAddress")String mAddress
+			 					   , @RequestParam("mDaddress")String mDaddress, @RequestParam("mEmail")String mEmail
+			 					   , @RequestParam("mType")String mType,HttpServletRequest request) {
 		String phn1 = request.getParameter("phn1");
 		String phn2 = request.getParameter("phn2");
 		String phn3 = request.getParameter("phn3");
 		String mPhone = phn1 + phn2 + phn3;
-		Integer mNo = Integer.parseInt(request.getParameter("mNo"));
-		Member member = new Member(mNo, 
-									request.getParameter("mId"), 
-									request.getParameter("mPw"), 
-									request.getParameter("mName"), 
-									request.getParameter("mAddress"), 
-									request.getParameter("mDaddress"), 
-									request.getParameter("mEmail"), 
-									request.getParameter("mType"), 
-									mPhone);
+		Member member = new Member(mNo, mId, mPw, mName, mAddress, mDaddress, mEmail, mType, mPhone);
+		System.out.println(member+"널싫어해~");
 		String result = "";
 		try {
 			boolean updateOk = adminService.updateMember(member);
@@ -141,6 +139,17 @@ public class AdminController {
 		}
 		return "admin/product";
 	}
+	@RequestMapping("/product_select")
+	public String productAdminUpdate(@RequestParam int pNo, HttpServletRequest request) {
+		try {
+			List<Product> productList= new ArrayList();
+			productList = adminService.selectProductOne(pNo);
+			request.setAttribute("productList", productList);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "admin/product_update";
+	}
 	@RequestMapping("/work")
 	public String workAdminForm(HttpServletRequest request) {
 		try {
@@ -152,12 +161,12 @@ public class AdminController {
 		}
 		return "admin/work";
 	}
-	@RequestMapping(value= "/create", method =RequestMethod.GET )
+	@RequestMapping(value= "/work_create")
 	public String workAdminCreate() {
 		return"admin/work_create";
 	}
 	
-	@RequestMapping("/create_action")
+	@RequestMapping("/work_create_action")
 	@ResponseBody
 	public String workAdminCreateAction(HttpServletRequest request, HttpServletResponse response) {
 		Work work = (Work) request.getAttribute("work");
