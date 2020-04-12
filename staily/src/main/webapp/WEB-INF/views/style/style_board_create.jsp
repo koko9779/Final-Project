@@ -31,7 +31,7 @@
 		<%@ include file="/WEB-INF/views/include/include_work_sidebar.jsp"%>
 
 		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
-		<form action="../NewFile.jsp" method="post">
+		<form action="../NewFile.jsp" method="post" onsubmit="return FormSubmit(this);">
 			<div class="row justify-content-md-center">
 					제목
 					<input type="text" name="bTitle" class="form-control">
@@ -45,17 +45,15 @@
 			<div class="row justify-content-md-center">
 						<textarea id="contents" name="contents"></textarea>
 						<script>
-							CKEDITOR.replace('contents', function (e) {
-		                        var dialogName = e.data.name;
-		                        var dialogDefinition = e.data.definition;
-		                        switch (dialogName) {
-		                            case 'image':
-		                                // dialogDefinition.removeContents('info');
-		                                dialogDefinition.removeContents('Link');
-		                                dialogDefinition.removeContents('advanced');
-		                                break;
-		                        }
-		                    });
+							CKEDITOR.replace('contents',{
+								filebrowserUploadUrl : '/staily/style/ImgUpload2'
+							});
+							
+							
+							
+								
+
+
 						</script>
 			</div>
 			<div class="row justify-content-md-center" style="margin-bottom: 30px">
@@ -74,6 +72,20 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+function FormSubmit(f) { 
+	CKEDITOR.instances.contents.updateElement(); 
+	if(f.contents.value == "") { 
+		alert("내용을 입력해 주세요."); 
+		return false; 
+	} 
+	//alert(f.contents.value); 
+	// 전송은 하지 않습니다. 
+	return true; 
+}
+
+
+</script>
 <%@ include file="/WEB-INF/views/include/include_js.jsp"%>
 </body>
 </html>

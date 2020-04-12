@@ -31,7 +31,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeButtons = 'Underline,Subscript,Superscript';
 	config.format_tags = 'p;h1;h2;h3;pre';
 	config.filebrowserUploadMethod = 'form';
-	config.filebrowserUploadUrl = '/staily/style/ImgUpload2?type=Files';
+	
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 	config.resize_enabled = false; // 에디터 크기를 조절하지 않음
 	config.enterMode=CKEDITOR.ENTER_BR; // 엔터키를 <br> 로 적용함.
