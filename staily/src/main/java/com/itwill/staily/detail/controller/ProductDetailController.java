@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,9 +22,12 @@ public class ProductDetailController {
 	private ProductDetailService productDetailService;
 	
 	@RequestMapping("/product_detail")
-	public String selectProductOne(HttpServletRequest request, HttpServletResponse response) {
+	public String selectProductOne(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
 		try {			
+			Integer userNo = (Integer)session.getAttribute("userNo");
+			request.setAttribute("userNo", userNo);
+			
 			String pNo = request.getParameter("pNo");
 			List<ProductEx> p = productDetailService.selectProductOne(Integer.parseInt(pNo));
 			
