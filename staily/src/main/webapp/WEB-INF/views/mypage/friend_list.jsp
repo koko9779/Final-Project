@@ -25,6 +25,48 @@
 			})
 		};
 		
+		$(".dropdown-item").click(function(e){
+			window.open("message2", "_blank","width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes"
+
+					);
+		});
+		
+		$('#searchword').on({
+			onfocus : function(e){
+				this.value="";
+				$('#results').empty();
+			},
+			keyup : function(e){
+				if(e.keyCode == 13){
+					var mId = $('#searchword').val();
+					alert(mId);
+					if(mId != ""){
+						$.ajax({
+							url : "friend_find",
+							method : "GET",
+							data : "mId="+mId,
+							dataType : "text",
+							success : function(result){
+								if(result==""){
+									$('#results').prepend("<span>"+"없는 회원입니다"+"</span>");
+									return;
+								}else{
+									$('#results').prepend("<span data-toggle='dropdown'>"+result+"</span>");
+								}
+							},
+							error : function(result){
+								$('#results').prepend("<span>"+"없는 회원입니다"+"</span>");
+							}
+							
+						})
+					}else{
+						$('#results').prepend("<span>"+"없는 회원입니다"+"</span>");
+					}
+				}
+			}
+		});
+		
+	
 		
 		
 	})
@@ -36,6 +78,37 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
+          <!-- 친구찾기 -->
+          <h1 class="h3 mb-2 text-gray-800">친구찾기</h1>
+          <!--  
+		  	<form>
+  				<div class="form-group">
+			    <label for="exampleInputEmail1">친구검색</label>
+			    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="아이디를 입력하세요">
+			  </div>
+			   <button type="submit" class="btn btn-default">제출</button>
+			</form>
+			-->
+			<!--  
+			<div class="btn-group">
+			  아이디<input id="searchinput" type="search" class="form-control">
+			 	 <span id="searchclear" class="glyphicon glyphicon-remove-circle"></span>
+			</div>
+			<div id="results"></div>
+			-->
+			<div id="search" class="tab_content">
+				<input type="text" id="searchword" style="width:300px;" value="아이디를 입력하세요" 
+					   onfocus="this.value=''; return true;">
+			</div>
+			<div class="dropdown" id="results">
+				<div class="dropdown-menu">
+				  	<a class="dropdown-item" href="#">친구추가</a>
+				  	<a class="dropdown-item" href="#">쪽지보내기</a>
+				</div>
+			</div>
+			<br>
+			<br>	          
+          <!-- 친구찾기 -->
           <h1 class="h3 mb-2 text-gray-800">친구리스트페이지</h1>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">

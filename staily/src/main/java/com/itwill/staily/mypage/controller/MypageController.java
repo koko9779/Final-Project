@@ -196,21 +196,26 @@ public class MypageController {
 	
 	//친구찾기 -- RestController로 이동필요
 	@RequestMapping("/friend_find")
+	@ResponseBody
 	public String friend_find(HttpServletResponse response, HttpServletRequest request) throws Exception{
 		String mId = request.getParameter("mId");
+		if(mId==null) {
+			mId= "";
+			return"";
+		}
 		String result = friendService.findFriend(mId);
 		request.setAttribute("result", result);
-		return "test2";
+		return result;
 	}
 	
 	//메시지한개출력
-	@RequestMapping("/message")
+	@RequestMapping("/message2")
 	public ModelAndView message_selectOne(Model model) throws Exception {
 		//@RequestParam(required = false, defaultValue = "") int msNo , 
 		ModelAndView mv = new ModelAndView();
 		Message message = messageService.selectOne(1);
 		model.addAttribute("message", message);
-		mv.setViewName("mypage/message");
+		mv.setViewName("mypage/message2");
 		return mv;
 	}
 	
