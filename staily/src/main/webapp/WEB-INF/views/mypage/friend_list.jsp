@@ -31,11 +31,15 @@
 					);
 		});
 		
+		$('#searchword').focus(function(e){
+			this.value="";
+			$(".add").remove();
+			//$(".dropdown-menu").hide();
+			
+		});
+
+		
 		$('#searchword').on({
-			onfocus : function(e){
-				this.value="";
-				$('#results').empty();
-			},
 			keyup : function(e){
 				if(e.keyCode == 13){
 					var mId = $('#searchword').val();
@@ -48,25 +52,28 @@
 							dataType : "text",
 							success : function(result){
 								if(result==""){
-									$('#results').prepend("<span>"+"없는 회원입니다"+"</span>");
+									$('#results').prepend("<span class='add'>"+"없는 회원입니다"+"</span>");
 									return;
 								}else{
-									$('#results').prepend("<span data-toggle='dropdown'>"+result+"</span>");
+									$('#results').prepend("<span data-toggle='dropdown' class='add'>"+result+"</span>");
 								}
 							},
 							error : function(result){
-								$('#results').prepend("<span>"+"없는 회원입니다"+"</span>");
+								$('#results').prepend("<span>"+"다시 입력해주세요"+"</span>");
 							}
 							
 						})
 					}else{
-						$('#results').prepend("<span>"+"없는 회원입니다"+"</span>");
+						$('#results').prepend("<span class='add'>"+"없는 회원입니다"+"</span>");
 					}
 				}
 			}
 		});
-		
-	
+		/*
+		$('#results').focusout(function() {
+			  $('.dropdown-menu').addClass('hidden');
+			});
+*/
 		
 		
 	})
@@ -97,8 +104,7 @@
 			<div id="results"></div>
 			-->
 			<div id="search" class="tab_content">
-				<input type="text" id="searchword" style="width:300px;" value="아이디를 입력하세요" 
-					   onfocus="this.value=''; return true;">
+				<input type="text" id="searchword" style="width:300px;" value="아이디를 입력하세요" >
 			</div>
 			<div class="dropdown" id="results">
 				<div class="dropdown-menu">
@@ -106,6 +112,17 @@
 				  	<a class="dropdown-item" href="#">쪽지보내기</a>
 				</div>
 			</div>
+			<!--
+			<div class="dropdown" id="results">
+			  <button class="dropbtn"></button>
+			  <div class="dropdown-content">
+			    <a href="#">홈</a>
+			    <a href="#">회사소개</a>
+			    <a href="#">제품소개</a>
+			    <a href="#">오시는길</a>
+			  </div>
+			</div>
+			-->
 			<br>
 			<br>	          
           <!-- 친구찾기 -->
