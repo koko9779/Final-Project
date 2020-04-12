@@ -124,3 +124,65 @@ $(function(){
 	
 });
 
+function bm_productpage(bmNo,pNo){
+	var product_form = document.getElementById('bookmark_'+bmNo);
+	product_form.action = "../detail/product_detail";
+	product_form.submit();
+};
+function hot_productpage(pNo){
+	var product_form = document.getElementById('product_'+pNo);
+	product_form.action = "../detail/product_detail";
+	product_form.submit();
+};
+function workpage(wNo){
+	var work_form = document.getElementById('work_'+wNo);
+	work_form.action = "worklist_select";
+	work_form.submit();
+};
+/************Controller create_bookmark*******************/
+/*
+function create_bookmark(userNo,pNo){
+	var product_form = document.getElementById('product_'+pNo);
+	alert('즐겨찾기에 상품이 추가되었습니다');
+	product_form.action = "create_bookmark";
+	product_form.submit();
+};
+*/
+/**********************************************************/
+/************Controller remove_bookmark*******************/
+function remove_bookmark(bmNo){
+	  var bookmark_form = document.getElementById('bookmark_'+bmNo);
+	  alert("즐겨찾기에서 상품이 제거됐습니다");
+	  bookmark_form.action = "delete_bookmark";
+	  bookmark_form.submit();
+};
+/**********************************************************/
+/*
+function displayWorkListHTML(){
+	if(xhr.readyState==4){
+		if(xhr.status==200){
+			var html = xhr.responseText;
+			console.log(html);
+			if(html.trim()=='true'){
+				document.getElementById('heart').innerHTML = html;
+			}
+		}
+	}
+}
+function create_bookmark(userNo,pNo){
+	var bookmark_form = document.getElementById('bookmark_'+pNo);
+	bookmark_form.addEventListener('click',function(e){
+		var url = 'create_bookmark';
+		var params = 'userNo='+bookmark_form.userNo.value+'&'+
+					 'pNo='+bookmark_form.pNo.value;
+		console.log(params);
+		var callback = displayWorkListHTML;
+		var method = 'POST';
+		var async = true;
+		
+		sendRequest('create_bookmark', params, callback, method, async);
+		e.preventDefault();
+	});
+	
+};
+*/
