@@ -140,14 +140,14 @@ function workpage(wNo){
 	work_form.submit();
 };
 /************Controller create_bookmark*******************/
-/*
+
 function create_bookmark(userNo,pNo){
 	var product_form = document.getElementById('product_'+pNo);
 	alert('즐겨찾기에 상품이 추가되었습니다');
 	product_form.action = "create_bookmark";
 	product_form.submit();
 };
-*/
+
 /**********************************************************/
 /************Controller remove_bookmark*******************/
 function remove_bookmark(bmNo){
@@ -186,3 +186,7 @@ function create_bookmark(userNo,pNo){
 	
 };
 */
+function login_advice(){
+	alert('로그인이 필요한 작업입니다.');
+	location.href="../login/login";
+}

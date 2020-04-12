@@ -66,7 +66,14 @@ public class MainController {
 	@RequestMapping("/worklist_select")
 	public String workList(@RequestParam int wNo, HttpServletRequest request, HttpSession session) throws Exception {
 		try {
-			session.getAttribute("userNo");
+			
+			Integer userNo = (Integer)session.getAttribute("userNo");
+			request.setAttribute("userNo", userNo);		
+			
+			if(userNo!=null) {
+				List<Bookmark> bmList = mainService.selectByBookmark(userNo);
+				request.setAttribute("bmList", bmList);		
+			}
 			
 			Work w = listService.selectWorkOne(wNo);
 			request.setAttribute("w", w);
@@ -107,10 +114,7 @@ public class MainController {
 	}
 	
 	/************Controller create_bookmark*******************/
-	/************Controller create_bookmark*******************/
-	/************Controller create_bookmark*******************/
-	/************Controller create_bookmark*******************/
-	/*
+	
 	@RequestMapping("/create_bookmark")
 	public String createBookmark(@RequestParam("userNo") int userNo, @RequestParam("pNo") int pNo) {
 		try {
@@ -130,10 +134,11 @@ public class MainController {
 		}
 		return "forward:/main/index";
 	}
-	*/
+	
 	/************************************************************/
 	
 	/************RestController create_bookmark*******************/
+	/*
 	@RequestMapping(value="/create_bookmark", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String createBookmark(@RequestParam int mNo, @RequestParam int pNo) throws Exception{
@@ -155,6 +160,7 @@ public class MainController {
 		}
 		return result;
 	}
+	*/
 	/************************************************************/
 	
 	@RequestMapping("/delete_bookmark")
