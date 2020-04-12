@@ -23,6 +23,7 @@
                       <th>상품상세주소</th>
                       <th>상품조회수</th>
                       <th>상품등록일</th>
+                      <th>승인여부</th>
                       <th>상품정보</th>
                     </tr>
                   </thead>
@@ -38,6 +39,7 @@
                       <td>${product.pDaddress}</td>
                       <td>${product.pView}</td>
                       <td>${product.pDate}</td>
+                      <td>${product.pCheck}</td>
                       <td><input type="button" class="pCheckBtn" value="클릭" /></td>
                     </tr>
                   	</c:forEach>

@@ -24,9 +24,20 @@ function execDaumPostcode() {
 		}
 	}).open();
 }
+function product_confirm(pNo) {
+	var no = "pNo="+pNo;
+	console.log(pNo);
+	$.ajax({
+		url: 'product_confirm',
+		data: no,
+		method: 'POST',
+		dataType: 'text',
+	});
+	alert("승인되었습니다");
+	location.reload();
+}
 $(window).on("load",function() {
 					/** *****멤버 펑션 시작********** */
-					
 					$('#memberInfoFrm').validate({
 						rules:{
 							mPw:{
@@ -88,7 +99,7 @@ $(window).on("load",function() {
 								var td = tr.children();
 								var no = td.eq(1).text();
 								window.open("member_select?" + "mNo="+ no, "회원정보수정",
-											"width=870, height=800, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
+											"width=685, height=685, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
 									});
 					$("#mSelectBtn").click(
 							function() {
@@ -159,8 +170,6 @@ $(window).on("load",function() {
 											var pNo = td.eq(1).text();
 											var noArray = 'noArray=' + pNo
 													+ '-';
-											console.log(pNo);
-											console.log(noArray);
 											/*
 											 * $.ajax({ url : 'member_delete',
 											 * data : noArray, method : 'POST',
