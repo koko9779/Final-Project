@@ -6,10 +6,13 @@ function work_select() {
 	location.href = 'work_select';
 }
 </script>
-<aside class="col-sm-3 col-sm-pull-2 sidebar">
+<aside class="col-sm-3 col-sm-pull-1 sidebar">
 	<div class="widget">
-		<img src="${pageContext.request.contextPath}${w.wPoster}" alt="${w.wName}" />
-		<h3 style="margin:50px auto;">${w.wName}</h3>
+		<form id="work_${w.wNo}" method="post">
+			<input type="hidden" value="${w.wNo}" name="wNo" />
+			<img src="${pageContext.request.contextPath}${w.wPoster}" alt="${w.wName}" onclick="workpage(${w.wNo}); return false;" style="cursor: pointer;width:100%;"/>
+			<h3 style="margin:50px auto;">${w.wName}</h3>
+		</form>
 	</div>
 	<div class="widget">
 		<select class="form-control" id="workEpisode">

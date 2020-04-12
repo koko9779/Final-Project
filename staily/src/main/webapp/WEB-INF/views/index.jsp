@@ -151,7 +151,7 @@
 							<input type="hidden" value="${hot.pNo}" name="pNo"/>
 							<div class="movie-slide">
 								<div class="movie-poster2">
-									<a href="#" onclick="hot_productpage(${hot.pNo})"> <img
+									<a href="#" onclick="productpage(${hot.pNo})"> <img
 										src="${pageContext.request.contextPath}${hot.pScene}"
 										alt="${hot.pName}" />
 									</a>

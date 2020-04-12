@@ -1,16 +1,16 @@
-.slick-slide .movie-poster2 {
+.movie-poster2 {
 	position: relative;
 	overflow: hidden;
 	margin-bottom: 20px;
 	border-radius: 10px;
 }
 
-.slick-slide .movie-poster2 img {
+.movie-poster2 img {
 	-webkit-transition: .5s ease-in-out;
 	transition: .5s ease-in-out;
 }
 
-.slick-slide .movie-poster2 img:hover {
+.movie-poster2 img:hover {
 	cursor: pointer;
 	transform: scale(1.1); /* 마우스 오버시 이미지 크기를 1.1 배만큼 확대시킨다. */
 	-o-transform: scale(1.1);
