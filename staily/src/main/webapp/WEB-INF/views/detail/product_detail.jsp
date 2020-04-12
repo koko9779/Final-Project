@@ -101,10 +101,17 @@
                      </div>
                   </c:if>
                   <div id="three">
-                  	<p id="replyList"></p>
                   	<c:if test="${not empty userNo}">
-                  	
+                  		<form id="userReply" method="POST">
+                  			${userId}<br>
+                  			<input type="text" id="rContent">
+                  			<input type="hidden" id="mNo">
+                  			<input type="hidden" value="0" id="rRecommend">
+                  			<input type="hidden" value="0" id="rRecommend">
+                  			<input type="button" value="작성" onClick="createReply()">
+                  		</form>
                   	</c:if>
+                  	<p id="replyList"></p>
                   <!--  
                   	 <form name="reply">
                   	 	아이디 : <input type="text" id="mName" value=""><br>
