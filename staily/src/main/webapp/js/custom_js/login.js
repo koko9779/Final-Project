@@ -5,17 +5,6 @@ function login_action() {
 	document.f.submit();
 }
 
-$(function() {
-	var id = $("#findIdE").val();
-	if(id === "" || id === undefined) {
-		return;
-	}else {
-		alert("고객님의 아이디는 " + id + "입니다");
-		location.href="login";
-		return;
-	}
-});
-/************************************/
 /********** id_read.jsp ************/
 function find_id() {
 	var name = $("#inputName").val();
@@ -31,25 +20,20 @@ function find_id() {
 	document.forgotIdF.submit();
 }
 
-$(function() {
-	var msgE = $("#msgE").val();
-	if(msgE === "" || msg === undefined) {
-		return;
-	}else {
-		alert(msgE);
-		location.href = "id_read"
-		return;
-	}
-});
 /***************** member_create.jsp ******************/
 
 $(window)
 .on(
 		"load",
 		function() {
-			alert("실험");
 			$('#registerF').validate({
 				rules:{
+					mId: {
+						required: true,
+						idCk: true,
+						isIdExisted: true,
+						rangelength: [8, 15]
+					},
 					mPw:{
 						required: true,
 						passwordCk : true,
@@ -63,10 +47,22 @@ $(window)
 					},
 					mEmail:{
 						required: true,
+						isEmailExisted: true,
 						email : true
+					},
+					mPhone: {
+						required: true,
+						phoneCk: true,
+						rangelength: [10, 11]
 					}
 				},
 				messages:{
+					mId: {
+						required: "아이디를 입력해주세요",
+						idCk: "아이디는 영문 대소문자, 숫자로 이루어져야 합니다",
+						isIdExisted: "중복된 아이디가 있습니다",
+						rangelength: "아이디는 8자리 이상, 15이하로 구성되어야 합니다"
+					},
 					mPw:{
 						required: "비밀번호를 입력해주세요",
 						passwordCk: "영문, 숫자, 특수문자를 조합해서 입력해야 합니다.",
@@ -80,25 +76,73 @@ $(window)
 					},
 					mEmail:{
 						required: "이메일을 입력해주세요",
+						isEmailExisted: "중복된 이메일입니다",
 						email : "이메일 형식으로 입력하셔야합니다."
+					},
+					mPhone: {
+						required: "휴대폰번호를 입력해주세요",
+						phoneCk: "핸드폰 번호는 숫자로만 이루어져야 합니다",
+						rangelength: "핸드폰 번호는 10~11 숫자로 이루어져야 합니다"
 					}
-				},
+				}, 
 				submitHandler:function(){
-					member_update();
+					member_create();
 				},
 				errorClass:"error_msg",
 				validClass:"valid"
 			});
-			$.validator.addMethod("passwordCk",  function( value, element ) {
-				   return this.optional(element) ||  /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/.test(value);
+			$.validator.addMethod("idCk",  function( value, element ) {
+				return /^.*[a-zA-Z0-9]$/.test(value);
+			});
+			$.validator.addMethod("isIdExisted",  function( value, element ) {
+				var check = -1;
+				$.ajax({
+					url: "Id_check",
+					type: 'POST',
+					data: "mId=" + value,
+					async : false,
+					dataType: "json",
+					success: function(resultCount) {
+									check = resultCount;
+							}
 				});
-			function member_update() {
+				if(check === 1) {
+					return false;
+				}else {
+					return true;
+				}
+			});
+			$.validator.addMethod("passwordCk",  function( value, element ) {
+				return /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/.test(value);
+			});
+			$.validator.addMethod("phoneCk",  function( value, element ) {
+				return /^.*[0-9]$/.test(value);
+			});
+			$.validator.addMethod("isEmailExisted",  function( value, element ) {
+				var result = -1;
+				$.ajax({
+					url: "email_check",
+					method: 'POST',
+					data: {mEmail : value},
+					dataType: "json",
+					async : false,
+					success: function(resultCount) {
+							result = resultCount;
+							}
+				});
+				if(result === 1) {
+					return false;
+				}else {
+					return true;
+				}
+			});
+			function member_create() {
 				document.getElementById("registerF").action = "member_create_action";
 				document.getElementById("registerF").submit();
 				alert("가입 성공");
 			}
 		});
-
+/*
 function register_action() {
 	if($("#check_register").css("visibility") === "hidden" &&
 		$("#inputId").val() != "" &&
@@ -123,7 +167,7 @@ function register_action() {
 	}else {
 		alert("모든 입력창에 알맞게 정보를 넣어야만 가입 가능합니다");
 	}
-}
+}*/
 	
 function sample6_execDaumPostcode() {
     new daum.Postcode({
@@ -169,7 +213,6 @@ function mType_member() {
 		coNoE.remove();
 	}
 }
-/******************************************************/
 /*************** pw_count_read.jsp *******************/
 function find_pw() {
 	var id = $("#inputId").val();
@@ -186,17 +229,6 @@ function find_pw() {
 	document.forgotIdF.submit();
 }
 
-$(function() {
-	var msg2E = $("#msg2E").val();
-	if(msg2E === "" || msg2E === undefined) {
-		return;
-	}else {
-		alert(msg2E);
-		location.href="pw_count_read";
-		return;
-	}
-});
-/******************************************************/
 /******************* pw_update.jsp ********************/
 function update_pw_action() {
 		

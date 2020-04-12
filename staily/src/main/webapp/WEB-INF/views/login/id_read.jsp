@@ -51,16 +51,19 @@
 
   </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+ <%@ include file="/WEB-INF/views/login/include/include_bottom_login.jsp" %>
+ <script type="text/javascript">
+ $(function() {
+	var msgE = $("#msgE").val();
+	if(msgE === "" || msg === undefined) {
+		return;
+	}else {
+		alert(msgE);
+		location.href = "id_read"
+		return;
+	}
+});
+ </script>
+   </body>
 
-  <!-- Core plugin JavaScript-->
-  <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="${pageContext.request.contextPath}/css/admin/js/sb-admin-2.min.js"></script>
-
-</body>
-
-</html>
+</html> 

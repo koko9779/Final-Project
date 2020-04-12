@@ -5,8 +5,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,7 +21,7 @@ import com.itwill.staily.mypage.service.FriendService;
 
 @SuppressWarnings("unused")
 @RestController
-@RequestMapping("detail")
+@RequestMapping("/detail")
 public class ReplyController {
 	@Autowired
 	private ReplyService replyService;
@@ -31,23 +34,11 @@ public class ReplyController {
 	}
 	
 	@RequestMapping("/reply_list")
-	public ModelAndView selectReplyList(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView();
-		
-		try {
-			List<Reply> rL = replyService.selectReplyList(1);
-			request.setAttribute("replyList", rL);
+	public List<Reply> selectReplyList(HttpServletRequest request, HttpServletResponse response, String pNo) throws Exception {
+		List<Reply> rL = replyService.selectReplyList(Integer.parseInt(pNo));
+		request.setAttribute("replyList", rL);
 			
-			Reply sR = replyService.selectReplyOne(22);
-			request.setAttribute("replyOne", sR);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		mv.setViewName("detail/reply_list");
-		
-		return mv;		
+		return rL;			
 	}
 	
 	/*

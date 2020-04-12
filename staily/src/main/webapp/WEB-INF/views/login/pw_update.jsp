@@ -64,6 +64,8 @@
     </div>
 
   </div>
-</body>
+  
+ <%@ include file="/WEB-INF/views/login/include/include_bottom_login.jsp" %>
+   </body>
 
-</html>
+</html> 

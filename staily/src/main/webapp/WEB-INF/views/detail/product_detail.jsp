@@ -4,11 +4,9 @@
 <%@ include file="/WEB-INF/views/include/detail/include_css_product_detail.jsp"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
-<html>
-<head>
-<title>작품 상세</title>
-</head>
-<body>
+
+
+
 <!-- Hero -->
 <div id="content_hero"
    style="background-image: url(http://via.placeholder.com/1440x435)">
@@ -44,6 +42,9 @@
    </div>
 </div>
 
+<form name="pNo_request" method="POST">
+	<input type="hidden" id="pNo" name="pNo" value="${productOne.get(0).getpNo()}">
+</form>
 
 <!-- Section -->
 <div class="container section news">
@@ -80,7 +81,7 @@
                      <c:if test="${not empty productOne.get(0).getpAddress()}">
                         <li><a href="#two">매장 지도</a></li>
                      </c:if>
-                     <li><a href="reply_list">댓글</a></li>
+                     <li><a href="#three" id="reply">댓글</a></li>
                   </ul>
                   <div id="one">
                      ■상품명<br>
@@ -99,6 +100,17 @@
                         대충 지도가 있다는 내용<br>
                      </div>
                   </c:if>
+                  <div id="three">
+                  	<p id="replyList"></p>
+                  <!--  
+                  	 <form name="reply">
+                  	 	아이디 : <input type="text" id="mName" value=""><br>
+                  	 	내용 : <input type="text" id="rContent" value=""><br>
+                  	 	추천 수 : <input type="text" id="rRecommend" value=""><br>
+                  	 	신고 수 : <input type="text" id="rReport" value=""><br>
+                  	 </form>
+                  -->
+                  </div>
                </div>
             </div>
          </div>
@@ -106,6 +118,36 @@
    </div>
 </div>
 
+<%@ include file="/WEB-INF/views/detail/include/include_product_detail_js.jsp" %>
+
+<script type="text/javascript">
+$("#reply").on("click", function(e) {
+	var pNo = ${productOne.get(0).getpNo()};
+	
+	$.ajax({
+		url : "reply_list",
+		type : "POST",
+		data : {"pNo" : pNo},
+		async : false,
+		dataType : "json",
+		success: function(data) {
+				var first = $("#replyList").text(data[0].mName + "\n");
+				first.html(first.html().replace(/\n/g, '<br>'));
+				$("#replyList").append(data[0].rContent + "<br>");
+				$("#replyList").append(data[0].rRecommend + "<br>");
+				$("#replyList").append(data[0].rReport + "<br>");
+			for(i = 1; i < data.length; i++) {
+				$("#replyList").append(data[i].mName + "<br>");
+				$("#replyList").append(data[i].rContent + "<br>");
+				$("#replyList").append(data[i].rRecommend + "<br>");
+				$("#replyList").append(data[i].rReport + "<br>");
+			}
+		}
+	});
+});
+</script>
+
 <%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
 </body>
+
 </html>
