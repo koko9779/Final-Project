@@ -28,6 +28,9 @@ public class ProductDetailController {
 			Integer userNo = (Integer)session.getAttribute("userNo");
 			request.setAttribute("userNo", userNo);
 			
+			String userId = (String)session.getAttribute("userId");
+			request.setAttribute("userId", userId);
+			
 			String pNo = request.getParameter("pNo");
 			List<ProductEx> p = productDetailService.selectProductOne(Integer.parseInt(pNo));
 			
