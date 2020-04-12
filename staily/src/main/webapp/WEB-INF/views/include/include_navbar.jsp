@@ -5,6 +5,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/include_css.jsp"%>
+
 </head>
 <body>
 	<!-- Wrapper -->
