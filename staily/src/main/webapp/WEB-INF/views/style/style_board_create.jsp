@@ -4,7 +4,6 @@
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 
-
 <!-- Hero -->
 <div id="content_hero"
 	style="background-image: url(http://via.placeholder.com/1440x435)">
@@ -32,26 +31,37 @@
 		<%@ include file="/WEB-INF/views/include/include_work_sidebar.jsp"%>
 
 		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
+		<form action="../NewFile.jsp" method="post">
 			<div class="row justify-content-md-center">
 					제목
-					<input type="text" class="form-control">
-						<select class="custom-select" id="inputGroupSelect03">
-							<option selected>분류</option>
-							<option value="1">문의</option>
-							<option value="2">스타일코디</option>
-							<option value="3">아무거나~</option>
-						</select>
+					<input type="text" name="bTitle" class="form-control">
+					<select class="custom-select" name="bType"  id="inputGroupSelect03">
+						<option selected>분류</option>
+						<option value="1">문의</option>
+						<option value="2">스타일코디</option>
+						<option value="3">아무거나~</option>
+					</select>
 			</div>
 			<div class="row justify-content-md-center">
-						<textarea name="contents"></textarea>
+						<textarea id="contents" name="contents"></textarea>
 						<script>
-							CKEDITOR.replace('contents');
+							CKEDITOR.replace('contents', function (e) {
+		                        var dialogName = e.data.name;
+		                        var dialogDefinition = e.data.definition;
+		                        switch (dialogName) {
+		                            case 'image':
+		                                // dialogDefinition.removeContents('info');
+		                                dialogDefinition.removeContents('Link');
+		                                dialogDefinition.removeContents('advanced');
+		                                break;
+		                        }
+		                    });
 						</script>
 			</div>
 			<div class="row justify-content-md-center" style="margin-bottom: 30px">
 				<div class="input-group mb-3">
 					<div class="custom-file">
-						&nbsp;<input type="file" class="form-control-file"
+						&nbsp;<input type="file" name="image" class="form-control-file"
 							id="exampleFormControlFile1">
 					</div>
 				</div>
@@ -60,6 +70,7 @@
 				<button type="submit" class="btn btn-outline-secondary"
 					style="width: 20%; font-weight: bold">등 록</button>
 			</div>
+		</form>
 		</div>
 	</div>
 </div>
