@@ -1,10 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-
 <!-- Bootstrap core JavaScript-->
 <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/css/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -21,7 +14,3 @@
 
 <!-- Page level custom scripts -->
 <script src="${pageContext.request.contextPath}/css/admin/js/demo/datatables-demo.js"></script><title>Insert title here</title>
-</head>
-<body>
-</body>
-</html>

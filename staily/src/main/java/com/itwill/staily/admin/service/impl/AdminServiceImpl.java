@@ -141,10 +141,9 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 
-
 	@Override
-	public List<Product> selectProductOnlyAll() throws Exception {
-		return adminMapper.selectProductOnlyAll();
+	public List<Product> selectUnconfirmProduct() throws Exception {
+		return adminMapper.selectUnconfirmProduct();
 	}
 
 

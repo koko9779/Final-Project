@@ -102,6 +102,9 @@
                   </c:if>
                   <div id="three">
                   	<p id="replyList"></p>
+                  	<c:if test="${not empty userNo}">
+                  	
+                  	</c:if>
                   <!--  
                   	 <form name="reply">
                   	 	아이디 : <input type="text" id="mName" value=""><br>

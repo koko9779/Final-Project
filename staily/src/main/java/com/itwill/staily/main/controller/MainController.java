@@ -64,9 +64,16 @@ public class MainController {
 		return "index";
 	}
 	@RequestMapping("/worklist_select")
-	public String workList(@RequestParam("wNo") int wNo, HttpServletRequest request, HttpSession session) throws Exception {
+	public String workList(@RequestParam int wNo, HttpServletRequest request, HttpSession session) throws Exception {
 		try {
-			session.getAttribute("userNo");
+			
+			Integer userNo = (Integer)session.getAttribute("userNo");
+			request.setAttribute("userNo", userNo);		
+			
+			if(userNo!=null) {
+				List<Bookmark> bmList = mainService.selectByBookmark(userNo);
+				request.setAttribute("bmList", bmList);		
+			}
 			
 			Work w = listService.selectWorkOne(wNo);
 			request.setAttribute("w", w);
@@ -91,7 +98,7 @@ public class MainController {
 	
 	@RequestMapping(value="worklist_read/detail", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public Map worklist_detail(@RequestParam("wNo") int wNo, @RequestParam("wdEpisode") int wdEpisode) throws Exception{
+	public Map worklist_detail(@RequestParam int wNo, @RequestParam int wdEpisode) throws Exception{
 		Map map1 = new HashMap();
 		map1.put("wNo", wNo);
 		map1.put("wdEpisode", wdEpisode);
@@ -105,6 +112,8 @@ public class MainController {
 
 		return map2;
 	}
+	
+	/************Controller create_bookmark*******************/
 	
 	@RequestMapping("/create_bookmark")
 	public String createBookmark(@RequestParam("userNo") int userNo, @RequestParam("pNo") int pNo) {
@@ -126,27 +135,33 @@ public class MainController {
 		return "forward:/main/index";
 	}
 	
-//	@ResponseBody
-//	@RequestMapping(value="/create_bookmark", produces = "text/plain;charset=UTF-8")
-//	public String createBookmark(@RequestParam int mNo, @RequestParam int pNo) throws Exception{
-//		String result = "false";
-//		try {
-//			
-//			Map map1 = new HashMap();
-//			map1.put("mNo", mNo);
-//			map1.put("pNo", pNo);
-//			int success = listService.createBookmark(map1);
-//			if(success==1) {
-//				result = "true";
-//			}else {
-//				result = "false";
-//			}
-//			
-//		}catch (Exception e) {
-//			result = "false";
-//		}
-//		return result;
-//	}
+	/************************************************************/
+	
+	/************RestController create_bookmark*******************/
+	/*
+	@RequestMapping(value="/create_bookmark", produces = "text/plain;charset=UTF-8")
+	@ResponseBody
+	public String createBookmark(@RequestParam int mNo, @RequestParam int pNo) throws Exception{
+		String result = "false";
+		try {
+			
+			Map map1 = new HashMap();
+			map1.put("mNo", mNo);
+			map1.put("pNo", pNo);
+			int success = listService.createBookmark(map1);
+			if(success==1) {
+				result = "true";
+			}else {
+				result = "false";
+			}
+			
+		}catch (Exception e) {
+			result = "false";
+		}
+		return result;
+	}
+	*/
+	/************************************************************/
 	
 	@RequestMapping("/delete_bookmark")
 	public String deleteBookmark(@RequestParam int bmNo) {
