@@ -23,6 +23,7 @@
                       <th>상품상세주소</th>
                       <th>상품조회수</th>
                       <th>상품등록일</th>
+                      <th>상품정보</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -30,13 +31,14 @@
                   	 <tr>
                   	  <td><input type="checkbox" name="product_CheckBox"></td>
                       <td hidden="pNo2">${product.pNo}</td>
-                      <td style = "cursor:pointer;" onclick="pCheckBtn(${product.pNo})">${product.pName}</td>
+                      <td>${product.pName}</td>
                       <td>${product.pPrice}</td>
                       <td style = "cursor:pointer;" onclick="location.href='${product.pUrl}'">${product.pUrl}</td>
                       <td>${product.pAddress}</td>
                       <td>${product.pDaddress}</td>
                       <td>${product.pView}</td>
                       <td>${product.pDate}</td>
+                      <td><input type="button" class="pCheckBtn" value="클릭" /></td>
                     </tr>
                   	</c:forEach>
                   </tbody>

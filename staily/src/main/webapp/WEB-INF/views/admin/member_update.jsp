@@ -11,7 +11,7 @@
 <div class="join-step2">
 	<!--<div class="text-header">기본정보 ( * 필수 입력 항목)</div>-->
 	<div class="border border-secondary">
-		<form id="memberInfoFrm" name="memberInfoFrm" autocomplete="off" >
+		<form id="memberInfoFrm" name="memberInfoFrm" autocomplete="off" action="member_update" method="post">
 			<input type="hidden" name="mNo" id="mNo" value="${member.mNo}">
 			<input type="hidden" name="mId" id="mId" value="${member.mId}">
 			<input type="hidden" name="mName" id="mName" value="${member.mName}">
@@ -51,8 +51,8 @@
 									<input type="password" name="mPw" id="mPw" class="form-control"
 										autocomplete="new-password" value="" maxlength="15">
 								</div>
-							</div>
-							<small>* 영문, 숫자, 특수문자중 2가지 포함하여 8자리 이상, 16자리 미만으로 구성해야 합니다.</small>
+							</div> <small>* 영문, 숫자, 특수문자중 2가지 포함하여 8자리 이상, 16자리 미만으로 구성해야
+								합니다.</small>
 						</td>
 					</tr>
 					<tr>
@@ -68,13 +68,14 @@
 							</div>
 						</td>
 					</tr>
-
+					<c:if test="${member.mType =='C'}">
+						<tr>
+							<th scope="row" class="bg-light essentia"><label>※
+									결제여부</label></th>
+							<td class="text-left">${member.mCompany.coCheck}</td>
+						</tr>
+					</c:if>
 					<tr>
-						<th scope="row" class="bg-light essentia"><label>※
-								결제여부</label></th>
-						<td class="text-left">${member.mCompany.coCheck}</td>
-					</tr>
-
 					<tr>
 						<th scope="row" class="bg-light essentia"><label
 							for="phnno1N1">※ 휴대폰</label></th>
@@ -158,10 +159,10 @@
 					</tr>
 				</tbody>
 			</table>
-	<div class="text-center">
-		<input type="submit"
-			class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"></input>
-	</div>
+			<div class="text-center">
+				<button type="submit" value="submit"
+					class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2">수정</button>
+			</div>
 		</form>
 	</div>
 
