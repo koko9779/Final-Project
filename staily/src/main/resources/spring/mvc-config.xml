@@ -7,7 +7,22 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<!-- Interceptor Bean -->
+	<beans:bean id="LoginCheckInterceptor" class="com.itwill.staily.login.interceptor.LoginCheckInterceptor"/>
+	<!-- Annotation Bean -->
 	<context:annotation-config />
+	
+	<!-- Interceptor Mapping -->
+	<mvc:interceptors> 
+		<mvc:interceptor> 
+			<mvc:mapping path="/mypage/**"/> 
+			<!--  
+			<mvc:exclude-mapping path="/login/**"/> 
+			-->
+			<beans:ref bean="LoginCheckInterceptor"/> 
+		</mvc:interceptor> 
+	</mvc:interceptors>
+
 	<!-- Controller Mapping -->
 	<context:component-scan
 		base-package="com.itwill.staily.**.controller" />
