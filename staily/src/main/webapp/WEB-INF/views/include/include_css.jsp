@@ -10,4 +10,6 @@
 <link href="${pageContext.request.contextPath}/css/main/main_style_custom.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<script src="${pageContext.request.contextPath}/ckeditor2/ckeditor.js"></script>
+<!-- javascript -->
+<script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
+<script src="${pageContext.request.contextPath}/ckeditor3/ckeditor.js"></script>
