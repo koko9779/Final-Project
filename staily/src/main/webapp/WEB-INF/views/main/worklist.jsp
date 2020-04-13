@@ -52,20 +52,22 @@
 												<c:set var="cnt" value="${cnt+1}"/>
 											</c:if>
 										</c:forEach>
+										<div id="bookmarkIcon">
 										<c:choose>
 											<c:when test="${cnt>0}">
-												<input class="material-icons" type="image"
+												<input class="material-icons unbookmarking" type="image" 
 														style="border: none; width: 10%; float:left; padding: 0px; margin: 0 5%;" alt="즐겨찾기 제거"
 														src="${pageContext.request.contextPath}/images/star.png"
 														onclick="select_bookmark(${userNo},${cw.product[0].pNo})">
 											</c:when>
 											<c:otherwise>
-												<input class="material-icons" type="image"
+												<input class="material-icons bookmarking" type="image"
 												style="border: none; width: 10%; float:left; padding: 0px; margin: 0 5%;" alt="즐겨찾기 등록"
 												src="${pageContext.request.contextPath}/images/emptystar.png"
-												onclick="create_bookmark(${userNo},${cw.product[0].pNo})">	
+												onclick="create_bookmark(${userNo},${cw.product[0].pNo});">	
 											</c:otherwise>
 										</c:choose>
+										</div>
 									</c:when>
 									<c:otherwise>
 										<input class="material-icons" type="image"
@@ -85,19 +87,16 @@
 			<!-- 일반회원 -->
 			<article>
 				<c:forEach var="mw" items="${mw}">
-				<form id="product_${mw.product[0].pNo}" style="padding:5% 0;">
-					<h2 value="상품이름" >${mw.product[0].pName}</h2>
-					<input type="hidden" value="${userNo}" name="userNo">
-					<input type="hidden" value="${mw.product[0].pNo}" name="pNo">
-					<div style="width:100%;padding:5%;">
+					<form id="product_${mw.product[0].pNo}">
+						<h2 value="상품이름" >${mw.product[0].pName}</h2>
+						<input type="hidden" value="${userNo}" name="userNo">
+						<input type="hidden" value="${mw.product[0].pNo}" name="pNo">
 						<div class="movie-poster2">
 							<img onclick="productpage(${mw.product[0].pNo})"
 								src="${pageContext.request.contextPath}${mw.product[0].pScene}"
-								alt="${mw.product[0].pName}" style="width:100%; margin: 0;cursor: pointer;"/>
-		
+								alt="${mw.product[0].pName}" style="width:850px; height:450px; margin: 0;cursor: pointer;"/>
 						</div>
-
-						<div style="margin:10% 0">
+						<div style="height:100px;">
 							<c:choose>
 								<c:when test="${!empty userNo}">
 									<c:set var="cnt" value="0"/>
@@ -108,7 +107,7 @@
 									</c:forEach>
 									<c:choose>
 										<c:when test="${cnt>0}">
-											<input class="material-icons" type="image"
+											<input class="material-icons" type="image" 
 													style="border: none; width: 4%; float:left; padding: 0px;" alt="즐겨찾기 제거"
 													src="${pageContext.request.contextPath}/images/star.png"
 													onclick="select_bookmark(${userNo},${mw.product[0].pNo})">
@@ -134,8 +133,7 @@
 								<span class="categories tag" value="에피소드">${mw.wdEpisode}회</span>
 							</div>
 						</div>
-					</div>
-				</form>
+					</form>
 				</c:forEach>
 			</article>
 		</div>

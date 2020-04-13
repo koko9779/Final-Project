@@ -123,7 +123,7 @@
 											<input class="material-icons" type="image"
 												style="border: none; width: 10%; float:left; padding: 0px; margin: 0 5%;" alt="즐겨찾기 제거"
 												src="${pageContext.request.contextPath}/images/star.png"
-												onclick="remove_bookmark(${bm.bmNo})">
+												onclick="delete_bookmark(${bm.bmNo})">
 											<span class="no-underline" style="margin: 2% 0px;float:left;">${bm.product.pName}</span>
 										</div>
 									</div>
