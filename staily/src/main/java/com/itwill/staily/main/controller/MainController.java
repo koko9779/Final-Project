@@ -117,7 +117,7 @@ public class MainController {
 	}
 	
 	/************Controller create_bookmark*******************/
-	
+/*
 	@RequestMapping("/create_bookmark")
 	public String createBookmark(@RequestParam("userNo") int userNo, @RequestParam("pNo") int pNo) {
 		try {
@@ -137,19 +137,17 @@ public class MainController {
 		}
 		return "forward:/main/index";
 	}
-	
-	/************************************************************/
-	
+*/	
 	/************RestController create_bookmark*******************/
-	/*
+
 	@RequestMapping(value="/create_bookmark", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
-	public String createBookmark(@RequestParam int mNo, @RequestParam int pNo) throws Exception{
+	public String createBookmark(@RequestParam int userNo, @RequestParam int pNo) throws Exception{
 		String result = "false";
 		try {
 			
 			Map map1 = new HashMap();
-			map1.put("mNo", mNo);
+			map1.put("mNo", userNo);
 			map1.put("pNo", pNo);
 			int success = listService.createBookmark(map1);
 			if(success==1) {
@@ -163,30 +161,35 @@ public class MainController {
 		}
 		return result;
 	}
-	*/
-	/************************************************************/
+
+	/**************Controller delete_bookmark*******************/
 	
 	@RequestMapping("/delete_bookmark")
+	@ResponseBody
 	public String deleteBookmark(@RequestParam(name="bmNo",defaultValue = "-999") int bmNo, HttpServletRequest request) {
+		String result = "";
 		try {
 			if(bmNo==-999) {
 				bmNo = (Integer)request.getAttribute("bmNo");			
 			}
 			System.out.println(bmNo);
 			int success = listService.deleteBookmark(bmNo);
-			System.out.println(success);
+			if(success==1) {
+				result = "true";
+			}else {
+				result = "false";
+			}
 			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "forward:/main/index";
+		return result;
 	}
 	
 	@RequestMapping("/select_bookmark")
 	public String selectBookmarkNo(@RequestParam int userNo, @RequestParam int pNo, HttpServletRequest request) {
 		try {
 			int bmNo = listService.selectBookmarkNo(userNo, pNo);
-			System.out.println(bmNo);
 			request.setAttribute("bmNo", bmNo);
 			
 		} catch (Exception e) {

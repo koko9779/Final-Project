@@ -120,8 +120,7 @@ $(function(){
 		});
 		
 		e.preventDefault();
-	});
-	
+	});		
 });
 
 function bm_productpage(bmNo,pNo){
@@ -139,58 +138,98 @@ function workpage(wNo){
 	work_form.action = "worklist_select";
 	work_form.submit();
 };
+
+/************Controller select_bookmark*******************/
+/*
 function select_bookmark(mNo,pNo){
 	var product_form = document.getElementById('product_'+pNo);
 	product_form.action = "select_bookmark";
 	product_form.submit();
 }
+*/
+/************RestController select_bookmark*******************/
+function select_bookmark(userNo,pNo){
+	var params= "userNo="+userNo+"&pNo="+pNo;
+	$.ajax({
+		url: "select_bookmark",
+		method: "POST",
+		data: params,
+		success:function(){
+			location.reload();
+		}
+	});
+	
+}
 /************Controller create_bookmark*******************/
-
+/*
 function create_bookmark(userNo,pNo){
 	var product_form = document.getElementById('product_'+pNo);
 	alert('즐겨찾기에 상품이 추가되었습니다');
 	product_form.action = "create_bookmark";
 	product_form.submit();
 };
-
-/**********************************************************/
-/************Controller remove_bookmark*******************/
-function remove_bookmark(bmNo){
+*/
+/*************RestController create_bookmark********************/
+function create_bookmark(userNo,pNo){
+	alert('즐겨찾기에 상품이 추가되었습니다');
+	var params= "userNo="+userNo+"&pNo="+pNo;
+	$.ajax({
+		url: "create_bookmark",
+		method:"POST",
+		data: params,
+		success:function(result){
+			console.log(result);
+			if(result=='true'){
+				
+				var html = "<input class='material-icons unbookmarking' type='image' "
+						+ "style='border: none; width: 10%; float:left; padding: 0px; margin: 0 5%;' alt='즐겨찾기 제거' "
+						+ "src='${pageContext.request.contextPath}/images/star.png' "
+						+ "onclick='select_bookmark(${userNo},${cw.product[0].pNo})'>";
+			
+			$('#bookmarkIcon').empty();
+			$('#bookmarkIcon').append(html);
+			location.reload();
+			}
+		}			
+	});
+};
+/************Controller delete_bookmark*******************/
+/*
+function delete_bookmark(bmNo){
 	  var bookmark_form = document.getElementById('bookmark_'+bmNo);
 //	  alert("즐겨찾기에서 상품이 제거됐습니다");
 	  bookmark_form.action = "delete_bookmark";
 	  bookmark_form.submit();
-};
-/**********************************************************/
-/*
-function displayWorkListHTML(){
-	if(xhr.readyState==4){
-		if(xhr.status==200){
-			var html = xhr.responseText;
-			console.log(html);
-			if(html.trim()=='true'){
-				document.getElementById('heart').innerHTML = html;
-			}
-		}
-	}
-}
-function create_bookmark(userNo,pNo){
-	var bookmark_form = document.getElementById('bookmark_'+pNo);
-	bookmark_form.addEventListener('click',function(e){
-		var url = 'create_bookmark';
-		var params = 'userNo='+bookmark_form.userNo.value+'&'+
-					 'pNo='+bookmark_form.pNo.value;
-		console.log(params);
-		var callback = displayWorkListHTML;
-		var method = 'POST';
-		var async = true;
-		
-		sendRequest('create_bookmark', params, callback, method, async);
-		e.preventDefault();
-	});
-	
+	  window.location.reload();
 };
 */
+/***********RestController delete_bookmark*******************/
+function delete_bookmark(bmNo){
+//	  alert("즐겨찾기에서 상품이 제거됐습니다");
+		var params= "bmNo="+bmNo;
+		$.ajax({
+			url: "delete_bookmark",
+			method:"POST",
+			data: params,
+			success:function(result){
+				console.log(result);
+				if(result=='true'){
+					
+					var html = "<input class='material-icons bookmarking' type='image' "
+								+ "style='border: none; width: 10%; float:left; padding: 0px; margin: 0 5%;' alt='즐겨찾기 등록' "
+								+ "src='${pageContext.request.contextPath}/images/emptystar.png' "
+								+ "onclick='create_bookmark(${userNo},${cw.product[0].pNo});'>";
+				
+				$('#bookmarkIcon').empty();
+				$('#bookmarkIcon').append(html);
+				location.reload();
+				}
+			}
+				
+		});
+};
+
+/**********************************************************/
 function login_advice(){
 	alert('로그인이 필요한 작업입니다.');
 	location.href="../login/login";
