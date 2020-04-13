@@ -139,16 +139,7 @@ public class MypageController {
 	public boolean bookmark_delete(@RequestParam int bmNo, HttpServletRequest request, Model model,
 								  HttpSession session) throws Exception{
 		boolean result = false;
-		//int mNo = (Integer)session.getAttribute("userNo");
-		//String [] noStr = request.getParameterValues("noArray");
-		//for (String bm : noStr) {
-		//	int bmNo = Integer.parseInt(bm);
-		//	System.out.println(bmNo);
-		//}
 		result = bookmarkService.deleteBookmark(bmNo);
-		//model.addAttribute("result", result);
-		//List<Bookmark> bookmarkList;
-		//bookmarkList = bookmarkService.selectList(mNo);
 		return result;
 	}
 	
@@ -161,11 +152,13 @@ public class MypageController {
 		List<Friend> friendList;
 		try {
 			Integer mNo = (Integer)session.getAttribute("userNo");
+			System.out.println("@@@"+mNo);
 			if(mNo==null) {
 				mNo = 7;
 			}
 			friendList = friendService.selectList(mNo);
 			request.setAttribute("data", friendList);
+			//System.out.println("@@@"+friendList);
 			return "mypage/friend_list";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -175,12 +168,16 @@ public class MypageController {
 	
 	//친구추가
 	@RequestMapping("/friend_create")
-	public String friend_create(HttpServletResponse response, HttpServletRequest request) throws Exception{
-		Integer fNo = (Integer)request.getAttribute("fNo");
-		Integer mNo = (Integer)request.getAttribute("mNo");
-		boolean result = friendService.createFriend(mNo, fNo);
-		request.setAttribute("result", result);
-		return "test2";
+	@ResponseBody
+	public boolean friend_create(HttpServletResponse response, 
+								 HttpServletRequest request, 
+								 HttpSession session,
+								 @RequestParam int fNo) throws Exception{
+		Integer mNo = (Integer)session.getAttribute("userNo");
+		boolean result = false;
+		result = friendService.createFriend(fNo,mNo);
+		System.out.println("%%%"+result);
+		return result;
 	}
 	
 	//친구삭제
@@ -195,28 +192,39 @@ public class MypageController {
 	}
 	
 	//친구찾기 -- RestController로 이동필요
-	@RequestMapping("/friend_find")
+	@RequestMapping(value="/friend_find")
 	@ResponseBody
-	public String friend_find(HttpServletResponse response, HttpServletRequest request) throws Exception{
-		String mId = request.getParameter("mId");
-		if(mId==null) {
-			mId= "";
-			return"";
-		}
+	public String friend_find(@RequestParam(name="mId", defaultValue = "") String mId, 
+											HttpServletRequest request) throws Exception{
 		String result = friendService.findFriend(mId);
-		request.setAttribute("result", result);
+		if(result==null) {
+			return "";
+		}
 		return result;
 	}
 	
-	//메시지한개출력
-	@RequestMapping("/message2")
-	public ModelAndView message_selectOne(Model model) throws Exception {
-		//@RequestParam(required = false, defaultValue = "") int msNo , 
-		ModelAndView mv = new ModelAndView();
-		Message message = messageService.selectOne(1);
-		model.addAttribute("message", message);
-		mv.setViewName("mypage/message2");
-		return mv;
+	//친구번호찾기
+	@RequestMapping(value="/friend_findNo", produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public int friend_findNo(@RequestParam String mId) {
+		try {
+			int mNo = friendService.findFriendNo(mId);
+			return mNo;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -999;
+		}
+		
+	}
+	
+	//메시지보내기 창
+	@RequestMapping("/message")
+	public String message_selectOne(Model model, HttpSession session, @RequestParam("mNo") int mNo) throws Exception {
+		//System.out.println("*******"+mNo);
+		session.getAttribute("userNo");
+		Member member = mypageService.selectOne(mNo);
+		model.addAttribute("member", member);
+		return "mypage/message";
 	}
 	
 	//메시지리스트(멤버&메시지 조인)
@@ -334,8 +342,8 @@ public class MypageController {
 	//@RequestMapping("/test4")
 	public ModelAndView friend_find(Model model) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		String name = friendService.findFriend("hiphopmy");
-		model.addAttribute("name", name);
+		//String name = friendService.findFriend("hiphopmy");
+		//model.addAttribute("name", name);
 		mv.setViewName("test3");
 		return mv;
 	}

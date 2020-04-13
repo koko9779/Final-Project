@@ -5,8 +5,8 @@ import com.itwill.staily.util.Member;
 public class Friend {
 	private int fPk;	//친구pk
 	private int fNo;	//친구번호
-	private int mNo;	//회원번호
-	private String mName; //회원이름
+	private Integer mNo;	//회원번호
+	private String mId; //회원아이디
 		
 	private Member member;
 	
@@ -20,12 +20,12 @@ public class Friend {
 		this.mNo = mNo;
 	}
 
-	public String getmName() {
-		return mName;
+	public String getmId() {
+		return mId;
 	}
 
-	public void setmName(String mName) {
-		this.mName = mName;
+	public void setmName(String mId) {
+		this.mId = mId;
 	}
 
 

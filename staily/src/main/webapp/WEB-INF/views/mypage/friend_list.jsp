@@ -11,7 +11,6 @@
 					friend_delete_function(fPk);
 				}
 			}
-			
 		});
 		function friend_delete_function(fPk){
 			$.ajax({
@@ -25,25 +24,32 @@
 			})
 		};
 		
-		$(".dropdown-item").click(function(e){
-			window.open("message2", "_blank","width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes"
-
-					);
-		});
-		
-		$('#searchword').focus(function(e){
-			this.value="";
-			$(".add").remove();
-			//$(".dropdown-menu").hide();
+		/************************쪽지보내기 function 시작******************************/
+		$('#friendDropdown .dropdown-item').click(function(e){
+			e.preventDefault();
+			var no = $(this).attr('value');	
+			window.open("message?mNo="+no, "_blank","width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 			
 		});
-
+		/*
+		$('.dropdown-menu a:nth-child(1)').click(function(e){
+			window.open("message?mNo="+no, "_blank","width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		});
+		*/
+		$('#searchword').focus(function(e){
+			this.value="";
+			$(".add").toggle();
+			$(".add").text('');
+			
+		});
 		
+		/************************친구검색 function 시작******************************/
+
 		$('#searchword').on({
 			keyup : function(e){
 				if(e.keyCode == 13){
 					var mId = $('#searchword').val();
-					alert(mId);
+					confirm('찾으신 회원이 맞습니까?');
 					if(mId != ""){
 						$.ajax({
 							url : "friend_find",
@@ -51,29 +57,67 @@
 							data : "mId="+mId,
 							dataType : "text",
 							success : function(result){
-								if(result==""){
-									$('#results').prepend("<span class='add'>"+"없는 회원입니다"+"</span>");
-									return;
-								}else{
-									$('#results').prepend("<span data-toggle='dropdown' class='add'>"+result+"</span>");
+								if(result!=""){
+									$('.add').text(result);
+									friend_findNo_function(result);
+									//alert(mId);
+									//$('.add').text('없는 회원입니다');
+								}else if(result==""){
+									$('.add').text('없는 회원입니다');
+									$('#searchDropdwon').hide();
+									//$('.add').text(result);
 								}
 							},
-							error : function(result){
-								$('#results').prepend("<span>"+"다시 입력해주세요"+"</span>");
+							error : function(e){
+								$('.add').text('없는 회원입니다');
 							}
 							
 						})
-					}else{
-						$('#results').prepend("<span class='add'>"+"없는 회원입니다"+"</span>");
 					}
 				}
 			}
 		});
-		/*
-		$('#results').focusout(function() {
-			  $('.dropdown-menu').addClass('hidden');
-			});
-*/
+		
+		function friend_findNo_function(result){
+			$('#searchDropdwon a:nth-child(1)').click(function(e){
+				//alert("friend_findNo_function Id"+result);
+				e.preventDefault();
+				$.ajax({
+					url : 'friend_findNo',
+					method : 'GET',
+					data : 'mId='+result,
+					dataType : 'text',
+					success : function(data){
+						//alert("friend_findNo_function mNo"+data);
+						friend_create_function(data);
+					}
+				})
+			})
+		};
+		function friend_create_function(data){
+			//alert("friend_create_function mNo"+data);
+			$.ajax({
+				url : 'friend_create',
+				method : 'GET',
+				data : 'fNo='+data,
+				dataType : 'text',
+				success : function(result){				
+					if(result == true){					//왜 else에 걸리나??
+						alert('friend_create_function 친구추가완료');
+						$('#searchDropdwon a:nth-child(1)').hide();
+					}else{
+						alert('친구추가완료');
+						location.reload();
+					}
+				},
+				error : function(e){
+					alert('이미 친구추가된 회원입니다');
+				}
+			})
+		};
+		/************************친구검색 function 끝******************************/
+		
+	
 		
 		
 	})
@@ -87,6 +131,7 @@
           <!-- Page Heading -->
           <!-- 친구찾기 -->
           <h1 class="h3 mb-2 text-gray-800">친구찾기</h1>
+         
           <!--  
 		  	<form>
   				<div class="form-group">
@@ -107,7 +152,9 @@
 				<input type="text" id="searchword" style="width:300px;" value="아이디를 입력하세요" >
 			</div>
 			<div class="dropdown" id="results">
-				<div class="dropdown-menu">
+			   <!-- add -->
+			   <span data-toggle='dropdown' class="add"></span>
+				<div class="dropdown-menu" id='searchDropdwon'>
 				  	<a class="dropdown-item" href="#">친구추가</a>
 				  	<a class="dropdown-item" href="#">쪽지보내기</a>
 				</div>
@@ -148,10 +195,11 @@
                       <td >
                       <div class="dropdown">
 							<buttion class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-							 	${friend.mName}
+							 	${friend.mId}
 							 </button>
-							 <div class="dropdown-menu">
-							  	<a class="dropdown-item" href="#">쪽지보내기</a>
+							 <div class="dropdown-menu" id="friendDropdown">
+							  	<a class="dropdown-item" href="#" value="${friend.fNo}">쪽지보내기</a>
+							  	<a class="dropdown-item" href="#" value="${friend.mId}">쪽지보관함</a>
 							</div>
 					  </div>
 	
