@@ -57,7 +57,7 @@
 												<input class="material-icons" type="image"
 														style="border: none; width: 10%; float:left; padding: 0px; margin: 0 5%;" alt="즐겨찾기 제거"
 														src="${pageContext.request.contextPath}/images/star.png"
-														onclick="">
+														onclick="select_bookmark(${userNo},${cw.product[0].pNo})">
 											</c:when>
 											<c:otherwise>
 												<input class="material-icons" type="image"
@@ -111,7 +111,7 @@
 											<input class="material-icons" type="image"
 													style="border: none; width: 4%; float:left; padding: 0px;" alt="즐겨찾기 제거"
 													src="${pageContext.request.contextPath}/images/star.png"
-													onclick="">
+													onclick="select_bookmark(${userNo},${mw.product[0].pNo})">
 										</c:when>
 										<c:otherwise>
 											<input class="material-icons" type="image"

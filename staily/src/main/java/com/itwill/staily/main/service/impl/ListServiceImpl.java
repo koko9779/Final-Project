@@ -68,6 +68,11 @@ public class ListServiceImpl implements ListService{
 	public int deleteBookmark(int bmNo) {
 		return listMapper.deleteBookmark(bmNo);
 	}
+	
+	@Override
+	public int selectBookmarkNo(int mNo, int pNo) throws Exception {
+		return listMapper.selectBookmarkNo(mNo, pNo);
+	}
 
 	@Override
 	public int selectProductCount() {
@@ -83,6 +88,7 @@ public class ListServiceImpl implements ListService{
 	public int selectTepisode(int wNo) {
 		return workDetailMapper.selectTepisode(wNo);
 	}
+
 
 
 

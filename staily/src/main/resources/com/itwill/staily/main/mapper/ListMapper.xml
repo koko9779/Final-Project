@@ -78,7 +78,11 @@
 	<delete id="deleteBookmark" parameterType="int" >
 		delete from bookmark where bm_no=#{bmNo}
 	</delete>
-	<!-- 8.게시물 총 건수 -->		
+	<!-- 8.즐겨찾기 번호찾기 -->
+	<select id="selectBookmarkNo" parameterType="int" resultType="int">
+		select bm_no from bookmark where m_no = #{mNo} and p_no = #{pNo}
+	</select>
+	<!-- 9.게시물 총 건수 -->		
 	<select id="selectProductCount" resultType="int">
 		select count(*) from product where p_check='Y'
 	</select>

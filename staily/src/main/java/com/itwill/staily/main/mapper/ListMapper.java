@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
@@ -20,9 +21,11 @@ public interface ListMapper {
 	4.작품상세페이지 상품리스트 회차별 출력(기업)
 	5.작품상세페이지 상품리스트 회차별 출력(일반)
 			
-	4.즐겨찾기 등록	
-	5.즐겨찾기 제거
-	6.게시물 총 건수
+	6.즐겨찾기 등록	
+	7.즐겨찾기 제거
+	8.즐겨찾기 번호찾기
+	
+	9.게시물 총 건수
 	 */
 
 	public List<Work> selectCProductList(int wNo);
@@ -32,5 +35,7 @@ public interface ListMapper {
 		
 	public int createBookmark(Map map);
 	public int deleteBookmark(int bmNo);
+	public int selectBookmarkNo(@Param("mNo") int mNo,@Param("pNo") int pNo);
+	
 	public int selectProductCount();
 }
