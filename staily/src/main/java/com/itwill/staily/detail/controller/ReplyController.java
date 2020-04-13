@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,20 +42,20 @@ public class ReplyController {
 		return rL;			
 	}
 	
-	/*
+	
 	@RequestMapping("/createReply")
-	public ModelAndView selectReplyOne(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView selectReplyOne(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		
 		try {			
 			String p_no = request.getParameter("p_no");
-			String m_no = request.getParameter("m_no");
+			String m_no = (String)session.getAttribute("m_no");
 			String r_content = request.getParameter("r_content");
 			String r_recommend = request.getParameter("r_recommend");
 			String r_report = request.getParameter("r_report");
 			Reply reply = new Reply(Integer.parseInt(p_no), Integer.parseInt(m_no), 
 					r_content, Integer.parseInt(r_recommend), Integer.parseInt(r_report));
-			boolean create = replyService.createReply(reply);
+			boolean create = replyService.createReply(reply, Integer.parseInt(p_no));
 			
 			if(create) {
 				mv.setViewName("detailtest");
@@ -66,7 +67,7 @@ public class ReplyController {
 		
 		return mv;
 	}
-	*/
+	
 	/*
 	@RequestMapping("/deleteReply")
 	public ModelAndView deleteReply(HttpServletRequest request, HttpServletResponse response) {

@@ -39,7 +39,15 @@ function afterFileTransfer(realname, filename, filesize){
 	filename9.value = filename;
 	filesize9.value = filesize;
 	
-	document.form1.submit();
+	var spl = realname9.value.split('.');
+	
+	if(spl[1] != "jpg" && spl[1] != "png") {
+		document.form1.submit();
+	}
+	else {
+		alert("이미지 파일만 올려주세요");
+	}
+	
 }
 
 </script>
@@ -69,7 +77,7 @@ function afterFileTransfer(realname, filename, filesize){
 			</td>
 		</tr>
 		</table>
-		<input type="button" value="Submit" onclick='formSubmit()'  />
+		<input type="button" value="Submit" onclick='formSubmit()'/>
 		<input type="hidden" id="realname" name="realname"/>
 		<input type="hidden" id="filename" name="filename"/>
 		<input type="hidden" id="filesize" name="filesize"/>		

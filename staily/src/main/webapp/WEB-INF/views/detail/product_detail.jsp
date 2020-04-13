@@ -108,7 +108,7 @@
                   			<input type="hidden" id="mNo">
                   			<input type="hidden" value="0" id="rRecommend">
                   			<input type="hidden" value="0" id="rRecommend">
-                  			<input type="button" value="작성" onClick="createReply()">
+                  			<input type="button" value="작성" id="createreply">
                   		</form>
                   	</c:if>
                   	<p id="replyList"></p>
@@ -129,7 +129,6 @@
 </div>
 
 <%@ include file="/WEB-INF/views/detail/include/include_product_detail_js.jsp" %>
-
 <script type="text/javascript">
 $("#reply").on("click", function(e) {
 	var pNo = ${productOne.get(0).getpNo()};
@@ -140,12 +139,13 @@ $("#reply").on("click", function(e) {
 		data : {"pNo" : pNo},
 		async : false,
 		dataType : "json",
-		success: function(data) {
-				var first = $("#replyList").text(data[0].mName + "\n");
-				first.html(first.html().replace(/\n/g, '<br>'));
-				$("#replyList").append(data[0].rContent + "<br>");
-				$("#replyList").append(data[0].rRecommend + "<br>");
-				$("#replyList").append(data[0].rReport + "<br>");
+		success : function(data) {
+			var first = $("#replyList").text(data[0].mName + "\n");
+			first.html(first.html().replace(/\n/g, '<br>'));
+			$("#replyList").append(data[0].rContent + "<br>");
+			$("#replyList").append(data[0].rRecommend + "<br>");
+			$("#replyList").append(data[0].rReport + "<br>");
+			
 			for(i = 1; i < data.length; i++) {
 				$("#replyList").append(data[i].mName + "<br>");
 				$("#replyList").append(data[i].rContent + "<br>");
@@ -155,8 +155,23 @@ $("#reply").on("click", function(e) {
 		}
 	});
 });
-</script>
 
+$('#createreply').on("click", function(e) {
+	var pNo = ${productOne.get(0).getpNo()};
+	
+	
+	$.ajax({
+		url : "reply_create",
+		type : "POST",
+		data : {"mNo" : mNo, "pNo", pNo},
+		async : false,
+		dataType : "json",
+		success : function(data) {
+			
+		}
+	});
+});
+</script>
 <%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
 </body>
 

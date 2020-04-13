@@ -5,3 +5,4 @@
 
 <!-- Core plugin JavaScript-->
 <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
