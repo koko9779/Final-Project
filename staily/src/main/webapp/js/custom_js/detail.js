@@ -2,6 +2,10 @@
 var guManager = null;
 var guManager2= null;
 
+function productCreate() {
+	
+};
+
 window.onload = function() {
 	var option = {
 		listtype: "thumbnail",

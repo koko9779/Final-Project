@@ -178,7 +178,7 @@
 		</table>
 		
 		<div class="wrap">
-			<button class="button_css" type="button" value="submit">작성하기</button>
+			<button class="button_css" type="button" onClick="productCreate()">작성하기</button>
 			<button class="button_css" type="reset">다시 쓰기</button>
 		</div>
 		

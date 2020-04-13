@@ -54,7 +54,7 @@ public class ProductEx extends com.itwill.staily.util.Product {
 	}
 	
 	public ProductEx(int mNo, int wNo, String pName, int pPrice, String pUrl, String pAddress,
-			String pDaddress, String pCheck, int pView, String pScene) {
+			String pDaddress, String pScene) {
 		super();
 		this.mNo = mNo;
 		this.wNo = wNo;
@@ -63,8 +63,6 @@ public class ProductEx extends com.itwill.staily.util.Product {
 		this.pUrl = pUrl;
 		this.pAddress = pAddress;
 		this.pDaddress = pDaddress;
-		this.pCheck = pCheck;
-		this.pView = pView;
 		this.pScene = pScene;		
 	}
 	
