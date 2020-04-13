@@ -185,7 +185,7 @@ public class MainController {
 		}
 		return result;
 	}
-	
+/*	
 	@RequestMapping("/select_bookmark")
 	public String selectBookmarkNo(@RequestParam int userNo, @RequestParam int pNo, HttpServletRequest request) {
 		try {
@@ -196,6 +196,20 @@ public class MainController {
 			e.printStackTrace();
 		}
 		return "forward:/main/delete_bookmark";
+	}
+*/
+	@RequestMapping("/select_bookmark")
+	@ResponseBody
+	public String selectBookmarkNo(@RequestParam int userNo, @RequestParam int pNo, HttpServletRequest request) {
+		String bmNo = "";
+		try {
+			bmNo = String.valueOf(listService.selectBookmarkNo(userNo, pNo));
+			request.setAttribute("bmNo", bmNo);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bmNo;
 	}
 }
 	

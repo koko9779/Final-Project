@@ -43,7 +43,7 @@
 									alt="${cw.product[0].pName}" />
 								</a>
 							</div>
-							<div>
+							<div pNo="${cw.product[0].pNo}">
 								<c:choose>
 									<c:when test="${!empty userNo}">
 										<c:set var="cnt" value="0"/>
@@ -52,22 +52,20 @@
 												<c:set var="cnt" value="${cnt+1}"/>
 											</c:if>
 										</c:forEach>
-										<div id="bookmarkIcon">
 										<c:choose>
 											<c:when test="${cnt>0}">
-												<input class="material-icons unbookmarking" type="image" 
+												<input class="material-icons unbookmarking" type="image"
 														style="border: none; width: 10%; float:left; padding: 0px; margin: 0 5%;" alt="즐겨찾기 제거"
 														src="${pageContext.request.contextPath}/images/star.png"
-														onclick="select_bookmark(${userNo},${cw.product[0].pNo})">
+														onclick="select_bookmark(${userNo},${cw.product[0].pNo});return false;">
 											</c:when>
 											<c:otherwise>
 												<input class="material-icons bookmarking" type="image"
 												style="border: none; width: 10%; float:left; padding: 0px; margin: 0 5%;" alt="즐겨찾기 등록"
 												src="${pageContext.request.contextPath}/images/emptystar.png"
-												onclick="create_bookmark(${userNo},${cw.product[0].pNo});">	
+												onclick="create_bookmark(${userNo},${cw.product[0].pNo});return false;">	
 											</c:otherwise>
 										</c:choose>
-										</div>
 									</c:when>
 									<c:otherwise>
 										<input class="material-icons" type="image"
@@ -87,7 +85,7 @@
 			<!-- 일반회원 -->
 			<article>
 				<c:forEach var="mw" items="${mw}">
-					<form id="product_${mw.product[0].pNo}">
+					<form id="product_${mw.product[0].pNo}" onsubmit="">
 						<h2 value="상품이름" >${mw.product[0].pName}</h2>
 						<input type="hidden" value="${userNo}" name="userNo">
 						<input type="hidden" value="${mw.product[0].pNo}" name="pNo">
@@ -110,13 +108,13 @@
 											<input class="material-icons" type="image" 
 													style="border: none; width: 4%; float:left; padding: 0px;" alt="즐겨찾기 제거"
 													src="${pageContext.request.contextPath}/images/star.png"
-													onclick="select_bookmark(${userNo},${mw.product[0].pNo})">
+													onclick="select_bookmark(${userNo},${mw.product[0].pNo});return false;">
 										</c:when>
 										<c:otherwise>
 											<input class="material-icons" type="image"
 											style="border: none; width: 4%; float:left; padding: 0px;" alt="즐겨찾기 등록"
 											src="${pageContext.request.contextPath}/images/emptystar.png"
-											onclick="create_bookmark(${userNo},${mw.product[0].pNo})">	
+											onclick="create_bookmark(${userNo},${mw.product[0].pNo});return false;">	
 										</c:otherwise>
 									</c:choose>
 								</c:when>
