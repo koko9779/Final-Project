@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.itwill.staily.mypage.model.dto.Friend;
+import com.itwill.staily.util.Member;
 
 
 public interface FriendMapper {
@@ -22,5 +23,8 @@ public interface FriendMapper {
 	public boolean deleteFriend(int fPk) throws Exception;
 	
 	public String findFriend(String mId) throws Exception;
+	
+	public int findFriendNo(String mId) throws Exception;
 
+	public int duplicateFriend(String mId) throws Exception;
 }

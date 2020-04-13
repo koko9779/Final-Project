@@ -52,7 +52,7 @@ public class MypageTest {
 		
 		//MypageService
 		
-		/***********************MYpage**********************************************/
+		/***********************MYpage**********************************************
 		Member m = mp.selectOne(5);
 		System.out.println(m.getmId()+m.getmName()+m.getmNo()+m.getmType());
 		m.setmName("수수정정");
@@ -77,16 +77,16 @@ public class MypageTest {
 		
 		
 		
-		/*********************************Friend**************************************
+		/*********************************Friend**************************************/
 		System.out.println(fm.findFriend("hiphopmy"));
 		//System.out.println(fm.deleteFriend(9));
 		//Friend f = new Friend(2, 3);
-		System.out.println(fm.createFriend(4,3));
+		System.out.println(fm.createFriend(2,7));
 		//List<Friend> friendList = fm.selectList(1);
 		//for (Friend friend : friendList) {
 		//	System.out.println(friend.getfPk()+","+friend.getmNo()+","+friend.getfNo()+","+friend.getmName());
 		//}
-		******************************************************************************/
+		/******************************************************************************/
 		
 		/*****************************Message****************************************
 		List<Message> messageList = ms.selectMessageList(2);

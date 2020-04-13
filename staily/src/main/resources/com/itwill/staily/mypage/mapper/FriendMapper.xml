@@ -6,7 +6,7 @@
 <select id="selectList"
 		parameterType="int"
 		resultType="com.itwill.staily.mypage.model.dto.Friend">
-	select f.m_no, f.f_no, m.m_name ,f.f_pk
+	select f.m_no, f.f_no, m.m_id ,f.f_pk
 	from friend f 
 	join member m
 	on m.m_no = f.f_no
@@ -27,14 +27,29 @@
 </delete>
 
 <!-- 친구 검색 -->
-
 <select id="findFriend"
 		parameterType="String"
 		resultType="String">
 	select m_id
 	from member
 	where m_id=#{mId}		
-		
+</select>
+
+<select id="findFriendNo"
+		parameterType="String"
+		resultType="int">
+	select m_no
+	from member
+	where m_id=#{mId}
+</select>
+
+<!-- 중복체크 -->
+<select id="duplicateFriend"
+		parameterType="String"
+		resultType="int">
+ 	select count(*)
+ 	from member
+ 	where m_id = #{mId}
 </select>
 
 
