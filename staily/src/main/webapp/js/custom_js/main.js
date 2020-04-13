@@ -139,6 +139,11 @@ function workpage(wNo){
 	work_form.action = "worklist_select";
 	work_form.submit();
 };
+function select_bookmark(mNo,pNo){
+	var product_form = document.getElementById('product_'+pNo);
+	product_form.action = "select_bookmark";
+	product_form.submit();
+}
 /************Controller create_bookmark*******************/
 
 function create_bookmark(userNo,pNo){
@@ -152,7 +157,7 @@ function create_bookmark(userNo,pNo){
 /************Controller remove_bookmark*******************/
 function remove_bookmark(bmNo){
 	  var bookmark_form = document.getElementById('bookmark_'+bmNo);
-	  alert("즐겨찾기에서 상품이 제거됐습니다");
+//	  alert("즐겨찾기에서 상품이 제거됐습니다");
 	  bookmark_form.action = "delete_bookmark";
 	  bookmark_form.submit();
 };

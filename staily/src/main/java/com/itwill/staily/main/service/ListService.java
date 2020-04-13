@@ -3,6 +3,8 @@ package com.itwill.staily.main.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itwill.staily.mypage.model.dto.Bookmark;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
@@ -26,6 +28,8 @@ public interface ListService {
 	public int createBookmark(Map map) throws Exception;
 	//즐겨찾기 제거
 	public int deleteBookmark(int bmNo) throws Exception;
+	//즐겨찾기 번호 찾기
+	public int selectBookmarkNo(@Param("mNo") int mNo,@Param("pNo") int pNo) throws Exception;
 	//게시물 총 건수
 	public int selectProductCount() throws Exception;		
 

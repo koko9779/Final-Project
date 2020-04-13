@@ -1,5 +1,7 @@
 package com.itwill.staily.main.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.staily.main.service.ListService;
 import com.itwill.staily.main.service.MainService;
@@ -164,8 +167,11 @@ public class MainController {
 	/************************************************************/
 	
 	@RequestMapping("/delete_bookmark")
-	public String deleteBookmark(@RequestParam int bmNo) {
+	public String deleteBookmark(@RequestParam(name="bmNo",defaultValue = "-999") int bmNo, HttpServletRequest request) {
 		try {
+			if(bmNo==-999) {
+				bmNo = (Integer)request.getAttribute("bmNo");			
+			}
 			System.out.println(bmNo);
 			int success = listService.deleteBookmark(bmNo);
 			System.out.println(success);
@@ -175,4 +181,18 @@ public class MainController {
 		}
 		return "forward:/main/index";
 	}
+	
+	@RequestMapping("/select_bookmark")
+	public String selectBookmarkNo(@RequestParam int userNo, @RequestParam int pNo, HttpServletRequest request) {
+		try {
+			int bmNo = listService.selectBookmarkNo(userNo, pNo);
+			System.out.println(bmNo);
+			request.setAttribute("bmNo", bmNo);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "forward:/main/delete_bookmark";
+	}
 }
+	
