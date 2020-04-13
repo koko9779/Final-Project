@@ -3,7 +3,11 @@ var guManager = null;
 var guManager2= null;
 
 function productCreate() {
+	document.ff.action = "product_create_action";
+	document.ff.method = "POST";
+	document.ff.submit();
 	
+	alert("작품 등록 성공!");
 };
 
 window.onload = function() {

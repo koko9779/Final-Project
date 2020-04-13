@@ -62,9 +62,9 @@ public class ProductDetailController {
 			String pScene = request.getParameter("pScene");
 			ProductEx p = new ProductEx(Integer.parseInt(mNo), Integer.parseInt(wNo), 
 					pName, Integer.parseInt(pPrice), pUrl, pAddress, pDaddress, pScene);
-			
-			//boolean create = productDetailService.createProduct(p);
 			/*
+			boolean create = productDetailService.createProduct(p);
+			
 			if(create) {
 				request.setAttribute("productEx", p);				
 			}
@@ -74,7 +74,7 @@ public class ProductDetailController {
 			e.printStackTrace();
 		}
 		
-		mv.setViewName("/");
+		mv.setViewName("redirect:..");
 		
 		return mv;		
 	}	
