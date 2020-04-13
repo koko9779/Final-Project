@@ -128,11 +128,14 @@ function bm_productpage(bmNo,pNo){
 	product_form.action = "../detail/product_detail";
 	product_form.submit();
 };
+/************Controller productpage*******************/
 function productpage(pNo){
 	var product_form = document.getElementById('product_'+pNo);
 	product_form.action = "../detail/product_detail";
 	product_form.submit();
 };
+/************Controller workpage*******************/
+
 function workpage(wNo){
 	var work_form = document.getElementById('work_'+wNo);
 	work_form.action = "worklist_select";
@@ -149,16 +152,17 @@ function select_bookmark(mNo,pNo){
 */
 /************RestController select_bookmark*******************/
 function select_bookmark(userNo,pNo){
+	//alert("즐겨찾기에서 상품이 제거됐습니다");
 	var params= "userNo="+userNo+"&pNo="+pNo;
 	$.ajax({
 		url: "select_bookmark",
 		method: "POST",
 		data: params,
-		success:function(){
-			location.reload();
+		success:function(bmNo){
+			console.log(bmNo);
+			delete_bookmark(bmNo);
 		}
 	});
-	
 }
 /************Controller create_bookmark*******************/
 /*
@@ -171,27 +175,23 @@ function create_bookmark(userNo,pNo){
 */
 /*************RestController create_bookmark********************/
 function create_bookmark(userNo,pNo){
-	alert('즐겨찾기에 상품이 추가되었습니다');
+	
+	//alert('즐겨찾기에 상품이 추가되었습니다.'+event.target);
 	var params= "userNo="+userNo+"&pNo="+pNo;
+	var product = "#product_"+pNo;
 	$.ajax({
 		url: "create_bookmark",
 		method:"POST",
 		data: params,
 		success:function(result){
-			console.log(result);
 			if(result=='true'){
-				
-				var html = "<input class='material-icons unbookmarking' type='image' "
-						+ "style='border: none; width: 10%; float:left; padding: 0px; margin: 0 5%;' alt='즐겨찾기 제거' "
-						+ "src='${pageContext.request.contextPath}/images/star.png' "
-						+ "onclick='select_bookmark(${userNo},${cw.product[0].pNo})'>";
-			
-			$('#bookmarkIcon').empty();
-			$('#bookmarkIcon').append(html);
-			location.reload();
+				console.log($(product).find('.material-icons').attr('src')+"------------->");
+				$(product).find('.material-icons').attr('src','../images/star.png');
 			}
 		}			
 	});
+	
+	//location.reload();
 };
 /************Controller delete_bookmark*******************/
 /*
@@ -205,24 +205,19 @@ function delete_bookmark(bmNo){
 */
 /***********RestController delete_bookmark*******************/
 function delete_bookmark(bmNo){
-//	  alert("즐겨찾기에서 상품이 제거됐습니다");
-		var params= "bmNo="+bmNo;
+	alert("즐겨찾기에서 상품이 제거됐습니다");
+	var params= "bmNo="+bmNo;
+	var pNo = $(this).parent.pNo();
+	console.log(pNo);
+	var product = "#product_"+pNo;
 		$.ajax({
 			url: "delete_bookmark",
 			method:"POST",
 			data: params,
 			success:function(result){
-				console.log(result);
 				if(result=='true'){
-					
-					var html = "<input class='material-icons bookmarking' type='image' "
-								+ "style='border: none; width: 10%; float:left; padding: 0px; margin: 0 5%;' alt='즐겨찾기 등록' "
-								+ "src='${pageContext.request.contextPath}/images/emptystar.png' "
-								+ "onclick='create_bookmark(${userNo},${cw.product[0].pNo});'>";
-				
-				$('#bookmarkIcon').empty();
-				$('#bookmarkIcon').append(html);
-				location.reload();
+					console.log($(product).find('.material-icons').attr('src')+"------------->");
+					$(product).find('.material-icons').attr('src','../images/star.png');
 				}
 			}
 				
