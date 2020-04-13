@@ -5,6 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.staily.detail.mapper.ReplyMapper;
 import com.itwill.staily.detail.model.dto.Reply;
@@ -37,10 +40,13 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public boolean createReply(Reply reply) throws Exception {
+	@Transactional(isolation = Isolation.READ_UNCOMMITTED, propagation = Propagation.REQUIRED)
+	public boolean createReply(Reply reply, int pNo) throws Exception {
 		boolean check = false;
 		
 		if(replyMapper.createReply(reply)) {
+			replyMapper.selectReplyList(pNo);
+			
 			check = true;			
 		}
 		else {

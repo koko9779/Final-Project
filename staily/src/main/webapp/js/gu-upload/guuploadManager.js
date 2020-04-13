@@ -100,7 +100,7 @@ var guUploadManager = function(option) {
 		
 		if (option.useButtons!==false) {
 			var browseBtn = guTool.createTextBox("button", guupload, "browseBtn", true);
-			browseBtn.setAttribute("value", "Browse");
+			browseBtn.setAttribute("value", "찾아보기");
 			addEvent("click", browseBtn, function(){filetag.click();});
 		}
 		addEvent("dblclick", guFileList, function(){filetag.click();});
@@ -116,7 +116,7 @@ var guUploadManager = function(option) {
 				upload_progress_handler: uploadProgress,
 				upload_success_handler : this.uploadSuccess
 		};
-		guFileList.innerHTML = '<div class="dragMessage">Drag files here.</div>';
+		guFileList.innerHTML = '<div class="dragMessage">이미지를 여기에 드래그 하세요</div>';
 
 		this.uploader = new GUUpload(settings);
 	} else {
