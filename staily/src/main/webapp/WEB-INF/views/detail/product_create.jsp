@@ -89,7 +89,7 @@
 							상품이 나온 회차</label></th>
 					<td class="text-left">
 						<div class="col">
-							<select name="wdEpisode">
+							<select id="wdEpisode">
 								<c:forEach var="i" begin="1" end="${workOne.wTepisode}">
 									<option value="${i}">${i}화</option>
 								</c:forEach>
@@ -162,7 +162,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="bg-light essentia"><label for="pScene">
+					<th scope="row" class="bg-light essentia"><label for="pdImage">
 							상품 이미지<br>(최대 10장)</label></th>
 					<td class="text-left">
 						<div class="col">

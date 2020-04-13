@@ -39,8 +39,10 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 
 	@Override
 	@Transactional(isolation = Isolation.READ_UNCOMMITTED, propagation = Propagation.REQUIRED)
-	public boolean createProduct(ProductEx product, @Param("wdEpisode") int wdEpisode, @Param("pNo") int pNo) throws Exception {
+	public boolean createProduct(ProductEx product, @Param("wdEpisode") int wdEpisode) throws Exception {
 		boolean check = false;
+		int pNo = productDetailMapper.pNo_nextval();
+		
 		boolean p = productDetailMapper.createProduct(product);
 		boolean wd = workDetailMapper.createWorkDetail(pNo, wdEpisode);
 		
@@ -145,12 +147,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 	}
 
 	@Override
-	public int pNo_currval() throws Exception {
-		return productDetailMapper.pNo_currval();
-	}
-
-	@Override
 	public int pNo_nextval() throws Exception {
-		return 0;
+		return productDetailMapper.pNo_nextval();
 	}
 }

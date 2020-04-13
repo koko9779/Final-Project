@@ -33,4 +33,6 @@ public interface ProductDetailMapper {
 	
 	public boolean increaseProductView(int pNo);
 	
+	public int pNo_nextval();	
+	
 }

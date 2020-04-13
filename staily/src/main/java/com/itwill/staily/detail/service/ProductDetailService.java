@@ -9,7 +9,7 @@ import com.itwill.staily.detail.model.dto.ProductEx;
 public interface ProductDetailService {
 	public List<ProductEx> selectProductOne(int pNo) throws Exception;
 	
-	public boolean createProduct(ProductEx product, @Param("wdEpisode") int wdEpisode, @Param("pNo") int pNo) throws Exception;
+	public boolean createProduct(ProductEx product, @Param("wdEpisode") int wdEpisode) throws Exception;
 	
 	public boolean createProductDetail(ProductEx product) throws Exception;
 	
@@ -24,8 +24,6 @@ public interface ProductDetailService {
 	public int checkCompany(int mNo) throws Exception;
 	
 	public boolean increaseProductView(int pNo) throws Exception;
-	
-	public int pNo_currval() throws Exception;
 	
 	public int pNo_nextval() throws Exception;
 }
