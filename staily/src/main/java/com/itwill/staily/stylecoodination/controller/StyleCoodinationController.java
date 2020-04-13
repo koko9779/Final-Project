@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -94,11 +95,13 @@ public class StyleCoodinationController {
 	}
 	
 	@RequestMapping(value = "/style_create_board_action", method = RequestMethod.POST)
-	public String style_create_action_post(Board board) {
+	public String style_create_action_post(@ModelAttribute Board board) {
 		String forwardPath = "";
 		try {
+			//임시로 넣어준 board
+			board.setmNo(3);
 			styleCoodinationService.writeBoard(board);
-			forwardPath = "style/style_main_read";
+			forwardPath = "/style/style_main_read";
 		} catch (Exception e) {
 			e.printStackTrace();
 			forwardPath = "redirect:/404.jsp";
@@ -159,7 +162,7 @@ public class StyleCoodinationController {
 
 	@RequestMapping(value="ImgUpload2", method=RequestMethod.POST)
 	@ResponseBody
-	public String fileUpload(HttpServletRequest req, HttpServletResponse resp, 
+	public void fileUpload(HttpServletRequest req, HttpServletResponse resp, 
                  MultipartHttpServletRequest multiFile) throws Exception {
 		JsonObject json = new JsonObject();
 		PrintWriter printWriter = null;
@@ -172,6 +175,7 @@ public class StyleCoodinationController {
 						String fileName = file.getName();
 						byte[] bytes = file.getBytes();
 						String uploadPath = req.getServletContext().getRealPath("/img");
+						System.out.println(uploadPath);
 						File uploadFile = new File(uploadPath);
 						if(!uploadFile.exists()){
 							uploadFile.mkdirs();
@@ -201,12 +205,11 @@ public class StyleCoodinationController {
                         }
                         if(printWriter != null){
                             printWriter.close();
-                        }		
+                        }
 					}
 				}
 			}
 		}
-		return null;
 	}	
 
 

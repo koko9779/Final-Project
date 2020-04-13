@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.board-top {
+	color: #e76115;
+}
+
+.board-title {
+	 display: inline-block;
+}
+
+.text-left {
+	text-align: right;
+}
+
+.font-small {
+	font-size: small;
+}

@@ -31,29 +31,25 @@
 		<%@ include file="/WEB-INF/views/include/include_work_sidebar.jsp"%>
 
 		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
-		<form action="../NewFile.jsp" method="post" onsubmit="return FormSubmit(this);">
+		<form name="boardWriteF" onSubmit="return false;">
 			<div class="row justify-content-md-center">
 					제목
 					<input type="text" name="bTitle" class="form-control">
-					<select class="custom-select" name="bType"  id="inputGroupSelect03">
+					<!-- 
+					<input type="hidden" name="mNo" class="form-control" value="">
+					 -->
+					<select class="custom-select" name="bType" id="inputGroupSelect03">
 						<option selected>분류</option>
-						<option value="1">문의</option>
-						<option value="2">스타일코디</option>
-						<option value="3">아무거나~</option>
+						<option value="Q">문의</option>
+						<option value="S">스타일코디</option>
 					</select>
 			</div>
 			<div class="row justify-content-md-center">
-						<textarea id="contents" name="contents"></textarea>
+						<textarea id="contents" name="bContent"></textarea>
 						<script>
 							CKEDITOR.replace('contents',{
 								filebrowserUploadUrl : '/staily/style/ImgUpload2'
 							});
-							
-							
-							
-								
-
-
 						</script>
 			</div>
 			<div class="row justify-content-md-center" style="margin-bottom: 30px">
@@ -66,24 +62,30 @@
 			</div>
 			<div class="row justify-content-md-center">
 				<button type="submit" class="btn btn-outline-secondary"
-					style="width: 20%; font-weight: bold">등 록</button>
+					style="width: 20%; font-weight: bold" onclick="boardCreate();">등 록</button>
 			</div>
 		</form>
 		</div>
 	</div>
 </div>
 <script type="text/javascript">
-function FormSubmit(f) { 
+function boardCreate() { 
 	CKEDITOR.instances.contents.updateElement(); 
-	if(f.contents.value == "") { 
-		alert("내용을 입력해 주세요."); 
-		return false; 
+	if(document.boardWriteF.bTitle.value === "") { 
+		alert("제목을 입력해 주세요"); 
+		return; 
+	}else if(document.boardWriteF.bType.value === "분류") { 
+		alert("분류를 지정해 주세요"); 
+		return; 
+	}else if(document.boardWriteF.bContent.value === "") { 
+		alert("내용을 입력해 주세요"); 
+		return; 
+	}else {
+		document.boardWriteF.action = "${pageContext.request.contextPath}/style/style_create_board_action";
+		document.boardWriteF.method = "POST";
+		document.boardWriteF.submit();	
 	} 
-	//alert(f.contents.value); 
-	// 전송은 하지 않습니다. 
-	return true; 
 }
-
 
 </script>
 <%@ include file="/WEB-INF/views/include/include_js.jsp"%>
