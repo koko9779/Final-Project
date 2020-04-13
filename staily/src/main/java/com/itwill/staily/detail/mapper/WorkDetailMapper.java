@@ -11,7 +11,7 @@ public interface WorkDetailMapper {
 	
 	public List<Work> selectWorkAll();
 	
-	public boolean createWorkDetail(@Param("pNo") int pNo, @Param("wNo") int wNo, @Param("wdEpisode") int wdEpisode);
+	public boolean createWorkDetail(@Param("pNo") int pNo, @Param("wdEpisode") int wdEpisode);
 	
 	public int selectTepisode(int wNo);
 	

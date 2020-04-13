@@ -48,29 +48,27 @@ public class ProductDetailController {
 	
 	
 	@RequestMapping("/product_create_action")
-	public ModelAndView createProduct(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView createProduct(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		
 		try {			
-			String mNo = request.getParameter("mNo");
+			String mNo = (String)session.getAttribute("userNo");
 			String wNo = request.getParameter("wNo");
 			String pName = request.getParameter("pName");
 			String pPrice = request.getParameter("pPrice");
 			String pUrl = request.getParameter("pUrl");
 			String pAddress = request.getParameter("pAddress");
 			String pDaddress = request.getParameter("pDaddress");
-			String pCheck = request.getParameter("pCheck");
-			String pView = request.getParameter("pView");
 			String pScene = request.getParameter("pScene");
 			ProductEx p = new ProductEx(Integer.parseInt(mNo), Integer.parseInt(wNo), 
-					pName, Integer.parseInt(pPrice), pUrl, pAddress, pDaddress, pCheck,
-					Integer.parseInt(pView), pScene);
+					pName, Integer.parseInt(pPrice), pUrl, pAddress, pDaddress, pScene);
 			
-			boolean create = productDetailService.createProduct(p);
-			
+			//boolean create = productDetailService.createProduct(p);
+			/*
 			if(create) {
 				request.setAttribute("productEx", p);				
 			}
+			*/
 			
 		} catch (Exception e) {
 			e.printStackTrace();
