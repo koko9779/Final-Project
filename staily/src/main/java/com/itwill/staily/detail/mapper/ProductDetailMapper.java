@@ -32,6 +32,8 @@ public interface ProductDetailMapper {
 	public int checkCompany(int mNo);
 	
 	public boolean increaseProductView(int pNo);
+
+	public int pNo_currval();
 	
 	public int pNo_nextval();	
 	

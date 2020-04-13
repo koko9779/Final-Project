@@ -48,7 +48,7 @@
 						<textarea id="contents" name="bContent"></textarea>
 						<script>
 							CKEDITOR.replace('contents',{
-								filebrowserUploadUrl : '/staily/style/ImgUpload2'
+								filebrowserUploadUrl : '/staily/style/ImgUpload'
 							});
 						</script>
 			</div>
