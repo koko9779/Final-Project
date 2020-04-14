@@ -8,6 +8,7 @@
 <link href="${pageContext.request.contextPath}/css/venobox.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/main/main_style_custom.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/style/board.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <!-- javascript -->

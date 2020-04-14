@@ -10,6 +10,7 @@
 <script src="https://use.fontawesome.com/4dfd2d448a.js"></script>
 -->
 <script src="${pageContext.request.contextPath}/js/custom.js"></script>
+
 <!-- custom Javs Script File -->
 <script src="${pageContext.request.contextPath}/js/custom_js/member.js"></script>
 <script src="${pageContext.request.contextPath}/js/custom_js/main.js"></script>
