@@ -207,8 +207,15 @@ public class AdminController {
 		}
 		return"admin/work";
 	}
-	@RequestMapping("/work_update")
-	public String workAdminUpdate() {
+	@RequestMapping("/work_select")
+	public String workAdminSelect(@RequestParam("wNo") int wNo,HttpServletRequest request) {
+		Work work = null;
+		try {
+			work = adminService.selectWorkOne(wNo);
+			request.setAttribute("work", work);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "admin/work_update";
 	}
 }

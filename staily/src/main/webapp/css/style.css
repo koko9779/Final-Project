@@ -538,11 +538,11 @@ hr.space-40 {
 
 .navbar.banner--clone .logo img {
 	max-height: 40px;
-	margin: 35px 0;
+	margin: 31px 0;
 }
 
 .navbar.banner--clone .nav li a {
-	font-size: 17px;
+	font-size: 15px;
 }
 
 .navbar.banner--clone .nav li.active a {

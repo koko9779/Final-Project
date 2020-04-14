@@ -237,6 +237,16 @@ $(document).ready(function() {
 				          focusOnSelect: true,
 				       });
 					/** *****상품 펑션 끝********** */
+				    /** *****작품 펑션 시작********** */
+				   $(".wCheckBtn").click(
+							function(e) {
+								var checkBtn = $(this);
+								var tr = checkBtn.parent().parent();
+								var td = tr.children();
+								var no = td.eq(1).text();
+								window.open("work_select?" + "wNo="+ no, "작품정보수정",
+											"width=685, height=685, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
+								});
 
 });
 
