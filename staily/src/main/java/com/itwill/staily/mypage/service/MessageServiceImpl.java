@@ -26,13 +26,13 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public Message selectOne(int msNo) throws Exception {
-		return messageMapper.selectOne(msNo);
+	public Message selectOne(int rNo,int msNo) throws Exception {
+		return messageMapper.selectOne(rNo,msNo);
 	}
 
 	@Override
-	public List<Message> selectList(int mNo) throws Exception {
-		return messageMapper.selectList(mNo);
+	public List<Message> selectList(int rNo) throws Exception {
+		return messageMapper.selectList(rNo);
 	}
 
 	@Override
@@ -45,9 +45,5 @@ public class MessageServiceImpl implements MessageService {
 		return messageMapper.deleteMessage(msNo);
 	}
 
-	@Override
-	public List<Message> selectMessageList(int mNo) throws Exception {
-		return messageMapper.selectMessageList(mNo);
-	}
 
 }

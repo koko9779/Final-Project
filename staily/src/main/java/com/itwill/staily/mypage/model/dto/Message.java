@@ -9,50 +9,31 @@ public class Message {
 	private String msContent;	//메시지내용
 	private String msDate;		//메시지일시
 	private String mId;			//회원아이디
+	private int rNo;			//받는사람번호
 	
 	private Member member;
 	
 	public Message() {
 		
 	}
-	
-	public Message(int mNo, String msTitle, String msContent) {
-		super();
-		this.mNo = mNo;
-		this.msTitle = msTitle;
-		this.msContent = msContent;
-	}
 
-
-	public String getmId() {
-		return mId;
-	}
-
-
-	public void setmId(String mId) {
-		this.mId = mId;
-	}
-
-	public Member getMember() {
-		return member;
-	}
-
-
-	public void setMember(Member member) {
-		this.member = member;
-	}
-
-
-	public Message(int msNo, int mNo, String msTitle, String msContent, String msDate) {
+	public Message(int msNo, int mNo, String msTitle, String msContent, String msDate, int rNo) {
 		super();
 		this.msNo = msNo;
 		this.mNo = mNo;
 		this.msTitle = msTitle;
 		this.msContent = msContent;
 		this.msDate = msDate;
+		this.rNo = rNo;
 	}
-
-
+	
+	public Message(int mNo, String msTitle, String msContent, int rNo) {
+		super();
+		this.mNo = mNo;
+		this.msTitle = msTitle;
+		this.msContent = msContent;
+		this.rNo = rNo;
+	}
 
 	public int getMsNo() {
 		return msNo;
@@ -93,5 +74,33 @@ public class Message {
 	public void setMsDate(String msDate) {
 		this.msDate = msDate;
 	}
+
+	public String getmId() {
+		return mId;
+	}
+
+	public void setmId(String mId) {
+		this.mId = mId;
+	}
+
+	public int getrNo() {
+		return rNo;
+	}
+
+	public void setrNo(int rNo) {
+		this.rNo = rNo;
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+	
+	
+	
+	 
 	
 }

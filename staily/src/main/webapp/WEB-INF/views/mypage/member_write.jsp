@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
 <%@ include file="/WEB-INF/views/mypage/include/include_top.jsp" %>
+
 <script type="text/javascript">
 $(function(){
 	$('#deleteWriteBtn').click(function(e){

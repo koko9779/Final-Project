@@ -27,4 +27,6 @@ public interface FriendMapper {
 	public int findFriendNo(String mId) throws Exception;
 
 	public int duplicateFriend(String mId) throws Exception;
+	
+	public int duplicateFriendNo(@Param("mNo") int mNo, @Param("fNo") int fNo) throws Exception;
 }
