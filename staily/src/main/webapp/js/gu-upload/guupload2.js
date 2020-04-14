@@ -216,7 +216,7 @@ GUUpload.prototype.getFileInfo = function (id) {
 };
 
 GUUpload.prototype.queueEvent = function (handlerName, argumentArray) {
-	if (argumentArray === undefined) {
+	if (argumentArray === "undefined2") {
 		argumentArray = [];
 	} else if (!(argumentArray instanceof Array)) {
 		argumentArray = [argumentArray];

@@ -1,83 +1,102 @@
 //product_create.jsp
 var guManager = null;
-var guManager2= null;
-
-function productCreate() {
-	document.ff.action = "product_create_action";
-	document.ff.method = "POST";
-	document.ff.submit();
-	
-	alert("작품 등록 성공!");
-};
+var guManager2 = null;
 
 window.onload = function() {
+	
 	var option = {
-		listtype: "thumbnail",
-		fileid: "uploadScene",
-		uploadURL: "upload",
-		maxFileCount: 1,
-		maxFileSize: 3,
-		afterFileTransfer: afterFileTransfer
+		listtype : "thumbnail",
+		fileid : "uploadScene",
+		uploadURL : "upload",
+		maxFileCount : 1,
+		maxFileSize : 3,
+		afterFileTransfer : afterFileTransfer
 	}
 	guManager = new guUploadManager(option);
 	
+	/*
+	$.ajax({
+		url: "pNo_nextval",
+		dataType: "json",
+		error: function() {
+			alert("에러");
+		},
+		success: function(data) {
+			alert(data);
+			alert("성공");
+		}
+	});
+	*/		
+
 	var option2 = {
-			listtype: "thumbnail",
-			fileid: "uploadScene2",
-			uploadURL: "upload",
-			maxFileCount: 10,
-			maxFileSize: 3,
-			afterFileTransfer: afterFileTransfer2
+		listtype : "thumbnail",
+		fileid : "uploadScene2",
+		uploadURL : "upload2",
+		maxFileCount : 10,
+		maxFileSize : 3,
+		afterFileTransfer : afterFileTransfer2
 	}
-	guManager2 = new guUploadManager(option2);
+	guManager2 = new guUploadManager2(option2);
+
 }
 
-function formSubmit(){
-	guManager.uploadFiles();
-	guManager2.uploadFiles();
-	
-	return ;
-}
+function afterFileTransfer(realname, filename, filesize) {
 
-function afterFileTransfer(realname, filename, filesize){
+	var realname9 = document.getElementById('realname');
+	var filename9 = document.getElementById('filename');
+	var filesize9 = document.getElementById('filesize');
 
-	var realname9 = document.getElementById( 'realname' );
-	var filename9 = document.getElementById( 'filename' );
-	var filesize9 = document.getElementById( 'filesize' );
-	
 	realname9.value = realname;
 	filename9.value = filename;
 	filesize9.value = filesize;
-	
+
+	document.fff.submit();
+	/*
 	var spl = realname9.value.split('.');
-	
-	if(spl[1] != "jpg" && spl[1] != "png") {
-		document.form1.submit();
-	}
-	else {
+	alert(realname9.value);
+	if (spl[1] == "jpg" || spl[1] == "png") {
+		document.ff.submit();
+	} else {
 		alert("이미지 파일만 올려주세요");
-	}
+	}	
+ 	*/
 }
 
-function afterFileTransfer2(realname2, filename2, filesize2){
-	
-	var realname9 = document.getElementById( 'realname2' );
-	var filename9 = document.getElementById( 'filename2' );
-	var filesize9 = document.getElementById( 'filesize2' );
-	
+function afterFileTransfer2(realname2, filename2, filesize2) {
+
+	var realname9 = document.getElementById('realname2');
+	var filename9 = document.getElementById('filename2');
+	var filesize9 = document.getElementById('filesize2');
+
 	realname9.value = realname2;
 	filename9.value = filename2;
 	filesize9.value = filesize2;
 	
+	document.ff.submit();
+	/*
 	var spl = realname9.value.split('.');
-	
-	if(spl[1] != "jpg" && spl[1] != "png") {
+
+	if (spl[1] != "jpg" && spl[1] != "png") {
 		document.form1.submit();
-	}
-	else {
+	} else {
 		alert("이미지 파일만 올려주세요");
 	}
+	 */
 }
+
+function pdImageCreate() {
+	location.
+}
+
+function productCreate() {
+	//document.ff.action = "upload";
+	//document.ff.method = "POST";
+	//document.ff.submit();
+	
+	guManager.uploadFiles();
+	//guManager2.uploadFiles();
+	
+};
 
 function work_search() {
 	location.href = 'work_select';

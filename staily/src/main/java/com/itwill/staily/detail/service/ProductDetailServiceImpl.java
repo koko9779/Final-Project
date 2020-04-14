@@ -150,4 +150,9 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 	public int pNo_nextval() throws Exception {
 		return productDetailMapper.pNo_nextval();
 	}
+	
+	@Override
+	public int pNo_currval() throws Exception {
+		return productDetailMapper.pNo_currval();
+	}
 }
