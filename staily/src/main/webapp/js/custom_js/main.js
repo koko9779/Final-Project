@@ -36,12 +36,10 @@ $(document).ready(function(){
 			success:function(jsonData){
 				var html = "";
 				var userNo = jsonData.userNo;
-				console.log(userNo);
+				console.log("userNo:~~~~~~~~~~~~~~"+userNo);
 				var episode = jsonData.mwe[0].wdEpisode;
-				console.log("!!!"+episode);
 				
 				var bmList = jsonData.bmList;
-				console.log("!!!"+bmList);
 				
 				var mweArray = jsonData.mwe;
 				html += "<article>";
@@ -67,28 +65,38 @@ $(document).ready(function(){
 					html += " alt='"+pName+"' style='width:850px; height:450px; margin: 0;cursor: pointer;'/>";
 					html += "</div>";
 					html += "<div style='height:100px;'>";
-					/*
+					
 					if(userNo!=null){
-						console.log("login-->>>>>>>>>>>>>")
-						var cnt = 0;
-						for (var i = 0; i < bmList.length; i++) {
-							if(pPno==bmList.product.pNo){
-								console.log("cnt1-->>>>>>>>>>>>>")
-								cnt = 1;
-								break;
+						if(bmList.length!=0){
+							console.log("login-->>>>>>>>>>>>>")
+							console.log(bmList);
+							var cnt = 0;
+							for (var i = 0; i < bmList.length; i++) {
+								if(pPno==bmList[i].product.pNo){
+									console.log("cnt1-->>>>>>>>>>>>>")
+									cnt = 1;
+									break;
+								}
 							}
-						}
-						if(cnt==1){
-							html += "<input class='material-icons' type='image'"; 
-							html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 제거'";
-							html += " src='../images/star.png'";
-							html += " onclick='select_bookmark("+userNo+","+pPno+");return false;'>";
-							console.log("cnt=====1-->>>>>>>>>>>>>")
+							
+							if(cnt==1){
+								html += "<input class='material-icons' type='image'"; 
+								html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 제거'";
+								html += " src='../images/star.png'";
+								html += " onclick='select_bookmark("+userNo+","+pPno+");return false;'>";
+								console.log("cnt=====1-->>>>>>>>>>>>>")
+							}else{
+								html += "<input class='material-icons' type='image'";
+								html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
+								html += " src='../images/emptystar.png'";
+								html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>";  
+							}
+							
 						}else{
 							html += "<input class='material-icons' type='image'";
 							html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
 							html += " src='../images/emptystar.png'";
-							html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>";  
+							html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>"; 
 						}
 					}else{
 						html += "<input class='material-icons' type='image'";
@@ -96,7 +104,10 @@ $(document).ready(function(){
 						html += " src='../images/emptystar.png'";
 						html += " onclick='login_advice(); return false;'>";                                     
 					}
-					*/
+					
+					///////episode가 널일때 ~~ 수정
+					
+					
 					html += "<div style='float:right;'>";
 					html += "<span value='작성자'>작성자: "+pMid+"</span>";
 					html += "<span class='categories tag' value='조회수'>조회수: "+pView+"</span>";
