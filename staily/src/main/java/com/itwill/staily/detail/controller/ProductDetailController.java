@@ -134,6 +134,25 @@ public class ProductDetailController {
 		int pNo = productDetailService.pNo_currval();	
 		return pNo;		
 	}
+	
+	@RequestMapping("/pdImage_create")
+	public ModelAndView pdImage_create(HttpServletResponse response, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		
+		try {
+			String pNo = request.getParameter("pNo");
+			
+			request.setAttribute("pNo", pNo);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.setViewName("detail/pdImage_create");
+		
+		return mv;		
+	}
+	
 		
 	/*
 	@RequestMapping("/detailtest")
