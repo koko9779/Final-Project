@@ -49,18 +49,18 @@
 										<c:set var="cnt" value="0"/>
 										<c:forEach var="bm" items="${bmList}">
 											<c:if test="${cw.product[0].pNo eq bm.product.pNo}">
-												<c:set var="cnt" value="${cnt+1}"/>
+												<c:set var="cnt" value="1"/>
 											</c:if>
 										</c:forEach>
 										<c:choose>
-											<c:when test="${cnt>0}">
-												<input class="material-icons unbookmarking" type="image"
+											<c:when test="${cnt==1}">
+												<input class="material-icons" type="image"
 														style="border: none; width: 10%; float:left; padding: 0px; margin: 0 5%;" alt="즐겨찾기 제거"
 														src="${pageContext.request.contextPath}/images/star.png"
 														onclick="select_bookmark(${userNo},${cw.product[0].pNo});return false;">
 											</c:when>
 											<c:otherwise>
-												<input class="material-icons bookmarking" type="image"
+												<input class="material-icons" type="image"
 												style="border: none; width: 10%; float:left; padding: 0px; margin: 0 5%;" alt="즐겨찾기 등록"
 												src="${pageContext.request.contextPath}/images/emptystar.png"
 												onclick="create_bookmark(${userNo},${cw.product[0].pNo});return false;">	

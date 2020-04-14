@@ -21,8 +21,6 @@ $(document).ready(function(){
 		    }
 		  ]
 	});
-});
-$(function(){
 	//worklist 회차 출력
 	$('#workEpisode').change(function(e){
 		var contextPath = $("option:selected").attr("contextPath");
@@ -151,25 +149,6 @@ function create_bookmark(userNo,pNo){
 	product_form.submit();
 };
 */
-/*************RestController create_bookmark********************/
-function create_bookmark(userNo,pNo){
-	alert('즐겨찾기에 상품이 추가되었습니다.'+event.target);
-	var params= "userNo="+userNo+"&pNo="+pNo;
-	var product = "#product_"+pNo;
-	$.ajax({
-		url: "create_bookmark",
-		method:"POST",
-		data: params,
-		success:function(result){
-			if(result=='true'){
-				console.log($(product).find('.material-icons').attr('src')+"------------->");
-				$(product).find('.material-icons').attr('src','../images/star.png');
-			}
-		}			
-	});
-	
-	//location.reload();
-};
 /************Controller delete_bookmark*******************/
 /*
 function delete_bookmark(bmNo){
@@ -189,6 +168,25 @@ function select_bookmark(mNo,pNo){
 	product_form.submit();
 }
 */
+/*************RestController create_bookmark********************/
+function create_bookmark(userNo,pNo){
+	//alert('즐겨찾기에 상품이 추가되었습니다.'+event.target);
+	var params= "userNo="+userNo+"&pNo="+pNo;
+	var product = "#product_"+pNo;
+	$.ajax({
+		url: "create_bookmark",
+		method:"POST",
+		data: params,
+		success:function(result){
+			if(result=='true'){
+				//console.log($(product).find('.material-icons').attr('src')+"------------->");
+				$(product).find('.material-icons').attr('src','../images/star.png');
+				$(product).find('.material-icons').attr('alt','즐겨찾기 제거');				
+				$(product).find('.material-icons').attr('onclick','select_bookmark('+userNo+','+pNo+');return false;');
+			}
+		}			
+	});
+};
 /************RestController select_bookmark*******************/
 function select_bookmark(userNo,pNo){
 	//alert("즐겨찾기에서 상품이 제거됐습니다");
@@ -197,46 +195,43 @@ function select_bookmark(userNo,pNo){
 		url: "select_bookmark",
 		method: "POST",
 		data: params,
-		success:function(bmNopNo){
-			delete_bookmark(bmNopNo);
-			console.log(bmNopNo+"----->>>>");
+		success:function(bookset){
+			delete_bookmark(bookset);
 		}
 	});
 }
 /***********RestController delete_bookmark*******************/
-function delete_bookmark(bmNopNo){
-	alert("즐겨찾기에서 상품이 제거됐습니다");
-	console.log(bmNopNo+"**************");
-	var bmNo = ""+bmNopNo;
+function delete_bookmark(bookset){
+	//alert("즐겨찾기에서 상품이 제거됐습니다");
+	var bmNo = ""+bookset;
+	var userNo = 0;
 	var pNo = 0;
 	var product;
 	
 	if(bmNo.indexOf(",")!=-1){
-		var bmNopNo = bmNopNo.split(',');
-		console.log(bmNopNo[0]);
-		console.log(bmNopNo[1]);
-		bmNo = bmNopNo[0];
-		pNo = bmNopNo[1];
+		var bookset = bookset.split(',');
+		bmNo = bookset[0];
+		userNo = bookset[1];
+		pNo = bookset[2];
 	}
 	if(pNo==0){
 		product = "#bookmark_"+bmNo;
 	}else{
 		product = "#product_"+pNo;
 	}
-	var params= "bmNo="+bmNo+"&pNo="+pNo;
+	var params= "bmNo="+bmNo+"&userNo="+userNo+"&pNo="+pNo;
 		$.ajax({
 			url: "delete_bookmark",
 			method:"POST",
 			data: params,
 			success:function(result){
-				console.log(result+"#####");
 				if(result=='true'){
-					console.log($(product).find('.material-icons').attr('src')+"------------->");
+					//console.log($(product).find('.material-icons').attr('src')+"------------->");
 					$(product).find('.material-icons').attr('src','../images/emptystar.png');
+					$(product).find('.material-icons').attr('alt','즐겨찾기 등록');				
+					$(product).find('.material-icons').attr('onclick','create_bookmark('+userNo+','+pNo+');return false;');
 				}
-				
 			}
-				
 		});
 };
 
