@@ -166,15 +166,12 @@ public class MainController {
 	
 	@RequestMapping("/delete_bookmark")
 	@ResponseBody
-	public String deleteBookmark(@RequestParam(name="bmNo",defaultValue = "-999") int bmNo, HttpServletRequest request) {
+	public String deleteBookmark(@RequestParam int bmNo, @RequestParam int pNo, HttpServletRequest request) throws Exception{
 		String result = "";
-		int pNo = 0; 
 		try {
-			if(bmNo==-999) {
-				bmNo = (Integer)request.getAttribute("bmNo");
-				 pNo = (Integer)request.getAttribute("pNo");
-				result = "";
-			}
+			System.out.println(bmNo+"~~~~~~~~");
+			System.out.println(pNo+"VVVVVVVV");
+
 			int success = listService.deleteBookmark(bmNo);
 			if(success==1) {
 				result = "true";
@@ -185,7 +182,8 @@ public class MainController {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return result+","+pNo;
+		return result;
+		
 	}
 /*	
 	@RequestMapping("/select_bookmark")
@@ -202,17 +200,18 @@ public class MainController {
 */
 	@RequestMapping("/select_bookmark")
 	@ResponseBody
-	public String selectBookmarkNo(@RequestParam int userNo, @RequestParam int pNo, HttpServletRequest request) {
+	public String selectBookmarkNo(@RequestParam int userNo, @RequestParam int pNo, HttpServletRequest request) throws Exception{
 		String bmNo = "";
 		try {
 			bmNo = String.valueOf(listService.selectBookmarkNo(userNo, pNo));
 			request.setAttribute("bmNo", bmNo);
 			request.setAttribute("pNo", pNo);
-			
+			System.out.println(bmNo+"~~~~~~~~");
+			System.out.println(pNo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return bmNo;
+		return bmNo+","+pNo;
 	}
 }
 	
