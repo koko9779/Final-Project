@@ -1,7 +1,5 @@
 package com.itwill.staily.main.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,8 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.staily.main.service.ListService;
 import com.itwill.staily.main.service.MainService;
@@ -35,7 +31,7 @@ public class MainController {
 	public MainController() {
 		
 	}
-
+	/************Controller index*******************/
 	@RequestMapping("/index")
 	public String test(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
 		try {
@@ -66,6 +62,7 @@ public class MainController {
 
 		return "index";
 	}
+	/************Controller worklist_select*******************/
 	@RequestMapping("/worklist_select")
 	public String workList(@RequestParam int wNo, HttpServletRequest request, HttpSession session) throws Exception {
 		try {
@@ -75,7 +72,7 @@ public class MainController {
 			
 			if(userNo!=null) {
 				List<Bookmark> bmList = mainService.selectByBookmark(userNo);
-				request.setAttribute("bmList", bmList);		
+				request.setAttribute("bmList", bmList);	
 			}
 			
 			Work w = listService.selectWorkOne(wNo);
@@ -97,8 +94,8 @@ public class MainController {
 			e.printStackTrace();
 		}
 		return "main/worklist";
-	}
-	
+	}	
+	/************RestController worklist_read/detail*******************/
 	@RequestMapping(value="worklist_read/detail", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public Map worklist_detail(@RequestParam int wNo, @RequestParam int wdEpisode) throws Exception{
@@ -115,31 +112,7 @@ public class MainController {
 
 		return map2;
 	}
-	
-	/************Controller create_bookmark*******************/
-/*
-	@RequestMapping("/create_bookmark")
-	public String createBookmark(@RequestParam("userNo") int userNo, @RequestParam("pNo") int pNo) {
-		try {
-			//(Integer)request.getAttribute("");
-			//String mNo = request.getParameter("mNo");
-			Map map1 = new HashMap();
-			//int mNo = (Integer)request.getAttribute("mNo");
-			//int pNo = (Integer)request.getAttribute("pNo");
-			System.out.println(userNo+" "+pNo);
-			map1.put("mNo", userNo);
-			map1.put("pNo", pNo);
-			int success = listService.createBookmark(map1);
-			System.out.println(success);
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "forward:/main/index";
-	}
-*/	
 	/************RestController create_bookmark*******************/
-
 	@RequestMapping(value="/create_bookmark", produces = "text/plain;charset=UTF-8")
 	@ResponseBody
 	public String createBookmark(@RequestParam int userNo, @RequestParam int pNo) throws Exception{
@@ -163,15 +136,11 @@ public class MainController {
 	}
 
 	/**************Controller delete_bookmark*******************/
-	
 	@RequestMapping("/delete_bookmark")
 	@ResponseBody
-	public String deleteBookmark(@RequestParam int bmNo, @RequestParam int pNo, HttpServletRequest request) throws Exception{
+	public String deleteBookmark(@RequestParam int bmNo,@RequestParam int userNo, @RequestParam int pNo, HttpServletRequest request) throws Exception{
 		String result = "";
 		try {
-			System.out.println(bmNo+"~~~~~~~~");
-			System.out.println(pNo+"VVVVVVVV");
-
 			int success = listService.deleteBookmark(bmNo);
 			if(success==1) {
 				result = "true";
@@ -185,7 +154,43 @@ public class MainController {
 		return result;
 		
 	}
-/*	
+	/************RestController select_bookmark*******************/
+	@RequestMapping("/select_bookmark")
+	@ResponseBody
+	public String selectBookmarkNo(@RequestParam int userNo, @RequestParam int pNo, HttpServletRequest request) throws Exception{
+		String bmNo = "";
+		try {
+			bmNo = String.valueOf(listService.selectBookmarkNo(userNo, pNo));
+			request.setAttribute("bmNo", bmNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bmNo+","+userNo+","+pNo;
+	}
+	/************Controller create_bookmark*******************/
+	/*
+	@RequestMapping("/create_bookmark")
+	public String createBookmark(@RequestParam("userNo") int userNo, @RequestParam("pNo") int pNo) {
+		try {
+			//(Integer)request.getAttribute("");
+			//String mNo = request.getParameter("mNo");
+			Map map1 = new HashMap();
+			//int mNo = (Integer)request.getAttribute("mNo");
+			//int pNo = (Integer)request.getAttribute("pNo");
+			System.out.println(userNo+" "+pNo);
+			map1.put("mNo", userNo);
+			map1.put("pNo", pNo);
+			int success = listService.createBookmark(map1);
+			System.out.println(success);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "forward:/main/index";
+	}
+	 */	
+	/************Controller select_bookmark*******************/
+	/*	
 	@RequestMapping("/select_bookmark")
 	public String selectBookmarkNo(@RequestParam int userNo, @RequestParam int pNo, HttpServletRequest request) {
 		try {
@@ -197,21 +202,6 @@ public class MainController {
 		}
 		return "forward:/main/delete_bookmark";
 	}
-*/
-	@RequestMapping("/select_bookmark")
-	@ResponseBody
-	public String selectBookmarkNo(@RequestParam int userNo, @RequestParam int pNo, HttpServletRequest request) throws Exception{
-		String bmNo = "";
-		try {
-			bmNo = String.valueOf(listService.selectBookmarkNo(userNo, pNo));
-			request.setAttribute("bmNo", bmNo);
-			request.setAttribute("pNo", pNo);
-			System.out.println(bmNo+"~~~~~~~~");
-			System.out.println(pNo);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return bmNo+","+pNo;
-	}
+	 */
 }
 	
