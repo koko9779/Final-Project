@@ -153,8 +153,7 @@ function create_bookmark(userNo,pNo){
 */
 /*************RestController create_bookmark********************/
 function create_bookmark(userNo,pNo){
-	
-	//alert('즐겨찾기에 상품이 추가되었습니다.'+event.target);
+	alert('즐겨찾기에 상품이 추가되었습니다.'+event.target);
 	var params= "userNo="+userNo+"&pNo="+pNo;
 	var product = "#product_"+pNo;
 	$.ajax({
@@ -206,7 +205,7 @@ function select_bookmark(userNo,pNo){
 }
 /***********RestController delete_bookmark*******************/
 function delete_bookmark(bmNopNo){
-	//alert("즐겨찾기에서 상품이 제거됐습니다");
+	alert("즐겨찾기에서 상품이 제거됐습니다");
 	console.log(bmNopNo+"**************");
 	var bmNo = ""+bmNopNo;
 	var pNo = 0;
