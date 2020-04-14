@@ -28,15 +28,7 @@ window.onload = function() {
 	});
 	*/		
 
-	var option2 = {
-		listtype : "thumbnail",
-		fileid : "uploadScene2",
-		uploadURL : "upload2",
-		maxFileCount : 10,
-		maxFileSize : 3,
-		afterFileTransfer : afterFileTransfer2
-	}
-	guManager2 = new guUploadManager2(option2);
+	
 
 }
 
@@ -62,30 +54,9 @@ function afterFileTransfer(realname, filename, filesize) {
  	*/
 }
 
-function afterFileTransfer2(realname2, filename2, filesize2) {
-
-	var realname9 = document.getElementById('realname2');
-	var filename9 = document.getElementById('filename2');
-	var filesize9 = document.getElementById('filesize2');
-
-	realname9.value = realname2;
-	filename9.value = filename2;
-	filesize9.value = filesize2;
-	
-	document.ff.submit();
-	/*
-	var spl = realname9.value.split('.');
-
-	if (spl[1] != "jpg" && spl[1] != "png") {
-		document.form1.submit();
-	} else {
-		alert("이미지 파일만 올려주세요");
-	}
-	 */
-}
 
 function pdImageCreate() {
-	location.
+	window.open('pdImage_create', 'width=600, height=400, resizable=no, toolbars=no, menubar=no');
 }
 
 function productCreate() {

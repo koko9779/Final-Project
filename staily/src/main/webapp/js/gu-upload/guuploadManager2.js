@@ -162,12 +162,17 @@ guUploadManager2.prototype.uploadFiles = function() {
 		if (this.uploader.files_queued()>0) 
 			 this.uploader.uploadFiles();
 		else
-		if (this.uploader.isUploaded()) this.transferComplete();
+		if (this.uploader.isUploaded()) {
+			this.transferComplete();
+		}
 	} else {
 		var stats = this.uploader.getStats();
-		if (stats.files_queued>0) 
-			 this.uploader.startUpload();
-		else this.transferComplete();
+		if (stats.files_queued>0) {
+			this.uploader.startUpload();			
+		} 
+		else {
+			this.transferComplete();
+		}
 	}
 };
 
@@ -180,6 +185,7 @@ guUploadManager2.prototype.setUploadedFileInfo = function(filename, realname, fi
 guUploadManager2.prototype.uploadSuccess = function(file, serverData) {
 	guUploadManager2.instances.setUploadedFileInfo(file.name, file.size, serverData);
 	guUploadManager2.instances.uploadFiles(); // until all files are uploaded
+	
 };
 
 guUploadManager2.prototype.uploadSuccessSWF = function(file, serverData) {
@@ -188,7 +194,9 @@ guUploadManager2.prototype.uploadSuccessSWF = function(file, serverData) {
 	progress.setStatus("Complete.");
 	progress.toggleCancel(false);
 
+	
 	guUploadManager2.instances.setUploadedFileInfo(file.name, file.size, serverData);
 	guUploadManager2.instances.uploadFiles(); // until all files are uploaded
+	
 };
 
