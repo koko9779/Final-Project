@@ -142,28 +142,6 @@ function workpage(wNo){
 	work_form.submit();
 };
 
-/************Controller select_bookmark*******************/
-/*
-function select_bookmark(mNo,pNo){
-	var product_form = document.getElementById('product_'+pNo);
-	product_form.action = "select_bookmark";
-	product_form.submit();
-}
-*/
-/************RestController select_bookmark*******************/
-function select_bookmark(userNo,pNo){
-	//alert("즐겨찾기에서 상품이 제거됐습니다");
-	var params= "userNo="+userNo+"&pNo="+pNo;
-	$.ajax({
-		url: "select_bookmark",
-		method: "POST",
-		data: params,
-		success:function(bmNo){
-			console.log(bmNo);
-			delete_bookmark(bmNo);
-		}
-	});
-}
 /************Controller create_bookmark*******************/
 /*
 function create_bookmark(userNo,pNo){
@@ -203,22 +181,60 @@ function delete_bookmark(bmNo){
 	  window.location.reload();
 };
 */
+
+/************Controller select_bookmark*******************/
+/*
+function select_bookmark(mNo,pNo){
+	var product_form = document.getElementById('product_'+pNo);
+	product_form.action = "select_bookmark";
+	product_form.submit();
+}
+*/
+/************RestController select_bookmark*******************/
+function select_bookmark(userNo,pNo){
+	//alert("즐겨찾기에서 상품이 제거됐습니다");
+	var params= "userNo="+userNo+"&pNo="+pNo;
+	$.ajax({
+		url: "select_bookmark",
+		method: "POST",
+		data: params,
+		success:function(bmNopNo){
+			delete_bookmark(bmNopNo);
+			console.log(bmNopNo+"----->>>>");
+		}
+	});
+}
 /***********RestController delete_bookmark*******************/
-function delete_bookmark(bmNo){
-	alert("즐겨찾기에서 상품이 제거됐습니다");
-	var params= "bmNo="+bmNo;
-	var indexId = "#bookmark_"+bmNo;
-//	var product = "#product_"+pNo;
+function delete_bookmark(bmNopNo){
+	//alert("즐겨찾기에서 상품이 제거됐습니다");
+	console.log(bmNopNo+"**************");
+	var bmNo = ""+bmNopNo;
+	var pNo = 0;
+	var product;
+	
+	if(bmNo.indexOf(",")!=-1){
+		var bmNopNo = bmNopNo.split(',');
+		console.log(bmNopNo[0]);
+		console.log(bmNopNo[1]);
+		bmNo = bmNopNo[0];
+		pNo = bmNopNo[1];
+	}
+	if(pNo==0){
+		product = "#bookmark_"+bmNo;
+	}else{
+		product = "#product_"+pNo;
+	}
+	var params= "bmNo="+bmNo+"&pNo="+pNo;
 		$.ajax({
 			url: "delete_bookmark",
 			method:"POST",
 			data: params,
 			success:function(result){
-				console.log(result);
-//				if(result=='true0'){
-//					console.log($(product).find('.material-icons').attr('src')+"------------->");
-//					$(product).find('.material-icons').attr('src','../images/star.png');
-//				}
+				console.log(result+"#####");
+				if(result=='true'){
+					console.log($(product).find('.material-icons').attr('src')+"------------->");
+					$(product).find('.material-icons').attr('src','../images/emptystar.png');
+				}
 				
 			}
 				
