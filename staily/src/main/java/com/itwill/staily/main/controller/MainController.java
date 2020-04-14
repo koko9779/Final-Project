@@ -107,7 +107,7 @@ public class MainController {
 		st.start();
 		Integer userNo = (Integer)session.getAttribute("userNo");
 		List<Bookmark> bmList = null ;
-		
+
 		if(userNo!=null) {
 			bmList = mainService.selectByBookmark(userNo);
 		}
