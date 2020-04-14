@@ -168,11 +168,13 @@ public class MainController {
 	@ResponseBody
 	public String deleteBookmark(@RequestParam(name="bmNo",defaultValue = "-999") int bmNo, HttpServletRequest request) {
 		String result = "";
+		int pNo = 0; 
 		try {
 			if(bmNo==-999) {
-				bmNo = (Integer)request.getAttribute("bmNo");			
+				bmNo = (Integer)request.getAttribute("bmNo");
+				 pNo = (Integer)request.getAttribute("pNo");
+				result = "";
 			}
-			System.out.println(bmNo);
 			int success = listService.deleteBookmark(bmNo);
 			if(success==1) {
 				result = "true";
@@ -183,7 +185,7 @@ public class MainController {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return result;
+		return result+","+pNo;
 	}
 /*	
 	@RequestMapping("/select_bookmark")
@@ -205,6 +207,7 @@ public class MainController {
 		try {
 			bmNo = String.valueOf(listService.selectBookmarkNo(userNo, pNo));
 			request.setAttribute("bmNo", bmNo);
+			request.setAttribute("pNo", pNo);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
