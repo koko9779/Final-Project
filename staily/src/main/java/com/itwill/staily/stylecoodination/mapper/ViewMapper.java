@@ -22,6 +22,6 @@ public interface ViewMapper {
 	public int selectBoardReplyCount();
 	
 	//조회수 올리기
-	public int updateView(int bNo);
+	public int updateView(int bNo) throws Exception;
 	
 }

@@ -35,9 +35,6 @@
 			<div class="row justify-content-md-center">
 					제목
 					<input type="text" name="bTitle" class="form-control">
-					<!-- 
-					<input type="hidden" name="mNo" class="form-control" value="">
-					 -->
 					<select class="custom-select" name="bType" id="inputGroupSelect03">
 						<option selected>분류</option>
 						<option value="Q">문의</option>
@@ -52,17 +49,9 @@
 							});
 						</script>
 			</div>
-			<div class="row justify-content-md-center" style="margin-bottom: 30px">
-				<div class="input-group mb-3">
-					<div class="custom-file">
-						&nbsp;<input type="file" name="image" class="form-control-file"
-							id="exampleFormControlFile1">
-					</div>
-				</div>
-			</div>
 			<div class="row justify-content-md-center">
 				<button type="submit" class="btn btn-outline-secondary"
-					style="width: 20%; font-weight: bold" onclick="boardCreate();">등 록</button>
+					style="width: 20%; font-weight: bold; margin-top: 15px;" onclick="boardCreate();">등 록</button>
 			</div>
 		</form>
 		</div>
