@@ -21,7 +21,7 @@ public class Upload{
 	   	SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 	   	String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
 	   	
-		File f = new File("d:\\" + newfilename);
+		File f = new File("C:\\Users\\stu\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename +".jpg");
 		try { 
 			Filedata.transferTo(f);
 		   	response.getWriter().write(newfilename);

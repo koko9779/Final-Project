@@ -24,6 +24,72 @@ function execDaumPostcode() {
 		}
 	}).open();
 }
+function sucessTest(test) {
+	$('#resultF').empty();
+	var movie = JSON.parse(test);
+	console.log(movie);
+	var name = movie.results[0].name;
+	var poster = movie.results[0].poster_path;
+	var date = movie.results[0].first_air_date
+	var overview = movie.results[0].overview
+	var tag = ""
+	tag += "<table>";
+	tag += "<tr>";
+	tag += "<th></th>";
+	tag += "<th hidden='poster'></th>";
+	tag += "<th hidden='date'></th>";
+	tag += "<th hidden='overview'></th>";
+	tag += "<th></th>";
+	tag += "</tr>";
+	tag += "<tr>";
+	tag += "<td>" + name + "</td>";
+	tag += "<td hidden='poster2'>" + poster + "</td>";
+	tag += "<td hidden='date2'>" + date + "</td>";
+	tag += "<td hidden='overview2'>" + overview + "</td>";
+	tag += "<td><a id='modal424823' href='#work_confirm' role='button' class='btn' data-toggle='modal'>선택</a></td>";
+	tag += "</tr>";
+	tag += "</table>";
+	$("#resultF").append(tag);
+};
+
+$(function() {
+	$(document).on('click','#modal424823',function() {
+						var confirm = $(this);
+						var tr = confirm.parent().parent();
+						var td = tr.children();
+						var name = td.eq(0).text();
+						var poster = td.eq(1).text();
+						var date = td.eq(2).text();
+						var overview = td.eq(3).text();
+						$('#work_confirm').on('show.bs.modal',
+								function(e) {
+									var main = document
+											.getElementById("body");
+									main.innerHTML = "<b>작품명 :</b> "
+											+ name
+											+ "<br><br>"
+											+ "<img src='https://image.tmdb.org/t/p/w94_and_h141_bestv2"+poster+"' width='94x' height='141px'>"
+											+ "<br><br><b>개봉(방영)일 </b>:<br> "
+											+ date
+											+ "<br><br><b>작품설명 </b>:<br><br> "
+											+ overview
+						});
+			});
+});
+
+function errorTest(test) {
+	console.log('실패~', test);
+}
+function searchItemM(item) {
+	theMovieDb.search.getMulti({
+		"query" : item
+	}, sucessTest, errorTest);
+}
+function searchItemD(item) {
+	theMovieDb.search.getMulti({
+		"query" : item
+	}, sucessDrama, errorTest);
+}
 function product_confirm(pNo) {
 	var no = "pNo="+pNo;
 	console.log(pNo);
@@ -246,7 +312,6 @@ $(document).ready(function() {
 								var no = td.eq(1).text();
 								window.open("work_select?" + "wNo="+ no, "작품정보수정",
 											"width=685, height=685, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
-								});
-
+					});
 });
 
