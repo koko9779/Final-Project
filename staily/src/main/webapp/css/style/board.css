@@ -19,3 +19,9 @@
 .sort {
 	float: right;
 }
+
+.paging-button {
+	background-color: #e76115;
+    border-color: #e76115;
+}
+

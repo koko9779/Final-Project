@@ -69,6 +69,9 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<a href="style_board_create" class="btn btn-ghost sort">
+								<span>쓰기</span>
+							</a>
 			<div id="msg">
 			</div>
 		</div>
@@ -84,5 +87,17 @@
 	</div>
 </div>
 <%@ include file="/WEB-INF/views/admin/include/include_js.jsp" %>
+<script type="text/javascript">
+$(function (){
+		$("#dataTable_paginate > ul > li.paginate_button.page-item.active > a").css("background-color", "#e76115");
+		$("#dataTable_paginate > ul > li.paginate_button.page-item.active > a").css("border-color", "#e76115");
+	
+	$("#dataTable_paginate > ul > .page-link").click(function() {
+		$(".page-link").css("background-color", "#e76115");
+		$(".page-link").css("border-color", "#e76115");
+	});
+	
+});
+</script>
 </body>
 </html>

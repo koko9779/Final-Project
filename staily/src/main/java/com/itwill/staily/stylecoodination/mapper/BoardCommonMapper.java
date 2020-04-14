@@ -13,8 +13,6 @@ public interface BoardCommonMapper {
 	public String selectId(int mNo);
 	
 	//원글과 답글 수정
-	public int updateBoardAndReply(Board board);
+	public int updateBoardAndReply(Board board) throws Exception;
 	
-	// 이미지 핸들링을 어찌 해야할까나
-	//public int updateBoardAndReplyDetail(BoardDetail boardDetail);
 }

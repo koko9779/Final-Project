@@ -24,7 +24,7 @@ import com.google.gson.JsonObject;
 @RequestMapping("/style")
 public class StyleCoodinationRestController {
 	
-	@RequestMapping(value="ImgUpload", method=RequestMethod.POST)
+	@RequestMapping(value="ImgUpload")
 	public void fileUpload(HttpServletRequest req, HttpServletResponse resp, 
                  MultipartHttpServletRequest multiFile) throws Exception {
 		JsonObject json = new JsonObject();
@@ -39,7 +39,8 @@ public class StyleCoodinationRestController {
 						String fileName = file.getName();
 						byte[] bytes = file.getBytes();
 						
-						String uploadPath = "C:/Users/starthink/git/Final-Project/staily/src/main/webapp/img";
+						//String uploadPath = "C:/Users/starthink/git/Final-Project/staily/src/main/webapp/img";
+						String uploadPath = "C:/Users/user/git/Final-Project/staily/src/main/webapp/img";
 						String uploadPath2 = req.getSession().getServletContext().getRealPath("/img");
 			
 						System.out.println(uploadPath);

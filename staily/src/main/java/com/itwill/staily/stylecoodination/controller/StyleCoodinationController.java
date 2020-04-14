@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,15 +58,21 @@ public class StyleCoodinationController {
 	@RequestMapping("/style_detail_read")
 	public String style_view(@RequestParam String bNo, Model model) {
 		List<Board> boardOneList = new ArrayList<Board>();
-		
+		String forwardPath ="";
 		int intBNo = Integer.parseInt(bNo);
-		boardOneList = styleCoodinationService.findBoardOne(intBNo);
-		model.addAttribute("boardOneList", boardOneList);
 		
-		return "style/style_detail_read";
+		try {
+			styleCoodinationService.updateViewCount(intBNo);
+			boardOneList = styleCoodinationService.findBoardOne(intBNo);
+			model.addAttribute("boardOneList", boardOneList);
+			forwardPath = "style/style_detail_read";
+		} catch(Exception e) {
+			e.printStackTrace();
+			forwardPath = "redirect:/404.jsp";
+		}
+		return forwardPath;
 	}
 	
-	/*
 	@RequestMapping("/style_board_update")
 	public String style_update(@RequestParam String bNo, Model model) {
 		int intBNo = Integer.parseInt(bNo);
@@ -76,7 +83,7 @@ public class StyleCoodinationController {
 		
 		return "style/style_update";
 	}
-	*/
+	
 	/*
 	@Override
 	public int modifyBoardAndReply(Board updateBoard) {
@@ -95,13 +102,57 @@ public class StyleCoodinationController {
 	}
 	
 	@RequestMapping(value = "/style_create_board_action", method = RequestMethod.POST)
-	public String style_create_action_post(@ModelAttribute Board board) {
+	public String style_create_action_post(@ModelAttribute Board board, HttpSession session) {
 		String forwardPath = "";
+		int userNo;
 		try {
 			//임시로 넣어준 board
-			board.setmNo(3);
+			userNo = (int)session.getAttribute("userNo");
+			board.setmNo(userNo);
 			styleCoodinationService.writeBoard(board);
-			forwardPath = "/style/style_main_read";
+			forwardPath = "redirect:/style/style_main_read";
+		} catch (Exception e) {
+			e.printStackTrace();
+			forwardPath = "redirect:/404.jsp";
+		}
+		return forwardPath;
+	}
+	
+	@RequestMapping(value="/style_board_delete_action", method = RequestMethod.GET)
+	public String style_board_delete_action_get() {
+		return "redirect:/style/style_main_read";
+	}
+	
+	@RequestMapping(value="/style_board_delete_action", method = RequestMethod.POST)
+	public String style_board_delete_action_post(@RequestParam String bNo) {
+		String forwardPath = "";
+		int intBNo = Integer.parseInt(bNo);
+		
+		try {
+			styleCoodinationService.removeBoard(intBNo);
+			forwardPath = "redirect:/style/style_main_read";
+		} catch (Exception e) {
+			e.printStackTrace();
+			forwardPath = "redirect:/404.jsp";
+		}
+		return forwardPath;
+	}
+	
+	@RequestMapping(value = "style_reply_delete_action", method = RequestMethod.GET)
+	public String style_reply_delete_action_get() {
+		return "style/style_main_read";
+	}
+	
+	//
+	//이거 아작스로 삭제하고 바로 폼 보여줄거아님..? 생각 해봐야할듯
+	//
+	@RequestMapping(value = "style_reply_delete_action", method = RequestMethod.POST)
+	public String style_reply_delete_action_post(@RequestParam String bNo) {
+		String forwardPath = "";
+		int intBNo = Integer.parseInt(bNo);
+		try {
+			styleCoodinationService.removeReply(intBNo);
+			forwardPath = "/style_detail_read?bNo="+bNo;
 		} catch (Exception e) {
 			e.printStackTrace();
 			forwardPath = "redirect:/404.jsp";
@@ -110,10 +161,6 @@ public class StyleCoodinationController {
 	}
 	
 	/*
-	@Override
-	public int removeBoard(int bNo) {
-		return boardManageMapper.deleteBoard(bNo);
-	}
 	
 	@Override
 	public int writeReply(Board replyBoard, String mId) {
@@ -126,11 +173,6 @@ public class StyleCoodinationController {
 		replyBoard.setmNo(mNo);
 		// 3. 댓글 작성
 		return replyManageMapper.createReply(replyBoard);
-	}
-	
-	@Override
-	public int removeReply(int bNo) {
-		return replyManageMapper.deleteReply(bNo);
 	}
 	
 	@Override
