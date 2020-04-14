@@ -15,3 +15,7 @@
 .font-small {
 	font-size: small;
 }
+
+.sort {
+	float: right;
+}
