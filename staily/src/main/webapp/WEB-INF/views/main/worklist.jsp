@@ -31,7 +31,6 @@
 			<!-- 기업회원 -->					
 			<h2>여기 이름을 뭐로 줄까요?</h2>
 			<div class="slick-carousel newIn" >
-			<!-- <div class="slick-carousel" id="newIn5">-->
 				<c:forEach var="cw" items="${cw}">
 					<form id="product_${cw.product[0].pNo}">
 						<input type="hidden" value="${userNo}" name="userNo">
@@ -100,11 +99,11 @@
 									<c:set var="cnt" value="0"/>
 									<c:forEach var="bm" items="${bmList}">
 										<c:if test="${mw.product[0].pNo eq bm.product.pNo}">
-											<c:set var="cnt" value="${cnt+1}"/>
+											<c:set var="cnt" value="1"/>
 										</c:if>
 									</c:forEach>
 									<c:choose>
-										<c:when test="${cnt>0}">
+										<c:when test="${cnt==1}">
 											<input class="material-icons" type="image" 
 													style="border: none; width: 4%; float:left; padding: 0px;" alt="즐겨찾기 제거"
 													src="${pageContext.request.contextPath}/images/star.png"

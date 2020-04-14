@@ -4,12 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.plugins.bmp.BMPImageWriteParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.junit.rules.Stopwatch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StopWatch;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -98,18 +102,31 @@ public class MainController {
 	/************RestController worklist_read/detail*******************/
 	@RequestMapping(value="worklist_read/detail", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public Map worklist_detail(@RequestParam int wNo, @RequestParam int wdEpisode) throws Exception{
+	public Map worklist_detail(@RequestParam int wNo, @RequestParam int wdEpisode,HttpSession session, HttpServletRequest request) throws Exception{
+		StopWatch st=new StopWatch();
+		st.start();
+		Integer userNo = (Integer)session.getAttribute("userNo");
+		List<Bookmark> bmList = null ;
+		
+		if(userNo!=null) {
+			bmList = mainService.selectByBookmark(userNo);
+		}
+		
 		Map map1 = new HashMap();
 		map1.put("wNo", wNo);
 		map1.put("wdEpisode", wdEpisode);
 				
-		List<Work> cwe = listService.selectCProductListByEpisode(map1);
+		//List<Work> cwe = listService.selectCProductListByEpisode(map1);
 		List<Work> mwe = listService.selectMProductListByEpisode(map1);
 		
+		
 		Map map2 = new HashMap();
-		map2.put("cwe", cwe);
+		//map2.put("cwe", cwe);
 		map2.put("mwe", mwe);
-
+		map2.put("userNo",userNo);
+		map2.put("bmList",bmList);
+		st.stop();
+		System.out.println(st.getTotalTimeMillis());
 		return map2;
 	}
 	/************RestController create_bookmark*******************/
