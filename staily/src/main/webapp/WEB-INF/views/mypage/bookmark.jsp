@@ -21,8 +21,9 @@ $(function(){
 			data : 'bmNo='+bmNo,
 			dataType: "text",
 			success : function(result){
-				//alert("삭제완료");
-				location.reload();
+				if(result == "true"){
+					location.reload();
+				}
 			}
 		})
 	}

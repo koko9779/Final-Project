@@ -52,6 +52,15 @@
  	where m_id = #{mId}
 </select>
 
+<!-- 친구중복번호체크 -->
+<select id="duplicateFriendNo"
+		parameterType="int"
+		resultType="int">
+ 	select count(*)
+ 	from friend
+ 	where m_no = #{mNo}
+    and f_no = #{fNo}
+</select>
 
 
 </mapper>

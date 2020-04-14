@@ -14,15 +14,6 @@
       </a>
 
       <!-- Divider -->
-      <!-- Nav Item - Dashboard -->
-      <!--  
-      <li class="nav-item active">
-        <a class="nav-link" href="admin.do">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>관리자메인</span></a>
-      </li>
-	  -->
-      <!-- Divider -->
       <hr class="sidebar-divider">
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -32,10 +23,10 @@
           <span>회원정보</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
+          <div class="bg-white py-2 collapse-inner rounded" id="gogogo">
             <a class="collapse-item" href="member_select">정보수정</a>
             <a class="collapse-item" href="friend_list">친구리스트</a>
-            <a class="collapse-item" href="message_list">메시지보관</a>
+            <a class="collapse-item" href="#">메시지보관</a>
             <div class="collapse-divider"></div>
             <a class="collapse-item" href="payment_list">결제내역</a>
           </div>
@@ -70,3 +61,13 @@
 
     </ul>
     <!-- End of Sidebar -->
+<script type="text/javascript">
+$(function(){
+	$('#gogogo a:nth-child(3)').click(function(e){
+		e.preventDefault();
+		window.open("message_list", "_blank", "width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		
+	});
+})
+
+</script>

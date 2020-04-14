@@ -1,100 +1,123 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<html><head><script type="text/javascript" async="" src="https://aw.dw.impact-ad.jp/c/u/?callback=linkback.aoneId&amp;oid=7d77ae3e9eb9881e"></script><img id="1586497975569" src="https://ib.adnxs.com/getuid?https://linkback.contentsfeed.com/lb/syncuid?adnxs.com-uuid2=$UID" height="0" width="0" style="display: none;"><script type="text/javascript" async="" src="https://www.google-analytics.com/plugins/ua/linkid.js"></script><script type="text/javascript" async="" src="http://linkback.contentsfeed.com/src/lb4iv.min.js?v=170111a" charset="utf-8"></script>
-<meta http-equiv="content-type" content="text/html; charset=utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE">
-<meta name="keywords" content="">
-<meta name="description" content="">
-<meta name="naver-site-verification" content="2d9a1e9b33a47eacdcf78b30e4993622b2e26548">
-<meta name="inven-site" content="common">
-<meta name="inven-sitename" content="">
-<meta property="og:title" content="쪽지함 - 인벤 | 종합 게임 커뮤니티 INVEN">
-<meta id="inven-verification" name="inven-verification" content="13e0719da36d0c5f491db485228e8e1460e2bc22e78a6bda586367e2e15f04eb">
-<title>메시지함</title>
-<link rel="stylesheet" type="text/css" href="http://www.inven.co.kr/common/lib/style/common.css?v=200323aa">
-<link rel="stylesheet" type="text/css" href="http://www.inven.co.kr/common/lib/style/ad.css?v=190307ca">
-<link rel="stylesheet" type="text/css" href="http://www.inven.co.kr/common/lib/style/layout.css">
-<link rel="stylesheet" type="text/css" href="http://www.inven.co.kr/member/lib/style/note.css?v=20200220a">
-<script type="text/javascript" src="http://www.inven.co.kr/common/lib/js/popup.js"></script>
-<script async="" src="https://www.google-analytics.com/analytics.js"></script>
-<script type="text/javascript" src="http://www.inven.co.kr/common/lib/js/framework/jquery-1.7.2.min_new.js?v=20130113a"></script>
-<script type="text/javascript" src="http://www.inven.co.kr/common/lib/js/common_new.js?v=20200311"></script>
-<script type="text/javascript" src="http://www.inven.co.kr/common/lib/js/html_new.js"></script>
-<script type="text/javascript" src="http://www.inven.co.kr/common/lib/js/layer.js?v=20151023"></script>
-<script type="text/javascript" src="http://www.inven.co.kr/common/lib/js/xml_new.js?v=200117a"></script>
-<script type="text/javascript" src="http://www.inven.co.kr/common/lib/js/booster.js"></script>
-<script type="text/javascript" src="http://www.inven.co.kr/common/lib/js/browser.js?v=20140702a"></script>
-<script type="text/javascript" src="http://www.inven.co.kr/common/lib/js/adns.js?v=191226a"></script>
-<script type="text/javascript" src="http://www.inven.co.kr/common/lib/js/ad.slot.js?v=200304a"></script>
-<script type="text/javascript" src="http://www.inven.co.kr/common/dataninfo/lib/js/tooltip.js?v=20181011"></script>
-<!--[if lte IE 9]><script src="http://www.inven.co.kr/common/lib/js/framework/html5shiv.js"></script><![endif]-->
-<link rel="shortcut icon" type="image/x-icon" href=" http://www.inven.co.kr/favicon.ico?v=151218a">
-<style>
-#noteWrap{
-	background-image : url('');
-}
-</style>
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/mypage/include/include_message_top.jsp" %>
 
-</head>
+<body class="bPopup">
+	<script>
+		INVEN.Popup.resizeWindowBody(747, 510);
+	</script>
 
-<body class="bPopup"><script>INVEN.Popup.resizeWindowBody(747,510);</script>
-
-<div id="noteWrap">
-<div id="noteLeft">
-<dl class="menu">
-	<dt>쪽지함</dt>
-	<dd>
-		<ul>
-			<li class="selected"><span class="orange"><a href="?folder=write" onfocus="this.blur();">쪽지 보내기</a></span></li>
-			<li class=" oldstart"><span class="orange"><a href="?folder=inbox" onfocus="this.blur();">받은 쪽지함
-			<img class="new" src="http://static.inven.co.kr/image/member/note/icon_new_orange.gif" alt=""></a></span></li>
-		</ul>
-	</dd>
-</dl>
-</div>
-<div id="noteMain">
-
-<form id="fmNoteWrite" name="fmNoteWrite" action="note_send.php" method="POST">
-<h1 class="note"><strong class="nick">가나마바사아</strong>님의 <strong class="page">새쪽지쓰기</strong>입니다.</h1>
-	<div id="noteWrite">
-		<div class="hidden" style="display: none;">
-			<input type="hidden" name="rurl" value="http%3A%2F%2Fwww.inven.co.kr%2Fmember%2Fnote%2F%3Ffolder%3Dinbox">
-			<input type="hidden" name="toinven" value="">
-			<input type="hidden" name="reply" value="0">
-			<input type="hidden" name="noteflag" value="1586497979">
+	<div id="noteWrap">
+		<div id="noteLeft">
+			<dl class="menu">
+				<dt>쪽지함</dt>
+				<dd>
+					<ul>
+						<li class="selected"><span class="orange"><a
+								href="message?mNo=" ${member.mNo} onfocus="this.blur();">쪽지 보내기</a></span></li>
+						<li class=" oldstart"><span class="orange"><a
+								href="message_list" onfocus="this.blur();">받은 쪽지함</a></span></li> 
+					</ul>
+				</dd>
+			</dl>
 		</div>
-		<table class="content" border="0" cellpadding="0" cellspacing="0">
-		<colgroup><col class="th"><col class="td"></colgroup>
-							<tbody><tr>
-				<td class="label">아이디</td>
-				<td class="value"><input class="nick" type="text" id="nick" name="nick" value="${member.mId}"></td>
-			</tr>
+		<div id="noteMain">
 
-					<tr>
-				<td class="label">제목</td>
-				<td class="value"><input class="title" type="text" id="title" name="title" value=""></td>
-			</tr>
-			<tr>
-				<td class="label">내용</td>
-				<td class="value">
-					<textarea class="content" id="content" name="content"></textarea>
-				</td>
-			</tr>
-				</tbody></table>
-		<div class="command">
-			<a id="aNoteCancel" href="http://www.inven.co.kr/member/note/?folder=inbox" onfocus="this.blur();" class="bttn46">취소</a>
-			<a id="aNoteSave" href="javascript:memberNote1.save();" onfocus="this.blur();" class="bttn92w">쪽지보내기</a>
+			<form id="fmNoteWrite" name="fmNoteWrite" action="message_create"
+				method="POST">
+				<h1 class="note">
+					<strong class="page">새쪽지쓰기</strong>
+				</h1>
+				<div id="noteWrite">
+					<div class="hidden" style="display: none;">
+						<input type="hidden" name="rNo" value="${member.mNo}">
+					</div>
+					<table class="content" border="0" cellpadding="0" cellspacing="0">
+						<colgroup>
+							<col class="th">
+							<col class="td">
+						</colgroup>
+						<tbody>
+							<tr>
+								<td class="label">아이디</td>
+								<td class="value"><input class="nick" type="text" id="mId"
+									name="mId" value="${member.mId}"></td>
+							</tr>
+							<tr>
+								<td class="label">제목</td>
+								<td class="value"><input class="title" type="text"
+									id="msTitle" name="msTitle" value="" maxlength="15"></td>
+							</tr>
+							<tr>
+								<td class="label">내용</td>
+								<td class="value"><textarea class="content" id="msContent"
+										name="msContent"></textarea></td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="command">
+						<a id="aNoteCancel" href="#" onfocus="this.blur();" class="bttn46">취소</a>
+						<a id="aNoteSave" href="#" onfocus="this.blur();" class="bttn92w">쪽지보내기</a>
+					</div>
+				</div>
+			</form>
+
 		</div>
+
 	</div>
-</form>
+	<script type="text/javascript">
+		$(function() {
+			$('#aNoteSave').click(function(e){
+				e.preventDefault();
+				var mId = $('#mId').val();
+				var msTitle = $('#msTitle').val();
+				var msContent = $('#msContent').val();
 
-</div>
+				if(mId ==""){
+					alert('아이디를 입력하세요');
+					return;
+				}
+				
+				if (msTitle == "") {
+					alert('제목을 입력하세요');
+					return;
+				}
+				if (msContent == "") {
+					alert('내용을 입력하세요');
+					return;
+				}
+				
+				$.ajax({
+					url : 'message_create',
+					data : $('#fmNoteWrite').serializeArray(),
+					dataType : 'text',
+					success : function(result){
+						if(result == 'true'){
+							alert('보내기 완료');
+							location.href = 'message_list';
+						}else if(result == 'N'){
+							alert('정확한 아이디를 입력해주세요');
+							return;
+						}
+					},
+					error : function(){
+						location.href = 'message';
+					}
+				})
+			});
+			
+			
+			$('#aNoteCancel').click(function(e) {
+				window.close();
+				e.preventDefault();
+			});
 
-</div>
+		})
+	</script>
 
-<div id="comFloatAlert" style="display: none;">
-<ul class="textlist">
-</ul>
-</div>
+	<div id="comFloatAlert" style="display: none;">
+		<ul class="textlist">
+		</ul>
+	</div>
 </body>
 </html>

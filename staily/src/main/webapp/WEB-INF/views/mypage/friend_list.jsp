@@ -11,6 +11,7 @@
 					friend_delete_function(fPk);
 				}
 			}
+
 		});
 		function friend_delete_function(fPk){
 			$.ajax({
@@ -25,25 +26,31 @@
 		};
 		
 		/************************쪽지보내기 function 시작******************************/
-		$('#friendDropdown .dropdown-item').click(function(e){
+		$('#friendDropdown a:nth-child(1)').click(function(e){
 			e.preventDefault();
 			var no = $(this).attr('value');	
 			window.open("message?mNo="+no, "_blank","width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 			
 		});
+		
+		//메시지 보관함 열기
+		$('#friendDropdown a:nth-child(2)').click(function(e){
+			e.preventDefault();
+			window.open("message_list", "_blank", "width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		})
 		/*
 		$('.dropdown-menu a:nth-child(1)').click(function(e){
 			window.open("message?mNo="+no, "_blank","width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 		});
 		*/
+		
+		/************************친구검색 function 시작******************************/
+		
 		$('#searchword').focus(function(e){
 			this.value="";
 			$(".add").toggle();
 			$(".add").text('');
-			
 		});
-		
-		/************************친구검색 function 시작******************************/
 
 		$('#searchword').on({
 			keyup : function(e){
@@ -57,19 +64,19 @@
 							data : "mId="+mId,
 							dataType : "text",
 							success : function(result){
-								if(result!=""){
+								if(result!="N"){
 									$('.add').text(result);
 									friend_findNo_function(result);
 									//alert(mId);
 									//$('.add').text('없는 회원입니다');
-								}else if(result==""){
+								}else{
 									$('.add').text('없는 회원입니다');
 									$('#searchDropdwon').hide();
 									//$('.add').text(result);
 								}
 							},
 							error : function(e){
-								$('.add').text('없는 회원입니다');
+								//$('.add').text('없는 회원입니다');
 							}
 							
 						})
@@ -88,7 +95,6 @@
 					data : 'mId='+result,
 					dataType : 'text',
 					success : function(data){
-						//alert("friend_findNo_function mNo"+data);
 						friend_create_function(data);
 					}
 				})
@@ -102,12 +108,11 @@
 				data : 'fNo='+data,
 				dataType : 'text',
 				success : function(result){				
-					if(result == true){					//왜 else에 걸리나??
-						alert('friend_create_function 친구추가완료');
-						$('#searchDropdwon a:nth-child(1)').hide();
-					}else{
+					if(result == 'true'){					
 						alert('친구추가완료');
 						location.reload();
+					}else{
+						alert('이미 친구추가된 회원입니다');
 					}
 				},
 				error : function(e){
@@ -117,6 +122,12 @@
 		};
 		/************************친구검색 function 끝******************************/
 		
+		/************************검색한 친구 쪽지보내기************************/
+		$('#searchDropdwon a:nth-child(2)').click(function(e){
+			e.preventDefault();
+			//var noV = $(this).attr('value');
+			window.open("message", "_blank","width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		})
 	
 		
 		
@@ -131,23 +142,7 @@
           <!-- Page Heading -->
           <!-- 친구찾기 -->
           <h1 class="h3 mb-2 text-gray-800">친구찾기</h1>
-         
-          <!--  
-		  	<form>
-  				<div class="form-group">
-			    <label for="exampleInputEmail1">친구검색</label>
-			    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="아이디를 입력하세요">
-			  </div>
-			   <button type="submit" class="btn btn-default">제출</button>
-			</form>
-			-->
-			<!--  
-			<div class="btn-group">
-			  아이디<input id="searchinput" type="search" class="form-control">
-			 	 <span id="searchclear" class="glyphicon glyphicon-remove-circle"></span>
-			</div>
-			<div id="results"></div>
-			-->
+
 			<div id="search" class="tab_content">
 				<input type="text" id="searchword" style="width:300px;" value="아이디를 입력하세요" >
 			</div>

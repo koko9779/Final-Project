@@ -44,4 +44,9 @@ public class FriendServiceImpl implements FriendService {
 		return friendMapper.findFriendNo(mId);
 	}
 
+	@Override
+	public int duplicateFriendNo(int mNo, int fNo) throws Exception {
+		return friendMapper.duplicateFriendNo(mNo,fNo);
+	}
+
 }

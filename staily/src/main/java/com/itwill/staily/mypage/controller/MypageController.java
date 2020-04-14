@@ -136,11 +136,16 @@ public class MypageController {
 	//북마크삭제
 	@RequestMapping(value = "/bookmark_delete")
 	@ResponseBody
-	public boolean bookmark_delete(@RequestParam int bmNo, HttpServletRequest request, Model model,
-								  HttpSession session) throws Exception{
+	public String bookmark_delete(@RequestParam int bmNo, HttpServletRequest request, Model model,
+								  HttpSession session){
 		boolean result = false;
-		result = bookmarkService.deleteBookmark(bmNo);
-		return result;
+		try {
+			result = bookmarkService.deleteBookmark(bmNo);
+			return result+"";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "N";
+		}
 	}
 	
 	//친구리스트
@@ -169,15 +174,24 @@ public class MypageController {
 	//친구추가
 	@RequestMapping("/friend_create")
 	@ResponseBody
-	public boolean friend_create(HttpServletResponse response, 
+	public String friend_create(HttpServletResponse response, 
 								 HttpServletRequest request, 
 								 HttpSession session,
-								 @RequestParam int fNo) throws Exception{
+								 @RequestParam int fNo) {
 		Integer mNo = (Integer)session.getAttribute("userNo");
 		boolean result = false;
-		result = friendService.createFriend(fNo,mNo);
-		System.out.println("%%%"+result);
-		return result;
+		try {
+			int check = friendService.duplicateFriendNo(mNo,fNo);
+			if(check == 0) {
+				result = friendService.createFriend(fNo,mNo);
+				return result+"";
+			}else {
+				return result+"";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "N";
+		}
 	}
 	
 	//친구삭제
@@ -195,12 +209,20 @@ public class MypageController {
 	@RequestMapping(value="/friend_find")
 	@ResponseBody
 	public String friend_find(@RequestParam(name="mId", defaultValue = "") String mId, 
-											HttpServletRequest request) throws Exception{
-		String result = friendService.findFriend(mId);
-		if(result==null) {
-			return "";
+											HttpServletRequest request){
+		int check;
+		try {
+			check = friendService.duplicateFriend(mId);
+			if(check != 0) {
+				return mId;
+			}else {
+				return "N";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "N";
 		}
-		return result;
+
 	}
 	
 	//친구번호찾기
@@ -217,39 +239,121 @@ public class MypageController {
 		
 	}
 	
+	/*********************************** 메시지 메소드 ***********************************/
+	
 	//메시지보내기 창
 	@RequestMapping("/message")
-	public String message_selectOne(Model model, HttpSession session, @RequestParam("mNo") int mNo) throws Exception {
+	public String message_selectOne(Model model, HttpSession session, @RequestParam(value= "mNo", defaultValue = "") Integer mNo) throws Exception {
 		//System.out.println("*******"+mNo);
 		session.getAttribute("userNo");
+		//회원찾기
+		if(mNo == null) {
+			return "mypage/message";
+		}
 		Member member = mypageService.selectOne(mNo);
 		model.addAttribute("member", member);
 		return "mypage/message";
 	}
 	
-	//메시지리스트(멤버&메시지 조인)
-	@RequestMapping("/message_list")
-	public ModelAndView message_selectList(HttpSession session, Model model) {
-		ModelAndView mv = new ModelAndView();
-		List<Message> messageList;
+	/*메시지 생성
+	@RequestMapping("/message_create")
+	public String message_create(HttpSession session,
+								 HttpServletRequest request,
+								 @RequestParam String msTitle,
+								 @RequestParam String msContent,
+								 @RequestParam int rNo) {
+		int mNo = (Integer)session.getAttribute("userNo");
+		Message message = new Message(mNo,msTitle,msContent,rNo);
 		try {
-			Integer mNo = (Integer)session.getAttribute("userNo");
-			if(mNo==null) {
-				mNo = 7;
-			}
-			messageList = messageService.selectMessageList(mNo);
-			model.addAttribute("data", messageList);
-			mv.setViewName("mypage/message_list");
-			return mv;
+			boolean result = messageService.createMessage(message);
+			request.setAttribute("result", result);
+			return "redirect:/mypage/message_list";
 		} catch (Exception e) {
 			e.printStackTrace();
-			mv.setViewName("redirect:/main/index");
-			return mv;
+			return "404";
+		}
+	}
+	*/
+	
+	//메시지 생성
+	@RequestMapping("/message_create")
+	@ResponseBody
+	public String message_create(HttpSession session,
+								@RequestParam(value="mId", defaultValue = "") String mId,
+								@RequestParam String msTitle,
+								@RequestParam String msContent,
+								@RequestParam(name="rNo", defaultValue = "-999") int rNo) {
+		int mNo = (Integer)session.getAttribute("userNo");
+		boolean result;
+		Message message;
+		
+		if(rNo == -999) {
+			try {
+				rNo = friendService.findFriendNo(mId);
+				message = new Message(mNo,msTitle,msContent,rNo);
+				result = messageService.createMessage(message);
+				return result+"";
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "N";
+			}
+		}else {
+			try {
+				message = new Message(mNo,msTitle,msContent,rNo);
+				result = messageService.createMessage(message);
+				return result+"";
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "N";
+			}
 		}
 		
 	}
 	
-	//메시지 추가
+	
+	//메시지 리스트
+	@RequestMapping("/message_list")
+	public String message_list(HttpSession session, HttpServletRequest request) {
+		int rNo = (Integer)session.getAttribute("userNo");
+		List<Message> messageList;
+		try {
+			messageList = messageService.selectList(rNo);
+			request.setAttribute("messageList", messageList);
+			return "mypage/message_receive";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return"404";
+		}
+		
+	}
+	
+	//메시지 하나 보여주기
+	@RequestMapping("/message_view")
+	public String message_view(@RequestParam int msNo, HttpServletRequest request, HttpSession session) {
+		int rNo = (Integer)session.getAttribute("userNo");
+		Message message;
+		try {
+			message = messageService.selectOne(rNo,msNo);
+			request.setAttribute("message", message);
+			return "mypage/message_view";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "404";
+		}
+	}
+	
+	//메시지삭제
+	@RequestMapping(value="/message_delete",produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public String message_delete(HttpServletResponse response, HttpServletRequest request,
+								 @RequestParam int msNo) throws Exception{
+		boolean result = false;
+		result = messageService.deleteMessage(msNo);
+		//request.setAttribute("result", result);
+		return result+"";
+	}
+	
+	/*
 	@RequestMapping("/message_create")
 	public String message_create(HttpServletResponse response, 
 								 HttpServletRequest request, 
@@ -260,16 +364,11 @@ public class MypageController {
 		request.setAttribute("result", result);
 		return "test2";
 	}
-	
+	*/
 	//메시지 삭제
-	@RequestMapping("/message_delete")
-	public String message_delete(HttpServletResponse response, HttpServletRequest request) throws Exception{
-		String msNoStr = request.getParameter("msNo");
-		Integer msNo = Integer.parseInt(msNoStr);
-		boolean result = messageService.deleteMessage(msNo);
-		request.setAttribute("result", result);
-		return "test2";
-	}
+	
+	
+	/*********************************** 메시지 메소드 ***********************************/
 	
 	//내가쓴글리스트
 	@RequestMapping("/member_write")
@@ -338,6 +437,30 @@ public class MypageController {
 		return "mypage/test2";
 	}
 	
+	
+	
+	/*메시지리스트(멤버&메시지 조인)
+	@RequestMapping("/message_list")
+	public ModelAndView message_selectList(HttpSession session, Model model) {
+		ModelAndView mv = new ModelAndView();
+		List<Message> messageList;
+		try {
+			Integer mNo = (Integer)session.getAttribute("userNo");
+			if(mNo==null) {
+				mNo = 7;
+			}
+			messageList = messageService.selectMessageList(mNo);
+			model.addAttribute("data", messageList);
+			mv.setViewName("mypage/message_list");
+			return mv;
+		} catch (Exception e) {
+			e.printStackTrace();
+			mv.setViewName("redirect:/main/index");
+			return mv;
+		}
+		
+	}
+		*/
 	
 	//@RequestMapping("/test4")
 	public ModelAndView friend_find(Model model) throws Exception{
