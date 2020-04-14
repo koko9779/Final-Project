@@ -31,39 +31,16 @@
 							<span class="font-small">${boardOneList[0].mId}.${boardOneList[0].bDate}.조회수: ${boardOneList[0].bView}</span>
 						</div>
 							<p>${boardOneList[0].bContent}</p>
-							<a href="javascript:board_delete(${boardOneList[0].bNo});" class="btn btn-ghost sort">
-								<span>삭제</span>
-							</a>
-							<a href="javascript:board_modify();" class="btn btn-ghost sort">
-								<span>수정</span>
-							</a>
+								<a href="javascript:board_delete(${boardOneList[0].bNo});" class="btn btn-ghost sort">
+									<span>삭제</span>
+								</a>
+								<a href="javascript:board_modify();" class="btn btn-ghost sort">
+									<span>수정</span>
+								</a>
 						</article>
-						<article style="border-bottom: none;">
-							<form name="boardWriteF" onSubmit="return false;">
-								<div class="row justify-content-md-center">
-									제목
-									<input type="text" name="bTitle" class="form-control">
-									<select class="custom-select" name="bType" id="inputGroupSelect03">
-									<option selected>분류</option>
-									<option value="Q">문의</option>
-									<option value="S">스타일코디</option>
-									</select>
-								</div>
-								<div class="row justify-content-md-center">
-									<textarea id="contents" name="bContent"></textarea>
-									<script>
-										CKEDITOR.replace('contents',{
-											filebrowserUploadUrl : '/staily/style/ImgUpload'
-										});
-									</script>
-								</div>
-								<div class="row justify-content-md-center">
-									<button type="submit" class="btn btn-outline-secondary"
-										style="width: 20%; font-weight: bold; margin-top: 15px;" onclick="boardCreate();">등 록</button>
-								</div>
-							</form>
-						</article>
+						<c:if test="${fn:length(boardOneList) > 1}">
 						<h3 class="board-top">스타일 답변</h3>
+						</c:if>
 						<c:forEach var="board" items="${boardOneList}" begin="1">
 						<article class="reply">
 							<div></div>

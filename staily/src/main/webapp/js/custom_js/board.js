@@ -34,7 +34,30 @@ function board_delete(bNo) {
 }
 
 function board_modify() {
-	$("#board > .board-top").html(""
-			
-							);
+	$("#board").html("<h3 class='board-top'>스타일 질문</h3>" +
+					 "<form name='boardWriteF' onSubmit='return false;'>" +
+								"<div class='row justify-content-md-center'>" +
+									"제목" +
+									"<input type='text' name='bTitle' class='form-control'>" +
+									"<select class='custom-select' name='bType' id='inputGroupSelect03'>" +
+									"<option selected>분류</option>" +
+									"<option value='Q'>문의</option>" +
+									"<option value='S'>스타일코디</option>" +
+									"</select>" +
+								"</div>" +
+								"<div class='row justify-content-md-center'>" +
+									"<textarea id='contents' name='bContent'></textarea>" +
+									"<script>" +
+										"CKEDITOR.replace('contents',{" +
+											"filebrowserUploadUrl : '/staily/style/ImgUpload'" +
+										"});" +
+									"</script>" +
+								"</div>" +
+								"<div class='row justify-content-md-center'>" +
+									"<button type='submit' class='btn btn-outline-secondary' style='width: 20%; font-weight: bold; margin-top: 15px;' onclick='boardCreate();'>" +
+											"등 록" +
+								"</button>" + 
+							"</div>" + 
+						"</form>");
+	
 }
