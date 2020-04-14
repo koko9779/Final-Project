@@ -20,12 +20,12 @@ image {
 				<h3 class="text-center"></h3>
 				<div id="slider-div">
 					<div>
-						<img
+						<img width="400" height="250"
 							src="${pageContext.request.contextPath}${productList[0].pScene }">
 					</div>
 					<c:forEach var="product" items="${productList }">
 						<div>
-							<img src="${pageContext.request.contextPath}${product.pdImage }">
+							<img width="400" height="250" src="${pageContext.request.contextPath}${product.pdImage }">
 						</div>
 					</c:forEach>
 				</div>
