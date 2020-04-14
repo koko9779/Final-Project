@@ -34,5 +34,7 @@ function board_delete(bNo) {
 }
 
 function board_modify() {
-	
+	$("#board > .board-top").html(
+			
+							);
 }

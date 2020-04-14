@@ -24,7 +24,7 @@
 			<div class="container section news">
 				<div class="row">
 					<div class="col-sm-7">
-						<article style="border-bottom: none;">
+						<article id="board" style="border-bottom: none;">
 						<h3 class="board-top">스타일 질문</h3>
 						<div class="categories col-md-6 board-title">${boardOneList[0].bTitle}</div>
 						<div class="col-md-6 text-left">
