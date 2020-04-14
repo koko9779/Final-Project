@@ -1,5 +1,9 @@
 package com.itwill.staily.detail.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +13,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.staily.detail.model.dto.ProductEx;
@@ -74,11 +81,60 @@ public class ProductDetailController {
 			e.printStackTrace();
 		}
 		
-		mv.setViewName("redirect:..");
+		mv.setViewName("work_request");
+		//mv.setViewName("redirect:..");
 		
 		return mv;		
 	}	
 	
+	@RequestMapping("/upload")
+	public void upload(HttpServletResponse response, HttpServletRequest request, 
+			@RequestParam("Filedata") MultipartFile Filedata) { 
+		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
+		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
+		File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
+		
+		try {
+			
+			Filedata.transferTo(f); 
+			response.getWriter().write(newfilename);
+		} 
+		catch (IllegalStateException | IOException e) { 
+			e.printStackTrace(); 
+		}
+	}
+	
+	@RequestMapping("/upload2")
+	public void upload2(HttpServletResponse response, HttpServletRequest request, 
+			@RequestParam("Filedata") MultipartFile Filedata) { 
+		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
+		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
+		File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		
+		try {
+			
+			Filedata.transferTo(f); 
+			response.getWriter().write(newfilename);
+		} 
+		catch (IllegalStateException | IOException e) { 
+			e.printStackTrace(); 
+		}
+	}
+	
+	@RequestMapping("/pNo_nextval")
+	@ResponseBody
+	public int pNo_nextval() throws Exception {
+		int pNo = productDetailService.pNo_nextval();		
+		return pNo;
+	}
+	
+	@RequestMapping("/pNo_currval")
+	@ResponseBody
+	public int pNo_currval() throws Exception {
+		int pNo = productDetailService.pNo_currval();	
+		return pNo;		
+	}
+		
 	/*
 	@RequestMapping("/detailtest")
 	public ModelAndView createProductDetail(HttpServletRequest request, HttpServletResponse response) {
@@ -213,6 +269,8 @@ public class ProductDetailController {
 		return mv;
 	}
 	*/
+	
+
 	
 	
 	

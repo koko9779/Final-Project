@@ -17,7 +17,7 @@
 /* ******************* */
 var SWFUpload;
 
-if (SWFUpload == undefined) {
+if (SWFUpload == "undefined2") {
 	SWFUpload = function (settings) {
 		this.initSWFUpload(settings);
 	};
@@ -120,7 +120,7 @@ SWFUpload.completeURL = function(url) {
 // settings are set, getting a default value if one was not assigned.
 SWFUpload.prototype.initSettings = function () {
 	this.ensureDefault = function (settingName, defaultValue) {
-		this.settings[settingName] = (this.settings[settingName] == undefined) ? defaultValue : this.settings[settingName];
+		this.settings[settingName] = (this.settings[settingName] == "undefined2") ? defaultValue : this.settings[settingName];
 	};
 	
 	// Upload backend settings
@@ -134,8 +134,8 @@ SWFUpload.prototype.initSettings = function () {
 	this.ensureDefault("assume_success_timeout", 0);
 	
 	// File Settings
-	this.ensureDefault("file_types", "*.jpg, *.png");
-	this.ensureDefault("file_types_description", "Image Files");
+	this.ensureDefault("file_types", "*.*");
+	this.ensureDefault("file_types_description", "All Files");
 	this.ensureDefault("file_size_limit", 0);	// Default zero means "unlimited"
 	this.ensureDefault("file_upload_limit", 0);
 	this.ensureDefault("file_queue_limit", 0);
@@ -210,7 +210,7 @@ SWFUpload.prototype.loadFlash = function () {
 	// Get the element where we will be placing the flash movie
 	targetElement = document.getElementById(this.settings.button_placeholder_id) || this.settings.button_placeholder;
 
-	if (targetElement == undefined) {
+	if (targetElement == "undefined2") {
 		throw "Could not find the placeholder element: " + this.settings.button_placeholder_id;
 	}
 
@@ -220,7 +220,7 @@ SWFUpload.prototype.loadFlash = function () {
 	targetElement.parentNode.replaceChild(tempParent.firstChild, targetElement);
 
 	// Fix IE Flash/Form bug
-	if (window[this.movieName] == undefined) {
+	if (window[this.movieName] == "undefined2") {
 		window[this.movieName] = this.getMovieElement();
 	}
 	
@@ -277,7 +277,7 @@ SWFUpload.prototype.getFlashVars = function () {
 // Public: getMovieElement retrieves the DOM reference to the Flash element added by SWFUpload
 // The element is cached after the first lookup
 SWFUpload.prototype.getMovieElement = function () {
-	if (this.movieElement == undefined) {
+	if (this.movieElement == "undefined2") {
 		this.movieElement = document.getElementById(this.movieName);
 	}
 
@@ -415,9 +415,9 @@ SWFUpload.prototype.displayDebugInfo = function () {
 /* Note: addSetting and getSetting are no longer used by SWFUpload but are included
 	the maintain v2 API compatibility
 */
-// Public: (Deprecated) addSetting adds a setting value. If the value given is undefined or null then the default_value is used.
+// Public: (Deprecated) addSetting adds a setting value. If the value given is "undefined2" or null then the default_value is used.
 SWFUpload.prototype.addSetting = function (name, value, default_value) {
-    if (value == undefined) {
+    if (value == "undefined2") {
         return (this.settings[name] = default_value);
     } else {
         return (this.settings[name] = value);
@@ -426,7 +426,7 @@ SWFUpload.prototype.addSetting = function (name, value, default_value) {
 
 // Public: (Deprecated) getSetting gets a setting. Returns an empty string if the setting was not found.
 SWFUpload.prototype.getSetting = function (name) {
-    if (this.settings[name] != undefined) {
+    if (this.settings[name] != "undefined2") {
         return this.settings[name];
 	}
 
@@ -453,7 +453,7 @@ SWFUpload.prototype.callFlash = function (functionName, argumentArray) {
 	}
 	
 	// Unescape file post param values
-	if (returnValue != undefined && typeof returnValue.post === "object") {
+	if (returnValue != "undefined2" && typeof returnValue.post === "object") {
 		returnValue = this.unescapeFilePostParams(returnValue);
 	}
 
@@ -641,7 +641,7 @@ SWFUpload.prototype.setDebugEnabled = function (debugEnabled) {
 
 // Public: setButtonImageURL loads a button image sprite
 SWFUpload.prototype.setButtonImageURL = function (buttonImageURL) {
-	if (buttonImageURL == undefined) {
+	if (buttonImageURL == "undefined2") {
 		buttonImageURL = "";
 	}
 	
@@ -655,7 +655,7 @@ SWFUpload.prototype.setButtonDimensions = function (width, height) {
 	this.settings.button_height = height;
 	
 	var movie = this.getMovieElement();
-	if (movie != undefined) {
+	if (movie != "undefined2") {
 		movie.style.width = width + "px";
 		movie.style.height = height + "px";
 	}
@@ -712,7 +712,7 @@ SWFUpload.prototype.setButtonCursor = function (cursor) {
 SWFUpload.prototype.queueEvent = function (handlerName, argumentArray) {
 	// Warning: Don't call this.debug inside here or you'll create an infinite loop
 	
-	if (argumentArray == undefined) {
+	if (argumentArray == "undefined2") {
 		argumentArray = [];
 	} else if (!(argumentArray instanceof Array)) {
 		argumentArray = [argumentArray];
@@ -754,7 +754,7 @@ SWFUpload.prototype.unescapeFilePostParams = function (file) {
 	var unescapedPost = {};
 	var uk;
 
-	if (file != undefined) {
+	if (file != "undefined2") {
 		for (var k in file.post) {
 			if (file.post.hasOwnProperty(k)) {
 				uk = k;
@@ -867,13 +867,13 @@ SWFUpload.prototype.returnUploadStart = function (file) {
 	if (typeof this.settings.upload_start_handler === "function") {
 		file = this.unescapeFilePostParams(file);
 		returnValue = this.settings.upload_start_handler.call(this, file);
-	} else if (this.settings.upload_start_handler != undefined) {
+	} else if (this.settings.upload_start_handler != "undefined2") {
 		throw "upload_start_handler must be a function";
 	}
 
-	// Convert undefined to true so if nothing is returned from the upload_start_handler it is
+	// Convert "undefined2" to true so if nothing is returned from the upload_start_handler it is
 	// interpretted as 'true'.
-	if (returnValue === undefined) {
+	if (returnValue === "undefined2") {
 		returnValue = true;
 	}
 	

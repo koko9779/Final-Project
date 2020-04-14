@@ -3,7 +3,8 @@
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
 <script type="text/javascript">
 function work_select() {
-	location.href = 'work_select';
+	location.href="work_select";
+	//window.open('work_select');
 }
 </script>
 <aside class="col-sm-3 col-sm-pull-1 sidebar">

@@ -26,4 +26,6 @@ public interface ProductDetailService {
 	public boolean increaseProductView(int pNo) throws Exception;
 	
 	public int pNo_nextval() throws Exception;
+	
+	public int pNo_currval() throws Exception;
 }

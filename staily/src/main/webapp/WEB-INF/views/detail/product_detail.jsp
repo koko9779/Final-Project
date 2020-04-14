@@ -163,7 +163,7 @@ $('#createreply').on("click", function(e) {
 	$.ajax({
 		url : "reply_create",
 		type : "POST",
-		data : {"mNo" : mNo, "pNo", pNo},
+		data : {"mNo" : mNo, "pNo" : pNo},
 		async : false,
 		dataType : "json",
 		success : function(data) {

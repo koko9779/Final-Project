@@ -4,9 +4,13 @@
 <%@ include
 	file="/WEB-INF/views/admin/include/include_top_without_sidebar.jsp"%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/product_create.css"/>
+<script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/gu-upload/css/guupload.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/gu-upload/css/guupload2.css"/>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/gu-upload/guuploadManager.js"></script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/gu-upload/guuploadManager2.js"></script>
 
 <div class="left">
 	<div class="wrap">
@@ -149,6 +153,7 @@
 						</div>
 					</td>
 				</tr>
+				
 				<tr>
 					<th scope="row" class="bg-light essentia"><label for="pScene">
 							상품이 나온 장면<br>(최대 1장)</label></th>
@@ -161,6 +166,7 @@
 						</div>
 					</td>
 				</tr>
+				<!--  
 				<tr>
 					<th scope="row" class="bg-light essentia"><label for="pdImage">
 							상품 이미지<br>(최대 10장)</label></th>
@@ -173,16 +179,32 @@
 						</div>
 					</td>
 				</tr>
-			</tbody>
-		
+				-->
+				<tr>
+				</tr>				
+			</tbody>		
 		</table>
 		
+		<button class="button_css" type="button" onClick="pdImageCreate()" >상품 이미지 등록</button>
 		<div class="wrap">
 			<button class="button_css" type="button" onClick="productCreate()">작성하기</button>
 			<button class="button_css" type="reset">다시 쓰기</button>
 		</div>
 		
 	</form>
+	<!--  
+	<form name="fff" method="post">
+		<table class="table table=hover">
+			<colgroup>
+				<col class="col_wp25">
+				<col class="col_auto">
+			</colgroup>
+			<tbody>
+			
+			</tbody>
+		</table>
+	</form>
+	-->
 </div>
 
 </body>

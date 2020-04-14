@@ -2,7 +2,7 @@
 	A simple class for manager gu-upload and SWFUpload
 */
 
-var isrun_gu = typeof FormData !== undefined;
+var isrun_gu = typeof FormData !== "undefined2";
 
 var getScriptURL = (function() {
     var scripts = document.getElementsByTagName('script');
@@ -18,11 +18,11 @@ function loadScript(filename){
 function loadScripts(){
 	var scriptPath = getScriptURL();
 	if (isrun_gu){
-		loadScript(scriptPath+"guupload.js");
+		loadScript(scriptPath+"guupload2.js");
 	} else { 
 		loadScript(scriptPath+"swfupload/handlers.js");
 		loadScript(scriptPath+"swfupload/fileprogress.js");
-		loadScript(scriptPath+"swfupload/swfupload.js");
+		loadScript(scriptPath+"swfupload/swfupload2.js");
 	}
 }
 loadScripts();
@@ -67,8 +67,8 @@ var guTool = {
  * param
  * 	 - option: fileid, uploadURL, callback function(afterFileTransfer), maxFileSize, maxFileCount
  */ 
-var guUploadManager = function(option) {
-	guUploadManager.instances = this;
+var guUploadManager2 = function(option) {
+	guUploadManager2.instances = this;
 
 	this.filename = "";
 	this.filesize = "";
@@ -78,32 +78,32 @@ var guUploadManager = function(option) {
 	if (!option.maxFileSize) option.maxFileSize=20;
 	if (!option.maxFileCount) option.maxFileCount=10;
 		
-	var guupload = document.getElementById(option.fileid);
-	guupload.className += "guupload";
+	var guupload2 = document.getElementById(option.fileid);
+	guupload2.className += "guupload2";
 	
-	var guFileList = null;
+	var guFileList2 = null;
 	if (option.listtype!=="thumbnail" || !isrun_gu) {
-		var uploadHead = guTool.createElement("div", guupload, "uploadHead");
+		var uploadHead = guTool.createElement("div", guupload2, "uploadHead");
 		var fileHead   = guTool.createElement("div", uploadHead, "filenameColumn", {}, "File Name");
 		var sizeHead   = guTool.createElement("div", uploadHead, "filesizeColumn", {}, "File Size");
-		guFileList = guTool.createElement("div", guupload, "guFileList");
+		guFileList2 = guTool.createElement("div", guupload2, "guFileList2");
 	} else {	
-		guFileList = guTool.createElement("div", guupload, "guFileList_thumbnail");
+		guFileList2 = guTool.createElement("div", guupload2, "guFileList2_thumbnail");
 	}
-	guFileList.id = "guFileList";
+	guFileList2.id = "guFileList2";
 	
 	var scriptPath = getScriptURL();
 	
 	if (isrun_gu){
-		var filetag   = guTool.createTextBox("file", guupload);
+		var filetag   = guTool.createTextBox("file", guupload2);
 		filetag.setAttribute("multiple", "multiple");
 		
 		if (option.useButtons!==false) {
-			var browseBtn = guTool.createTextBox("button", guupload, "browseBtn", true);
-			browseBtn.setAttribute("value", "찾아보기");
-			addEvent("click", browseBtn, function(){filetag.click();});
+			var browseBtn2 = guTool.createTextBox("button", guupload2, "browseBtn2", true);
+			browseBtn2.setAttribute("value", "찾아보기");
+			addEvent("click", browseBtn2, function(){filetag.click();});
 		}
-		addEvent("dblclick", guFileList, function(){filetag.click();});
+		addEvent("dblclick", guFileList2, function(){filetag.click();});
 		
 		var settings = {
 				listtype: option.listtype,		// list, thumbnail
@@ -112,22 +112,22 @@ var guUploadManager = function(option) {
 				file_size_limit_str: option.maxFileSize,
 				maxFileCount: option.maxFileCount,
 				fileTag : filetag,
-				fileListview: "guFileList",
+				fileListview: "guFileList2",
 				upload_progress_handler: uploadProgress,
 				upload_success_handler : this.uploadSuccess
 		};
-		guFileList.innerHTML = '<div class="dragMessage">이미지를 여기에 드래그 하세요</div>';
+		guFileList2.innerHTML = '<div class="dragMessage">이미지를 여기에 드래그 하세요</div>';
 
 		this.uploader = new GUUpload(settings);
 	} else {
-		var controlButtons = guTool.createElement("div", guupload);
+		var controlButtons = guTool.createElement("div", guupload2);
 		var swfbutton = guTool.createElement("span", controlButtons);
 		swfbutton.id="swfbutton";
 		
 		var settings = {
 			flash_url : scriptPath + "swfupload/swfupload.swf",
 			upload_url: option.uploadURL,
-			custom_settings : {progressTarget : "guFileList",cancelButtonId : "btnCancel"},
+			custom_settings : {progressTarget : "guFileList2",cancelButtonId : "btnCancel"},
 			file_size_limit : option.maxFileSize + " MB",
 			// Button settings
 			button_placeholder_id: "swfbutton",
@@ -147,7 +147,7 @@ var guUploadManager = function(option) {
 	return this;
 };
 
-guUploadManager.prototype.transferComplete = function() {
+guUploadManager2.prototype.transferComplete = function() {
 	if (this.realname.length > 0) {
 		this.realname = this.realname.substring(0, this.realname.length-1);
 		this.filename = this.filename.substring(0, this.filename.length-1);
@@ -157,7 +157,7 @@ guUploadManager.prototype.transferComplete = function() {
 	if (this.afterFileTransfer) this.afterFileTransfer(this.realname, this.filename, this.filesize);
 };
 
-guUploadManager.prototype.uploadFiles = function() {
+guUploadManager2.prototype.uploadFiles = function() {
 	if (isrun_gu){
 		if (this.uploader.files_queued()>0) 
 			 this.uploader.uploadFiles();
@@ -171,24 +171,24 @@ guUploadManager.prototype.uploadFiles = function() {
 	}
 };
 
-guUploadManager.prototype.setUploadedFileInfo = function(filename, realname, filesize) {
+guUploadManager2.prototype.setUploadedFileInfo = function(filename, realname, filesize) {
 	this.filename += filename + ",";
 	this.filesize += filesize + ",";
 	this.realname += realname + ",";	
 };
 
-guUploadManager.prototype.uploadSuccess = function(file, serverData) {
-	guUploadManager.instances.setUploadedFileInfo(file.name, file.size, serverData);
-	guUploadManager.instances.uploadFiles(); // until all files are uploaded
+guUploadManager2.prototype.uploadSuccess = function(file, serverData) {
+	guUploadManager2.instances.setUploadedFileInfo(file.name, file.size, serverData);
+	guUploadManager2.instances.uploadFiles(); // until all files are uploaded
 };
 
-guUploadManager.prototype.uploadSuccessSWF = function(file, serverData) {
-	var progress = new FileProgress(file, guUploadManager.instances.uploader.customSettings.progressTarget);
+guUploadManager2.prototype.uploadSuccessSWF = function(file, serverData) {
+	var progress = new FileProgress(file, guUploadManager2.instances.uploader.customSettings.progressTarget);
 	progress.setComplete();
 	progress.setStatus("Complete.");
 	progress.toggleCancel(false);
 
-	guUploadManager.instances.setUploadedFileInfo(file.name, file.size, serverData);
-	guUploadManager.instances.uploadFiles(); // until all files are uploaded
+	guUploadManager2.instances.setUploadedFileInfo(file.name, file.size, serverData);
+	guUploadManager2.instances.uploadFiles(); // until all files are uploaded
 };
 
