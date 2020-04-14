@@ -23,6 +23,7 @@ $(document).ready(function(){
 	});
 	//worklist 회차 출력
 	$('#workEpisode').change(function(e){
+		console.log('#workEpisode change!!!!!!!!!!');
 		var contextPath = $("option:selected").attr("contextPath");
 		var wNo = $("option:selected").attr("wNo");
 		var wdEpisode = $("option:selected").val();
@@ -34,61 +35,81 @@ $(document).ready(function(){
 			dataType:'json',
 			success:function(jsonData){
 				var html = "";
-				var cweArray = jsonData.cwe;
+				var userNo = jsonData.userNo;
+				console.log(userNo);
+				var episode = jsonData.mwe[0].wdEpisode;
+				console.log("!!!"+episode);
+				
+				var bmList = jsonData.bmList;
+				console.log("!!!"+bmList);
+				
 				var mweArray = jsonData.mwe;
-
-				//html += "<div class='col-sm-9 col-sm-push-1'>";
-				html += "<div class='slick-carousel newIn'>";
-				
-				for (var i = 0; i < cweArray.length; i++) {
-					var cweProduct =cweArray[i].product;
-					
-					var cpScene = cweProduct[0].pScene;
-					var cpName = cweProduct[0].pName;
-					var cpView = cweProduct[0].pView;
-					var cpMid = cweProduct[0].mId;
-					
-					html += "<div class='movie-slide'>";
-					html += "<div class='movie-poster2'>";
-					html += "<a href='#'><img src='"+contextPath+cpScene+"' alt="+cpName+" /></a>";
-					html += "</div>";
-					html += "<h4 class='no-underline'>"+cpName+"</h4>";
-					html += "</div>"
-				}
-				html += "</div><h2></h2></div>";
-				
-				
-				
 				html += "<article>";
-				
+				/***********************************/
 				
 				for (var i = 0; i < mweArray.length; i++) {
+					console.log("html length:"+html.length);
 					var mweProduct = mweArray[i].product;
+					var pMno = mweProduct[0].mNo;
+					var pPno = mweProduct[0].pNo;
+					var pScene = mweProduct[0].pScene;
+					var pName = mweProduct[0].pName;
+					var pView = mweProduct[0].pView;
+					var pMid = mweProduct[0].mId;
 					
-					var mpMno = mweProduct[0].mNo;
-					var mpPno = mweProduct[0].pNo;
-					var mpScene = mweProduct[0].pScene;
-					var mpName = mweProduct[0].pName;
-					var mpView = mweProduct[0].pView;
-					var mpMid = mweProduct[0].mId;
-					
-					html += "<form id='bookmark_"+mpPno+"' style='margin-top:10%;'>";
-					html += "<input type='hidden' value='"+mpMno+"' name='mNo'>";
-					html += "<input type='hidden' value='"+mpPno+"' name='pNo'>";
-					html += "<img src='"+contextPath+mpScene+"' class='news-single-img' alt='"+mpName+"' />";
-					html += "<h2 value='상품이름' style='margin:0px;'>"+mpName+"</h2>";
-					html += "<div style='float:right;'>";
-					html += "<span value='작성자'>작성자: "+mpMid+"</span>";
-					html += "<span class='categories tag' value='조회수'>조회수: "+mpView+"</span>";
-					html += "<span class='categories tag' value='에피소드'>"+wdEpisode+"회</span>";
+					html += "<form id='product_"+pPno+"' onsubmit=''>";
+					html += "<h2 value='상품이름' >"+pName+"</h2>";
+					html += "<input type='hidden' value='"+userNo+"' name='userNo'>";
+					html += "<input type='hidden' value='"+pPno+"' name='pNo'>";
+					html += "<div class='movie-poster2'>";
+					html += "<img onclick='productpage("+pPno+")'";
+					html += " src='../"+pScene+"'";
+					html += " alt='"+pName+"' style='width:850px; height:450px; margin: 0;cursor: pointer;'/>";
 					html += "</div>";
-					html += "<input type='button' value='즐겨찾기 등록' onclick='create_bookmark("+mpMno+","+mpPno+")'>";
+					html += "<div style='height:100px;'>";
+					/*
+					if(userNo!=null){
+						console.log("login-->>>>>>>>>>>>>")
+						var cnt = 0;
+						for (var i = 0; i < bmList.length; i++) {
+							if(pPno==bmList.product.pNo){
+								console.log("cnt1-->>>>>>>>>>>>>")
+								cnt = 1;
+								break;
+							}
+						}
+						if(cnt==1){
+							html += "<input class='material-icons' type='image'"; 
+							html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 제거'";
+							html += " src='../images/star.png'";
+							html += " onclick='select_bookmark("+userNo+","+pPno+");return false;'>";
+							console.log("cnt=====1-->>>>>>>>>>>>>")
+						}else{
+							html += "<input class='material-icons' type='image'";
+							html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
+							html += " src='../images/emptystar.png'";
+							html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>";  
+						}
+					}else{
+						html += "<input class='material-icons' type='image'";
+						html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
+						html += " src='../images/emptystar.png'";
+						html += " onclick='login_advice(); return false;'>";                                     
+					}
+					*/
+					html += "<div style='float:right;'>";
+					html += "<span value='작성자'>작성자: "+pMid+"</span>";
+					html += "<span class='categories tag' value='조회수'>조회수: "+pView+"</span>";
+					html += "<span class='categories tag' value='에피소드'>"+episode+"회</span>";
+					html += "</div>";
+					html += "</div>";
 					html += "</form>";
+					console.log("end-->>>>>>>>>>>>>")
 				}
-				
+				/***************************/
 				html += "</article>";
 				
-				$('#work_list_main').empty();
+				$('#work_list_main article').remove();
 				$('#work_list_main').append(html);
 				/******************************/
 				$('.slick-carousel.newIn').not('.slick-initialized').slick({
