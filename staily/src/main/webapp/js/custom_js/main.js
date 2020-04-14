@@ -207,18 +207,19 @@ function delete_bookmark(bmNo){
 function delete_bookmark(bmNo){
 	alert("즐겨찾기에서 상품이 제거됐습니다");
 	var params= "bmNo="+bmNo;
-	var pNo = $(this).parent.pNo();
-	console.log(pNo);
-	var product = "#product_"+pNo;
+	var indexId = "#bookmark_"+bmNo;
+//	var product = "#product_"+pNo;
 		$.ajax({
 			url: "delete_bookmark",
 			method:"POST",
 			data: params,
 			success:function(result){
-				if(result=='true'){
-					console.log($(product).find('.material-icons').attr('src')+"------------->");
-					$(product).find('.material-icons').attr('src','../images/star.png');
-				}
+				console.log(result);
+//				if(result=='true0'){
+//					console.log($(product).find('.material-icons').attr('src')+"------------->");
+//					$(product).find('.material-icons').attr('src','../images/star.png');
+//				}
+				
 			}
 				
 		});
