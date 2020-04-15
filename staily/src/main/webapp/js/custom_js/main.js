@@ -37,7 +37,7 @@ $(document).ready(function(){
 				var html = "";
 				var userNo = jsonData.userNo;
 				console.log("userNo:~~~~~~~~~~~~~~"+userNo);
-				var episode = jsonData.mwe[0].wdEpisode;
+				//var episode = jsonData.mwe[0].wdEpisode;
 				
 				var bmList = jsonData.bmList;
 				
@@ -67,9 +67,11 @@ $(document).ready(function(){
 					html += "<div style='height:100px;'>";
 					
 					if(userNo!=null){
-						if(bmList.length!=0){
+						console.log(bmList+"북마크");
+						/////////////////////////
+						/*
+						if(bmList!=null){
 							console.log("login-->>>>>>>>>>>>>")
-							console.log(bmList);
 							var cnt = 0;
 							for (var i = 0; i < bmList.length; i++) {
 								if(pPno==bmList[i].product.pNo){
@@ -98,6 +100,8 @@ $(document).ready(function(){
 							html += " src='../images/emptystar.png'";
 							html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>"; 
 						}
+						*/
+						/////////////////////////////
 					}else{
 						html += "<input class='material-icons' type='image'";
 						html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
@@ -111,7 +115,7 @@ $(document).ready(function(){
 					html += "<div style='float:right;'>";
 					html += "<span value='작성자'>작성자: "+pMid+"</span>";
 					html += "<span class='categories tag' value='조회수'>조회수: "+pView+"</span>";
-					html += "<span class='categories tag' value='에피소드'>"+episode+"회</span>";
+					html += "<span class='categories tag' value='에피소드'>"+wdEpisode+"회</span>";
 					html += "</div>";
 					html += "</div>";
 					html += "</form>";
