@@ -34,7 +34,7 @@
 								<a href="javascript:board_delete(${boardOneList[0].bNo});" class="btn btn-ghost sort">
 									<span>삭제</span>
 								</a>
-								<a href="javascript:board_modify();" class="btn btn-ghost sort">
+								<a href="javascript:board_modify(${boardOneList[0].bNo});" class="btn btn-ghost sort">
 									<span>수정</span>
 								</a>
 						</article>

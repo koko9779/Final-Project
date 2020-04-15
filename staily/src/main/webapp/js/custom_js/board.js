@@ -29,35 +29,49 @@ function board_delete(bNo) {
 		if(isOk) {
 			post_to_url("style_board_delete_action", {"bNo" : bNo});
 		}
+	}else {
+		post_to_url("style_board_delete_action", {"bNo" : bNo});
 	}
 	
 }
 
-function board_modify() {
-	$("#board").html("<h3 class='board-top'>스타일 질문</h3>" +
-					 "<form name='boardWriteF' onSubmit='return false;'>" +
-								"<div class='row justify-content-md-center'>" +
-									"제목" +
-									"<input type='text' name='bTitle' class='form-control'>" +
-									"<select class='custom-select' name='bType' id='inputGroupSelect03'>" +
-									"<option selected>분류</option>" +
-									"<option value='Q'>문의</option>" +
-									"<option value='S'>스타일코디</option>" +
-									"</select>" +
-								"</div>" +
-								"<div class='row justify-content-md-center'>" +
-									"<textarea id='contents' name='bContent'></textarea>" +
-									"<script>" +
-										"CKEDITOR.replace('contents',{" +
-											"filebrowserUploadUrl : '/staily/style/ImgUpload'" +
-										"});" +
-									"</script>" +
-								"</div>" +
-								"<div class='row justify-content-md-center'>" +
-									"<button type='submit' class='btn btn-outline-secondary' style='width: 20%; font-weight: bold; margin-top: 15px;' onclick='boardCreate();'>" +
-											"등 록" +
-								"</button>" + 
-							"</div>" + 
-						"</form>");
+function board_modify(bNo) {
+	$.ajax({
+		url: "board_one_for_udate_read",
+		type: 'get',
+		data: {"bNo" : bNo},
+		async : false,
+		dataType: "json",
+		success: function(boardJson) {
+			//제이슨 파싱해주기
+							$("#board").html("<h3 class='board-top'>스타일 질문</h3>" +
+									 "<form name='boardWriteF' onSubmit='return false;'>" +
+												"<div class='row justify-content-md-center'>" +
+													"제목" +
+													"<input type='text' name='bTitle' class='form-control' value='${}'>" +
+													"<select class='custom-select' name='bType' id='inputGroupSelect03'>" +
+													"<option selected>분류</option>" +
+													"<option value='Q'>문의</option>" +
+													"<option value='S'>스타일코디</option>" +
+													"</select>" +
+												"</div>" +
+												"<div class='row justify-content-md-center'>" +
+													"<textarea id='contents' name='bContent'></textarea>" +
+													"<script>" +
+														"CKEDITOR.replace('contents',{" +
+															"filebrowserUploadUrl : '/staily/style/ImgUpload'" +
+														"});" +
+													"</script>" +
+												"</div>" +
+												"<div class='row justify-content-md-center'>" +
+													"<button type='submit' class='btn btn-outline-secondary' style='width: 20%; font-weight: bold; margin-top: 15px;' onclick='boardCreate();'>" +
+															"등 록" +
+												"</button>" + 
+											"</div>" + 
+										"</form>");	
+				}
+	});
+	
+	
 	
 }

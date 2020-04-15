@@ -8,12 +8,15 @@ import org.apache.ibatis.annotations.Mapper;
 import com.itwill.staily.util.Board;
 @Mapper
 public interface ViewMapper {
+	
 	public List<Board> selectBoardTop10();
 	
 	public List<Board> selectBoardAll();
 	
-	//bType과 bGroupNo 받아야함
 	public List<Board> selectBoardOne(int bNo);
+	
+	//수정 시에 사용할 select문
+	public Board selectUpdateBoard(int bNo);
 	
 	//누적 질문 수
 	public int selectBoardCount();

@@ -5,11 +5,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,12 +23,16 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.google.gson.JsonObject;
+import com.itwill.staily.stylecoodination.service.StyleCoodinationService;
+import com.itwill.staily.util.Board;
 
 @RestController
 @RequestMapping("/style")
 public class StyleCoodinationRestController {
+	@Autowired
+	 private StyleCoodinationService styleCoodinationService;
 	
-	@RequestMapping(value="ImgUpload")
+	@RequestMapping(value="/ImgUpload")
 	public void fileUpload(HttpServletRequest req, HttpServletResponse resp, 
                  MultipartHttpServletRequest multiFile) throws Exception {
 		JsonObject json = new JsonObject();
@@ -86,6 +94,15 @@ public class StyleCoodinationRestController {
 			}
 		}
 	}	
+	
+	@RequestMapping(value = "/board_one_for_udate_read", produces = "application/json;charset=UTF-8")
+	public Board style_view(@RequestParam String bNo) {
+		Board board = new Board();
+		int intBNo = Integer.parseInt(bNo);
+		
+		Board updateBoard = styleCoodinationService.findUpdateBoard(intBNo);
+		return updateBoard;
+	}
 
 	
 	

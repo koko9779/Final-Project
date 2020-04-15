@@ -27,11 +27,14 @@ public interface StyleCoodinationService {
 	public List<Board> findBoardAll();
 	
 	public List<Board> findBoardOne(int bNo);
+	
+	public Board findUpdateBoard(int bNo);
 
 	public int findBoardCount();
 
 	public int findBoardReplyCount();
 
 	public int updateViewCount(int bNo) throws Exception;
+	
 
 }
