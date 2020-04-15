@@ -78,6 +78,36 @@
 	<script type="text/javascript">
 		//메시지 삭제 function
 		$(function() {
+			$('#cmdDelete').click(function(e){
+				var noArray = [];
+				
+				$('input[name="message_check"]:checked').each(function(i){
+					noArray.push($(this).val());
+				});
+				
+				var params = {
+						"msNo" : noArray
+				}
+				
+				$.ajax({
+					url : "message_delete",
+					data : params,
+					dataType : 'text',
+					success : function(result){
+						if(result == 'true'){
+							alert('삭제완료');
+							location.reload();
+						}else{
+							location.href = '404';
+						}
+					}
+				})
+				
+			});
+			
+			
+			
+			/*
 			$('#cmdDelete').click(function(e) {
 				var size = document.getElementsByName('message_check').length;
 				for (var i = 0; i < size; i++) {
@@ -102,6 +132,7 @@
 					}
 				});
 			}
+			*/
 
 		})
 	</script>

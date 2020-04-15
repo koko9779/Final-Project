@@ -3,27 +3,42 @@
 <%@ include file="/WEB-INF/views/mypage/include/include_top.jsp" %>
 <script type="text/javascript">
 	$(function(){
+		
+		/************************친구삭제 function 시작******************************/
+		
 		$('#deleteFriendBtn').click(function(e){
-			var size = document.getElementsByName("friend_check").length;
-			for (var i = 0; i < size; i++) {
-				if(document.getElementsByName("friend_check")[i].checked == true){
-					var fPk = document.getElementsByName("friend_check")[i].value;
-					friend_delete_function(fPk);
-				}
+			//데이터를 받을 배열 선언
+			var noArray = [];
+			
+			//배열에 데이터 넣기
+			$('input[name="friend_check"]:checked').each(function(i){
+				noArray.push($(this).val());
+			})
+			
+			var params = {
+				"fPk" : noArray
 			}
-
-		});
-		function friend_delete_function(fPk){
+			
 			$.ajax({
-				url : "friend_delete",
-				method : "GET",
-				data : "fPk="+fPk,
+				url : 'friend_delete',
+				data : params,
 				dataType : "text",
 				success : function(result){
-					location.reload();
+					if(result == 'true'){
+						alert('삭제완료');
+						location.reload();
+					}else{
+						location.href = '404';
+					}
+				},
+				error : function(){
+					location.href = '404';
 				}
-			})
-		};
+			});
+			
+			
+		});
+
 		
 		/************************쪽지보내기 function 시작******************************/
 		$('#friendDropdown a:nth-child(1)').click(function(e){
@@ -38,11 +53,6 @@
 			e.preventDefault();
 			window.open("message_list", "_blank", "width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 		})
-		/*
-		$('.dropdown-menu a:nth-child(1)').click(function(e){
-			window.open("message?mNo="+no, "_blank","width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
-		});
-		*/
 		
 		/************************친구검색 function 시작******************************/
 		
@@ -128,8 +138,6 @@
 			//var noV = $(this).attr('value');
 			window.open("message", "_blank","width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 		})
-	
-		
 		
 	})
 </script>

@@ -5,6 +5,41 @@
 
 <script type="text/javascript">
 $(function(){
+	
+	/***************내가쓴글 삭제***************************/
+	$('#deleteWriteBtn').click(function(e){
+		var noArray = [];
+		
+		$('input[name="member_write_check"]:checked').each(function(i){
+			noArray.push($(this).val());
+		})
+		
+		var params = {
+			"pNo" : noArray
+		}
+		
+		$.ajax({
+			url : 'member_write_delete',
+			data : params,
+			dataType : "text",
+			success : function(result){
+				if(result == 'true'){
+					alert('삭제완료');
+					location.reload();
+				}else{
+					location.href = '404';
+				}
+			},
+			error : function(){
+				location.href = '404';
+			}
+		});
+		
+		
+	});
+	
+	
+	/*
 	$('#deleteWriteBtn').click(function(e){
 		var size = document.getElementsByName("member_write_check").length;
 		for (var i = 0; i < size; i++) {
@@ -27,7 +62,7 @@ $(function(){
 			}
 		})
 	}
-	
+	*/
 })
 </script>
 

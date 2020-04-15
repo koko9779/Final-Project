@@ -4,6 +4,7 @@
 
 <script type="text/javascript">
 $(function(){
+	/*
 	$('#deleteBtn').click(function(e){
 		var size = document.getElementsByName("book_check").length;
 		for (var i =0; i < size; i++){
@@ -27,6 +28,45 @@ $(function(){
 			}
 		})
 	}
+	*/
+	
+	//배열로 데이터를 Controller에 전송하기
+	$('#deleteBtn').click(function(e){
+		//배열선언
+		var noArray = [];
+		
+		//배열에 값 채우기
+		$('input[name="book_check"]:checked').each(function(i){
+			noArray.push($(this).val());
+		});
+		
+		var params = {
+				"bmNo" : noArray 
+		};
+		
+		//ajax 호출
+		$.ajax({
+			url : "bookmark_delete",
+			data : params,
+			dataType : "text",
+			success : function(result){
+				if(result == 'true'){
+					alert('삭제완료');
+					location.reload();
+				}else{
+					location.href = '404';
+				}
+				
+			}
+		});
+		
+		
+		
+		
+	});
+	
+	
+	
 	
 })
 

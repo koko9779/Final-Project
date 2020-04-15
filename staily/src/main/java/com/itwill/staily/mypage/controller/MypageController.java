@@ -133,7 +133,26 @@ public class MypageController {
 		//return "mypage/bookmark";
 	}
 	
+	//북마크삭제[배열]
+	@RequestMapping("/bookmark_delete")
+	@ResponseBody
+	public String bookmark_delete(@RequestParam(value="bmNo[]") List<Integer> bmNoList) {
+		boolean result = false;
+		for (Integer bmNo : bmNoList) {
+			try {
+				result = bookmarkService.deleteBookmark(bmNo);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "N";
+			}
+		}
+		return result+"";
+	}
+	
+	
+	
 	//북마크삭제
+	/*
 	@RequestMapping(value = "/bookmark_delete")
 	@ResponseBody
 	public String bookmark_delete(@RequestParam int bmNo, HttpServletRequest request, Model model,
@@ -147,6 +166,7 @@ public class MypageController {
 			return "N";
 		}
 	}
+	*/
 	
 	//친구리스트
 	@RequestMapping("/friend_list")
@@ -197,12 +217,17 @@ public class MypageController {
 	//친구삭제
 	@RequestMapping("/friend_delete")
 	@ResponseBody
-	public boolean friend_delete(@RequestParam int fPk, HttpServletResponse response, HttpServletRequest request) throws Exception{
-		//int fPk = (Integer)request.getAttribute("fPk");
+	public String friend_delete(@RequestParam(value="fPk[]") List<Integer> fPkList) {
 		boolean result = false;
-		result = friendService.deleteFriend(fPk);
-		//request.setAttribute("result", result);
-		return result;
+		for (Integer fPk : fPkList) {
+			try {
+				result = friendService.deleteFriend(fPk);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "N";
+			}
+		}
+		return result+"";
 	}
 	
 	//친구찾기 -- RestController로 이동필요
@@ -343,13 +368,19 @@ public class MypageController {
 	}
 	
 	//메시지삭제
-	@RequestMapping(value="/message_delete",produces="text/plain;charset=UTF-8")
+	@RequestMapping(value="/message_delete")
 	@ResponseBody
-	public String message_delete(HttpServletResponse response, HttpServletRequest request,
-								 @RequestParam int msNo) throws Exception{
+	public String message_delete(@RequestParam(value="msNo[]") List<Integer> msNoList){
 		boolean result = false;
-		result = messageService.deleteMessage(msNo);
-		//request.setAttribute("result", result);
+		for (Integer msNo : msNoList) {
+			try {
+				result = messageService.deleteMessage(msNo);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "N";
+			}
+			
+		}
 		return result+"";
 	}
 	
@@ -396,13 +427,18 @@ public class MypageController {
 	//내가쓴글삭제
 	@RequestMapping("/member_write_delete")
 	@ResponseBody
-	public boolean member_write_delete(HttpServletRequest request, 
-									  HttpServletResponse response,
-									  @RequestParam int pNo) throws Exception{
+	public String member_write_delete(@RequestParam(value="pNo[]") List<Integer> pNoList){
 		boolean result = false;
-		result = mypageService.deleteWrite(pNo);
-		//request.setAttribute("result", result);
-		return result;
+		for (Integer pNo : pNoList) {
+			try {
+				result = mypageService.deleteWrite(pNo);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "N";
+			}
+			
+		}
+		return result+"";
 	}
 	
 	//결제리스트출력
