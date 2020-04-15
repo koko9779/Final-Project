@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/admin/include/include_css.jsp"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
-<%@ include file="/WEB-INF/views/detail/include/include_work_select_js.jsp" %>
+<%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
+
+<!-- Hero -->
+<div id="content_hero" style="background-image: url(http://via.placeholder.com/1440x435)">
+	
+	<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
+
+	<!-- Content -->
+	<div class="container">
+		<div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0" data-translatey="100">
+			<div class="col-md-9">
+				<span class="title">The very latest</span>
+				<h1>Cinema news</h1>
+			</div>
+		</div>
+	</div>
+
+</div>
+
 
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
 			<div class="modal fade" id="work_confirm" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
+				<div class="modal-dialog" role="document" style="width: ">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h4 class="modal-title" id="myModalLabel">
@@ -19,13 +36,15 @@
 							
 						</div>
 						<div class="modal-footer">
-							<form name="wNo_request" method="POST">
-								<input type="hidden" id="wNo" name="wNo">
-								<button type="button" class="btn btn-primary" onClick="modal_click()">확인</button> 
-							</form>			 
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">
-								취소
-							</button>
+							<div style="float: right;">
+								<form name="wNo_request" method="POST" style="float: left;">
+									<input type="hidden" id="wNo" name="wNo">
+									<button type="button" class="btn btn-primary" onClick="modal_click()">확인</button> 
+								</form>			 
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">
+									취소
+								</button>
+							</div>
 						</div>
 					</div>					
 				</div>				
@@ -34,7 +53,7 @@
 	</div>
 </div>
 
-<body id="page-top">
+
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -80,7 +99,7 @@
 					  <td><fmt:formatDate value="${dateFormat}" pattern="yyyy-MM-dd(E)" type="both"/></td>
                       <td>${work.wTepisode}부작</td>
                       <td hidden="aa">${work.wPoster}</td>
-                      <td><a id="modal-424823" href="#work_confirm" role="button" class="btn" data-toggle="modal" data-target="#work_confirm">선택</a></td>
+                      <td><a id="modal-424823" href="#work_confirm" role="button" class="btnnn" data-toggle="modal" data-target="#work_confirm">선택</a></td>
                     </tr>
                   	</c:forEach>
                   </tbody>
@@ -110,7 +129,7 @@
 
 <script type="text/javascript">
 //버튼 클릭시 Row에 있는 작품 번호 값 전달
-$(".btn").click(function() { 	
+$(".btnnn").click(function() { 	
     var confirm = $(this);
     
     var tr = confirm.parent().parent();
@@ -127,7 +146,7 @@ $(".btn").click(function() {
 		var main = document.getElementById("body");
 		
 		main.innerHTML = "이 작품이 맞습니까?<br><br>작품명 : " + name + "<br>카테고리 : " + category + "<br>처음 방영(개봉)일 : " + date +
-		"<br>전체 회차 : " + tepisode + "<br>작품 포스터<br>" + "<img src='/staily" + poster + "' width='465px' height='664px'>";
+		"<br>전체 회차 : " + tepisode + "<br>작품 포스터<br>" + "<img src='/staily" + poster + "' width='100%'>";
 		
 		$('#wNo').val(no);
 	});
@@ -140,6 +159,9 @@ function modal_click() {
 
 
 </script>
+<%@ include file="/WEB-INF/views/include/include_js.jsp"%>
+<%@ include file="/WEB-INF/views/detail/include/include_work_select_js.jsp" %>
+
 </body>
 
 </html>
