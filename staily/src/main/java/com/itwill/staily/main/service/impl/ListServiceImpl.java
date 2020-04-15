@@ -75,8 +75,8 @@ public class ListServiceImpl implements ListService{
 	}
 
 	@Override
-	public int selectProductCount() {
-		return listMapper.selectProductCount();
+	public int selectProductCount(int wNo) {
+		return listMapper.selectProductCount(wNo);
 	}
 
 	@Override

@@ -129,6 +129,6 @@ public class MainServiceTest {
 	@Test
 	@Ignore
 	public void testSelectProductCount() throws Exception{
-		assertSame(5, listServiceImpl.selectProductCount());
+		assertSame(5, listServiceImpl.selectProductCount(1));
 	}
 }

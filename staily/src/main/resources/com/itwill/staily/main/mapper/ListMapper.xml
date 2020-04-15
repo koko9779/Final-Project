@@ -83,7 +83,7 @@
 		select bm_no from bookmark where m_no = #{mNo} and p_no = #{pNo}
 	</select>
 	<!-- 9.게시물 총 건수 -->		
-	<select id="selectProductCount" resultType="int">
-		select count(*) from product where p_check='Y'
+	<select id="selectProductCount" parameterType="int" resultType="int">
+		select count(*) from product where p_check='Y' and w_no=#{wNo}
 	</select>
 </mapper>
