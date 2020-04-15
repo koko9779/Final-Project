@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
-
+  
 <!-- Hero -->
 <div id="content_hero"
 	style="background-image: url(http://via.placeholder.com/1440x435)">
@@ -29,7 +29,7 @@
 	<!--  
 	<div class="row">
 
-		<%--@ include file="/WEB-INF/views/include/include_work_sidebar.jsp" --%>
+		<%--@ include file="/WEB-INF/views/include/include_work_sidebar.jsp"--%>
 
 		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
 	-->
