@@ -1,70 +1,39 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/tags.jspf" %>
-<%@ include file="/WEB-INF/views/mypage/include/include_top.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/tags.jspf"%>
+<%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 
-<script type="text/javascript">
-$(function(){
+<!-- Hero -->
+<div id="content_hero"
+	style="background-image: url(http://via.placeholder.com/1440x435)">
+
+	<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg"
+		alt="Scroll down" class="scroll" />
+
+	<!-- Content -->
+	<div class="container">
+		<div class="row blurb scrollme animateme" data-when="exit"
+			data-from="0" data-to="1" data-opacity="0" data-translatey="100">
+			<div class="col-md-9">
+				<span class="title">The very latest</span>
+				<h1>Cinema news</h1>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!-- Section -->
+<div class="container section news">
+	  
+	<div class="row">
+
+		<%@ include file="/WEB-INF/views/mypage/include/include_work_sidebar.jsp" %>
+
+		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
 	
-	/***************내가쓴글 삭제***************************/
-	$('#deleteWriteBtn').click(function(e){
-		var noArray = [];
-		
-		$('input[name="member_write_check"]:checked').each(function(i){
-			noArray.push($(this).val());
-		})
-		
-		var params = {
-			"pNo" : noArray
-		}
-		
-		$.ajax({
-			url : 'member_write_delete',
-			data : params,
-			dataType : "text",
-			success : function(result){
-				if(result == 'true'){
-					alert('삭제완료');
-					location.reload();
-				}else{
-					location.href = '404';
-				}
-			},
-			error : function(){
-				location.href = '404';
-			}
-		});
-		
-		
-	});
-	
-	
-	/*
-	$('#deleteWriteBtn').click(function(e){
-		var size = document.getElementsByName("member_write_check").length;
-		for (var i = 0; i < size; i++) {
-			if(document.getElementsByName("member_write_check")[i].checked == true){
-				var pNo = document.getElementsByName("member_write_check")[i].value;
-				member_write_delete_function(pNo);
-			}
-			
-		}
-		
-	});
-	function member_write_delete_function(pNo){
-		$.ajax({
-			url : "member_write_delete",
-			method : "GET",
-			data : 'pNo='+pNo,
-			dataType : "text",
-			success : function(result){
-				location.reload();
-			}
-		})
-	}
-	*/
-})
-</script>
+			<!-- Page Heading -->
 
         <!-- End of Topbar -->
 
@@ -114,7 +83,7 @@ $(function(){
         <!-- /.container-fluid -->
 
       </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-   	  <%@ include file="/WEB-INF/views/mypage/include/include_footer.jsp" %>
+<%@ include file="/WEB-INF/views/admin/include/include_js.jsp" %>
+   	  
+</body>
+</html>

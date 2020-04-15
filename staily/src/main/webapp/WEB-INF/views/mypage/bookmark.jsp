@@ -4,31 +4,6 @@
 
 <script type="text/javascript">
 $(function(){
-	/*
-	$('#deleteBtn').click(function(e){
-		var size = document.getElementsByName("book_check").length;
-		for (var i =0; i < size; i++){
-			if(document.getElementsByName("book_check")[i].checked == true){
-				var bmNo = document.getElementsByName("book_check")[i].value;
-				book_delete_function(bmNo);
-			}
-		}
-
-	});
-	function book_delete_function(bmNo){
-		$.ajax({
-			url : "bookmark_delete",
-			method : "POST",
-			data : 'bmNo='+bmNo,
-			dataType: "text",
-			success : function(result){
-				if(result == "true"){
-					location.reload();
-				}
-			}
-		})
-	}
-	*/
 	
 	//배열로 데이터를 Controller에 전송하기
 	$('#deleteBtn').click(function(e){
