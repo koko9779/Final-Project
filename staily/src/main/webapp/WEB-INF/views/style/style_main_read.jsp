@@ -100,5 +100,16 @@ $(function (){
 	});
 });
 </script>
+<style>
+	.pagination>.active>a , .pagination>.active>a:hover {
+		background-color: #e76115 !important;
+    	border-color: #e76115 !important;
+	
+	}
+	
+	.table-responsive {
+    	overflow-x: hidden;
+	}
+</style>
 </body>
 </html>

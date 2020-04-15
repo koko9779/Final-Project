@@ -22,15 +22,15 @@
                   <input type="hidden" value="${findId}" id="findIdE">
                   <form class="user" name="f">
                     <div class="margin">
-                      <input type="text" class="form-control form-control-user" id="inputId" placeholder="아이디" name="userId">
+                      <input type="text" class="form-control form-control-user" id="inputId" placeholder="아이디" name="userId" onkeyup="loginKeyup();">
                     </div>
                     <div>
-                      <input type="password" class="form-control form-control-user" id="inputPw" placeholder="비밀번호" name="userPw">
+                      <input type="password" class="form-control form-control-user" id="inputPw" placeholder="비밀번호" name="userPw" onkeyup="loginKeyup();">
                     </div>
                     <div class="error_msg" id="error_msg">
                     	${msg}
                     </div>
-                    <a href="javascript:logi	n_action();" role="button" class="btn btn-primary btn-user btn-block">
+                    <a href="javascript:login_action();" role="button" class="btn btn-primary btn-user btn-block">
                     	 로그인
                     </a>
                     <hr>
@@ -73,7 +73,15 @@ $(function() {
 		location.href="login";
 		return;
 	}
+
 });
+
+function loginKeyup(){
+	if(event.keyCode == 13) {
+		login_action();
+	}	
+}
+
 </script>
  
    </body>

@@ -1,41 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-		<style>
-		.p_content>h1,.p_content> h2,.p_content> h3,.p_content> h4 {
-		
-	line-height: inherit;
-    position: relative;
-    margin: inherit;
-    padding: inherit;
-    border-bottom: inherit;
-    font-size: inherit;
-    font-family: inherit;
-    font-weight: inherit;
-    line-height: inherit;
-    color: inherit;
-    margin: inherit;
-    font-size: inherit;
-    font-weight: normal;
-    line-height: inherit;
-
-    font-size: inherit;
-    margin-block-start: inherit;
-    margin-block-end: inherit;
-    margin-inline-start: inherit;
-    margin-inline-end: inherit;
-    font-weight: inherit;
-		
-		
-		
-			border-bottom: none;
-			background-image: none !important;
-		}
-		
-		.p_content>h2:after, .p_content>h3:after, .p_content>h4:after, .p_content>h5:after{
-			background-image: none !important;
-		}
-	</style>
-<link href="${pageContext.request.contextPath}/ckeditor/contents.css" rel="stylesheet">
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 
@@ -59,41 +23,14 @@
 			<!-- Section -->
 			<div class="container section news">
 				<div class="row">
-					<div class="col-sm-3" style="margin-top: 7px;">
-						<aside class="col-sm-push-1 sidebar">
-						<div class="widget">
-							<h3>Categories</h3>
-							<ul>
-								<li><a href="#">Coming soon</a></li>
-								<li><a href="#">New releases</a></li>
-								<li><a href="#">What's hot</a></li>
-								<li><a href="#">Events</a></li>
-							</ul>
-						</div>
-						<div class="widget">
-							<h3>Archives</h3>
-							<ul> 
-								<li><a href="#">July 2017</a></li>
-								<li><a href="#">June 2017</a></li>
-								<li><a href="#">May 2017</a></li>
-								<li><a href="#">April 2017</a></li>
-							</ul>
-						</div>
-						</aside>
-					</div>
-					<div class="col-sm-1">
-					</div>
-				
-					<div class="col-sm-8">
+					<div class="col-sm-7">
 						<article id="board" style="border-bottom: none;">
 						<h3 class="board-top">스타일 질문</h3>
 						<div class="categories col-md-6 board-title">${boardOneList[0].bTitle}</div>
 						<div class="col-md-6 text-left">
 							<span class="font-small">${boardOneList[0].mId}.${boardOneList[0].bDate}.조회수: ${boardOneList[0].bView}</span>
 						</div>
-							<div class="p_content">
-								${boardOneList[0].bContent}
-							</div>
+							<p>${boardOneList[0].bContent}</p>
 								<a href="javascript:board_delete(${boardOneList[0].bNo});" class="btn btn-ghost sort">
 									<span>삭제</span>
 								</a>
@@ -122,7 +59,26 @@
 						</article>
 						</c:forEach>
 					</div>
-					
+									<aside class="col-sm-3 col-sm-push-1 sidebar">
+						<div class="widget">
+							<h3>Categories</h3>
+							<ul>
+								<li><a href="#">Coming soon</a></li>
+								<li><a href="#">New releases</a></li>
+								<li><a href="#">What's hot</a></li>
+								<li><a href="#">Events</a></li>
+							</ul>
+						</div>
+						<div class="widget">
+							<h3>Archives</h3>
+							<ul> 
+								<li><a href="#">July 2017</a></li>
+								<li><a href="#">June 2017</a></li>
+								<li><a href="#">May 2017</a></li>
+								<li><a href="#">April 2017</a></li>
+							</ul>
+						</div>
+					</aside>
 				</div>
 			</div>
 
@@ -147,5 +103,4 @@
 			-->
 	<%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
 	</body>
-
 </html>
