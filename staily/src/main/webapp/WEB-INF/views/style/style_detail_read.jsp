@@ -59,7 +59,7 @@
 						</article>
 						</c:forEach>
 					</div>
-					<aside class="col-sm-3 col-sm-push-1 sidebar">
+									<aside class="col-sm-3 col-sm-push-1 sidebar">
 						<div class="widget">
 							<h3>Categories</h3>
 							<ul>
@@ -71,7 +71,7 @@
 						</div>
 						<div class="widget">
 							<h3>Archives</h3>
-							<ul>
+							<ul> 
 								<li><a href="#">July 2017</a></li>
 								<li><a href="#">June 2017</a></li>
 								<li><a href="#">May 2017</a></li>
