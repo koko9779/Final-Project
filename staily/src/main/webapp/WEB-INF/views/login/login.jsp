@@ -30,7 +30,7 @@
                     <div class="error_msg" id="error_msg">
                     	${msg}
                     </div>
-                    <a href="javascript:login_action();" role="button" class="btn btn-primary btn-user btn-block">
+                    <a href="javascript:logi	n_action();" role="button" class="btn btn-primary btn-user btn-block">
                     	 로그인
                     </a>
                     <hr>

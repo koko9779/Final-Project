@@ -104,5 +104,10 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 	public int updateViewCount(int bNo) throws Exception{
 		return viewMapper.updateView(bNo);
 	}
+
+	@Override
+	public Board findUpdateBoard(int bNo) {
+		return viewMapper.selectUpdateBoard(bNo);
+	}
 	
 }
