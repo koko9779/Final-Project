@@ -32,5 +32,7 @@ public interface ListService {
 	public int selectBookmarkNo(@Param("mNo") int mNo,@Param("pNo") int pNo) throws Exception;
 	//게시물 총 건수
 	public int selectProductCount() throws Exception;		
-
+	
+	//작품 조회수 증가
+	public void increaseWorkView(int wNo) throws Exception;
 }

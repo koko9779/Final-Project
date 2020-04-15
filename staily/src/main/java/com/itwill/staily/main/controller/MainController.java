@@ -74,6 +74,8 @@ public class MainController {
 			Integer userNo = (Integer)session.getAttribute("userNo");
 			request.setAttribute("userNo", userNo);		
 			
+			listService.increaseWorkView(wNo);
+			
 			if(userNo!=null) {
 				List<Bookmark> bmList = mainService.selectByBookmark(userNo);
 				request.setAttribute("bmList", bmList);	
