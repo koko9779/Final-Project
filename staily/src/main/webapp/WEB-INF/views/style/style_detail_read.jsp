@@ -59,7 +59,7 @@
 						</article>
 						</c:forEach>
 					</div>
-					<aside class="col-sm-3 col-sm-push-1 sidebar">
+									<aside class="col-sm-3 col-sm-push-1 sidebar">
 						<div class="widget">
 							<h3>Categories</h3>
 							<ul>

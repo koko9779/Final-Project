@@ -98,7 +98,6 @@ $(function (){
 		$(".page-link").css("background-color", "#e76115");
 		$(".page-link").css("border-color", "#e76115");
 	});
-	
 });
 </script>
 </body>
