@@ -68,7 +68,7 @@ $(function() {
 									main.innerHTML = "<b>작품명 :</b> "
 											+ name
 											+ "<br><br>"
-											+ "<img src='https://image.tmdb.org/t/p/w94_and_h141_bestv2"+poster+"' width='94x' height='141px'>"
+											+ "<img src='https://image.tmdb.org/t/p/w600_and_h900_bestv2/"+poster+"' width='400' height='600'>"
 											+ "<br><br><b>개봉(방영)일 </b>:<br> "
 											+ date
 											+ "<br><br><b>작품설명 </b>:<br><br> "
