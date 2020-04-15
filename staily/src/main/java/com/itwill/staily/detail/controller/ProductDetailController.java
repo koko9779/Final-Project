@@ -20,11 +20,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.staily.detail.model.dto.ProductEx;
 import com.itwill.staily.detail.service.ProductDetailService;
+import com.itwill.staily.detail.service.WorkDetailService;
  
 @Controller
 @RequestMapping("/detail")
 public class ProductDetailController {
-	
+	@Autowired
+	private WorkDetailService workDetailService;
 	@Autowired
 	private ProductDetailService productDetailService;
 	
@@ -39,8 +41,10 @@ public class ProductDetailController {
 			request.setAttribute("userId", userId);
 			
 			String pNo = request.getParameter("pNo");
+			//String wNo = request.getParameter("wNo");
 			List<ProductEx> p = productDetailService.selectProductOne(Integer.parseInt(pNo));
 			productDetailService.increaseProductView(Integer.parseInt(pNo));
+			//workDetailService.increaseWorkView(Integer.parseInt(wNo));
 			
 			request.setAttribute("productOne", p);
 			
