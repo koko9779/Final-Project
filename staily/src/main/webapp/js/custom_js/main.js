@@ -69,39 +69,38 @@ $(document).ready(function(){
 					if(userNo!=null){
 						console.log(bmList+"북마크");
 						/////////////////////////
-						/*
-						if(bmList!=null){
-							console.log("login-->>>>>>>>>>>>>")
-							var cnt = 0;
-							for (var i = 0; i < bmList.length; i++) {
-								if(pPno==bmList[i].product.pNo){
-									console.log("cnt1-->>>>>>>>>>>>>")
-									cnt = 1;
-									break;
-								}
-							}
+						if(bmList=="" || bmList==undefined){
 							
-							if(cnt==1){
-								html += "<input class='material-icons' type='image'"; 
-								html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 제거'";
-								html += " src='../images/star.png'";
-								html += " onclick='select_bookmark("+userNo+","+pPno+");return false;'>";
-								console.log("cnt=====1-->>>>>>>>>>>>>")
-							}else{
-								html += "<input class='material-icons' type='image'";
-								html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
-								html += " src='../images/emptystar.png'";
-								html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>";  
-							}
-							
-						}else{
 							html += "<input class='material-icons' type='image'";
 							html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
 							html += " src='../images/emptystar.png'";
 							html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>"; 
-						}
-						*/
-						/////////////////////////////
+						}else{
+							
+								console.log("login-->>>>>>>>>>>>>")
+								var cnt = 0;
+								for (var i = 0; i < bmList.length; i++) {
+									if(pPno==bmList[i].product.pNo){
+										console.log("cnt1-->>>>>>>>>>>>>")
+										cnt = 1;
+										break;
+									}
+								}
+								
+								if(cnt==1){
+									html += "<input class='material-icons' type='image'"; 
+									html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 제거'";
+									html += " src='../images/star.png'";
+									html += " onclick='select_bookmark("+userNo+","+pPno+");return false;'>";
+									console.log("cnt=====1-->>>>>>>>>>>>>")
+								}else{
+									html += "<input class='material-icons' type='image'";
+									html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
+									html += " src='../images/emptystar.png'";
+									html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>";  
+								}
+							
+						}	
 					}else{
 						html += "<input class='material-icons' type='image'";
 						html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
