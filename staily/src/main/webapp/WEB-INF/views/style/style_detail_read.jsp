@@ -71,7 +71,7 @@
 						</div>
 						<div class="widget">
 							<h3>Archives</h3>
-							<ul>
+							<ul> 
 								<li><a href="#">July 2017</a></li>
 								<li><a href="#">June 2017</a></li>
 								<li><a href="#">May 2017</a></li>
