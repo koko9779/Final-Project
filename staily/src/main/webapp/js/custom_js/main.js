@@ -58,9 +58,10 @@ $(document).ready(function(){
 					html += "<form id='product_"+pPno+"' onsubmit=''>";
 					html += "<h2 value='상품이름' >"+pName+"</h2>";
 					html += "<input type='hidden' value='"+userNo+"' name='userNo'>";
+					html += "<input type='hidden' value='"+wNo+"' name='wNo'>";
 					html += "<input type='hidden' value='"+pPno+"' name='pNo'>";
 					html += "<div class='movie-poster2'>";
-					html += "<img onclick='productpage("+pPno+")'";
+					html += "<img onclick='productpage("+pWno+","+pPno+")'";
 					html += " src='../"+pScene+"'";
 					html += " alt='"+pName+"' style='width:850px; height:450px; margin: 0;cursor: pointer;'/>";
 					html += "</div>";
