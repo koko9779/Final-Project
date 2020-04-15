@@ -41,10 +41,10 @@ public class ProductDetailController {
 			request.setAttribute("userId", userId);
 			
 			String pNo = request.getParameter("pNo");
-			//String wNo = request.getParameter("wNo");
+			String wNo = request.getParameter("wNo");
 			List<ProductEx> p = productDetailService.selectProductOne(Integer.parseInt(pNo));
 			productDetailService.increaseProductView(Integer.parseInt(pNo));
-			//workDetailService.increaseWorkView(Integer.parseInt(wNo));
+			workDetailService.increaseWorkView(Integer.parseInt(wNo));
 			
 			request.setAttribute("productOne", p);
 			

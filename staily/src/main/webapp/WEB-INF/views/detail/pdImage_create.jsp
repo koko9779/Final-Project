@@ -64,6 +64,7 @@ function afterFileTransfer2(realname2, filename2, filesize2) {
 	filename9.value = filename2;
 	filesize9.value = filesize2;
 	
+	document.fff.action = "";
 	document.fff.submit();
 	
 	/*
