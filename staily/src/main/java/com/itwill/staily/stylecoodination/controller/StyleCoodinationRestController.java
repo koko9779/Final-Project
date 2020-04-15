@@ -5,7 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,12 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.annotation.ApplicationScope;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -39,6 +43,7 @@ public class StyleCoodinationRestController {
 		PrintWriter printWriter = null;
 		OutputStream out = null;
 		OutputStream out2 = null;
+		File f = new File("임시.jpg"); // img폴더 경로를 구하기 위한 작업
 		MultipartFile file = multiFile.getFile("upload");
 		if(file != null){
 			if(file.getSize() > 0 ){
@@ -46,17 +51,42 @@ public class StyleCoodinationRestController {
 					try{
 						String fileName = file.getName();
 						byte[] bytes = file.getBytes();
-						
 						//String uploadPath = "C:/Users/starthink/git/Final-Project/staily/src/main/webapp/img";
-						String uploadPath = "C:/Users/user/git/Final-Project/staily/src/main/webapp/img";
+						//String uploadPath = "C:/Users/user/git/Final-Project/staily/src/main/webapp/img";
+						//String uploadPath = f.getAbsolutePath();
+						System.out.println("넘어오나");
+						String[] uploadPathArray = f.getAbsolutePath().split("\\\\");
+						for (String string : uploadPathArray) {
+							System.out.println(string + "\n");
+						}
+						String uploadPath = uploadPathArray[0] + "\\" +  uploadPathArray[1] + "\\" + uploadPathArray[2] + 
+											"/git/Final-Project/staily/src/main/webapp/img";
+						
+						System.out.println(uploadPath);
+						
+						/*
+						int lastNum = uploadPath.lastIndexOf("\\"); // 백슬래쉬를 넣되, 이스케이핑 시키기 위해 두번 씀
+						uploadPath = uploadPath.substring(0, lastNum);
+						System.out.println(uploadPath);
+						 */
 						String uploadPath2 = req.getSession().getServletContext().getRealPath("/img");
 			
-						System.out.println(uploadPath);
 						File uploadFile = new File(uploadPath);
 						if(!uploadFile.exists()){
 							uploadFile.mkdirs();
 						}
-						fileName = UUID.randomUUID().toString();
+							/*
+						 	SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+	   						String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
+	   	
+							File f = new File("C:\\Users\\stu\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename +".jpg");
+							 */
+						
+						// 데이터명 난수 생성
+						SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+   						fileName = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
+   						System.out.println(fileName);
+						//fileName = UUID.randomUUID().toString();
 						uploadPath = uploadPath + "/" + fileName;
 						uploadPath2 = uploadPath2 + "/" + fileName;
 						out = new FileOutputStream(new File(uploadPath));
@@ -81,6 +111,7 @@ public class StyleCoodinationRestController {
                         printWriter.println(json);
                     }catch(IOException e){
                         e.printStackTrace();
+                        
                     }finally{
                         if(out != null){
                             out.close();

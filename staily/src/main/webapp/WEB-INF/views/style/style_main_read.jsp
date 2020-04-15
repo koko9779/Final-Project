@@ -26,11 +26,13 @@
 
 <!-- Section -->
 <div class="container section news">
+	<!--  
 	<div class="row">
 
-		<%@ include file="/WEB-INF/views/include/include_work_sidebar.jsp"%>
+		<%--@ include file="/WEB-INF/views/include/include_work_sidebar.jsp" --%>
 
 		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
+	-->
 			<!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">스타일코디 페이지</h1>
 <!-- DataTales Example -->
