@@ -39,16 +39,18 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 
 	@Override
 	@Transactional(isolation = Isolation.READ_UNCOMMITTED, propagation = Propagation.REQUIRED)
-	public boolean createProduct(ProductEx product, @Param("wdEpisode") int wdEpisode) throws Exception {
+	public boolean createProduct(ProductEx product, @Param("wNo") int wNo, @Param("wdEpisode") int wdEpisode) throws Exception {
 		boolean check = false;
-		int pNo = productDetailMapper.pNo_nextval();
 		
 		boolean p = productDetailMapper.createProduct(product);
-		boolean wd = workDetailMapper.createWorkDetail(pNo, wdEpisode);
+		boolean wd = workDetailMapper.createWorkDetail(wNo, wdEpisode);
+		//boolean pd = productDetailMapper.createProductDetail(product);
 		
-		
-		if(p && wd) {
-			check = true;			
+		if(p) {
+			if(wd) {
+				check = true;			
+				
+			}
 		}
 		else {
 			check = false;
