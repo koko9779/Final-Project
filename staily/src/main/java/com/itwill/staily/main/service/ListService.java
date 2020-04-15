@@ -31,7 +31,7 @@ public interface ListService {
 	//즐겨찾기 번호 찾기
 	public int selectBookmarkNo(@Param("mNo") int mNo,@Param("pNo") int pNo) throws Exception;
 	//게시물 총 건수
-	public int selectProductCount() throws Exception;		
+	public int selectProductCount(int wNo) throws Exception;		
 	
 	//작품 조회수 증가
 	public void increaseWorkView(int wNo) throws Exception;

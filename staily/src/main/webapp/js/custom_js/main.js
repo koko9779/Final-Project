@@ -29,7 +29,7 @@ $(document).ready(function(){
 		var wdEpisode = $("option:selected").val();
 		var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode;
 		$.ajax({
-			url:'worklist_read/detail',
+			url:'worklist_select/detail',
 			method:'GET',
 			data:params,
 			dataType:'json',
