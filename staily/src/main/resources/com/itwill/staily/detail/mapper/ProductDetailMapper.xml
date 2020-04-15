@@ -11,7 +11,7 @@
 		on p.m_no = m.m_no
 		where p.p_no = #{pNo} and p.p_check = 'Y'
 	</select>
-		
+	
 	<insert id="createProduct" parameterType="com.itwill.staily.detail.model.dto.ProductEx">
 		insert into product (p_no, m_no, w_no, p_name, p_price, p_url, p_address, p_daddress, p_check, p_view, p_scene, p_date)
 		values (product_no_seq.nextval, #{mNo}, #{wNo}, #{pName}, #{pPrice}, #{pUrl}, #{pAddress}, #{pDaddress}, 'N', 0, #{pScene}, sysdate)
@@ -19,7 +19,7 @@
 	
 	<insert id="createProductDetail" parameterType="com.itwill.staily.detail.model.dto.ProductEx">
 		insert into product_detail (pd_no, p_no, pd_image)
-		values (pd_no_seq.currval, #{pNo}, #{pdImage})
+		values (pd_no_seq.currval, product_no_seq.currval, #{pdImage})
 	</insert>
 	
 	<update id="updateProduct" parameterType="com.itwill.staily.detail.model.dto.ProductEx">

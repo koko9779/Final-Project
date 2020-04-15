@@ -40,7 +40,7 @@ function afterFileTransfer(realname, filename, filesize) {
 	filename9.value = filename;
 	filesize9.value = filesize;
 
-	document.fff.submit();
+	document.ff.submit();
 	/*
 	var spl = realname9.value.split('.');
 	alert(realname9.value);
@@ -58,11 +58,11 @@ function pdImageCreate() {
 }
 
 function productCreate() {
-	//document.ff.action = "upload";
-	//document.ff.method = "POST";
-	//document.ff.submit();
-	
 	guManager.uploadFiles();
+	document.ff.action = "product_create_action";
+	document.ff.method = "POST";
+	document.ff.submit();
+	
 	//guManager2.uploadFiles();
 	
 };

@@ -37,10 +37,10 @@ public class WorkDetailServiceImpl implements WorkDetailService {
 	}
 
 	@Override
-	public boolean createWorkDetail(@Param("pNo") int pNo, @Param("wdEpisode") int wdEpisode) throws Exception {
+	public boolean createWorkDetail(@Param("wNo") int wNo, @Param("wdEpisode") int wdEpisode) throws Exception {
 		boolean check = false;
 		
-		if(workDetailMapper.createWorkDetail(pNo, wdEpisode)) {
+		if(workDetailMapper.createWorkDetail(wNo, wdEpisode)) {
 			check = true;			
 		}
 		else{
