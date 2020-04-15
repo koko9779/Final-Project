@@ -29,7 +29,7 @@ $(document).ready(function(){
 		var wdEpisode = $("option:selected").val();
 		var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode;
 		$.ajax({
-			url:'worklist_read/detail',
+			url:'worklist_select/detail',
 			method:'GET',
 			data:params,
 			dataType:'json',
@@ -37,7 +37,7 @@ $(document).ready(function(){
 				var html = "";
 				var userNo = jsonData.userNo;
 				console.log("userNo:~~~~~~~~~~~~~~"+userNo);
-				var episode = jsonData.mwe[0].wdEpisode;
+				//var episode = jsonData.mwe[0].wdEpisode;
 				
 				var bmList = jsonData.bmList;
 				
@@ -58,46 +58,50 @@ $(document).ready(function(){
 					html += "<form id='product_"+pPno+"' onsubmit=''>";
 					html += "<h2 value='상품이름' >"+pName+"</h2>";
 					html += "<input type='hidden' value='"+userNo+"' name='userNo'>";
+					html += "<input type='hidden' value='"+wNo+"' name='wNo'>";
 					html += "<input type='hidden' value='"+pPno+"' name='pNo'>";
 					html += "<div class='movie-poster2'>";
-					html += "<img onclick='productpage("+pPno+")'";
+					html += "<img onclick='productpage("+pWno+","+pPno+")'";
 					html += " src='../"+pScene+"'";
 					html += " alt='"+pName+"' style='width:850px; height:450px; margin: 0;cursor: pointer;'/>";
 					html += "</div>";
 					html += "<div style='height:100px;'>";
 					
 					if(userNo!=null){
-						if(bmList.length!=0){
-							console.log("login-->>>>>>>>>>>>>")
-							console.log(bmList);
-							var cnt = 0;
-							for (var i = 0; i < bmList.length; i++) {
-								if(pPno==bmList[i].product.pNo){
-									console.log("cnt1-->>>>>>>>>>>>>")
-									cnt = 1;
-									break;
-								}
-							}
+						console.log(bmList+"북마크");
+						/////////////////////////
+						if(bmList=="" || bmList==undefined){
 							
-							if(cnt==1){
-								html += "<input class='material-icons' type='image'"; 
-								html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 제거'";
-								html += " src='../images/star.png'";
-								html += " onclick='select_bookmark("+userNo+","+pPno+");return false;'>";
-								console.log("cnt=====1-->>>>>>>>>>>>>")
-							}else{
-								html += "<input class='material-icons' type='image'";
-								html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
-								html += " src='../images/emptystar.png'";
-								html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>";  
-							}
-							
-						}else{
 							html += "<input class='material-icons' type='image'";
 							html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
 							html += " src='../images/emptystar.png'";
 							html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>"; 
-						}
+						}else{
+							
+								console.log("login-->>>>>>>>>>>>>")
+								var cnt = 0;
+								for (var i = 0; i < bmList.length; i++) {
+									if(pPno==bmList[i].product.pNo){
+										console.log("cnt1-->>>>>>>>>>>>>")
+										cnt = 1;
+										break;
+									}
+								}
+								
+								if(cnt==1){
+									html += "<input class='material-icons' type='image'"; 
+									html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 제거'";
+									html += " src='../images/star.png'";
+									html += " onclick='select_bookmark("+userNo+","+pPno+");return false;'>";
+									console.log("cnt=====1-->>>>>>>>>>>>>")
+								}else{
+									html += "<input class='material-icons' type='image'";
+									html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
+									html += " src='../images/emptystar.png'";
+									html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>";  
+								}
+							
+						}	
 					}else{
 						html += "<input class='material-icons' type='image'";
 						html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
@@ -111,7 +115,7 @@ $(document).ready(function(){
 					html += "<div style='float:right;'>";
 					html += "<span value='작성자'>작성자: "+pMid+"</span>";
 					html += "<span class='categories tag' value='조회수'>조회수: "+pView+"</span>";
-					html += "<span class='categories tag' value='에피소드'>"+episode+"회</span>";
+					html += "<span class='categories tag' value='에피소드'>"+wdEpisode+"회</span>";
 					html += "</div>";
 					html += "</div>";
 					html += "</form>";

@@ -37,5 +37,5 @@ public interface ListMapper {
 	public int deleteBookmark(int bmNo);
 	public int selectBookmarkNo(@Param("mNo") int mNo,@Param("pNo") int pNo);
 	
-	public int selectProductCount();
+	public int selectProductCount(int wNo);
 }

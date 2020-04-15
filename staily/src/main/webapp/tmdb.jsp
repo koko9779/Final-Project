@@ -18,7 +18,7 @@
 </style>
 </head>
 <div class="modal fade" id="work_confirm" role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true">
+	aria-labelledby="myModalLabel" aria-hidden="true" style="width: auto">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">

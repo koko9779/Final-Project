@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwill.staily.main.model.dto.Pagination;
 import com.itwill.staily.main.service.ListService;
 import com.itwill.staily.main.service.MainService;
 import com.itwill.staily.mypage.model.dto.Bookmark;
@@ -68,12 +69,19 @@ public class MainController {
 	}
 	/************Controller worklist_select*******************/
 	@RequestMapping("/worklist_select")
-	public String workList(@RequestParam int wNo, HttpServletRequest request, HttpSession session) throws Exception {
+	public String workList(@RequestParam int wNo, @RequestParam(defaultValue="1") int curPage, HttpServletRequest request, HttpSession session) throws Exception {
 		try {
 			
+			//사용자 정보 session을 통해서 가져오기
 			Integer userNo = (Integer)session.getAttribute("userNo");
 			request.setAttribute("userNo", userNo);		
 			
+			//작품 조회수 증가
+			listService.increaseWorkView(wNo);
+			
+	        // 전체리스트 개수
+	        int listCnt = listService.selectProductCount(wNo);
+	        
 			if(userNo!=null) {
 				List<Bookmark> bmList = mainService.selectByBookmark(userNo);
 				request.setAttribute("bmList", bmList);	
@@ -90,9 +98,6 @@ public class MainController {
 			
 			List<Work> mw = listService.selectMProductList(wNo);
 			request.setAttribute("mw", mw);
-	
-			int pCnt = listService.selectProductCount();
-			request.setAttribute("pCnt", pCnt);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -100,7 +105,7 @@ public class MainController {
 		return "main/worklist";
 	}	
 	/************RestController worklist_read/detail*******************/
-	@RequestMapping(value="worklist_read/detail", produces="application/json;charset=UTF-8")
+	@RequestMapping(value="worklist_select/detail", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public Map worklist_detail(@RequestParam int wNo, @RequestParam int wdEpisode,HttpSession session, HttpServletRequest request) throws Exception{
 		StopWatch st=new StopWatch();

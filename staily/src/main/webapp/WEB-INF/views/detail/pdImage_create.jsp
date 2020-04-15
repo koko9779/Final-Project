@@ -8,9 +8,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/product_create.css"/>
 <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/gu-upload/css/guupload.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/gu-upload/css/guupload2.css"/>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/gu-upload/guuploadManager.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/gu-upload/guuploadManager2.js"></script>
 </head>
 <body>
@@ -66,10 +64,13 @@ function afterFileTransfer2(realname2, filename2, filesize2) {
 	filename9.value = filename2;
 	filesize9.value = filesize2;
 	
-	document.ff.submit();
+	document.fff.action = "";
+	document.fff.submit();
+	
 	/*
 	var spl = realname9.value.split('.');
-
+	console.log(spl);
+	
 	if (spl[1] != "jpg" && spl[1] != "png") {
 		document.form1.submit();
 	} else {

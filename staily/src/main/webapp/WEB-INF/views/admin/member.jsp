@@ -21,7 +21,8 @@
 						<th>회원아이디</th>
 						<th>회원이름</th>
 						<th>이메일</th>
-						<th>가입일</th>
+						<th>주소</th>
+						<th>상세주소</th>
 						<th>회원구분</th>
 						<th>회원수정</th>
 					</tr>
@@ -35,7 +36,16 @@
 							<td>${member.mName}</td>
 							<td>${member.mEmail}</td>
 							<td>${member.mAddress}</td>
-							<td>${member.mType}</td>
+							<td>${member.mDaddress}</td>
+							<c:if test="${member.mType =='M'}">
+							<td>일반회원</td>
+							</c:if>
+							<c:if test="${member.mType =='C'}">
+							<td>기업회원</td>
+							</c:if>
+							<c:if test="${member.mType =='A'}">
+							<td>갓리자</td>
+							</c:if>
 							<td><input type="button" class="mCheckBtn" value="수정" /></td>
 						</tr>
 					</c:forEach>

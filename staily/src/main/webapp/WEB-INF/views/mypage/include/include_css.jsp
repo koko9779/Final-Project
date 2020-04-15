@@ -7,3 +7,8 @@
 <link href="${pageContext.request.contextPath}/css/admin/css/sb-admin-2.min.css" rel="stylesheet">
 <!-- Custom styles for this page -->
 <link href="${pageContext.request.contextPath}/css/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<style>
+#dataTable_filter{
+ display : none;
+}
+</style>

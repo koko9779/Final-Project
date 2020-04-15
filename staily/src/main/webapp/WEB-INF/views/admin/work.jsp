@@ -41,7 +41,7 @@
 							</c:when>
 							</c:choose>
 							<td>${work.wDate}</td>
-							<td>${work.wNo}</td>
+							<td>${work.wTepisode}</td>
 							<td><input type="button" class="wCheckBtn" value="클릭" /></td>
 						</tr>
 					</c:forEach>

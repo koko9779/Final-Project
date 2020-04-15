@@ -34,6 +34,7 @@
 				<c:forEach var="cw" items="${cw}">
 					<form id="product_${cw.product[0].pNo}">
 						<input type="hidden" value="${userNo}" name="userNo">
+						<input type="hidden" value="${cw.product[0].wNo}" name="wNo">
 						<input type="hidden" value="${cw.product[0].pNo}" name="pNo">
 						<div class="movie-slide">
 							<div class="movie-poster2">
@@ -87,6 +88,7 @@
 					<form id="product_${mw.product[0].pNo}" onsubmit="">
 						<h2 value="상품이름" >${mw.product[0].pName}</h2>
 						<input type="hidden" value="${userNo}" name="userNo">
+						<input type="hidden" value="${mw.product[0].wNo}" name="wNo">
 						<input type="hidden" value="${mw.product[0].pNo}" name="pNo">
 						<div class="movie-poster2">
 							<img onclick="productpage(${mw.product[0].pNo})"

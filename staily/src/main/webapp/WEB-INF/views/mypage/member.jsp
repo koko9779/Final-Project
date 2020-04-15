@@ -174,17 +174,6 @@
 											<td class="text-left">
 												<div class="form-row">
 													<div class="col">
-														<select class="hphead hp form-control"
-															id="cellphoneTelecom" name="cellphoneTelecom">
-															<option value="01">SKT</option>
-															<option value="02">KT</option>
-															<option value="03">LGU+</option>
-															<option value="04">알뜰폰 SKT</option>
-															<option value="05">알뜰폰 KT</option>
-															<option value="06">알뜰폰 LGU+</option>
-														</select>
-													</div>
-													<div class="col">
 														<select class="hphead hp form-control" id="phn1"
 															name="phn1">
 															<option selected="selected" value="010">010</option>

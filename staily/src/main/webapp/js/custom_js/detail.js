@@ -27,9 +27,7 @@ window.onload = function() {
 		}
 	});
 	*/		
-
 	
-
 }
 
 function afterFileTransfer(realname, filename, filesize) {
@@ -42,7 +40,7 @@ function afterFileTransfer(realname, filename, filesize) {
 	filename9.value = filename;
 	filesize9.value = filesize;
 
-	document.fff.submit();
+	document.ff.submit();
 	/*
 	var spl = realname9.value.split('.');
 	alert(realname9.value);
@@ -60,11 +58,11 @@ function pdImageCreate() {
 }
 
 function productCreate() {
-	//document.ff.action = "upload";
-	//document.ff.method = "POST";
-	//document.ff.submit();
-	
 	guManager.uploadFiles();
+	document.ff.action = "product_create_action";
+	document.ff.method = "POST";
+	document.ff.submit();
+	
 	//guManager2.uploadFiles();
 	
 };
@@ -74,107 +72,6 @@ function work_search() {
 	//window.open('work_select');
 	//window.close();
 };
-
-/*
-$(window).on("load", function() {
-	$('.f').validate({
-		rules : {
-			wdEpisode : {
-				required : true,
-				idCk : true,
-				isIdExisted : true,
-				rangelength : [ 8, 15 ]
-			}
-		},
-		messages : {
-			mId : {
-				required : "아이디를 입력해주세요",
-				idCk : "아이디는 영문 대소문자, 숫자로 이루어져야 합니다",
-				isIdExisted : "중복된 아이디가 있습니다",
-				rangelength : "아이디는 8자리 이상, 15이하로 구성되어야 합니다"
-			},
-			mPw : {
-				required : "비밀번호를 입력해주세요",
-				passwordCk : "영문, 숫자, 특수문자를 조합해서 입력해야 합니다.",
-				minlength : "비밀번호는 8자리 이상으로 구성해야 합니다.",
-				maxlength : "비밀번호는 16자리 미만으로 구성해야 합니다"
-			},
-			repeatPw : {
-				required : "비밀번호를 확인해주세요",
-				equalTo : '비밀번호가 다릅니다.'
-
-			},
-			mEmail : {
-				required : "이메일을 입력해주세요",
-				isEmailExisted : "중복된 이메일입니다",
-				email : "이메일 형식으로 입력하셔야합니다."
-			},
-			mPhone : {
-				required : "휴대폰번호를 입력해주세요",
-				phoneCk : "핸드폰 번호는 숫자로만 이루어져야 합니다",
-				rangelength : "핸드폰 번호는 10~11 숫자로 이루어져야 합니다"
-			}
-		},
-		submitHandler : function() {
-			member_create();
-		},
-		errorClass : "error_msg",
-		validClass : "valid"
-	});
-	$.validator.addMethod("idCk", function(value, element) {
-		return /^.*[a-zA-Z0-9]$/.test(value);
-	});
-	$.validator.addMethod("isIdExisted", function(value, element) {
-		var check = -1;
-		$.ajax({
-			url : "Id_check",
-			type : 'POST',
-			data : "mId=" + value,
-			async : false,
-			dataType : "json",
-			success : function(resultCount) {
-				check = resultCount;
-			}
-		});
-		if (check === 1) {
-			return false;
-		} else {
-			return true;
-		}
-	});
-	$.validator.addMethod("passwordCk", function(value, element) {
-		return /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/.test(value);
-	});
-	$.validator.addMethod("phoneCk", function(value, element) {
-		return /^.*[0-9]$/.test(value);
-	});
-	$.validator.addMethod("isEmailExisted", function(value, element) {
-		var result = -1;
-		$.ajax({
-			url : "email_check",
-			method : 'POST',
-			data : {
-				mEmail : value
-			},
-			dataType : "json",
-			async : false,
-			success : function(resultCount) {
-				result = resultCount;
-			}
-		});
-		if (result === 1) {
-			return false;
-		} else {
-			return true;
-		}
-	});
-	function member_create() {
-		document.getElementById("registerF").action = "member_create_action";
-		document.getElementById("registerF").submit();
-		alert("가입 성공");
-	}
-});
-*/
 
 function execDaumPostcode() {
 	new daum.Postcode({

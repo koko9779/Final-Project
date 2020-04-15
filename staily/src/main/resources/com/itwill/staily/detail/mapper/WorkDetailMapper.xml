@@ -13,9 +13,9 @@
 		from work
 	</select>
 	
-	<insert id="createWorkDetail">
+	<insert id="createWorkDetail" parameterType="int">
 		insert into work_detail (wd_no, p_no, w_no, wd_episode)
-		values (wd_no_seq.nextval, #{pNo}, #{wNo}, #{wdEpisode})
+		values (wd_no_seq.nextval, product_no_seq.currval, #{wNo}, #{wdEpisode})
 	</insert>
 	
 	<select id="selectTepisode" parameterType="int" resultType="int">

@@ -20,11 +20,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.staily.detail.model.dto.ProductEx;
 import com.itwill.staily.detail.service.ProductDetailService;
+import com.itwill.staily.detail.service.WorkDetailService;
  
 @Controller
 @RequestMapping("/detail")
 public class ProductDetailController {
-	
+	@Autowired
+	private WorkDetailService workDetailService;
 	@Autowired
 	private ProductDetailService productDetailService;
 	
@@ -39,7 +41,10 @@ public class ProductDetailController {
 			request.setAttribute("userId", userId);
 			
 			String pNo = request.getParameter("pNo");
+			//String wNo = request.getParameter("wNo");
 			List<ProductEx> p = productDetailService.selectProductOne(Integer.parseInt(pNo));
+			productDetailService.increaseProductView(Integer.parseInt(pNo));
+			//workDetailService.increaseWorkView(Integer.parseInt(wNo));
 			
 			request.setAttribute("productOne", p);
 			
@@ -59,30 +64,34 @@ public class ProductDetailController {
 		ModelAndView mv = new ModelAndView();
 		
 		try {			
-			String mNo = (String)session.getAttribute("userNo");
+			Integer mNo = (Integer)session.getAttribute("userNo");
 			String wNo = request.getParameter("wNo");
+			String wdEpisode = request.getParameter("wdEpisode");
 			String pName = request.getParameter("pName");
 			String pPrice = request.getParameter("pPrice");
 			String pUrl = request.getParameter("pUrl");
 			String pAddress = request.getParameter("pAddress");
 			String pDaddress = request.getParameter("pDaddress");
-			String pScene = request.getParameter("pScene");
-			ProductEx p = new ProductEx(Integer.parseInt(mNo), Integer.parseInt(wNo), 
+			String pScene = request.getParameter("filesize");
+			
+			System.out.println(pScene);
+			
+			ProductEx p = new ProductEx(mNo, Integer.parseInt(wNo), 
 					pName, Integer.parseInt(pPrice), pUrl, pAddress, pDaddress, pScene);
-			/*
-			boolean create = productDetailService.createProduct(p);
+			
+			boolean create = productDetailService.createProduct(p, Integer.parseInt(wNo), Integer.parseInt(wdEpisode));
 			
 			if(create) {
 				request.setAttribute("productEx", p);				
 			}
-			*/
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		mv.setViewName("work_request");
-		//mv.setViewName("redirect:..");
+		//mv.setViewName("work_request");
+		mv.setViewName("redirect:..");
 		
 		return mv;		
 	}	
@@ -90,14 +99,16 @@ public class ProductDetailController {
 	@RequestMapping("/upload")
 	public void upload(HttpServletResponse response, HttpServletRequest request, 
 			@RequestParam("Filedata") MultipartFile Filedata) { 
-		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
+		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd"); 
 		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
-		File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
+		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
+		File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
 		
 		try {
 			
 			Filedata.transferTo(f); 
 			response.getWriter().write(newfilename);
+			
 		} 
 		catch (IllegalStateException | IOException e) { 
 			e.printStackTrace(); 
@@ -107,9 +118,10 @@ public class ProductDetailController {
 	@RequestMapping("/upload2")
 	public void upload2(HttpServletResponse response, HttpServletRequest request, 
 			@RequestParam("Filedata") MultipartFile Filedata) { 
-		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
+		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd"); 
 		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
-		File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
 		
 		try {
 			

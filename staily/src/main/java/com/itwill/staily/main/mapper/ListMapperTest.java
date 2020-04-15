@@ -124,7 +124,7 @@ public class ListMapperTest {
 	*/
 	
 	System.out.println("8.게시물 총 건수");
-	int cnt = listM.selectProductCount();
+	int cnt = listM.selectProductCount(1);
 	System.out.println(cnt);
 	
 	}

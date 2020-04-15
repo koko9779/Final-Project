@@ -75,8 +75,8 @@ public class ListServiceImpl implements ListService{
 	}
 
 	@Override
-	public int selectProductCount() {
-		return listMapper.selectProductCount();
+	public int selectProductCount(int wNo) {
+		return listMapper.selectProductCount(wNo);
 	}
 
 	@Override
@@ -87,6 +87,11 @@ public class ListServiceImpl implements ListService{
 	@Override
 	public int selectTepisode(int wNo) {
 		return workDetailMapper.selectTepisode(wNo);
+	}
+
+	@Override
+	public void increaseWorkView(int wNo) throws Exception {
+		workDetailMapper.increaseWorkView(wNo);
 	}
 
 

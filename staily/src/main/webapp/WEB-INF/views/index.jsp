@@ -100,6 +100,7 @@
 							<c:forEach var="bm" items="${bmList}">
 								<form id="bookmark_${bm.bmNo}" method="post">
 									<input type="hidden" value="${bm.bmNo}" name="bmNo" />
+									<input type="hidden" value="${bm.product.wNo}" name="wNo" />
 									<input type="hidden" value="${bm.product.pNo}" name="pNo"/>
 									<div class="movie-slide">
 											<div class="movie-poster2">
@@ -148,6 +149,7 @@
 				<div class="slick-carousel newIn">
 					<c:forEach var="hot" items="${hotList}">
 						<form id="product_${hot.pNo}" method="post">
+							<input type="hidden" value="${hot.wNo}" name="wNo"/>
 							<input type="hidden" value="${hot.pNo}" name="pNo"/>
 							<div class="movie-slide">
 								<div class="movie-poster2">
