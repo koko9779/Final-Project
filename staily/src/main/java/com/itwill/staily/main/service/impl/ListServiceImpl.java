@@ -89,6 +89,11 @@ public class ListServiceImpl implements ListService{
 		return workDetailMapper.selectTepisode(wNo);
 	}
 
+	@Override
+	public void increaseWorkView(int wNo) throws Exception {
+		workDetailMapper.increaseWorkView(wNo);
+	}
+
 
 
 

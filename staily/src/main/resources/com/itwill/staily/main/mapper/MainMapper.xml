@@ -18,7 +18,7 @@
 	<!-- 2. HOT 상품 출력 -->
 	<select id="selectByView" resultType="Product">
 	<![CDATA[
-		select p.p_no,p.p_name,p.p_view,p.p_scene
+		select p.w_no,p.p_no,p.p_name,p.p_view,p.p_scene
 		from (select *
 		      from product p
 		      where p.p_check='Y'
