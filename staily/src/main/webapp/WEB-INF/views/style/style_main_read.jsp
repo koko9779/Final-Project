@@ -29,7 +29,7 @@
 	<!--  
 	<div class="row">
 
-		<%--@ include file="/WEB-INF/views/include/include_work_sidebar.jsp" --%>
+		<%--@ include file="/WEB-INF/views/include/include_work_sidebar.jsp"--%>
 
 		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
 	-->
