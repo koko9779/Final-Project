@@ -2,13 +2,20 @@
  * 
  * 
  */
+/*************공용****************/
+
 function window_close() {
 	window.close();
 }
 function window_back() {
 	location.href = document.referrer;
 }
+/*************작품 일반****************/
 
+function searchWork() {
+	window.open("work_seach", "작품정보수정",
+	"width=500, height=800, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
+};
 function workCreate(i) {
 	document.getElementById("searchResult"+i+"").action = "work_create";
 	document.getElementById("searchResult"+i+"").submit();
@@ -20,10 +27,7 @@ function workCreateAction() {
 	window.opener.location.reload();
 	window.close();
 }
-function searchWork() {
-		window.open("work_seach", "작품정보수정",
-		"width=500, height=800, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
-};
+/*************상품 일반****************/
 function product_update() {
 	document.getElementById("product_detail").action = "product_update";
 	document.getElementById("product_detail").submit();
@@ -31,6 +35,20 @@ function product_update() {
 	window.opener.location.reload();
 	window.close();
 }
+function product_confirm(pNo) {
+	var no = "pNo="+pNo;
+	console.log(pNo);
+	$.ajax({
+		url: 'product_confirm',
+		data: no,
+		method: 'POST',
+		dataType: 'text',
+	});
+	alert("승인되었습니다");
+	location.reload();
+}
+/*************주소 일반****************/
+
 function execDaumPostcode() {
 	new daum.Postcode({
 		oncomplete : function(data) {
@@ -52,6 +70,7 @@ function execDaumPostcode() {
 		}
 	}).open();
 }
+/*************TMDB API***************/
 function sucess(item) {
 	$('#resultF').empty();
 	var content = JSON.parse(item);
@@ -105,6 +124,19 @@ function sucess(item) {
 			$("#resultF").append(tag);
 	}
 };
+function error(test) {
+	console.log('실패~', test);
+}
+function searchItemM(item) {
+	theMovieDb.search.getMulti({
+		"query" : item
+	}, sucess, error);
+}
+function searchItemD(item) {
+	theMovieDb.search.getMulti({
+		"query" : item
+	}, sucessDrama, errorTest);
+}
 /* 모달모달...
 $(function() {
 	$(document).on('click','#modal424823',function() {
@@ -134,31 +166,8 @@ $(function() {
 			});
 });
 */
-function error(test) {
-	console.log('실패~', test);
-}
-function searchItemM(item) {
-	theMovieDb.search.getMulti({
-		"query" : item
-	}, sucess, error);
-}
-function searchItemD(item) {
-	theMovieDb.search.getMulti({
-		"query" : item
-	}, sucessDrama, errorTest);
-}
-function product_confirm(pNo) {
-	var no = "pNo="+pNo;
-	console.log(pNo);
-	$.ajax({
-		url: 'product_confirm',
-		data: no,
-		method: 'POST',
-		dataType: 'text',
-	});
-	alert("승인되었습니다");
-	location.reload();
-}
+
+
 $(document).ready(function() {
 					/** *****멤버 펑션 시작********** */
 					$('#memberInfoFrm').validate({
@@ -366,6 +375,31 @@ $(document).ready(function() {
 								var no = td.eq(1).text();
 								window.open("work_select?" + "wNo="+ no, "작품정보수정",
 											"width=500, height=800, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
+					});
+				  $('#wUpdateBtn').click(
+						  function(e) {
+							  var params = $('#work_update').serializeArray();
+							  $.ajax({
+									url: 'work_update',
+									data: params,
+									method:'post',
+									dataType: 'text',
+									success: function(result) {
+										 if(result == 'success'){
+								               alert("작품정보 수정이 완료되었습니다");
+								               window.opener.location.reload();
+								               window.close();
+								            }else{
+								            	alert('수정실패');
+								            }
+								         },
+								     error:function(request, error) {
+								    	 alert("fail");
+								 			// error 발생 이유를 알려준다.
+								 		 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+								 	}
+								});
+								
 					});
 });
 
