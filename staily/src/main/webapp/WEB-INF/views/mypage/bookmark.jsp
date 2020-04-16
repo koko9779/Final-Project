@@ -1,64 +1,42 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/tags.jspf" %>
-<%@ include file="/WEB-INF/views/mypage/include/include_top.jsp" %>
+<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/tags.jspf"%>
+<%@ include file="/WEB-INF/views/mypage/include/include_navbar.jsp"%>
+<!-- Hero -->
+<div id="content_hero"
+	style="background-image: url(http://via.placeholder.com/1440x435)">
 
-<script type="text/javascript">
-$(function(){
-	
-	//배열로 데이터를 Controller에 전송하기
-	$('#deleteBtn').click(function(e){
-		//배열선언
-		var noArray = [];
-		
-		//배열에 값 채우기
-		$('input[name="book_check"]:checked').each(function(i){
-			noArray.push($(this).val());
-		});
-		
-		var params = {
-				"bmNo" : noArray 
-		};
-		
-		//ajax 호출
-		$.ajax({
-			url : "bookmark_delete",
-			data : params,
-			dataType : "text",
-			success : function(result){
-				if(result == 'true'){
-					alert('삭제완료');
-					location.reload();
-				}else{
-					location.href = '404';
-				}
-				
-			}
-		});
-		
-		
-		
-		
-	});
-	
-	
-	
-	
-})
+	<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg"
+		alt="Scroll down" class="scroll" />
 
-</script>
+	<!-- Content -->
+	<div class="container">
+		<div class="row blurb scrollme animateme" data-when="exit"
+			data-from="0" data-to="1" data-opacity="0" data-translatey="100">
+			<div class="col-md-9">
+				<span class="title">The very latest</span>
+				<h1>Cinema news</h1>
+			</div>
+		</div>
+	</div>
 
-        <!-- End of Topbar -->
+</div>
 
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
+<!-- Section -->
+<div class="container section news">
+	  
+	<div class="row">
 
-          <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">북마크리스트페이지</h1>
+		<%@ include file="/WEB-INF/views/mypage/include/include_work_sidebar.jsp" %>
+
+		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
+	
+			<!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">북마크리스트</h1>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">북마크리스트</h6>
-            </div>
+           
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -93,6 +71,7 @@ $(function(){
 
       </div>
       <!-- End of Main Content -->
-
+</div>
       <!-- Footer -->
-      <%@ include file="/WEB-INF/views/mypage/include/include_footer.jsp" %>
+</body>
+</html>
