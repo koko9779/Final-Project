@@ -146,17 +146,21 @@ public class AdminController {
 		return "admin/product_update";
 	}
 	@RequestMapping("/product_update")
-	public String productAdminUpdate() {
-		Product product = null;
-		String forwardPath = "";
+	public String productAdminUpdate(@RequestParam("pNo") int pNo,@RequestParam("mNo") int mNo,@RequestParam("wNo") int wNo
+									, @RequestParam("pName") String pName,@RequestParam("pPrice") int pPrice,@RequestParam("pURL") String pUrl
+									,@RequestParam("pAddress") String pAddress,@RequestParam("pDaddress") String pDaddress
+									,@RequestParam("pCheck") String pCheck,@RequestParam("pView") int pView
+									,@RequestParam("pDate") String pDate,@RequestParam("pScene") String pScene) {
+		Product product = new Product(pNo, mNo, wNo, pName, pPrice, pUrl, pAddress, pDaddress, pCheck, pView, pDate, pScene);
+		String result = "";
 		try {
 			adminService.updateProduct(product);
-			forwardPath="success";
+			result="success";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return forwardPath;
+		return result;
 	}
 	@RequestMapping(value = "/product_confirm", method = {RequestMethod.POST,RequestMethod.GET},produces="text/plain; charset=UTF-8")
 	public String productAdminConfirm(@RequestParam ("pNo")int pNo,HttpServletRequest request) {
@@ -224,5 +228,10 @@ public class AdminController {
 			e.printStackTrace();
 		}
 		return "admin/work_update";
+	}
+	// TMDB API 검색창 
+	@RequestMapping("/work_seach")
+	public String workAPISeacher() {
+		return "admin/work_search";
 	}
 }

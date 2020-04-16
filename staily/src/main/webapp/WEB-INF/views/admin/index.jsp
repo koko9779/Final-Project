@@ -4,6 +4,7 @@
 <%@ include file="/WEB-INF/views/admin/include/include_top.jsp"%>
 
 <!-- Page Heading -->
+<div class="col-lg-10">
 		<h1 class="h3 mb-2 text-gray-800">임시로 메인씁네다</h1>
 		<!-- DataTales Example -->
 		<div class="card shadow mb-4">

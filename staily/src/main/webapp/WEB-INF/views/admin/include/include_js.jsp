@@ -35,5 +35,7 @@
   <script src="${pageContext.request.contextPath}/js/headhesive.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/matchHeight.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/modernizr.custom.js"></script>
-  
+  <script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/themoviedb.js">
+</script>
 </head>
