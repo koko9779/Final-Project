@@ -142,10 +142,14 @@ public class StyleCoodinationRestController {
 	@RequestMapping(value = "style_board_and_reply_update", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
 	public boolean style_board_and_reply_update_post(@ModelAttribute Board updateBoard) {
 		Boolean isUpdate = false;
-		
+		int updateCount;
 		try {
-			styleCoodinationService.modifyBoardAndReply(updateBoard);
-			isUpdate = true;
+			updateCount = styleCoodinationService.modifyBoardAndReply(updateBoard);
+			if(updateCount == 1) {
+				isUpdate = true;
+			}else {
+				isUpdate = false;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			isUpdate = false;

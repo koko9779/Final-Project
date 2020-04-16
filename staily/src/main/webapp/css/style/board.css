@@ -25,3 +25,12 @@
     border-color: #e76115;
 }
 
+.reply_write {
+	margin-top: 50px; 
+	border-bottom: 1px solid #d8d8d8;
+}
+
+.dispaly_none {
+	display: none;
+}
+
