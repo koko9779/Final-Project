@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,19 +52,13 @@ public class StyleCoodinationRestController {
 					try{
 						String fileName = file.getName();
 						byte[] bytes = file.getBytes();
+						//workspace에 올리기 위한 경로
 						//String uploadPath = "C:/Users/starthink/git/Final-Project/staily/src/main/webapp/img";
-						//String uploadPath = "C:/Users/user/git/Final-Project/staily/src/main/webapp/img";
-						//String uploadPath = f.getAbsolutePath();
-						String[] uploadPathArray = f.getAbsolutePath().split("\\\\");
+						String[] uploadPathArray = f.getAbsolutePath().split("\\\\"); //백슬래쉬가 안먹어서 알아보니 정규식 표현으로 써야한다네요^ㅠ
 						String uploadPath = uploadPathArray[0] + "\\" +  uploadPathArray[1] + "\\" + uploadPathArray[2] + 
 											"/git/Final-Project/staily/src/main/webapp/img";
 						
-						
-						/*
-						int lastNum = uploadPath.lastIndexOf("\\"); // 백슬래쉬를 넣되, 이스케이핑 시키기 위해 두번 씀
-						uploadPath = uploadPath.substring(0, lastNum);
-						System.out.println(uploadPath);
-						 */
+						//서버에 올리기 위한 경로
 						String uploadPath2 = req.getSession().getServletContext().getRealPath("/img");
 			
 						File uploadFile = new File(uploadPath);
@@ -129,6 +124,35 @@ public class StyleCoodinationRestController {
 		Board updateBoard = styleCoodinationService.findUpdateBoard(intBNo);
 		return updateBoard;
 	}
+
+	@RequestMapping(value = "style_reply_delete_action", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+	public boolean style_reply_delete_action_post(@RequestParam String bNo) {
+		boolean isDelete = false;
+		int intBNo = Integer.parseInt(bNo);
+		try {
+			styleCoodinationService.removeReply(intBNo);
+			isDelete = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			isDelete = false;
+		}
+		return isDelete;
+	}
+	
+	@RequestMapping(value = "style_board_and_reply_update", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+	public boolean style_board_and_reply_update_post(@ModelAttribute Board updateBoard) {
+		Boolean isUpdate = false;
+		
+		try {
+			styleCoodinationService.modifyBoardAndReply(updateBoard);
+			isUpdate = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			isUpdate = false;
+		}
+		return isUpdate;
+	}
+	
 
 	
 	

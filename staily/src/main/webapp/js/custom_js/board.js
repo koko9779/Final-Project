@@ -35,7 +35,7 @@ function board_delete(bNo) {
 	
 }
 
-function board_modify(bNo) {
+function board_and_reply_modify(bNo) {
 	$.ajax({
 		url: "board_one_for_udate_read",
 		type: 'get',
@@ -43,20 +43,18 @@ function board_modify(bNo) {
 		async : false,
 		dataType: "json",
 		success: function(boardJson) {
-			//제이슨 파싱해주기
 							$("#board").html("<h3 class='board-top'>스타일 질문</h3>" +
 									 "<form name='boardWriteF' onSubmit='return false;'>" +
+									 			"<input type='hidden' id='bNo' name='bNo' value='" + bNo + "'>" +
 												"<div class='row justify-content-md-center'>" +
 													"제목" +
-													"<input type='text' name='bTitle' class='form-control' value='${}'>" +
+													"<input type='text' id='bTitle' name='bTitle' class='form-control' value='" + boardJson.bTitle + "'>" +
 													"<select class='custom-select' name='bType' id='inputGroupSelect03'>" +
-													"<option selected>분류</option>" +
-													"<option value='Q'>문의</option>" +
-													"<option value='S'>스타일코디</option>" +
+													"<option selected value='S'>스타일코디</option>" +
 													"</select>" +
 												"</div>" +
 												"<div class='row justify-content-md-center'>" +
-													"<textarea id='contents' name='bContent'></textarea>" +
+													"<textarea id='contents' name='bContent'>" + boardJson.bContent + "</textarea>" +
 													"<script>" +
 														"CKEDITOR.replace('contents',{" +
 															"filebrowserUploadUrl : '/staily/style/ImgUpload'" +
@@ -64,14 +62,89 @@ function board_modify(bNo) {
 													"</script>" +
 												"</div>" +
 												"<div class='row justify-content-md-center'>" +
-													"<button type='submit' class='btn btn-outline-secondary' style='width: 20%; font-weight: bold; margin-top: 15px;' onclick='boardCreate();'>" +
-															"등 록" +
-												"</button>" + 
-											"</div>" + 
+													"<button type='submit' class='btn btn-ghost' " + 
+															"style='width: 20%; font-weight: bold; margin-top: 15px;' " + 
+															"onclick='board_and_reply_modify_action();'>" + 
+														"등 록" +
+													"</button>" +
+												"</div>" +
 										"</form>");	
 				}
 	});
+}
+
+function reply_delete(bNo, boardCount) {
 	
+	$.ajax({
+		url: "style_reply_delete_action",
+		type: 'post',
+		data: {"bNo" : bNo},
+		async : false,
+		dataType: "json",
+		success: function(isDelete) {
+			if(isDelete === false) {
+				alert("댓글 삭제에 실패하였습니다");
+			}else {
+				if(boardCount = 2) {
+					$(".reply-delete").fadeOut();
+				}else {
+					$("#board_"+bNo).fadeOut();
+				}
+			}
+		}
+	});
 	
+}
+
+function board_create() { 
+	CKEDITOR.instances.contents.updateElement(); 
+	if(document.boardWriteF.bTitle.value === "") { 
+		alert("제목을 입력해 주세요"); 
+		return; 
+	}else if(document.boardWriteF.bType.value === "분류") { 
+		alert("분류를 지정해 주세요"); 
+		return; 
+	}else if(document.boardWriteF.bContent.value === "") { 
+		alert("내용을 입력해 주세요"); 
+		return; 
+	}else {
+		document.boardWriteF.action = "${pageContext.request.contextPath}/style/style_create_board_action";
+		document.boardWriteF.method = "POST";
+		document.boardWriteF.submit();	
+	} 
+}
+
+function board_and_reply_modify_action() {
+	var updateF = this.parent().parent();
+	alert(updateF);
+	var bNo = $("#bNo").val();
+	var bTitle = $("#bTitle").val();
+	var bContent = $("#contents").val();
 	
+	CKEDITOR.instances.contents.updateElement(); 
+	if(document.boardWriteF.bTitle.value === "") { 
+		alert("제목을 입력해 주세요"); 
+		return; 
+	}else if(document.boardWriteF.bContent.value === "") { 
+		alert("내용을 입력해 주세요"); 
+		return; 
+	}else {
+		$.ajax({
+			url: "style_board_and_reply_update",
+			type: 'post',
+			data: {"bNo" : bNo,
+				   "bTitle" : bTitle,
+				   "bContent" : bContent},
+			async : false,
+			dataType: "json",
+			success: function(isUpdate) {
+				alert(isUpdate);
+				if(isUpdate === true) {
+					location.href="style_detail_read?bNo=";
+				}else {
+					alert("글 수정에 실패하였습니다");
+				}
+			}
+		});
+	}
 }
