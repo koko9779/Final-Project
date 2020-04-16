@@ -83,6 +83,7 @@
 					</div>
 				
 					<div class="col-sm-8">
+						<input type="hidden" id="updateBNo" value="${boardOneList[0].bNo}">
 						<article id="board" style="border-bottom: none;">
 						<h3 class="board-top">스타일 질문</h3>
 						<div class="categories col-md-6 board-title">${boardOneList[0].bTitle}</div>
@@ -119,6 +120,36 @@
 							</a>
 						</article>
 						</c:forEach>
+						<div class="reply_write">
+							<a href="javascript:reply_write_form();" class="btn btn-ghost sort">
+									<span>답글 쓰기</span>
+							</a>
+						</div>
+						<form name='boardWriteF' id="boardWriteF" onSubmit='return false;' class="dispaly_none" style="margin-top: 100px;">
+									 			<input type='hidden' id='bNo' name='bNo' value='" + bNo + "'>
+												<div class='row justify-content-md-center'>
+													제목
+													<input type='text' id='bTitle' name='bTitle' class='form-control'>
+													<select class='custom-select' name='bType' id='inputGroupSelect03'>
+													<option selected value='S'>스타일코디</option>
+													</select>
+												</div>
+												<div class='row justify-content-md-center'>
+													<textarea id='contents' name='bContent'></textarea>
+													<script>
+														CKEDITOR.replace('contents',{
+															filebrowserUploadUrl : '/staily/style/ImgUpload'
+														}); 
+													</script>
+												</div>
+												<div class='row justify-content-md-center'>
+													<button type='submit' class='btn btn-ghost'
+															style='width: 20%; font-weight: bold; margin-top: 15px;'  
+															onclick='reply_write();'>
+														등 록
+													</button>
+												</div>
+										</form>	
 					</div>
 					
 				</div>

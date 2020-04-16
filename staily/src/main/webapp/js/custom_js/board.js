@@ -34,6 +34,9 @@ function board_delete(bNo) {
 	}
 	
 }
+function reply_write_form() {
+	$("#boardWriteF").slideToggle();
+}
 
 function board_and_reply_modify(bNo) {
 	$.ajax({
@@ -71,6 +74,9 @@ function board_and_reply_modify(bNo) {
 										"</form>");	
 				}
 	});
+}
+function reply_write() {
+	
 }
 
 function reply_delete(bNo, boardCount) {
@@ -110,16 +116,16 @@ function board_create() {
 	}else {
 		document.boardWriteF.action = "${pageContext.request.contextPath}/style/style_create_board_action";
 		document.boardWriteF.method = "POST";
-		document.boardWriteF.submit();	
+		document.boardWriteF.submit();
 	} 
 }
 
 function board_and_reply_modify_action() {
-	var updateF = this.parent().parent();
-	alert(updateF);
 	var bNo = $("#bNo").val();
 	var bTitle = $("#bTitle").val();
 	var bContent = $("#contents").val();
+	
+	var boardBNo = $("#updateBNo").val();
 	
 	CKEDITOR.instances.contents.updateElement(); 
 	if(document.boardWriteF.bTitle.value === "") { 
@@ -140,7 +146,9 @@ function board_and_reply_modify_action() {
 			success: function(isUpdate) {
 				alert(isUpdate);
 				if(isUpdate === true) {
-					location.href="style_detail_read?bNo=";
+					alert(boardBNo);
+					alert("수정 성공");
+					location.href="style_detail_read?bNo=" + boardBNo;
 				}else {
 					alert("글 수정에 실패하였습니다");
 				}
