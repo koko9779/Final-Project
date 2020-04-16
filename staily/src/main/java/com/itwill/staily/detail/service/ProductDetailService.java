@@ -9,9 +9,10 @@ import com.itwill.staily.detail.model.dto.ProductEx;
 public interface ProductDetailService {
 	public List<ProductEx> selectProductOne(int pNo) throws Exception;
 	
-	public boolean createProduct(ProductEx product, @Param("wNo") int wNo, @Param("wdEpisode") int wdEpisode) throws Exception;
+	public boolean createProduct(ProductEx product, @Param("wNo") int wNo, 
+			@Param("wdEpisode") int wdEpisode) throws Exception;
 	
-	public boolean createProductDetail(ProductEx product) throws Exception;
+	public boolean createProductDetail(String[] pdImage) throws Exception;
 	
 	public boolean updateProduct(ProductEx product) throws Exception;
 

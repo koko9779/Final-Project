@@ -38,19 +38,16 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 	}
 
 	@Override
-	@Transactional(isolation = Isolation.READ_UNCOMMITTED, propagation = Propagation.REQUIRED)
-	public boolean createProduct(ProductEx product, @Param("wNo") int wNo, @Param("wdEpisode") int wdEpisode) throws Exception {
+	@Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.MANDATORY)
+	public boolean createProduct(ProductEx product, @Param("wNo") int wNo, 
+			@Param("wdEpisode") int wdEpisode) throws Exception {
 		boolean check = false;
 		
 		boolean p = productDetailMapper.createProduct(product);
 		boolean wd = workDetailMapper.createWorkDetail(wNo, wdEpisode);
-		//boolean pd = productDetailMapper.createProductDetail(product);
 		
-		if(p) {
-			if(wd) {
-				check = true;			
-				
-			}
+		if(p && wd) {
+			check = true;								
 		}
 		else {
 			check = false;
@@ -60,14 +57,18 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 	}
 
 	@Override
-	public boolean createProductDetail(ProductEx product) throws Exception {
+	public boolean createProductDetail(String[] pdImage) throws Exception {
 		boolean check = false;
 		
-		if(productDetailMapper.createProductDetail(product)) {
-			check = true;			
-		}
-		else {
-			check = false;
+		for (int i = 0; i < pdImage.length; i++) {
+			boolean pd = productDetailMapper.createProductDetail(pdImage[i]);
+			
+			if(pd) {
+				check = true;			
+			}
+			else {
+				check = false;
+			}			
 		}
 		
 		return check;

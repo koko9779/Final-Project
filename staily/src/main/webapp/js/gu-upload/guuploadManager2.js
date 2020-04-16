@@ -156,8 +156,7 @@ guUploadManager2.prototype.transferComplete = function() {
 	
 	if (this.afterFileTransfer) this.afterFileTransfer(this.realname, this.filename, this.filesize);
 	
-	alert('이미지가 정상적으로 올라갔습니다');
-	window.close();
+	alert('이미지가 정상적으로 등록되었습니다');
 };
 
 guUploadManager2.prototype.uploadFiles = function() {

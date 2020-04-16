@@ -66,9 +66,8 @@ public class ProductEx extends com.itwill.staily.util.Product {
 		this.pScene = pScene;		
 	}
 	
-	public ProductEx(int pNo, String pdImage) {
+	public ProductEx(String pdImage) {
 		super();
-		this.pNo = pNo;
 		this.pdImage = pdImage;
 	}
 	

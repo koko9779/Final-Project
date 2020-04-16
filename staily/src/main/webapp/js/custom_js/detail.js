@@ -12,22 +12,8 @@ window.onload = function() {
 		maxFileSize : 3,
 		afterFileTransfer : afterFileTransfer
 	}
-	guManager = new guUploadManager(option);
 	
-	/*
-	$.ajax({
-		url: "pNo_nextval",
-		dataType: "json",
-		error: function() {
-			alert("에러");
-		},
-		success: function(data) {
-			alert(data);
-			alert("성공");
-		}
-	});
-	*/		
-	
+	guManager = new guUploadManager(option);	
 }
 
 function afterFileTransfer(realname, filename, filesize) {
@@ -39,22 +25,13 @@ function afterFileTransfer(realname, filename, filesize) {
 	realname9.value = realname;
 	filename9.value = filename;
 	filesize9.value = filesize;
-
-	document.ff.submit();
-	/*
-	var spl = realname9.value.split('.');
-	alert(realname9.value);
-	if (spl[1] == "jpg" || spl[1] == "png") {
-		document.ff.submit();
-	} else {
-		alert("이미지 파일만 올려주세요");
-	}	
- 	*/
 }
 
 
 function pdImageCreate() {
-	window.open('pdImage_create', 'width=600, height=400, resizable=no, toolbars=no, menubar=no');
+	document.ff.action = "pdImage_create";
+	document.ff.method = "post";
+	document.ff.submit();
 }
 
 function productCreate() {
@@ -62,15 +39,11 @@ function productCreate() {
 	document.ff.action = "product_create_action";
 	document.ff.method = "POST";
 	document.ff.submit();
-	
-	//guManager2.uploadFiles();
-	
+	alert("상품 등록이 완료되었습니다.");	
 };
 
 function work_search() {
 	location.href = 'work_select';
-	//window.open('work_select');
-	//window.close();
 };
 
 function execDaumPostcode() {

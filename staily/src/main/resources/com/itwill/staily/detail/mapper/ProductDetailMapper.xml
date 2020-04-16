@@ -17,9 +17,12 @@
 		values (product_no_seq.nextval, #{mNo}, #{wNo}, #{pName}, #{pPrice}, #{pUrl}, #{pAddress}, #{pDaddress}, 'N', 0, #{pScene}, sysdate)
 	</insert>
 	
-	<insert id="createProductDetail" parameterType="com.itwill.staily.detail.model.dto.ProductEx">
+	<insert id="createProductDetail" parameterType="String">
 		insert into product_detail (pd_no, p_no, pd_image)
-		values (pd_no_seq.currval, product_no_seq.currval, #{pdImage})
+		<!--  
+		values (pd_no_seq.nextval, 21, #{pdImage})
+		-->
+		values (pd_no_seq.nextval, product_no_seq.currval, #{pdImage})
 	</insert>
 	
 	<update id="updateProduct" parameterType="com.itwill.staily.detail.model.dto.ProductEx">
