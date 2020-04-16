@@ -18,8 +18,8 @@ public interface ListService {
 	//작품상세페이지 상품리스트 출력(기업)
 	public List<Work> selectCProductList(int wNo) throws Exception;
 	//작품상세페이지 상품리스트 출력(일반)
-	public List<Work> selectMProductList(int wNo) throws Exception;
-	//public List<Work> selectMProductList(@Param("wNo") int wNo,@Param("start") int start,@Param("end") int end) throws Exception;
+	//public List<Work> selectMProductList(int wNo) throws Exception;
+	public List<Work> selectMProductList(@Param("wNo") int wNo,@Param("start") int start,@Param("end") int end) throws Exception;
 	//작품상세페이지 상품리스트 회차별 출력(기업)
 	public List<Work> selectCProductListByEpisode(Map map) throws Exception;
 	//작품상세페이지 상품리스트 회차별 출력(일반)

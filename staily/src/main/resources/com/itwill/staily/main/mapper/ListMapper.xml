@@ -21,6 +21,7 @@
 		ORDER BY p.p_date
 	</select>
 	<!-- 3. 작품상세페이지 상품리스트 출력(일반) -->
+	<!-- 
 	<select id="selectMProductList" parameterType="int" resultMap="fourTableResultMap">
 		select p.p_no,p.w_no,p.m_no,p.p_scene,p.p_name,m.m_id,wd.wd_episode,p.p_view
 		from product p
@@ -35,7 +36,7 @@
 		and w.w_no=#{wNo}
 		ORDER BY p.p_date
 	</select>
-	<!--
+	-->
 	<select id="selectMProductList" parameterType="int" resultMap="fourTableResultMap">
 	<![CDATA[
 		select *
@@ -56,7 +57,7 @@
 		)
 		where idx >=#{start} and idx <= #{end}
 	]]>
-	</select>-->
+	</select>
 	<!-- 4.작품상세페이지 상품리스트 회차별 출력(기업) -->
 	<select id="selectCProductListByEpisode" parameterType="map" resultMap="fourTableResultMap">
 		select p.p_no,p.w_no,p.m_no,p.p_scene,p.p_name,m.m_id,wd.wd_episode,p.p_view

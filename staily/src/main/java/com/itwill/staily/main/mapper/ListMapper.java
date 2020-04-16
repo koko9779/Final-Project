@@ -31,8 +31,8 @@ public interface ListMapper {
 	 */
 
 	public List<Work> selectCProductList(int wNo);
-	public List<Work> selectMProductList(int wNo);
-	//public List<Work> selectMProductList(@Param("wNo") int wNo,@Param("start") int start,@Param("end") int end);
+	//public List<Work> selectMProductList(int wNo);
+	public List<Work> selectMProductList(@Param("wNo") int wNo,@Param("start") int start,@Param("end") int end);
 	public List<Work> selectCProductListByEpisode(Map map);
 	public List<Work> selectMProductListByEpisode(Map map);
 		

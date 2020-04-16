@@ -93,7 +93,7 @@ public class MainServiceTest {
 
 	@Test
 	public void testSelectMProductList() throws Exception{
-		assertNotNull(listServiceImpl.selectMProductList(1));
+		assertNotNull(listServiceImpl.selectMProductList(1,1,2));
 		//assertSame(1, listServiceImpl.selectMProductList(1,1,2));
 	}
 

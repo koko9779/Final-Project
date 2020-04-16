@@ -30,17 +30,17 @@ public class Pagination {
     private int endPage = 1;
     
     /** 시작 index **/
-    private int startIndex = 0;
+    private int startIndex = 1;
     
     /** 마지막 index **/
-    private int endIndex = 0;
+    private int endIndex = 1;
 
 	/** 이전 페이지 **/
     private int prevPage;
     
     /** 다음 페이지 **/
     private int nextPage;
-
+    
     public Pagination(int listCnt, int curPage){
         
         /**
@@ -66,6 +66,7 @@ public class Pagination {
         
         /** DB 질의를 위한 startIndex 설정 **/
         setStartIndex(curPage);
+        setEndIndex(startIndex);
     }
 
     public void rangeSetting(int curPage){
@@ -108,7 +109,7 @@ public class Pagination {
 		return endIndex;
 	}
 
-	public void setEndIndex(int endIndex) {
+	public void setEndIndex(int startIndex) {
 		this.endIndex = (int)((startIndex+pageSize)-1);
 	}
 	
