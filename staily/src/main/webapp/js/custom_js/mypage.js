@@ -114,11 +114,42 @@ $(function(){
 		window.open("message_list", "_blank", "width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 	});
 	
+	/************************검색한 친구 추가************************/
+	$('#searchDropdwon a:nth-child(1)').click(function(e){
+		e.preventDefault();
+
+		var params = {
+				"mNo" : $('#searchMessage').attr('value'),
+				"mId" : $('#addFriend').attr('value')
+		}
+		$.ajax({
+			url : "friend_create",
+			data : params,
+			dataType : "text",
+			success : function(result){
+				if(result == 'true'){
+					alert('친구추가완료');
+					location.reload();
+				}else if(result == 'false'){
+					alert('이미 친구추가된 회원입니다');
+				}else if(result =='D'){
+					alert('본인은 친구추가가 불가능합니다');
+				}
+				
+			},
+			error : function(){
+				location.href = '404';
+			}
+			
+		});
+	});
+	
+	
 	/************************검색한 친구 쪽지보내기************************/
 	$('#searchDropdwon a:nth-child(2)').click(function(e){
 		e.preventDefault();
-		//var noV = $(this).attr('value');
-		window.open("message", "_blank","width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		var noV = $(this).attr('value');
+		window.open("message?mNo="+noV, "_blank","width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 	});
 	
 	/************************친구검색 function 시작******************************/
@@ -127,79 +158,44 @@ $(function(){
 		this.value="";
 		$(".add").toggle();
 		$(".add").text('');
+		$('.add').attr('class','btn btn-primary dropdown-toggle add hidden');
 	});
-
-	$('#searchword').on({
-		keyup : function(e){
-			if(e.keyCode == 13){
-				var mId = $('#searchword').val();
-				var checkConfirm = confirm('찾으신 회원이 맞습니까?');
-				if(mId != ""){
-					$.ajax({
-						url : "friend_find",
-						method : "GET",
-						data : "mId="+mId,
-						dataType : "text",
-						success : function(result){
-							if(checkConfirm){
-								if(result!="N"){
-									$('.add').text(result);
-									friend_findNo_function(result);
-								}else{
-									alert('회원 아이디를 다시 확인해주세요');
-									return;
-								}
-							}else{
-								return;
-							}
-							
-						},
-						error : function(e){
-							location.href = '404';
-						}
-						
-					})
-				}
-			}
+	
+	$('#searchword').keyup(function(e){
+		if(e.keyCode==13){
+			var mId = $('#searchword').val();
+		    if(mId !=""){
+		    	var checkConfirm = confirm('찾으신 회원이 맞습니까?');
+		    	if(checkConfirm){
+		    		$.ajax({
+			    		url : "friend_find",
+			    		data : "mId="+mId,
+			    		dataType : "json",
+			    		success : function(result){
+			    			if(result.status == 'success'){
+			    				$('.add').attr('class','btn btn-primary dropdown-toggle add');
+			    				$('.add').attr('style','display: inline-block;');
+			    				$('.add').text(result.mId);
+			    				$('#searchMessage').attr('value',result.mNo);
+			    				$('#addFriend').attr('value',result.mId);
+			    				
+			    			}else{
+			    				alert('회원 아이디를 다시 확인해주세요');
+			    			}
+			    		},
+			    		error : function(){
+			    			location.href = '404';
+			    		}
+			    	});
+		    	}else{
+		    		return;
+		    	}
+		    	
+		    }
+		
 		}
 	});
-	
-	function friend_findNo_function(result){
-		$('#searchDropdwon a:nth-child(1)').click(function(e){
-			//alert("friend_findNo_function Id"+result);
-			e.preventDefault();
-			$.ajax({
-				url : 'friend_findNo',
-				method : 'GET',
-				data : 'mId='+result,
-				dataType : 'text',
-				success : function(data){
-					friend_create_function(data);
-				}
-			})
-		})
-	};
-	function friend_create_function(data){
-		//alert("friend_create_function mNo"+data);
-		$.ajax({
-			url : 'friend_create',
-			method : 'GET',
-			data : 'fNo='+data,
-			dataType : 'text',
-			success : function(result){				
-				if(result == 'true'){					
-					alert('친구추가완료');
-					location.reload();
-				}else{
-					alert('이미 친구추가된 회원입니다');
-				}
-			},
-			error : function(e){
-				alert('이미 친구추가된 회원입니다');
-			}
-		})
-	};
-	
+		
 	/************************ sidebar function ******************************/
 	
 	$('#sideCheck li:nth-child(5)').click(function(e){
@@ -207,10 +203,101 @@ $(function(){
 		window.open("message_list", "_blank", "width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 		
 	});
-	
-	
-	/**/
-
+		
+	/************************ 회원수정 validator ******************************
+	$('#memberInfoFrm').validate({
+		rules:{
+			mPw:{
+				required: true,
+				passwordCk : true,
+				minlength: 8,
+				maxlength: 15
+			},
+			repeatPw:{
+				required: true,
+				equalTo : '#mPw'
+				
+			},
+			mEmail:{
+				required: true,
+				email : true
+			},
+			mAddress : {
+				required : true
+			},
+			mDaddress : {
+				required : true
+			},
+			phn1 : {
+				required : true
+			},
+			phn2 : {
+				required : true
+			},
+			phn3 : {
+				required : true
+			}
+			
+		},
+		messages:{
+			mPw:{
+				required: "비밀번호를 입력해주세요",
+				passwordCk: "영문, 숫자, 특수문자를 조합해서 입력해야 합니다.",
+				minlength:"비밀번호는 8자리 이상으로 구성해야 합니다." ,
+				maxlength:"비밀번호는 16자리 미만으로 구성해야 합니다"
+			},
+			repeatPw:{
+				required: "비밀번호를 확인해주세요",
+				equalTo : '비밀번호가 다릅니다.'
+				
+			},
+			mEmail:{
+				required: "이메일을 입력해주세요",
+				email : "이메일 형식으로 입력하셔야합니다."
+			},
+			mAddress : {
+				required : "주소를 입력해주세요"
+			},
+			mDaddress : {
+				required : "상세주소를 입력해주세요"
+			},
+			phn1 : {
+				required : "전화번호를 입력해주세요"
+			},
+			phn2 : {
+				required : "전화번호를 입력해주세요"
+			},
+			phn3 : {
+				required : "전화번호를 입력해주세요"
+			}
+		},
+		submitHandler:function(f){
+			$.ajax({
+				url: f.action,
+				data: $(f).serializeArray(),
+				dataType: 'text',
+				success: function(result) {
+					if(result == 'true'){
+						alert("회원정보 수정이 완료되었습니다");
+						location.reload();
+						
+					}else{
+						location.href = '404';
+					}
+				},
+				error : function(){
+					location.href = '404';
+					
+				}
+			});
+		},
+		errorClass:"error_validate",
+		validClass:"valid"
+	});
+	$.validator.addMethod("passwordCk",  function( value, element ) {
+		   return this.optional(element) ||  /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/.test(value);
+		});
+	*/
 	
 	
    
@@ -264,6 +351,7 @@ function execDaumPostcode() {
 }
 
 /*******************회원수정 유효성체크*******************/
+
 function check() {
 	var mPw = $('#mPw').val();
 	var repeatPw = $('#repeatPw').val();
@@ -291,9 +379,9 @@ function check() {
 	}
 	
 	//비밀번호 체크
-	var getCheck = RegExp(/^[a-zA-Z0-9]{8,15}$/);
+	var getCheck = RegExp(/^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/);
 	if(!getCheck.test(mPw)){
-		alert("비밀번호는 대소문자와 숫자만 입력가능하고, 8 ~ 15글자 사이입니다");
+		alert("비밀번호는 영문, 숫자, 특수문자를 조합해서 8 ~ 15글자 사이입니다");
 		return;
 	}
 	
@@ -327,6 +415,6 @@ function check() {
 	document.getElementById("memberInfoFrm").action = "member_update";
 	document.getElementById("memberInfoFrm").method = 'POST';
 	document.getElementById("memberInfoFrm").submit();
-	
 
 }
+	

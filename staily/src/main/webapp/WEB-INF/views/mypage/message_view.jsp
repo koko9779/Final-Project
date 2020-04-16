@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/mypage/include/include_message_top.jsp" %>
 
-<body class="bPopup"><script>INVEN.Popup.resizeWindowBody(747,510);</script>
+<body class="bPopup">
 
 <div id="noteWrap">
 <div id="noteLeft">

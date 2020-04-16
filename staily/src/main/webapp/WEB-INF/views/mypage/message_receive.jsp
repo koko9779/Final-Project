@@ -3,9 +3,6 @@
 <%@ include file="/WEB-INF/views/mypage/include/include_message_top.jsp" %>
 
 <body class="bPopup">
-	<script>
-		INVEN.Popup.resizeWindowBody(747, 510);
-	</script>
 
 	<div id="noteWrap">
 		<div id="noteLeft">
@@ -66,6 +63,7 @@
 							<div class="IEFix">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 						</form>
 					</div>
+
 				</div>
 		</div>
 
@@ -104,35 +102,6 @@
 				})
 				
 			});
-			
-			
-			
-			/*
-			$('#cmdDelete').click(function(e) {
-				var size = document.getElementsByName('message_check').length;
-				for (var i = 0; i < size; i++) {
-					if (document.getElementsByName('message_check')[i].checked == true) {
-						var msNo = document.getElementsByName('message_check')[i].value;
-						message_delete_func(msNo);
-					}
-				}
-				e.preventDefault();
-			});
-
-			function message_delete_func(msNo) {
-				$.ajax({
-					url : "message_delete",
-					method : "GET",
-					data : "msNo=" + msNo,
-					dataType : "text",
-					success : function(result) {
-						if (result == 'true') {
-							location.reload();
-						}
-					}
-				});
-			}
-			*/
 
 		})
 	</script>

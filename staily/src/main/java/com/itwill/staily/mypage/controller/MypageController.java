@@ -1,6 +1,8 @@
 package com.itwill.staily.mypage.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,13 +11,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.staily.mypage.model.dto.Bookmark;
 import com.itwill.staily.mypage.model.dto.Friend;
@@ -52,7 +50,7 @@ public class MypageController {
 	
 	@RequestMapping("404")
 	public String error() {
-		return "404";
+		return "redirect:/404.jsp";
 	}
 	
 	//회원정보출력
@@ -82,6 +80,29 @@ public class MypageController {
 		
 	}
 	
+	//회원정보업데이트[validator]
+	@RequestMapping("/member_update")
+	@ResponseBody
+	public String member_update(HttpSession session,
+							   @RequestParam String phn1,
+							   @RequestParam String phn2,
+							   @RequestParam String phn3,
+							   @RequestParam String mId,
+							   @RequestParam String mPw,
+							   @RequestParam String mName,
+							   @RequestParam String mAddress,
+							   @RequestParam String mDaddress,
+							   @RequestParam String mEmail,
+							   @RequestParam String mType) throws Exception {
+		
+		int mNo = (Integer)session.getAttribute("userNo");
+		String mPhone = phn1 + phn2 + phn3; 
+		boolean result = false;
+		Member member = new Member(mNo,mId,mPw,mName,mAddress,mDaddress,mEmail,mType,mPhone); 
+		result = mypageService.updateMember(member);
+		return result+"";
+	}
+	/*
 	//회원정보업데이트
 	@RequestMapping("/member_update")
 	public String member_update(HttpServletResponse response, 
@@ -116,6 +137,8 @@ public class MypageController {
 		session.setAttribute("mNo", mNo);
 		return "forward:/mypage/member_select";
 	}
+	*/
+	
 	
 	//회원탈퇴
 	@RequestMapping("member_delete")
@@ -149,8 +172,6 @@ public class MypageController {
 			e.printStackTrace();
 			return "redirect:/main/index";
 		}
-		//session.setAttribute("mNo", mNo);
-		//return "mypage/bookmark";
 	}
 	
 	//북마크삭제[배열]
@@ -195,23 +216,24 @@ public class MypageController {
 	//친구추가
 	@RequestMapping("/friend_create")
 	@ResponseBody
-	public String friend_create(HttpServletResponse response, 
-								 HttpServletRequest request, 
-								 HttpSession session,
-								 @RequestParam int fNo) {
+	public String friend_create( HttpSession session,
+								 @RequestParam("mNo") int fNo,
+								 @RequestParam("mId") String mId) throws Exception {
 		Integer mNo = (Integer)session.getAttribute("userNo");
+		String checkMid = (String)session.getAttribute("userId");
 		boolean result = false;
-		try {
+		if(checkMid.equals(mId)) {
+			return "D";
+			
+		}else {
 			int check = friendService.duplicateFriendNo(mNo,fNo);
 			if(check == 0) {
 				result = friendService.createFriend(fNo,mNo);
-				return result+"";
 			}else {
 				return result+"";
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "N";
+			return result+"";
+			
 		}
 	}
 	
@@ -231,38 +253,22 @@ public class MypageController {
 		return result+"";
 	}
 	
-	//친구찾기 -- RestController로 이동필요
-	@RequestMapping(value="/friend_find")
+	//친구찾기
+	@RequestMapping("/friend_find")
 	@ResponseBody
-	public String friend_find(@RequestParam(name="mId", defaultValue = "") String mId, 
-											HttpServletRequest request){
-		int check;
-		try {
-			check = friendService.duplicateFriend(mId);
-			if(check != 0) {
-				return mId;
-			}else {
-				return "N";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "N";
-		}
-
-	}
-	
-	//친구번호찾기
-	@RequestMapping(value="/friend_findNo", produces="application/json;charset=UTF-8")
-	@ResponseBody
-	public int friend_findNo(@RequestParam String mId) {
-		try {
+	public Object friend_find(@RequestParam(value="mId") String mId) throws Exception {
+		Map<String, Object> result = new HashMap<String, Object>();
+		int memberCheck = friendService.duplicateFriend(mId);
+		if(memberCheck != 0) {
 			int mNo = friendService.findFriendNo(mId);
-			return mNo;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return -999;
+			result.put("status","success");
+			result.put("mId", mId);
+			result.put("mNo", mNo);
+			return result;
+		}else {
+			result.put("status","fail");
+			return result;
 		}
-		
 	}
 	
 	/*********************************** 메시지 메소드 ***********************************/
@@ -281,25 +287,6 @@ public class MypageController {
 		return "mypage/message";
 	}
 	
-	/*메시지 생성
-	@RequestMapping("/message_create")
-	public String message_create(HttpSession session,
-								 HttpServletRequest request,
-								 @RequestParam String msTitle,
-								 @RequestParam String msContent,
-								 @RequestParam int rNo) {
-		int mNo = (Integer)session.getAttribute("userNo");
-		Message message = new Message(mNo,msTitle,msContent,rNo);
-		try {
-			boolean result = messageService.createMessage(message);
-			request.setAttribute("result", result);
-			return "redirect:/mypage/message_list";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "404";
-		}
-	}
-	*/
 	
 	//메시지 생성
 	@RequestMapping("/message_create")
@@ -348,7 +335,7 @@ public class MypageController {
 			return "mypage/message_receive";
 		} catch (Exception e) {
 			e.printStackTrace();
-			return"404";
+			return "404";
 		}
 		
 	}
@@ -385,28 +372,11 @@ public class MypageController {
 		return result+"";
 	}
 	
-	/*
-	@RequestMapping("/message_create")
-	public String message_create(HttpServletResponse response, 
-								 HttpServletRequest request, 
-								 Model model,
-								 @ModelAttribute Message message) throws Exception {
-		
-		boolean result = messageService.createMessage(message);
-		request.setAttribute("result", result);
-		return "test2";
-	}
-	*/
-	//메시지 삭제
-	
-	
 	/*********************************** 메시지 메소드 ***********************************/
 	
 	//내가쓴글리스트
 	@RequestMapping("/member_write")
 	public String member_write(HttpServletRequest request, 
-							   HttpServletResponse response, 
-							   Model model,
 							   HttpSession session) {
 		//int mNo = (Integer)request.getAttribute("mNo");
 		List<Product> writeList;
@@ -422,7 +392,6 @@ public class MypageController {
 			e.printStackTrace();
 			return "redirect:/main/index";
 		}
-		//model.addAttribute("writeList", writeList);
 	}
 	
 	//내가쓴글삭제
@@ -473,41 +442,5 @@ public class MypageController {
 	public String test() {
 		return "mypage/test2";
 	}
-	
-	
-	
-	/*메시지리스트(멤버&메시지 조인)
-	@RequestMapping("/message_list")
-	public ModelAndView message_selectList(HttpSession session, Model model) {
-		ModelAndView mv = new ModelAndView();
-		List<Message> messageList;
-		try {
-			Integer mNo = (Integer)session.getAttribute("userNo");
-			if(mNo==null) {
-				mNo = 7;
-			}
-			messageList = messageService.selectMessageList(mNo);
-			model.addAttribute("data", messageList);
-			mv.setViewName("mypage/message_list");
-			return mv;
-		} catch (Exception e) {
-			e.printStackTrace();
-			mv.setViewName("redirect:/main/index");
-			return mv;
-		}
 		
-	}
-		*/
-	
-	//@RequestMapping("/test4")
-	public ModelAndView friend_find(Model model) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		//String name = friendService.findFriend("hiphopmy");
-		//model.addAttribute("name", name);
-		mv.setViewName("test3");
-		return mv;
-	}
-	
-	
-	
 }

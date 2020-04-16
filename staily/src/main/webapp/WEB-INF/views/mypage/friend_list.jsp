@@ -41,13 +41,14 @@
 			</div>
 			<div class="dropdown" id="results">
 			   <!-- add -->
-			   <span data-toggle='dropdown' class="add"></span>
+				<button class="btn btn-primary dropdown-toggle add hidden" data-toggle="dropdown">
+				</button>
 				<div class="dropdown-menu" id='searchDropdwon'>
-				  	<a class="dropdown-item" href="#">친구추가</a>
-				  	<a class="dropdown-item" href="#">쪽지보내기</a>
+				  	<a class="dropdown-item" href="#" id="addFriend">친구추가</a>
+				  	<a class="dropdown-item" href="#" id="searchMessage">쪽지보내기</a>
 				</div>
 			</div>
-			
+							 
 			<br>
 			<br>	          
           <!-- 친구찾기 -->
@@ -77,13 +78,12 @@
 							  	<a class="dropdown-item" href="#" value="${friend.mId}">쪽지보관함</a>
 							</div>
 					  </div>
-	
                     </td>
-                      
                     </tr>
                   	</c:forEach>
                   </tbody>
                 </table>
+                
                 <input type="button" class="btn btn-outline btn-primary pull-right" value="삭제" id="deleteFriendBtn">
               </div>
             </div>
