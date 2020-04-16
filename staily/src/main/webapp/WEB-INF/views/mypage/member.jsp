@@ -99,7 +99,7 @@
 															maxlength="15">
 													</div>
 												</div>
-												<div>*특수문자를 제외하고, 8 ~ 15글자 사이입니다</div>
+												<!-- <div>*특수문자를 제외하고, 8 ~ 15글자 사이입니다</div>-->
 											</td>
 										</tr>
 										<tr>
@@ -207,10 +207,16 @@
 						</div>
 
 						<br>
-						<div id>
-							<button type="button" class="btn btn-outline btn-primary pull-right" data-step="2" onclick="check()">수정</button>
-							<button type="button" class="btn btn-outline btn-primary pull-right" data-step="2" onclick="leave()">탈퇴</button>
+						  <div id> 
+						 		<button type="button" class="btn btn-outline btn-primary pull-right" data-step="2" onclick="check()">수정</button>
+							 	<button type="button" class="btn btn-outline btn-primary pull-right" data-step="2" onclick="leave()">탈퇴</button>
+						 </div> 
+						<!--  
+						<div class="text-center">
+							<button type="submit" value="submit"
+								class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2">수정</button>
 						</div>
+						-->
 					</div>
 
 					<!-- DataTales Example -->

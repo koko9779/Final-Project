@@ -24,18 +24,18 @@
 	font-weight: inherit;
 }
 
-
-
+#results {
+	margin : 10px 0px;
+}
 
 /*Bookmark*/
-/*
-#dataTable_length label{
-	white-space: nowrap;
-	
+#dataTable>tbody>tr>td {
+	vertical-align: inherit;
 }
-*/
+
 
 /*Friend*/
 #dataTable_info{
 	display : none;
 }
+
