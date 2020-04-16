@@ -18,7 +18,8 @@
 <update id="updateBoardAndReply" parameterType="Board">
 	UPDATE board 
 	SET b_title = #{bTitle},
-	    b_content = #{bContent}
+	    b_content = #{bContent},
+	    b_category = #{bCategory}
 	WHERE b_no = #{bNo}
 </update>
 

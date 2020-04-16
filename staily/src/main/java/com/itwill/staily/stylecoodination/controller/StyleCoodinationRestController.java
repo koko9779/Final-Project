@@ -139,22 +139,21 @@ public class StyleCoodinationRestController {
 		return isDelete;
 	}
 	
+	//문제의 레스트컨트롤러
 	@RequestMapping(value = "style_board_and_reply_update", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
-	public boolean style_board_and_reply_update_post(@ModelAttribute Board updateBoard) {
-		Boolean isUpdate = false;
+	public Board style_board_and_reply_update_post(@ModelAttribute Board updateBoard) {
+		Board updateBoard2 = new Board();
 		int updateCount;
+		
 		try {
 			updateCount = styleCoodinationService.modifyBoardAndReply(updateBoard);
 			if(updateCount == 1) {
-				isUpdate = true;
-			}else {
-				isUpdate = false;
+				updateBoard2 = styleCoodinationService.findUpdateBoard(updateBoard.getbNo());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			isUpdate = false;
 		}
-		return isUpdate;
+		return updateBoard;
 	}
 	
 

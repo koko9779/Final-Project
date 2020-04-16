@@ -110,5 +110,26 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 	public Board findUpdateBoard(int bNo) {
 		return viewMapper.selectUpdateBoard(bNo);
 	}
+
+	@Override
+	public int selectBoardTop10ReplyCount() {
+		return viewMapper.selectBoardTop10ReplyCount();
+	}
+
+	@Override
+	public List<Board> findBoardCategory(Board b) {
+		
+		return viewMapper.findBoardCategory(b);
+	}
+
+	@Override
+	public int findBoardCategoryCount(Board b) {
+		return viewMapper.selectBoardCategoryCount(b);
+	}
+
+	@Override
+	public int findBoardReplyCategoryCount(Board b) {
+		return viewMapper.selectBoardReplyCategoryCount(b);
+	}
 	
 }

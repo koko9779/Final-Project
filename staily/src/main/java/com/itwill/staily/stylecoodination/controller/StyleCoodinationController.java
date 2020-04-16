@@ -36,21 +36,57 @@ public class StyleCoodinationController {
 	 private StyleCoodinationService styleCoodinationService;
 	
 	@RequestMapping("/style_main_read")
-	public String style_main(Model model) {
+	public String style_main_all(Model model) {
 		
-		List<Board> boardTop10 = new ArrayList<Board>();
 		List<Board> data = new ArrayList<Board>();
 		int boardCount = 0;
 		int replyCount = 0;
 		
-		boardTop10 = styleCoodinationService.findBoardTop10();
 		data = styleCoodinationService.findBoardAll();
 		boardCount = styleCoodinationService.findBoardCount();
 		replyCount = styleCoodinationService.findBoardReplyCount();
 		
-		model.addAttribute("boardTop10", boardTop10);
 		model.addAttribute("data", data);
 		model.addAttribute("boardCount", boardCount);
+		model.addAttribute("replyCount", replyCount);
+		
+		return "style/style_main_read";
+	}
+	
+	
+	@RequestMapping("/style_main_read_category")
+	public String style_main_category(Board b,Model model) {
+		
+		
+		
+		List<Board> data = new ArrayList<Board>();
+		int boardCount = 0;
+		int replyCount = 0;
+		
+		data = styleCoodinationService.findBoardCategory(b);
+		boardCount = styleCoodinationService.findBoardCategoryCount(b);
+		replyCount = styleCoodinationService.findBoardReplyCategoryCount(b);
+		
+		model.addAttribute("data", data);
+		model.addAttribute("boardCount", boardCount);
+		model.addAttribute("replyCount", replyCount);
+		
+		return "style/style_main_read";
+	}
+	
+	
+	@RequestMapping("/style_main_read_top10")
+	public String style_main_top10(Model model) {
+		
+		List<Board> data = new ArrayList<Board>();
+		int boardCount = 0;
+		int replyCount = 0;
+		
+		data = styleCoodinationService.findBoardTop10();
+		replyCount = styleCoodinationService.selectBoardTop10ReplyCount();
+		
+		model.addAttribute("data", data);
+		model.addAttribute("boardCount", data.size());
 		model.addAttribute("replyCount", replyCount);
 		
 		return "style/style_main_read";

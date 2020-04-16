@@ -34,3 +34,43 @@
 	display: none;
 }
 
+.title_detail{
+	margin-bottom: 15px;
+}
+
+.custom-select{
+float:left;
+	margin-right:5px;
+	width: 115px;
+   	margin-bottom: 7px;
+}
+
+.add_btn_detail{
+	
+    background-color: #717171;
+}
+
+.p-top-21 {
+    padding-top: 21px;
+}
+.p-top-7 {
+	padding-top: 7px;
+}
+
+.f-s-25 {
+	font-size: 25px !important;
+}
+
+.m-top-50 {
+	margin-top: 50px;
+} 
+.m-top--40{
+	margin-top: -40px;
+}
+.m-bottom-30{
+	margin-bottom: 30px;
+}
+a > img {
+    all:unset;
+}
+
