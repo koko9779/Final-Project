@@ -117,7 +117,7 @@
 												-->
 												<a href="#" onclick="bm_productpage(${bm.bmNo},${bm.product.pNo})"> <img
 													src="${pageContext.request.contextPath}${bm.product.pScene}"
-													alt="${bm.product.pName}" />
+													alt="${bm.product.pName}" style="width:100%; height:150px;" />
 												</a>
 											</div>
 										<div>
@@ -155,7 +155,7 @@
 								<div class="movie-poster2">
 									<a href="#" onclick="productpage(${hot.pNo})"> <img
 										src="${pageContext.request.contextPath}${hot.pScene}"
-										alt="${hot.pName}" />
+										alt="${hot.pName}" style="width:100%; height:150px;" />
 									</a>
 								</div>
 								<h4 class="no-underline">${hot.pName}</h4>
@@ -182,7 +182,7 @@
 									<div class="movie-poster2">
 										<a href="#" onclick="workpage(${today.wNo})"> <img
 											src="${pageContext.request.contextPath}${today.wPoster}"
-											alt="Movie title" />
+											alt="Movie title" style="width:263px; height:372px;"/>
 										</a>
 									</div>
 								</div>
@@ -212,7 +212,7 @@
 								<div class="movie-poster2">
 									<a href="#" onclick="workpage(${drama.wNo})"> <img
 										src="${pageContext.request.contextPath}${drama.wPoster}"
-										alt="Movie title" />
+										alt="Movie title" style="width:263px; height:372px;"/>
 									</a>
 								</div>
 							</div>
@@ -237,7 +237,7 @@
 								<div class="movie-poster2">
 									<a href="#" onclick="workpage(${movie.wNo})"> <img
 										src="${pageContext.request.contextPath}${movie.wPoster}"
-										alt="Movie title" />
+										alt="Movie title" style="width:263px; height:372px;"/>
 									</a>
 								</div>
 							</div>

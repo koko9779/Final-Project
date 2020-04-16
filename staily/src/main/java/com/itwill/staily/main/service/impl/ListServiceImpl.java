@@ -49,6 +49,11 @@ public class ListServiceImpl implements ListService{
 		return listMapper.selectMProductList(wNo);
 	}
 
+//	@Override
+//	public List<Work> selectMProductList(int wNo, int start, int end) {
+//		return listMapper.selectMProductList(wNo,start,end);
+//	}
+
 	@Override
 	public List<Work> selectCProductListByEpisode(Map map) {
 		return listMapper.selectCProductListByEpisode(map);
@@ -92,6 +97,11 @@ public class ListServiceImpl implements ListService{
 	@Override
 	public void increaseWorkView(int wNo) throws Exception {
 		workDetailMapper.increaseWorkView(wNo);
+	}
+
+	@Override
+	public List<Work> selectProductList() throws Exception {
+		return listMapper.selectProductList();
 	}
 
 

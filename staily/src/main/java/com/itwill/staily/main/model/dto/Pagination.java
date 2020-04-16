@@ -32,7 +32,10 @@ public class Pagination {
     /** 시작 index **/
     private int startIndex = 0;
     
-    /** 이전 페이지 **/
+    /** 마지막 index **/
+    private int endIndex = 0;
+
+	/** 이전 페이지 **/
     private int prevPage;
     
     /** 다음 페이지 **/
@@ -48,6 +51,7 @@ public class Pagination {
          */
         
         // 총 게시물 수와 현재 페이지를 Controller로 부터 받아온다.
+    	
         /** 현재페이지 **/
         setCurPage(curPage);
         /** 총 게시물 수 **/
@@ -99,7 +103,15 @@ public class Pagination {
 	public int getCurPage() {
 		return curPage;
 	}
+	
+    public int getEndIndex() {
+		return endIndex;
+	}
 
+	public void setEndIndex(int endIndex) {
+		this.endIndex = (int)((startIndex+pageSize)-1);
+	}
+	
 	public void setCurPage(int curPage) {
 		this.curPage = curPage;
 	}
