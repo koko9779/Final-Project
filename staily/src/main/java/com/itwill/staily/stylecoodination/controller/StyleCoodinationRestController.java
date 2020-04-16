@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -125,7 +126,7 @@ public class StyleCoodinationRestController {
 	}
 
 	@RequestMapping(value = "style_reply_delete_action", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
-	public boolean style_reply_delete_action_post(@RequestParam String bNo, Model model) {
+	public boolean style_reply_delete_action_post(@RequestParam String bNo) {
 		boolean isDelete = false;
 		int intBNo = Integer.parseInt(bNo);
 		try {
@@ -136,6 +137,20 @@ public class StyleCoodinationRestController {
 			isDelete = false;
 		}
 		return isDelete;
+	}
+	
+	@RequestMapping(value = "style_board_and_reply_update", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+	public boolean style_board_and_reply_update_post(@ModelAttribute Board updateBoard) {
+		Boolean isUpdate = false;
+		
+		try {
+			styleCoodinationService.modifyBoardAndReply(updateBoard);
+			isUpdate = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			isUpdate = false;
+		}
+		return isUpdate;
 	}
 	
 

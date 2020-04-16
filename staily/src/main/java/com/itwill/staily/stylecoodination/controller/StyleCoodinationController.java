@@ -86,6 +86,20 @@ public class StyleCoodinationController {
 	}
 	
 	/*
+	@RequestMapping("/style_board_and_reply_update")
+	public String style_board_and_reply_update(@RequestParam String bNo, Model model) {
+		int intBNo = Integer.parseInt(bNo);
+		Board updateBoard;
+		
+		updateBoard = styleCoodinationService.selectUpdateBoard(intBNo);
+		model.addAttribute("updateBoard", updateBoard);
+		
+		return "style/style_update";
+	}
+	*/
+	
+	
+	/*
 	@Override
 	public int modifyBoardAndReply(Board updateBoard) {
 		return boardCommonMapper.updateBoardAndReply(updateBoard);
@@ -139,30 +153,6 @@ public class StyleCoodinationController {
 	}
 	
 	/*
-	@RequestMapping(value = "style_reply_delete_action", method = RequestMethod.GET)
-	public String style_reply_delete_action_get() {
-		return "style/style_main_read";
-	}
-	
-	//
-	//이거 아작스로 삭제하고 바로 폼 보여줄거아님..? 생각 해봐야할듯
-	//
-	@RequestMapping(value = "style_reply_delete_action", method = RequestMethod.POST)
-	public String style_reply_delete_action_post(@RequestParam String bNo) {
-		String forwardPath = "";
-		int intBNo = Integer.parseInt(bNo);
-		try {
-			styleCoodinationService.removeReply(intBNo);
-			forwardPath = "/style_detail_read?bNo="+bNo;
-		} catch (Exception e) {
-			e.printStackTrace();
-			forwardPath = "redirect:/404.jsp";
-		}
-		return forwardPath;
-	}
-	*/
-	
-	/*
 	
 	@Override
 	public int writeReply(Board replyBoard, String mId) {
@@ -194,11 +184,6 @@ public class StyleCoodinationController {
 	@Override
 	public int findBoardReplyCount() {
 		return viewMapper.selectBoardReplyCount();
-	}
-	
-	@Override
-	public int updateViewCount(int bNo) {
-		return viewMapper.updateView(bNo);
 	}
 	
 }

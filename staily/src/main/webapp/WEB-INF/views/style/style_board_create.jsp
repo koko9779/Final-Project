@@ -75,7 +75,7 @@
 					</div>
 					<div class="row justify-content-md-center">
 						<button type="submit" class="btn btn-ghost"
-							style="width: 20%; font-weight: bold; margin-top: 15px;" onclick="boardCreate();">등 록</button>
+							style="width: 20%; font-weight: bold; margin-top: 15px;" onclick="board_create();">등 록</button>
 					</div>
 				</form>
 			</div>
@@ -89,8 +89,6 @@
 
 	.title_detail{
 		margin-bottom: 15px;
-		
-
 	}
 	
 	.custom-select{

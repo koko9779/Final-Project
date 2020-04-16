@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-		<style>
-		.p_content>h1,.p_content> h2,.p_content> h3,.p_content> h4 {
+	<style>
+	.p_content>h1,.p_content> h2,.p_content> h3,.p_content> h4 {
 		
 	line-height: inherit;
     position: relative;
@@ -25,15 +25,13 @@
     margin-inline-end: inherit;
     font-weight: inherit;
 		
+	border-bottom: none;
+	background-image: none !important;
+	}
 		
-		
-			border-bottom: none;
-			background-image: none !important;
-		}
-		
-		.p_content>h2:after, .p_content>h3:after, .p_content>h4:after, .p_content>h5:after{
-			background-image: none !important;
-		}
+	.p_content>h2:after, .p_content>h3:after, .p_content>h4:after, .p_content>h5:after{
+		background-image: none !important;
+	}
 	</style>
 <link href="${pageContext.request.contextPath}/ckeditor/contents.css" rel="stylesheet">
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
@@ -97,7 +95,7 @@
 								<a href="javascript:board_delete(${boardOneList[0].bNo});" class="btn btn-ghost sort">
 									<span>삭제</span>
 								</a>
-								<a href="javascript:board_modify(${boardOneList[0].bNo});" class="btn btn-ghost sort">
+								<a href="javascript:board_and_reply_modify(${boardOneList[0].bNo});" class="btn btn-ghost sort">
 									<span>수정</span>
 								</a>
 						</article>
@@ -116,7 +114,7 @@
 							<a href="javascript:reply_delete(${board.bNo}, ${fn:length(boardOneList)});" class="btn btn-ghost sort">
 								<span>삭제</span>
 							</a>
-							<a href="news-single.html" class="btn btn-ghost sort">
+							<a href="javascript:board_and_reply_modify(${board.bNo});" class="btn btn-ghost sort">
 								<span>수정</span>
 							</a>
 						</article>
