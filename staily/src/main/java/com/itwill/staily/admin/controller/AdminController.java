@@ -71,6 +71,7 @@ public class AdminController {
 		return "admin/member";
 	}
 	@RequestMapping("/member_delete")
+	@ResponseBody
 	public String memberAdminDelete(@RequestParam("mNo") int mNo, HttpServletRequest request) {
 		String result = "fail";
 		try {
@@ -146,6 +147,7 @@ public class AdminController {
 		return "admin/product_update";
 	}
 	@RequestMapping("/product_update")
+	@ResponseBody
 	public String productAdminUpdate(@RequestParam("pNo") int pNo,@RequestParam("mNo") int mNo,@RequestParam("wNo") int wNo
 									, @RequestParam("pName") String pName,@RequestParam("pPrice") int pPrice,@RequestParam("pURL") String pUrl
 									,@RequestParam("pAddress") String pAddress,@RequestParam("pDaddress") String pDaddress
@@ -163,6 +165,7 @@ public class AdminController {
 		return result;
 	}
 	@RequestMapping(value = "/product_confirm", method = {RequestMethod.POST,RequestMethod.GET},produces="text/plain; charset=UTF-8")
+	@ResponseBody
 	public String productAdminConfirm(@RequestParam ("pNo")int pNo,HttpServletRequest request) {
 		String result = "";
 		try {
@@ -179,6 +182,7 @@ public class AdminController {
 		return result;
 	}
 	@RequestMapping("/product_delete")
+	@ResponseBody
 	public String productAdminDelete(@RequestParam("pNo") int pNo, HttpServletRequest request) {
 		String result = "fail";
 		try {
@@ -202,6 +206,11 @@ public class AdminController {
 		}
 		return "admin/work";
 	}
+	// TMDB API 검색창 
+	@RequestMapping("/work_seach")
+	public String workAPISeacher() {
+		return "admin/work_search";
+	}
 	@RequestMapping(value= "/work_create")
 	public String workAdminCreate(@RequestParam("wName") String wName,@RequestParam("wCategory") String wCategory,
 								  @RequestParam("wDate") String wDate, @RequestParam("wPoster") String wPoster,
@@ -218,6 +227,7 @@ public class AdminController {
 			  							@RequestParam("wDate") String wDate, @RequestParam("wPoster") String wPoster,
 			  							@RequestParam("wTepisode") int wTepisode, HttpServletRequest request) {
 		Work work = new Work(0, wName, wCategory, wDate, wPoster, wTepisode, 0);
+		System.out.println(work);
 		String result = "";
 		try {
 			adminService.createWork(work);
@@ -239,9 +249,23 @@ public class AdminController {
 		}
 		return "admin/work_update";
 	}
-	// TMDB API 검색창 
-	@RequestMapping("/work_seach")
-	public String workAPISeacher() {
-		return "admin/work_search";
+	@RequestMapping(value= "/work_update" ,method = {RequestMethod.POST,RequestMethod.GET},produces="text/plain; charset=UTF-8")
+	@ResponseBody
+	public String workAdminUpdate(@RequestParam("wName") String wName,@RequestParam("wCategory") String wCategory,
+								  @RequestParam("wDate") String wDate, @RequestParam("wPoster") String wPoster,
+								  @RequestParam("wTepisode") int wTepisode,@RequestParam("wView") int wView,
+								  @RequestParam("wNo") int wNo,HttpServletRequest request) {
+		Work work = new Work(wNo, wName, wCategory, wDate, wPoster, wTepisode, wView);
+		String result ="";
+		try {
+			boolean updateWork = adminService.updateWork(work);
+			if(updateWork) {
+				result ="success";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			result ="fail";
+		}
+		return result;
 	}
 }

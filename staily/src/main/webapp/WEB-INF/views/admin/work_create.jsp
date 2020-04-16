@@ -28,6 +28,7 @@ image {
 			</div>
 		</div>
 		<input type="hidden" id="wPoster" name="wPoster" value="${work.wPoster}">
+		<input type="hidden" id="wCategory" name="wCategory" value="${work.wCategory}">
 		<table class="table table-hover">
 			<colgroup>
 				<col class="col_wp25">
