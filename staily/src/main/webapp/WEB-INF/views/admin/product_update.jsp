@@ -17,7 +17,6 @@ image {
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
-				<h3 class="text-center"></h3>
 				<div id="slider-div">
 					<div>
 						<img width="400" height="250"
@@ -32,6 +31,12 @@ image {
 			</div>
 		</div>
 		<input type="hidden" name="pNo" id="pNo" value="${productList[0].pNo}"> 
+		<input type="hidden" name="mNo" id="mNo" value="${productList[0].mNo}"> 
+		<input type="hidden" name="wNo" id="wNo" value="${productList[0].wNo}"> 
+		<input type="hidden" name="pView" id="pView" value="${productList[0].pView}"> 
+		<input type="hidden" name="pScene" id="pScene" value="${productList[0].pScene}"> 
+		<input type="hidden" name="pDate" id="pDate" value="${productList[0].pDate}"> 
+		<input type="hidden" name="pCheck" id="pCheck" value="${productList[0].pCheck}"> 
 		<c:forEach var="product" items="${productList }">
 			<input type="hidden" name="pdNo" id="pdNo" value="${product.pdNo }">
 		</c:forEach>
@@ -63,7 +68,7 @@ image {
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="bg-light essentia"><label for="mName">
+					<th scope="row" class="bg-light essentia"><label for="pUrl">
 							상품URL</label></th>
 					<td class="text-left">
 						<div class="col">
@@ -100,15 +105,15 @@ image {
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="bg-light essentia"><label> 대충
-							파일업로드할자리?</label></th>
-					<td class="text-left"></td>
+					<th scope="row" class="bg-light essentia"><label>이미지 업로드</label></th>
+					<td class="text-left">
+					</td>
 				</tr>
 			</tbody>
 		</table>
 		<div class="text-center">
 			<button type="submit" value="submit"
-				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2">수정</button>
+				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2" onclick="product_update()">수정</button>
 			<button type="button" 
 				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2" onclick="product_confirm(${productList[0].pNo})">승인</button>
 		</div>

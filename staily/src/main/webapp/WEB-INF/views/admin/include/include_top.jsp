@@ -1,5 +1,4 @@
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
-
 <!-- Hero -->
 <div id="content_hero"
    style="background-image: url(http://via.placeholder.com/1440x435)">

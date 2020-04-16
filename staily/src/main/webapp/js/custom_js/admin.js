@@ -2,7 +2,21 @@
  * 
  * 
  */
-
+function searchWork() {
+		window.open("work_seach", "작품정보수정",
+		"width=500, height=800, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
+};
+function modal_click() {
+	var data = $('#searchRequest').serializeArray();
+	console.log(data);
+}
+function product_update() {
+	document.getElementById("product_detail").action = "product_update";
+	document.getElementById("product_detail").submit();
+	alert("상품정보 수정이 완료되었습니다");
+	window.opener.location.reload();
+	window.close();
+}
 function execDaumPostcode() {
 	new daum.Postcode({
 		oncomplete : function(data) {
@@ -31,6 +45,7 @@ function sucessTest(test) {
 	var name = movie.results[0].name;
 	var poster = movie.results[0].poster_path;
 	var date = movie.results[0].first_air_date
+	var category = movie.results[0].media_type
 	var overview = movie.results[0].overview
 	var tag = ""
 	tag += "<table>";
@@ -38,6 +53,7 @@ function sucessTest(test) {
 	tag += "<th></th>";
 	tag += "<th hidden='poster'></th>";
 	tag += "<th hidden='date'></th>";
+	tag += "<th hidden='category'></th>";
 	tag += "<th hidden='overview'></th>";
 	tag += "<th></th>";
 	tag += "</tr>";
@@ -45,10 +61,12 @@ function sucessTest(test) {
 	tag += "<td>" + name + "</td>";
 	tag += "<td hidden='poster2'>" + poster + "</td>";
 	tag += "<td hidden='date2'>" + date + "</td>";
+	tag += "<td hidden='category2'>" + category + "</td>";
 	tag += "<td hidden='overview2'>" + overview + "</td>";
-	tag += "<td><a id='modal424823' href='#work_confirm' role='button' class='btn' data-toggle='modal'>선택</a></td>";
 	tag += "</tr>";
 	tag += "</table>";
+	tag += "<button type='submit' value='submit' class='btn btn-default btn-lg io-data io-fn-nextStep' data-step='2'>선택</button>"
+
 	$("#resultF").append(tag);
 };
 
@@ -73,6 +91,9 @@ $(function() {
 											+ date
 											+ "<br><br><b>작품설명 </b>:<br><br> "
 											+ overview
+									$('#wName').val(name);			
+									$('#wPoster').val(poster);			
+									$('#wdate').val(date);			
 						});
 			});
 });

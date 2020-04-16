@@ -14,21 +14,26 @@
 			</div>
 			<div class="modal-body" id="body"></div>
 			<div class="modal-footer">
-				<form name="wNo_request" method="POST">
+				<form id= "searchRequest" name="searchRequest" method="POST" style="float: left;">
+					<input type="hidden" id="wName" name="wName">
+					<input type="hidden" id="wPoster" name="wPoster">
+					<input type="hidden" id="wDate" name="wDate">
 					<button type="button" class="btn btn-primary"
-						onClick="modal_click()">확인</button>
+						onClick="modal_click()">선택</button>
 				</form>
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">
-					취소</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 			</div>
 		</div>
 	</div>
 </div>
 <body>
-	영화검색
-	<input id="queryM" type="text" value="" onkeyup="searchItemM(queryM.value)">
+	<h2 align="center">작품검색</h2><br>
+	<div align="center">
+	<input id="queryM" type="text" value=""
+		onkeyup="searchItemM(queryM.value)" width="auto" >
 	<button onclick="searchItemM(queryM.value)">확인</button>
 	<form id="resultF" name="resultF"></form>
+	</div>
 </body>
-<script src="${pageContext.request.contextPath}/js/custom_js/admin.js"></script>
+<%@ include file="/WEB-INF/views/admin/include/include_js.jsp"%>
 </html>

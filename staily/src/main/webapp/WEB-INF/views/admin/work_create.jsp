@@ -21,12 +21,11 @@ image {
 				<div id="slider-div">
 					<div>
 						<img
-							src="${pageContext.request.contextPath}${work.wPoster }" height="300px" >
+							src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/"++"" height="300px" >
 					</div>
 				</div>
 			</div>
 		</div>
-		<input type="hidden" name="wNo" id="wNo" value="${work.wNo}"> 
 		<table class="table table-hover">
 			<colgroup>
 				<col class="col_wp25">
@@ -68,12 +67,12 @@ image {
 					<th scope="row" class="bg-light essentia"><label>
 							총회차</label></th>
 					<td class="text-left">
-						<div class="col">${work.wTepisode}</div>
+						<div class="col"></div>
 					</td>
 				</tr>
 				<tr>
 					<th scope="row" class="bg-light essentia"><label>
-							조회수</label></th>
+							설명</label></th>
 					<td class="text-left">
 						<div class="col">${work.wView}</div>
 					</td>

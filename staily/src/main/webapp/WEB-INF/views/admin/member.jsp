@@ -48,7 +48,7 @@
 					</tbody>
 				</table>
 				<button type="button" class="btn btn-outline btn-primary pull-right"
-					id="mSelectBtn">삭제</button>
+					id="mSelectBtn">선택삭제</button>
 			</div>
 		</div>
 	</div>

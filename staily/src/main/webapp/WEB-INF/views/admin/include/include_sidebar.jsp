@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/tags.jspf"%>
+
 <div class="col-lg-2" style="margin-top: 21px;">
 	<aside class="col-sm-push-1 sidebar">
 		<div class="widget">

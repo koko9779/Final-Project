@@ -40,7 +40,7 @@
 					</tbody>
 				</table>
 				<button type="button" class="btn btn-outline btn-primary pull-right"
-					id="pSelectBtn">삭제</button>
+					id="pSelectBtn">선택삭제</button>
 			</div>
 		</div>
 	</div>

@@ -3,7 +3,8 @@
 <%@ include file="/WEB-INF/views/admin/include/include_top.jsp"%>
 
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">작품관리페이지</h1>
+<div class="col-lg-10">
+<h1 class="h3 mb-3 text-gray-800">작품관리페이지</h1>
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
 	<div class="card-body">
@@ -11,7 +12,7 @@
 			<table class="table table-bordered" id="dataTable" width="100%"
 				cellspacing="0">
 				<thead>
-					<tr align="center">
+					<tr valign="middle" align="center">
 						<th></th>
 						<th hidden="wNo">번호</th>
 						<th>이름</th>
@@ -43,7 +44,9 @@
 				</tbody>
 			</table>
 			<button type="button" class="btn btn-outline btn-primary pull-right"
-				id="selectBtn">삭제</button><div id="msg"></div>
+				id="selectBtn">선택삭제</button>
+			<button type="button" class="btn btn-outline btn-primary pull-right"
+				id="createtBtn" onclick="searchWork()">작품등록</button>
 		</div>
 	</div>
 </div>
