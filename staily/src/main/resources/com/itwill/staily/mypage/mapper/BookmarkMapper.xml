@@ -16,7 +16,7 @@
 <select id="selectList"
 		parameterType="int"
 		resultMap="bmResultMap">
-	select b.bm_no, b.m_no,b.p_no,p.p_name,p.p_scene, m.m_id
+	select b.bm_no, b.m_no,b.p_no,p.p_name,p.p_scene, m.m_id, p.w_no
 	 from product p
 	 join member m
 	 on p.m_no = m.m_no

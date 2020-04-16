@@ -50,6 +50,11 @@ public class MypageController {
 		return "mypage/index";
 	}
 	
+	@RequestMapping("404")
+	public String error() {
+		return "404";
+	}
+	
 	//회원정보출력
 	@RequestMapping("/member_select")
 	public String member_select(HttpSession session, Model model, HttpServletRequest request){
@@ -112,6 +117,21 @@ public class MypageController {
 		return "forward:/mypage/member_select";
 	}
 	
+	//회원탈퇴
+	@RequestMapping("member_delete")
+	@ResponseBody
+	public String member_delete(@RequestParam("mNo") int mNo) {
+		boolean result = false;
+		try {
+			result = mypageService.deleteMember(mNo);
+			return result+"";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "N";
+		}
+	}
+	
+	
 	//북마크리스트
 	@RequestMapping("/bookmark_list")
 	public String bookmark_list(HttpSession session, HttpServletRequest request) {
@@ -148,25 +168,6 @@ public class MypageController {
 		}
 		return result+"";
 	}
-	
-	
-	
-	//북마크삭제
-	/*
-	@RequestMapping(value = "/bookmark_delete")
-	@ResponseBody
-	public String bookmark_delete(@RequestParam int bmNo, HttpServletRequest request, Model model,
-								  HttpSession session){
-		boolean result = false;
-		try {
-			result = bookmarkService.deleteBookmark(bmNo);
-			return result+"";
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "N";
-		}
-	}
-	*/
 	
 	//친구리스트
 	@RequestMapping("/friend_list")
