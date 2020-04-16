@@ -12,33 +12,36 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/gu-upload/guuploadManager2.js"></script>
 </head>
 <body>
-	<form name="fff" method="post">
-		<table class="table table=hover">
-			<colgroup>
-				<col class="col_wp25">
-				<col class="col_auto">
-			</colgroup>
-			<tbody>
-				<tr>
-					<th scope="row" class="bg-light essentia"><label for="pdImage">
-							상품 이미지<br>(최대 10장)
-					</label></th>
-					<td class="text-left">
-						<div class="col">
-							<div id="uploadScene2" style="width: 100%;"></div>
-							<input type="hidden" id="realname2" name="realname2" /> 
-							<input type="hidden" id="filename2" name="filename2" /> 
-							<input type="hidden" id="filesize2" name="filesize2" />
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<div class="wrap">
-			<button class="button_css" type="button" onClick="ImageCreate()">올리기</button>
-			<button class="button_css" type="button" onClick="javascript:window.close()">닫기</button>
-		</div>
-	</form>
+	<div style="margin: 5%;">
+		<form name="fff" method="post">
+			<table class="table table=hover">
+				<colgroup>
+					<col class="col_wp25">
+					<col class="col_auto">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th scope="row" class="bg-light essentia"><label for="pdImage">
+								상품 이미지<br>(최대 10장)
+						</label></th>
+						<td class="text-left">
+							<div class="col">
+								<div id="uploadScene2" style="width: 100%;"></div>
+								<input type="hidden" id="realname2" name="realname2" /> 
+								<input type="hidden" id="filename2" name="filename2" /> 
+								<input type="hidden" id="filesize2" name="filesize2" />
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<input type="hidden" id="wNo" name="wNo" value="${wNo}"/>
+			<div class="wrap" style="height: auto;">
+				<button class="button_css" type="button" onClick="ImageCreate()">올리기</button>
+				<button class="button_css" type="button" onClick="javascript:location.href='work_select'">돌아가기</button>
+			</div>
+		</form>
+	</div>
 </body>
 
 <script type="text/javascript">
@@ -64,7 +67,7 @@ function afterFileTransfer2(realname2, filename2, filesize2) {
 	filename9.value = filename2;
 	filesize9.value = filesize2;
 	
-	document.fff.action = "";
+	document.fff.action = "pdImage_create_action";
 	document.fff.submit();
 	
 	/*

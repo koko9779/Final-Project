@@ -153,7 +153,8 @@ $(".btnnn").click(function() {
 });
 
 function modal_click() {
-	document.wNo_request.action = "work_request";
+	alert("상품 이미지를 먼저 등록해 주세요!");
+	document.wNo_request.action = "pdImage_create";
 	document.wNo_request.submit();
 };
 

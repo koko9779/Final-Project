@@ -182,26 +182,14 @@
 							</div>
 						</td>
 					</tr>
-					<!--  
-					<tr>
-						<th scope="row" class="bg-light essentia"><label for="pdImage">
-								상품 이미지<br>(최대 10장)</label></th>
-						<td class="text-left" style="text-align: left;">
-							<div class="col">
-								<div id="uploadScene2" style="width: 100%;"></div>
-								<input type="hidden" id="realname2" name="realname2"/>
-								<input type="hidden" id="filename2" name="filename2"/>
-								<input type="hidden" id="filesize2" name="filesize2"/>
-							</div>
-						</td>
-					</tr>
-					-->
 					<tr>
 					</tr>				
 				</tbody>		
 			</table>
-			
-			<button class="button_css" type="button" onClick="pdImageCreate()" >상품 이미지 등록</button>
+			<c:forEach var="i" begin="1" end="${cnt}" varStatus="status">
+				<c:set var="a" value="Image${i}"/>
+				<input type="hidden" id="filesize2${i}" name="filesize2" value="${requestScope[a]}"/>
+			</c:forEach>
 			<div class="wrap" style="height:auto;">
 				<button class="button_css" type="button" onClick="productCreate()">작성하기</button>
 				<button class="button_css" type="reset">다시 쓰기</button>
