@@ -54,7 +54,7 @@ public class ProductDetailController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			
-			return "redirect:../404.jsp";
+			return "detail/product_detail";
 		}
 		
 		
@@ -76,6 +76,8 @@ public class ProductDetailController {
 			String pAddress = request.getParameter("pAddress");
 			String pDaddress = request.getParameter("pDaddress");
 			String pScene = request.getParameter("filesize");
+			
+			System.out.println(pScene);
 			
 			String[] pdImage = request.getParameterValues("filesize2");
 					

@@ -25,13 +25,14 @@ function afterFileTransfer(realname, filename, filesize) {
 	realname9.value = realname;
 	filename9.value = filename;
 	filesize9.value = filesize;
+	
+	document.ff.submit();
 }
 
 
 function pdImageCreate() {
 	document.ff.action = "pdImage_create";
 	document.ff.method = "post";
-	document.ff.submit();
 }
 
 function productCreate() {
@@ -93,4 +94,63 @@ function execDaumPostcode() {
 			document.getElementById("pDaddress").focus();
 		}
 	}).open();
+}
+
+//product_detail.jsp
+$("#reply").on("click", function(e) {
+	
+	getReplies();
+});
+
+function getReplies() {
+var pNo = $('#pNo').val();
+	
+	$.ajax({
+		url : "reply_list",
+		type : "POST",
+		data : {"pNo" : pNo},
+		dataType : "json",
+		success : function(data) {
+			var a = '';
+
+			for (i = 1; i < data.length; i++) {
+				a += "<div class='row'>";
+				a += "<h4 class='no-underline'>" + data[i].mName;
+				a += "<button class='btn btn-ghost' style='float: right;'>삭제</button></h4>";
+				a += "<p>" + data[i].rContent + "</p>";
+				a += "<button class='btn btn-ghost' style='float: right;'>추천</button>";
+				a += "<button class='btn btn-ghost' style='float: right;'>신고</button>";
+				a += "</div>";
+			}
+			
+			$('#reply_space').html(a);
+		}
+	});
+}
+
+/*
+$('#createreply').on("click", function(e) {
+	var pNo = $('#pNo').val();
+	var mNo = $('#mNo').val();
+	var rContent = $('#rContent').val();
+	
+	alert(pNo + ' : ' + mNo + ' : ' + rContent);
+	
+	$.ajax({
+		url : "reply_create",
+		type : "POST",
+		data : {"mNo" : mNo, "pNo" : pNo, "rContent" : rContent},
+		dataType : "json",
+		success : function(data) {
+			$('#rContent').val('');
+			getReplies();
+		}
+	});
+});
+*/
+
+function createreply() {
+	document.rpl.action = "reply_create";
+	document.rpl.method = "post";
+	document.rpl.submit();
 }

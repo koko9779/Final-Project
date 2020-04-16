@@ -30,13 +30,11 @@ public class Reply {
 		this.rReport = rReport;
 	}
 	
-	public Reply(int pNo, int mNo, String rContent, int rRecommend, int rReport) {
+	public Reply(int pNo, int mNo, String rContent) {
 		super();
 		this.pNo = pNo;
 		this.mNo = mNo;
 		this.rContent = rContent;
-		this.rRecommend = rRecommend;
-		this.rReport = rReport;
 	}
 
 	public Reply(int rNo, int pNo, int mNo) {
