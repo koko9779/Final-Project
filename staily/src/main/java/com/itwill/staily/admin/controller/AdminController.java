@@ -71,16 +71,11 @@ public class AdminController {
 		return "admin/member";
 	}
 	@RequestMapping("/member_delete")
-	public String memberAdminDelete(HttpServletRequest request) {
-		String [] arrayNo = request.getParameterValues("noArray");
+	public String memberAdminDelete(@RequestParam("mNo") int mNo, HttpServletRequest request) {
 		String result = "fail";
 		try {
-			for (String no : arrayNo) {
-				String [] tempNo= no.split("-");
-				int mNo = Integer.parseInt(tempNo[0]);
 				adminService.deleteMember(mNo);
 				result = "success";
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = "fail";
@@ -176,6 +171,18 @@ public class AdminController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			result= "fail";
+		}
+		return result;
+	}
+	@RequestMapping("/product_delete")
+	public String productAdminDelete(@RequestParam("pNo") int pNo, HttpServletRequest request) {
+		String result = "fail";
+		try {
+				adminService.deleteProduct(pNo);
+				result = "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = "fail";
 		}
 		return result;
 	}

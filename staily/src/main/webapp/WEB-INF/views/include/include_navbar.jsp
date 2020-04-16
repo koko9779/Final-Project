@@ -61,7 +61,7 @@
 						<li><a href="/staily/detail/product_detail">상품상세</a></li>
 						<li class="dropdown"><a href="/staily/style/style_main_read">게시판</a>
 							<ul class="dropdown-menu">
-								<li><a href="/staily/style/style_main">스타일제안</a></li>
+								<li><a href="/staily/style/style_main_read">스타일제안</a></li>
 								<li><a href="/staily/style/style_main">질문답변</a></li>
 								<li><a href="/staily/style/style_main">영주괴롭히기</a></li>
 								<li><a href="/staily/style/style_main">영주괴롭히기</a></li>
