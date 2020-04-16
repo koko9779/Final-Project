@@ -174,16 +174,15 @@ $(document).ready(function() {
 								checkbox.each(function(i) {
 										var tr = checkbox.parent().parent().eq(i);
 										var td = tr.children();
-										var mNo = td.eq(1).text();
-										var noArray = 'noArray='+ mNo + '-';
+										var mNo = "mNo="+td.eq(1).text();
 										$.ajax({
-												url : 'member_delete',
-												data : noArray,
-												method : 'POST'
-										});
-								});
-								alert("회원 삭제를 완료하였습니다.");
-								location.reload();
+											url : 'member_delete',
+											data : mNo,
+											method : 'POST'
+									});
+							});
+							alert("회원 삭제를 완료하였습니다.");
+							location.reload();
 					});
 
 					function execDaumPostcode() {
@@ -233,18 +232,16 @@ $(document).ready(function() {
 											var tr = checkbox.parent().parent()
 													.eq(i);
 											var td = tr.children();
-											var pNo = td.eq(1).text();
-											var noArray = 'noArray=' + pNo
-													+ '-';
-											/*
-											 * $.ajax({ url : 'member_delete',
-											 * data : noArray, method : 'POST',
-											 * dataType : "text", success :
-											 * function(result) {
-											 * location.reload(); }
-											 */
+											var pNo = 'pNo='+td.eq(1).text();
+											$.ajax({
+												url : 'product_delete',
+												data : pNo,
+												method : 'POST'
 										});
-									});
+								});
+								alert("상품 삭제를 완료하였습니다.");
+								location.reload();
+					});			
 					$('#slider-div').slick({
 						slide: 'div',		//슬라이드 되어야 할 태그 ex) div, li 
 						infinite : true, 	//무한 반복 옵션	 
