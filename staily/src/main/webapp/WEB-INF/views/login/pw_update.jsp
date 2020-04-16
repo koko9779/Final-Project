@@ -21,13 +21,13 @@
                     <h1 class="h4 text-gray-900 mb-4">비밀번호 수정</h1>
                     <h6>수정할 비밀번호를 입력해주세요</h6>
                   </div>
-                  <form class="user" name="f">
+                  <form class="user" name="f" id="pwUpdateF">
                  	<input type="hidden" value="${id}" id="idE" name="id">
                     <div class="form-group" id="id_margin">
                       <input type="password" class="form-control form-control-user" id="inputPw" placeholder="새 비밀번호" name="pw">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="inputRepeatPw" placeholder="비밀번호 확인">
+                      <input type="password" class="form-control form-control-user" id="inputRepeatPw" placeholder="비밀번호 확인" name="repeatPw">
                     </div>
                     <div class="error_msg" id="error_msg">
                     	${msg}

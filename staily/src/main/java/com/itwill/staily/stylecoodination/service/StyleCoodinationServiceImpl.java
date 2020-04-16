@@ -67,15 +67,11 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 	
 	@Override
 	public int checkChoice(int bNo) throws Exception{
-		//업데이트 안되면 0인 상태로 controller에서 
-		//ui에 영향을 미칠 데이터를 작업하자
 		return replyManageMapper.updateChoice(bNo);
 	}
 	
 	@Override
 	public int checkRecommend(int bNo) throws Exception{
-		//업데이트 안되면 0인 상태로 controller에서 
-		//ui에 영향을 미칠 데이터 작업
 		return replyManageMapper.updateRecommend(bNo);
 	}
 

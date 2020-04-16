@@ -83,26 +83,6 @@
 		
 	</div>
 </div>
-<script type="text/javascript">
-function boardCreate() { 
-	CKEDITOR.instances.contents.updateElement(); 
-	if(document.boardWriteF.bTitle.value === "") { 
-		alert("제목을 입력해 주세요"); 
-		return; 
-	}else if(document.boardWriteF.bType.value === "분류") { 
-		alert("분류를 지정해 주세요"); 
-		return; 
-	}else if(document.boardWriteF.bContent.value === "") { 
-		alert("내용을 입력해 주세요"); 
-		return; 
-	}else {
-		document.boardWriteF.action = "${pageContext.request.contextPath}/style/style_create_board_action";
-		document.boardWriteF.method = "POST";
-		document.boardWriteF.submit();	
-	} 
-}
-
-</script>
 <%@ include file="/WEB-INF/views/include/include_js.jsp"%>
 </body>
 <style>

@@ -107,7 +107,6 @@ public class StyleCoodinationController {
 		String forwardPath = "";
 		int userNo;
 		try {
-			//임시로 넣어준 board
 			userNo = (int)session.getAttribute("userNo");
 			board.setmNo(userNo);
 			styleCoodinationService.writeBoard(board);
@@ -139,6 +138,7 @@ public class StyleCoodinationController {
 		return forwardPath;
 	}
 	
+	/*
 	@RequestMapping(value = "style_reply_delete_action", method = RequestMethod.GET)
 	public String style_reply_delete_action_get() {
 		return "style/style_main_read";
@@ -160,6 +160,7 @@ public class StyleCoodinationController {
 		}
 		return forwardPath;
 	}
+	*/
 	
 	/*
 	

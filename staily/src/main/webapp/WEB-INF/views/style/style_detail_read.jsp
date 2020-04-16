@@ -102,10 +102,10 @@
 								</a>
 						</article>
 						<c:if test="${fn:length(boardOneList) > 1}">
-						<h3 class="board-top">스타일 답변</h3>
+						<h3 class="board-top reply-delete" id="reply-top">스타일 답변</h3>
 						</c:if>
-						<c:forEach var="board" items="${boardOneList}" begin="1">
-						<article class="reply">
+						<c:forEach var="board" items="${boardOneList}" begin="1" varStatus="status">
+						<article class="reply reply-delete" id="board_${board.bNo}">
 							<div></div>
 							<div class="categories col-md-6 board-title">${board.bTitle}</div>
 							<div class="col-md-6 text-left"><span class="font-small">${board.mId}.${board.bDate}</span></div>
@@ -113,7 +113,7 @@
 							<a href="news-single.html" class="btn btn-ghost">
 								<span>추천하기</span>
 							</a>
-							<a href="news-single.html" class="btn btn-ghost sort">
+							<a href="javascript:reply_delete(${board.bNo}, ${fn:length(boardOneList)});" class="btn btn-ghost sort">
 								<span>삭제</span>
 							</a>
 							<a href="news-single.html" class="btn btn-ghost sort">

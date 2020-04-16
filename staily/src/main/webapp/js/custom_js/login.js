@@ -43,7 +43,6 @@ $(window)
 					repeatPw:{
 						required: true,
 						equalTo : '#inputPw'
-						
 					},
 					mEmail:{
 						required: true,
@@ -142,32 +141,7 @@ $(window)
 				alert("가입 성공");
 			}
 		});
-/*
-function register_action() {
-	if($("#check_register").css("visibility") === "hidden" &&
-		$("#inputId").val() != "" &&
-		$("#inputPw").val() != ""  &&
-		$("#repeatPw").val() != ""  &&
-		$("#inputName").val() != ""  &&
-		$("#inputEmail").val() != ""  &&
-		$("#inputAddress").val() != ""  &&
-		$("#inputDaddress").val() != ""  &&
-		$("#inputPhone").val() != "" ) {
-		
-		var coNoE = $("#inputCono");
-		
-		if(coNoE != null && coNoE.val() === null) {
-			alert("모든 입력창에 알맞게 정보를 넣어야만 가입 가능합니다");
-			return;
-		}
-		
-	document.registerF.action = "member_create_action";
-	document.registerF.method = "POST";
-	document.registerF.submit();
-	}else {
-		alert("모든 입력창에 알맞게 정보를 넣어야만 가입 가능합니다");
-	}
-}*/
+
 	
 function sample6_execDaumPostcode() {
     new daum.Postcode({
@@ -241,3 +215,48 @@ function update_pw_action() {
 		document.f.submit();
 }
 
+$(window)
+.on(
+		"load",
+		function() {
+			$('#pwUpdateF').validate({
+				rules:{
+					pw:{
+						required: true,
+						passwordCk : true,
+						minlength: 8,
+						maxlength: 15
+					},
+					repeatPw:{
+						required: true,
+						equalTo : '#inputPw'
+					}
+				},
+				messages:{
+					pw:{
+						required: "비밀번호를 입력해주세요",
+						passwordCk: "영문, 숫자, 특수문자를 조합해서 입력해야 합니다.",
+						minlength:"비밀번호는 8자리 이상으로 구성해야 합니다." ,
+						maxlength:"비밀번호는 16자리 미만으로 구성해야 합니다"
+					},
+					repeatPw:{
+						required: "비밀번호를 확인해주세요",
+						equalTo : '비밀번호가 다릅니다.'
+						
+					}
+				}, 
+				submitHandler:function(){
+					member_pw_update();
+				},
+				errorClass:"error_msg",
+				validClass:"valid"
+			});
+			$.validator.addMethod("passwordCk",  function( value, element ) {
+				return /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/.test(value);
+			});
+			function member_pw_update() {
+				document.getElementById("pwUpdateF").action = "pw_update";
+				document.getElementById("pwUpdateF").submit();
+				alert("비밀번호 수정 성공");
+			}
+		});
