@@ -54,15 +54,10 @@ public class StyleCoodinationRestController {
 						//String uploadPath = "C:/Users/starthink/git/Final-Project/staily/src/main/webapp/img";
 						//String uploadPath = "C:/Users/user/git/Final-Project/staily/src/main/webapp/img";
 						//String uploadPath = f.getAbsolutePath();
-						System.out.println("넘어오나");
 						String[] uploadPathArray = f.getAbsolutePath().split("\\\\");
-						for (String string : uploadPathArray) {
-							System.out.println(string + "\n");
-						}
 						String uploadPath = uploadPathArray[0] + "\\" +  uploadPathArray[1] + "\\" + uploadPathArray[2] + 
 											"/git/Final-Project/staily/src/main/webapp/img";
 						
-						System.out.println(uploadPath);
 						
 						/*
 						int lastNum = uploadPath.lastIndexOf("\\"); // 백슬래쉬를 넣되, 이스케이핑 시키기 위해 두번 씀

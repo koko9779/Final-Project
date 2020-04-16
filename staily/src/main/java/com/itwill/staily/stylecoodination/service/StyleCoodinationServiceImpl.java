@@ -1,5 +1,7 @@
 package com.itwill.staily.stylecoodination.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,9 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 	
 	@Override
 	public int writeBoard(Board board) throws Exception{
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		String bDate = df.format(new Date());
+		board.setbDate(bDate);
 		return boardManageMapper.createBoard(board);
 	}
 	
