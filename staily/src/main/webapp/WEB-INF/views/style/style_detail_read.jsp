@@ -27,6 +27,7 @@
 		
 	border-bottom: none;
 	background-image: none !important;
+	all:unset;
 	}
 		
 	.p_content>h2:after, .p_content>h3:after, .p_content>h4:after, .p_content>h5:after{
@@ -57,40 +58,32 @@
 			<!-- Section -->
 			<div class="container section news">
 				<div class="row">
-					<div class="col-sm-3" style="margin-top: 7px;">
-						<aside class="col-sm-push-1 sidebar">
-						<div class="widget">
+				<div class="col-sm-2">
+					<aside class="col-sm-push-1 sidebar">
+						<div class="widget p-top-7">
 							<h3>Categories</h3>
-							<ul>
-								<li><a href="#">Coming soon</a></li>
-								<li><a href="#">New releases</a></li>
-								<li><a href="#">What's hot</a></li>
-								<li><a href="#">Events</a></li>
+							<ul style="padding-left: 15px;">
+								<li><a href="style_main_read">전체 보기</a></li>
+								<li><a href="style_main_read_top10">top 10</a></li>
+								<li><a href="style_main_read_category?bCategory=M">영화</a></li>
+								<li><a href="style_main_read_category?bCategory=D">드라마</a></li>
 							</ul>
 						</div>
-						<div class="widget">
-							<h3>Archives</h3>
-							<ul> 
-								<li><a href="#">July 2017</a></li>
-								<li><a href="#">June 2017</a></li>
-								<li><a href="#">May 2017</a></li>
-								<li><a href="#">April 2017</a></li>
-							</ul>
-						</div>
-						</aside>
-					</div>
-					<div class="col-sm-1">
-					</div>
+						
+					</aside>
+				</div>
+					
 				
-					<div class="col-sm-8">
-						<input type="hidden" id="updateBNo" value="${boardOneList[0].bNo}">
+					<div class="col-sm-10">
 						<article id="board" style="border-bottom: none;">
+						<div id="board2">
+						<input type="hidden" id="updateBNo" value="${boardOneList[0].bNo}">
 						<h3 class="board-top">스타일 질문</h3>
-						<div class="categories col-md-6 board-title">${boardOneList[0].bTitle}</div>
+						<div class="categories col-md-6 board-title f-s-25" id="board_title_read">${boardOneList[0].bTitle}</div>
 						<div class="col-md-6 text-left">
 							<span class="font-small">${boardOneList[0].mId}.${boardOneList[0].bDate}.조회수: ${boardOneList[0].bView}</span>
 						</div>
-							<div class="p_content">
+							<div class="p_content m-top-50" id="board_content_read">
 								${boardOneList[0].bContent}
 							</div> 
 								<a href="javascript:board_delete(${boardOneList[0].bNo});" class="btn btn-ghost sort">
@@ -99,16 +92,21 @@
 								<a href="javascript:board_and_reply_modify(${boardOneList[0].bNo});" class="btn btn-ghost sort">
 									<span>수정</span>
 								</a>
+						</div>
 						</article>
 						<c:if test="${fn:length(boardOneList) > 1}">
 						<h3 class="board-top reply-delete" id="reply-top">스타일 답변</h3>
 						</c:if>
 						<c:forEach var="board" items="${boardOneList}" begin="1" varStatus="status">
 						<article class="reply reply-delete" id="board_${board.bNo}">
-							<div></div>
-							<div class="categories col-md-6 board-title">${board.bTitle}</div>
+							<div class="col-md-12 m-top--40">
+							
+							<div class="categories col-md-6 board-title f-s-25">${board.bTitle}</div>
 							<div class="col-md-6 text-left"><span class="font-small">${board.mId}.${board.bDate}</span></div>
-							<p>${board.bContent}</p>
+							</div>
+							<div class="p_content m-top-50 m-bottom-30" id="board_content_read">
+								${board.bContent}
+							</div> 
 							<a href="news-single.html" class="btn btn-ghost">
 								<span>추천하기</span>
 							</a>
@@ -125,7 +123,7 @@
 									<span>답글 쓰기</span>
 							</a>
 						</div>
-						<form name='boardWriteF' id="boardWriteF" onSubmit='return false;' class="dispaly_none" style="margin-top: 100px;">
+					<!--  	<form name='boardWriteF' id="boardWriteF" onSubmit='return false;' class="dispaly_none" style="margin-top: 100px;">
 									 			<input type='hidden' id='bNo' name='bNo' value='" + bNo + "'>
 												<div class='row justify-content-md-center'>
 													제목
@@ -149,7 +147,7 @@
 														등 록
 													</button>
 												</div>
-										</form>	
+										</form>	-->
 					</div>
 					
 				</div>

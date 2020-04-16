@@ -36,5 +36,12 @@ public interface StyleCoodinationService {
 
 	public int updateViewCount(int bNo) throws Exception;
 	
+	public int selectBoardTop10ReplyCount();
+
+	public List<Board> findBoardCategory(Board b);
+
+	public int findBoardCategoryCount(Board b);
+
+	public int findBoardReplyCategoryCount(Board b);
 
 }

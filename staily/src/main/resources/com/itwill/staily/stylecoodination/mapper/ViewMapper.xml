@@ -4,16 +4,20 @@
 	namespace="com.itwill.staily.stylecoodination.mapper.ViewMapper">
 
 <select id="selectBoardTop10" resultType="Board">
-	SELECT *
-	FROM (SELECT B.b_title, B.b_no, B.b_view, M.m_id
-	      FROM board B
-	      JOIN member M
-	      ON B.m_no = M.m_no
-	      WHERE B.b_type = 'S'
-	      AND B.b_step = 1
-	      AND B.b_date >= SYSDATE - 7
-	      ORDER BY B.b_view DESC, B.b_no DESC)
-	WHERE ROWNUM &lt;= 10
+	SELECT Y.*, ROWNUM b_idx
+    FROM (SELECT * 
+            FROM (SELECT ROWNUM b_idx2, X.*
+                    FROM (SELECT B.b_title, B.b_no, B.b_view, M.m_id
+                          FROM board B
+                          JOIN member M
+                          ON B.m_no = M.m_no
+                          WHERE B.b_type = 'S'
+                          AND B.b_step = 1
+                          AND B.b_date >= SYSDATE - 7
+                          ORDER BY B.b_view DESC) X)
+            WHERE ROWNUM &lt;= 10
+            ORDER BY b_view ASC) Y
+    ORDER BY b_idx DESC
 	<!-- 10보다 작거나 같다 -->
 </select>
 
@@ -27,6 +31,20 @@
              WHERE B.b_type = 'S'
              AND B.b_step = 1
              ORDER BY B.b_no ASC ) X)
+	ORDER BY b_idx DESC
+</select>
+<select id="findBoardCategory" resultType="Board">
+	SELECT * 
+	FROM (SELECT ROWNUM b_idx, X.*
+      	  FROM ( SELECT B.b_no, B.b_title, B.b_date, B.b_view, B.b_groupno, B.b_category, M.m_id
+             FROM board B
+             JOIN member M
+             ON B.m_no = M.m_no
+             WHERE B.b_type = 'S'
+             AND B.b_step = 1
+              AND b_category = #{bCategory}
+             ORDER BY B.b_no ASC ) X)
+   
 	ORDER BY b_idx DESC
 </select>
 
@@ -46,15 +64,47 @@
 	WHERE b_step = 1
 </select>
 
+<select id="selectBoardCategoryCount" resultType="int">
+	SELECT count(*)
+	FROM board
+	WHERE b_step = 1
+	 AND b_category = #{bCategory}
+</select>
+
 <select id="selectBoardReplyCount" resultType="int">
 	SELECT count(*)
 	FROM board
 	WHERE b_step > 1
+	
+</select>
+<select id="selectBoardReplyCategoryCount" resultType="int">
+	SELECT count(*)
+	FROM board
+	WHERE b_step > 1
+	AND b_category = #{bCategory}
 </select>
 
+
+
+<select id="selectBoardTop10ReplyCount" resultType="int">
+	SELECT count(*)
+	FROM (SELECT B.b_title, B.b_no, B.b_view, M.m_id
+	      FROM board B
+	      JOIN member M
+	      ON B.m_no = M.m_no
+	      WHERE B.b_type = 'S'
+	      AND B.b_step > 1
+	      AND B.b_date >= SYSDATE - 7
+	      ORDER BY B.b_view DESC, B.b_no DESC)
+	WHERE ROWNUM &lt;= 10
+	<!-- 10보다 작거나 같다 -->
+</select>
+
+
+
 <select id="selectUpdateBoard" parameterType="int" resultType="Board">
-SELECT B.b_no, B.b_title, B.b_content, B.b_step
-FROM board B
+SELECT b_no, b_title, b_content, b_step, b_category
+FROM board
 WHERE b_no = #{bNo}
 </select>
 

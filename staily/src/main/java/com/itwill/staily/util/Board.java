@@ -30,13 +30,16 @@ public class Board {
 	private String bDate; //작성일
 	private String bChoice; //답글타입, 선정되면 Y, 아니면 N
 	private BoardDetail boardDetail; // 이미지가 들어있는 Dto
+	private String bCategory; //카테고리
 	
 	public Board() {
 		// TODO Auto-generated constructor stub
 	}
 	
+
 	public Board(int bIdx, int bNo, int mNo, String mId, String bTitle, String bContent, int bGroupNo, int bStep,
-			int bView, int bRecommend, String bType, String bDate, String bChoice, BoardDetail boardDetail) {
+			int bView, int bRecommend, String bType, String bDate, String bChoice, BoardDetail boardDetail,
+			String bCategory) {
 		super();
 		this.bIdx = bIdx;
 		this.bNo = bNo;
@@ -52,15 +55,27 @@ public class Board {
 		this.bDate = bDate;
 		this.bChoice = bChoice;
 		this.boardDetail = boardDetail;
+		this.bCategory = bCategory;
 	}
-	
+
+
 	@Override
 	public String toString() {
 		return "Board [bIdx=" + bIdx + ", bNo=" + bNo + ", mNo=" + mNo + ", mId=" + mId + ", bTitle=" + bTitle
 				+ ", bContent=" + bContent + ", bGroupNo=" + bGroupNo + ", bStep=" + bStep + ", bView=" + bView
 				+ ", bRecommend=" + bRecommend + ", bType=" + bType + ", bDate=" + bDate + ", bChoice=" + bChoice
-				+ ", boardDetail=" + boardDetail + "]";
+				+ ", boardDetail=" + boardDetail + ", bCategory=" + bCategory + "]";
 	}
+
+	public String getbCategory() {
+		return bCategory;
+	}
+
+
+	public void setbCategory(String bCategory) {
+		this.bCategory = bCategory;
+	}
+
 
 	public int getbIdx() {
 		return bIdx;

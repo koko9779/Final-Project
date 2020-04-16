@@ -27,4 +27,12 @@ public interface ViewMapper {
 	//조회수 올리기
 	public int updateView(int bNo) throws Exception;
 	
+	public int selectBoardTop10ReplyCount();
+
+	public List<Board> findBoardCategory(Board b);
+
+	public int selectBoardCategoryCount(Board b);
+
+	public int selectBoardReplyCategoryCount(Board b);
+	
 }

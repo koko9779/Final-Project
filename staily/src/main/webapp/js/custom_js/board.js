@@ -1,8 +1,15 @@
+var clone;
+$(function() {
+	clone = $("#board2").clone();
+	
+});
+
 /*
  * path : 전송 URL
  * params : 전송 데이터 {'q':'a','s':'b','c':'d'...}으로 묶어서 배열 입력
  * method : 전송 방식(생략가능)
  */
+
 function post_to_url(path, params, method) {
     method = method || "post"; // Set method to post by default, if not specified.
     // The rest of this code assumes you are not using a library.
@@ -46,32 +53,42 @@ function board_and_reply_modify(bNo) {
 		async : false,
 		dataType: "json",
 		success: function(boardJson) {
-							$("#board").html("<h3 class='board-top'>스타일 질문</h3>" +
-									 "<form name='boardWriteF' onSubmit='return false;'>" +
-									 			"<input type='hidden' id='bNo' name='bNo' value='" + bNo + "'>" +
-												"<div class='row justify-content-md-center'>" +
-													"제목" +
-													"<input type='text' id='bTitle' name='bTitle' class='form-control' value='" + boardJson.bTitle + "'>" +
-													"<select class='custom-select' name='bType' id='inputGroupSelect03'>" +
-													"<option selected value='S'>스타일코디</option>" +
-													"</select>" +
-												"</div>" +
-												"<div class='row justify-content-md-center'>" +
-													"<textarea id='contents' name='bContent'>" + boardJson.bContent + "</textarea>" +
-													"<script>" +
-														"CKEDITOR.replace('contents',{" +
-															"filebrowserUploadUrl : '/staily/style/ImgUpload'" +
-														"});" +
-													"</script>" +
-												"</div>" +
-												"<div class='row justify-content-md-center'>" +
-													"<button type='submit' class='btn btn-ghost' " + 
-															"style='width: 20%; font-weight: bold; margin-top: 15px;' " + 
-															"onclick='board_and_reply_modify_action();'>" + 
-														"등 록" +
-													"</button>" +
-												"</div>" +
-										"</form>");	
+							$('#board').fadeOut(500, function() {
+								$("#board").html("<h3 class='board-top'>스타일 질문</h3>" +
+										 "<form name='boardWriteF' onSubmit='return false;'>" +
+										 			"<input type='hidden' id='bNo' name='bNo' value='" + bNo + "'>" +
+													"<div class='row justify-content-md-center'>" +
+														"제목" +
+														"<input type='text' id='bTitle' name='bTitle' class='form-control title_detail' value='" + boardJson.bTitle + "'>" +
+														"<select class='custom-select form-control' name='bType' id='inputGroupSelect03'>" +
+														"<option selected value='S'>스타일코디</option>" +
+														"</select>" +
+														"<select class='custom-select form-control' name='bCategory' id='bCategory'>" + 
+														"<option selected>카테고리</option>" +
+														"<option value='M'>영화</option>" +
+														"<option value='D'>드라마</option>" +
+														"</select>"	+
+													"</div>" +
+													"<div class='row justify-content-md-center'>" +
+														"<textarea id='contents' name='bContent'>" + boardJson.bContent + "</textarea>" +
+														"<script>" +
+															"CKEDITOR.replace('contents',{" +
+																"filebrowserUploadUrl : '/staily/style/ImgUpload'" +
+															"});" +
+														"</script>" +
+													"</div>" +
+													"<div class='row justify-content-md-center'>" +
+														"<button type='submit' class='btn btn-ghost' " + 
+																"style='width: 20%; font-weight: bold; margin-top: 15px;' " + 
+																"onclick='board_and_reply_modify_action();'>" + 
+															"등 록" +
+														"</button>" +
+													"</div>" +
+											"</form>");	
+								$("#board").find("#bCategory").val(boardJson.bCategory);
+								
+								$( "#board" ).fadeIn( 500 );
+					        });
 				}
 	});
 }
@@ -113,45 +130,54 @@ function board_create() {
 	}else if(document.boardWriteF.bContent.value === "") { 
 		alert("내용을 입력해 주세요"); 
 		return; 
+	}else if(document.boardWriteF.bCategory.value === "카테고리") { 
+		alert("카테고리를 지정해 주세요"); 
+		return; 
 	}else {
-		document.boardWriteF.action = "${pageContext.request.contextPath}/style/style_create_board_action";
+		document.boardWriteF.action = "style_create_board_action";
 		document.boardWriteF.method = "POST";
 		document.boardWriteF.submit();
 	} 
 }
 
+// 이게 문제의 그 함수
 function board_and_reply_modify_action() {
+	CKEDITOR.instances.contents.updateElement(); 
 	var bNo = $("#bNo").val();
 	var bTitle = $("#bTitle").val();
 	var bContent = $("#contents").val();
+	var bCategory = $("#bCategory").val();
 	
 	var boardBNo = $("#updateBNo").val();
-	
-	CKEDITOR.instances.contents.updateElement(); 
+
+
 	if(document.boardWriteF.bTitle.value === "") { 
 		alert("제목을 입력해 주세요"); 
 		return; 
 	}else if(document.boardWriteF.bContent.value === "") { 
 		alert("내용을 입력해 주세요"); 
 		return; 
+	}else if(document.boardWriteF.bCategory.value === "카테고리") { 
+		alert("카테고리를 지정해 주세요"); 
+		return; 
 	}else {
 		$.ajax({
 			url: "style_board_and_reply_update",
 			type: 'post',
-			data: {"bNo" : bNo,
-				   "bTitle" : bTitle,
-				   "bContent" : bContent},
+			data: {bNo : bNo,
+				   bTitle : bTitle,
+				   bContent : bContent,
+				   bCategory : bCategory},
 			async : false,
 			dataType: "json",
-			success: function(isUpdate) {
-				alert(isUpdate);
-				if(isUpdate === true) {
-					alert(boardBNo);
-					alert("수정 성공");
-					location.href="style_detail_read?bNo=" + boardBNo;
-				}else {
-					alert("글 수정에 실패하였습니다");
-				}
+			success: function(updateBoard) {
+				clone.find("#board_title_read").html(updateBoard.bTitle);
+				clone.find("#board_content_read").html(updateBoard.bContent);
+				$('#board').fadeOut( 500, function() {
+					$("#board").empty();
+					$("#board").append(clone);
+					$( "#board" ).fadeIn( 500 );
+		        });
 			}
 		});
 	}
