@@ -28,7 +28,7 @@
 	  
 	<div class="row">
 
-		<%@ include file="/WEB-INF/views/mypage/include/include_work_sidebar.jsp" %>
+		<%@ include file="/WEB-INF/views/mypage/include/include_sidebar.jsp" %>
 
 		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
 	
@@ -47,17 +47,7 @@
 				  	<a class="dropdown-item" href="#">쪽지보내기</a>
 				</div>
 			</div>
-			<!--
-			<div class="dropdown" id="results">
-			  <button class="dropbtn"></button>
-			  <div class="dropdown-content">
-			    <a href="#">홈</a>
-			    <a href="#">회사소개</a>
-			    <a href="#">제품소개</a>
-			    <a href="#">오시는길</a>
-			  </div>
-			</div>
-			-->
+			
 			<br>
 			<br>	          
           <!-- 친구찾기 -->

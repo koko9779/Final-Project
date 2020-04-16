@@ -133,7 +133,7 @@ $(function(){
 		keyup : function(e){
 			if(e.keyCode == 13){
 				var mId = $('#searchword').val();
-				confirm('찾으신 회원이 맞습니까?');
+				var checkConfirm = confirm('찾으신 회원이 맞습니까?');
 				if(mId != ""){
 					$.ajax({
 						url : "friend_find",
@@ -141,19 +141,21 @@ $(function(){
 						data : "mId="+mId,
 						dataType : "text",
 						success : function(result){
-							if(result!="N"){
-								$('.add').text(result);
-								friend_findNo_function(result);
-								//alert(mId);
-								//$('.add').text('없는 회원입니다');
+							if(checkConfirm){
+								if(result!="N"){
+									$('.add').text(result);
+									friend_findNo_function(result);
+								}else{
+									alert('회원 아이디를 다시 확인해주세요');
+									return;
+								}
 							}else{
-								$('.add').text('없는 회원입니다');
-								$('#searchDropdwon').hide();
-								//$('.add').text(result);
+								return;
 							}
+							
 						},
 						error : function(e){
-							//$('.add').text('없는 회원입니다');
+							location.href = '404';
 						}
 						
 					})
@@ -198,9 +200,46 @@ $(function(){
 		})
 	};
 	
+	/************************ sidebar function ******************************/
+	
+	$('#sideCheck li:nth-child(5)').click(function(e){
+		e.preventDefault();
+		window.open("message_list", "_blank", "width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		
+	});
+	
+	
+	/**/
+
+	
 	
    
 });
+/*****************************멤버탈퇴*****************************/
+function leave(){
+	var param = {
+			"mNo" : $('mNo').val()
+	}
+	var delConfirm = confirm('회원탈퇴하시겠습니까?');
+	if(delConfirm){
+		$.ajax({
+			url : "member_delete",
+			data : param,
+			dataType : "text",
+			success : function(result){
+				if(result == 'true'){
+					alert('탈퇴가 완료되었습니다');
+					location.href = 'main/index'
+				}else{
+					location.href = '404';
+				}
+			}
+		});
+	}else{
+		return;
+	}
+}
+
 
 /*****************************주소검색*****************************/
 function execDaumPostcode() {

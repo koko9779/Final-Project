@@ -24,6 +24,9 @@
 	font-weight: inherit;
 }
 
+
+
+
 /*Bookmark*/
 /*
 #dataTable_length label{
@@ -31,3 +34,8 @@
 	
 }
 */
+
+/*Friend*/
+#dataTable_info{
+	display : none;
+}

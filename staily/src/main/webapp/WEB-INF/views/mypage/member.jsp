@@ -29,7 +29,7 @@
 	  
 	<div class="row">
 
-		<%@ include file="/WEB-INF/views/mypage/include/include_work_sidebar.jsp" %>
+		<%@ include file="/WEB-INF/views/mypage/include/include_sidebar.jsp" %>
 
 		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
 	
@@ -116,9 +116,16 @@
 											</td>
 										</tr>
 										<c:if test="${member.mType =='C'}">
+									
 										<tr>
 											<th scope="row" class="bg-light essentia"><label>※결제여부</label></th>
-											<td class="text-left">${member.mCompany.coCheck}</td>
+											<td class="text-left">
+											<div class="form-row">
+													<div class="col-xs-5">
+														${member.mCompany.coCheck}
+													</div>
+												</div>
+											</td>
 										</tr>
 										</c:if>
 										<tr>
@@ -200,10 +207,9 @@
 						</div>
 
 						<br>
-						<div class="text-center">
-							<button type="button"
-								class="btn btn-outline btn-primary pull-right"
-								data-step="2" onclick="check()">수정</button>
+						<div id>
+							<button type="button" class="btn btn-outline btn-primary pull-right" data-step="2" onclick="check()">수정</button>
+							<button type="button" class="btn btn-outline btn-primary pull-right" data-step="2" onclick="leave()">탈퇴</button>
 						</div>
 					</div>
 

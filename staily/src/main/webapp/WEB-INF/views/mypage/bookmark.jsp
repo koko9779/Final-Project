@@ -28,7 +28,7 @@
 	  
 	<div class="row">
 
-		<%@ include file="/WEB-INF/views/mypage/include/include_work_sidebar.jsp" %>
+		<%@ include file="/WEB-INF/views/mypage/include/include_sidebar.jsp" %>
 
 		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
 	
@@ -44,7 +44,7 @@
                     <tr>
                       <th></th>
                       <th>화면</th>
-                      <th>상품번호</th>
+                      <th>상품이름</th>
                       <th>작성자</th>
                     </tr>
                   </thead>
@@ -54,7 +54,7 @@
                   	  <td><input type="checkbox" name="book_check" value="${bookmark.bmNo}"></td>
                   	  <td style = "cursor:pointer;" onClick = " location.href='admin/'">
                   	  <img src="${pageContext.request.contextPath}/${bookmark.product.pScene}" width="50px" height="50px"> </td>
-                      <td>${bookmark.product.pNo}</td>
+                      <td>${bookmark.product.pName}</td>
                       <td>${bookmark.member.mId}</td>
                     </tr>
                   	</c:forEach>
