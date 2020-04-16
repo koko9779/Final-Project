@@ -11,7 +11,7 @@ function work_select() {
 	<div class="widget">
 		<form id="work_${w.wNo}" method="post">
 			<input type="hidden" value="${w.wNo}" name="wNo" />
-			<img src="${pageContext.request.contextPath}${w.wPoster}" alt="${w.wName}" onclick="workpage(${w.wNo}); return false;" style="cursor: pointer;width:100%;"/>
+			<img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/${w.wPoster}" alt="${w.wName}" onclick="workpage(${w.wNo}); return false;" style="cursor: pointer;width:100%;"/>
 			<h3 style="margin:50px auto;">${w.wName}</h3>
 		</form>
 	</div>
@@ -22,11 +22,13 @@ function work_select() {
 			</c:forEach>
 		</select>
 	</div>	
+	<!--
 	<div class="widget">
 		<form>
 			<input type="text" placeholder="Search..." class="search" />
 			<i class="material-icons">search</i>
 		</form>
 	</div>
+	-->
 	<input type="button" value="상품 등록" onClick="work_select()"/>
 </aside>

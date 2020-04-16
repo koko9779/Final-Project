@@ -1,5 +1,6 @@
 package com.itwill.staily.main.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.itwill.staily.main.model.dto.Pagination;
 import com.itwill.staily.main.service.ListService;
 import com.itwill.staily.main.service.MainService;
@@ -99,19 +101,20 @@ public class MainController {
 	        // 전체리스트 개수
 	        int listCnt = listService.selectProductCount(wNo);
 			
-	        //Pagination pagination = new Pagination(listCnt, curPage);
+	        Pagination pagination = new Pagination(listCnt, curPage);
 	        
-	        List<Work> mw = listService.selectMProductList(wNo);
-			//List<Work> mw = listService.selectMProductList(wNo,pagination.getStartIndex(),pagination.getEndIndex());
+	        //List<Work> mw = listService.selectMProductList(wNo);
+	        List<Work> mw = listService.selectMProductList(wNo,pagination.getStartIndex(),pagination.getEndIndex());
+			//List<Work> mw = listService.selectMProductList(wNo,1,2);
 			request.setAttribute("mw", mw);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "main/worklist";
-	}	
+	}
 	
-	/************Controller index*******************/
+	/************Controller productlist_select*******************/
 	@RequestMapping("/productlist_select")
 	public String productlist(HttpServletRequest request, HttpSession session) throws Exception {
 		try {
@@ -133,8 +136,38 @@ public class MainController {
 		}
 		return "main/productlist";
 	}
+	@RequestMapping(value="/worklist_select/detail", produces="application/json;charset=UTF-8")
+	@ResponseBody 
+	public String getList(@RequestParam(name="curPage",defaultValue = "1") int curPage, @RequestParam int wNo, HttpServletRequest request) throws Exception{
+	    Gson gson = new Gson();
+	    List<Work> list = new ArrayList<Work>();
+		try {
+	    	
+	        // 전체리스트 개수
+	        int listCnt = listService.selectProductCount(wNo);
+
+	        //페이지 구하기
+		    Pagination pagination = new Pagination(listCnt, curPage);
+		    
+		    System.out.println("$$$"+listCnt);
+		    System.out.println("$$$"+curPage);
+		    System.out.println("%%%%%%%%%"+pagination.getStartIndex());
+		    System.out.println("%%%%%%%%%"+pagination.getEndIndex());
+		    
+		    //조회한 데이터를 가져온다.
+		    //list = listService.selectMProductList(wNo,1,2);  
+	        list = listService.selectMProductList(wNo,pagination.getStartIndex(),pagination.getEndIndex());  
+	        
+	        System.out.println(list);
+	        
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return gson.toJson(list);
+	}
+
 	/************RestController worklist_select/detail*******************/
-	@RequestMapping(value="worklist_select/detail", produces="application/json;charset=UTF-8")
+	@RequestMapping(value="worklist_select/detail/episode", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public Map worklist_detail(@RequestParam int wNo, @RequestParam int wdEpisode,HttpSession session, HttpServletRequest request) throws Exception{
 		StopWatch st=new StopWatch();

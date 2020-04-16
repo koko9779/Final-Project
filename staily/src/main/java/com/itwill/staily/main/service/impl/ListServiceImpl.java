@@ -44,15 +44,15 @@ public class ListServiceImpl implements ListService{
 		return listMapper.selectCProductList(wNo);
 	}
 
-	@Override
-	public List<Work> selectMProductList(int wNo) {
-		return listMapper.selectMProductList(wNo);
-	}
-
 //	@Override
-//	public List<Work> selectMProductList(int wNo, int start, int end) {
-//		return listMapper.selectMProductList(wNo,start,end);
+//	public List<Work> selectMProductList(int wNo) {
+//		return listMapper.selectMProductList(wNo);
 //	}
+
+	@Override
+	public List<Work> selectMProductList(int wNo, int start, int end) {
+		return listMapper.selectMProductList(wNo,start,end);
+	}
 
 	@Override
 	public List<Work> selectCProductListByEpisode(Map map) {
