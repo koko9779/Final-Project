@@ -26,10 +26,13 @@ public interface ListMapper {
 	8.즐겨찾기 번호찾기
 	
 	9.게시물 총 건수
+	
+	10.전체 상품 리스트
 	 */
 
 	public List<Work> selectCProductList(int wNo);
 	public List<Work> selectMProductList(int wNo);
+	//public List<Work> selectMProductList(@Param("wNo") int wNo,@Param("start") int start,@Param("end") int end);
 	public List<Work> selectCProductListByEpisode(Map map);
 	public List<Work> selectMProductListByEpisode(Map map);
 		
@@ -38,4 +41,6 @@ public interface ListMapper {
 	public int selectBookmarkNo(@Param("mNo") int mNo,@Param("pNo") int pNo);
 	
 	public int selectProductCount(int wNo);
+	
+	public List<Work> selectProductList();
 }

@@ -38,7 +38,7 @@ public class MainController {
 	}
 	/************Controller index*******************/
 	@RequestMapping("/index")
-	public String test(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
+	public String index(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception {
 		try {
 			
 			Integer userNo = (Integer)session.getAttribute("userNo");
@@ -71,32 +71,38 @@ public class MainController {
 	@RequestMapping("/worklist_select")
 	public String workList(@RequestParam int wNo, @RequestParam(defaultValue="1") int curPage, HttpServletRequest request, HttpSession session) throws Exception {
 		try {
-			
-			//사용자 정보 session을 통해서 가져오기
-			Integer userNo = (Integer)session.getAttribute("userNo");
-			request.setAttribute("userNo", userNo);		
-			
+						
 			//작품 조회수 증가
 			listService.increaseWorkView(wNo);
-			
-	        // 전체리스트 개수
-	        int listCnt = listService.selectProductCount(wNo);
+	        
+	        /*****************로그인 여부********************/
+	        //사용자 정보 session을 통해서 가져오기
+	        Integer userNo = (Integer)session.getAttribute("userNo");
+	        request.setAttribute("userNo", userNo);	
 	        
 			if(userNo!=null) {
 				List<Bookmark> bmList = mainService.selectByBookmark(userNo);
 				request.setAttribute("bmList", bmList);	
 			}
 			
+			/*******************sidebar***********************/
 			Work w = listService.selectWorkOne(wNo);
 			request.setAttribute("w", w);
 			
 			int tepisode = listService.selectTepisode(wNo);
 			request.setAttribute("tepisode", tepisode);
 			
+			/********************detail***********************/
 			List<Work> cw = listService.selectCProductList(wNo);
 			request.setAttribute("cw", cw);
 			
-			List<Work> mw = listService.selectMProductList(wNo);
+	        // 전체리스트 개수
+	        int listCnt = listService.selectProductCount(wNo);
+			
+	        //Pagination pagination = new Pagination(listCnt, curPage);
+	        
+	        List<Work> mw = listService.selectMProductList(wNo);
+			//List<Work> mw = listService.selectMProductList(wNo,pagination.getStartIndex(),pagination.getEndIndex());
 			request.setAttribute("mw", mw);
 			
 		} catch (Exception e) {
@@ -104,7 +110,30 @@ public class MainController {
 		}
 		return "main/worklist";
 	}	
-	/************RestController worklist_read/detail*******************/
+	
+	/************Controller index*******************/
+	@RequestMapping("/productlist_select")
+	public String productlist(HttpServletRequest request, HttpSession session) throws Exception {
+		try {
+	        /*****************로그인 여부********************/
+	        //사용자 정보 session을 통해서 가져오기
+	        Integer userNo = (Integer)session.getAttribute("userNo");
+	        request.setAttribute("userNo", userNo);	
+	        
+			if(userNo!=null) {
+				List<Bookmark> bmList = mainService.selectByBookmark(userNo);
+				request.setAttribute("bmList", bmList);	
+			}
+			
+			List<Work> productList = listService.selectProductList();
+			request.setAttribute("pList", productList);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "main/productlist";
+	}
+	/************RestController worklist_select/detail*******************/
 	@RequestMapping(value="worklist_select/detail", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public Map worklist_detail(@RequestParam int wNo, @RequestParam int wdEpisode,HttpSession session, HttpServletRequest request) throws Exception{

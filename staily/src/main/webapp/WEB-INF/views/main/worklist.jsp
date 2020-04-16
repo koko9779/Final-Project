@@ -40,7 +40,7 @@
 							<div class="movie-poster2">
 								<a href="#" onclick="productpage(${cw.product[0].pNo})"> <img
 									src="${pageContext.request.contextPath}${cw.product[0].pScene}"
-									alt="${cw.product[0].pName}" />
+									alt="${cw.product[0].pName}" style="width:100%; height:108px;"/>
 								</a>
 							</div>
 							<div pNo="${cw.product[0].pNo}">
