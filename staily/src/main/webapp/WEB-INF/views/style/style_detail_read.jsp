@@ -93,7 +93,7 @@
 						</div>
 							<div class="p_content">
 								${boardOneList[0].bContent}
-							</div>
+							</div> 
 								<a href="javascript:board_delete(${boardOneList[0].bNo});" class="btn btn-ghost sort">
 									<span>삭제</span>
 								</a>
