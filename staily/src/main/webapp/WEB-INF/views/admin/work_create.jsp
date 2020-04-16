@@ -13,7 +13,7 @@ image {
 	height: 300px;
 }
 </style>
-<form id="product_detail" name="product_detail" method="post">
+<form id="work_create" name="work_create" method="post">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
@@ -21,11 +21,13 @@ image {
 				<div id="slider-div">
 					<div>
 						<img
-							src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/"++"" height="300px" >
+							src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/${work.wPoster}"
+							height="300px">
 					</div>
 				</div>
 			</div>
 		</div>
+		<input type="hidden" id="wPoster" name="wPoster" value="${work.wPoster}">
 		<table class="table table-hover">
 			<colgroup>
 				<col class="col_wp25">
@@ -33,57 +35,59 @@ image {
 			</colgroup>
 			<tbody>
 				<tr>
-					<th scope="row" class="bg-light essentia"><label for="pName">
+					<th scope="row" class="bg-light essentia"><label for="wName">
 							작품이름</label></th>
 					<td class="text-left">
 						<div class="col">
-							<input type="text" name="pName" id="pName" class="form-control"
+							<input type="text" name="wName" id="wName" class="form-control"
 								value="${work.wName}" maxlength="20">
 						</div>
 					</td>
 				</tr>
 
 				<tr>
-					<th scope="row" class="bg-light essentia"><label for="pPrice">
+					<th scope="row" class="bg-light essentia"><label for="wCategory">
 							카테고리</label></th>
 					<td class="text-left">
 						<div class="col">
-							<input type="text" name="pPrice" id="pPrice" class="form-control"
+							<input type="text" name="wCategory" id="wCategory" class="form-control"
 								value="${work.wCategory}" maxlength="20">
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="bg-light essentia"><label for="mName">
+					<th scope="row" class="bg-light essentia"><label for="wDate">
 							상영일</label></th>
 					<td class="text-left">
 						<div class="col">
-							<input type="text" name="pURL" id="pURL" class="form-control"
+							<input type="text" name="wDate" id="wDate" class="form-control"
 								value="${work.wDate}">
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="bg-light essentia"><label>
-							총회차</label></th>
+					<th scope="row" class="bg-light essentia"><label> 총회차</label></th>
 					<td class="text-left">
-						<div class="col"></div>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row" class="bg-light essentia"><label>
-							설명</label></th>
-					<td class="text-left">
-						<div class="col">${work.wView}</div>
+						<div class="col">
+							<input type="text" name="wTepisode" id="wTepisode"
+								class="form-control" value="">
+						</div>
 					</td>
 				</tr>
 			</tbody>
 		</table>
+		<label> 설명</label>
+		<div class="col">${wOverview}</div>
 		<div class="text-center">
-			<button type="submit" value="submit"
-				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2">수정</button>
-			<button type="button" 
-				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2" onclick="product_confirm(${productList[0].pNo})">승인</button>
+			<button type="button"
+				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
+				onclick="workCreateAction()">등록</button>
+			<button type="button"
+				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
+				onclick="window_back()">다른작품선택</button>
+			<button type="button"
+				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
+				onclick="window_close()">닫기</button>
 		</div>
 </form>
 

@@ -21,7 +21,7 @@ image {
 				<div id="slider-div">
 					<div>
 						<img
-							src="${pageContext.request.contextPath}${work.wPoster }" height="300px" >
+							src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/${work.wPoster }" height="300px" >
 					</div>
 				</div>
 			</div>
@@ -84,7 +84,7 @@ image {
 			<button type="submit" value="submit"
 				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2">수정</button>
 			<button type="button" 
-				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2" onclick="product_confirm(${productList[0].pNo})">승인</button>
+				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2" onclick="window_close()">닫기</button>
 		</div>
 </form>
 
