@@ -7,7 +7,7 @@ $(document).onload(function(){
      page++;
 }); 
 //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
-$(window).scroll(function(){ 
+$("#mwList").scroll(function(){ 
      if($(window).scrollTop() >= $(document).height() - $(window).height()){
           getList(page);
            page++;   
@@ -27,7 +27,7 @@ function getList(curPage){
             console.log(returnData.length);
             var html = "";
             if (page==1){ //페이지가 1일경우에만 id가 list인 html을 비운다.
-                  $("#list").html(""); 
+                  $("#mwList").html(""); 
             }
             if (returnData.startNum<=returnData.totCnt){
                 if(data.length>0){
@@ -89,7 +89,6 @@ $(document).ready(function(){
 			success:function(jsonData){
 				var html = "";
 				var userNo = jsonData.userNo;
-				console.log("userNo:~~~~~~~~~~~~~~"+userNo);
 				//var episode = jsonData.mwe[0].wdEpisode;
 				
 				var bmList = jsonData.bmList;

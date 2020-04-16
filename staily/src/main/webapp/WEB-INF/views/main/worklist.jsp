@@ -39,7 +39,7 @@
 						<div class="movie-slide">
 							<div class="movie-poster2">
 								<a href="#" onclick="productpage(${cw.product[0].pNo})"> <img
-									src="${pageContext.request.contextPath}${cw.product[0].pScene}"
+									src="${pageContext.request.contextPath}/images/product/scene/${cw.product[0].pScene}.jpg"
 									alt="${cw.product[0].pName}" style="width:100%; height:108px;"/>
 								</a>
 							</div>
@@ -83,7 +83,7 @@
 			</div>
 					
 			<!-- 일반회원 -->
-			<article>
+			<article id="mwList">
 				<c:forEach var="mw" items="${mw}">
 					<form id="product_${mw.product[0].pNo}" onsubmit="">
 						<h2 value="상품이름" >${mw.product[0].pName}</h2>
@@ -92,7 +92,7 @@
 						<input type="hidden" value="${mw.product[0].pNo}" name="pNo">
 						<div class="movie-poster2">
 							<img onclick="productpage(${mw.product[0].pNo})"
-								src="${pageContext.request.contextPath}${mw.product[0].pScene}"
+								src="${pageContext.request.contextPath}/images/product/scene/${mw.product[0].pScene}.jpg"
 								alt="${mw.product[0].pName}" style="width:850px; height:450px; margin: 0;cursor: pointer;"/>
 						</div>
 						<div style="height:100px;">
