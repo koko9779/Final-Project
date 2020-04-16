@@ -2,15 +2,16 @@
 var page = 1;
  
 //페이지가 로드되면 데이터를 가져오고 page를 증가시킨다.
-$(document).onload(function(){ 
-     getList(page);
-     page++;
-}); 
+//$(document).onload(function(){ 
+//     getList(page);
+//     page++;
+//}); 
 //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
 $("#mwList").scroll(function(){ 
      if($(window).scrollTop() >= $(document).height() - $(window).height()){
           getList(page);
-           page++;   
+           page++;
+           console.log("라");
      } 
 });
  
@@ -22,26 +23,26 @@ function getList(curPage){
         data : {"curPage" : curPage},
         url : 'worklist_select/detail',
         success : function(returnData) {
-        	console.log(returnData);
+        	console.log("넘어오는 json데이터"+returnData);
             var data = returnData.length;
             console.log(returnData.length);
             var html = "";
             if (page==1){ //페이지가 1일경우에만 id가 list인 html을 비운다.
                   $("#mwList").html(""); 
             }
-            if (returnData.startNum<=returnData.totCnt){
-                if(data.length>0){
-                // for문을 돌면서 행을 그린다.
-                }else{
-                //데이터가 없을경우
-                }
-            }
-            html = html.replace(/%20/gi, " ");
-            if (page==1){  //페이지가 1이 아닐경우 데이터를 붙힌다.
-                $("#list").html(html); 
-            }else{
-                $("#busStopList").append(html);
-            }
+//            if (returnData.startNum<=returnData.totCnt){
+//                if(data.length>0){
+//                // for문을 돌면서 행을 그린다.
+//                }else{
+//                //데이터가 없을경우
+//                }
+//            }
+//            html = html.replace(/%20/gi, " ");
+//            if (page==1){  //페이지가 1이 아닐경우 데이터를 붙힌다.
+//                $("#list").html(html); 
+//            }else{
+//                $("#busStopList").append(html);
+//            }
        },error:function(e){
            if(e.status==300){
                alert("데이터를 가져오는데 실패하였습니다.");

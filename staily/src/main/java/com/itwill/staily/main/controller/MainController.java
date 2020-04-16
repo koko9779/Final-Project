@@ -106,6 +106,9 @@ public class MainController {
 	        //List<Work> mw = listService.selectMProductList(wNo);
 	        List<Work> mw = listService.selectMProductList(wNo,pagination.getStartIndex(),pagination.getEndIndex());
 			//List<Work> mw = listService.selectMProductList(wNo,1,2);
+	        
+	        System.out.println("~~@@@@@@@@@@@@~"+mw+"~~~~~~~~~~~~~~~");
+	        
 			request.setAttribute("mw", mw);
 			
 		} catch (Exception e) {
@@ -158,7 +161,7 @@ public class MainController {
 		    //list = listService.selectMProductList(wNo,1,2);  
 	        list = listService.selectMProductList(wNo,pagination.getStartIndex(),pagination.getEndIndex());  
 	        
-	        System.out.println(list);
+	        System.out.println("~~~~~~~~~~~~~~~"+list+"~~~~~~~~~~~~~~~");
 	        
 	    } catch (Exception e) {
 	        e.printStackTrace();
