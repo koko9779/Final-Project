@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>페이지를 찾을수 없습니다.</title>
 <script type="text/javascript">
 
 </script>
@@ -13,7 +13,7 @@
 <body>
 <nav class="shelf">
   <a class="book home-page" href="main/index">메인으로가기</a>
-  <a class="book about-us" href=#>About us</a>
+  <a class="book about-us" href="#" onclick="history.back(); return false;">이전페이지로</a>
   <a class="book contact" href=#>Contact</a>
   <a class="book faq" href=#>F.A.Q.</a>
   

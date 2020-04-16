@@ -2,14 +2,28 @@
  * 
  * 
  */
+function window_close() {
+	window.close();
+}
+function window_back() {
+	location.href = document.referrer;
+}
+
+function workCreate(i) {
+	document.getElementById("searchResult"+i+"").action = "work_create";
+	document.getElementById("searchResult"+i+"").submit();
+}
+function workCreateAction() {
+	document.getElementById("work_create").action = "work_create_action";
+	document.getElementById("work_create").submit();
+	alert("작품 등록이 완료되었습니다");
+	window.opener.location.reload();
+	window.close();
+}
 function searchWork() {
 		window.open("work_seach", "작품정보수정",
 		"width=500, height=800, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
 };
-function modal_click() {
-	var data = $('#searchRequest').serializeArray();
-	console.log(data);
-}
 function product_update() {
 	document.getElementById("product_detail").action = "product_update";
 	document.getElementById("product_detail").submit();
@@ -38,38 +52,52 @@ function execDaumPostcode() {
 		}
 	}).open();
 }
-function sucessTest(test) {
+function sucess(item) {
 	$('#resultF').empty();
-	var movie = JSON.parse(test);
-	console.log(movie);
-	var name = movie.results[0].name;
-	var poster = movie.results[0].poster_path;
-	var date = movie.results[0].first_air_date
-	var category = movie.results[0].media_type
-	var overview = movie.results[0].overview
-	var tag = ""
-	tag += "<table>";
-	tag += "<tr>";
-	tag += "<th></th>";
-	tag += "<th hidden='poster'></th>";
-	tag += "<th hidden='date'></th>";
-	tag += "<th hidden='category'></th>";
-	tag += "<th hidden='overview'></th>";
-	tag += "<th></th>";
-	tag += "</tr>";
-	tag += "<tr>";
-	tag += "<td>" + name + "</td>";
-	tag += "<td hidden='poster2'>" + poster + "</td>";
-	tag += "<td hidden='date2'>" + date + "</td>";
-	tag += "<td hidden='category2'>" + category + "</td>";
-	tag += "<td hidden='overview2'>" + overview + "</td>";
-	tag += "</tr>";
-	tag += "</table>";
-	tag += "<button type='submit' value='submit' class='btn btn-default btn-lg io-data io-fn-nextStep' data-step='2'>선택</button>"
-
-	$("#resultF").append(tag);
+	var content = JSON.parse(item);
+	console.log(content);
+	var count = content.total_results;
+	for (var i = 0; i < count; i++) {
+		if(content.results[i].name != null){
+			var name = content.results[i].name;
+		}else{
+			var name = content.results[i].title
+		}
+		var poster = content.results[i].poster_path;
+		var date = content.results[i].first_air_date
+		var category = content.results[i].media_type
+		var overview = content.results[i].overview
+		var tag = "";
+		tag += "<form id='searchResult"+i+"' name='searchResult"+i+"'>";
+		tag += "<input type='hidden' id='wName' name='wName' value='" + name + "'>";
+		tag += "<input type='hidden' id='wPoster' name='wPoster' value='" + poster + "'>";
+		tag += "<input type='hidden' id='wDate' name='wDate' value='" + date + "'>";
+		tag += "<input type='hidden' id='wCategory' name='wCategory' value='" + category + "'>";	
+		tag += "<input type='hidden' id='wOverview' name='wOverview' value='" + overview + "'>";	
+		tag += "<table>";
+		tag += "<tr>";
+		tag += "<th></th>";
+		tag += "<th hidden='poster'></th>";
+		tag += "<th hidden='date'></th>";
+		tag += "<th hidden='category'></th>";
+		tag += "<th hidden='overview'></th>";
+		tag += "<th></th>";
+		tag += "</tr>";
+		tag += "<tr>";
+		tag += "<td>" + name + "</td>";
+		tag += "<td hidden='poster2'>" + poster + "</td>";
+		tag += "<td hidden='date2'>" + date + "</td>";
+		tag += "<td hidden='category2'>" + category + "</td>";
+		tag += "<td hidden='overview2'>" + overview + "</td>";
+		tag += "</tr>";
+		tag += "</table>";
+		tag += "<button type='submit' value='submit' class='btn btn-default btn-lg io-data io-fn-nextStep' data-step='2' onclick='workCreate("+i+")'>선택</button>";
+		tag += "</form>"
+			
+			$("#resultF").append(tag);
+	}
 };
-
+/* 모달모달...
 $(function() {
 	$(document).on('click','#modal424823',function() {
 						var confirm = $(this);
@@ -97,14 +125,14 @@ $(function() {
 						});
 			});
 });
-
-function errorTest(test) {
+*/
+function error(test) {
 	console.log('실패~', test);
 }
 function searchItemM(item) {
 	theMovieDb.search.getMulti({
 		"query" : item
-	}, sucessTest, errorTest);
+	}, sucess, error);
 }
 function searchItemD(item) {
 	theMovieDb.search.getMulti({
@@ -329,7 +357,7 @@ $(document).ready(function() {
 								var td = tr.children();
 								var no = td.eq(1).text();
 								window.open("work_select?" + "wNo="+ no, "작품정보수정",
-											"width=685, height=685, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
+											"width=500, height=800, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
 					});
 });
 

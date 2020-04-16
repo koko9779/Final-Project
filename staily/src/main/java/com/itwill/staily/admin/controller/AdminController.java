@@ -203,20 +203,30 @@ public class AdminController {
 		return "admin/work";
 	}
 	@RequestMapping(value= "/work_create")
-	public String workAdminCreate() {
+	public String workAdminCreate(@RequestParam("wName") String wName,@RequestParam("wCategory") String wCategory,
+								  @RequestParam("wDate") String wDate, @RequestParam("wPoster") String wPoster,
+								  @RequestParam("wOverview") String wOverview,HttpServletRequest request) {
+		Work work = new Work(0, wName, wCategory, wDate, wPoster, 0, 0);
+		request.setAttribute("work", work);
+		request.setAttribute("wOverview", wOverview);
 		return"admin/work_create";
 	}
 	
 	@RequestMapping("/work_create_action")
 	@ResponseBody
-	public String workAdminCreateAction(HttpServletRequest request, HttpServletResponse response) {
-		Work work = (Work) request.getAttribute("work");
+	public String workAdminCreateAction(@RequestParam("wName") String wName,@RequestParam("wCategory") String wCategory,
+			  							@RequestParam("wDate") String wDate, @RequestParam("wPoster") String wPoster,
+			  							@RequestParam("wTepisode") int wTepisode, HttpServletRequest request) {
+		Work work = new Work(0, wName, wCategory, wDate, wPoster, wTepisode, 0);
+		String result = "";
 		try {
 			adminService.createWork(work);
+			result = "success";
 		}catch (Exception e) {
 			e.printStackTrace();
+			result = "fail";
 		}
-		return"admin/work";
+		return result;
 	}
 	@RequestMapping("/work_select")
 	public String workAdminSelect(@RequestParam("wNo") int wNo,HttpServletRequest request) {
