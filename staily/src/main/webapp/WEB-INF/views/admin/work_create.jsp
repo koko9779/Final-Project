@@ -49,10 +49,12 @@ image {
 					<th scope="row" class="bg-light essentia"><label for="wCategory">
 							카테고리</label></th>
 					<td class="text-left">
-						<div class="col">
-							<input type="text" name="wCategory" id="wCategory" class="form-control"
-								value="${work.wCategory}" maxlength="20">
-						</div>
+					<c:if test="${work.wCategory=='D'}">
+						<div class="col">드라마</div>
+					</c:if>
+					<c:if test="${work.wCategory=='M'}">
+						<div class="col">영화</div>
+					</c:if>
 					</td>
 				</tr>
 				<tr>

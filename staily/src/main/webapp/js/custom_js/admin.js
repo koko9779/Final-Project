@@ -63,9 +63,17 @@ function sucess(item) {
 		}else{
 			var name = content.results[i].title
 		}
+		if(content.results[i].first_air_date != null){
+			var date = content.results[i].first_air_date
+		}else{
+			var date = content.results[i].release_date
+		}
+		if(content.results[i].media_type=='tv'){
+			var category = 'D';
+		}else{
+			var category = 'M';
+		}
 		var poster = content.results[i].poster_path;
-		var date = content.results[i].first_air_date
-		var category = content.results[i].media_type
 		var overview = content.results[i].overview
 		var tag = "";
 		tag += "<form id='searchResult"+i+"' name='searchResult"+i+"'>";
