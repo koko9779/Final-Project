@@ -8,6 +8,7 @@
 		inner join member m
 		on r.m_no = m.m_no
 		where p_no = #{pNo}
+		order by r.r_no desc
 	</select>
 	
 	<select id="selectReplyOne" parameterType="int"
@@ -19,7 +20,7 @@
 	
 	<insert id="createReply" parameterType="com.itwill.staily.detail.model.dto.Reply">
 		insert into reply
-		values (reply_no_seq.nextval, #{pNo}, #{mNo}, #{rContent}, #{rRecommend}, #{rReport})
+		values (reply_no_seq.nextval, #{pNo}, #{mNo}, #{rContent}, 0, 0)
 	</insert>
 	
 	<delete id="deleteReply" parameterType="com.itwill.staily.detail.model.dto.Reply">

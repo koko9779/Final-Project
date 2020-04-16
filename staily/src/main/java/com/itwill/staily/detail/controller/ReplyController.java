@@ -21,7 +21,6 @@ import com.itwill.staily.mypage.model.dto.Friend;
 import com.itwill.staily.mypage.service.FriendService;
 
 @SuppressWarnings("unused")
-@RestController
 @RequestMapping("/detail")
 public class ReplyController {
 	@Autowired
@@ -35,38 +34,35 @@ public class ReplyController {
 	}
 	
 	@RequestMapping("/reply_list")
+	@ResponseBody
 	public List<Reply> selectReplyList(HttpServletRequest request, HttpServletResponse response, String pNo) throws Exception {
 		List<Reply> rL = replyService.selectReplyList(Integer.parseInt(pNo));
 		request.setAttribute("replyList", rL);
-			
+				
 		return rL;			
 	}
 	
 	
-	@RequestMapping("/createReply")
-	public ModelAndView selectReplyOne(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		
+	@RequestMapping("/reply_create")
+	public String replyCreate(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		try {			
-			String p_no = request.getParameter("p_no");
-			String m_no = (String)session.getAttribute("m_no");
-			String r_content = request.getParameter("r_content");
-			String r_recommend = request.getParameter("r_recommend");
-			String r_report = request.getParameter("r_report");
-			Reply reply = new Reply(Integer.parseInt(p_no), Integer.parseInt(m_no), 
-					r_content, Integer.parseInt(r_recommend), Integer.parseInt(r_report));
-			boolean create = replyService.createReply(reply, Integer.parseInt(p_no));
+			String p_no = request.getParameter("pNo");
+			Integer m_no = (Integer)session.getAttribute("userNo");
+			String r_content = request.getParameter("rContent");
+
+			request.setAttribute("pNo", p_no);
 			
-			if(create) {
-				mv.setViewName("detailtest");
-				
-			}			
+			Reply reply = new Reply(Integer.parseInt(p_no), m_no, r_content);
+			boolean chk = replyService.createReply(reply);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 		}		
 		
-		return mv;
+		return "product_detail#three";
 	}
+		
 	
 	/*
 	@RequestMapping("/deleteReply")

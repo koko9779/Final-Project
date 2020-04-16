@@ -41,19 +41,16 @@ public class ReplyServiceImpl implements ReplyService {
 
 	@Override
 	@Transactional(isolation = Isolation.READ_UNCOMMITTED, propagation = Propagation.REQUIRED)
-	public boolean createReply(Reply reply, int pNo) throws Exception {
-		boolean check = false;
-		
-		if(replyMapper.createReply(reply)) {
-			replyMapper.selectReplyList(pNo);
-			
-			check = true;			
+	public boolean createReply(Reply reply) throws Exception {
+		boolean chk = replyMapper.createReply(reply);
+				
+		if(chk == true) {
+						
+			return true;
 		}
 		else {
-			check = false;
+			return false;
 		}
-		
-		return check;
 	}
 
 	@Override

@@ -196,19 +196,6 @@
 			</div>
 			
 		</form>
-		<!--  
-		<form name="fff" method="post">
-			<table class="table table=hover">
-				<colgroup>
-					<col class="col_wp25">
-					<col class="col_auto">
-				</colgroup>
-				<tbody>
-				
-				</tbody>
-			</table>
-		</form>
-		-->
 	</div>
 </div>
 </body>
