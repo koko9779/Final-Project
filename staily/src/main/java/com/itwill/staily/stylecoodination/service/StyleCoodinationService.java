@@ -14,7 +14,7 @@ public interface StyleCoodinationService {
 
 	public int removeBoard(int bNo) throws Exception;
 
-	public int writeReply(Board replyBoard, String mId) throws Exception;
+	public Board writeReply(Board replyBoard, String mId) throws Exception;
 
 	public int removeReply(int bNo) throws Exception;
 
@@ -43,5 +43,7 @@ public interface StyleCoodinationService {
 	public int findBoardCategoryCount(Board b);
 
 	public int findBoardReplyCategoryCount(Board b);
+
+	public Boolean isRecommendCheck(int bNo, int userNo);
 
 }

@@ -73,11 +73,10 @@ public class StyleCoodinationRestController {
 							File f = new File("C:\\Users\\stu\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename +".jpg");
 							 */
 						
-						// 데이터명 난수 생성
+						// 파일명 생성
 						SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
    						fileName = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
    						System.out.println(fileName);
-						//fileName = UUID.randomUUID().toString();
 						uploadPath = uploadPath + "/" + fileName;
 						uploadPath2 = uploadPath2 + "/" + fileName;
 						out = new FileOutputStream(new File(uploadPath));
@@ -157,24 +156,24 @@ public class StyleCoodinationRestController {
 	}
 	
 	@PostMapping(value = "style_reply_create", produces = "application/json;charset=UTF-8")
-	public Boolean style_reply_create(@ModelAttribute Board reply, @RequestParam String mId) {
-		Boolean isCreate = false;
-		int writeCount; 
+	public Board style_reply_create(@ModelAttribute Board reply, @RequestParam String mId) {
+		Board replyCreateB = new Board();
 		
 		try {
-			writeCount = styleCoodinationService.writeReply(reply, mId);
-			if(writeCount == 1) {
-				isCreate = true;
-			}else {
-				isCreate = false;
-			}
+			replyCreateB = styleCoodinationService.writeReply(reply, mId);
 		} catch (Exception e) {
 			e.printStackTrace();
-			isCreate = false;
 		}
-		return isCreate;
+		return replyCreateB;
 	}
 	
+	/*
+	@PostMapping(value = "style_recommend", produces = "application/json;charset=UTF-8")
+	public Board style_recommend() {
+		
+		return replyCreateB;
+	}
+	*/
 	
 	
 

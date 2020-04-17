@@ -14,5 +14,7 @@ public interface BoardCommonMapper {
 	
 	//원글과 답글 수정
 	public int updateBoardAndReply(Board board) throws Exception;
+
+	public Board selectBoardOrReply(int mNo);
 	
 }

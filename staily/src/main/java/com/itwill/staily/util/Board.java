@@ -31,40 +31,26 @@ public class Board {
 	private String bChoice; //답글타입, 선정되면 Y, 아니면 N
 	private BoardDetail boardDetail; // 이미지가 들어있는 Dto
 	private String bCategory; //카테고리
+	private int userRec; //유저가 추천하기를 눌렀는지 확인하기 위한 변수
 	
 	public Board() {
 		// TODO Auto-generated constructor stub
 	}
 	
-
-	public Board(int bIdx, int bNo, int mNo, String mId, String bTitle, String bContent, int bGroupNo, int bStep,
-			int bView, int bRecommend, String bType, String bDate, String bChoice, BoardDetail boardDetail,
-			String bCategory) {
-		super();
-		this.bIdx = bIdx;
-		this.bNo = bNo;
-		this.mNo = mNo;
-		this.mId = mId;
-		this.bTitle = bTitle;
-		this.bContent = bContent;
-		this.bGroupNo = bGroupNo;
-		this.bStep = bStep;
-		this.bView = bView;
-		this.bRecommend = bRecommend;
-		this.bType = bType;
-		this.bDate = bDate;
-		this.bChoice = bChoice;
-		this.boardDetail = boardDetail;
-		this.bCategory = bCategory;
-	}
-
-
 	@Override
 	public String toString() {
 		return "Board [bIdx=" + bIdx + ", bNo=" + bNo + ", mNo=" + mNo + ", mId=" + mId + ", bTitle=" + bTitle
 				+ ", bContent=" + bContent + ", bGroupNo=" + bGroupNo + ", bStep=" + bStep + ", bView=" + bView
 				+ ", bRecommend=" + bRecommend + ", bType=" + bType + ", bDate=" + bDate + ", bChoice=" + bChoice
-				+ ", boardDetail=" + boardDetail + ", bCategory=" + bCategory + "]";
+				+ ", boardDetail=" + boardDetail + ", bCategory=" + bCategory + ", userRec=" + userRec + "\n]";
+	}
+
+	public int getUserRec() {
+		return userRec;
+	}
+
+	public void setUserRec(int userRec) {
+		this.userRec = userRec;
 	}
 
 	public String getbCategory() {

@@ -44,17 +44,18 @@
              AND B.b_step = 1
               AND b_category = #{bCategory}
              ORDER BY B.b_no ASC ) X)
-   
 	ORDER BY b_idx DESC
 </select>
 
 <select id="selectBoardOne" parameterType="int" resultType="Board">
 	SELECT B.b_no, B.m_no, B.b_title, B.b_content, B.b_step,
-	       B.b_view, B.b_recommend, B.b_date, M.m_id
+	       B.b_view, B.b_recommend, B.b_date, M.m_id, BD.b_no as user_rec
 	FROM board B
 	JOIN member M
 	ON (b.m_no = m.m_no)
-	WHERE b_groupno = #{bNo}
+    LEFT JOIN board_detail BD
+    ON (B.b_no = BD.b_no)
+	WHERE b_groupno = #{bGroupno}
 	ORDER BY b_step ASC
 </select>
 

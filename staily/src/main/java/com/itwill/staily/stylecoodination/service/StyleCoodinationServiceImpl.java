@@ -48,8 +48,10 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 	}
 	
 	@Override
-	public int writeReply(Board replyBoard, String mId) throws Exception{
+	public Board writeReply(Board replyBoard, String mId) throws Exception{
 		int mNo = 0;
+		int createCount;
+		Board writeReplyB = new Board();
 		
 		// 1. 기존 댓글들의 step 1씩 증가
 		replyManageMapper.updateStep(replyBoard.getbGroupNo());
@@ -57,7 +59,12 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 		mNo = boardCommonMapper.selectMNo(mId);
 		replyBoard.setmNo(mNo);
 		// 3. 댓글 작성
-		return replyManageMapper.createReply(replyBoard);
+		createCount = replyManageMapper.createReply(replyBoard);
+		// 4. 작성이 잘 되었으면 board 반환
+		if(createCount == 1) {
+			writeReplyB = boardCommonMapper.selectBoardOrReply(mNo);
+		}
+		return writeReplyB;
 	}
 	
 	@Override
@@ -131,5 +138,10 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 	public int findBoardReplyCategoryCount(Board b) {
 		return viewMapper.selectBoardReplyCategoryCount(b);
 	}
-	
+
+	@Override
+	public Boolean isRecommendCheck(int bNo, int userNo) {
+		return replyManageMapper.isRecommmendCheck(bNo, userNo);
+	}
+
 }
