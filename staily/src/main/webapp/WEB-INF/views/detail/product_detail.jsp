@@ -100,21 +100,12 @@
 							</tr>
 						</tbody>
 					</table>
-					<!--  
-						■상품명<br> ${productOne.get(0).getpName()}<br> 
-						■가격<br> ${productOne.get(0).getpPrice()}<br> 
-						■쇼핑몰 URL<br> ${productOne.get(0).getpUrl()}<br>
-						<c:if test="${not empty productOne.get(0).getpAddress()}">
-                        ■매장 오프라인 주소<br>
-                        ${productOne.get(0).getpAddress()} ${productOne.get(0).getpDaddress()}<br>
-						</c:if>
-						■작성자<br>
-						${productOne.get(0).getmId()}<br>
-					-->
 					</div>
 					<c:if test="${not empty productOne.get(0).getpAddress()}">
 						<div id="two">
-							대충 지도가 있다는 내용<br>
+							<div id="maps" style="width: 100%; height: 600px">
+							
+							</div>
 						</div>
 					</c:if>
 					<div id="three">
@@ -155,6 +146,16 @@
 <%@ include
 	file="/WEB-INF/views/detail/include/include_product_detail_js.jsp"%>
 <%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
-</body>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=01fy3qpy1m">
+var mapOptions = {
+		center: new naver.maps.LatLng(37.3595704, 127.105399),
+		zoomControl: true,
+		tileSpare: 2,
+		disableDoubleClickZoom: true		
+	}
 
+var mapdiv = document.getElementById('maps');
+var map = new naver.maps.Map(mapdiv, mapOptions);
+</script>
+</body>
 </html>
