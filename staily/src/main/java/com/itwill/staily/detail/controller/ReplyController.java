@@ -97,8 +97,7 @@ public class ReplyController {
 	public int increaseReport(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			String rNo = request.getParameter("rNo");
-			
-			
+						
 			
 			boolean inc = replyService.increaseReport(Integer.parseInt(rNo));
 			
