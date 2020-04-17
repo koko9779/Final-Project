@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -139,7 +140,6 @@ public class StyleCoodinationRestController {
 		return isDelete;
 	}
 	
-	//문제의 레스트컨트롤러
 	@RequestMapping(value = "style_board_and_reply_update", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
 	public Board style_board_and_reply_update_post(@ModelAttribute Board updateBoard) {
 		Board updateBoard2 = new Board();
@@ -155,6 +155,27 @@ public class StyleCoodinationRestController {
 		}
 		return updateBoard;
 	}
+	
+	@PostMapping(value = "style_reply_create", produces = "application/json;charset=UTF-8")
+	public Boolean style_reply_create(@ModelAttribute Board reply, @RequestParam String mId) {
+		Boolean isCreate = false;
+		int writeCount; 
+		
+		try {
+			writeCount = styleCoodinationService.writeReply(reply, mId);
+			if(writeCount == 1) {
+				isCreate = true;
+			}else {
+				isCreate = false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			isCreate = false;
+		}
+		return isCreate;
+	}
+	
+	
 	
 
 	

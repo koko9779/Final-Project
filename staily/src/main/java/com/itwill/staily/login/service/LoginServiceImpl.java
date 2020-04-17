@@ -32,15 +32,16 @@ public class LoginServiceImpl implements LoginService {
 	public Member login(Member member) throws Exception { 
 		String pw;
 		int isExisted = 0;
-		int mNo = 0;
+		Member MnoMtype = null;
 		
 		isExisted = loginCommonMapper.isExistedId(member.getmId());
 		if(isExisted == 1) {
 			pw = loginMapper.selectMemberPw(member.getmId());
 			if(pw.equals(member.getmPw())) {
 				//기업회원인지 검사하는 메소드, 기업회원이면 상수오빠 메소드 실행하고 memberDTO 리턴, 아니면 바로 memberDTO 리턴
-				mNo = loginCommonMapper.selectMNo(member.getmId());
-				member.setmNo(mNo);
+				MnoMtype = loginCommonMapper.selectMNoMType(member.getmId());
+				member.setmNo(MnoMtype.getmNo());
+				member.setmType(MnoMtype.getmType());
 				return member;
 			}else {
 				throw new PasswordMissmatchException("비밀번호가 일치하지 않습니다");

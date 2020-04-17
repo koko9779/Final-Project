@@ -14,8 +14,8 @@
 	WHERE m_email = #{mEmail}
 </select>
 
-<select id="selectMNo" parameterType="String" resultType="int">
-	SELECT m_no
+<select id="selectMNoMType" parameterType="String" resultType="com.itwill.staily.util.Member">
+	SELECT m_no, m_type
 	FROM member
 	WHERE m_id = #{mId}
 </select>
