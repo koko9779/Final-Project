@@ -4,7 +4,7 @@ public class Reply {
 	private int rNo; //댓글 번호
 	private int pNo; //상품 번호
 	private int mNo; //회원 번호
-	private String mName; //회원 이름
+	private String mId; //회원 이름
 	private String rContent; //댓글 내용
 	private int rRecommend; //추천 수
 	private int rReport; //신고 수
@@ -19,12 +19,12 @@ public class Reply {
 				"rContent = " + rContent + ", rRecommend = " + rRecommend + ", rReport = " + rReport + "]";
 	}
 
-	public Reply(int rNo, int pNo, int mNo, String mName, String rContent, int rRecommend, int rReport) {
+	public Reply(int rNo, int pNo, int mNo, String mId, String rContent, int rRecommend, int rReport) {
 		super();
 		this.rNo = rNo;
 		this.pNo = pNo;
 		this.mNo = mNo;
-		this.mName = mName;
+		this.mId = mId;
 		this.rContent = rContent;
 		this.rRecommend = rRecommend;
 		this.rReport = rReport;
@@ -52,12 +52,12 @@ public class Reply {
 		this.mNo = mNo;
 	}
 	
-	public String getmName() {
-		return mName;
+	public String getmId() {
+		return mId;
 	}
 
-	public void setmName(String mName) {
-		this.mName = mName;
+	public void setmId(String mId) {
+		this.mId = mId;
 	}
 
 	public int getpNo() {
