@@ -72,7 +72,6 @@ public class ReplyController {
 	
 	@RequestMapping("/reply_delete")
 	public int deleteReply(HttpServletRequest request, HttpServletResponse response) {
-		
 		try {
 			String rNo = request.getParameter("rNo");
 			String pNo = request.getParameter("pNo");
@@ -95,22 +94,23 @@ public class ReplyController {
 	
 	
 	@RequestMapping("/reply_increasereport")
-	public void increaseReport(HttpServletRequest request, HttpServletResponse response) {
+	public int increaseReport(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			Reply sR = replyService.selectReplyOne(3);
-			request.setAttribute("replyOne", sR);
+			String rNo = request.getParameter("rNo");
+						
 			
-			boolean inc = replyService.increaseRecommend(3);
-			boolean inc2 = replyService.increaseReport(3);
+			boolean inc = replyService.increaseReport(Integer.parseInt(rNo));
 			
-			request.setAttribute("reco", sR.getrRecommend());
-			request.setAttribute("repo", sR.getrReport());
-			
-			if(inc && inc2) {
+			if(inc) {
+				return 1;
+			}
+			else {
+				return 0;
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			return 0;
 		}
 	}
 	
