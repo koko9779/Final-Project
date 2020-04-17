@@ -14,7 +14,7 @@
 	
 	<insert id="createProduct" parameterType="com.itwill.staily.detail.model.dto.ProductEx">
 		insert into product (p_no, m_no, w_no, p_name, p_price, p_url, p_address, p_daddress, p_check, p_view, p_scene, p_date)
-		values (product_no_seq.nextval, #{mNo}, #{wNo}, #{pName}, #{pPrice}, #{pUrl}, #{pAddress}, #{pDaddress}, 'N', 0, #{pScene}, sysdate)
+		values (product_no_seq.nextval, #{mNo}, #{wNo}, #{pName}, #{pPrice}, #{pUrl}, #{pAddress}, #{pDaddress}, 'N', 0, #{pScene}, #{pDate})
 	</insert>
 	
 	<insert id="createProductDetail" parameterType="String">
@@ -28,7 +28,7 @@
 	<update id="updateProduct" parameterType="com.itwill.staily.detail.model.dto.ProductEx">
 		update product set p_name = #{pName}, p_price = #{pPrice}, p_url = #{pUrl}, 
 		p_address = #{pAddress}, p_daddress = #{pDaddress}, 
-		p_check = #{pCheck}, p_view = #{pView}, p_date = sysdate, p_scene = #{pScene}
+		p_check = #{pCheck}, p_view = #{pView}, p_date = #{pDate}, p_scene = #{pScene}
 		where p_no = #{pNo}
 	</update>
 	

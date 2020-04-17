@@ -57,7 +57,7 @@ function execDaumPostcode() {
 			var addr = ''; // 주소 변수
 			var extraAddr = ''; // 참고항목 변수
 
-			//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+			// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
 			if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
 				addr = data.roadAddress;
 			} else { // 사용자가 지번 주소를 선택했을 경우(J)
@@ -81,10 +81,11 @@ function execDaumPostcode() {
 					extraAddr = ' (' + extraAddr + ')';
 				}
 				// 조합된 참고항목을 해당 필드에 넣는다.
-				// document.getElementById("sample6_extraAddress").value = extraAddr;
+				// document.getElementById("sample6_extraAddress").value =
+				// extraAddr;
 
 			} else {
-				//document.getElementById("sample6_extraAddress").value = '';
+				// document.getElementById("sample6_extraAddress").value = '';
 			}
 
 			// 우편번호와 주소 정보를 해당 필드에 넣는다.
@@ -94,11 +95,10 @@ function execDaumPostcode() {
 			document.getElementById("pDaddress").focus();
 		}
 	}).open();
-}
+};
 
-//product_detail.jsp
+// product_detail.jsp
 $("#reply").on("click", function(e) {
-	
 	getReplies();
 });
 
@@ -110,6 +110,7 @@ var pNo = $('#pNo').val();
 		type : "POST",
 		data : {"pNo" : pNo},
 		dataType : "json",
+		async : false,
 		success : function(data) {
 			var a = '';
 
@@ -126,31 +127,41 @@ var pNo = $('#pNo').val();
 			$('#reply_space').html(a);
 		}
 	});
-}
+};
 
-/*
+
 $('#createreply').on("click", function(e) {
-	var pNo = $('#pNo').val();
+	var pNo = $('#pNoo').val();
+	var wNo = $('#wNo').val();
 	var mNo = $('#mNo').val();
 	var rContent = $('#rContent').val();
-	
-	alert(pNo + ' : ' + mNo + ' : ' + rContent);
-	
+
+	alert(pNo + ' : ' + mNo + ' : ' + rContent + ' : ' + wNo);
+
 	$.ajax({
 		url : "reply_create",
-		type : "POST",
-		data : {"mNo" : mNo, "pNo" : pNo, "rContent" : rContent},
-		dataType : "json",
+		type : "GET",
+		async : false,
+		dataType : "text",
+		data : {
+			"mNo" : mNo,
+			"wNo" : wNo,
+			"pNo" : pNo,
+			"rContent" : rContent
+		},
 		success : function(data) {
-			$('#rContent').val('');
+			colsole.log(data);
 			getReplies();
+			$('#rContent').val('');
 		}
 	});
 });
-*/
 
+
+/*
 function createreply() {
 	document.rpl.action = "reply_create";
 	document.rpl.method = "post";
 	document.rpl.submit();
-}
+};
+*/

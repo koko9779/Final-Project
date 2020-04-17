@@ -13,6 +13,7 @@ public class ProductEx extends com.itwill.staily.util.Product {
 	private String pCheck; //상품 승인 여부
 	private int pView; //상품 조회 수
 	private String pScene; //상품 장면
+	private String pDate; //상품 등록 날짜
 	
 	private int pdNo; //상품 상세 번호
 	private String pdImage; //상품 이미지
@@ -40,7 +41,7 @@ public class ProductEx extends com.itwill.staily.util.Product {
 	
 	
 	public ProductEx(String pName, int pPrice, String pUrl, String pAddress, String pDaddress, 
-			String pCheck, int pView, String pScene, int pNo) {
+			String pCheck, int pView, String pDate, String pScene, int pNo) {
 		super();
 		this.pName = pName;
 		this.pPrice = pPrice;
@@ -49,12 +50,13 @@ public class ProductEx extends com.itwill.staily.util.Product {
 		this.pDaddress = pDaddress;
 		this.pCheck = pCheck;
 		this.pView = pView;		
+		this.pDate = pDate;
 		this.pScene = pScene;
 		this.pNo = pNo;
 	}
 	
 	public ProductEx(int mNo, int wNo, String pName, int pPrice, String pUrl, String pAddress,
-			String pDaddress, String pScene) {
+			String pDaddress, String pScene, String pDate) {
 		super();
 		this.mNo = mNo;
 		this.wNo = wNo;
@@ -64,6 +66,7 @@ public class ProductEx extends com.itwill.staily.util.Product {
 		this.pAddress = pAddress;
 		this.pDaddress = pDaddress;
 		this.pScene = pScene;		
+		this.pDate = pDate;
 	}
 	
 	public ProductEx(String pdImage) {
@@ -188,6 +191,14 @@ public class ProductEx extends com.itwill.staily.util.Product {
 	public void setpScene(String pScene) {
 		this.pScene = pScene;
 	}	
+	
+	public String getpDate() {
+		return pDate;
+	}
+
+	public void setpDate(String pDate) {
+		this.pDate = pDate;
+	}
 
 	@Override
 	public String toString() {
