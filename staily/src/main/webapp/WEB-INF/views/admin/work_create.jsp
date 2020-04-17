@@ -84,7 +84,7 @@ image {
 		<div class="text-center">
 			<button type="button"
 				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
-				onclick="workCreateAction()">등록</button>
+				id ="wCreateBtn">등록</button>
 			<button type="button"
 				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
 				onclick="window_back()">다른작품선택</button>
