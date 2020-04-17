@@ -198,12 +198,6 @@ function deleteReply(rNo, mNo) {
 	
 }
 
-/*
-$('#delete').on("click", function() {
-	var rNo = $(this).val();
-	var pNo = $('#pNoo').val();
-	var mNo = $('#mNo').val();
+function incReport(rNo) {
 	
-	alert(rNo + " " + pNo + " " + mNo);
-});
-*/
+}
