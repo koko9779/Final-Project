@@ -29,7 +29,6 @@ function afterFileTransfer(realname, filename, filesize) {
 	document.ff.submit();
 }
 
-
 function pdImageCreate() {
 	document.ff.action = "pdImage_create";
 	document.ff.method = "post";
