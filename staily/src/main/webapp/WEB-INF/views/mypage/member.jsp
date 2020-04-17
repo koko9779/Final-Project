@@ -38,7 +38,7 @@
 					<!-- DataTales Example -->
 					<div class="join-step2">
 						<div class="border border-secondary">
-							<form id="memberInfoFrm" name="memberInfoFrm" autocomplete="off">
+							<form id="memberInfoFrm" name="memberInfoFrm" autocomplete="off" action='member_update'>
 								<input type="hidden" name="mNo" id="mNo" value="${member.mNo}">
 								<input type="hidden" name="mId" id="mId" value="${member.mId}">
 								<input type="hidden" name="mName" id="mName"
@@ -136,7 +136,7 @@
 													<div class="col-xs-4">
 														<select class="hphead hp form-control" id="phn1"
 															name="phn1">
-															<option selected="selected" value="010">010</option>
+															<option selected="selected" value="010">${phn1}</option>
 															<option value="011">011</option>
 															<option value="016">016</option>
 															<option value="018">018</option>
@@ -203,18 +203,24 @@
 										</tr>
 									</tbody>
 								</table>
+								<div class="text-right">
+									<input type="submit" value="수정" class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"></input>
+									<button type="button" class="btn btn-outline btn-primary pull-right" data-step="2" onclick="leave()">탈퇴</button>
+								</div>
 							</form>
 						</div>
 
 						<br>
+						<!--  
 						  <div id> 
 						 		<button type="button" class="btn btn-outline btn-primary pull-right" data-step="2" onclick="check()">수정</button>
-							 	<button type="button" class="btn btn-outline btn-primary pull-right" data-step="2" onclick="leave()">탈퇴</button>
 						 </div> 
-						<!--  
+						 -->
+						 <!-- 
 						<div class="text-center">
-							<button type="submit" value="submit"
-								class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2">수정</button>
+							<button type="button" class="btn btn-outline btn-primary pull-right" data-step="2" onclick="leave()">탈퇴</button>
+							<input type="submit" value="수정"
+								class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"></input>
 						</div>
 						-->
 					</div>

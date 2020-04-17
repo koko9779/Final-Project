@@ -13,11 +13,11 @@
 				<li><a href="#">메시지보관함</a></li>
 			</ul>
 		</div>
-		<c:if test="${member.mType =='C'}">
+		<c:if test="${userType =='C'}">
 		<div class="widget">
 			<h3>결제관리</h3>
 			<ul>
-				<li><a href="#">결제하기</a></li>
+				<li><a href="payment">결제하기</a></li>
 				<li><a href="payment_list">결제내역</a></li>
 			</ul>
 		</div>

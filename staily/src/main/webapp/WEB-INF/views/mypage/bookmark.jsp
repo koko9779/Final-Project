@@ -52,7 +52,8 @@
                   	<c:forEach var="bookmark" items="${data}">
                   	 <tr>
                   	  <td><input type="checkbox" name="book_check" value="${bookmark.bmNo}"></td>
-                  	  <td style = "cursor:pointer;" onClick = " location.href='admin/'">
+                  	  <td style = "cursor:pointer;" 
+                  	  	  onClick = "location.href='../detail/product_detail?pNo=${bookmark.product.pNo}&wNo=${bookmark.product.wNo}'">
                   	  <img src="${pageContext.request.contextPath}/${bookmark.product.pScene}" width="50px" height="50px"> </td>
                       <td>${bookmark.product.pName}</td>
                       <td>${bookmark.member.mId}</td>

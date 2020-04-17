@@ -13,6 +13,16 @@
 	where f.m_no=#{mNo}	
 </select>
 
+<!-- fPk,mNo검색 -->
+<select id="selectFriendPk"
+		parameterType="int"
+		resultType="com.itwill.staily.mypage.model.dto.Friend">
+select f_pk,f_no,m_no
+from friend
+where m_no = #{mNo}
+and f_no = #{fNo}
+</select>
+
 <!-- 삽입 -->
 <insert id="createFriend"
 		parameterType="int">

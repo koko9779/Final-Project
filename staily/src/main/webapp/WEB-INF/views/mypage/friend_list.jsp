@@ -40,13 +40,16 @@
 				<input type="text" id="searchword" style="width:300px;" value="아이디를 입력하세요" >
 			</div>
 			<div class="dropdown" id="results">
-			   <!-- add -->
+			<span id="noId"></span>
 				<button class="btn btn-primary dropdown-toggle add hidden" data-toggle="dropdown">
-				</button>
+			   <!-- add -->
+				</button> 
+				
 				<div class="dropdown-menu" id='searchDropdwon'>
 				  	<a class="dropdown-item" href="#" id="addFriend">친구추가</a>
 				  	<a class="dropdown-item" href="#" id="searchMessage">쪽지보내기</a>
 				</div>
+				
 			</div>
 							 
 			<br>
@@ -64,7 +67,7 @@
                       <th>친구</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody class="addFriendDiv">
                   	<c:forEach var="friend" items="${data}">
                   	 <tr>
                   	  <td><input type="checkbox" name="friend_check" value="${friend.fPk}"></td>

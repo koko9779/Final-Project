@@ -58,7 +58,8 @@
                   	<c:forEach var="product" items="${data}">
                   	 <tr>
                   	  <td><input type="checkbox" name="member_write_check" value="${product.pNo}"></td>
-                      <td style = "cursor:pointer;" onClick = " location.href='admin/'">
+                      <td style = "cursor:pointer;" 
+                      	  onClick = "location.href='../detail/product_detail?pNo=${product.pNo}&wNo=${product.wNo}'">
                       <img src="${pageContext.request.contextPath}/${product.pScene}" width="50px" height="50px"></td>
                       <td>${product.pName}</td>
                       <td>${product.pDate}</td>
