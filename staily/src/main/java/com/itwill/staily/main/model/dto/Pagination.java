@@ -5,7 +5,7 @@ public class Pagination {
     /** 한 페이지당 게시글 수 **/
     private int pageSize = 3;       
     /** 현재 페이지 **/
-    private int curPage = 1;        
+    private int curPage = 1;    
     /** 총 게시글 수 **/
     private int listCnt;    
     /** 총 페이지 수 **/
@@ -16,7 +16,10 @@ public class Pagination {
     private int endPage = 1;    
     /** 시작 index **/
     private int startIndex = 1;    
-    /** 마지막 index **/
+    /** 현재 페이지의 마지막 게시물 **/
+    private int curEndIndex =1;
+
+	/** 마지막 index **/
     private int endIndex = 1;
     
     public Pagination(int listCnt, int curPage){
@@ -29,10 +32,11 @@ public class Pagination {
         this.listCnt = listCnt;
         /** 총 페이지 수 **/
         setPageCnt(listCnt);
-        
-        /** DB 질의를 위한 startIndex 설정 **/
         setStartIndex(curPage);
-        setEndIndex(pageSize, pageCnt);
+        setCurEndIndex(curPage);
+    	setEndIndex(listCnt);
+    	setEndPage(pageCnt);
+        
     }
  
 	public int getPageSize() {
@@ -45,14 +49,6 @@ public class Pagination {
 
 	public int getCurPage() {
 		return curPage;
-	}
-	
-    public int getEndIndex() {
-		return endIndex;
-	}
-
-	public void setEndIndex(int pageSize,int pageCnt) {
-		this.endIndex = (int)(pageSize * pageCnt);
 	}
 	
 	public void setCurPage(int curPage) {
@@ -87,8 +83,8 @@ public class Pagination {
 		return endPage;
 	}
 
-	public void setEndPage(int endPage) {
-		this.endPage = endPage;
+	public void setEndPage(int pageCnt) {
+		this.endPage = pageCnt;
 	}
 
 	public int getStartIndex() {
@@ -98,5 +94,21 @@ public class Pagination {
     public void setStartIndex(int curPage) {
         this.startIndex = (curPage-1) * pageSize + 1;
     }
+    
+    public int getCurEndIndex() {
+		return curEndIndex;
+	}
+
+	public void setCurEndIndex(int curPage) {
+		this.curEndIndex = curPage*pageSize;
+	}
+	
+    public int getEndIndex() {
+		return endIndex;
+	}
+
+	public void setEndIndex(int listCnt) {
+		this.endIndex = listCnt;
+	}
 
 }

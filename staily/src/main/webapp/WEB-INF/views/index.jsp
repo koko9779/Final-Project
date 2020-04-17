@@ -3,20 +3,20 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
-<!-- Hero -->
+	
+		<!-- Hero -->
 	<div id="hero" class="carousel slide carousel-fade" data-ride="carousel">
 		<a href="#afterHeader" class="anchor">
 			<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
 		</a>
-<iframe class="ww"
-	src="https://www.youtube-nocookie.com/embed/QphFqZ7tf9o?autoplay=1&loop=1&controls=0&vq=hd720"
-	frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-	allowfullscreen style="position: absolute; width:100%; height:100%;"></iframe>
+		<iframe class="ww"
+			src="https://www.youtube-nocookie.com/embed/QphFqZ7tf9o?autoplay=1&amp;loop=1;playlist=QphFqZ7tf9o&controls=0&vq=hd720"
+			frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+			allowfullscreen style="position: absolute;left: -0%;width: 100%;height: 100%;top: 0%;"></iframe>
 
-		<!-- Indicators -->
-		
-		</div>
 	</div>
+	<!-- Indicators -->
+	
 	<!-- Section -->
 	<c:if test="${not empty userNo}">
 	<!-- BOOKMARK -->
@@ -46,7 +46,7 @@
 												</aside>
 												-->
 												<a href="#" onclick="bm_productpage(${bm.bmNo},${bm.product.pNo})"> <img
-													src="${pageContext.request.contextPath}${bm.product.pScene}"
+													src="${pageContext.request.contextPath}/images/product/scene/${bm.product.pScene}.jpg"
 													alt="${bm.product.pName}" style="width:100%; height:150px;" />
 												</a>
 											</div>
@@ -84,7 +84,7 @@
 							<div class="movie-slide">
 								<div class="movie-poster2">
 									<a href="#" onclick="productpage(${hot.pNo})"> <img
-										src="${pageContext.request.contextPath}${hot.pScene}"
+										src="${pageContext.request.contextPath}/images/product/scene/${hot.pScene}.jpg"
 										alt="${hot.pName}" style="width:100%; height:150px;" />
 									</a>
 								</div>

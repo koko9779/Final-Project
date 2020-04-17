@@ -1,55 +1,129 @@
-
 var page = 1;
- 
+var isVisible = false;
+
 //페이지가 로드되면 데이터를 가져오고 page를 증가시킨다.
-//$(document).onload(function(){ 
-//     getList(page);
-//     page++;
-//}); 
-//스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
-$("#mwList").scroll(function(){ 
-     if($(window).scrollTop() >= $(document).height() - $(window).height()){
-          getList(page);
-           page++;
-           console.log("라");
-     } 
+$(document).load(function(){ 
+	 page = 1;  
+}); 
+
+//page가 mwListEnd를 비추면 getList를 호출한다.
+$(window).on('scroll',function () {
+	
+    if (checkVisible($('.mwListEnd'))&& !isVisible ) {
+        alert("다음 게시물 나오세요");
+        isVisible=true;
+        getList(page);
+ 
+    }
 });
- 
+
+function checkVisible( elm, eval ) {
+    eval = eval || "object visible";
+    var viewportHeight = $(window).height(), // Viewport Height
+        scrolltop = $(window).scrollTop(), // Scroll Top
+        y = $(elm).offset().top,
+        elementHeight = $(elm).height();   
+    if (eval == "object visible") return ((y < (viewportHeight + scrolltop)) && (y > (scrolltop - elementHeight)));
+    if (eval == "above") return ((y < (viewportHeight + scrolltop)));
+}
+
 function getList(curPage){
- 
+	var wNo = $('.mwList .wNoo').val();
+	console.log(wNo);
+	var params = 'wNo='+wNo+'&nextPage='+(curPage+1);
     $.ajax({
         type : 'POST',  
         dataType : 'json', 
-        data : {"curPage" : curPage},
+        data : params,
         url : 'worklist_select/detail',
-        success : function(returnData) {
-        	console.log("넘어오는 json데이터"+returnData);
-            var data = returnData.length;
-            console.log(returnData.length);
+        success : function(jsonData) {
             var html = "";
-            if (page==1){ //페이지가 1일경우에만 id가 list인 html을 비운다.
-                  $("#mwList").html(""); 
+			var userNo = jsonData.userNo;	
+			var bmList = jsonData.bmList;
+			var mwArray = jsonData.list;
+			var endPage = jsonData.endPage;
+			console.log("현재 페이지"+curPage+",마지막페이지"+endPage);
+			if (curPage<=endPage){ 
+				/**for문 시작*********************************/
+				for (var i = 0; i < mwArray.length; i++) {
+					
+					var mwProduct = mwArray[i].product;
+					var wdEpisode = mwArray[i].wdEpisode;
+					var pMno = mwProduct[0].mNo;
+					var pPno = mwProduct[0].pNo;
+					var pScene = mwProduct[0].pScene;
+					var pName = mwProduct[0].pName;
+					var pView = mwProduct[0].pView;
+					var pMid = mwProduct[0].mId;
+					
+					html += "<form id='product_"+pPno+"'>";
+					html += "<h2 value='상품이름' >"+pName+"</h2>";
+					html += "<input type='hidden' value='"+userNo+"' name='userNo'>";
+					html += "<input type='hidden' value='"+wNo+"' name='wNo'>";
+					html += "<input type='hidden' value='"+pPno+"' name='pNo'>";
+					html += "<div class='movie-poster2'>";
+					html += "<img onclick='productpage("+wNo+","+pPno+")'";
+					html += " src='../images/product/scene/"+pScene+".jpg'";
+					html += " alt='"+pName+"' style='width:850px; height:450px; margin: 0;cursor: pointer;'/>";
+					html += "</div>";
+					html += "<div style='height:100px;'>";
+					
+					if(userNo!=null){
+						if(bmList=="" || bmList==undefined){
+							html += "<input class='material-icons' type='image'";
+							html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
+							html += " src='../images/emptystar.png'";
+							html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>"; 
+						}
+						
+						else{
+								var cnt = 0;
+								for (var j = 0; j < bmList.length; j++) {
+									if(pPno==bmList[j].product.pNo){
+										cnt = 1;
+										break;
+									}
+								}
+								
+								if(cnt==1){
+									html += "<input class='material-icons' type='image'"; 
+									html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 제거'";
+									html += " src='../images/star.png'";
+									html += " onclick='select_bookmark("+userNo+","+pPno+");return false;'>";
+								}else{
+									html += "<input class='material-icons' type='image'";
+									html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
+									html += " src='../images/emptystar.png'";
+									html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>";  
+								}
+							
+						}
+							
+					}else{
+						html += "<input class='material-icons' type='image'";
+						html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
+						html += " src='../images/emptystar.png'";
+						html += " onclick='login_advice(); return false;'>";                                     
+					}
+					html += "<div style='float:right;'>";
+					html += "<span value='작성자'>작성자: "+pMid+"</span>";
+					html += "<span class='categories tag' value='조회수'>조회수: "+pView+"</span>";
+					html += "<span class='categories tag' value='에피소드'>"+wdEpisode+"회</span>";
+					html += "</div>";
+					html += "</div>";
+					html += "</form>";
+				};
+				/**for문 끝*********************/
+				$(".mwList").append(html); 
+				isVisible=false;
+				page++;
+            }else{
+				$(".mwList").append(html); 
+				isVisible=true;
             }
-//            if (returnData.startNum<=returnData.totCnt){
-//                if(data.length>0){
-//                // for문을 돌면서 행을 그린다.
-//                }else{
-//                //데이터가 없을경우
-//                }
-//            }
-//            html = html.replace(/%20/gi, " ");
-//            if (page==1){  //페이지가 1이 아닐경우 데이터를 붙힌다.
-//                $("#list").html(html); 
-//            }else{
-//                $("#busStopList").append(html);
-//            }
-       },error:function(e){
-           if(e.status==300){
-               alert("데이터를 가져오는데 실패하였습니다.");
-           };
        }
     }); 
-}
+};
 
 
 $(document).ready(function(){
@@ -114,8 +188,8 @@ $(document).ready(function(){
 					html += "<input type='hidden' value='"+wNo+"' name='wNo'>";
 					html += "<input type='hidden' value='"+pPno+"' name='pNo'>";
 					html += "<div class='movie-poster2'>";
-					html += "<img onclick='productpage("+pWno+","+pPno+")'";
-					html += " src='../"+pScene+"'";
+					html += "<img onclick='productpage("+wNo+","+pPno+")'";
+					html += " src='../images/product/scene/"+pScene+".jpg'";
 					html += " alt='"+pName+"' style='width:850px; height:450px; margin: 0;cursor: pointer;'/>";
 					html += "</div>";
 					html += "<div style='height:100px;'>";
