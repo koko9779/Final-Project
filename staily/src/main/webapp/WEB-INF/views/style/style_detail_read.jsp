@@ -102,7 +102,7 @@
 							<div class="col-md-12 m-top--40">
 							
 							<div class="categories col-md-6 board-title f-s-25">${board.bTitle}</div>
-							<div class="col-md-6 text-left"><span class="font-small">${board.mId}.${board.bDate}</span></div>
+							<div class="col-md-6 text-left"><span class="font-small"><sapn id="">${board.mId}</sapn>.${board.bDate}</span></div>
 							</div>
 							<div class="p_content m-top-50 m-bottom-30" id="board_content_read">
 								${board.bContent}
@@ -131,7 +131,7 @@
 													<select class='custom-select form-control' name='bType' id='inputGroupSelect03'>
 													<option selected value='S'>스타일코디</option>
 													</select>
-													<select class='custom-select form-control ' name='bCategory' id='bCategory'>
+													<select class='custom-select form-control' name='bCategory' id='bCategory'>
 														<option selected>카테고리</option>
 														<option value='M'>영화</option>
 														<option value='D'>드라마</option>
@@ -152,8 +152,8 @@
 														등 록
 													</button>
 													<button type='submit' id='canselB' class='btn btn-ghost'
-														style='width: 20%; font-weight: bold; margin-top: 15px;'' 
-														onclick='cansle_reply_write();'>
+														style='width: 20%; font-weight: bold; margin-top: 15px;' 
+														onclick='cancel_reply_write();'>
 														취 소
 													</button>
 												</div>

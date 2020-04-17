@@ -1,7 +1,8 @@
 var clone;
+var h3ReplyHeader;
 $(function() {
 	clone = $("#board2").clone();
-	
+	h3ReplyHeader = $("#reply-top").clone();
 });
 
 /*
@@ -108,10 +109,9 @@ function cansle_update() {
 	
 }
 
-function cansle_reply_write() {
-	alert($("#boardReplyWriteF"));
+function cancel_reply_write() {
+	// 내용 초기화가 안되유 ㅠㅠ
 	$("#boardReplyWriteF").fadeOut(500);
-	$(".empty").empty();
 }
 
 
@@ -139,12 +139,16 @@ function reply_write() {
 				   bCategory : bCategory},
 			async : false,
 			dataType: "json",
-			success: function(isCreate) {
-				if(isCreate === false) {
-					alert("답글 쓰기를 실패하였습니다");
-				}else {
-					//여기 구현해야함
-				}
+			success: function(replyCreate) {
+					
+					clone.find("#board_title_read").html(replyCreate.bTitle);
+					clone.find("#board_content_read").html(replyCreate.bContent);
+					clone.find("#board_content_read").html(replyCreate.mId);
+					$('#board').fadeOut( 500, function() {
+						$("#board").empty();
+						$("#board").append(clone);
+						$( "#board" ).fadeIn( 500 );
+			        });
 			}
 		});
 	}
