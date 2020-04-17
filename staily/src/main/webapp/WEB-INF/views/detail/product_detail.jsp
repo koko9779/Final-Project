@@ -42,7 +42,7 @@
 			<img
 				src="${pageContext.request.contextPath}/images/product/scene/${productOne.get(0).getpScene()}.jpg"
 				height="450px" width="850px" style="padding: 20px;">
-
+			<button type="button" class="btn btn-ghost" id="createBmk" style="margin: 5%; margin-left: 10px;">즐겨찾기 추가</button>
 			<!-- Section -->
 			<h2>상품 사진</h2>
 			<div class="slick-carousel news-carousel">
@@ -73,7 +73,17 @@
 							<tr>
 								<th scope="row" class="bg-light essentia"><label for="mId">작성자</label></th>
 								<td class="text-left" style="text-align: left;">
-									<div class="col">${productOne.get(0).getmId()}</div>
+									<div class="dropdown" id="results">
+									<!--  
+									<div class="col">
+									-->
+										<button class="btn btn-primary dropdown-toggle add" style="display: inline-block;">
+										${productOne.get(0).getmId()}</button>
+										<div class="dropdown-menu" id='searchDropdwon'>
+										  	<a class="dropdown-item" href="#" id="addFriend">친구추가</a>
+										  	<a class="dropdown-item" href="#" id="searchMessage">쪽지보내기</a>
+										</div>
+									</div>
 								</td>
 							</tr>
 							<tr>
@@ -130,6 +140,7 @@
 										</c:otherwise>
 									</c:choose>
 									<input type="hidden" name="mNo" id="mNo" value="${userNo}">
+									<input type="hidden" name="mId" id="mId" value="${userId}">
 									<input type="hidden" name="pNoo" id="pNoo" value="${productOne.get(0).getpNo()}">
 									<input type="hidden" name="wNo" id="wNo" value="${wNo}">
 								</form>
