@@ -218,3 +218,51 @@ function incRec(rNo) {
 		
 	}
 }
+
+//친구 추가
+$('#searchDropdwon a:nth-child(1)').click(function(e){
+	e.preventDefault();
+	var html = "";
+	var params = {
+			"mNo" : $('#mNo').attr('value'),
+			"mId" : $('#mId').attr('value')
+	}
+	
+	var mNo = $('#mNo').attr('value');
+	var mId = $('#mId').attr('value');
+	
+	alert(mNo + " ==== " + mId);
+	
+	$.ajax({
+		url : "friend_create",
+		data : params,
+		dataType : "json",
+		success : function(result){
+			if(result.status == 'success'){
+				alert('친구추가완료');
+				html += '<tr>'
+				html += "<td><input type='checkbox' name='friend_check' value='"+result.fPk+"'>"+"</td>"
+                html += '<td >'
+                html += '<div class="dropdown">'
+				html += '<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">'+$('#addFriend').attr('value')
+				html += '</button>'
+				html += '<div class="dropdown-menu" id="friendDropdown">'
+				html += "<a class='dropdown-item' href='#' value='"+$('#searchMessage').attr('value')+"'>쪽지보내기</a>"	 
+				html += "<a class='dropdown-item' href='#' value='"+$('#addFriend').attr('value')+"'>쪽지보관함</a>"		  	
+				html += '</div> </div></td></tr>'		  	
+
+				$('.addFriendDiv').append(html); 
+				//location.reload();
+			}else if(result.status == 'D'){
+				alert('이미 친구추가된 회원입니다');
+			}else if(result.status =='M'){
+				alert('본인은 친구추가가 불가능합니다');
+			}
+			
+		},
+		error : function(){
+			location.href = '404';
+		}
+		
+	});
+});
