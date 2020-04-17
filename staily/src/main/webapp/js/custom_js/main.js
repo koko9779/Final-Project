@@ -8,7 +8,6 @@ $(document).load(function(){
 
 //page가 mwListEnd를 비추면 getList를 호출한다.
 $(window).on('scroll',function () {
-	
     if (checkVisible($('.mwListEnd'))&& !isVisible ) {
         alert("다음 게시물 나오세요");
         isVisible=true;
@@ -19,10 +18,10 @@ $(window).on('scroll',function () {
 
 function checkVisible( elm, eval ) {
     eval = eval || "object visible";
-    var viewportHeight = $(window).height(), // Viewport Height
-        scrolltop = $(window).scrollTop(), // Scroll Top
-        y = $(elm).offset().top,
-        elementHeight = $(elm).height();   
+    var viewportHeight = $(window).height(); // Viewport Height
+    var scrolltop = $(window).scrollTop(); // Scroll Top
+    var y = $(elm).offset().top;
+    var elementHeight = $(elm).height();   
     if (eval == "object visible") return ((y < (viewportHeight + scrolltop)) && (y > (scrolltop - elementHeight)));
     if (eval == "above") return ((y < (viewportHeight + scrolltop)));
 }
