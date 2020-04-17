@@ -4,7 +4,10 @@
 <div id="content_hero"
 	style="background-image: url(http://via.placeholder.com/1440x435)">
 <iframe class="ww"
+
+
 	src="https://www.youtube-nocookie.com/embed/6eEZ7DJMzuk?autoplay=1&loop=1&controls=0&vq=hd720"
+
 	frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 	allowfullscreen style="position: absolute; width:100%; height:100%;"></iframe>
 	<a href="#afterHeader" class="anchor"> <img

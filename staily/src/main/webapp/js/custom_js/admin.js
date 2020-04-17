@@ -51,6 +51,11 @@ function product_confirm(pNo) {
 	alert("승인되었습니다");
 	location.reload();
 }
+function imgUpdate(pNo) {
+	console.log(pNo+'피피엔에에에엔오')
+	window.open("product_update_img?" + "pNo="+ pNo, "상품이미지수정",
+	"width=685, height=685, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
+};
 /*************주소 일반****************/
 
 function execDaumPostcode() {
@@ -403,6 +408,7 @@ $(document).ready(function() {
 								 	}
 								});
 					});
+
 				  $('#wCreateBtn').click(
 						  function(e) {
 							  var params = $('#work_create').serializeArray(); 
@@ -438,5 +444,6 @@ $(document).ready(function() {
 								 	}
 							  });
 						  });		  
+
 });
 

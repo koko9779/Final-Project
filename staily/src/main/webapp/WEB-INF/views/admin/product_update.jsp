@@ -24,19 +24,22 @@ image {
 					</div>
 					<c:forEach var="product" items="${productList }">
 						<div>
-							<img width="400" height="250" src="${pageContext.request.contextPath}${product.pdImage }">
+							<img width="400" height="250"
+								src="${pageContext.request.contextPath}${product.pdImage }">
 						</div>
 					</c:forEach>
 				</div>
 			</div>
 		</div>
-		<input type="hidden" name="pNo" id="pNo" value="${productList[0].pNo}"> 
-		<input type="hidden" name="mNo" id="mNo" value="${productList[0].mNo}"> 
-		<input type="hidden" name="wNo" id="wNo" value="${productList[0].wNo}"> 
-		<input type="hidden" name="pView" id="pView" value="${productList[0].pView}"> 
-		<input type="hidden" name="pScene" id="pScene" value="${productList[0].pScene}"> 
-		<input type="hidden" name="pDate" id="pDate" value="${productList[0].pDate}"> 
-		<input type="hidden" name="pCheck" id="pCheck" value="${productList[0].pCheck}"> 
+		<input type="hidden" name="pNo" id="pNo" value="${productList[0].pNo}">
+		<input type="hidden" name="mNo" id="mNo" value="${productList[0].mNo}">
+		<input type="hidden" name="wNo" id="wNo" value="${productList[0].wNo}">
+		<input type="hidden" name="pView" id="pView"
+			value="${productList[0].pView}"> <input type="hidden"
+			name="pScene" id="pScene" value="${productList[0].pScene}"> <input
+			type="hidden" name="pDate" id="pDate" value="${productList[0].pDate}">
+		<input type="hidden" name="pCheck" id="pCheck"
+			value="${productList[0].pCheck}">
 		<c:forEach var="product" items="${productList }">
 			<input type="hidden" name="pdNo" id="pdNo" value="${product.pdNo }">
 		</c:forEach>
@@ -83,7 +86,8 @@ image {
 					<td class="text-left">
 						<div class="col">
 							<input type="text" name="pAddress" id="pAddress"
-								onclick="execDaumPostcode()" value="${productList[0].pAddress }" class="form-control">
+								onclick="execDaumPostcode()" value="${productList[0].pAddress }"
+								class="form-control">
 						</div>
 					</td>
 				</tr>
@@ -105,17 +109,23 @@ image {
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="bg-light essentia"><label>이미지 업로드</label></th>
+					<th scope="row" class="bg-light essentia"><label>이미지
+							변경</label></th>
 					<td class="text-left">
+						<button type="submit" value="submit"
+							class="btn btn-default btn-lg io-data io-fn-nextStep"
+							data-step="2" onclick="imgUpdate(${productList[0].pNo})">수정</button>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 		<div class="text-center">
 			<button type="submit" value="submit"
-				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2" onclick="product_update()">수정</button>
-			<button type="button" 
-				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2" onclick="product_confirm(${productList[0].pNo})">승인</button>
+				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
+				onclick="product_update()">수정</button>
+			<button type="button"
+				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
+				onclick="product_confirm(${productList[0].pNo})">승인</button>
 		</div>
 </form>
 <%@ include file="/WEB-INF/views/admin/include/include_bottom.jsp"%>

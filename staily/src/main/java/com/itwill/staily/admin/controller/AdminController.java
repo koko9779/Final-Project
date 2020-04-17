@@ -1,5 +1,7 @@
 package com.itwill.staily.admin.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -146,6 +149,17 @@ public class AdminController {
 		}
 		return "admin/product_update";
 	}
+	@RequestMapping("/product_update_img")
+	public String productAdminImg(@RequestParam int pNo, HttpServletRequest request) {
+		try {
+			List<Product> productList= new ArrayList();
+			productList = adminService.selectProductOne(pNo);
+			request.setAttribute("productList", productList);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "admin/product_update_img";
+	}
 	@RequestMapping("/product_update")
 	@ResponseBody
 	public String productAdminUpdate(@RequestParam("pNo") int pNo,@RequestParam("mNo") int mNo,@RequestParam("wNo") int wNo
@@ -163,6 +177,25 @@ public class AdminController {
 		}
 		
 		return result;
+	}
+	@RequestMapping(value = "/update_img")
+	public void upload(HttpServletResponse response, HttpServletRequest request, @RequestParam("Filedata") MultipartFile Filedata) {
+		String filename= "";
+	   	String path="";
+	   	if (request.getAttribute("pdScene")!=null) {
+	   		filename = (String) request.getAttribute("pScene");
+	   		path = "scene";
+	   	}else {
+	   		filename = (String) request.getAttribute("pdImage");
+	   		path = "image";
+	   	}
+	   	File f = new File("C:\\Users\\stu\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\"+path+"\\" + filename +".jpg");
+		try { 
+			Filedata.transferTo(f);
+			response.getWriter().write(filename);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
 	}
 	@RequestMapping(value = "/product_confirm", method = {RequestMethod.POST,RequestMethod.GET},produces="text/plain; charset=UTF-8")
 	@ResponseBody
