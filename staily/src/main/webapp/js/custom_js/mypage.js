@@ -99,25 +99,41 @@ $(function(){
 		});
 		
 	});
+	
+	
+	//쪽지보내기 [동적이벤트추가]
+	$('.addFriendDiv').on("click","a:nth-child(1)",function(e){
+		e.preventDefault();
+		var no = $(this).attr('value');	
+		window.open("message?mNo="+no, "_blank","width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+	});
+	
+	//메시지보관함 [동적이벤트추가]
+	$('.addFriendDiv').on("click","a:nth-child(2)",function(e){
+		e.preventDefault();
+		window.open("message_list", "_blank", "width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+	});
 
-	/************************쪽지보내기 시작******************************/
+	/************************쪽지보내기 시작******************************
 	$('#friendDropdown a:nth-child(1)').click(function(e){
 		e.preventDefault();
 		var no = $(this).attr('value');	
 		window.open("message?mNo="+no, "_blank","width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 		
 	});
+	*******************************************************************/
 	
-	//메시지 보관함 열기
+	/************************메시지 보관함******************************
 	$('#friendDropdown a:nth-child(2)').click(function(e){
 		e.preventDefault();
 		window.open("message_list", "_blank", "width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 	});
+	*******************************************************************/
 	
 	/************************검색한 친구 추가************************/
 	$('#searchDropdwon a:nth-child(1)').click(function(e){
 		e.preventDefault();
-
+		var html = "";
 		var params = {
 				"mNo" : $('#searchMessage').attr('value'),
 				"mId" : $('#addFriend').attr('value')
@@ -125,14 +141,26 @@ $(function(){
 		$.ajax({
 			url : "friend_create",
 			data : params,
-			dataType : "text",
+			dataType : "json",
 			success : function(result){
-				if(result == 'true'){
+				if(result.status == 'success'){
 					alert('친구추가완료');
-					location.reload();
-				}else if(result == 'false'){
+					html += '<tr>'
+					html += "<td><input type='checkbox' name='friend_check' value='"+result.fPk+"'>"+"</td>"
+                    html += '<td >'
+                    html += '<div class="dropdown">'
+					html += '<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">'+$('#addFriend').attr('value')
+					html += '</button>'
+					html += '<div class="dropdown-menu" id="friendDropdown">'
+					html += "<a class='dropdown-item' href='#' value='"+$('#searchMessage').attr('value')+"'>쪽지보내기</a>"	 
+					html += "<a class='dropdown-item' href='#' value='"+$('#addFriend').attr('value')+"'>쪽지보관함</a>"		  	
+					html += '</div> </div></td></tr>'		  	
+
+					$('.addFriendDiv').append(html); 
+					//location.reload();
+				}else if(result.status == 'D'){
 					alert('이미 친구추가된 회원입니다');
-				}else if(result =='D'){
+				}else if(result.status =='M'){
 					alert('본인은 친구추가가 불가능합니다');
 				}
 				
@@ -157,13 +185,16 @@ $(function(){
 	$('#searchword').focus(function(e){
 		this.value="";
 		$(".add").toggle();
-		$(".add").text('');
+		$("#noId").text('');
 		$('.add').attr('class','btn btn-primary dropdown-toggle add hidden');
+		$(".add").text('');
+		//$(".add").remove();
 	});
 	
 	$('#searchword').keyup(function(e){
 		if(e.keyCode==13){
 			var mId = $('#searchword').val();
+			var html = ""
 		    if(mId !=""){
 		    	var checkConfirm = confirm('찾으신 회원이 맞습니까?');
 		    	if(checkConfirm){
@@ -173,6 +204,8 @@ $(function(){
 			    		dataType : "json",
 			    		success : function(result){
 			    			if(result.status == 'success'){
+			    				//$('#results').prepend('<button class="btn btn-primary dropdown-toggle add" data-toggle="dropdown">'
+			    				//							+result.mId+'</button>')	
 			    				$('.add').attr('class','btn btn-primary dropdown-toggle add');
 			    				$('.add').attr('style','display: inline-block;');
 			    				$('.add').text(result.mId);
@@ -180,7 +213,8 @@ $(function(){
 			    				$('#addFriend').attr('value',result.mId);
 			    				
 			    			}else{
-			    				alert('회원 아이디를 다시 확인해주세요');
+			    				$('#noId').text('회원 아이디를 다시 확인해주세요');	
+			    				//alert('회원 아이디를 다시 확인해주세요');
 			    			}
 			    		},
 			    		error : function(){
@@ -204,7 +238,7 @@ $(function(){
 		
 	});
 		
-	/************************ 회원수정 validator ******************************
+	/************************ 회원수정 validator ******************************/
 	$('#memberInfoFrm').validate({
 		rules:{
 			mPw:{
@@ -274,7 +308,7 @@ $(function(){
 		submitHandler:function(f){
 			$.ajax({
 				url: f.action,
-				data: $(f).serializeArray(),
+				data: $(f).serialize(),
 				dataType: 'text',
 				success: function(result) {
 					if(result == 'true'){
@@ -297,12 +331,13 @@ $(function(){
 	$.validator.addMethod("passwordCk",  function( value, element ) {
 		   return this.optional(element) ||  /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/.test(value);
 		});
-	*/
 	
 	
    
 });
 /*****************************멤버탈퇴*****************************/
+
+
 function leave(){
 	var param = {
 			"mNo" : $('mNo').val()
@@ -350,7 +385,7 @@ function execDaumPostcode() {
 		}).open();
 }
 
-/*******************회원수정 유효성체크*******************/
+/*******************회원수정 유효성체크*******************
 
 function check() {
 	var mPw = $('#mPw').val();
@@ -417,4 +452,4 @@ function check() {
 	document.getElementById("memberInfoFrm").submit();
 
 }
-	
+*/	

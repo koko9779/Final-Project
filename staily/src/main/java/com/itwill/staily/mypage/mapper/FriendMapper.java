@@ -18,6 +18,8 @@ public interface FriendMapper {
 	
 	public List<Friend> selectList(int mNo) throws Exception;
 	
+	public Friend selectFriendPk(@Param("mNo") int mNo, @Param("fNo") int fNo) throws Exception;
+	
 	public boolean createFriend(@Param("fNo") int fNo, @Param("mNo") int mNo) throws Exception;
 	
 	public boolean deleteFriend(int fPk) throws Exception;

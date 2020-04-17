@@ -2,62 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.staily.mypage.mapper.MessageMapper">
 
-<!-- 리스트 출력 
-<select id="selectList"
-		resultType="com.itwill.staily.mypage.model.dto.Message">
-	select ms_no as msNo, m_no as mNo, ms_title as msTitle, ms_content as msContent, ms_date as msDate
-	from message
-	where m_no = #{mNo}
-</select>
--->
-<!--  
-<resultMap 	id="studentAssociateAddressAddressMapperResultMap" 
-				type="com.mybatis3.domain.Student" >
-		<result column="STUD_ID" property="studId"/>
-		<result column="NAME" property="name"/>
-		<result column="EMAIL" property="email"/>
-		<result column="dob" property="dob"/>
-		<association property="address"
-					 resultMap="com.mybatis3.mapper.AddressMapper.addressResultMap"
-					 autoMapping="true">	
-		</association>		
-	</resultMap>
-	
-	<resultMap 	id="studentExtendsWithAddressResultMap" 
-				type="com.mybatis3.domain.Student"
-				extends="studentResultMap" >
-		<result column="ADDR_ID" property="address.addrId"/>
-		<result column="STREET" property="address.street"/>
-		<result column="STATE" property="address.state"/>
-		<result column="CITY" property="address.city"/>
-		<result column="ZIP" property="address.zip"/>
-		<result column="COUNTRY" property="address.country"/>
-	</resultMap>	
--->
-
-<!-- 메시지&멤버 조인 resultMap 
-<resultMap id="messageResult"
-		   type="com.itwill.staily.mypage.model.dto.Message" 
-		   autoMapping="true">
-	<association property="member"
-				 javaType="com.itwill.staily.util.Member"
-				 autoMapping="true">
-	</association>
-	
-</resultMap>
--->
-<!-- 메시지 화면 출력 
-<select id="selectMessageList"
-		parameterType="int"
-		resultMap="messageResult">
-	select ms.ms_no, ms.m_no, ms.ms_title, ms.ms_content, ms.ms_date, m.m_id 
-	from message ms
-	join member m
-	on m.m_no = ms.m_no
-	where m.m_no = #{mNo}
-</select>
--->
-
 <!-- 하나출력 -->
 <select id="selectOne"
 		parameterType="int"

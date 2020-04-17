@@ -38,4 +38,17 @@
 #dataTable_info{
 	display : none;
 }
+/*
+.dataTables_empty {
+	display : none;
+}
+*/
+#noId {
+	color : #ff0000; 
+}
+
+/*Member*/
+#memberInfoFrm .error_validate{
+	color : #ff0000; 
+}
 

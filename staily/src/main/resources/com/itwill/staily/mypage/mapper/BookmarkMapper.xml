@@ -24,32 +24,7 @@
 	 on b.p_no = p.p_no
 	 where b.m_no = #{mNo}
 </select>
-<!-- 리스트출력 
-<select id="selectList"
-		parameterType="int"
-		resultType="com.itwill.staily.mypage.model.dto.Bookmark">
-	select *
-	from product p join bookmark b
-	on b.m_no = p.m_no
-	join work w
-	on p.w_no = w.w_no
-	where p.m_no = #{mNo}
-</select>
--->
-<!-- resultMap만들기 
-	<resultMap id="studentResultMap" type="com.mybatis3.domain.Student">
-		<result column="stud_id" property="studId"/>
-		<result column="name" property="name"/>
-		<result column="email" property="email"/>
-		<result column="dob" property="dob"/>
-	</resultMap>
-	
-	<resultMap type="" id="bookmarkResultMap">
-	
-	</resultMap>
 
-
--->
 
 <!-- delete -->
 <delete id="deleteBookmark"

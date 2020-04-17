@@ -59,18 +59,24 @@ public class MypageController {
 		Member member;
 		try {
 			Integer mNo = (Integer)session.getAttribute("userNo");
-			if(mNo==null) {
-				mNo = 7;
-			}
 			member = mypageService.selectOne(mNo);
+			String phn = member.getmPhone();
+			String phn1 = phn.substring(0,3);
+			String phn2 = phn.substring(3,7);
+			String phn3 = phn.substring(7,11);
 			if(member.getmType().equals("M")) {
 				model.addAttribute("member", member);
+				model.addAttribute("phn1", phn1);
+				model.addAttribute("phn2", phn2);
+				model.addAttribute("phn3", phn3);
+				
 			}else if(member.getmType().equals("C")) {
 				Member memberCompany = mypageService.selectMemberCompany(mNo);
 				model.addAttribute("member", memberCompany);
-				System.out.println(memberCompany);
+				model.addAttribute("phn1", phn1);
+				model.addAttribute("phn2", phn2);
+				model.addAttribute("phn3", phn3);
 			}
-			session.setAttribute("mNo", mNo);
 			return "mypage/member";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -216,6 +222,40 @@ public class MypageController {
 	//친구추가
 	@RequestMapping("/friend_create")
 	@ResponseBody
+	public Object friend_create(HttpSession session,
+								@RequestParam("mNo") int fNo,
+								@RequestParam("mId") String mId) throws Exception{
+		Map<String,Object> result = new HashMap<String,Object>();
+		int mNo = (Integer)session.getAttribute("userNo");
+		String checkMid = (String)session.getAttribute("userId");
+		Friend friend;
+		if(checkMid.equals(mId)) {
+			result.put("status", "M");
+			return result;
+			
+		}else {
+			int check = friendService.duplicateFriendNo(mNo,fNo);
+			if(check == 0) {
+				friendService.createFriend(fNo,mNo);
+				friend =friendService.selectFriendPk(mNo, fNo);
+				
+				result.put("status","success");
+				result.put("fPk",friend.getfPk());
+				return result;
+			}else {
+				result.put("status","D");
+				return result;
+			}
+			
+		}
+		
+	}
+	
+	
+	//친구추가
+	/*
+	@RequestMapping("/friend_create")
+	@ResponseBody
 	public String friend_create( HttpSession session,
 								 @RequestParam("mNo") int fNo,
 								 @RequestParam("mId") String mId) throws Exception {
@@ -236,7 +276,7 @@ public class MypageController {
 			
 		}
 	}
-	
+	*/
 	//친구삭제
 	@RequestMapping("/friend_delete")
 	@ResponseBody
