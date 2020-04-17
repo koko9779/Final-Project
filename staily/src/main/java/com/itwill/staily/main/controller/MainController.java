@@ -101,13 +101,13 @@ public class MainController {
 	        // 전체리스트 개수
 	        int listCnt = listService.selectProductCount(wNo);
 			
+	        System.out.println("총 게시물건수:"+listCnt);
+	        
 	        Pagination pagination = new Pagination(listCnt, curPage);
 	        
-	        //List<Work> mw = listService.selectMProductList(wNo);
-	        List<Work> mw = listService.selectMProductList(wNo,pagination.getStartIndex(),pagination.getEndIndex());
-			//List<Work> mw = listService.selectMProductList(wNo,1,2);
+	        System.out.println(pagination.getStartIndex()+"~"+pagination.getCurEndIndex());
 	        
-	        System.out.println("~~@@@@@@@@@@@@~"+mw+"~~~~~~~~~~~~~~~");
+	        List<Work> mw = listService.selectMProductList(wNo,pagination.getStartIndex(),pagination.getCurEndIndex());
 	        
 			request.setAttribute("mw", mw);
 			
@@ -141,32 +141,41 @@ public class MainController {
 	}
 	@RequestMapping(value="/worklist_select/detail", produces="application/json;charset=UTF-8")
 	@ResponseBody 
-	public String getList(@RequestParam(name="curPage",defaultValue = "1") int curPage, @RequestParam int wNo, HttpServletRequest request) throws Exception{
+	public String getList(@RequestParam(name="nextPage",defaultValue = "2") int nextPage, @RequestParam int wNo, HttpServletRequest request, HttpSession session) throws Exception{
 	    Gson gson = new Gson();
-	    List<Work> list = new ArrayList<Work>();
+	    Map map = new HashMap();
 		try {
-	    	
+			Integer userNo = (Integer)session.getAttribute("userNo");
+			List<Bookmark> bmList = null ;
+
+			if(userNo!=null) {
+				bmList = mainService.selectByBookmark(userNo);
+			}		
+			
 	        // 전체리스트 개수
 	        int listCnt = listService.selectProductCount(wNo);
 
 	        //페이지 구하기
-		    Pagination pagination = new Pagination(listCnt, curPage);
+		    Pagination pagination = new Pagination(listCnt, nextPage);
 		    
-		    System.out.println("$$$"+listCnt);
-		    System.out.println("$$$"+curPage);
-		    System.out.println("%%%%%%%%%"+pagination.getStartIndex());
-		    System.out.println("%%%%%%%%%"+pagination.getEndIndex());
+		    System.out.println(nextPage+"페이지로 넘어갑니다.");
+		    System.out.println(pagination.getStartIndex()+"~"+pagination.getCurEndIndex());
+		    System.out.println();
 		    
 		    //조회한 데이터를 가져온다.
 		    //list = listService.selectMProductList(wNo,1,2);  
-	        list = listService.selectMProductList(wNo,pagination.getStartIndex(),pagination.getEndIndex());  
-	        
-	        System.out.println("~~~~~~~~~~~~~~~"+list+"~~~~~~~~~~~~~~~");
+		    List<Work> list = listService.selectMProductList(wNo,pagination.getStartIndex(),pagination.getCurEndIndex());  
+		    int endPage = pagination.getEndPage();
+		    
+			map.put("list", list);
+			map.put("endPage",endPage);
+			map.put("userNo",userNo);
+			map.put("bmList",bmList);
 	        
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
-	    return gson.toJson(list);
+	    return gson.toJson(map);
 	}
 
 	/************RestController worklist_select/detail*******************/

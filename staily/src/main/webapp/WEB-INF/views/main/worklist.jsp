@@ -83,12 +83,12 @@
 			</div>
 					
 			<!-- 일반회원 -->
-			<article id="mwList">
+			<article class="mwList">
 				<c:forEach var="mw" items="${mw}">
 					<form id="product_${mw.product[0].pNo}" onsubmit="">
 						<h2 value="상품이름" >${mw.product[0].pName}</h2>
 						<input type="hidden" value="${userNo}" name="userNo">
-						<input type="hidden" value="${mw.product[0].wNo}" name="wNo">
+						<input type="hidden" class="wNoo" value="${mw.product[0].wNo}" name="wNo">
 						<input type="hidden" value="${mw.product[0].pNo}" name="pNo">
 						<div class="movie-poster2">
 							<img onclick="productpage(${mw.product[0].pNo})"
@@ -135,6 +135,8 @@
 					</form>
 				</c:forEach>
 			</article>
+			<div class="mwListEnd" >
+			</div>
 		</div>
 	</div>
 </div>

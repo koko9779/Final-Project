@@ -40,3 +40,6 @@ article .tag:hover {
 	border-color: #e76115;
 	background: transparent;
 }
+#mwList{
+	overflow-y:auto;
+}
