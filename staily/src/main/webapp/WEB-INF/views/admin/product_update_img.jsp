@@ -14,8 +14,9 @@ image {
 	height: 300px;
 }
 </style>
-<form id="product_detail" name="product_detail" method="post">
+<form id="product_img" name="product_img" method="post">
 	<div class="container-fluid">
+		<
 		<div class="row">
 			<div class="col-md-12"></div>
 		</div>
@@ -31,67 +32,65 @@ image {
 		<c:forEach var="product" items="${productList }">
 			<input type="hidden" name="pdNo" id="pdNo" value="${product.pdNo }">
 		</c:forEach>
-		<table class="table table-hover">
-			<colgroup>
-				<col class="col_wp25">
-				<col class="col_auto">
-			</colgroup>
-			<tbody>
-				<c:forEach var="product" items="${productList }">
-					<tr>
-						<th scope="row" class="bg-light essentia"></th>
-						<th scope="row" class="bg-light essentia"><label for="pCheck">상품선택</label>
-						</th>
-						<td class="text-left"><input type="checkbox" name="pCheck"></td>
-						<td class="text-left">
-							<div class="col">
-								<img width="350" height="200"
-									src="${pageContext.request.contextPath}${product.pdImage }">
-							</div>
-						</td>
-					</tr>
-				</c:forEach>
-				<tr>
-					<th scope="row" class="bg-light essentia"></th>
-					<th scope="row" class="bg-light essentia"><label for="pdImage">
-							상품 이미지<br>(최대 10장)
-					</label></th>
-					<td class="text-left"></td>
-					<td class="text-left">
-						<div class="col">
-							<div id="uploadScene" style="width: 100%;"></div>
-							<input type="hidden" id="realname" name="realname" /> 
-							<input type="hidden" id="filename" name="filename" /> 
-							<input type="hidden" id="filesize" name="filesize" />
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<div class="text-center">
-			<button type="submit" value="submit"
-				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
-				onclick="product_update()">수정</button>
-			<button type="button"
-				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
-				onclick="product_confirm(${productList[0].pNo})">승인</button>
-		</div>
+<table class="table table-hover">
+	<colgroup>
+		<col class="col_wp25">
+		<col class="col_auto">
+	</colgroup>
+	<tbody>
+		<c:forEach var="product" items="${productList }">
+			<tr>
+				<th scope="row" class="bg-light essentia"></th>
+				<th scope="row" class="bg-light essentia"><label for="pCheck">상품선택</label>
+				</th>
+				<td class="text-left"><input type="radio" name="pCheck"></td>
+				<td class="text-left">
+					<div class="col">
+						<img width="350" height="200"
+							src="${pageContext.request.contextPath}${product.pdImage }">
+					</div>
+				</td>
+			</tr>
+		</c:forEach>
+		<tr>
+			<th scope="row" class="bg-light essentia"></th>
+			<th scope="row" class="bg-light essentia"><label for="pdImage">
+					상품 이미지<br>(최대 10장)
+			</label></th>
+			<td class="text-left"></td>
+			<td class="text-left">
+				<div class="col">
+					<div id="uploadScene" style="width: 100%;"></div>
+					<input type="hidden" id="realname" name="realname" /> 
+					<input type="hidden" id="filename" name="filename" /> 
+					<input type="hidden" id="filesize" name="filesize" />
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<div class="text-center">
+	<button type="submit" value="submit"
+		class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2" onclick="imageUpdate()">수정</button>
+	<button type="button"
+		class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
+		onclick="window_close()">닫기</button>
+</div>
 </form>
 <%@ include file="/WEB-INF/views/admin/include/include_bottom.jsp"%>
 </body>
 <script type="text/javascript">
-window.onload = function() {
+window.onload = function() { 	
 	var option = {
 		listtype : "thumbnail",
 		fileid : "uploadScene",
-		uploadURL : "upload",
+		uploadURL : "update_img",
 		maxFileCount : 10,
 		maxFileSize : 3,
 		afterFileTransfer : afterFileTransfer
 	}
 	guManager = new guUploadManager(option);	
 }
-
 function afterFileTransfer(realname, filename, filesize) {
 
 	var realname9 = document.getElementById('realname');
@@ -102,10 +101,10 @@ function afterFileTransfer(realname, filename, filesize) {
 	filename9.value = filename;
 	filesize9.value = filesize;
 	
-	document.fff.action = "pdImage_create_action";
-	document.fff.submit();
 	
 	/*
+	document.product_img.action = "pdImage_create_action";
+	document.product_img.submit();
 	var spl = realname9.value.split('.');
 	console.log(spl);
 	
@@ -117,7 +116,7 @@ function afterFileTransfer(realname, filename, filesize) {
 	*/
 }
 
-function ImageCreate() {
+function imageUpdate() {
 	guManager.uploadFiles();
 }
 

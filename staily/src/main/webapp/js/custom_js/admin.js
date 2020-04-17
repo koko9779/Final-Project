@@ -52,7 +52,6 @@ function product_confirm(pNo) {
 	location.reload();
 }
 function imgUpdate(pNo) {
-	console.log(pNo+'피피엔에에에엔오')
 	window.open("product_update_img?" + "pNo="+ pNo, "상품이미지수정",
 	"width=685, height=685, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
 };
@@ -388,7 +387,7 @@ $(document).ready(function() {
 						  function(e) {
 							  var params = $('#work_update').serializeArray();
 							  $.ajax({
-									url: 'work_create_action',
+									url: 'work_update',
 									data: params,
 									method:'post',
 									dataType: 'text',
@@ -413,7 +412,7 @@ $(document).ready(function() {
 						  function(e) {
 							  var params = $('#work_create').serializeArray(); 
 							  $.ajax({
-								  url: 'work_update',
+								  url: 'work_create_action',
 									data: params,
 									method:'post',
 									dataType: 'text',
