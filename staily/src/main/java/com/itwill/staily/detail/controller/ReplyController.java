@@ -8,8 +8,10 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,6 +24,7 @@ import com.itwill.staily.mypage.service.FriendService;
 
 @SuppressWarnings("unused")
 @RequestMapping("/detail")
+@RestController
 public class ReplyController {
 	@Autowired
 	private ReplyService replyService;
@@ -34,64 +37,65 @@ public class ReplyController {
 	}
 	
 	@RequestMapping("/reply_list")
-	@ResponseBody
 	public List<Reply> selectReplyList(HttpServletRequest request, HttpServletResponse response, String pNo) throws Exception {
+		
 		List<Reply> rL = replyService.selectReplyList(Integer.parseInt(pNo));
 		request.setAttribute("replyList", rL);
 				
 		return rL;			
 	}
-	
+		
 	
 	@RequestMapping("/reply_create")
-	public String replyCreate(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public Reply replyCreate(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		try {			
-			String p_no = request.getParameter("pNo");
-			Integer m_no = (Integer)session.getAttribute("userNo");
-			String r_content = request.getParameter("rContent");
-
-			request.setAttribute("pNo", p_no);
+			String pNo = request.getParameter("pNo");
+			String wNo = request.getParameter("wNo");
+			Integer mNo = (Integer)session.getAttribute("userNo");
+			String rContent = request.getParameter("rContent");
+						
+			request.setAttribute("pNo", pNo);
+			Reply reply = new Reply(Integer.parseInt(pNo), mNo, rContent);
+			request.setAttribute("reply", reply);
+			request.setAttribute("wNo", wNo);
+			replyService.createReply(reply);
 			
-			Reply reply = new Reply(Integer.parseInt(p_no), m_no, r_content);
-			boolean chk = replyService.createReply(reply);
+			return reply;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			
+			return null;
 		}		
-		
-		return "product_detail#three";
 	}
-		
 	
-	/*
-	@RequestMapping("/deleteReply")
-	public ModelAndView deleteReply(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView();
+	
+	
+	@RequestMapping("/reply_delete")
+	public int deleteReply(HttpServletRequest request, HttpServletResponse response) {
 		
 		try {
-			String r_no = request.getParameter("r_no");
-			String p_no = request.getParameter("p_no");
-			String m_no = request.getParameter("m_no");
+			String rNo = request.getParameter("rNo");
+			String pNo = request.getParameter("pNo");
+			String mNo = request.getParameter("mNo");
 			
-			boolean delete = replyService.deleteReply(Integer.parseInt(r_no), Integer.parseInt(p_no), Integer.parseInt(m_no));
+			boolean delete = replyService.deleteReply(Integer.parseInt(rNo), Integer.parseInt(pNo), Integer.parseInt(mNo));
 			
 			if(delete) {
-				mv.setViewName("detailtest");
+				return 1;
+			}
+			else {
+				return 0;
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			return 0;
 		}
-		
-		return mv;
 	}
-	*/
-	/*
-	@RequestMapping("/detailtest")
-	public ModelAndView increaseReply(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView();
-		
+	
+	
+	@RequestMapping("/reply_increasereport")
+	public void increaseReport(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			Reply sR = replyService.selectReplyOne(3);
 			request.setAttribute("replyOne", sR);
@@ -103,16 +107,13 @@ public class ReplyController {
 			request.setAttribute("repo", sR.getrReport());
 			
 			if(inc && inc2) {
-				mv.setViewName("detailtest");
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	
-		return mv;
 	}
-	*/
+	
 	/*
 	@RequestMapping("/detailtest")
 	public ModelAndView createFriend(HttpServletRequest request, HttpServletResponse response) {

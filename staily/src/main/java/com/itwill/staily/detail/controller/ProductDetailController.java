@@ -44,11 +44,13 @@ public class ProductDetailController {
 			
 			String pNo = request.getParameter("pNo");
 			String wNo = request.getParameter("wNo");
+					    
 			List<ProductEx> p = productDetailService.selectProductOne(Integer.parseInt(pNo));
 			productDetailService.increaseProductView(Integer.parseInt(pNo));
 			workDetailService.increaseWorkView(Integer.parseInt(wNo));
 			
 			request.setAttribute("productOne", p);
+			request.setAttribute("wNo", wNo);
 			
 			return "detail/product_detail";
 		} catch (Exception e) {
@@ -77,12 +79,13 @@ public class ProductDetailController {
 			String pDaddress = request.getParameter("pDaddress");
 			String pScene = request.getParameter("filesize");
 			
-			System.out.println(pScene);
-			
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		    String pDate = df.format(new Date());
+						
 			String[] pdImage = request.getParameterValues("filesize2");
 					
 			ProductEx p = new ProductEx(mNo, Integer.parseInt(wNo), 
-					pName, Integer.parseInt(pPrice), pUrl, pAddress, pDaddress, pScene);
+					pName, Integer.parseInt(pPrice), pUrl, pAddress, pDaddress, pScene, pDate);
 			
 			
 			productDetailService.createProduct(p, Integer.parseInt(wNo), Integer.parseInt(wdEpisode));
@@ -210,8 +213,12 @@ public class ProductDetailController {
 			String pView = request.getParameter("pView");
 			String pScene = request.getParameter("pScene");
 			String pNo = request.getParameter("pNo");
+			
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		    String pDate = df.format(new Date());
+		    
 			ProductEx p = new ProductEx(pName, Integer.parseInt(pPrice), pUrl, 
-					pAddress, pDaddress, pCheck, Integer.parseInt(pView),
+					pAddress, pDaddress, pCheck, Integer.parseInt(pView), pDate,
 					pScene, Integer.parseInt(pNo));
 			
 			boolean create = productDetailService.updateProduct(p);

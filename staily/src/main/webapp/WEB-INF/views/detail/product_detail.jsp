@@ -82,19 +82,25 @@
 					<div id="three">
 						<div class="comments">
 							<div class="col-sm-12">
-
-								<form name="rpl" method="post">
-									<div class="form-group">
-										<label>댓글 입력</label>
-										<textarea rows="2" name="rContent" id="rContent" value=""></textarea>
-									</div>
+								<form name="rpl">
+									<c:choose>
+										<c:when test="${not empty userNo}">
+											<div class="form-group">
+												<label>댓글 입력</label>
+												<textarea rows="2" name="rContent" id="rContent"></textarea>
+											</div>
+											<div class="form-group right-align">
+												<button type="button" class="btn btn-ghost" id="createreply">작성하기</button>
+											</div>
+										</c:when>
+										<c:otherwise>
+										</c:otherwise>
+									</c:choose>
 									<input type="hidden" name="mNo" id="mNo" value="${userNo}">
-									<div class="form-group right-align">
-										<button class="btn btn-ghost" id="createreply" onClick="createReply()">작성하기</button>
-									</div>
+									<input type="hidden" name="pNoo" id="pNoo" value="${productOne.get(0).getpNo()}">
+									<input type="hidden" name="wNo" id="wNo" value="${wNo}">
 								</form>
-								<div id="reply_space">
-								</div>
+								<div id="reply_space"></div>
 							</div>
 						</div>
 					</div>
@@ -107,10 +113,10 @@
 			</div>
 		</div>
 	</div>
-	<%@ include
-		file="/WEB-INF/views/detail/include/include_product_detail_js.jsp"%>
-	<script src="${pageContext.request.contextPath}/js/custom_js/detail.js"></script>
-	<%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
-	</body>
+</div>
+<%@ include
+	file="/WEB-INF/views/detail/include/include_product_detail_js.jsp"%>
+<%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
+</body>
 
-	</html>
+</html>

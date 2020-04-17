@@ -21,19 +21,12 @@ public class Pagination {
     
     public Pagination(int listCnt, int curPage){
         
-        /**
-         * 페이징 처리 순서
-         * 1. 총 페이지수
-         * 2. 총 블럭(range)수
-         * 3. range setting
-         */
-        
         // 총 게시물 수와 현재 페이지를 Controller로 부터 받아온다.
     	
         /** 현재페이지 **/
-        setCurPage(curPage);
+    	this.curPage = curPage;
         /** 총 게시물 수 **/
-        setListCnt(listCnt);
+        this.listCnt = listCnt;
         /** 총 페이지 수 **/
         setPageCnt(listCnt);
         
@@ -103,7 +96,7 @@ public class Pagination {
 	}
 
     public void setStartIndex(int curPage) {
-        this.startIndex = (curPage-1) * pageSize;
+        this.startIndex = (curPage-1) * pageSize + 1;
     }
 
 }
