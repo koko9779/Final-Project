@@ -36,4 +36,7 @@
 	WHERE b_no = #{bNo}
 </update>
 
+<select id="isRecommmendCheck" parameterType="Map" resultType="int">
+
+</select>
 </mapper>  

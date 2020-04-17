@@ -76,3 +76,8 @@ a > img {
 #canselB {
 	margin-left: 10px;	
 }
+
+.clicked-button {
+	background-color: #e76115;
+    color: white;
+}

@@ -93,15 +93,19 @@ public class StyleCoodinationController {
 	}
 	
 	@RequestMapping("/style_detail_read")
-	public String style_view(@RequestParam String bNo, Model model) {
+	public String style_view(@RequestParam String bNo, Model model, HttpSession session) {
 		List<Board> boardOneList = new ArrayList<Board>();
 		String forwardPath ="";
 		int intBNo = Integer.parseInt(bNo);
+		int userNo;
+		
 		
 		try {
+			userNo = (int)session.getAttribute("userNo");
 			styleCoodinationService.updateViewCount(intBNo);
 			boardOneList = styleCoodinationService.findBoardOne(intBNo);
 			model.addAttribute("boardOneList", boardOneList);
+			System.out.println(boardOneList);
 			forwardPath = "style/style_detail_read";
 		} catch(Exception e) {
 			e.printStackTrace();

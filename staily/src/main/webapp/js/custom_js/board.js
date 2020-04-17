@@ -1,8 +1,27 @@
 var clone;
 var h3ReplyHeader;
+var $replyF;
 $(function() {
+	
+	
 	clone = $("#board2").clone();
 	h3ReplyHeader = $("#reply-top").clone();
+	$replyF = $("<article class='reply reply-delete' id='replyArticleH'>" +
+								"<div class='col-md-12 m-top--40'>" +
+									"<div id='replyWriteTitle' class='categories col-md-6 board-title f-s-25'></div>" +
+									"<div class='col-md-6 text-left'><span class='font-small'>.</span></div>" +
+								"</div>" +
+								"<div class='p_content m-top-50 m-bottom-30'></div>" + 
+								"<a href='news-single.html' class='btn btn-ghost'>" +
+									"<span>추천하기</span>" +
+								"</a>" +
+								"<a href='javascript:reply_delete(${board.bNo}, ${fn:length(boardOneList)});' class='btn btn-ghost sort'>" +
+									"<span>삭제</span>" +
+								"</a>" +
+								"<a href='javascript:board_and_reply_modify(${board.bNo});' class='btn btn-ghost sort'>" +
+									"<span>수정</span>" +
+								"</a>" +
+						"</article>");
 });
 
 /*
@@ -43,7 +62,6 @@ function board_delete(bNo) {
 	
 }
 function reply_write_form() {
-	//$("#boardReplyWriteF").slideToggle();
 	var display = $("#boardReplyWriteF").css("display");
 	if(display === "none") {
 		$("#boardReplyWriteF").fadeIn(500);
@@ -98,7 +116,6 @@ function board_and_reply_modify(bNo) {
 													"</div>" +
 											"</form>");	
 								$("#board").find("#bCategory").val(boardJson.bCategory);
-								
 								$( "#board" ).fadeIn( 500 );
 					        });
 				}
@@ -139,16 +156,19 @@ function reply_write() {
 				   bCategory : bCategory},
 			async : false,
 			dataType: "json",
-			success: function(replyCreate) {
-					
-					clone.find("#board_title_read").html(replyCreate.bTitle);
-					clone.find("#board_content_read").html(replyCreate.bContent);
-					clone.find("#board_content_read").html(replyCreate.mId);
-					$('#board').fadeOut( 500, function() {
-						$("#board").empty();
-						$("#board").append(clone);
-						$( "#board" ).fadeIn( 500 );
-			        });
+			success: function(replyBoard) {
+								if(replyBoard.bStep === 2) {
+									$("#board").after(h3ReplyHeader);
+								}
+								//어려워여...
+								
+								/*
+								$('#board').fadeOut( 500, function() {
+									$("#board").empty();
+									$("#board").append(clone);
+									$( "#board" ).fadeIn( 500 );
+						        });
+						        */
 			}
 		});
 	}
@@ -238,4 +258,8 @@ function board_and_reply_modify_action() {
 			}
 		});
 	}
+}
+
+function recommend() {
+	$("")
 }
