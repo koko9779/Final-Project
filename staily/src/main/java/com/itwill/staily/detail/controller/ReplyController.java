@@ -8,8 +8,10 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,6 +24,7 @@ import com.itwill.staily.mypage.service.FriendService;
 
 @SuppressWarnings("unused")
 @RequestMapping("/detail")
+@Controller
 public class ReplyController {
 	@Autowired
 	private ReplyService replyService;
@@ -36,33 +39,79 @@ public class ReplyController {
 	@RequestMapping("/reply_list")
 	@ResponseBody
 	public List<Reply> selectReplyList(HttpServletRequest request, HttpServletResponse response, String pNo) throws Exception {
+		
 		List<Reply> rL = replyService.selectReplyList(Integer.parseInt(pNo));
 		request.setAttribute("replyList", rL);
 				
 		return rL;			
 	}
 	
-	
+	/*
 	@RequestMapping("/reply_create")
-	public String replyCreate(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public ModelAndView replyCreate(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
 		try {			
-			String p_no = request.getParameter("pNo");
-			Integer m_no = (Integer)session.getAttribute("userNo");
-			String r_content = request.getParameter("rContent");
-
-			request.setAttribute("pNo", p_no);
+			String pNo = request.getParameter("pNoo");
+			String wNo = request.getParameter("wNo");
+			Integer mNo = (Integer)session.getAttribute("userNo");
+			String rContent = request.getParameter("rContent");
 			
-			Reply reply = new Reply(Integer.parseInt(p_no), m_no, r_content);
+			System.out.println(pNo);
+			System.out.println(wNo);
+			System.out.println(mNo);
+			System.out.println(rContent);
+			
+			request.setAttribute("pNo", pNo);
+			request.setAttribute("wNo", wNo);
+			
+			Reply reply = new Reply(Integer.parseInt(pNo), mNo, rContent);
 			boolean chk = replyService.createReply(reply);
+			
+			System.out.println(chk);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			
 		}		
 		
-		return "product_detail#three";
-	}
+		mv.setViewName("product_detail#three");
 		
+		return mv;
+	}
+	*/
+	
+	
+	@RequestMapping("/reply_create")
+	@ResponseBody
+	public String replyCreate(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		try {			
+			String pNo = request.getParameter("pNo");
+			String wNo = request.getParameter("wNo");
+			Integer mNo = (Integer)session.getAttribute("userNo");
+			String rContent = request.getParameter("rContent");
+			
+			System.out.println(pNo);
+			System.out.println(wNo);
+			System.out.println(mNo);
+			System.out.println(rContent);
+			
+			request.setAttribute("pNo", pNo);
+			Reply reply = new Reply(Integer.parseInt(pNo), mNo, rContent);
+			request.setAttribute("reply", reply);
+			request.setAttribute("wNo", wNo);
+			replyService.createReply(reply);
+			
+			System.out.println(reply);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		
+		return "product_detail";
+		
+	}
+	
 	
 	/*
 	@RequestMapping("/deleteReply")
