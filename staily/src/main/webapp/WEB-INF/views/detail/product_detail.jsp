@@ -90,8 +90,7 @@
 												<textarea rows="2" name="rContent" id="rContent"></textarea>
 											</div>
 											<div class="form-group right-align">
-												<button class="btn btn-ghost" id="createreply"
-													>작성하기</button>
+												<button type="button" class="btn btn-ghost" id="createreply">작성하기</button>
 											</div>
 										</c:when>
 										<c:otherwise>

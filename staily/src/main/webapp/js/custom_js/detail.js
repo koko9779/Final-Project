@@ -104,23 +104,22 @@ $("#reply").on("click", function(e) {
 
 function getReplies() {
 var pNo = $('#pNo').val();
-	
+
 	$.ajax({
 		url : "reply_list",
 		type : "POST",
 		data : {"pNo" : pNo},
 		dataType : "json",
-		async : false,
 		success : function(data) {
 			var a = '';
 
-			for (i = 1; i < data.length; i++) {
+			for (i = 0; i < data.length; i++) {
 				a += "<div class='row'>";
 				a += "<h4 class='no-underline'>" + data[i].mName;
-				a += "<button class='btn btn-ghost' style='float: right;'>삭제</button></h4>";
+				a += "<button onClick='deleteReply(" + data[i].rNo + ", " + data[i].mNo + ")' class='btn btn-ghost' style='float: right;'>삭제</button></h4>";
 				a += "<p>" + data[i].rContent + "</p>";
-				a += "<button class='btn btn-ghost' style='float: right;'>추천</button>";
-				a += "<button class='btn btn-ghost' style='float: right;'>신고</button>";
+				a += "<button onClick='incReport(" + data[i].rNo + ")' class='btn btn-ghost' style='float: right;'>신고 " + data[i].rReport + "</button>";
+				a += "<button id='recommend' class='btn btn-ghost' style='float: right;' value='" + data[i].rNo + "'>추천 " + data[i].rRecommend + "</button>";
 				a += "</div>";
 			}
 			
@@ -136,12 +135,11 @@ $('#createreply').on("click", function(e) {
 	var mNo = $('#mNo').val();
 	var rContent = $('#rContent').val();
 
-	alert(pNo + ' : ' + mNo + ' : ' + rContent + ' : ' + wNo);
+	//alert(pNo + ' : ' + mNo + ' : ' + rContent + ' : ' + wNo);
 
 	$.ajax({
 		url : "reply_create",
-		type : "GET",
-		async : false,
+		type : "post",
 		dataType : "text",
 		data : {
 			"mNo" : mNo,
@@ -149,19 +147,57 @@ $('#createreply').on("click", function(e) {
 			"pNo" : pNo,
 			"rContent" : rContent
 		},
-		success : function(data) {
-			colsole.log(data);
+		error : function(request, error) {
+	    	 alert("fail");
+	 			// error 발생 이유를 알려준다.
+	 		 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	 	},
+		success : function(data) {			
 			getReplies();
 			$('#rContent').val('');
 		}
 	});
 });
 
+function deleteReply(rNo, mNo) {
+	var replyNo = rNo;
+	var pNo = $('#pNoo').val();
+	var myNo = $('#mNo').val();
+	var memNo = mNo;
+	
+	//alert(rNo + " " + pNo + " " + mNo);
+	//alert("나 : " + myNo + " 댓글 작성자 : " + memNo);
+	
+	if(confirm("댓글을 삭제하시겠습니까?") == true) {
+		if(myNo == memNo) {
+			$.ajax({
+				url : "reply_delete",
+				data : {"rNo" : replyNo, "pNo" : pNo, "mNo" : myNo},
+				type : "post",
+				dataType : "json",
+				success : function(data) {
+					if(data == 1) {
+						alert("댓글이 삭제되었습니다.");
+						getReplies();
+					}
+					else {
+						alert("오류가 발생했습니다.");
+						getReplies();
+					}
+				}
+			});
+		}
+		else {
+			alert("다른 사람의 댓글은 삭제할 수 없습니다.");
+		}
+		
+	}
+	else {
+		return false;
+	}
+	
+}
 
-/*
-function createreply() {
-	document.rpl.action = "reply_create";
-	document.rpl.method = "post";
-	document.rpl.submit();
-};
-*/
+function incReport(rNo) {
+	
+}
