@@ -48,8 +48,10 @@ public class LoginController {
 		
 		try {
 			successMember = loginService.login(member);
+			System.out.println(successMember);
 			session.setAttribute("userId", successMember.getmId());
 			session.setAttribute("userNo", successMember.getmNo());
+			session.setAttribute("userType", successMember.getmType());
 			
 			forwardPath = "redirect:/main/index";
 		} catch (NoExistedIdException e) {

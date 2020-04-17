@@ -123,17 +123,22 @@
 									<span>답글 쓰기</span>
 							</a>
 						</div>
-					<!--  	<form name='boardWriteF' id="boardWriteF" onSubmit='return false;' class="dispaly_none" style="margin-top: 100px;">
+						<form name='boardReplyWriteF' id="boardReplyWriteF" onSubmit='return false;' class="dispaly_none" style="margin-top: 100px;">
 									 			<input type='hidden' id='bNo' name='bNo' value='" + bNo + "'>
 												<div class='row justify-content-md-center'>
 													제목
-													<input type='text' id='bTitle' name='bTitle' class='form-control'>
-													<select class='custom-select' name='bType' id='inputGroupSelect03'>
+													<input type='text' id='bTitle' name='bTitle' class='form-control title_detail empty'>
+													<select class='custom-select form-control' name='bType' id='inputGroupSelect03'>
 													<option selected value='S'>스타일코디</option>
+													</select>
+													<select class='custom-select form-control ' name='bCategory' id='bCategory'>
+														<option selected>카테고리</option>
+														<option value='M'>영화</option>
+														<option value='D'>드라마</option>
 													</select>
 												</div>
 												<div class='row justify-content-md-center'>
-													<textarea id='contents' name='bContent'></textarea>
+													<textarea id='contents' name='bContent empty' class="empty"></textarea>
 													<script>
 														CKEDITOR.replace('contents',{
 															filebrowserUploadUrl : '/staily/style/ImgUpload'
@@ -146,8 +151,13 @@
 															onclick='reply_write();'>
 														등 록
 													</button>
+													<button type='submit' id='canselB' class='btn btn-ghost'
+														style='width: 20%; font-weight: bold; margin-top: 15px;'' 
+														onclick='cansle_reply_write();'>
+														취 소
+													</button>
 												</div>
-										</form>	-->
+										</form>
 					</div>
 					
 				</div>

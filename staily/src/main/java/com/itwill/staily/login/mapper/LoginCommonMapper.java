@@ -12,5 +12,5 @@ public interface LoginCommonMapper {
 	
 	public int isExistedEmail(String mEmail);
 	
-	public int selectMNo(String mId);
+	public Member selectMNoMType(String mId);
 }

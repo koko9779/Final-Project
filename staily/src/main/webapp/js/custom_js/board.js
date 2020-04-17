@@ -42,7 +42,13 @@ function board_delete(bNo) {
 	
 }
 function reply_write_form() {
-	$("#boardWriteF").slideToggle();
+	//$("#boardReplyWriteF").slideToggle();
+	var display = $("#boardReplyWriteF").css("display");
+	if(display === "none") {
+		$("#boardReplyWriteF").fadeIn(500);
+	}else {
+		$("#boardReplyWriteF").fadeOut(500);
+	}
 }
 
 function board_and_reply_modify(bNo) {
@@ -83,6 +89,11 @@ function board_and_reply_modify(bNo) {
 																"onclick='board_and_reply_modify_action();'>" + 
 															"등 록" +
 														"</button>" +
+														"<button type='submit' id='canselB' class='btn btn-ghost' " + 
+															"style='width: 20%; font-weight: bold; margin-top: 15px;' " + 
+															"onclick='cansle_update();'>" + 
+															"취 소" +
+														"</button>" +
 													"</div>" +
 											"</form>");	
 								$("#board").find("#bCategory").val(boardJson.bCategory);
@@ -92,8 +103,51 @@ function board_and_reply_modify(bNo) {
 				}
 	});
 }
-function reply_write() {
+
+function cansle_update() {
 	
+}
+
+function cansle_reply_write() {
+	alert($("#boardReplyWriteF"));
+	$("#boardReplyWriteF").fadeOut(500);
+	$(".empty").empty();
+}
+
+
+function reply_write() {
+	CKEDITOR.instances.contents.updateElement(); 
+	if(document.boardReplyWriteF.bTitle.value === "") { 
+		alert("제목을 입력해 주세요"); 
+		return; 
+	}else if(document.boardReplyWriteF.bType.value === "분류") { 
+		alert("분류를 지정해 주세요"); 
+		return; 
+	}else if(document.boardReplyWriteF.bContent.value === "") { 
+		alert("내용을 입력해 주세요"); 
+		return; 
+	}else if(document.boardReplyWriteF.bCategory.value === "카테고리") { 
+		alert("카테고리를 지정해 주세요"); 
+		return; 
+	}else {
+		$.ajax({
+			url: "style_reply_create",
+			type: 'post',
+			data: {bNo : bNo,
+				   bTitle : bTitle,
+				   bContent : bContent,
+				   bCategory : bCategory},
+			async : false,
+			dataType: "json",
+			success: function(isCreate) {
+				if(isCreate === false) {
+					alert("답글 쓰기를 실패하였습니다");
+				}else {
+					//여기 구현해야함
+				}
+			}
+		});
+	}
 }
 
 function reply_delete(bNo, boardCount) {
@@ -140,7 +194,6 @@ function board_create() {
 	} 
 }
 
-// 이게 문제의 그 함수
 function board_and_reply_modify_action() {
 	CKEDITOR.instances.contents.updateElement(); 
 	var bNo = $("#bNo").val();
