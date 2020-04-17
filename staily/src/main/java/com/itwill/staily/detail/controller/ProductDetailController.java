@@ -46,11 +46,14 @@ public class ProductDetailController {
 			String wNo = request.getParameter("wNo");
 					    
 			List<ProductEx> p = productDetailService.selectProductOne(Integer.parseInt(pNo));
+			Work w = workDetailService.selectWorkOne(Integer.parseInt(wNo));
 			productDetailService.increaseProductView(Integer.parseInt(pNo));
 			workDetailService.increaseWorkView(Integer.parseInt(wNo));
 			
 			request.setAttribute("productOne", p);
-			request.setAttribute("wNo", wNo);
+			request.setAttribute("w", w);
+			request.setAttribute("tepisode", w.getwTepisode());
+			
 			
 			return "detail/product_detail";
 		} catch (Exception e) {
