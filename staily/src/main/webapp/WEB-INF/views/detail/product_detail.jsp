@@ -36,11 +36,6 @@
 		<%@ include file="/WEB-INF/views/include/include_work_sidebar.jsp"%>
 		<div class="col-sm-9 col-sm-push-1">
 			<h2 style="margin-bottom: 0;">이 상품이 나온 장면</h2>
-			<!--  
-			<div class="row" style="width: 850px; height: 450px">
-				<img src="${pageContext.request.contextPath}${productOne.get(0).getpScene()}">
-			</div>
-			-->
 			<img
 				src="${pageContext.request.contextPath}${productOne.get(0).getpScene()}"
 				height="450px" width="850px" style="padding: 20px;">
@@ -66,13 +61,57 @@
 						<li><a href="#three" id="reply">댓글</a></li>
 					</ul>
 					<div id="one">
-						■상품명<br> ${productOne.get(0).getpName()}<br> ■가격<br>
-						${productOne.get(0).getpPrice()}<br> ■쇼핑몰 URL<br>
-						${productOne.get(0).getpUrl()}<br>
+					<table class="table table=hover">
+						<colgroup>
+							<col class="col_wp25">
+							<col class="col_auto">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row" class="bg-light essentia"><label for="pName">상품명</label></th>
+								<td class="text-left" style="text-align: left;">
+									<div class="col">${productOne.get(0).getpName()}</div>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row" class="bg-light essentia"><label for="pPrice">가격</label></th>
+								<td class="text-left" style="text-align: left;">
+									<div class="col">${productOne.get(0).getpPrice()}</div>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row" class="bg-light essentia"><label for="pUrl">쇼핑몰 URL</label></th>
+								<td class="text-left" style="text-align: left;">
+									<div class="col"><a href='${productOne.get(0).getpUrl()}' target="_blank">${productOne.get(0).getpUrl()}</a></div>
+								</td>
+							</tr>
+							<c:if test="${not empty productOne.get(0).getpAddress()}">
+								<tr>
+									<th scope="row" class="bg-light essentia"><label for="pAddress">오프라인 주소</label></th>
+									<td class="text-left" style="text-align: left;">
+										<div class="col">${productOne.get(0).getpAddress()} ${productOne.get(0).getpDaddress()}</div>
+									</td>
+								</tr>
+							</c:if>
+							<tr>
+								<th scope="row" class="bg-light essentia"><label for="mId">작성자</label></th>
+								<td class="text-left" style="text-align: left;">
+									<div class="col">${productOne.get(0).getmId()}</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<!--  
+						■상품명<br> ${productOne.get(0).getpName()}<br> 
+						■가격<br> ${productOne.get(0).getpPrice()}<br> 
+						■쇼핑몰 URL<br> ${productOne.get(0).getpUrl()}<br>
 						<c:if test="${not empty productOne.get(0).getpAddress()}">
                         ■매장 오프라인 주소<br>
                         ${productOne.get(0).getpAddress()} ${productOne.get(0).getpDaddress()}<br>
 						</c:if>
+						■작성자<br>
+						${productOne.get(0).getmId()}<br>
+					-->
 					</div>
 					<c:if test="${not empty productOne.get(0).getpAddress()}">
 						<div id="two">

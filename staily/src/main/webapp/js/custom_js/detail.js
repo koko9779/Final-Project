@@ -119,7 +119,7 @@ var pNo = $('#pNo').val();
 				a += "<button onClick='deleteReply(" + data[i].rNo + ", " + data[i].mNo + ")' class='btn btn-ghost' style='float: right;'>삭제</button></h4>";
 				a += "<p>" + data[i].rContent + "</p>";
 				a += "<button onClick='incReport(" + data[i].rNo + ")' class='btn btn-ghost' style='float: right;'>신고 " + data[i].rReport + "</button>";
-				a += "<button id='recommend' class='btn btn-ghost' style='float: right;' value='" + data[i].rNo + "'>추천 " + data[i].rRecommend + "</button>";
+				a += "<button onClick='incRec(" + data[i].rNo + ")' class='btn btn-ghost' style='float: right;' value='" + data[i].rNo + "'>추천 " + data[i].rRecommend + "</button>";
 				a += "</div>";
 			}
 			
@@ -199,5 +199,23 @@ function deleteReply(rNo, mNo) {
 }
 
 function incReport(rNo) {
+	var myNo = $('#mNo').val();
 	
+	if(myNo == '') {
+		alert("신고하려면 로그인하세요.");
+	}
+	else {
+		
+	}
+}
+
+function incRec(rNo) {
+	var myNo = $('#mNo').val();
+	
+	if(myNo == '') {
+		alert("추천하려면 로그인하세요.");
+	}
+	else {
+		
+	}
 }
