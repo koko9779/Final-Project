@@ -160,24 +160,6 @@ public class AdminController {
 		}
 		return "admin/product_update_img";
 	}
-	@RequestMapping("/product_update")
-	@ResponseBody
-	public String productAdminUpdate(@RequestParam("pNo") int pNo,@RequestParam("mNo") int mNo,@RequestParam("wNo") int wNo
-									, @RequestParam("pName") String pName,@RequestParam("pPrice") int pPrice,@RequestParam("pURL") String pUrl
-									,@RequestParam("pAddress") String pAddress,@RequestParam("pDaddress") String pDaddress
-									,@RequestParam("pCheck") String pCheck,@RequestParam("pView") int pView
-									,@RequestParam("pDate") String pDate,@RequestParam("pScene") String pScene) {
-		Product product = new Product(pNo, mNo, wNo, pName, pPrice, pUrl, pAddress, pDaddress, pCheck, pView, pDate, pScene);
-		String result = "";
-		try {
-			adminService.updateProduct(product);
-			result="success";
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return result;
-	}
 	@RequestMapping(value = "/update_img")
 	public void upload(HttpServletResponse response, HttpServletRequest request, @RequestParam("Filedata") MultipartFile Filedata) {
 		String filename= "";
@@ -197,6 +179,25 @@ public class AdminController {
 			e.printStackTrace();
 		}
 	}
+	@RequestMapping("/product_update")
+	@ResponseBody
+	public String productAdminUpdate(@RequestParam("pNo") int pNo,@RequestParam("mNo") int mNo,@RequestParam("wNo") int wNo
+									, @RequestParam("pName") String pName,@RequestParam("pPrice") int pPrice,@RequestParam("pURL") String pUrl
+									,@RequestParam("pAddress") String pAddress,@RequestParam("pDaddress") String pDaddress
+									,@RequestParam("pCheck") String pCheck,@RequestParam("pView") int pView
+									,@RequestParam("pDate") String pDate,@RequestParam("pScene") String pScene) {
+		Product product = new Product(pNo, mNo, wNo, pName, pPrice, pUrl, pAddress, pDaddress, pCheck, pView, pDate, pScene);
+		String result = "";
+		try {
+			adminService.updateProduct(product);
+			result="success";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
 	@RequestMapping(value = "/product_confirm", method = {RequestMethod.POST,RequestMethod.GET},produces="text/plain; charset=UTF-8")
 	@ResponseBody
 	public String productAdminConfirm(@RequestParam ("pNo")int pNo,HttpServletRequest request) {
@@ -260,7 +261,6 @@ public class AdminController {
 			  							@RequestParam("wDate") String wDate, @RequestParam("wPoster") String wPoster,
 			  							@RequestParam("wTepisode") int wTepisode, HttpServletRequest request) {
 		Work work = new Work(0, wName, wCategory, wDate, wPoster, wTepisode, 0);
-		System.out.println(work);
 		String result = "";
 		try {
 			adminService.createWork(work);
