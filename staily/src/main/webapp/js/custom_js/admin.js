@@ -23,7 +23,11 @@ function workCreate(i) {
 function workCreateAction() {
 	document.getElementById("work_create").action = "work_create_action";
 	document.getElementById("work_create").submit();
-	alert("작품 등록이 완료되었습니다");
+	swal({
+		   title: "작품등록성공",
+		   text: "버튼을 클릭해주세요!",
+		   icon: "success" //"info,success,warning,error" 중 택1
+		});
 	window.opener.location.reload();
 	window.close();
 }
@@ -166,7 +170,6 @@ $(function() {
 			});
 });
 */
-
 
 $(document).ready(function() {
 					/** *****멤버 펑션 시작********** */
@@ -380,7 +383,7 @@ $(document).ready(function() {
 						  function(e) {
 							  var params = $('#work_update').serializeArray();
 							  $.ajax({
-									url: 'work_update',
+									url: 'work_create_action',
 									data: params,
 									method:'post',
 									dataType: 'text',
@@ -399,7 +402,41 @@ $(document).ready(function() {
 								 		 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 								 	}
 								});
-								
 					});
+				  $('#wCreateBtn').click(
+						  function(e) {
+							  var params = $('#work_create').serializeArray(); 
+							  $.ajax({
+								  url: 'work_update',
+									data: params,
+									method:'post',
+									dataType: 'text',
+									success: function(result) {
+										 if(result == 'success'){
+											 swal({
+												   title: "작품등록성공",
+												   text: "버튼을 클릭해주세요!",
+												   icon: "success" //"info,success,warning,error" 중 택1
+												});
+											window.opener.location.reload();
+											window.close();
+								            }else{
+								            	swal({
+													   title: "작품등록실패",
+													   text: "버튼을 클릭해주세요!",
+													   icon: "error" //"info,success,warning,error" 중 택1
+													});
+								            }
+								         },
+								     error:function(request, error) {
+								    	 swal({
+											   title: "작품등록실패",
+											   text: "버튼을 클릭해주세요!",
+											   icon: "error" //"info,success,warning,error" 중 택1
+											});
+								 		 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+								 	}
+							  });
+						  });		  
 });
 
