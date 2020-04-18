@@ -19,6 +19,8 @@ public interface ProductDetailMapper {
 	
 	public boolean createProduct(ProductEx product);
 	
+	public boolean createProductCompany(ProductEx product);
+	
 	public boolean createProductDetail(String pdImage);
 	
 	public boolean updateProduct(ProductEx product);
