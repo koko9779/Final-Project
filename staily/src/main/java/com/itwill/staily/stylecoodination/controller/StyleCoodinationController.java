@@ -97,11 +97,11 @@ public class StyleCoodinationController {
 		List<Board> boardOneList = new ArrayList<Board>();
 		String forwardPath ="";
 		int intBNo = Integer.parseInt(bNo);
-		int userNo;
+		Integer userNo;
 		
 		
 		try {
-			userNo = (int)session.getAttribute("userNo");
+			userNo = (Integer)session.getAttribute("userNo");
 			styleCoodinationService.updateViewCount(intBNo);
 			boardOneList = styleCoodinationService.findBoardOne(intBNo);
 			model.addAttribute("boardOneList", boardOneList);

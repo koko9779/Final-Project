@@ -14,7 +14,9 @@
 <!-- custom Javs Script File -->
 <script src="${pageContext.request.contextPath}/js/custom_js/member.js"></script>
 <script src="${pageContext.request.contextPath}/js/custom_js/main.js"></script>
+<!--  
 <script src="${pageContext.request.contextPath}/js/custom_js/mypage.js"></script>
+-->
  
 <script src="${pageContext.request.contextPath}/js/custom_js/detail.js"></script>
 
