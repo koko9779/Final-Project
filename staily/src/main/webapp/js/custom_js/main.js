@@ -8,16 +8,19 @@ $(document).load(function(){
 
 //page가 mwListEnd를 비추면 getList를 호출한다.
 $(window).on('scroll',function () {
+	//현재 페이지에 .mwList가 있는 경우
 	if($('.mwList').length){
+		//showLoadingDialog(false);
 	    if (checkVisible($('.mwListEnd'))&& !isVisible ) {
 	        //alert("다음 게시물 나오세요");
 	        isVisible=true;
 	        getList(page);
-	 
+
 	    }
 	}
 });
 
+//다음 게시물을 보이게 하는 함수
 function checkVisible( elm, eval ) {
     eval = eval || "object visible";
     var viewportHeight = $(window).height(); // Viewport Height
@@ -28,6 +31,7 @@ function checkVisible( elm, eval ) {
     if (eval == "above") return ((y < (viewportHeight + scrolltop)));
 }
 
+//다음 리스트 가져오기
 function getList(curPage){
 	var wNo = $('.mwList .wNoo').val();
 	var params = 'wNo='+wNo+'&nextPage='+(curPage+1);
@@ -56,7 +60,7 @@ function getList(curPage){
 					var pView = mwProduct[0].pView;
 					var pMid = mwProduct[0].mId;
 					
-					html += "<form id='product_"+pPno+"'>";
+					html += "<form id='product_"+pPno+"' style='margin:7% 0;'>";
 					html += "<h2 value='상품이름' >"+pName+"</h2>";
 					html += "<input type='hidden' value='"+userNo+"' name='userNo'>";
 					html += "<input type='hidden' value='"+wNo+"' name='wNo'>";
@@ -66,7 +70,7 @@ function getList(curPage){
 					html += " src='../images/product/scene/"+pScene+".jpg'";
 					html += " alt='"+pName+"' style='width:850px; height:450px; margin: 0;cursor: pointer;'/>";
 					html += "</div>";
-					html += "<div style='height:100px;'>";
+					html += "<div style='height:35px;'>";
 					
 					if(userNo!=null){
 						if(bmList=="" || bmList==undefined){
@@ -114,15 +118,36 @@ function getList(curPage){
 					html += "</form>";
 				};
 				/**for문 끝*********************/
-				$(".mwList").append(html); 
-				isVisible=false;
-				page++;
+				showLoadingDialog(true);
+				setTimeout(function(){
+					if(html.length){
+						$('.mwList').append(html); 
+						showLoadingDialog(false);
+						isVisible=false;
+						page++;
+					}else{
+						showLoadingDialog(false);
+						isVisible=true;
+					}
+				},2000);
             }else{
 				$(".mwList").append(html); 
 				isVisible=true;
             }
        }
     }); 
+};
+
+//다음 게시물이 보기전에 생기는 로딩이미지
+function showLoadingDialog(loadingCheck) {
+	if (loadingCheck) {
+		var dialogDivE = "<img class='loading' style='margin: 0 45%; width: 10%;' src='../images/main/Spin-1s-200px.gif'>";
+		if(!$('.loading').length){
+			$(".mwListEnd").append(dialogDivE); 			
+		}
+	} else {
+		$(".loading").remove(); 
+	}
 };
 
 
@@ -153,106 +178,130 @@ $(document).ready(function(){
 	$('#workEpisode').change(function(e){
 		console.log('#workEpisode change!!!!!!!!!!');
 		var contextPath = $("option:selected").attr("contextPath");
+		var curPage = 1;
 		var wNo = $("option:selected").attr("wNo");
 		var wdEpisode = $("option:selected").val();
-		var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode;
+		var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode+'&nextPage='+(curPage+1);
 		$.ajax({
 			url:'worklist_select/detail/episode',
-			method:'GET',
+			method:'POST',
 			data:params,
 			dataType:'json',
 			success:function(jsonData){
 				var html = "";
 				var userNo = jsonData.userNo;
 				//var episode = jsonData.mwe[0].wdEpisode;
-				
 				var bmList = jsonData.bmList;
-				
 				var mweArray = jsonData.mwe;
-				html += "<article>";
-				/***********************************/
-				
-				for (var i = 0; i < mweArray.length; i++) {
-					console.log("html length:"+html.length);
-					var mweProduct = mweArray[i].product;
-					var pMno = mweProduct[0].mNo;
-					var pPno = mweProduct[0].pNo;
-					var pScene = mweProduct[0].pScene;
-					var pName = mweProduct[0].pName;
-					var pView = mweProduct[0].pView;
-					var pMid = mweProduct[0].mId;
+				var endPage = jsonData.endPage;
+				html+="쨥";
+				/*
+				//console.log("현재 페이지"+curPage+",마지막페이지"+endPage);
+				if (curPage<=endPage){ 
+					html += "<article>";
 					
-					html += "<form id='product_"+pPno+"' onsubmit=''>";
-					html += "<h2 value='상품이름' >"+pName+"</h2>";
-					html += "<input type='hidden' value='"+userNo+"' name='userNo'>";
-					html += "<input type='hidden' value='"+wNo+"' name='wNo'>";
-					html += "<input type='hidden' value='"+pPno+"' name='pNo'>";
-					html += "<div class='movie-poster2'>";
-					html += "<img onclick='productpage("+wNo+","+pPno+")'";
-					html += " src='../images/product/scene/"+pScene+".jpg'";
-					html += " alt='"+pName+"' style='width:850px; height:450px; margin: 0;cursor: pointer;'/>";
-					html += "</div>";
-					html += "<div style='height:100px;'>";
-					
-					if(userNo!=null){
-						console.log(bmList+"북마크");
-						/////////////////////////
-						if(bmList=="" || bmList==undefined){
-							
+					for (var i = 0; i < mweArray.length; i++) {
+						console.log("html length:"+html.length);
+						var mweProduct = mweArray[i].product;
+						var pMno = mweProduct[0].mNo;
+						var pPno = mweProduct[0].pNo;
+						var pScene = mweProduct[0].pScene;
+						var pName = mweProduct[0].pName;
+						var pView = mweProduct[0].pView;
+						var pMid = mweProduct[0].mId;
+						
+						html += "<form id='product_"+pPno+"' style='margin:7% 0;'>";
+						html += "<h2 value='상품이름' >"+pName+"</h2>";
+						html += "<input type='hidden' value='"+userNo+"' name='userNo'>";
+						html += "<input type='hidden' value='"+wNo+"' name='wNo'>";
+						html += "<input type='hidden' value='"+pPno+"' name='pNo'>";
+						html += "<div class='movie-poster2'>";
+						html += "<img onclick='productpage("+wNo+","+pPno+")'";
+						html += " src='../images/product/scene/"+pScene+".jpg'";
+						html += " alt='"+pName+"' style='width:850px; height:450px; margin: 0;cursor: pointer;'/>";
+						html += "</div>";
+						html += "<div style='height:35px;'>";
+						
+						if(userNo!=null){
+							/////////////////////////
+							if(bmList=="" || bmList==undefined){
+								
+								html += "<input class='material-icons' type='image'";
+								html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
+								html += " src='../images/emptystar.png'";
+								html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>"; 
+							}else{
+								
+									console.log("login-->>>>>>>>>>>>>")
+									var cnt = 0;
+									for (var j = 0; j < bmList.length; j++) {
+										if(pPno==bmList[j].product.pNo){
+											console.log("cnt1-->>>>>>>>>>>>>")
+											cnt = 1;
+											break;
+										}
+									}
+									
+									if(cnt==1){
+										html += "<input class='material-icons' type='image'"; 
+										html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 제거'";
+										html += " src='../images/star.png'";
+										html += " onclick='select_bookmark("+userNo+","+pPno+");return false;'>";
+										console.log("cnt=====1-->>>>>>>>>>>>>")
+									}else{
+										html += "<input class='material-icons' type='image'";
+										html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
+										html += " src='../images/emptystar.png'";
+										html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>";  
+									}
+								
+							}	
+							 
+						}else{
 							html += "<input class='material-icons' type='image'";
 							html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
 							html += " src='../images/emptystar.png'";
-							html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>"; 
-						}else{
-							
-								console.log("login-->>>>>>>>>>>>>")
-								var cnt = 0;
-								for (var i = 0; i < bmList.length; i++) {
-									if(pPno==bmList[i].product.pNo){
-										console.log("cnt1-->>>>>>>>>>>>>")
-										cnt = 1;
-										break;
-									}
-								}
-								
-								if(cnt==1){
-									html += "<input class='material-icons' type='image'"; 
-									html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 제거'";
-									html += " src='../images/star.png'";
-									html += " onclick='select_bookmark("+userNo+","+pPno+");return false;'>";
-									console.log("cnt=====1-->>>>>>>>>>>>>")
-								}else{
-									html += "<input class='material-icons' type='image'";
-									html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
-									html += " src='../images/emptystar.png'";
-									html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>";  
-								}
-							
-						}	
-					}else{
-						html += "<input class='material-icons' type='image'";
-						html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
-						html += " src='../images/emptystar.png'";
-						html += " onclick='login_advice(); return false;'>";                                     
+							html += " onclick='login_advice(); return false;'>";                                     
+						}
+						
+						///////episode가 널일때 ~~ 수정
+						
+						html += "<div style='float:right;'>";
+						html += "<span value='작성자'>작성자: "+pMid+"</span>";
+						html += "<span class='categories tag' value='조회수'>조회수: "+pView+"</span>";
+						html += "<span class='categories tag' value='에피소드'>"+wdEpisode+"회</span>";
+						html += "</div>";
+						html += "</div>";
+						html += "</form>";
+						console.log("end-->>>>>>>>>>>>>")
 					}
 					
-					///////episode가 널일때 ~~ 수정
+					html += "</article>";
+					html += "<div class='.mwListEnd'></div>"
 					
+					$('#work_list_main article').remove();
+					$('#work_list_main .mwListEnd').remove();
+					$('#work_list_main').append(html);
 					
-					html += "<div style='float:right;'>";
-					html += "<span value='작성자'>작성자: "+pMid+"</span>";
-					html += "<span class='categories tag' value='조회수'>조회수: "+pView+"</span>";
-					html += "<span class='categories tag' value='에피소드'>"+wdEpisode+"회</span>";
-					html += "</div>";
-					html += "</div>";
-					html += "</form>";
-					console.log("end-->>>>>>>>>>>>>")
+					//for문 끝
+					showLoadingDialog(true);
+					setTimeout(function(){
+						if(html.length){
+							$('.mwList').append(html); 
+							showLoadingDialog(false);
+							isVisible=false;
+							page++;
+						}else{
+							showLoadingDialog(false);
+							isVisible=true;
+						}
+					},2000);
+				}else{
+					$(".mwList").append(html); 
+					isVisible=true;
 				}
-				/***************************/
-				html += "</article>";
-				
-				$('#work_list_main article').remove();
-				$('#work_list_main').append(html);
+				*/
+				$('.mwList').append(html);
 				/******************************/
 				$('.slick-carousel.newIn').not('.slick-initialized').slick({
 					autoplay: false,

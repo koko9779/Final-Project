@@ -181,32 +181,46 @@ public class MainController {
 	/************RestController worklist_select/detail*******************/
 	@RequestMapping(value="worklist_select/detail/episode", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public Map worklist_detail(@RequestParam int wNo, @RequestParam int wdEpisode,HttpSession session, HttpServletRequest request) throws Exception{
+	public String worklist_detail(@RequestParam(name="nextPage",defaultValue = "2") int nextPage,@RequestParam int wNo, @RequestParam int wdEpisode,HttpSession session, HttpServletRequest request) throws Exception{
 		StopWatch st=new StopWatch();
 		st.start();
-		Integer userNo = (Integer)session.getAttribute("userNo");
-		List<Bookmark> bmList = null ;
-
-		if(userNo!=null) {
-			bmList = mainService.selectByBookmark(userNo);
-		}
-		
-		Map map1 = new HashMap();
-		map1.put("wNo", wNo);
-		map1.put("wdEpisode", wdEpisode);
-				
-		//List<Work> cwe = listService.selectCProductListByEpisode(map1);
-		List<Work> mwe = listService.selectMProductListByEpisode(map1);
-		
-		
-		Map map2 = new HashMap();
-		//map2.put("cwe", cwe);
-		map2.put("mwe", mwe);
-		map2.put("userNo",userNo);
-		map2.put("bmList",bmList);
-		st.stop();
-		System.out.println(st.getTotalTimeMillis());
-		return map2;
+	    Gson gson = new Gson();
+	    Map map = new HashMap();
+		try {
+			Integer userNo = (Integer)session.getAttribute("userNo");
+			List<Bookmark> bmList = null ;
+			
+			if(userNo!=null) {
+				bmList = mainService.selectByBookmark(userNo);
+			}
+			
+			// 리스트 개수
+			int listCnt = listService.selectProductCountByEpisode(wNo, wdEpisode);
+			
+			//페이지 구하기
+			Pagination pagination = new Pagination(listCnt, nextPage);
+	
+			Map map1 = new HashMap();
+			map1.put("wNo", wNo);
+			map1.put("wdEpisode", wdEpisode);
+			map1.put("start",pagination.getStartIndex());
+			map1.put("end",pagination.getCurEndIndex());
+			    
+		    List<Work> mwe = listService.selectMProductListByEpisode(map1);
+		    
+		    System.out.println(nextPage+"페이지로 넘어갑니다.");
+		    System.out.println(pagination.getStartIndex()+"~"+pagination.getCurEndIndex());
+	
+		    int endPage = pagination.getEndPage();
+		    
+			map.put("mwe", mwe);
+			map.put("endPage",endPage);
+			map.put("userNo",userNo);
+			map.put("bmList",bmList);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return gson.toJson(map);
 	}
 	/************RestController create_bookmark*******************/
 	@RequestMapping(value="/create_bookmark", produces = "text/plain;charset=UTF-8")
