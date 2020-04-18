@@ -170,6 +170,52 @@ public class StyleCoodinationRestController {
 		return replyCreateB;
 	}
 	
+	@RequestMapping(value = "reply_update_action", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+	public Board reply_update_action(@ModelAttribute Board updateBoard) {
+		Board updateBoard2 = new Board();
+		int updateCount;
+		
+		try {
+			updateCount = styleCoodinationService.modifyBoardAndReply(updateBoard);
+			if(updateCount == 1) {
+				updateBoard2 = styleCoodinationService.findUpdateBoard(updateBoard.getbNo());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return updateBoard;
+	}
+	
+	@RequestMapping(value = "user_recomend", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+	public Board user_recomend_post(@ModelAttribute Board updateBoard, HttpSession session) {
+		Board b = new Board();
+		int isRecommended;
+		int userNo;
+		int count;
+		
+		if(session.getAttribute("userNo") != null) {
+			userNo = (int)session.getAttribute("userNo");
+			updateBoard.setmNo(userNo);
+		
+			isRecommended = styleCoodinationService.isRecommendCheck(updateBoard);
+			if(isRecommended == 1) {
+				styleCoodinationService.deleteRec(updateBoard);
+				b.setbContent("d");
+			}else {
+				styleCoodinationService.insertRec(updateBoard);
+				b.setbContent("i");
+			}
+			count = styleCoodinationService.totRec(updateBoard);
+			b.setBdCount(count);
+		}else {
+			b.setbContent("login");
+		}
+		
+		return b;
+	}
+	
+	
+	
 	/*
 	@PostMapping(value = "style_recommend", produces = "application/json;charset=UTF-8")
 	public Board style_recommend() {

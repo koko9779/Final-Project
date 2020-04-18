@@ -25,8 +25,15 @@ public interface ReplyManageMapper {
 	//추천수 올리기
 	public int updateRecommend(int bNo) throws Exception;
 
-	public Boolean isRecommmendCheck(int bNo, int userNo);
 	
 	public int totalRec(int bNo);
+
+	public int isRecommmendCheck(Board b);
+
+	public void deleteRec(Board updateBoard);
+
+	public void insertRec(Board updateBoard);
+
+	public int selectTotRec(Board updateBoard);
 		
 }

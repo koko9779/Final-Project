@@ -31,6 +31,10 @@
 	padding-bottom: 25px;
 }
 
+.border-b-1-d8d8d8{
+	border-bottom: 1px solid #d8d8d8;
+}
+
 .dispaly_none {
 	display: none;
 }
@@ -53,6 +57,10 @@ float:left;
 
 .p-top-21 {
     padding-top: 21px;
+}
+
+.p-b-25 {
+    padding-bottom: 25px;
 }
 
 .p-top-7 {

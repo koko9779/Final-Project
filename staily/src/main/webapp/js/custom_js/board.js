@@ -5,7 +5,8 @@ var $replyF;
 $(function() {
 	
 	clone = $("#board2").clone();
-	h3ReplyHeader = $("#reply-top").clone();
+	h3ReplyHeader = $("<h3 class='board-top reply-delete m-top-50' id='reply-top'>스타일 답변</h3>");
+	/*
 	$replyF = $("<article class='reply reply-delete' id='replyArticleH'>" +
 								"<div class='col-md-12 m-top--40'>" +
 									"<div id='replyWriteTitle' class='categories col-md-6 board-title f-s-25'></div>" +
@@ -22,6 +23,7 @@ $(function() {
 									"<span>수정</span>" +
 								"</a>" +
 						"</article>");
+	*/
 	console.log(clone);
 });
 
@@ -63,12 +65,24 @@ function board_delete(bNo) {
 	
 }
 function reply_write_form() {
-	var display = $("#boardReplyWriteF").css("display");
-	if(display === "none") {
-		$("#boardReplyWriteF").fadeIn(500);
-	}else {
+	
 		$("#boardReplyWriteF").fadeOut(500);
-	}
+		$("#boardReplyUpdateF").fadeOut(500, function() {
+			var bNoinput = $("#boardReplyUpdateF").find("#form_board_no").val();
+			$("#boardReplyUpdateF").remove();
+			$("#board_" + bNoinput).fadeIn( 500 );
+			
+		});
+	
+		var display = $("#boardReplyWriteF").css("display");
+		if(display === "none") {
+			$("#boardReplyWriteF").find("#repBTitle").val("");
+			CKEDITOR.instances.recContents.setData("");
+			$("#boardReplyWriteF").fadeIn(500);
+		}else {
+			$("#boardReplyWriteF").fadeOut(500);
+		}
+
 }
 
 function board_and_reply_modify(bNo) {
@@ -134,7 +148,7 @@ function cancel_reply_write() {
 
 
 function reply_write() {
-	CKEDITOR.instances.contents.updateElement(); 
+	CKEDITOR.instances.recContents.updateElement(); 
 	 var queryString = $("form[name=boardReplyWriteF]").serialize();
 
 	var boardBNo = $("#updateBNo").val();
@@ -152,40 +166,155 @@ function reply_write() {
 			async : false,
 			dataType: "json",
 			success: function(replyBoard) {
-								if(replyBoard.bStep === 2) {
-									
+						var replyCount = $(".reply").length;
 									$('#boardReplyWriteF').fadeOut( 500, function() {
-										$("#board").after(h3ReplyHeader);
-										
-										"<article class='reply reply-delete reply_write' id='board_" + replyBoard.bNo + "'>" +
+										if(replyCount === 0) {
+											$("#board").after(h3ReplyHeader.clone().attr("style","display: none;"));
+										}
+										$("#reply-top").after(
+										"<article class='reply reply-delete reply_write' id='board_" + replyBoard.bNo + "' style='display: none;'>" +
 												"<div class='col-md-12 m-top--40'>" +
-												"<div class='categories col-md-6 board-title f-s-25'>${board.bTitle}</div>" +
-												"<div class='col-md-6 text-left'><span class='font-small'>${board.mId}.${board.bDate}</span></div>" +
+												"<div class='categories col-md-6 board-title f-s-25'>" + replyBoard.bTitle +"</div>" +
+												"<div class='col-md-6 text-left'><span class='font-small'>" + replyBoard.mId + "." + replyBoard.bDate + "</span></div>" +
 												"</div>" +
 												"<div class='p_content m-top-50 m-bottom-30' id='board_content_read'>" +
-													//${board.bContent}
+													replyBoard.bContent +
 												"</div>" + 
-												"<a href='javascript:recommend(${board.bNo}, ${board.mId});' class='btn btn-ghost clicked-button'>" +
-													"<span>추천하기</span>" +
+												"<a href='javascript:recommend(" + replyBoard.bNo + ");' class='btn btn-ghost search-rec'>" +
+													"<span>추천하기</span><span class='total_bd_count'>0</span>" +
 												"</a>" +
-												"<a href='javascript:reply_delete(${board.bNo}, ${fn:length(boardOneList)});' class='btn btn-ghost sort'>" +
+												"<a href='javascript:reply_delete(" + replyBoard.bNo + ");' class='btn btn-ghost sort'>" +
 													"<span>삭제</span>" +
 												"</a>" +
-												"<a href='javascript:board_and_reply_modify(${board.bNo});' class='btn btn-ghost sort'>" +
+												"<a href='javascript:reply_update(" + replyBoard.bNo + ");' class='btn btn-ghost sort'>" +
 													"<span>수정</span>" +
 												"</a>" +
-										"</article>"
-										
-										$( "" ).fadeIn( 500 );
+										"</article>");
+										$("#reply-top").fadeIn( 500 );
+										$("#board_" + replyBoard.bNo).fadeIn( 500 );
 							        });
-								}
 			}
 		});
 	}
 }
 
-function reply_delete(bNo, boardCount) {
+function recommend(bNo) {
+	$.ajax({
+		url: "user_recomend",
+		type: 'post',
+		data: {"bNo" : bNo},
+		async : false,
+		dataType: "json",
+		success: function(board) {
+			if(board.bContent === "login") {
+				var isOk = confirm("로그인 후 이용 가능합니다\n" +
+					  				"로그인 하시겠습니까?");
+				if(isOk) {
+					document.location.href="../login/login";
+				}
+					
+			} else {
+				if(board.bContent === "i") {
+					$("#board_" + bNo).find(".search-rec").addClass("clicked-button");
+					$("#board_" + bNo).find(".total_bd_count").text(board.bdCount);
+				}else if(board.bContent === "d") {
+					$("#board_" + bNo).find(".search-rec").removeClass("clicked-button");
+					$("#board_" + bNo).find(".total_bd_count").text(board.bdCount);
+				}
+			}
+		}
+	});
 	
+	
+}
+
+
+function reply_update(bNo) {
+	$("#boardReplyWriteF").fadeOut(500);
+	$("#boardReplyUpdateF").fadeOut(500, function() {
+		var bNoinput = $("#boardReplyUpdateF").find("#form_board_no").val();
+		$("#boardReplyUpdateF").remove();
+		$("#board_" + bNoinput).fadeIn( 500 );
+		
+	});
+	
+	$.ajax({
+		url: "board_one_for_udate_read",
+		type: 'post',
+		data: {"bNo" : bNo},
+		async : false,
+		dataType: "json",
+		success: function(board) {
+			$("#board_" + bNo).fadeOut( 500, function() {
+				$("#board_" + bNo).after($("<form name='boardReplyUpdateF' id='boardReplyUpdateF' onSubmit='return false;' class='dispaly_none border-b-1-d8d8d8 p-b-25' style='margin-top: 100px; display:none;'>" +
+						"<input type='hidden' id='form_board_no' name='bNo'  value='"+ board.bNo +"'/>" + 						
+						"<div class='row justify-content-md-center'>" +
+												"제목" +
+												"<input type='text' id='repUpBTitle' name='bTitle' class='form-control title_detail empty' value='" + board.bTitle + "' >" +
+												"<select class='custom-select form-control' name='bType' id='repUpBType'>" +
+												"<option selected value='S' >스타일코디</option>" +
+												"</select>" +
+											"</div>" +
+											"<div class='row justify-content-md-center'>" +
+												"<textarea id='recUpContents' name='bContent' class='empty'>" + board.bContent  + "</textarea>" +
+												"<script>" +
+													"CKEDITOR.replace('recUpContents',{" +
+														"filebrowserUploadUrl : '/staily/style/ImgUpload'" +
+													"});" +
+												"</script>" +
+											"</div>" +
+											"<div class='row justify-content-md-center'>" +
+												"<button type='submit' class='btn btn-ghost'" +
+														"style='width: 20%; font-weight: bold; margin-top: 15px;'" +
+														"onclick='reply_update_action();'>" +
+													"등 록" +
+												"</button>" +
+												"<button type='submit' id='canselB' class='btn btn-ghost'" +
+													"style='width: 20%; font-weight: bold; margin-top: 15px;'" + 
+													"onclick='();'>" +
+													"취 소" +
+												"</button>" +
+											"</div>" +
+										"</form>"));
+				$("#boardReplyUpdateF").fadeIn( 500 );
+			});
+		}
+});
+}
+
+
+function reply_update_action() {
+	CKEDITOR.instances.recUpContents.updateElement(); 
+	 var queryString = $("form[name=boardReplyUpdateF]").serialize();
+
+	if(document.boardReplyUpdateF.bTitle.value === "") { 
+		alert("제목을 입력해 주세요"); 
+		return; 
+	}else if(document.boardReplyUpdateF.bContent.value === "") { 
+		alert("내용을 입력해 주세요"); 
+		return; 
+	}else {
+		$.ajax({
+			url: "reply_update_action",
+			type: 'post',
+			data: queryString,
+			async : false,
+			dataType: "json",
+			success: function(replyBoard) {
+				$("form[name=boardReplyUpdateF]").fadeOut(500, function() {
+					$("form[name=boardReplyUpdateF]").remove();
+					$("#board_"+replyBoard.bNo).find(".board-title").text(replyBoard.bTitle);
+					$("#board_"+replyBoard.bNo).find(".p_content").html(replyBoard.bContent);
+					$("#board_"+replyBoard.bNo).fadeIn(500);
+				});
+				
+			}
+		})
+	};
+}
+
+function reply_delete(bNo) {
+	var replyCount = $(".reply").length;
 	$.ajax({
 		url: "style_reply_delete_action",
 		type: 'post',
@@ -193,15 +322,17 @@ function reply_delete(bNo, boardCount) {
 		async : false,
 		dataType: "json",
 		success: function(isDelete) {
-			alert(boardCount);
 			if(isDelete === false) {
 				alert("댓글 삭제에 실패하였습니다");
 			}else {
-				if(boardCount === 2) {
-					$(".reply-delete").fadeOut();
-				}else {
-					$("#board_"+bNo).fadeOut();
-					
+				if(replyCount === 1) {
+					$(".reply-delete").fadeOut(500, function() {
+						$(".reply-delete").remove();
+					});
+				}else if(replyCount >= 2) {
+					$("#board_"+bNo).fadeOut(500, function() {
+						$("#board_"+bNo).remove();
+					});
 				}
 			}
 		}

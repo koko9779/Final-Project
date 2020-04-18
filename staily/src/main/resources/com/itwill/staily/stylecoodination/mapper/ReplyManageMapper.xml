@@ -36,13 +36,33 @@
 	WHERE b_no = #{bNo}
 </update>
 
-<select id="isRecommmendCheck" parameterType="Map" resultType="int">
-
+<select id="isRecommmendCheck" parameterType="Board" resultType="int">
+	SELECT count(*)
+	FROM board_detail
+	WHERE m_no = #{mNo}
+	AND b_no = #{bNo}
 </select>
 
 <select id="totalRec" parameterType="int" resultType="int">
-SELECT count(*)
-FROM board_detail
-WHERE b_no = #{bNo}
+	SELECT count(*)
+	FROM board_detail
+	WHERE b_no = #{bNo}
+</select>
+
+<delete id="deleteRec">
+	DELETE FROM board_detail 
+	WHERE m_no = #{mNo} 
+	AND b_no = #{bNo}
+</delete>
+
+<insert id="insertRec">
+	INSERT INTO board_detail (b_no, m_no) 
+	VALUES (#{bNo}, #{mNo})
+</insert>
+
+<select id="selectTotRec" resultType="int">
+	SELECT count(*)
+	FROM board_detail
+	WHERE b_no = #{bNo}
 </select>
 </mapper>  

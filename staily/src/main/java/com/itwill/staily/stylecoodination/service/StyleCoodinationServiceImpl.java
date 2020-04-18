@@ -26,6 +26,9 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 	
 	@Override
 	public int modifyBoardAndReply(Board updateBoard) throws Exception{
+		if(updateBoard.getbCategory() == null) {
+			updateBoard.setbCategory("");
+		}
 		return boardCommonMapper.updateBoardAndReply(updateBoard);
 	}
 	
@@ -62,7 +65,7 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 		createCount = replyManageMapper.createReply(replyBoard);
 		// 4. 작성이 잘 되었으면 board 반환
 		if(createCount == 1) {
-			writeReplyB = boardCommonMapper.selectBoardOrReply(mNo);
+			writeReplyB = boardCommonMapper.selectBoardOrReply(replyBoard.getbGroupNo());
 		}
 		return writeReplyB;
 	}
@@ -93,8 +96,13 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 	}
 	
 	@Override
-	public List<Board> findBoardOne(int bNo) {
-		return viewMapper.selectBoardOne(bNo);
+	public List<Board> findBoardOne(int bNo, int userNo) {
+		Board b = new Board();
+		b.setbNo(bNo);
+		b.setmNo(userNo);
+		System.out.println(userNo);
+		
+		return viewMapper.selectBoardOne(b);
 	}
 
 	
@@ -140,8 +148,24 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 	}
 
 	@Override
-	public Boolean isRecommendCheck(int bNo, int userNo) {
-		return replyManageMapper.isRecommmendCheck(bNo, userNo);
+	public int isRecommendCheck(Board b) {
+		return replyManageMapper.isRecommmendCheck(b);
 	}
+
+	@Override
+	public void deleteRec(Board updateBoard) {
+		 replyManageMapper.deleteRec(updateBoard);
+	}
+
+	@Override
+	public void insertRec(Board updateBoard) {
+		replyManageMapper.insertRec(updateBoard);
+	}
+
+	@Override
+	public int totRec(Board updateBoard) {
+		return replyManageMapper.selectTotRec(updateBoard);
+	}
+
 
 }

@@ -7,7 +7,8 @@
 	FROM board B
 	JOIN member M
 	ON (B.m_no = M.m_no)
-	WHERE b_no = #{bNo}
+	WHERE B_GROUPNO = #{bGroupNo}
+	AND b_step = 2
 </select>	
 	
 <select id="selectMNo" parameterType="String" resultType="int">
