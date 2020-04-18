@@ -93,10 +93,10 @@ public class ProductDetailController {
 			int companyChk = productDetailService.checkCompany(mNo);
 			
 			if(companyChk == 1) {
-				productDetailService.createProduct(p, Integer.parseInt(wNo), Integer.parseInt(wdEpisode));
+				productDetailService.createProductCompany(p, Integer.parseInt(wNo), Integer.parseInt(wdEpisode));
 			}
 			else {
-				productDetailService.createProductCompany(p, Integer.parseInt(wNo), Integer.parseInt(wdEpisode));
+				productDetailService.createProduct(p, Integer.parseInt(wNo), Integer.parseInt(wdEpisode));
 			}
 				
 			productDetailService.createProductDetail(pdImage);				
@@ -119,8 +119,8 @@ public class ProductDetailController {
 			@RequestParam("Filedata") MultipartFile Filedata) { 
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
 		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
-		File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
-		//File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
+		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
+		File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
 		
 		try {
 			
@@ -138,8 +138,8 @@ public class ProductDetailController {
 			@RequestParam("Filedata") MultipartFile Filedata) { 
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
 		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
-		File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
-		//File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
 		
 		try {
 			

@@ -20,7 +20,6 @@ function productCreate() {
 	guManager.uploadFiles();
 	document.createP.action = "product_create_action";
 	document.createP.method = "POST";
-	document.createP.submit();
 	alert("상품 등록이 완료되었습니다.");	
 };
 

@@ -62,7 +62,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 			@Param("wdEpisode") int wdEpisode) throws Exception {
 		boolean check = false;
 		
-		boolean p = productDetailMapper.createProduct(product);
+		boolean p = productDetailMapper.createProductCompany(product);
 		boolean wd = workDetailMapper.createWorkDetail(wNo, wdEpisode);
 		
 		if(p && wd) {
