@@ -224,37 +224,21 @@ $('#searchDropdwon a:nth-child(1)').click(function(e){
 	e.preventDefault();
 	var html = "";
 	var params = {
-			"mNo" : $('#mNo').attr('value'),
-			"mId" : $('#mId').attr('value')
+			"mNo" : $('#searchMessage').attr('value'),
+			"mId" : $('#addFriend').attr('value')
 	}
-	
-	var mNo = $('#mNo').attr('value');
-	var mId = $('#mId').attr('value');
-	
-	alert(mNo + " ==== " + mId);
-	
+		
 	$.ajax({
-		url : "friend_create",
+		url : "../mypage/friend_create",
 		data : params,
 		dataType : "json",
 		success : function(result){
 			if(result.status == 'success'){
-				alert('친구추가완료');
-				html += '<tr>'
-				html += "<td><input type='checkbox' name='friend_check' value='"+result.fPk+"'>"+"</td>"
-                html += '<td >'
-                html += '<div class="dropdown">'
-				html += '<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">'+$('#addFriend').attr('value')
-				html += '</button>'
-				html += '<div class="dropdown-menu" id="friendDropdown">'
-				html += "<a class='dropdown-item' href='#' value='"+$('#searchMessage').attr('value')+"'>쪽지보내기</a>"	 
-				html += "<a class='dropdown-item' href='#' value='"+$('#addFriend').attr('value')+"'>쪽지보관함</a>"		  	
-				html += '</div> </div></td></tr>'		  	
+				alert('친구 추가 완료');
 
-				$('.addFriendDiv').append(html); 
 				//location.reload();
 			}else if(result.status == 'D'){
-				alert('이미 친구추가된 회원입니다');
+				alert('이미 친구 추가된 회원입니다');
 			}else if(result.status =='M'){
 				alert('본인은 친구추가가 불가능합니다');
 			}
@@ -265,4 +249,39 @@ $('#searchDropdwon a:nth-child(1)').click(function(e){
 		}
 		
 	});
+});
+
+$('#searchword').on("click", function(e){
+	var mId = $('#searchword').val();
+	
+	var html = ""
+		$.ajax({
+    		url : "../mypage/friend_find",
+    		data : "mId="+mId,
+    		dataType : "json",
+    		success : function(result){
+    			if(result.status == 'success'){
+    				//$('#results').prepend('<button class="btn btn-primary dropdown-toggle add" data-toggle="dropdown">'
+    				//							+result.mId+'</button>')	
+    				$('#searchMessage').attr('value',result.mNo);
+    				$('#addFriend').attr('value',result.mId);
+    				
+    			}else{
+    				$('#noId').text('회원 아이디를 다시 확인해주세요');	
+    				//alert('회원 아이디를 다시 확인해주세요');
+    			}
+    		},
+    		error : function(){
+    			location.href = '404';
+    		}
+    	});
+	    	
+	
+});
+
+//쪽지 보내기
+$('#searchDropdwon a:nth-child(2)').click(function(e){
+	e.preventDefault();
+	var noV = $(this).attr('value');
+	window.open("../mypage/message?mNo="+noV, "_blank","width=750, height=5500, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 });
