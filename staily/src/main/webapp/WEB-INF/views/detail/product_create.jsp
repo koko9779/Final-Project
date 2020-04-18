@@ -88,7 +88,7 @@
 					</tr>
 					<tr>
 						<th colspan="2" style="text-align: center;">
-						<img src="${pageContext.request.contextPath}${workOne.getwPoster()}" width='280px' height='400px'></th>
+						<img src='https://image.tmdb.org/t/p/w600_and_h900_bestv2/${workOne.wPoster}' width='280px' height='400px'></th>
 					</tr>
 				</tbody>
 			</table>
@@ -200,4 +200,22 @@
 </div>
 </body>
 <script src="${pageContext.request.contextPath}/js/custom_js/detail.js"></script>
+<script>
+
+window.onload = function() {
+	
+	var option = {
+		listtype : "thumbnail",
+		fileid : "uploadScene",
+		uploadURL : "upload",
+		maxFileCount : 1,
+		maxFileSize : 3,
+		afterFileTransfer : afterFileTransfer
+	}
+	
+	guManager = new guUploadManager(option);	
+}
+
+
+</script>
 </html>

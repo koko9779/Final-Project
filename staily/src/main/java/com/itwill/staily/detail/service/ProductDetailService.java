@@ -12,6 +12,9 @@ public interface ProductDetailService {
 	public boolean createProduct(ProductEx product, @Param("wNo") int wNo, 
 			@Param("wdEpisode") int wdEpisode) throws Exception;
 	
+	public boolean createProductCompany(ProductEx product, @Param("wNo") int wNo, 
+			@Param("wdEpisode") int wdEpisode) throws Exception;
+	
 	public boolean createProductDetail(String[] pdImage) throws Exception;
 	
 	public boolean updateProduct(ProductEx product) throws Exception;
@@ -26,7 +29,4 @@ public interface ProductDetailService {
 	
 	public boolean increaseProductView(int pNo) throws Exception;
 	
-	public int pNo_nextval() throws Exception;
-	
-	public int pNo_currval() throws Exception;
 }

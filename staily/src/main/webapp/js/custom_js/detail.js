@@ -2,19 +2,6 @@
 var guManager = null;
 var guManager2 = null;
 
-window.onload = function() {
-	
-	var option = {
-		listtype : "thumbnail",
-		fileid : "uploadScene",
-		uploadURL : "upload",
-		maxFileCount : 1,
-		maxFileSize : 3,
-		afterFileTransfer : afterFileTransfer
-	}
-	
-	guManager = new guUploadManager(option);	
-}
 
 function afterFileTransfer(realname, filename, filesize) {
 
@@ -29,11 +16,6 @@ function afterFileTransfer(realname, filename, filesize) {
 	document.createP.submit();
 }
 
-function pdImageCreate() {
-	document.createP.action = "pdImage_create";
-	document.createP.method = "post";
-}
-
 function productCreate() {
 	guManager.uploadFiles();
 	document.createP.action = "product_create_action";
@@ -41,6 +23,13 @@ function productCreate() {
 	document.createP.submit();
 	alert("상품 등록이 완료되었습니다.");	
 };
+
+function pdImageCreate() {
+	document.createP.action = "pdImage_create";
+	document.createP.method = "post";
+}
+
+
 
 function work_search() {
 	location.href = 'work_select';

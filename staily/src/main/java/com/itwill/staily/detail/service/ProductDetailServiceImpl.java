@@ -55,6 +55,25 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 		
 		return check;
 	}
+	
+	@Override
+	@Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.MANDATORY)
+	public boolean createProductCompany(ProductEx product, @Param("wNo") int wNo, 
+			@Param("wdEpisode") int wdEpisode) throws Exception {
+		boolean check = false;
+		
+		boolean p = productDetailMapper.createProduct(product);
+		boolean wd = workDetailMapper.createWorkDetail(wNo, wdEpisode);
+		
+		if(p && wd) {
+			check = true;								
+		}
+		else {
+			check = false;
+		}
+		
+		return check;
+	}
 
 	@Override
 	public boolean createProductDetail(String[] pdImage) throws Exception {
@@ -149,13 +168,4 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 		return check;
 	}
 
-	@Override
-	public int pNo_nextval() throws Exception {
-		return productDetailMapper.pNo_nextval();
-	}
-	
-	@Override
-	public int pNo_currval() throws Exception {
-		return productDetailMapper.pNo_currval();
-	}
 }
