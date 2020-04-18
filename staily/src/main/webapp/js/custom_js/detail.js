@@ -2,6 +2,7 @@
 var guManager = null;
 var guManager2 = null;
 
+
 function afterFileTransfer(realname, filename, filesize) {
 
 	var realname9 = document.getElementById('realname');
