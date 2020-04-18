@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/admin/include/include_top.jsp"%>
-		<!-- Page Heading -->
+<!-- Page Heading -->
 <div class="col-lg-10">
 	<h1 class="h3 mb-2 text-gray-800">회원관리페이지</h1>
-		<!-- DataTales Example -->
+	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table table-bordered" id="dataTable" width="auto"
+				<table class="table table-bordered" id="dataTable" width="100%"
 					cellspacing="0">
 					<thead>
 						<tr>
@@ -52,8 +52,8 @@
 			</div>
 		</div>
 	</div>
-	</div>
-	<!-- /.container-fluid -->
+</div>
+<!-- /.container-fluid -->
 </div>
 <!-- End of Main Content -->
 

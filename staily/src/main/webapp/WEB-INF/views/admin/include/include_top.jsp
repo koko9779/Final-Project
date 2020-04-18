@@ -3,13 +3,16 @@
 <!-- Hero -->
 <div id="content_hero"
 	style="background-image: url(http://via.placeholder.com/1440x435)">
-<iframe class="ww"
-
-
-	src="https://www.youtube-nocookie.com/embed/6eEZ7DJMzuk?autoplay=1&loop=1&controls=0&vq=hd720"
-
+	<iframe
+		src="https://www.youtube-nocookie.com/embed/6eEZ7DJMzuk?autoplay=1&amp;loop=1;playlist=6eEZ7DJMzuk&controls=0&vq=hd720"
+		frameborder="0"
+		allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+		allowfullscreen="true" 
+		style="position: absolute; left: -0%; width: 100%; height: 100%; top: 0%;"></iframe>
+	<!-- 기존 YOUTUBE 설정
+	?autoplay=1&loop=1&controls=0&vq=hd720"
 	frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-	allowfullscreen style="position: absolute; width:100%; height:100%;"></iframe>
+	allowfullscreen style="position: absolute; width:100%; height:100%;" -->
 	<a href="#afterHeader" class="anchor"> <img
 		src="${pageContext.request.contextPath}/images/scroll-arrow.svg"
 		alt="Scroll down" class="scroll" />
