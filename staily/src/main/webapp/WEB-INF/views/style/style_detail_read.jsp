@@ -95,8 +95,11 @@
 						</div>
 						</article>
 						<c:if test="${fn:length(boardOneList) > 1}">
-						<h3 class="board-top reply-delete m-top-50" id="reply-top">스타일 답변</h3>
+							<h3 class="board-top reply-delete m-top-50" id="reply-top">스타일 답변</h3>
 						</c:if>
+						
+						
+						
 						<c:forEach var="board" items="${boardOneList}" begin="1" varStatus="status">
 						<article class="reply reply-delete reply_write" id="board_${board.bNo}">
 								<div class="col-md-12 m-top--40">
@@ -107,22 +110,32 @@
 								<div class="p_content m-top-50 m-bottom-30" id="board_content_read">
 									${board.bContent}
 								</div> 
-								<a href="javascript:recommend(${board.bNo}, ${board.mId});"
-								class="btn btn-ghost clicked-button">
-									<span>추천하기</span>
-								</a>
-								<a href="javascript:reply_delete(${board.bNo}, ${fn:length(boardOneList)});" class="btn btn-ghost sort">
+								<c:if test="${board.userRec == 1}">
+									<a href="javascript:recommend(${board.bNo});"
+									class="btn btn-ghost search-rec clicked-button">
+										<span>추천하기  </span><span class="total_bd_count">${board.bdCount}</span>
+									</a>
+								</c:if>
+								<c:if test="${board.userRec != 1}">
+									<a href="javascript:recommend(${board.bNo});"
+									class="btn btn-ghost search-rec">
+										<span>추천하기  </span><span class="total_bd_count">${board.bdCount}</span>
+									</a>
+								</c:if>
+								<a href="javascript:reply_delete(${board.bNo});" class="btn btn-ghost sort">
 									<span>삭제</span>
 								</a>
-								<a href="javascript:board_and_reply_modify(${board.bNo});" class="btn btn-ghost sort">
+								<a href="javascript:reply_update(${board.bNo});" class="btn btn-ghost sort">
 									<span>수정</span>
 								</a>
 						</article>
 						</c:forEach>
 						<div>
+						<c:if test="${sessionScope.userNo!=null}">
 							<a href="javascript:reply_write_form();" class="btn btn-ghost sort">
 									<span>답글 쓰기</span>
 							</a>
+						</c:if>
 						</div>
 						<form name='boardReplyWriteF' id="boardReplyWriteF" onSubmit='return false;' class="dispaly_none" style="margin-top: 100px;">
 												<input type="hidden" name="bGroupNo" value="${boardOneList[0].bNo}">
@@ -134,9 +147,9 @@
 													</select>
 												</div>
 												<div class='row justify-content-md-center'>
-													<textarea id='contents' name='bContent' class="empty"></textarea>
+													<textarea id='recContents' name='bContent' class="empty"></textarea>
 													<script>
-														CKEDITOR.replace('contents',{
+														CKEDITOR.replace('recContents',{
 															filebrowserUploadUrl : '/staily/style/ImgUpload'
 														});
 													</script>
@@ -179,11 +192,6 @@
 			</div>
 			-->
 	<%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
-	<script type="text/javascript">
-		$(function() {
-			$("")
-		});
-	</script>
 	</body>
 
 </html>

@@ -26,7 +26,7 @@ public interface StyleCoodinationService {
 
 	public List<Board> findBoardAll();
 	
-	public List<Board> findBoardOne(int bNo);
+	public List<Board> findBoardOne(int bNo, int userNo);
 	
 	public Board findUpdateBoard(int bNo);
 
@@ -44,6 +44,12 @@ public interface StyleCoodinationService {
 
 	public int findBoardReplyCategoryCount(Board b);
 
-	public Boolean isRecommendCheck(int bNo, int userNo);
+	public int isRecommendCheck(Board b);
+
+	public void deleteRec(Board updateBoard);
+
+	public void insertRec(Board updateBoard);
+
+	public int totRec(Board updateBoard);
 
 }

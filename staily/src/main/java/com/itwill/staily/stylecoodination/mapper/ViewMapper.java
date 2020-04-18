@@ -13,7 +13,7 @@ public interface ViewMapper {
 	
 	public List<Board> selectBoardAll();
 	
-	public List<Board> selectBoardOne(int bNo);
+	public List<Board> selectBoardOne(Board b);
 	
 	//수정 시에 사용할 select문
 	public Board selectUpdateBoard(int bNo);

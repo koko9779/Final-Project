@@ -32,6 +32,7 @@ public class Board {
 	private BoardDetail boardDetail; // 이미지가 들어있는 Dto
 	private String bCategory; //카테고리
 	private int userRec; //유저가 추천하기를 눌렀는지 확인하기 위한 변수
+	private int bdCount;
 	
 	public Board() {
 		// TODO Auto-generated constructor stub
@@ -42,7 +43,16 @@ public class Board {
 		return "Board [bIdx=" + bIdx + ", bNo=" + bNo + ", mNo=" + mNo + ", mId=" + mId + ", bTitle=" + bTitle
 				+ ", bContent=" + bContent + ", bGroupNo=" + bGroupNo + ", bStep=" + bStep + ", bView=" + bView
 				+ ", bRecommend=" + bRecommend + ", bType=" + bType + ", bDate=" + bDate + ", bChoice=" + bChoice
-				+ ", boardDetail=" + boardDetail + ", bCategory=" + bCategory + ", userRec=" + userRec + "\n]";
+				+ ", boardDetail=" + boardDetail + ", bCategory=" + bCategory + ", userRec=" + userRec + ", bdCount="
+				+ bdCount + "]";
+	}
+
+	public int getBdCount() {
+		return bdCount;
+	}
+
+	public void setBdCount(int bdCount) {
+		this.bdCount = bdCount;
 	}
 
 	public int getUserRec() {

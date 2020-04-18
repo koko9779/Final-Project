@@ -101,9 +101,14 @@ public class StyleCoodinationController {
 		
 		
 		try {
-			userNo = (Integer)session.getAttribute("userNo");
+			if(session.getAttribute("userNo") != null) {
+				userNo = (Integer)session.getAttribute("userNo");	
+			} else {
+				userNo = 0;				
+			}
+			
 			styleCoodinationService.updateViewCount(intBNo);
-			boardOneList = styleCoodinationService.findBoardOne(intBNo);
+			boardOneList = styleCoodinationService.findBoardOne(intBNo, userNo);
 			model.addAttribute("boardOneList", boardOneList);
 			System.out.println(boardOneList);
 			forwardPath = "style/style_detail_read";
