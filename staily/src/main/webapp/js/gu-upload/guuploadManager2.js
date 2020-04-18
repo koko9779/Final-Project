@@ -1,7 +1,6 @@
 /*
 	A simple class for manager gu-upload and SWFUpload
 */
-
 var isrun_gu = typeof FormData !== "undefined2";
 
 var getScriptURL = (function() {
@@ -157,6 +156,7 @@ guUploadManager2.prototype.transferComplete = function() {
 	if (this.afterFileTransfer) this.afterFileTransfer(this.realname, this.filename, this.filesize);
 	
 	alert('이미지가 정상적으로 등록되었습니다');
+	
 };
 
 guUploadManager2.prototype.uploadFiles = function() {

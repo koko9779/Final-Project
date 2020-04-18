@@ -95,7 +95,7 @@
 								<td>영화</td>
 							</c:otherwise>
 						</c:choose>
-                      <fmt:parseDate value="${work.wDate}" var="dateFormat" pattern="yyyy/MM/dd"/>
+                      <fmt:parseDate value="${work.wDate}" var="dateFormat" pattern="yyyy-MM-dd"/>
 					  <td><fmt:formatDate value="${dateFormat}" pattern="yyyy-MM-dd(E)" type="both"/></td>
                       <td>${work.wTepisode}부작</td>
                       <td hidden="aa">${work.wPoster}</td>
@@ -146,7 +146,7 @@ $(".btnnn").click(function() {
 		var main = document.getElementById("body");
 		
 		main.innerHTML = "이 작품이 맞습니까?<br><br>작품명 : " + name + "<br>카테고리 : " + category + "<br>처음 방영(개봉)일 : " + date +
-		"<br>전체 회차 : " + tepisode + "<br>작품 포스터<br>" + "<img src='/staily" + poster + "' width='100%'>";
+		"<br>전체 회차 : " + tepisode + "<br>작품 포스터<br>" + "<img src='https://image.tmdb.org/t/p/w600_and_h900_bestv2/" + poster + "' width='100%'>";
 		
 		$('#wNo').val(no);
 	});

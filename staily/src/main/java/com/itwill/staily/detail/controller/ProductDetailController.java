@@ -59,7 +59,7 @@ public class ProductDetailController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			
-			return "detail/product_detail";
+			return "redirect:../404";
 		}
 		
 		
@@ -90,12 +90,18 @@ public class ProductDetailController {
 			ProductEx p = new ProductEx(mNo, Integer.parseInt(wNo), 
 					pName, Integer.parseInt(pPrice), pUrl, pAddress, pDaddress, pScene, pDate);
 			
+			int companyChk = productDetailService.checkCompany(mNo);
 			
-			productDetailService.createProduct(p, Integer.parseInt(wNo), Integer.parseInt(wdEpisode));
+			if(companyChk == 1) {
+				productDetailService.createProduct(p, Integer.parseInt(wNo), Integer.parseInt(wdEpisode));
+			}
+			else {
+				productDetailService.createProductCompany(p, Integer.parseInt(wNo), Integer.parseInt(wdEpisode));
+			}
+				
 			productDetailService.createProductDetail(pdImage);				
 
 			
-			//request.setAttribute("productEx", p);				
 			
 			
 		} catch (Exception e) {
