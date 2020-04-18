@@ -26,5 +26,7 @@ public interface ReplyManageMapper {
 	public int updateRecommend(int bNo) throws Exception;
 
 	public Boolean isRecommmendCheck(int bNo, int userNo);
+	
+	public int totalRec(int bNo);
 		
 }

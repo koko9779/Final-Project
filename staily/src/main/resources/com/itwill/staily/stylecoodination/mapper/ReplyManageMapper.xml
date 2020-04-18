@@ -39,4 +39,10 @@
 <select id="isRecommmendCheck" parameterType="Map" resultType="int">
 
 </select>
+
+<select id="totalRec" parameterType="int" resultType="int">
+SELECT count(*)
+FROM board_detail
+WHERE b_no = #{bNo}
+</select>
 </mapper>  
