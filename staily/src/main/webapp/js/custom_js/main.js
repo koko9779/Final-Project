@@ -8,12 +8,14 @@ $(document).load(function(){
 
 //page가 mwListEnd를 비추면 getList를 호출한다.
 $(window).on('scroll',function () {
-    if (checkVisible($('.mwListEnd'))&& !isVisible ) {
-        alert("다음 게시물 나오세요");
-        isVisible=true;
-        getList(page);
- 
-    }
+	if($('.mwList').length){
+	    if (checkVisible($('.mwListEnd'))&& !isVisible ) {
+	        //alert("다음 게시물 나오세요");
+	        isVisible=true;
+	        getList(page);
+	 
+	    }
+	}
 });
 
 function checkVisible( elm, eval ) {
@@ -28,7 +30,6 @@ function checkVisible( elm, eval ) {
 
 function getList(curPage){
 	var wNo = $('.mwList .wNoo').val();
-	console.log(wNo);
 	var params = 'wNo='+wNo+'&nextPage='+(curPage+1);
     $.ajax({
         type : 'POST',  
@@ -41,7 +42,7 @@ function getList(curPage){
 			var bmList = jsonData.bmList;
 			var mwArray = jsonData.list;
 			var endPage = jsonData.endPage;
-			console.log("현재 페이지"+curPage+",마지막페이지"+endPage);
+			//console.log("현재 페이지"+curPage+",마지막페이지"+endPage);
 			if (curPage<=endPage){ 
 				/**for문 시작*********************************/
 				for (var i = 0; i < mwArray.length; i++) {

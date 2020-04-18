@@ -9,7 +9,7 @@
 	</resultMap>	
  	<!-- 1. 즐겨찾기한 상품 출력 -->
 	<select id="selectByBookmark" parameterType="int" resultMap="bmWithpAndpdResultMap">
-		select b.bm_no,b.m_no,b.p_no,p.p_name,p.p_scene
+		select b.bm_no,b.m_no,b.p_no,p.p_name,p.p_scene,p.w_no
 		from bookmark b
 		join product p
 		on b.p_no=p.p_no
@@ -30,7 +30,8 @@
 	<select id="selectTodayOfWork" resultType="Work">
 		select w.w_no,w.w_poster
 		from work w
-		where to_char(to_date(w.w_date),'dy')=to_char(sysdate, 'dy')
+		where to_char(to_date(w.w_date,'yyyy-mm-dd'),'dy')=to_char(sysdate, 'dy')
+		and w.w_category='D'
 	</select>
 	<!-- 4. 카테고리별 작품 출력 -->
 	<select id="selectByCategory" parameterType="String" resultType="Work">
