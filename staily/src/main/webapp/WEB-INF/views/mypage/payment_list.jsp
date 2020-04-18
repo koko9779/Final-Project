@@ -22,7 +22,7 @@
 </div>
 
 <!-- Section -->
-<div class="container section news">
+<div class="container-fluid">
 	  
 	<div class="row">
 
@@ -34,7 +34,6 @@
           <h1 class="h3 mb-2 text-gray-800">결제내역</h1>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
-            
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -49,11 +48,11 @@
                   </thead>
                   <tbody>
                   	<c:forEach var="payment" items="${data }">
-                  	 <tr style = "cursor:pointer;" onClick = " location.href='admin/'" >
+                  	 <tr>
 	                      <td>${payment.pyName}</td>
-	                      <td>${payment.pyPrice}</td>
-	                      <td>${payment.pyPeriod}</td>
-	                      <td>${payment.pyType}</td>
+	                      <td>${payment.pyPrice}원</td>
+	                      <td>${payment.pyPeriod}일</td>
+	                      <td>카카오페이</td>
 	                      <td>${payment.pyDate}</td>
                     </tr>
                   	</c:forEach>

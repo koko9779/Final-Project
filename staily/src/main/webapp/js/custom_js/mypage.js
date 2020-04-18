@@ -21,8 +21,13 @@ $(function(){
          dataType : "text",
          success : function(result){
             if(result == 'true'){
-               alert('삭제완료');
-               location.reload();
+            	swal({
+					   title: "삭제완료",
+					   text: "버튼을 클릭해주세요!",
+					   icon: "success" //"info,success,warning,error" 중 택1
+					}).then(() => {
+						location.reload();
+					});
             }else{
                location.href = '404';
             }
@@ -57,8 +62,13 @@ $(function(){
 			dataType : "text",
 			success : function(result){
 				if(result == 'true'){
-					alert('삭제완료');
-					location.reload();
+					swal({
+						   title: "삭제완료",
+						   text: "버튼을 클릭해주세요!",
+						   icon: "success" //"info,success,warning,error" 중 택1
+						}).then(() => {
+							location.reload();
+						});
 				}else{
 					location.href = '404';
 				}
@@ -87,8 +97,13 @@ $(function(){
 			dataType : "text",
 			success : function(result){
 				if(result == 'true'){
-					alert('삭제완료');
-					location.reload();
+					swal({
+						   title: "삭제완료",
+						   text: "버튼을 클릭해주세요!",
+						   icon: "success" //"info,success,warning,error" 중 택1
+						}).then(() => {
+							location.reload();
+						});
 				}else{
 					location.href = '404';
 				}
@@ -144,24 +159,37 @@ $(function(){
 			dataType : "json",
 			success : function(result){
 				if(result.status == 'success'){
-					alert('친구추가완료');
-					html += '<tr>'
-					html += "<td><input type='checkbox' name='friend_check' value='"+result.fPk+"'>"+"</td>"
-                    html += '<td >'
-                    html += '<div class="dropdown">'
-					html += '<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">'+$('#addFriend').attr('value')
-					html += '</button>'
-					html += '<div class="dropdown-menu" id="friendDropdown">'
-					html += "<a class='dropdown-item' href='#' value='"+$('#searchMessage').attr('value')+"'>쪽지보내기</a>"	 
-					html += "<a class='dropdown-item' href='#' value='"+$('#addFriend').attr('value')+"'>쪽지보관함</a>"		  	
-					html += '</div> </div></td></tr>'		  	
+					swal({
+						   title: "친구추가완료",
+						   text: "버튼을 클릭해주세요!",
+						   icon: "success" //"info,success,warning,error" 중 택1
+						}).then(() => {
+							html += '<tr>'
+								html += "<td><input type='checkbox' name='friend_check' value='"+result.fPk+"'>"+"</td>"
+			                    html += '<td >'
+			                    html += '<div class="dropdown">'
+								html += '<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">'+$('#addFriend').attr('value')
+								html += '</button>'
+								html += '<div class="dropdown-menu" id="friendDropdown">'
+								html += "<a class='dropdown-item' href='#' value='"+$('#searchMessage').attr('value')+"'>쪽지보내기</a>"	 
+								html += "<a class='dropdown-item' href='#' value='"+$('#addFriend').attr('value')+"'>쪽지보관함</a>"		  	
+								html += '</div> </div></td></tr>'		  	
 
-					$('.addFriendDiv').append(html); 
-					//location.reload();
+								$('.addFriendDiv').append(html); 
+						});
+					
 				}else if(result.status == 'D'){
-					alert('이미 친구추가된 회원입니다');
+					swal({
+						   title: "이미 친구추가된 회원입니다",
+						   text: "버튼을 클릭해주세요!",
+						   icon: "success" //"info,success,warning,error" 중 택1
+						});
 				}else if(result.status =='M'){
-					alert('본인은 친구추가가 불가능합니다');
+					swal({
+						   title: "본인은 친구추가가 불가능합니다",
+						   text: "버튼을 클릭해주세요!",
+						   icon: "success" //"info,success,warning,error" 중 택1
+						});
 				}
 				
 			},
@@ -214,7 +242,6 @@ $(function(){
 			    				
 			    			}else{
 			    				$('#noId').text('회원 아이디를 다시 확인해주세요');	
-			    				//alert('회원 아이디를 다시 확인해주세요');
 			    			}
 			    		},
 			    		error : function(){
@@ -270,6 +297,9 @@ $(function(){
 			},
 			phn3 : {
 				required : true
+			},
+			mName : {
+				required : true
 			}
 			
 		},
@@ -303,6 +333,9 @@ $(function(){
 			},
 			phn3 : {
 				required : "전화번호를 입력해주세요"
+			},
+			mName : {
+				required : "이름을 입력해주세요"
 			}
 		},
 		submitHandler:function(f){
@@ -312,8 +345,13 @@ $(function(){
 				dataType: 'text',
 				success: function(result) {
 					if(result == 'true'){
-						alert("회원정보 수정이 완료되었습니다");
-						location.reload();
+						 swal({
+							   title: "회원정보수정성공",
+							   text: "버튼을 클릭해주세요!",
+							   icon: "success" //"info,success,warning,error" 중 택1
+							}).then(() => {
+								location.reload();
+							});
 						
 					}else{
 						location.href = '404';
@@ -332,7 +370,71 @@ $(function(){
 		   return this.optional(element) ||  /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/.test(value);
 		});
 	
-	
+	/***************** 결제하기 ******************************/
+	$('.paymentBtn').click(function(e){
+		var btn = $(this);
+		var tr = btn.parent().parent();
+		var td = tr.children();
+		var pyName = td.eq(0).attr('value');
+		var pyPrice = td.eq(1).attr('value');
+		var pyPeriod = td.eq(2).attr('value');
+		var pyType = td.eq(3).attr('value');	
+
+		
+	    IMP.init('imp62215959'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+	    var msg;
+		
+	    IMP.request_pay({
+	        pg : 'kakaopay',
+	        pay_method : pyType,
+	        merchant_uid : 'merchant_' + new Date().getTime(),
+	        name : pyName,
+	        amount : pyPrice,
+	        buyer_email : 'hiphopmy@naver.com',
+	        buyer_name : 'samsung',
+	        buyer_tel : '01011111111',
+	        vat : pyPeriod,		//vat의 값을 pyPeriod의 값으로 대체한다
+	        buyer_postcode : '123-456',
+	    }, function(rsp) {
+	        if ( rsp.success ) {
+	            //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+	            $.ajax({
+	                url: "payment_complete", //cross-domain error가 발생하지 않도록 주의해주세요
+	                type: 'POST',
+	                dataType: 'text',
+	                data: {
+	                    imp_uid : rsp.imp_uid,
+	                    pyPrice : pyPrice,
+						pyName : pyName,
+						pyPeriod : pyPeriod,
+						pyType : pyType
+	                    //기타 필요한 데이터가 있으면 추가 전달
+	                },
+	                success : function(result){
+	                	if(result == 'true'){
+	                		swal({
+	     					   title: "결제완료",
+	     					   text: "버튼을 클릭해주세요!",
+	     					   icon: "success" //"info,success,warning,error" 중 택1
+	     					}).then(() => {
+		                        location.href='payment_list';
+	     					});
+
+	                	}else{
+	                		location.href = '404';
+	                	}
+	                }
+	            });
+	        } else {
+	            msg = '결제에 실패하였습니다.';
+	            msg += '에러내용 : ' + rsp.error_msg;
+	            //실패시 이동할 페이지
+	            alert(msg);
+	        }
+	    });
+		
+		
+	});
    
 });
 /*****************************멤버탈퇴*****************************/
@@ -350,8 +452,14 @@ function leave(){
 			dataType : "text",
 			success : function(result){
 				if(result == 'true'){
-					alert('탈퇴가 완료되었습니다');
-					location.href = 'main/index'
+					 swal({
+						   title: "회원탈퇴성공",
+						   text: "버튼을 클릭해주세요!",
+						   icon: "success" //"info,success,warning,error" 중 택1
+						}).then(() => {
+							location.href = 'main/index'
+						});
+					
 				}else{
 					location.href = '404';
 				}
@@ -383,7 +491,9 @@ function execDaumPostcode() {
 				document.getElementById("mDaddress").focus();
 			}
 		}).open();
-}
+};
+
+
 
 /*******************회원수정 유효성체크*******************
 

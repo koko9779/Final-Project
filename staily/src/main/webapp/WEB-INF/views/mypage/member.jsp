@@ -25,7 +25,7 @@
 </div>
 
 <!-- Section -->
-<div class="container section news">
+<div class="container-fluid">
 	  
 	<div class="row">
 
@@ -41,8 +41,7 @@
 							<form id="memberInfoFrm" name="memberInfoFrm" autocomplete="off" action='member_update'>
 								<input type="hidden" name="mNo" id="mNo" value="${member.mNo}">
 								<input type="hidden" name="mId" id="mId" value="${member.mId}">
-								<input type="hidden" name="mName" id="mName"
-									value="${member.mName}"> <input type="hidden"
+								<input type="hidden"
 									name="mType" id="mType" value="${member.mType}"> <input
 									type="hidden" name="mPhone" id="mPhone"
 									value="${member.mPhone}">
@@ -70,11 +69,15 @@
 											<td class="text-left">
 												<div class="form-row">
 													<div class="col-xs-5">
-														${member.mName}
+														<input type="text" name="mName" id="mName"
+															class="form-control" value="${member.mName}"
+															maxlength="20">
 													</div>
+													
 												</div>
 											</td>
 										</tr>
+										
 										<c:if test="${member.mType =='C'}">
 											<tr>
 												<th scope="row" class="bg-light essentia"><label
