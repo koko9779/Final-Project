@@ -74,15 +74,21 @@
 								<th scope="row" class="bg-light essentia"><label for="mId">작성자</label></th>
 								<td class="text-left" style="text-align: left;">
 									<div class="dropdown" id="results">
-												<button class="btn btn-primary dropdown-toggle"
-													style="display: inline-block;" data-toggle="dropdown"
-													id="searchword" value="${productOne.get(0).getmId()}">
-													${productOne.get(0).getmId()}</button>
+										<button class="btn btn-primary dropdown-toggle"
+											style="display: inline-block;" data-toggle="dropdown"
+											id="searchword" value="${productOne.get(0).getmId()}">
+											${productOne.get(0).getmId()}</button>
+										<c:choose>
+											<c:when test="${not empty userNo}">
 												<div class="dropdown-menu" id='searchDropdown'>
-													<a class="dropdown-item" href="#" id="addFriend">친구 추가</a> 
-													<a class="dropdown-item" href="#" id="searchMessage">쪽지 보내기</a>
-												</div>
-										</div>
+														<a class="dropdown-item" href="#" id="addFriend">친구 추가</a> 
+														<a class="dropdown-item" href="#" id="searchMessage">쪽지 보내기</a>
+													</div>
+											</c:when>
+											<c:otherwise>
+											</c:otherwise>
+										</c:choose>
+									</div>
 								</td>
 							</tr>
 							<tr>
@@ -186,20 +192,20 @@ var mapOptions = {
 //var address1 = "${productOne.get(0).getpAddress()} ${productOne.get(0).getpDaddress()}";
 var mapdiv = document.getElementById('map');
 var map = new naver.maps.Map(mapdiv, mapOptions);
-
+/*
 var markerOptions = {
 	position : new naver.maps.LatLng(37.3595704, 127.105399),
 	map : map
 }
 
 var marker = new naver.maps.Marker(markerOptions);
-
+*/
 var address1 = "${productOne.get(0).getpAddress()}";
-/*
-$("#maps").on("click", function(e) {
-	get_pointer(address1, 'map');
-});
 
+$("#map").on("click", function(e) {
+	searchAddressToCoordinate(address1);
+});
+/*
 function get_pointer(adress, getid) {
     naver.maps.Service.geocode({
         address: adress
@@ -251,8 +257,123 @@ function get_pointer(adress, getid) {
 }
 */
 
+function searchAddressToCoordinate(address) {
+	  naver.maps.Service.geocode({
+	    query: address
+	  }, function(status, response) {
+		  alert(status);
+	    if (status === naver.maps.Service.Status.ERROR) {
+	      if (!address) {
+	        return alert('Geocode Error, Please check address');
+	      }
+	      return alert('Geocode Error, address:' + address);
+	    }
 
+	    if (response.v2.meta.totalCount === 0) {
+	      return alert('No result.');
+	    }
 
+	    var htmlAddresses = [],
+	      item = response.v2.addresses[0],
+	      point = new naver.maps.Point(item.x, item.y);
+
+	    if (item.roadAddress) {
+	      htmlAddresses.push('[도로명 주소] ' + item.roadAddress);
+	    }
+
+	    if (item.jibunAddress) {
+	      htmlAddresses.push('[지번 주소] ' + item.jibunAddress);
+	    }
+
+	    if (item.englishAddress) {
+	      htmlAddresses.push('[영문명 주소] ' + item.englishAddress);
+	    }
+
+	    infoWindow.setContent([
+	      '<div style="padding:10px;min-width:200px;line-height:150%;">',
+	      '<h4 style="margin-top:5px;">검색 주소 : '+ address +'</h4><br />',
+	      htmlAddresses.join('<br />'),
+	      '</div>'
+	    ].join('\n'));
+
+	    map.setCenter(point);
+	    infoWindow.open(map, point);
+	  });
+	}
+
+function makeAddress(item) {
+	  if (!item) {
+	    return;
+	  }
+
+	  var name = item.name,
+	    region = item.region,
+	    land = item.land,
+	    isRoadAddress = name === 'roadaddr';
+
+	  var sido = '', sigugun = '', dongmyun = '', ri = '', rest = '';
+
+	  if (hasArea(region.area1)) {
+	    sido = region.area1.name;
+	  }
+
+	  if (hasArea(region.area2)) {
+	    sigugun = region.area2.name;
+	  }
+
+	  if (hasArea(region.area3)) {
+	    dongmyun = region.area3.name;
+	  }
+
+	  if (hasArea(region.area4)) {
+	    ri = region.area4.name;
+	  }
+
+	  if (land) {
+	    if (hasData(land.number1)) {
+	      if (hasData(land.type) && land.type === '2') {
+	        rest += '산';
+	      }
+
+	      rest += land.number1;
+
+	      if (hasData(land.number2)) {
+	        rest += ('-' + land.number2);
+	      }
+	    }
+
+	    if (isRoadAddress === true) {
+	      if (checkLastString(dongmyun, '면')) {
+	        ri = land.name;
+	      } else {
+	        dongmyun = land.name;
+	        ri = '';
+	      }
+
+	      if (hasAddition(land.addition0)) {
+	        rest += ' ' + land.addition0.value;
+	      }
+	    }
+	  }
+
+	  return [sido, sigugun, dongmyun, ri, rest].join(' ');
+	}
+
+function hasArea(area) {
+	  return !!(area && area.name && area.name !== '');
+	}
+
+	function hasData(data) {
+	  return !!(data && data !== '');
+	}
+
+	function checkLastString (word, lastString) {
+	  return new RegExp(lastString + '$').test(word);
+	}
+
+	function hasAddition (addition) {
+	  return !!(addition && addition.value);
+	}
 </script>
 </body>
 </html>
