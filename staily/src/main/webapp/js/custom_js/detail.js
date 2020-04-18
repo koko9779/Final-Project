@@ -215,7 +215,7 @@ $('#searchDropdown a:nth-child(1)').click(function(e){
 			"mNo" : $('#searchMessage').attr('value'),
 			"mId" : $('#addFriend').attr('value')
 	}
-	
+	var myNo = $('#mNo').val();
 		
 	$.ajax({
 		url : "../mypage/friend_create",
@@ -251,21 +251,32 @@ $('#searchDropdown a:nth-child(1)').click(function(e){
 
 $('#searchword').click(function(e){
 	var mId = $('#searchword').text();
-	//alert(mId2);
-	var html = ""
-		$.ajax({
-			url : "../mypage/friend_find",
-			data : "mId="+mId,
-			dataType : "json",
-			success : function(result){
-				$('#searchMessage').attr('value',result.mNo);
-				$('#addFriend').attr('value',result.mId);
-			},
-			error : function(){
-				location.href = '../404';
-			}
+	var myNo = $('#mNo').val();
 	
+	if(myNo == '') {
+		swal({
+		   title: "친구 기능 이용 불가",
+		   text: "이 기능을 이용하려면 로그인하세요",
+		   icon: "warning" //"info,success,warning,error" 중 택1
 		});
+	}
+	else {
+		var html = ""
+			$.ajax({
+				url : "../mypage/friend_find",
+				data : "mId="+mId,
+				dataType : "json",
+				success : function(result){
+					$('#searchMessage').attr('value',result.mNo);
+					$('#addFriend').attr('value',result.mId);
+				},
+				error : function(){
+					location.href = '../404';
+				}
+				
+			});
+		
+	}
 });
 
 //쪽지 보내기
