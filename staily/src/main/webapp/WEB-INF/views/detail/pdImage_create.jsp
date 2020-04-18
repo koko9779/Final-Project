@@ -13,7 +13,7 @@
 </head>
 <body>
 	<div style="margin: 5%;">
-		<form name="fff" method="post">
+		<form name="pdImage" method="post">
 			<table class="table table=hover">
 				<colgroup>
 					<col class="col_wp25">
@@ -67,8 +67,8 @@ function afterFileTransfer2(realname2, filename2, filesize2) {
 	filename9.value = filename2;
 	filesize9.value = filesize2;
 	
-	document.fff.action = "pdImage_create_action";
-	document.fff.submit();
+	document.pdImage.action = "pdImage_create_action";
+	document.pdImage.submit();
 	
 	/*
 	var spl = realname9.value.split('.');
