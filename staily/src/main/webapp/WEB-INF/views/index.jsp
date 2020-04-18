@@ -112,7 +112,7 @@
 									<div class="movie-poster2">
 										<a href="#" onclick="workpage(${today.wNo})"> <img
 											src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/${today.wPoster}"
-											alt="Movie title" style="width:263px; height:372px;"/>
+											alt="${today.wNo}" style="width:263px; height:372px;"/>
 										</a>
 									</div>
 								</div>
@@ -142,7 +142,7 @@
 								<div class="movie-poster2">
 									<a href="#" onclick="workpage(${drama.wNo})"> <img
 										src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/${drama.wPoster}"
-										alt="Movie title" style="width:263px; height:372px;"/>
+										alt="${drama.wNo}" style="width:263px; height:372px;"/>
 									</a>
 								</div>
 							</div>
@@ -167,7 +167,7 @@
 								<div class="movie-poster2">
 									<a href="#" onclick="workpage(${movie.wNo})"> <img
 										src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/${movie.wPoster}"
-										alt="Movie title" style="width:263px; height:372px;"/>
+										alt="${movie.wNo}" style="width:263px; height:372px;"/>
 									</a>
 								</div>
 							</div>
