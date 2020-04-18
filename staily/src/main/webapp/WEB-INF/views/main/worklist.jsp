@@ -29,7 +29,7 @@
 
 		<div class="col-sm-9 col-sm-push-1" id="work_list_main" >
 			<!-- 기업회원 -->					
-			<h2>여기 이름을 뭐로 줄까요?</h2>
+			<h2>HOT AD</h2>
 			<div class="slick-carousel newIn" >
 				<c:forEach var="cw" items="${cw}">
 					<form id="product_${cw.product[0].pNo}">
@@ -85,7 +85,7 @@
 			<!-- 일반회원 -->
 			<article class="mwList">
 				<c:forEach var="mw" items="${mw}">
-					<form id="product_${mw.product[0].pNo}" onsubmit="">
+					<form id="product_${mw.product[0].pNo}" style='margin:7% 0;'>
 						<h2 value="상품이름" >${mw.product[0].pName}</h2>
 						<input type="hidden" value="${userNo}" name="userNo">
 						<input type="hidden" class="wNoo" value="${mw.product[0].wNo}" name="wNo">
@@ -95,7 +95,7 @@
 								src="${pageContext.request.contextPath}/images/product/scene/${mw.product[0].pScene}.jpg"
 								alt="${mw.product[0].pName}" style="width:850px; height:450px; margin: 0;cursor: pointer;"/>
 						</div>
-						<div style="height:100px;">
+						<div style="height:35px;">
 							<c:choose>
 								<c:when test="${!empty userNo}">
 									<c:set var="cnt" value="0"/>

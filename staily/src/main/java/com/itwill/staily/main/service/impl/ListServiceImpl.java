@@ -104,6 +104,11 @@ public class ListServiceImpl implements ListService{
 		return listMapper.selectProductList();
 	}
 
+	@Override
+	public int selectProductCountByEpisode(int wNo, int wdEpisode) throws Exception {
+		return listMapper.selectProductCountByEpisode(wNo, wdEpisode);
+	}
+
 
 
 

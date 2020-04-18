@@ -26,8 +26,9 @@ public interface ListMapper {
 	8.즐겨찾기 번호찾기
 	
 	9.게시물 총 건수
+	10.에피소드별 게시물 총 건수
 	
-	10.전체 상품 리스트
+	11.전체 상품 리스트
 	 */
 
 	public List<Work> selectCProductList(int wNo);
@@ -41,6 +42,7 @@ public interface ListMapper {
 	public int selectBookmarkNo(@Param("mNo") int mNo,@Param("pNo") int pNo);
 	
 	public int selectProductCount(int wNo);
+	public int selectProductCountByEpisode(@Param("wNo") int wNo,@Param("wdEpisode") int wdEpisode);
 	
 	public List<Work> selectProductList();
 }
