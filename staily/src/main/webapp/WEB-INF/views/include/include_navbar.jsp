@@ -5,7 +5,12 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/include_css.jsp"%>
-
+<style type="text/css">
+iframe {
+    width: 100vw;
+    height: calc(100vw/1.77);
+}
+</style>
 </head>
 <body>
 	<!-- Wrapper -->

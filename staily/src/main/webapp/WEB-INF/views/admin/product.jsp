@@ -34,7 +34,7 @@
 								<td>${product.pDaddress}</td>
 								<td>${product.pView}</td>
 								<td>${product.pCheck}</td>
-								<td><input type="button" class="pCheckBtn" value="클릭" /></td>
+								<td><input type="button" class="pCheckBtn" value="보기" /></td>
 							</tr>
 						</c:forEach>
 					</tbody>

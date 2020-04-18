@@ -6,18 +6,14 @@
 <style>
 image {
 	margin: auto;
+	height: 500px;
 }
 
-.w-100 {
-	width: 400px;
-	height: 300px;
-}
 </style>
 <form id="work_update" name="work_update" method="post">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
-				<h3 class="text-center"></h3>
 				<div id="slider-div">
 					<div>
 						<img
@@ -47,13 +43,19 @@ image {
 					</td>
 				</tr>
 
-				<tr>
+				<tr >
 					<th scope="row" class="bg-light essentia"><label for="pPrice">
 							카테고리</label></th>
 					<td class="text-left">
 						<div class="col">
+						<c:if test="${work.wCategory =='D'}">
 							<input type="text" name="wCategory" id="wCategory" class="form-control"
-								value="${work.wCategory}" maxlength="20">
+								value="드라마" maxlength="20">
+						</c:if>		
+						<c:if test="${work.wCategory =='M'}">
+							<input type="text" name="wCategory" id="wCategory" class="form-control"
+								value="영화" maxlength="20">
+						</c:if>		
 						</div>
 					</td>
 				</tr>
@@ -70,14 +72,14 @@ image {
 				<tr>
 					<th scope="row" class="bg-light essentia"><label>
 							총회차</label></th>
-					<td class="text-left">
+					<td class="text-left" align="left">
 						<div class="col">${work.wTepisode}</div>
 					</td>
 				</tr>
 				<tr>
 					<th scope="row" class="bg-light essentia"><label>
 							조회수</label></th>
-					<td class="text-left">
+					<td class="text-left" align="left">
 						<div class="col">${work.wView}</div>
 					</td>
 				</tr>

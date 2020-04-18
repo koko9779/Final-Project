@@ -4,17 +4,13 @@
 <%@ include
 	file="/WEB-INF/views/admin/include/include_top_without_sidebar.jsp"%>
 <style>
-image {
-	margin: auto;
-}
-
-.w-100 {
-	width: 400px;
-	height: 300px;
+.text-left {
+    text-align: left;
 }
 </style>
 <form id="product_detail" name="product_detail" method="post">
 	<div class="container-fluid">
+		<!--  
 		<div class="row">
 			<div class="col-md-12">
 				<div id="slider-div">
@@ -31,6 +27,7 @@ image {
 				</div>
 			</div>
 		</div>
+		-->
 		<input type="hidden" name="pNo" id="pNo" value="${productList[0].pNo}">
 		<input type="hidden" name="mNo" id="mNo" value="${productList[0].mNo}">
 		<input type="hidden" name="wNo" id="wNo" value="${productList[0].wNo}">
@@ -49,10 +46,11 @@ image {
 				<col class="col_auto">
 			</colgroup>
 			<tbody>
+				
 				<tr>
-					<th scope="row" class="bg-light essentia"><label for="pName">
+					<th scope="row" class="bg-light essentia" colspan="2"><label for="pName">
 							상품이름</label></th>
-					<td class="text-left">
+					<td class="text-left" colspan="2">
 						<div class="col">
 							<input type="text" name="pName" id="pName" class="form-control"
 								value="${productList[0].pName }" maxlength="20">
@@ -61,9 +59,9 @@ image {
 				</tr>
 
 				<tr>
-					<th scope="row" class="bg-light essentia"><label for="pPrice">
+					<th scope="row" class="bg-light essentia" colspan="2"><label for="pPrice">
 							상품가격</label></th>
-					<td class="text-left">
+					<td class="text-left" colspan="2">
 						<div class="col">
 							<input type="text" name="pPrice" id="pPrice" class="form-control"
 								value="${productList[0].pPrice }" maxlength="20">
@@ -71,30 +69,30 @@ image {
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="bg-light essentia"><label for="pUrl">
+					<th scope="row" class="bg-light essentia" colspan="2"><label for="pUrl">
 							상품URL</label></th>
 					<td class="text-left">
-						<div class="col">
+						<div class="col" colspan="2">
 							<input type="text" name="pURL" id="pURL" class="form-control"
 								value="${productList[0].pUrl }">
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="bg-light essentia"><label
+					<th scope="row" class="bg-light essentia" colspan="2"><label
 						for="mAddress">오프라인주소</label></th>
-					<td class="text-left">
+					<td class="text-left" colspan="2">
 						<div class="col">
 							<input type="text" name="pAddress" id="pAddress"
-								onclick="execDaumPostcode()" value="${productList[0].pAddress }"
+								onclick="execDaumPostcode()" value="${productList[0].pAddress }" readonly="readonly"
 								class="form-control">
 						</div>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="bg-light essentia"><label
+					<th scope="row" class="bg-light essentia" colspan="2"><label
 						for="daddress">상세주소</label></th>
-					<td class="text-left">
+					<td class="text-left" colspan="2">
 						<div class="col">
 							<input type="text" name="pDaddress" id="pDaddress"
 								class="form-control" value="${productList[0].pDaddress }">
@@ -102,21 +100,36 @@ image {
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="bg-light essentia"><label>
+					<th scope="row" class="bg-light essentia" colspan="2"><label>
 							상품조회수</label></th>
-					<td class="text-left">
+					<td class="text-left" colspan="2" align="left">
 						<div class="col">${productList[0].pView }</div>
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="bg-light essentia"><label>이미지
-							변경</label></th>
-					<td class="text-left">
-						<button type="submit" value="submit"
-							class="btn btn-default btn-lg io-data io-fn-nextStep"
-							data-step="2" onclick="imgUpdate(${productList[0].pNo})">수정</button>
-					</td>
+					<th scope="row" class="bg-light essentia" colspan="2"><label for="pCheck">장면이미지변경</label>
+					</th>
+				<td class="text-left">
+					<div class="col">
+						<img width="auto" height="auto" 
+							src="${pageContext.request.contextPath}/images/product/scene/${productList[0].pScene }.jpg">
+					</div>
+				</td>
+				<td class="text-left"><button type="button" name="pCheck">수정하기</button></td>
 				</tr>
+				<c:forEach var="product" items="${productList }">
+					<tr>
+						<th scope="row" class="bg-light essentia" colspan="2"><label for="pCheck">상품이미지변경</label>
+						</th>
+						<td class="text-left">
+							<div class="col" align="center">
+								<img width="auto" height="auto" 
+									src="${pageContext.request.contextPath}${product.pdImage }">
+							</div>
+						</td>
+						<td class="text-left"><button type="button" name="pCheck">수정하기</button></td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 		<div class="text-center">
