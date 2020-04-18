@@ -48,7 +48,7 @@
 			<div class="slick-carousel news-carousel">
 				<c:forEach var="product" items="${productOne}">
 					<div>
-						<img src="${pageContext.request.contextPath}${product.pdImage}">
+						<img src="${pageContext.request.contextPath}/images/product/image/${product.pdImage}.jpg">
 					</div>
 				</c:forEach>
 			</div>
@@ -74,17 +74,15 @@
 								<th scope="row" class="bg-light essentia"><label for="mId">작성자</label></th>
 								<td class="text-left" style="text-align: left;">
 									<div class="dropdown" id="results">
-									<!--  
-									<div class="col">
-									-->
-										<button class="btn btn-primary dropdown-toggle add" style="display: inline-block;" 
-										data-toggle="dropdown" id="searchword" value="${productOne.get(0).getmId()}">
-										${productOne.get(0).getmId()}</button>
-										<div class="dropdown-menu" id='searchDropdwon'>
-										  	<a class="dropdown-item" href="#" id="addFriend">친구 추가 </a>
-										  	<a class="dropdown-item" href="#" id="searchMessage">쪽지 보내기</a>
+												<button class="btn btn-primary dropdown-toggle"
+													style="display: inline-block;" data-toggle="dropdown"
+													id="searchword" value="${productOne.get(0).getmId()}">
+													${productOne.get(0).getmId()}</button>
+												<div class="dropdown-menu" id='searchDropdown'>
+													<a class="dropdown-item" href="#" id="addFriend">친구 추가</a> 
+													<a class="dropdown-item" href="#" id="searchMessage">쪽지 보내기</a>
+												</div>
 										</div>
-									</div>
 								</td>
 							</tr>
 							<tr>

@@ -208,13 +208,14 @@ function incRec(rNo) {
 }
 
 //친구 추가
-$('#searchDropdwon a:nth-child(1)').click(function(e){
+$('#searchDropdown a:nth-child(1)').click(function(e){
 	e.preventDefault();
 	var html = "";
 	var params = {
 			"mNo" : $('#searchMessage').attr('value'),
 			"mId" : $('#addFriend').attr('value')
 	}
+	
 		
 	$.ajax({
 		url : "../mypage/friend_create",
@@ -222,53 +223,53 @@ $('#searchDropdwon a:nth-child(1)').click(function(e){
 		dataType : "json",
 		success : function(result){
 			if(result.status == 'success'){
-				alert('친구 추가 완료');
-
-				//location.reload();
+				swal({
+				   title: "친구 추가 성공",
+				   text: "친구 추가가 성공했습니다",
+				   icon: "success" //"info,success,warning,error" 중 택1
+				});
 			}else if(result.status == 'D'){
-				alert('이미 친구 추가된 회원입니다');
-			}else if(result.status =='M'){
-				alert('본인은 친구추가가 불가능합니다');
-			}
+				swal({
+				   title: "친구 추가 불가",
+				   text: "이미 친구 추가된 회원입니다",
+				   icon: "error" //"info,success,warning,error" 중 택1
+				});
+			}else if(result.status == 'M'){
+				swal({
+				   title: "친구 추가 불가",
+				   text: "본인은 친구로 추가할 수 없습니다",
+				   icon: "error" //"info,success,warning,error" 중 택1
+				});
+			};
 			
 		},
 		error : function(){
-			location.href = '404';
+			location.href = '../404';
 		}
-		
 	});
 });
 
-$('#searchword').on("click", function(e){
-	var mId = $('#searchword').val();
-	
+$('#searchword').click(function(e){
+	var mId = $('#searchword').text();
+	//alert(mId2);
 	var html = ""
 		$.ajax({
-    		url : "../mypage/friend_find",
-    		data : "mId="+mId,
-    		dataType : "json",
-    		success : function(result){
-    			if(result.status == 'success'){
-    				//$('#results').prepend('<button class="btn btn-primary dropdown-toggle add" data-toggle="dropdown">'
-    				//							+result.mId+'</button>')	
-    				$('#searchMessage').attr('value',result.mNo);
-    				$('#addFriend').attr('value',result.mId);
-    				
-    			}else{
-    				$('#noId').text('회원 아이디를 다시 확인해주세요');	
-    				//alert('회원 아이디를 다시 확인해주세요');
-    			}
-    		},
-    		error : function(){
-    			location.href = '404';
-    		}
-    	});
-	    	
+			url : "../mypage/friend_find",
+			data : "mId="+mId,
+			dataType : "json",
+			success : function(result){
+				$('#searchMessage').attr('value',result.mNo);
+				$('#addFriend').attr('value',result.mId);
+			},
+			error : function(){
+				location.href = '../404';
+			}
 	
+		});
 });
 
 //쪽지 보내기
-$('#searchDropdwon a:nth-child(2)').click(function(e){
+$('#searchDropdown a:nth-child(2)').click(function(e){
 	e.preventDefault();
 	var noV = $(this).attr('value');
 	window.open("../mypage/message?mNo="+noV, "_blank","width=750, height=5500, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
