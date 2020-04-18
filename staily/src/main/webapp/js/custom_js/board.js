@@ -2,12 +2,8 @@ var clone;
 var h3ReplyHeader;
 var $replyF;
 
-$(document).ready(function() {
-	alert("ttt");
-});
 $(function() {
 	
-	alert("ttt");
 	clone = $("#board2").clone();
 	h3ReplyHeader = $("#reply-top").clone();
 	$replyF = $("<article class='reply reply-delete' id='replyArticleH'>" +
@@ -26,8 +22,7 @@ $(function() {
 									"<span>수정</span>" +
 								"</a>" +
 						"</article>");
-	
-	alert(clone);
+	console.log(clone);
 });
 
 /*
@@ -140,31 +135,49 @@ function cancel_reply_write() {
 
 function reply_write() {
 	CKEDITOR.instances.contents.updateElement(); 
+	 var queryString = $("form[name=boardReplyWriteF]").serialize();
+
+	var boardBNo = $("#updateBNo").val();
 	if(document.boardReplyWriteF.bTitle.value === "") { 
 		alert("제목을 입력해 주세요"); 
 		return; 
-	}else if(document.boardReplyWriteF.bType.value === "분류") { 
-		alert("분류를 지정해 주세요"); 
-		return; 
 	}else if(document.boardReplyWriteF.bContent.value === "") { 
 		alert("내용을 입력해 주세요"); 
-		return; 
-	}else if(document.boardReplyWriteF.bCategory.value === "카테고리") { 
-		alert("카테고리를 지정해 주세요"); 
 		return; 
 	}else {
 		$.ajax({
 			url: "style_reply_create",
 			type: 'post',
-			data: {bNo : bNo,
-				   bTitle : bTitle,
-				   bContent : bContent,
-				   bCategory : bCategory},
+			data: queryString,
 			async : false,
 			dataType: "json",
 			success: function(replyBoard) {
 								if(replyBoard.bStep === 2) {
-									$("#board").after(h3ReplyHeader);
+									
+									$('#boardReplyWriteF').fadeOut( 500, function() {
+										$("#board").after(h3ReplyHeader);
+										
+										"<article class='reply reply-delete reply_write' id='board_" + replyBoard.bNo + "'>" +
+												"<div class='col-md-12 m-top--40'>" +
+												"<div class='categories col-md-6 board-title f-s-25'>${board.bTitle}</div>" +
+												"<div class='col-md-6 text-left'><span class='font-small'>${board.mId}.${board.bDate}</span></div>" +
+												"</div>" +
+												"<div class='p_content m-top-50 m-bottom-30' id='board_content_read'>" +
+													//${board.bContent}
+												"</div>" + 
+												"<a href='javascript:recommend(${board.bNo}, ${board.mId});' class='btn btn-ghost clicked-button'>" +
+													"<span>추천하기</span>" +
+												"</a>" +
+												"<a href='javascript:reply_delete(${board.bNo}, ${fn:length(boardOneList)});' class='btn btn-ghost sort'>" +
+													"<span>삭제</span>" +
+												"</a>" +
+												"<a href='javascript:board_and_reply_modify(${board.bNo});' class='btn btn-ghost sort'>" +
+													"<span>수정</span>" +
+												"</a>" +
+										"</article>"
+										
+										$( "" ).fadeIn( 500 );
+							        });
 								}
 			}
 		});
@@ -180,13 +193,15 @@ function reply_delete(bNo, boardCount) {
 		async : false,
 		dataType: "json",
 		success: function(isDelete) {
+			alert(boardCount);
 			if(isDelete === false) {
 				alert("댓글 삭제에 실패하였습니다");
 			}else {
-				if(boardCount = 2) {
+				if(boardCount === 2) {
 					$(".reply-delete").fadeOut();
 				}else {
 					$("#board_"+bNo).fadeOut();
+					
 				}
 			}
 		}
@@ -258,6 +273,3 @@ function board_and_reply_modify_action() {
 	}
 }
 
-function recommend() {
-	$("")
-}

@@ -28,6 +28,7 @@
 .reply_write {
 	margin-top: 50px; 
 	border-bottom: 1px solid #d8d8d8;
+	padding-bottom: 25px;
 }
 
 .dispaly_none {
@@ -53,6 +54,7 @@ float:left;
 .p-top-21 {
     padding-top: 21px;
 }
+
 .p-top-7 {
 	padding-top: 7px;
 }

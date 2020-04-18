@@ -58,7 +58,7 @@
 			<!-- Section -->
 			<div class="container-fluid">
 				<div class="row">
-				<div class="col-sm-2">
+				<div class="col-sm-2 p-top-21">
 					<aside class="col-sm-push-1 sidebar">
 						<div class="widget p-top-7">
 							<h3>Categories</h3>
@@ -78,7 +78,7 @@
 						<article id="board" style="border-bottom: none;">
 						<div id="board2">
 						<input type="hidden" id="updateBNo" value="${boardOneList[0].bNo}">
-						<h3 class="board-top">스타일 질문</h3>
+						<h3 class="board-top p-top-21">스타일 질문</h3>
 						<div class="categories col-md-6 board-title f-s-25" id="board_title_read">${boardOneList[0].bTitle}</div>
 						<div class="col-md-6 text-left">
 							<span class="font-small">${boardOneList[0].mId}.${boardOneList[0].bDate}.조회수: ${boardOneList[0].bView}</span>
@@ -95,10 +95,10 @@
 						</div>
 						</article>
 						<c:if test="${fn:length(boardOneList) > 1}">
-						<h3 class="board-top reply-delete" id="reply-top">스타일 답변</h3>
+						<h3 class="board-top reply-delete m-top-50" id="reply-top">스타일 답변</h3>
 						</c:if>
 						<c:forEach var="board" items="${boardOneList}" begin="1" varStatus="status">
-						<article class="reply reply-delete" id="board_${board.bNo}">
+						<article class="reply reply-delete reply_write" id="board_${board.bNo}">
 								<div class="col-md-12 m-top--40">
 								
 								<div class="categories col-md-6 board-title f-s-25">${board.bTitle}</div>
@@ -107,14 +107,10 @@
 								<div class="p_content m-top-50 m-bottom-30" id="board_content_read">
 									${board.bContent}
 								</div> 
-									<a href="javascript:recommend(${board.bNo}, ${board.mId});"
-									class="btn btn-ghost clicked-button">
-										<span>추천하기</span>
-									</a>
-									<a href="javascript:recommend(${board.bNo}, ${board.mId});"
-										class="btn btn-ghost">
-											<span>추천하기</span>
-									</a>
+								<a href="javascript:recommend(${board.bNo}, ${board.mId});"
+								class="btn btn-ghost clicked-button">
+									<span>추천하기</span>
+								</a>
 								<a href="javascript:reply_delete(${board.bNo}, ${fn:length(boardOneList)});" class="btn btn-ghost sort">
 									<span>삭제</span>
 								</a>
@@ -123,31 +119,26 @@
 								</a>
 						</article>
 						</c:forEach>
-						<div class="reply_write">
+						<div>
 							<a href="javascript:reply_write_form();" class="btn btn-ghost sort">
 									<span>답글 쓰기</span>
 							</a>
 						</div>
 						<form name='boardReplyWriteF' id="boardReplyWriteF" onSubmit='return false;' class="dispaly_none" style="margin-top: 100px;">
-									 			<input type='hidden' id='bNo' name='bNo' value='" + bNo + "'>
+												<input type="hidden" name="bGroupNo" value="${boardOneList[0].bNo}">
 												<div class='row justify-content-md-center'>
 													제목
-													<input type='text' id='bTitle' name='bTitle' class='form-control title_detail empty'>
-													<select class='custom-select form-control' name='bType' id='inputGroupSelect03'>
-													<option selected value='S'>스타일코디</option>
-													</select>
-													<select class='custom-select form-control' name='bCategory' id='bCategory'>
-														<option selected>카테고리</option>
-														<option value='M'>영화</option>
-														<option value='D'>드라마</option>
+													<input type='text' id='repBTitle' name='bTitle' class='form-control title_detail empty'>
+													<select class='custom-select form-control' name='bType' id='repBType'>
+													<option selected value='S' >스타일코디</option>
 													</select>
 												</div>
 												<div class='row justify-content-md-center'>
-													<textarea id='contents' name='bContent empty' class="empty"></textarea>
+													<textarea id='contents' name='bContent' class="empty"></textarea>
 													<script>
 														CKEDITOR.replace('contents',{
 															filebrowserUploadUrl : '/staily/style/ImgUpload'
-														}); 
+														});
 													</script>
 												</div>
 												<div class='row justify-content-md-center'>
@@ -188,6 +179,11 @@
 			</div>
 			-->
 	<%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
+	<script type="text/javascript">
+		$(function() {
+			$("")
+		});
+	</script>
 	</body>
 
 </html>

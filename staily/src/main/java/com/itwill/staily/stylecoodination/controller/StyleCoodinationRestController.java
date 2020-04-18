@@ -13,6 +13,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -155,12 +156,14 @@ public class StyleCoodinationRestController {
 		return updateBoard;
 	}
 	
-	@PostMapping(value = "style_reply_create", produces = "application/json;charset=UTF-8")
-	public Board style_reply_create(@ModelAttribute Board reply, @RequestParam String mId) {
+	@RequestMapping(value = "style_reply_create", produces = "application/json;charset=UTF-8")
+	public Board style_reply_create(@ModelAttribute Board reply, HttpSession session) {
 		Board replyCreateB = new Board();
+		String userId;
 		
 		try {
-			replyCreateB = styleCoodinationService.writeReply(reply, mId);
+			userId = (String)session.getAttribute("userId");
+			replyCreateB = styleCoodinationService.writeReply(reply, userId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
