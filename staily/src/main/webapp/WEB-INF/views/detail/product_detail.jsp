@@ -77,11 +77,12 @@
 									<!--  
 									<div class="col">
 									-->
-										<button class="btn btn-primary dropdown-toggle add" style="display: inline-block;">
+										<button class="btn btn-primary dropdown-toggle add" style="display: inline-block;" 
+										data-toggle="dropdown" id="searchword" value="${productOne.get(0).getmId()}">
 										${productOne.get(0).getmId()}</button>
 										<div class="dropdown-menu" id='searchDropdwon'>
-										  	<a class="dropdown-item" href="#" id="addFriend">친구추가</a>
-										  	<a class="dropdown-item" href="#" id="searchMessage">쪽지보내기</a>
+										  	<a class="dropdown-item" href="#" id="addFriend">친구 추가 </a>
+										  	<a class="dropdown-item" href="#" id="searchMessage">쪽지 보내기</a>
 										</div>
 									</div>
 								</td>
@@ -95,7 +96,7 @@
 							<tr>
 								<th scope="row" class="bg-light essentia"><label for="pPrice">가격</label></th>
 								<td class="text-left" style="text-align: left;">
-									<div class="col">${productOne.get(0).getpPrice()}</div>
+									<div class="col">${productOne.get(0).getpPrice()}원</div>
 								</td>
 							</tr>
 							<tr>
