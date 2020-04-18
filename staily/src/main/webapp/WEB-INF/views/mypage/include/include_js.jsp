@@ -17,4 +17,5 @@
 <script src=https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js></script>
 <script src=https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js></script>
 <script src="${pageContext.request.contextPath}/js/custom_js/mypage.js"></script>
- 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>

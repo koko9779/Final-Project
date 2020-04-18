@@ -8,7 +8,18 @@ public class Payment {
 	private String pyName;		//결제상품이름
 	private int pyPeriod;		//결제기간
 	private String pyType;		//결제타입
+	private String endDate; 	//결제종료일
 	
+	public String getEndDate() {
+		return endDate;
+	}
+
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+
 	public Payment() {
 		
 	}
@@ -20,6 +31,14 @@ public class Payment {
 		this.mNo = mNo;
 		this.pyPrice = pyPrice;
 		this.pyDate = pyDate;
+		this.pyName = pyName;
+		this.pyPeriod = pyPeriod;
+		this.pyType = pyType;
+	}
+	
+	public Payment(int mNo, int pyPrice, String pyName, int pyPeriod,String pyType) {
+		this.mNo = mNo;
+		this.pyPrice = pyPrice;
 		this.pyName = pyName;
 		this.pyPeriod = pyPeriod;
 		this.pyType = pyType;

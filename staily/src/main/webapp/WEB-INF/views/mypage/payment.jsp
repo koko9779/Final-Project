@@ -2,9 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/WEB-INF/views/mypage/include/include_navbar.jsp"%>
-<jsp:useBean id="toDay" class="java.util.Date" />
 
 <!-- Hero -->
 <div id="content_hero" style="background-image: url(http://via.placeholder.com/1440x435)">
@@ -25,7 +23,7 @@
 </div>
 
 <!-- Section -->
-<div class="container section news">
+<div class="container-fluid">
 	  
 	<div class="row">
 
@@ -47,31 +45,30 @@
                       <th>결제가격</th>
                       <th>이용권기간</th>
                       <th>결제방법</th>
-                      <th>결제일</th>
-                      <th><th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                   <tr>
-                      <td>20일 이용권</td>
-                      <td>2000원</td>
-                      <td>20일</td>
-                      <td>카카오페이</td>
-                      <td><fmt:formatDate value='${toDay}' pattern='yyyyMMdd' var="nowDate"/></td>
+                   <tr id="payment1">
+                      <td value="10일 이용권">10일 이용권</td>
+                      <td value="1000">1000원</td>
+                      <td value="10">10일</td>
+                      <td value="A">카카오페이</td>
+                      <td><input type="button" class="paymentBtn" value="결제하기" /></td>
                     </tr>
-                     <tr>
-                      <td>30일 이용권</td>
-                      <td>3000원</td>
-                      <td>30일</td>
-                      <td>가상계좌</td>
-                      <td><fmt:formatDate value='${toDay}' pattern='yyyyMMdd' var="nowDate"/></td>
+                     <tr id="payment2">
+                      <td value="20일 이용권">20일 이용권</td>
+                      <td value="2000">2000원</td>
+                      <td value="20">20일</td>
+                      <td value="A">카카오페이</td>
+                      <td><input type="button" class="paymentBtn" value="결제하기" /></td>
                     </tr>
-                     <tr>
-                      <td>10일 이용권</td>
-                      <td>1000원</td>
-                      <td>10일</td>
-                      <td>신용카드</td>
-                      <td><fmt:formatDate value='${toDay}' pattern='yyyyMMdd' var="nowDate"/></td>
+                     <tr id="payment3">
+                      <td value="30일 이용권">30일 이용권</td>
+                      <td value="3000">3000원</td>
+                      <td value="30">30일</td>
+                      <td value="A">카카오페이</td>
+                      <td><input type="button" class="paymentBtn" value="결제하기" /></td>
                     </tr>
                     <!--  
                   	<c:forEach var="payment" items="${data }">
@@ -83,6 +80,14 @@
               </div>
             </div>
           </div>
+          <!--  -->
+    
+		 <form id="memberInfoFrm" name="memberInfoFrm" autocomplete="off" action='member_update'>
+			<input type="hidden" name="mNo" id="mNo" value="${member.mNo}">
+			<input type="hidden" name="mId" id="mId" value="${member.mId}">
+			<input type="hidden" name="mType" id="mType" value="${member.mType}"> 
+			<input type="hidden" name="mPhone" id="mPhone" value="${member.mPhone}">
+		</form>
 
         </div>
         <!-- /.container-fluid -->
