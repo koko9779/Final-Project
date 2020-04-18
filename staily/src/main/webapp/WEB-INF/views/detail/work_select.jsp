@@ -95,7 +95,7 @@
 								<td>영화</td>
 							</c:otherwise>
 						</c:choose>
-                      <fmt:parseDate value="${work.wDate}" var="dateFormat" pattern="yyyy-MM-dd"/>
+                      <fmt:parseDate value="${work.wDate}" var="dateFormat" pattern="yyyy/MM/dd"/>
 					  <td><fmt:formatDate value="${dateFormat}" pattern="yyyy-MM-dd(E)" type="both"/></td>
                       <td>${work.wTepisode}부작</td>
                       <td hidden="aa">${work.wPoster}</td>

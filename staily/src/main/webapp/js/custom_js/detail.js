@@ -26,19 +26,19 @@ function afterFileTransfer(realname, filename, filesize) {
 	filename9.value = filename;
 	filesize9.value = filesize;
 	
-	document.ff.submit();
+	document.createP.submit();
 }
 
 function pdImageCreate() {
-	document.ff.action = "pdImage_create";
-	document.ff.method = "post";
+	document.createP.action = "pdImage_create";
+	document.createP.method = "post";
 }
 
 function productCreate() {
 	guManager.uploadFiles();
-	document.ff.action = "product_create_action";
-	document.ff.method = "POST";
-	document.ff.submit();
+	document.createP.action = "product_create_action";
+	document.createP.method = "POST";
+	document.createP.submit();
 	alert("상품 등록이 완료되었습니다.");	
 };
 

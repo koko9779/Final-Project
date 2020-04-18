@@ -96,7 +96,7 @@
 	</div>
 	
 	<div class="right">
-		<form name="ff" method="post">
+		<form name="createP" method="post">
 			<input type="hidden" id="wNo" name="wNo" value="${workOne.wNo}">
 			<table class="table table=hover">
 				<colgroup>
