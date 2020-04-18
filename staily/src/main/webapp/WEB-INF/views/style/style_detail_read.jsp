@@ -56,7 +56,7 @@
 			</div>
 
 			<!-- Section -->
-			<div class="container section news">
+			<div class="container-fluid">
 				<div class="row">
 				<div class="col-sm-2">
 					<aside class="col-sm-push-1 sidebar">

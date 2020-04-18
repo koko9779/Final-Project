@@ -137,6 +137,7 @@ $(window)
 			});
 			function member_create() {
 				document.getElementById("registerF").action = "member_create_action";
+				document.getElementById("registerF").method = "POST";
 				document.getElementById("registerF").submit();
 				alert("가입 성공");
 			}
