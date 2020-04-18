@@ -25,13 +25,13 @@
 </div>
 
 <!-- Section -->
-<div class="container section news">
+<div class="container-fluid">
 	<div class="row">
 
 		<!-- -->
 		
 		<div class="col-sm-2">
-			<aside class="col-sm-push-1 sidebar">
+			<aside class="col-sm-push-1 sidebar m-top-21">
 				<div class="widget">
 					<h3>Categories</h3>
 					<ul style="padding-left: 15px;">
@@ -46,7 +46,7 @@
 		</div>
 		
 		<div class="col-sm-10">
-			<div class=" col-sm-push-1" style="width: 80%">
+			<div class=" col-sm-push-1 m-top-21" style="width: 80%">
 				<form name="boardWriteF" onSubmit="return false;">
 					<div class="row justify-content-md-center">
 							제목

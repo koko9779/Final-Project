@@ -1,9 +1,13 @@
 var clone;
 var h3ReplyHeader;
 var $replyF;
+
+$(document).ready(function() {
+	alert("ttt");
+});
 $(function() {
 	
-	
+	alert("ttt");
 	clone = $("#board2").clone();
 	h3ReplyHeader = $("#reply-top").clone();
 	$replyF = $("<article class='reply reply-delete' id='replyArticleH'>" +
@@ -22,6 +26,8 @@ $(function() {
 									"<span>수정</span>" +
 								"</a>" +
 						"</article>");
+	
+	alert(clone);
 });
 
 /*
@@ -160,15 +166,6 @@ function reply_write() {
 								if(replyBoard.bStep === 2) {
 									$("#board").after(h3ReplyHeader);
 								}
-								//어려워여...
-								
-								/*
-								$('#board').fadeOut( 500, function() {
-									$("#board").empty();
-									$("#board").append(clone);
-									$( "#board" ).fadeIn( 500 );
-						        });
-						        */
 			}
 		});
 	}
@@ -248,6 +245,7 @@ function board_and_reply_modify_action() {
 			async : false,
 			dataType: "json",
 			success: function(updateBoard) {
+				console.log(updateBoard);
 				clone.find("#board_title_read").html(updateBoard.bTitle);
 				clone.find("#board_content_read").html(updateBoard.bContent);
 				$('#board').fadeOut( 500, function() {
