@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include
@@ -45,7 +44,7 @@
 			<button type="button" class="btn btn-ghost" id="createBmk" style="margin: 5%; margin-left: 10px;">즐겨찾기 추가</button>
 			<!-- Section -->
 			<h2>상품 사진</h2>
-			<div class="slick-carousel news-carousel">
+			<div class="slick-carousel news-carousel" style="height: 260px">
 				<c:forEach var="product" items="${productOne}">
 					<div>
 						<img src="${pageContext.request.contextPath}/images/product/image/${product.pdImage}.jpg">
@@ -166,7 +165,7 @@
 <%@ include
 	file="/WEB-INF/views/detail/include/include_product_detail_js.jsp"%>
 <%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=01fy3qpy1m&submodules=geocoder"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=727c99111bf8164d3824366e553400b6&libraries=services"></script>
 <style>
 .iw_inner {
 	padding:10px
@@ -176,204 +175,124 @@
 	font-size: 18px; 
 	padding-bottom: 7px
 }
+
+.wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 15px;font-family: 'arita';line-height: 1.5;src:url(fonts/GodoM.ttf)}
+    .wrap * {padding: 0;margin: 0;}
+    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+    .info .close:hover {cursor: pointer;}
+    .info .body {position: relative;overflow: hidden;}
+    .info .desc {position: relative;padding: 5%;height: 75px;}
+    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+    .desc .jibun {font-size: 15px;color: #888;margin-top: -2px;}
+    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+    .info .link {color: #5085BB;}
 </style>
 <script>
-
-var mapOptions = {
-	center : new naver.maps.LatLng(37.3595704, 127.105399),
-	zoomControl : true,
-	zoomControlOptions : {
-		style : naver.maps.ZoomControlStyle.SMALL,
-		position : naver.maps.Position.TOP_RIGHT
-	},
-	tileSpare : 2,
-	disableDoubleClickZoom : true
-}
-//var address1 = "${productOne.get(0).getpAddress()} ${productOne.get(0).getpDaddress()}";
-var mapdiv = document.getElementById('map');
-var map = new naver.maps.Map(mapdiv, mapOptions);
-/*
-var markerOptions = {
-	position : new naver.maps.LatLng(37.3595704, 127.105399),
-	map : map
-}
-
-var marker = new naver.maps.Marker(markerOptions);
-*/
 var address1 = "${productOne.get(0).getpAddress()}";
 
-$("#map").on("click", function(e) {
-	searchAddressToCoordinate(address1);
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+mapOption = {
+    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+    level: 3, // 지도의 확대 레벨
+    disableDoubleClickZoom: true
+    
+};  
+
+//지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+//일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+var mapTypeControl = new kakao.maps.MapTypeControl();
+
+// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+var zoomControl = new kakao.maps.ZoomControl();
+map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+//주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+//주소로 좌표를 검색합니다
+geocoder.addressSearch(address1, function(result, status) {
+	
+
+	// 정상적으로 검색이 완료됐으면 
+	if (status === kakao.maps.services.Status.OK) {
+		var count = 0;
+
+	    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	
+	    // 결과값으로 받은 위치를 마커로 표시합니다
+	    var marker = new kakao.maps.Marker({
+	        map: map,
+	        position: coords
+	    });
+	    
+	    var roadview = "https://map.kakao.com/link/roadview/" + result[0].y + "," + result[0].x;
+	    var direction = "https://map.kakao.com/link/to/" + address1 + "," + result[0].y + "," + result[0].x;
+	    
+		// 커스텀 오버레이에 표시할 컨텐츠 입니다
+		// 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
+		// 별도의 이벤트 메소드를 제공하지 않습니다 
+		var content = '<div class="wrap">' + 
+		            '    <div class="info">' + 
+		            '        <div class="body">' + 
+		            '            <div class="desc">' + 
+		            '                <div class="ellipsis">${productOne.get(0).getpAddress()}</div>' + 
+		            '                <div class="jibun ellipsis">${productOne.get(0).getpDaddress()}</div>' + 
+		            '                <div><a href="${productOne.get(0).getpUrl()}" target="_blank" class="link">홈페이지</a></div>' + 
+		            '            </div>' + 
+		            '            <div class="toolbar" style="text-align: center;">' + 
+		            '           	 <div class="roadview" style="float: left;width: 50%;padding: 4%">' + 
+		            '           	 	<a href="' + roadview + '">로드뷰</a>' + 
+		            '           	 </div>' + 
+		            '           	 <div class="direction" style="float: left;width: 50%;padding: 4%">' + 
+		            '           	 	<a href="' + direction + '">길찾기</a>' + 
+		            '           	 </div>' + 
+		            '            </div>' + 
+		            '        </div>' + 
+		            '    </div>' +    
+	            	'  </div>';
+			
+		// 마커 위에 커스텀오버레이를 표시합니다
+		// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+		var overlay = new kakao.maps.CustomOverlay({
+		    content: content,
+		    map: map,
+		    position: marker.getPosition()       
+		});
+		
+	
+	    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	    map.setCenter(coords);
+		
+		// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+		kakao.maps.event.addListener(marker, 'click', function() {
+			if(count == 0) {
+			    overlay.setMap(null);
+			    count = 1;				
+			}
+			else {
+			    overlay.setMap(map);
+			    count = 0;
+			}
+		});
+	
+	}
+});  
+
+	
+$("#maps").on("click", function(e) {
+	geocoder.addressSearch(address1);
 });
-/*
-function get_pointer(adress, getid) {
-    naver.maps.Service.geocode({
-        address: adress
-    }, function(status, response) {
-        if (status !== naver.maps.Service.Status.OK) {
-            //return alert('Something wrong!');
-            console.log('주소에러');
-        }
 
-        var result = response.result, // 검색 결과의 컨테이너
-            items = result.items; // 검색 결과의 배열
 
-        // do Something
-        var x = eval(items[0].point.x);
-        var y = eval(items[0].point.y);
 
-        var HOME_PATH = window.HOME_PATH || '.';
-
-        var cityhall = new naver.maps.LatLng(y, x),
-            map = new naver.maps.Map('map', {
-                center: cityhall.destinationPoint(0, 500),
-                zoom: 10
-            }),
-            marker = new naver.maps.Marker({
-                map: map,
-                position: cityhall
-            });
-
-        var contentString = [
-            '<div class="iw_inner">',
-            '   <p>'+adress+'</p>',
-            '</div>'
-        ].join('');
-
-        var infowindow = new naver.maps.InfoWindow({
-            content: contentString
-        });
-
-        naver.maps.Event.addListener(marker, "click", function(e) {
-            if (infowindow.getMap()) {
-                infowindow.close();
-            } else {
-                infowindow.open(map, marker);
-            }
-        });
-
-        infowindow.open(map, marker);
-    });
-}
-*/
-
-function searchAddressToCoordinate(address) {
-	  naver.maps.Service.geocode({
-	    query: address
-	  }, function(status, response) {
-		  alert(status);
-	    if (status === naver.maps.Service.Status.ERROR) {
-	      if (!address) {
-	        return alert('Geocode Error, Please check address');
-	      }
-	      return alert('Geocode Error, address:' + address);
-	    }
-
-	    if (response.v2.meta.totalCount === 0) {
-	      return alert('No result.');
-	    }
-
-	    var htmlAddresses = [],
-	      item = response.v2.addresses[0],
-	      point = new naver.maps.Point(item.x, item.y);
-
-	    if (item.roadAddress) {
-	      htmlAddresses.push('[도로명 주소] ' + item.roadAddress);
-	    }
-
-	    if (item.jibunAddress) {
-	      htmlAddresses.push('[지번 주소] ' + item.jibunAddress);
-	    }
-
-	    if (item.englishAddress) {
-	      htmlAddresses.push('[영문명 주소] ' + item.englishAddress);
-	    }
-
-	    infoWindow.setContent([
-	      '<div style="padding:10px;min-width:200px;line-height:150%;">',
-	      '<h4 style="margin-top:5px;">검색 주소 : '+ address +'</h4><br />',
-	      htmlAddresses.join('<br />'),
-	      '</div>'
-	    ].join('\n'));
-
-	    map.setCenter(point);
-	    infoWindow.open(map, point);
-	  });
-	}
-
-function makeAddress(item) {
-	  if (!item) {
-	    return;
-	  }
-
-	  var name = item.name,
-	    region = item.region,
-	    land = item.land,
-	    isRoadAddress = name === 'roadaddr';
-
-	  var sido = '', sigugun = '', dongmyun = '', ri = '', rest = '';
-
-	  if (hasArea(region.area1)) {
-	    sido = region.area1.name;
-	  }
-
-	  if (hasArea(region.area2)) {
-	    sigugun = region.area2.name;
-	  }
-
-	  if (hasArea(region.area3)) {
-	    dongmyun = region.area3.name;
-	  }
-
-	  if (hasArea(region.area4)) {
-	    ri = region.area4.name;
-	  }
-
-	  if (land) {
-	    if (hasData(land.number1)) {
-	      if (hasData(land.type) && land.type === '2') {
-	        rest += '산';
-	      }
-
-	      rest += land.number1;
-
-	      if (hasData(land.number2)) {
-	        rest += ('-' + land.number2);
-	      }
-	    }
-
-	    if (isRoadAddress === true) {
-	      if (checkLastString(dongmyun, '면')) {
-	        ri = land.name;
-	      } else {
-	        dongmyun = land.name;
-	        ri = '';
-	      }
-
-	      if (hasAddition(land.addition0)) {
-	        rest += ' ' + land.addition0.value;
-	      }
-	    }
-	  }
-
-	  return [sido, sigugun, dongmyun, ri, rest].join(' ');
-	}
-
-function hasArea(area) {
-	  return !!(area && area.name && area.name !== '');
-	}
-
-	function hasData(data) {
-	  return !!(data && data !== '');
-	}
-
-	function checkLastString (word, lastString) {
-	  return new RegExp(lastString + '$').test(word);
-	}
-
-	function hasAddition (addition) {
-	  return !!(addition && addition.value);
-	}
 </script>
 </body>
 </html>
