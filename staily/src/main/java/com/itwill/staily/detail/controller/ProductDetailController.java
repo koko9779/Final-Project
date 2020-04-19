@@ -64,7 +64,26 @@ public class ProductDetailController {
 		
 		
 	}	
-	
+
+	@RequestMapping("/product_create")
+	public ModelAndView product_create(HttpServletResponse response, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		
+		try {			
+			String wNo = request.getParameter("wNo");
+
+			Work w = workDetailService.selectWorkOne(Integer.parseInt(wNo));
+			
+			request.setAttribute("workOne", w);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.setViewName("detail/product_create");
+		
+		return mv;		
+	}
 	
 	@RequestMapping("/product_create_action")
 	public ModelAndView createProduct(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
@@ -119,8 +138,8 @@ public class ProductDetailController {
 			@RequestParam("Filedata") MultipartFile Filedata) { 
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
 		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
-		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
-		File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
+		File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
+		//File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
 		
 		try {
 			
@@ -138,8 +157,8 @@ public class ProductDetailController {
 			@RequestParam("Filedata") MultipartFile Filedata) { 
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
 		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
-		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
-		File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		//File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
 		
 		try {
 			
@@ -152,25 +171,6 @@ public class ProductDetailController {
 	}
 	
 	
-	@RequestMapping("/pdImage_create")
-	public ModelAndView pdImage_create(HttpServletResponse response, HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView();
-		
-		try {			
-			String wNo = request.getParameter("wNo");
-			String pNo = request.getParameter("pNo");
-			
-			request.setAttribute("pNo", pNo);
-			request.setAttribute("wNo", wNo);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		mv.setViewName("detail/pdImage_create");
-		
-		return mv;		
-	}
 	
 	
 	@RequestMapping("/pdImage_create_action")

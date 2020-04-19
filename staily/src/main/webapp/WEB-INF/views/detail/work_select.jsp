@@ -4,16 +4,23 @@
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 
 <!-- Hero -->
-<div id="content_hero" style="background-image: url(http://via.placeholder.com/1440x435)">
+<div id="content_hero">
+	<a href="#afterHeader" class="anchor"> <img
+		src="${pageContext.request.contextPath}/images/scroll-arrow.svg"
+		alt="Scroll down" class="scroll" />
+	</a>
 	
-	<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
-
+	<iframe class="ww"
+			src="https://www.youtube-nocookie.com/embed/WEWtyTm2foM?autoplay=1&amp;loop=1;&playlist=isls26FGUaA&controls=0&vq=hd1080"
+			frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+			allowfullscreen style="position: absolute;left: -0%;width: 100%;height: 100%;top: 0%;"></iframe>
+	
 	<!-- Content -->
 	<div class="container">
 		<div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0" data-translatey="100">
 			<div class="col-md-9">
-				<span class="title">The very latest</span>
-				<h1>Cinema news</h1>
+				<span class="title"></span>
+				<h1></h1>
 			</div>
 		</div>
 	</div>
@@ -153,8 +160,7 @@ $(".btnnn").click(function() {
 });
 
 function modal_click() {
-	alert("상품 이미지를 먼저 등록해 주세요!");
-	document.wNo_request.action = "pdImage_create";
+	document.wNo_request.action = "product_create";
 	document.wNo_request.submit();
 };
 

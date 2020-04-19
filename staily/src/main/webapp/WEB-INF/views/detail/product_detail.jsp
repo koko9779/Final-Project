@@ -8,8 +8,7 @@
 
 
 <!-- Hero -->
-<div id="content_hero"
-	style="background-image: url(http://via.placeholder.com/1440x435)">
+<div id="content_hero">
 	<a href="#afterHeader" class="anchor"> <img
 		src="${pageContext.request.contextPath}/images/scroll-arrow.svg"
 		alt="Scroll down" class="scroll" />
@@ -40,11 +39,11 @@
 			<h2 style="margin-bottom: 0;">이 상품이 나온 장면</h2>
 			<img
 				src="${pageContext.request.contextPath}/images/product/scene/${productOne.get(0).getpScene()}.jpg"
-				height="450px" width="850px" style="padding: 20px;">
+				style="padding: 20px; height: 450px; width: 850px;">
 			<button type="button" class="btn btn-ghost" id="createBmk" style="margin: 5%; margin-left: 10px;">즐겨찾기 추가</button>
 			<!-- Section -->
 			<h2>상품 사진</h2>
-			<div class="slick-carousel news-carousel" style="height: 260px">
+			<div class="slick-carousel news-carousel" style="height: 280px">
 				<c:forEach var="product" items="${productOne}">
 					<div>
 						<img src="${pageContext.request.contextPath}/images/product/image/${product.pdImage}.jpg">
@@ -54,7 +53,7 @@
 
 			<!-- Section -->
 			<div class="row">
-				<div class="tabs">
+				<div class="tabs" style="margin-top: 60px;">
 					<ul>
 						<li><a href="#one">상품 정보</a></li>
 						<c:if test="${not empty productOne.get(0).getpAddress()}">
@@ -249,10 +248,10 @@ geocoder.addressSearch(address1, function(result, status) {
 		            '            </div>' + 
 		            '            <div class="toolbar" style="text-align: center;">' + 
 		            '           	 <div class="roadview" style="float: left;width: 50%;padding: 4%">' + 
-		            '           	 	<a href="' + roadview + '">로드뷰</a>' + 
+		            '           	 	<a href="' + roadview + '" target="_blank">로드뷰</a>' + 
 		            '           	 </div>' + 
 		            '           	 <div class="direction" style="float: left;width: 50%;padding: 4%">' + 
-		            '           	 	<a href="' + direction + '">길찾기</a>' + 
+		            '           	 	<a href="' + direction + '" target="_blank">길찾기</a>' + 
 		            '           	 </div>' + 
 		            '            </div>' + 
 		            '        </div>' + 
