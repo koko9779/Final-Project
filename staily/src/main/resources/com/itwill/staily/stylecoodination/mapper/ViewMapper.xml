@@ -48,10 +48,12 @@
 </select>
 
 <select id="selectBoardOne" resultType="Board">
-	SELECT 	B.* 
-			,(SELECT count(*) FROM board_detail A WHERE B.b_no = A.b_no ) AS bd_count 
-			,(SELECT count(*) FROM board_detail A WHERE B.b_no = A.b_no AND A.m_no = #{mNo} ) as user_rec
+	SELECT 	B.* , M.m_id
+		,(SELECT count(*) FROM board_detail A WHERE B.b_no = A.b_no ) AS bd_count 
+		,(SELECT count(*) FROM board_detail A WHERE B.b_no = A.b_no AND A.m_no = #{mNo} ) as user_rec
 	FROM board B
+    JOIN member M
+    ON (B.m_no = M.m_no)
 	WHERE B.b_groupno = #{bNo}
 	ORDER BY B.b_step ASC
 </select>
@@ -101,8 +103,10 @@
 
 
 <select id="selectUpdateBoard" parameterType="int" resultType="Board">
-SELECT b_no, b_title, b_content, b_step, b_category
-FROM board
+SELECT B.*, M.m_id
+FROM board B
+JOIN member M
+ON (B.m_no = M.m_no)
 WHERE b_no = #{bNo}
 </select>
 

@@ -3,28 +3,8 @@ var h3ReplyHeader;
 var $replyF;
 
 $(function() {
-	
 	clone = $("#board2").clone();
 	h3ReplyHeader = $("<h3 class='board-top reply-delete m-top-50' id='reply-top'>스타일 답변</h3>");
-	/*
-	$replyF = $("<article class='reply reply-delete' id='replyArticleH'>" +
-								"<div class='col-md-12 m-top--40'>" +
-									"<div id='replyWriteTitle' class='categories col-md-6 board-title f-s-25'></div>" +
-									"<div class='col-md-6 text-left'><span class='font-small'>.</span></div>" +
-								"</div>" +
-								"<div class='p_content m-top-50 m-bottom-30'></div>" + 
-								"<a href='news-single.html' class='btn btn-ghost'>" +
-									"<span>추천하기</span>" +
-								"</a>" +
-								"<a href='javascript:reply_delete(${board.bNo}, ${fn:length(boardOneList)});' class='btn btn-ghost sort'>" +
-									"<span>삭제</span>" +
-								"</a>" +
-								"<a href='javascript:board_and_reply_modify(${board.bNo});' class='btn btn-ghost sort'>" +
-									"<span>수정</span>" +
-								"</a>" +
-						"</article>");
-	*/
-	console.log(clone);
 });
 
 /*
@@ -62,7 +42,6 @@ function board_delete(bNo) {
 	}else {
 		post_to_url("style_board_delete_action", {"bNo" : bNo});
 	}
-	
 }
 function reply_write_form() {
 	
@@ -94,7 +73,7 @@ function board_and_reply_modify(bNo) {
 		dataType: "json",
 		success: function(boardJson) {
 							$('#board').fadeOut(500, function() {
-								$("#board").html("<h3 class='board-top'>스타일 질문</h3>" +
+								$("#board").html("<h3 class='board-top p-top-21'>스타일 질문</h3>" +
 										 "<form name='boardWriteF' onSubmit='return false;'>" +
 										 			"<input type='hidden' id='bNo' name='bNo' value='" + bNo + "'>" +
 													"<div class='row justify-content-md-center'>" +
@@ -125,7 +104,7 @@ function board_and_reply_modify(bNo) {
 														"</button>" +
 														"<button type='submit' id='canselB' class='btn btn-ghost' " + 
 															"style='width: 20%; font-weight: bold; margin-top: 15px;' " + 
-															"onclick='cansle_update();'>" + 
+															"onclick='cancel_board_update(" + bNo + ");'>" + 
 															"취 소" +
 														"</button>" +
 													"</div>" +
@@ -137,13 +116,51 @@ function board_and_reply_modify(bNo) {
 	});
 }
 
-function cansle_update() {
-	
+function cancel_board_update(bNo) {
+	$('#board').fadeOut(500, function() {
+		$('#board').find('.title_detail').val("");
+		CKEDITOR.instances.recContents.setData("");
+		
+		$.ajax({
+			url: "board_one_for_udate_read",
+			type: 'get',
+			data: {"bNo" : bNo},
+			async : false,
+			dataType: "json",
+			success: function(boardJson) {
+				$("#board").html("<div id='board2'>'" + 
+						"<input type='hidden' id='updateBNo' value='" + bNo + "'>" +
+						"<h3 class='board-top'>스타일 질문</h3>" +
+						"<div class='categories col-md-6 board-title f-s-25' id='board_title_read'>"+ boardJson.bTitle + "</div>" +
+						"<div class='col-md-6 text-left'>" +
+							"<span class='font-small'>" + boardJson.mId + "." + boardJson.bDate + ".조회수: " + boardJson.bView + "</span>" +
+						"</div>" +
+						"<div class='p_content m-top-50' id='board_content_read'>" +
+							boardJson.bContent +
+						"</div>" +
+						"<a href='javascript:board_delete(" + bNo + ");' class='btn btn-ghost sort'>" +
+							"<span>삭제</span>" +
+						"</a>" +
+						"<a href='javascript:board_and_reply_modify(" + bNo + ");' class='btn btn-ghost sort'>"+
+							"<span>수정</span>" +
+						"</a>" +
+				"</div>");
+				$('#board').fadeIn(500);
+			}
+		});
+		
+	});
 }
 
 function cancel_reply_write() {
-	// 내용 초기화가 안되유 ㅠㅠ
 	$("#boardReplyWriteF").fadeOut(500);
+}
+
+function cancel_reply_update(bNo) {
+	$("#boardReplyUpdateF").fadeOut(500);
+	$("#boardReplyUpdateF").remove();
+	$("#board_" + bNo).fadeIn(500);
+	
 }
 
 
@@ -271,7 +288,7 @@ function reply_update(bNo) {
 												"</button>" +
 												"<button type='submit' id='canselB' class='btn btn-ghost'" +
 													"style='width: 20%; font-weight: bold; margin-top: 15px;'" + 
-													"onclick='();'>" +
+													"onclick='cancel_reply_update(" + bNo + ");'>" +
 													"취 소" +
 												"</button>" +
 											"</div>" +
