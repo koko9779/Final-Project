@@ -65,49 +65,7 @@ function product_confirm(pNo) {
 		}
 	});
 };
-function imgUpdate(pNo) {
-	window.open("product_update_img?" + "pNo="+ pNo, "상품이미지수정",
-	"width=685, height=685, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
-};
-window.onload = function() { 	
-	var option = {
-		listtype : "thumbnail",
-		fileid : "uploadImg",
-		uploadURL : "update_img",
-		maxFileCount : 10,
-		maxFileSize : 3,
-		afterFileTransfer : afterFileTransfer
-	}
-	guManager = new guUploadManager(option);	
-}
-function afterFileTransfer(realname, filename, filesize) {
 
-	var realname9 = document.getElementById('realname');
-	var filename9 = document.getElementById('filename');
-	var filesize9 = document.getElementById('filesize');
-
-	realname9.value = realname;
-	filename9.value = filename;
-	filesize9.value = filesize;
-	
-	
-	/*
-	document.product_img.action = "pdImage_create_action";
-	document.product_img.submit();
-	var spl = realname9.value.split('.');
-	console.log(spl);
-	
-	if (spl[1] != "jpg" && spl[1] != "png") {
-		document.form1.submit();
-	} else {
-		alert("이미지 파일만 올려주세요");
-	}
-	*/
-}
-
-function imageUpdate() {
-	guManager.uploadFiles();
-}
 /** ***********주소 일반*************** */
 
 function execDaumPostcode() {
@@ -179,7 +137,7 @@ function sucess(item) {
 		tag += "<td hidden='overview2'>" + overview + "</td>";
 		tag += "</tr>";
 		tag += "</table>";
-		tag += "<button type='submit' value='submit' class='btn btn-default btn-lg io-data io-fn-nextStep' data-step='2' onclick='workCreate("+i+")'>선택</button>";
+		tag += "<button type='submit' value='submit' class='btn' data-step='2' onclick='workCreate("+i+")'>선택</button>";
 		tag += "</form>"
 			
 			$("#resultF").append(tag);
