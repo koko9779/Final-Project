@@ -86,12 +86,14 @@
 							<div class="p_content m-top-50" id="board_content_read">
 								${boardOneList[0].bContent}
 							</div> 
+							<c:if test="${sessionScope.userNo eq boardOneList[0].mNo}">
 								<a href="javascript:board_delete(${boardOneList[0].bNo});" class="btn btn-ghost sort">
 									<span>삭제</span>
 								</a>
 								<a href="javascript:board_and_reply_modify(${boardOneList[0].bNo});" class="btn btn-ghost sort">
 									<span>수정</span>
 								</a>
+							</c:if>
 						</div>
 						</article>
 						<c:if test="${fn:length(boardOneList) > 1}">
@@ -122,12 +124,14 @@
 										<span>추천하기  </span><span class="total_bd_count">${board.bdCount}</span>
 									</a>
 								</c:if>
-								<a href="javascript:reply_delete(${board.bNo});" class="btn btn-ghost sort">
-									<span>삭제</span>
-								</a>
-								<a href="javascript:reply_update(${board.bNo});" class="btn btn-ghost sort">
-									<span>수정</span>
-								</a>
+								<c:if test="${sessionScope.userNo eq board.mNo}">
+									<a href="javascript:reply_delete(${board.bNo});" class="btn btn-ghost sort">
+										<span>삭제</span>
+									</a>
+									<a href="javascript:reply_update(${board.bNo});" class="btn btn-ghost sort">
+										<span>수정</span>
+									</a>
+								</c:if>
 						</article>
 						</c:forEach>
 						<div>

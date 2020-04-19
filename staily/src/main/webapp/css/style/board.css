@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+/*
+.btn-ghost:hover {
+    color: #fff;
+}
+.btn:focus, .btn:hover {
+    color: #e76115;
+}
+*/
 .board-top {
 	color: #e76115;
 }
