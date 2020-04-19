@@ -8,19 +8,27 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/gu-upload/css/guupload2.css"/>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/gu-upload/guuploadManager.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/gu-upload/guuploadManager2.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 
 <!-- Hero -->
-<div id="content_hero" style="background-image: url(http://via.placeholder.com/1440x435)">
+<div id="content_hero">
+	<a href="#afterHeader" class="anchor"> <img
+		src="${pageContext.request.contextPath}/images/scroll-arrow.svg"
+		alt="Scroll down" class="scroll" />
+	</a>
 	
-	<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
-
+	<iframe class="ww"
+			src="https://www.youtube-nocookie.com/embed/obX621oa9RM?autoplay=1&amp;loop=1;&playlist=isls26FGUaA&controls=0&vq=hd1080"
+			frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+			allowfullscreen style="position: absolute;left: -0%;width: 100%;height: 100%;top: 0%;"></iframe>
+			
 	<!-- Content -->
 	<div class="container">
 		<div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0" data-translatey="100">
 			<div class="col-md-9">
-				<span class="title">The very latest</span>
-				<h1>Cinema news</h1>
+				<span class="title"></span>
+				<h1></h1>
 			</div>
 		</div>
 	</div>
@@ -119,7 +127,7 @@
 					</tr>
 					<tr>
 						<th scope="row" class="bg-light essentia"><label for="pName">
-								상품명</label></th>
+								상품명 <span style="color: red;">*</span></label></th>
 						<td class="text-left" style="text-align: left;">
 							<div class="col">
 								<input type="text" name="pName" id="pName" class="form-control"
@@ -129,17 +137,17 @@
 					</tr>
 					<tr>
 						<th scope="row" class="bg-light essentia"><label for="pPrice">
-								가격</label></th>
+								가격 <span style="color: red;">*</span></label></th>
 						<td class="text-left" style="text-align: left;">
 							<div class="col">
 								<input type="text" name="pPrice" id="pPrice" class="form-control"
-									maxlength="20">
+									maxlength="20" placeholder="숫자만 입력 가능합니다">
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<th scope="row" class="bg-light essentia"><label for="pUrl">
-								쇼핑몰 URL</label></th>
+								쇼핑몰 URL <span style="color: red;">*</span></label></th>
 						<td class="text-left" style="text-align: left;">
 							<div class="col">
 								<input type="text" name="pUrl" id="pUrl" class="form-control"
@@ -147,14 +155,12 @@
 							</div>
 						</td>
 					</tr>
-					
-					
 					<tr>
 						<th scope="row" class="bg-light essentia"><label for="pAddress">
 								주소</label></th>
 						<td class="text-left" style="text-align: left;">
 							<div class="col">
-								<input type="text" name="pAddress" id="pAddress"
+								<input type="text" name="pAddress" id="pAddress" value="${param.pAddress}"
 									onclick="execDaumPostcode()" placeholder="이 곳을 클릭하세요" class="form-control" readonly>
 							</div>
 						</td>
@@ -163,27 +169,46 @@
 						<th scope="row" class="bg-light essentia"><label for="pDaddress">
 								상세 주소</label></th>
 						<td class="text-left" style="text-align: left;">
-							<div class="col">
+							<div class="col">					
 								<input type="text" name="pDaddress" id="pDaddress" class="form-control"
-									maxlength="20">
+									maxlength="20" placeholder="주소를 먼저 입력하세요" readonly>								
 							</div>
 						</td>
-					</tr>
-					
+					</tr>					
 					<tr>
 						<th scope="row" class="bg-light essentia"><label for="pScene">
-								상품이 나온 장면<br>(최대 1장)</label></th>
+								상품이 나온 장면<br>(최대 1장) <span style="color: red;">*</span></label></th>
 						<td class="text-left" style="text-align: left;">
 							<div class="col">
+								<button class="button_css" type="button">이미지 업로드</button>
+								<!--  
 								<div id="uploadScene" style="width: 100%;"></div>
 								<input type="hidden" id="realname" name="realname"/>
 								<input type="hidden" id="filename" name="filename"/>
-								<input type="hidden" id="filesize" name="filesize"/>									
+								<input type="hidden" id="filesize" name="filesize"/>
+								-->									
 							</div>
 						</td>
-					</tr>
+					</tr>	
 					<tr>
-					</tr>				
+						<th scope="row" class="bg-light essentia"><label for="pScene">
+								상품 이미지<br>(최대 10장) <span style="color: red;">*</span></label></th>
+						<td class="text-left" style="text-align: left;">
+							<div class="col">
+								<button class="button_css" type="button">이미지 업로드</button>
+								<!--  
+								<div id="uploadScene2" style="width: 100%;"></div>
+								<input type="hidden" id="realname2" name="realname2"/>
+								<input type="hidden" id="filename2" name="filename2"/>
+								<input type="hidden" id="filesize2" name="filesize2"/>
+								-->									
+							</div>
+						</td>
+					</tr>	
+					<tr>
+						<th scope="row" class="bg-light essentia" colspan="2"><label for="pScene">
+								<span style="color: red;">*</span>는 필수 항목입니다.</label></th>
+					</tr>
 				</tbody>		
 			</table>
 			<c:forEach var="i" begin="1" end="${cnt}" varStatus="status">
@@ -213,7 +238,18 @@ window.onload = function() {
 		afterFileTransfer : afterFileTransfer
 	}
 	
-	guManager = new guUploadManager(option);	
+	guManager = new guUploadManager(option);
+	
+	var option2 = {
+			listtype : "thumbnail",
+			fileid : "uploadScene2",
+			uploadURL : "upload2",
+			maxFileCount : 10,
+			maxFileSize : 3,
+			afterFileTransfer : afterFileTransfer2
+		}
+	
+	guManager2 = new guUploadManager2(option2);
 }
 
 

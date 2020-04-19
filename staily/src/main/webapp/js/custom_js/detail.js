@@ -2,7 +2,6 @@
 var guManager = null;
 var guManager2 = null;
 
-
 function afterFileTransfer(realname, filename, filesize) {
 
 	var realname9 = document.getElementById('realname');
@@ -16,11 +15,61 @@ function afterFileTransfer(realname, filename, filesize) {
 	document.createP.submit();
 }
 
+function afterFileTransfer2(realname2, filename2, filesize2) {
+
+	var realname9 = document.getElementById('realname2');
+	var filename9 = document.getElementById('filename2');
+	var filesize9 = document.getElementById('filesize2');
+
+	realname9.value = realname2;
+	filename9.value = filename2;
+	filesize9.value = filesize2;
+	
+	document.pdImage.submit();	
+}
+
+$("#pPrice").on("focus", function() {
+    var x = $(this).val();
+    x = removeCommas(x);
+    $(this).val(x);
+}).on("focusout", function() {
+    var x = $(this).val();
+    if(x && x.length > 0) {
+        if(!$.isNumeric(x)) {
+            x = x.replace(/[^0-9]/g,"");
+        }
+        x = addCommas(x);
+        $(this).val(x);
+    }
+}).on("keyup", function() {
+    $(this).val($(this).val().replace(/[^0-9]/g,""));
+});
+
 function productCreate() {
-	guManager.uploadFiles();
-	document.createP.action = "product_create_action";
-	document.createP.method = "POST";
-	alert("상품 등록이 완료되었습니다.");	
+	var pName = $('#pName').val();
+	var pPrice = $('#pPrice').val();
+	var pUrl = $('#pUrl').val();
+	
+	//alert(pName + " === " + pPrice + " === " + pUrl);
+	
+	if(pName == '' || pPrice == '' || pUrl == '') {
+		swal({
+			title: "필수 항목을 모두 입력해주세요",
+			icon: "warning" //"info,success,warning,error" 중 택1
+		});		
+	}
+	else {
+		guManager.uploadFiles();
+		guManager2.uploadFiles();
+		document.createP.action = "product_create_action";
+		document.createP.method = "POST";
+		
+		swal({
+			title: "상품 등록이 완료되었습니다",
+			icon: "success" //"info,success,warning,error" 중 택1
+		});
+	}
+	
 };
 
 function pdImageCreate() {
@@ -78,6 +127,10 @@ function execDaumPostcode() {
 			// 우편번호와 주소 정보를 해당 필드에 넣는다.
 			document.getElementById("pAddress").value = addr;
 
+			//상세 주소 입력창을 연다.
+			$('#pDaddress').attr('readonly', false);
+			$('#pDaddress').attr('placeholder', '상세 주소를 입력하세요');
+			
 			// 커서를 상세주소 필드로 이동한다.
 			document.getElementById("pDaddress").focus();
 		}
@@ -124,26 +177,36 @@ $('#createreply').on("click", function(e) {
 
 	//alert(pNo + ' : ' + mNo + ' : ' + rContent + ' : ' + wNo);
 
-	$.ajax({
-		url : "reply_create",
-		type : "post",
-		dataType : "text",
-		data : {
-			"mNo" : mNo,
-			"wNo" : wNo,
-			"pNo" : pNo,
-			"rContent" : rContent
-		},
-		error : function(request, error) {
-	    	 alert("fail");
-	 			// error 발생 이유를 알려준다.
-	 		 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	 	},
-		success : function(data) {			
-			getReplies();
-			$('#rContent').val('');
-		}
-	});
+	if(rContent == '') {
+		swal({
+			   title: "내용을 입력해주세요",
+			   icon: "error" //"info,success,warning,error" 중 택1
+		});
+	}
+	else {
+		$.ajax({
+			url : "reply_create",
+			type : "post",
+			dataType : "text",
+			data : {
+				"mNo" : mNo,
+				"wNo" : wNo,
+				"pNo" : pNo,
+				"rContent" : rContent
+			},
+			error : function(request, error) {
+				swal({
+					title: "실패",
+					text: "code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error,
+					icon: "error" //"info,success,warning,error" 중 택1
+				});
+			},
+			success : function(data) {			
+				getReplies();
+				$('#rContent').val('');
+			}
+		});
+	}
 });
 
 function deleteReply(rNo, mNo) {
@@ -155,41 +218,58 @@ function deleteReply(rNo, mNo) {
 	//alert(rNo + " " + pNo + " " + mNo);
 	//alert("나 : " + myNo + " 댓글 작성자 : " + memNo);
 	
-	if(confirm("댓글을 삭제하시겠습니까?") == true) {
-		if(myNo == memNo) {
-			$.ajax({
-				url : "reply_delete",
-				data : {"rNo" : replyNo, "pNo" : pNo, "mNo" : myNo},
-				type : "post",
-				dataType : "json",
-				success : function(data) {
-					if(data == 1) {
-						alert("댓글이 삭제되었습니다.");
-						getReplies();
-					}
-					else {
-						alert("오류가 발생했습니다.");
-						getReplies();
-					}
+	swal({
+		  title: "댓글을 삭제하시겠습니까?",
+		  icon: 'warning',
+		  buttons: true,
+		  dangerMode: true,
+		}).then((willDelete) => {
+			if(willDelete) {
+				if(myNo == memNo) {
+					$.ajax({
+						url : "reply_delete",
+						data : {"rNo" : replyNo, "pNo" : pNo, "mNo" : myNo},
+						type : "post",
+						dataType : "json",
+						success : function(data) {
+							if(data == 1) {
+								swal({
+									title: "댓글이 삭제되었습니다",
+									icon: "success" //"info,success,warning,error" 중 택1
+								});
+								getReplies();
+							}
+							else {
+								swal({
+									title: "오류가 발생했습니다",
+									icon: "error" //"info,success,warning,error" 중 택1
+								});
+								getReplies();
+							}
+						}
+					});
 				}
-			});
-		}
-		else {
-			alert("다른 사람의 댓글은 삭제할 수 없습니다.");
-		}
-		
-	}
-	else {
-		return false;
-	}
-	
+				else {
+					swal({
+						title: "다른 사람의 댓글은 삭제할 수 없습니다.",
+						icon: "error" //"info,success,warning,error" 중 택1
+					});
+				}				
+			}
+			else {
+				return false;
+			}
+		})		
 }
 
 function incReport(rNo) {
 	var myNo = $('#mNo').val();
 	
 	if(myNo == '') {
-		alert("신고하려면 로그인하세요.");
+		swal({
+			   title: "신고하려면 로그인하세요",
+			   icon: "warning" //"info,success,warning,error" 중 택1
+		});
 	}
 	else {
 		
@@ -200,7 +280,10 @@ function incRec(rNo) {
 	var myNo = $('#mNo').val();
 	
 	if(myNo == '') {
-		alert("추천하려면 로그인하세요.");
+		swal({
+			   title: "추천하려면 로그인하세요",
+			   icon: "warning" //"info,success,warning,error" 중 택1
+		});
 	}
 	else {
 		
@@ -224,21 +307,18 @@ $('#searchDropdown a:nth-child(1)').click(function(e){
 		success : function(result){
 			if(result.status == 'success'){
 				swal({
-				   title: "친구 추가 성공",
-				   text: "친구 추가가 성공했습니다",
-				   icon: "success" //"info,success,warning,error" 중 택1
+					title: "친구 추가가 성공했습니다",
+					icon: "success" //"info,success,warning,error" 중 택1
 				});
 			}else if(result.status == 'D'){
 				swal({
-				   title: "친구 추가 불가",
-				   text: "이미 친구 추가된 회원입니다",
-				   icon: "error" //"info,success,warning,error" 중 택1
+					title: "이미 친구 추가된 회원입니다",
+					icon: "error" //"info,success,warning,error" 중 택1
 				});
 			}else if(result.status == 'M'){
 				swal({
-				   title: "친구 추가 불가",
-				   text: "본인은 친구로 추가할 수 없습니다",
-				   icon: "error" //"info,success,warning,error" 중 택1
+					title: "본인은 친구로 추가할 수 없습니다",
+					icon: "error" //"info,success,warning,error" 중 택1
 				});
 			};
 			
@@ -255,9 +335,8 @@ $('#searchword').click(function(e){
 	
 	if(myNo == '') {
 		swal({
-		   title: "친구 기능 이용 불가",
-		   text: "이 기능을 이용하려면 로그인하세요",
-		   icon: "warning" //"info,success,warning,error" 중 택1
+			title: "이 기능을 이용하려면 로그인하세요",
+			icon: "warning" //"info,success,warning,error" 중 택1
 		});
 	}
 	else {
