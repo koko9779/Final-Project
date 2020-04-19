@@ -177,13 +177,12 @@ public class MainController {
 	    }
 	    return gson.toJson(map);
 	}
-
 	/************RestController worklist_select/detail*******************/
+	
 	@RequestMapping(value="worklist_select/detail/episode", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String worklist_detail(@RequestParam(name="nextPage",defaultValue = "2") int nextPage,@RequestParam int wNo, @RequestParam int wdEpisode,HttpSession session, HttpServletRequest request) throws Exception{
-		StopWatch st=new StopWatch();
-		st.start();
+
 	    Gson gson = new Gson();
 	    Map map = new HashMap();
 		try {
@@ -222,6 +221,7 @@ public class MainController {
 	    }
 	    return gson.toJson(map);
 	}
+	
 	/************RestController create_bookmark*******************/
 	@RequestMapping(value="/create_bookmark", produces = "text/plain;charset=UTF-8")
 	@ResponseBody

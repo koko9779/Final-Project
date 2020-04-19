@@ -9,7 +9,7 @@ $(document).load(function(){
 //page가 mwListEnd를 비추면 getList를 호출한다.
 $(window).on('scroll',function () {
 	//현재 페이지에 .mwList가 있는 경우
-	if($('.mwList').length){
+	if($('.mwList').length && $('.mwListEnd').length){
 		//showLoadingDialog(false);
 	    if (checkVisible($('.mwListEnd'))&& !isVisible ) {
 	        //alert("다음 게시물 나오세요");
@@ -182,6 +182,7 @@ $(document).ready(function(){
 		var wNo = $("option:selected").attr("wNo");
 		var wdEpisode = $("option:selected").val();
 		var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode+'&nextPage='+(curPage+1);
+		
 		$.ajax({
 			url:'worklist_select/detail/episode',
 			method:'POST',
@@ -194,11 +195,9 @@ $(document).ready(function(){
 				var bmList = jsonData.bmList;
 				var mweArray = jsonData.mwe;
 				var endPage = jsonData.endPage;
-				html+="쨥";
-				/*
-				//console.log("현재 페이지"+curPage+",마지막페이지"+endPage);
+				console.log("현재 페이지"+curPage+",마지막페이지"+endPage);
+				
 				if (curPage<=endPage){ 
-					html += "<article>";
 					
 					for (var i = 0; i < mweArray.length; i++) {
 						console.log("html length:"+html.length);
@@ -276,18 +275,17 @@ $(document).ready(function(){
 						console.log("end-->>>>>>>>>>>>>")
 					}
 					
-					html += "</article>";
-					html += "<div class='.mwListEnd'></div>"
-					
-					$('#work_list_main article').remove();
+					var html2 = "<div class='.mwListEnd'></div>";
 					$('#work_list_main .mwListEnd').remove();
-					$('#work_list_main').append(html);
+					 page = 1; 
+					$('#work_list_main .mwList').empty();
 					
 					//for문 끝
 					showLoadingDialog(true);
 					setTimeout(function(){
 						if(html.length){
 							$('.mwList').append(html); 
+							$('#work_list_main').append(html2);
 							showLoadingDialog(false);
 							isVisible=false;
 							page++;
@@ -296,12 +294,13 @@ $(document).ready(function(){
 							isVisible=true;
 						}
 					},2000);
+					
 				}else{
-					$(".mwList").append(html); 
+					$("#work_list_main .mwList").append(html); 
 					isVisible=true;
 				}
-				*/
-				$('.mwList').append(html);
+				
+				
 				/******************************/
 				$('.slick-carousel.newIn').not('.slick-initialized').slick({
 					autoplay: false,
