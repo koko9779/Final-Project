@@ -34,12 +34,21 @@ function checkVisible( elm, eval ) {
 //다음 리스트 가져오기
 function getList(curPage){
 	var wNo = $('.mwList .wNoo').val();
-	var params = 'wNo='+wNo+'&nextPage='+(curPage+1);
+	var url_string = window.location.href;
+	var url = new URL(url_string);
+	var wdEpisode = url.searchParams.get("wdEpisode");
+	if(wdEpisode==null){
+		var params = 'wNo='+wNo+'&nextPage='+(curPage+1);
+		var moveUrl = 'worklist_select/detail';
+	}else{
+		var params = 'wNo='+wNo+'&wdEpisode'+wdEpisode+'&nextPage='+(curPage+1);
+		var moveUrl = 'worklist_select/episode/detail';
+	}
     $.ajax({
         type : 'POST',  
         dataType : 'json', 
         data : params,
-        url : 'worklist_select/detail',
+        url : moveUrl,
         success : function(jsonData) {
             var html = "";
 			var userNo = jsonData.userNo;	
@@ -174,14 +183,31 @@ $(document).ready(function(){
 		    }
 		  ]
 	});
+	$('#workEpisode').change(function(e){
+		console.log('#workEpisode change!!!!!!!!!!');
+		var contextPath = $("option:selected").attr("contextPath");
+		var wNo = $("option:selected").attr("wNo");
+		var wdEpisode = $("option:selected").val();
+		var url_string = window.location.href;
+		var url = new URL(url_string);
+		var urlcheck = url.searchParams.get("wdEpisode");
+		if(urlcheck!=null){
+			var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode;
+			location.href="../worklist_select/episode?"+params;
+		}
+		var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode;
+		location.href="worklist_select/episode?"+params;
+	});
+	//ajax
 	//worklist 회차 출력
+	/*
 	$('#workEpisode').change(function(e){
 		console.log('#workEpisode change!!!!!!!!!!');
 		var contextPath = $("option:selected").attr("contextPath");
 		var curPage = 1;
 		var wNo = $("option:selected").attr("wNo");
 		var wdEpisode = $("option:selected").val();
-		var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode+'&nextPage='+(curPage+1);
+		var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode+'&nextPage='+(curPage);
 		
 		$.ajax({
 			url:'worklist_select/detail/episode',
@@ -277,7 +303,7 @@ $(document).ready(function(){
 					
 					var html2 = "<div class='.mwListEnd'></div>";
 					$('#work_list_main .mwListEnd').remove();
-					 page = 1; 
+					
 					$('#work_list_main .mwList').empty();
 					
 					//for문 끝
@@ -300,8 +326,7 @@ $(document).ready(function(){
 					isVisible=true;
 				}
 				
-				
-				/******************************/
+				//
 				$('.slick-carousel.newIn').not('.slick-initialized').slick({
 					autoplay: false,
 					autoplaySpeed: 3000,
@@ -324,12 +349,12 @@ $(document).ready(function(){
 					    }
 					  ]
 				});
-				/******************************/
 			}
 		});
 		
 		e.preventDefault();
-	});		
+	});	
+	*/
 });
 
 function bm_productpage(bmNo,pNo){
@@ -346,8 +371,15 @@ function productpage(pNo){
 /************Controller workpage*******************/
 
 function workpage(wNo){
+	var url_string = window.location.href;
+	var url = new URL(url_string);
+	var wdEpisode = url.searchParams.get("wdEpisode");
 	var work_form = document.getElementById('work_'+wNo);
-	work_form.action = "worklist_select";
+	if(wdEpisode==null){
+		work_form.action = "worklist_select";		
+	}else{
+		work_form.action = "../worklist_select";	
+	}
 	work_form.submit();
 };
 
