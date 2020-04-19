@@ -2,7 +2,9 @@ package com.itwill.staily.admin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,10 +60,31 @@ public class AdminController {
 	 * 
 	 */
 	@RequestMapping("/main")
-	public String adminTest() {
+	public String adminMain() {
 		return "admin/index";
 	}
+//	@RequestMapping("/test")
+//	public String adminTestttest() {
+//		return "admin/test";
+//	}
 
+	@RequestMapping("/upload2")
+	public void upload2(HttpServletResponse response, HttpServletRequest request, 
+			@RequestParam("Filedata") MultipartFile Filedata) { 
+		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
+		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
+		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		
+		try {
+			
+			Filedata.transferTo(f); 
+			response.getWriter().write(newfilename);
+		} 
+		catch (IllegalStateException | IOException e) { 
+			e.printStackTrace(); 
+		}
+	}
 	// 회원
 	@RequestMapping("/member")
 	public String memberAdminForm(HttpServletRequest request, HttpServletResponse response) {
@@ -95,7 +118,15 @@ public class AdminController {
 		Member member = null;
 		try {
 			member = adminService.selectMemberOne(mNo);
+			String phn = member.getmPhone();
+			String phn1 = phn.substring(0,3);
+			String phn2 = phn.substring(3,7);
+			String phn3 = phn.substring(7);
+			request.setAttribute("phn1", phn1);
+			request.setAttribute("phn2", phn2);
+			request.setAttribute("phn3", phn3);
 			request.setAttribute("member", member);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -154,12 +185,10 @@ public class AdminController {
 		return "admin/product_update";
 	}
 
-	@RequestMapping("/product_update_img")
-	public String productAdminImg(@RequestParam int pNo, HttpServletRequest request) {
+	@RequestMapping("/product_update_scene")
+	public String productAdminImg(@RequestParam("pScene")String scene,HttpServletRequest request) {
 		try {
-			List<Product> productList = new ArrayList();
-			productList = adminService.selectProductOne(pNo);
-			request.setAttribute("productList", productList);
+			request.setAttribute("pScene", scene);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -167,24 +196,20 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/update_img")
-	public void upload(HttpServletResponse response, HttpServletRequest request,
+	public void upDate(HttpServletResponse response, HttpServletRequest request,
 			@RequestParam("Filedata") MultipartFile Filedata) {
-		String filename = "";
-		String path = "";
-		if (request.getAttribute("pdScene") != null) {
-			filename = (String) request.getAttribute("pScene");
-			path = "scene";
-		} else {
-			filename = (String) request.getAttribute("pdImage");
-			path = "image";
-		}
-		File f = new File("C:\\Users\\stu\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\" + path
-				+ "\\" + filename + ".jpg");
+		String newfilename = "hitest?";
+//		System.out.println(test+"testtesttestsetestseteste");
+//		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
+//		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
+		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		File f = new File("C:\\Users\\shaden\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
 		try {
-			Filedata.transferTo(f);
-			response.getWriter().write(filename);
-		} catch (IllegalStateException | IOException e) {
-			e.printStackTrace();
+			Filedata.transferTo(f); 
+			response.getWriter().write(newfilename);
+		} 
+		catch (IllegalStateException | IOException e) { 
+			e.printStackTrace(); 
 		}
 	}
 

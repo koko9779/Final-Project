@@ -5,9 +5,25 @@
 	file="/WEB-INF/views/admin/include/include_top_without_sidebar.jsp"%>
 <style>
 .text-left {
-    text-align: left;
+	text-align: left;
 }
 </style>
+<div class="modal fade" id="guUpload" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true" style="width: auto">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">작품 상세</h4>
+			</div>
+			<div class="modal-body" id="body"></div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary"
+					onClick="modal_click()">선택</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+			</div>
+		</div>
+	</div>
+</div>
 <form id="product_detail" name="product_detail" method="post">
 	<div class="container-fluid">
 		<!--  
@@ -46,10 +62,9 @@
 				<col class="col_auto">
 			</colgroup>
 			<tbody>
-				
 				<tr>
-					<th scope="row" class="bg-light essentia" colspan="2"><label for="pName">
-							상품이름</label></th>
+					<th scope="row" class="bg-light essentia" colspan="2"><label
+						for="pName"> 상품이름</label></th>
 					<td class="text-left" colspan="2">
 						<div class="col">
 							<input type="text" name="pName" id="pName" class="form-control"
@@ -57,10 +72,9 @@
 						</div>
 					</td>
 				</tr>
-
 				<tr>
-					<th scope="row" class="bg-light essentia" colspan="2"><label for="pPrice">
-							상품가격</label></th>
+					<th scope="row" class="bg-light essentia" colspan="2"><label
+						for="pPrice"> 상품가격</label></th>
 					<td class="text-left" colspan="2">
 						<div class="col">
 							<input type="text" name="pPrice" id="pPrice" class="form-control"
@@ -69,8 +83,8 @@
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="bg-light essentia" colspan="2"><label for="pUrl">
-							상품URL</label></th>
+					<th scope="row" class="bg-light essentia" colspan="2"><label
+						for="pUrl"> 상품URL</label></th>
 					<td class="text-left">
 						<div class="col" colspan="2">
 							<input type="text" name="pURL" id="pURL" class="form-control"
@@ -84,8 +98,8 @@
 					<td class="text-left" colspan="2">
 						<div class="col">
 							<input type="text" name="pAddress" id="pAddress"
-								onclick="execDaumPostcode()" value="${productList[0].pAddress }" readonly="readonly"
-								class="form-control">
+								onclick="execDaumPostcode()" value="${productList[0].pAddress }"
+								readonly="readonly" class="form-control">
 						</div>
 					</td>
 				</tr>
@@ -107,27 +121,27 @@
 					</td>
 				</tr>
 				<tr>
-					<th scope="row" class="bg-light essentia" colspan="2"><label for="pCheck">장면이미지변경</label>
-					</th>
-				<td class="text-left">
-					<div class="col">
-						<img width="auto" height="auto" 
-							src="${pageContext.request.contextPath}/images/product/scene/${productList[0].pScene }.jpg">
-					</div>
-				</td>
-				<td class="text-left"><button type="button" name="pCheck">수정하기</button></td>
+					<th scope="row" class="bg-light essentia" colspan="2"><label
+						for="pCheck">장면이미지변경</label></th>
+					<td class="text-left"><img width="auto" height="auto"
+						src="${pageContext.request.contextPath}/images/product/scene/${productList[0].pScene }.jpg"
+						alt="${productList[0].pScene }"> <input type="hidden"
+						value="${productList[0].pScene }"></td>
+					<td class="text-left"><button type="button" name="modalBtn"
+							class="modalBtn" onclick="sceneUpdate(${productList[0].pScene })">수정하기</button></td>
 				</tr>
 				<c:forEach var="product" items="${productList }">
 					<tr>
-						<th scope="row" class="bg-light essentia" colspan="2"><label for="pCheck">상품이미지변경</label>
-						</th>
+						<th scope="row" class="bg-light essentia" colspan="2"><label
+							for="pCheck">상품이미지변경</label></th>
 						<td class="text-left">
 							<div class="col" align="center">
-								<img width="auto" height="auto" 
-									src="${pageContext.request.contextPath}${product.pdImage }">
+								<img width="auto" height="auto"
+									src="${pageContext.request.contextPath}/images/product/image/${product.pdImage }.jpg">
 							</div>
 						</td>
-						<td class="text-left"><button type="button" name="pCheck">수정하기</button></td>
+						<td class="text-left"><button type="button" name="modalBtn"
+								class="modalBtn" onclick="imageUpdate(${product.pdImage })" )>수정하기</button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -143,4 +157,13 @@
 </form>
 <%@ include file="/WEB-INF/views/admin/include/include_bottom.jsp"%>
 </body>
+<script>
+function sceneUpdate(img) {
+	var param= img;
+	alert(img)
+	window.open("product_update_scene?" + "pScene="+ img,"이미지정보수정",
+	"width=500, height=300, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
+};
+
+</script>
 </html>

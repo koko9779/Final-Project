@@ -4,31 +4,26 @@
 <%@ include
 	file="/WEB-INF/views/admin/include/include_top_without_sidebar.jsp"%>
 <style>
-image {
+.poster-image {
 	margin: auto;
-}
-
-.w-100 {
-	width: 400px;
-	height: 300px;
+	max-width: 60%;
+	height: auto
 }
 </style>
 <form id="work_create" name="work_create" method="post">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
-				<h3 class="text-center"></h3>
-				<div id="slider-div">
-					<div>
-						<img
-							src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/${work.wPoster}"
-							height="300px">
-					</div>
+				<div align="center">
+					<img
+						src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/${work.wPoster}"
+						class="poster-image">
 				</div>
 			</div>
 		</div>
-		<input type="hidden" id="wPoster" name="wPoster" value="${work.wPoster}">
-		<input type="hidden" id="wCategory" name="wCategory" value="${work.wCategory}">
+		<input type="hidden" id="wPoster" name="wPoster"
+			value="${work.wPoster}"> <input type="hidden" id="wCategory"
+			name="wCategory" value="${work.wCategory}">
 		<table class="table table-hover">
 			<colgroup>
 				<col class="col_wp25">
@@ -47,16 +42,13 @@ image {
 				</tr>
 
 				<tr>
-					<th scope="row" class="bg-light essentia"><label for="wCategory">
-							카테고리</label></th>
-					<td class="text-left">
-					<c:if test="${work.wCategory=='D'}">
-						<div class="col">드라마</div>
-					</c:if>
-					<c:if test="${work.wCategory=='M'}">
-						<div class="col">영화</div>
-					</c:if>
-					</td>
+					<th scope="row" class="bg-light essentia"><label
+						for="wCategory"> 카테고리</label></th>
+					<td class="text-left"><c:if test="${work.wCategory=='D'}">
+							<div class="col" align="left">드라마</div>
+						</c:if> <c:if test="${work.wCategory=='M'}">
+							<div class="col" align="left">영화</div>
+						</c:if></td>
 				</tr>
 				<tr>
 					<th scope="row" class="bg-light essentia"><label for="wDate">
@@ -84,7 +76,7 @@ image {
 		<div class="text-center">
 			<button type="button"
 				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
-				id ="wCreateBtn">등록</button>
+				id="wCreateBtn">등록</button>
 			<button type="button"
 				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
 				onclick="window_back()">다른작품선택</button>
