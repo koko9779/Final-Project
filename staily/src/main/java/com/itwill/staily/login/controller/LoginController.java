@@ -36,7 +36,14 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/login")
-	public String login() {
+	public String login(Model model, HttpSession session) {
+		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLogin클래스의 getAuthorizationUrl메소드 호출 */
+		String naverAuthUrl = naverLogin2.getAuthorizationUrl(session); //세션에다가 난수로 생성한 state값을 넣는 작업
+//https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
+//redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
+		System.out.println("네이버:" + naverAuthUrl);
+//네이버
+		model.addAttribute("url", naverAuthUrl);
 		return "login/login";
 	}
 	
@@ -212,7 +219,7 @@ public class LoginController {
 
 //로그인 첫 화면 요청 메소드
 	@RequestMapping(value = "/naver", method = { RequestMethod.GET, RequestMethod.POST })
-	public String login(Model model, HttpSession session) {
+	public String login_naver(Model model, HttpSession session) {
 		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLogin클래스의 getAuthorizationUrl메소드 호출 */
 		String naverAuthUrl = naverLogin2.getAuthorizationUrl(session); //세션에다가 난수로 생성한 state값을 넣는 작업
 //https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
@@ -231,13 +238,18 @@ public class LoginController {
 	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
 			throws IOException, ParseException {
 		System.out.println("여기는 callback");
+		
+		String forwardPath;
+		
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLogin2.getAccessToken(session, code, state);
 //1. 로그인 사용자 정보를 읽어온다.
 		apiResult = naverLogin2.getUserProfile(oauthToken); // String형식의 json데이터
 		/**
-		 * apiResult json 구조 {"resultcode":"00", "message":"success",
-		 * "response":{"id":"33666449","nickname":"shinn****","age":"20-29","gender":"M","email":"sh@naver.com","name":"\uc2e0\ubc94\ud638"}}
+		 * apiResult json 구조 
+		 * {"resultcode":"00", 
+		 * "message":"success",
+		 * "response":{"id":"33666449","nickname":"shinn****","age":"20-29","gender":"M","email":"@naver.com","name":"\uc2e0\ubc94\ud638"}}
 		 **/
 //2. String형식인 apiResult를 json형태로 바꿈
 		JSONParser parser = new JSONParser();
@@ -247,12 +259,42 @@ public class LoginController {
 //Top레벨 단계 _response 파싱
 		JSONObject response_obj = (JSONObject) jsonObj.get("response");
 //response의 nickname값 파싱
-		String nickname = (String) response_obj.get("nickname");
-		System.out.println(nickname);
+		String id = (String) response_obj.get("id");
+		System.out.println(id);
 //4.파싱 닉네임 세션으로 저장
+		/*
 		session.setAttribute("sessionId", nickname); // 세션 생성
 		model.addAttribute("result", apiResult);
-		return "login";
+		*/
+		//jsonObj 의 값 중에 message를 통해 성공했는지 아닌지 판별하여 다른 로직을 실행
+		String message = (String)jsonObj.get("message");
+		if(message.equals("success")) {
+			// 카운터 네이버아이디   타입 N
+			int idCount = loginService.naverIdCounter((String)response_obj.get("id"));
+			
+			//1
+			//메인페이지 세션 회원정보 one
+
+			
+			//0
+			// 회원가입 폼 넘기기  회원가입 추가 정보 회원가입폼
+			
+			
+			forwardPath = "";
+		} else {
+			forwardPath = "redirect:/login/login";
+		}
+//		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLogin클래스의 getAuthorizationUrl메소드 호출 */
+//		String naverAuthUrl = naverLogin2.getAuthorizationUrl(session); //세션에다가 난수로 생성한 state값을 넣는 작업
+////https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
+////redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
+//		System.out.println("네이버:" + naverAuthUrl);
+////네이버
+//		model.addAttribute("url", naverAuthUrl);
+		
+		
+		
+		return forwardPath;
 	}
 
 //로그아웃

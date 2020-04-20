@@ -12,6 +12,8 @@
 
   <!-- custom css  -->
   <link href="${pageContext.request.contextPath}/css/login/login_custom.css" rel="stylesheet" type="text/css">
+  <!-- JQuery -->
+  <script src="${pageContext.request.contextPath}/js/jquery-2.2.4.min.js"></script>
 </head>
 
 <body class="bg-gradient-primary" id="page-top">

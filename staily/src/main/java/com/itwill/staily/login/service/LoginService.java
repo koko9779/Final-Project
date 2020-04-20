@@ -24,5 +24,6 @@ public interface LoginService {
 
 	public int signUpCompany(Member member) throws Exception;
 
+	public int naverIdCounter(String string);
 
 }

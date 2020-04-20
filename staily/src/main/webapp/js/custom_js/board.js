@@ -228,7 +228,7 @@ function recommend(bNo) {
 					  				"로그인 하시겠습니까?");
 				if(isOk) {
 					//document.location.href="../login/login";
-					  window.open("../login/login", "staily 로그인", "width=800, height=700 resizable=yes" );  
+					  window.open("../login/login", "staily 로그인", "width=750, height=600 resizable=no scrollbars=yes" );  
 				}
 					
 			} else {
