@@ -22,6 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.itwill.staily.detail.model.dto.ProductEx;
 import com.itwill.staily.detail.service.ProductDetailService;
 import com.itwill.staily.detail.service.WorkDetailService;
+import com.itwill.staily.main.service.ListService;
+import com.itwill.staily.main.service.MainService;
+import com.itwill.staily.mypage.model.dto.Bookmark;
 import com.itwill.staily.util.Work;
  
 @Controller
@@ -31,6 +34,10 @@ public class ProductDetailController {
 	private WorkDetailService workDetailService;
 	@Autowired
 	private ProductDetailService productDetailService;
+	@Autowired
+	private MainService mainService;
+	@Autowired
+	private ListService listService;
 	
 	@RequestMapping("/product_detail")
 	public String selectProductOne(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
@@ -44,7 +51,18 @@ public class ProductDetailController {
 			
 			String pNo = request.getParameter("pNo");
 			String wNo = request.getParameter("wNo");
-					    
+			
+			if(userNo != null) {
+				List<Bookmark> bmList = mainService.selectByBookmark(userNo);
+				request.setAttribute("bmList", bmList);		
+			}
+			/*
+			Integer bmNo = listService.selectBookmarkNo(userNo, Integer.parseInt(pNo));
+			
+			if(bmNo != null) {
+				request.setAttribute("bmNo", bmNo);				
+			}
+					   */ 
 			List<ProductEx> p = productDetailService.selectProductOne(Integer.parseInt(pNo));
 			Work w = workDetailService.selectWorkOne(Integer.parseInt(wNo));
 			productDetailService.increaseProductView(Integer.parseInt(pNo));
