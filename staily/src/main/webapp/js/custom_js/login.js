@@ -1,3 +1,7 @@
+/************ navbar **************/
+function login_click() {
+	 window.open("/staily/login/login", "staily 로그인", "width=750, height=600 resizable=no scrollbars=yes" );  
+}
 /*********** login.jsp ************/
 function login_action() {
 	document.f.action="login_action";

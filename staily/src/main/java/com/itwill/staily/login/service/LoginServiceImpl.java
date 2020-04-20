@@ -129,6 +129,12 @@ public class LoginServiceImpl implements LoginService {
 		}
 		return signUpCountC;
 	}
+
+	@Override
+	public int naverIdCounter(String string) {
+		
+		return 0;
+	}
 	
 	
 	
