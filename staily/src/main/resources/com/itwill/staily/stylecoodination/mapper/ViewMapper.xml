@@ -4,10 +4,10 @@
 	namespace="com.itwill.staily.stylecoodination.mapper.ViewMapper">
 
 <select id="selectBoardTop10" resultType="Board">
-	SELECT Y.*, ROWNUM b_idx
+    SELECT Y.*, ROWNUM b_idx
     FROM (SELECT * 
             FROM (SELECT ROWNUM b_idx2, X.*
-                    FROM (SELECT B.b_title, B.b_no, B.b_view, M.m_id
+                    FROM (SELECT B.b_title, B.b_no, B.b_view, B.b_date, M.m_id
                           FROM board B
                           JOIN member M
                           ON B.m_no = M.m_no
