@@ -226,6 +226,7 @@ $("#reply").on("click", function(e) {
 
 function getReplies() {
 var pNo = $('#pNo').val();
+var myNo = $('#mNo').val();
 
 	$.ajax({
 		url : "reply_list",
@@ -238,7 +239,9 @@ var pNo = $('#pNo').val();
 			for (i = 0; i < data.length; i++) {
 				a += "<div class='row'>";
 				a += "<h4 class='no-underline'>" + data[i].mId;
-				a += "<button onClick='deleteReply(" + data[i].rNo + ", " + data[i].mNo + ")' class='btn btn-ghost' style='float: right;'>삭제</button></h4>";
+				if(data[i].mNo == myNo) {
+					a += "<button onClick='deleteReply(" + data[i].rNo + ", " + data[i].mNo + ")' class='btn btn-ghost' style='float: right;'>삭제</button></h4>";
+				}
 				a += "<p>" + data[i].rContent + "</p>";
 				a += "<button onClick='incReport(" + data[i].rNo + ")' class='btn btn-ghost' style='float: right;'>신고 " + data[i].rReport + "</button>";
 				a += "<button onClick='incRec(" + data[i].rNo + ")' class='btn btn-ghost' style='float: right;' value='" + data[i].rNo + "'>추천 " + data[i].rRecommend + "</button>";
