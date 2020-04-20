@@ -16,35 +16,23 @@ function searchWork() {
 	window.open("work_seach", "작품정보수정",
 	"width=500, height=800, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
 };
-//function workCreate(i) {
-//	document.getElementById("searchResult"+i+"").action = "work_create";
-//	document.getElementById("searchResult"+i+"").submit();
-//};
-//function workCreateAction() {
-//	document.getElementById("work_create").action = "work_create_action";
-//	document.getElementById("work_create").submit();
-//	swal({
-//		   title: "작품등록성공",
-//		   text: "버튼을 클릭해주세요!",
-//		   icon: "success" // "info,success,warning,error" 중 택1
-//		}).then(() => {
-//			window.opener.location.reload();
-//			window.close();
-//		});
-//};
-/** ***********상품 일반*************** */
-function product_update() {
-	document.getElementById("product_detail").action = "product_update";
-	document.getElementById("product_detail").submit();
-	swal({
-		   title: "상품이 승인되었습니다..",
-		   text: "버튼을 클릭해주세요!",
-		   icon: "success" // "info,success,warning,error" 중 택1
-		}).then(() => {
-			window.opener.location.reload();
-			window.close();
-		});
+function workCreate(i) {
+	document.getElementById("searchResult"+i+"").action = "work_create";
+	document.getElementById("searchResult"+i+"").submit();
 };
+// function workCreateAction() {
+// document.getElementById("work_create").action = "work_create_action";
+// document.getElementById("work_create").submit();
+// swal({
+// title: "작품등록성공",
+// text: "버튼을 클릭해주세요!",
+// icon: "success" // "info,success,warning,error" 중 택1
+// }).then(() => {
+// window.opener.location.reload();
+// window.close();
+// });
+// };
+/** ***********상품 일반*************** */
 function product_confirm(pNo) {
 	var no = "pNo="+pNo;
 	console.log(pNo);
@@ -198,6 +186,47 @@ $(function() {
 						});	
 });
 $(function() {
+	$(document).on('click','#pUpdate',function() {
+		var params = $('#product_detail').serializeArray();
+		$.ajax({
+			url:"product_update",
+			data:params,
+			method:'post',
+			success: function(result) {
+				 if(result == 'success'){
+					 swal({
+						   title: "상품변경성공",
+						   text: "버튼을 클릭해주세요!",
+						   icon: "success" // "info,success,warning,error"
+											// 중 택1
+						}).then(() => {
+							window.opener.location.reload();
+							window.close();
+						});
+						// window.opener.location.reload();
+						// window.close();
+			     }else{
+			       	swal({
+						   title: "상품변경실패",
+						   text: "버튼을 클릭해주세요!",
+						   icon: "error" // "info,success,warning,error"
+													// 중 택1
+					});
+			            }
+			     },
+			     error:function(request, error) {
+			    	 swal({
+						   title: "상품변경실패",
+						   text: "버튼을 클릭해주세요!",
+						   icon: "error" // "info,success,warning,error"
+											// 중 택1
+						});
+			 		 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			 	}
+		  });
+	  });					
+});	
+$(function() {
 	$(document).on('click','#pSelectBtn',function() {
 		var checkbox = $("input[name=product_CheckBox]:checked");
 		var tdArray = new Array();
@@ -224,9 +253,8 @@ $(function() {
 
 /** *****작품 펑션 시작********** */	
 $(function() {
-		$(document).on('click','#wUpdateBtn', function(e) {
+		$(document).on('click','#wUpdateBtn', function() {
 				 var params = $('#work_update').serializeArray();
-				 console.log(params,'loglog');
 				  $.ajax({
 					url: 'work_update',
 					data: params,
@@ -235,30 +263,37 @@ $(function() {
 					success: function(result) {
 						 if(result == 'success'){
 							 swal({
-								   title: "업데이트성공",
+								   title: "작품변경성공",
 								   text: "버튼을 클릭해주세요!",
 								   icon: "success" // "info,success,warning,error"
+													// 중 택1
 								}).then(() => {
-									opener.document.location.reload();
-									self.close();
+									window.opener.location.reload();
+									window.close();
 								});
+								// window.opener.location.reload();
+								// window.close();
 					     }else{
-					          swal({
-								   title: "작품등록실패",
+					       	swal({
+								   title: "작품변경실패",
 								   text: "버튼을 클릭해주세요!",
 								   icon: "error" // "info,success,warning,error"
 															// 중 택1
-									});
+							});
 					            }
-					         },
+					     },
 					     error:function(request, error) {
-					    	 alert("fail");
-					 			// error 발생 이유를 알려준다.
+					    	 swal({
+								   title: "작품변경실패",
+								   text: "버튼을 클릭해주세요!",
+								   icon: "error" // "info,success,warning,error"
+													// 중 택1
+								});
 					 		 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 					 	}
-					});
-			});
-});
+				  });
+			  });					
+});	
 
 $(function() {
 	$(document).on('click','.wCheckBtn',function(e) {
@@ -314,7 +349,7 @@ $(function() {
 });	
 
 
-/************document ready 이벤트******************/
+/** **********document ready 이벤트***************** */
 $(document).ready(function() {
 	/** *****멤버 validate 시작********** */
 	$('#memberInfoFrm').validate({
