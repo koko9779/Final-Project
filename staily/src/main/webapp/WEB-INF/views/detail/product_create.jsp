@@ -33,7 +33,37 @@
 			</div>
 		</div>
 	</div>
+</div>
 
+<!-- 모달 -->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="modal fade" id="sceneUp" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="myModalLabel">
+								이미지 업로드
+							</h4> 
+						</div>
+ 						<div class="modal-body" id="body">
+ 							<form id="sceneUpload" method="post">
+	 							<div id="uploadScene" style="width: 100%;"></div>
+								<input type="hidden" id="realname1" name="realname1"/>
+								<input type="hidden" id="filename1" name="filename1"/>
+								<input type="hidden" id="filesize1" name="filesize1"/>
+ 							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" id="modal1_click">올리기</button> 
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+						</div>
+					</div>					
+				</div>				
+			</div>			
+		</div>
+	</div>
 </div>
 
 <!-- 모달 -->
@@ -49,23 +79,20 @@
 							</h4> 
 						</div>
  						<div class="modal-body" id="body">
- 							<form id="sceneUpload" method="post">
-	 							<div id="uploadScene" style="width: 100%;"></div>
-								<input type="hidden" id="realname" name="realname"/>
-								<input type="hidden" id="filename" name="filename"/>
-								<input type="hidden" id="filesize" name="filesize"/>
+ 							<form id="imageUpload" method="post">
+	 							<div id="uploadImage" style="width: 100%;"></div>
+								<input type="hidden" id="realname2" name="realname2"/>
+								<input type="hidden" id="filename2" name="filename2"/>
+								<input type="hidden" id="filesize2" name="filesize2"/>
  							</form>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" id="modal1_click">올리기</button> 
+							<button type="button" class="btn btn-primary" id="modal2_click">올리기</button> 
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 						</div>
-					</div>
-					
-				</div>
-				
-			</div>
-			
+					</div>					
+				</div>				
+			</div>			
 		</div>
 	</div>
 </div>
@@ -75,7 +102,7 @@
 		<div class="wrap" style="height: auto;">
 			<input type="button" class="button_css2" value="작품 검색" onClick="work_search()">
 		</div>
-		<form name="f" method="post">
+		<form name="work" method="post">
 			<table class="table table=hover">
 				<colgroup>
 					<col class="col_wp25">
@@ -216,9 +243,9 @@
 								상품이 나온 장면<br>(최대 1장) <span style="color: red;">*</span></label></th>
 						<td class="text-left" style="text-align: left;">
 							<div class="col">
-								<button id="modal-746337" type="button" class="button_css" 
-								data-toggle="modal" data-target="#imageUp">이미지 업로드</button>
-								<span id="uploadedScene"></span>
+								<button id="modal-scene" type="button" class="button_css" 
+								data-toggle="modal" data-target="#sceneUp">이미지 업로드</button>
+								<div id="uploadedScene" style="padding-top: 7px"></div>
 							</div>
 						</td>
 					</tr>	
@@ -227,13 +254,10 @@
 								상품 이미지<br>(최대 10장) <span style="color: red;">*</span></label></th>
 						<td class="text-left" style="text-align: left;">
 							<div class="col">
-								<button class="button_css" type="button">이미지 업로드</button>
-								<!--  
-								<div id="uploadScene2" style="width: 100%;"></div>
-								<input type="hidden" id="realname2" name="realname2"/>
-								<input type="hidden" id="filename2" name="filename2"/>
-								<input type="hidden" id="filesize2" name="filesize2"/>
-								-->									
+								<button id="modal-image" type="button" class="button_css" 
+								data-toggle="modal" data-target="#imageUp">이미지 업로드</button>
+								<div id="uploadedImage" style="padding-top: 7px"></div>
+															
 							</div>
 						</td>
 					</tr>	
@@ -259,6 +283,9 @@
 <%@ include file="/WEB-INF/views/include/detail/include_detail_js.jsp"%>
 <script src="${pageContext.request.contextPath}/js/custom_js/detail.js"></script>
 <script>
+var guManager = null;
+var guManager2 = null;
+
 window.onload = function() {
 	
 	var option = {
@@ -274,7 +301,7 @@ window.onload = function() {
 	
 	var option2 = {
 			listtype : "thumbnail",
-			fileid : "uploadScene2",
+			fileid : "uploadImage",
 			uploadURL : "upload2",
 			maxFileCount : 10,
 			maxFileSize : 3,
@@ -284,65 +311,65 @@ window.onload = function() {
 	guManager2 = new guUploadManager2(option2);
 }
 
-function afterFileTransfer(realname, filename, filesize) {
+function afterFileTransfer(realname1, filename1, filesize1) {
 
-	var realname9 = document.getElementById('realname');
-	var filename9 = document.getElementById('filename');
-	var filesize9 = document.getElementById('filesize');
+	var realname9 = document.getElementById('realname1');
+	var filename9 = document.getElementById('filename1');
+	var filesize9 = document.getElementById('filesize1');
 
-	realname9.value = realname;
-	filename9.value = filename;
-	filesize9.value = filesize;
+	realname9.value = realname1;
+	filename9.value = filename1;
+	filesize9.value = filesize1;
 	
-	$('#imageUp').hide(function() {
-		$("#modal-746337").hide();
-		document.getElementById('uploadedScene').innerHTML = $("#filesize").val() + ".jpg";
+	$('#sceneUp').hide(function() {
+		$("#modal-scene").hide();
+		document.getElementById('uploadedScene').innerHTML = $("#filename1").val();
 	});
 }
 
-
-$("#modal-746337").click(function() { 	
-    var confirm = $(this);
-    
-    var tr = confirm.parent().parent();
-    var td = tr.children();    
-    
-    var no = td.eq(0).text();
-    var name = td.eq(1).text();
-    var category = td.eq(2).text();
-    var date = td.eq(3).text();
-    var tepisode = td.eq(4).text();
-    var poster = td.eq(5).text();	
-	
-    
-});
-
 $("#modal1_click").on("click", function(e) {
-	guManager.uploadFiles();
-	/*
-	var scene = $("#filesize").val();
-	alert(scene + "이다");
-	$('#imageUp').hide(function(scene) {
-		$("#modal-746337").hide();
-		document.getElementById('uploadedScene').innerHTML = scene + ".jpg";
-	});
-	*/
-	/*
-	$("#imageUp").modal('hide', function() {
-		$("#modal-746337").hide();
-		$("#uploadedScene").val(scene);		
-	})
-	*/
+	var check = $('.filerow').val();
 	
-	/*
-	$('#imageUp').on('hide.bs.modal', function(e) {
-		$("#modal-746337").hide();
-		$("#uploadedScene").val(scene);
-			
-	});
-	*/
-	
+	if(check == null) {
+		swal({
+			title: "이미지를 업로드 해주세요",
+			icon: "warning" //"info,success,warning,error" 중 택1
+		});	
+	}
+	else {
+		guManager.uploadFiles();
+	}
+		
 });
 
+function afterFileTransfer2(realname2, filename2, filesize2) {
+
+	var realname90 = document.getElementById('realname2');
+	var filename90 = document.getElementById('filename2');
+	var filesize90 = document.getElementById('filesize2');
+
+	realname90.value = realname2;
+	filename90.value = filename2;
+	filesize90.value = filesize2;
+	
+	$('#imageUp').hide(function() {
+		document.getElementById('uploadedImage').innerHTML = $("#filename2").val();
+	});
+}
+
+$("#modal2_click").on("click", function(e) {
+	var check = $('.filerow').val();
+	
+	if(check == null) {
+		swal({
+			title: "이미지를 업로드 해주세요",
+			icon: "warning" //"info,success,warning,error" 중 택1
+		});	
+	}
+	else {
+		guManager2.uploadFiles();
+	}
+		
+});
 </script>
 </html>

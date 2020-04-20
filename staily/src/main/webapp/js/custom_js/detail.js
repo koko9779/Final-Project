@@ -1,21 +1,4 @@
 //product_create.jsp
-var guManager = null;
-var guManager2 = null;
-
-
-
-function afterFileTransfer2(realname2, filename2, filesize2) {
-
-	var realname9 = document.getElementById('realname2');
-	var filename9 = document.getElementById('filename2');
-	var filesize9 = document.getElementById('filesize2');
-
-	realname9.value = realname2;
-	filename9.value = filename2;
-	filesize9.value = filesize2;
-	
-}
-
 $("#pPrice").on("focus", function() {
     var x = $(this).val();
     x = removeCommas(x);
@@ -58,12 +41,6 @@ function productCreate() {
 	}
 	
 };
-
-function pdImageCreate() {
-	document.createP.action = "pdImage_create";
-	document.createP.method = "post";
-}
-
 
 
 function work_search() {

@@ -45,13 +45,7 @@ GUUpload.prototype.AddFiles = function (files) {
 		swal({
 			title: MSG_MAXFILECOUNT.format(this.settings.maxFileCount),
 			icon: "error" //"info,success,warning,error" 중 택1
-		});	
-		
-		//alert( MSG_MAXFILECOUNT.format(this.settings.maxFileCount) );
-		swal({
-			title: MSG_MAXFILECOUNT.format(this.settings.maxFileCount),
-			icon: "error" //"info,success,warning,error" 중 택1
-		});	
+		});
 		
 		return;
 	}
