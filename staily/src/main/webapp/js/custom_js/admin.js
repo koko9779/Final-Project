@@ -16,22 +16,22 @@ function searchWork() {
 	window.open("work_seach", "작품정보수정",
 	"width=500, height=800, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
 };
-function workCreate(i) {
-	document.getElementById("searchResult"+i+"").action = "work_create";
-	document.getElementById("searchResult"+i+"").submit();
-};
-function workCreateAction() {
-	document.getElementById("work_create").action = "work_create_action";
-	document.getElementById("work_create").submit();
-	swal({
-		   title: "작품등록성공",
-		   text: "버튼을 클릭해주세요!",
-		   icon: "success" // "info,success,warning,error" 중 택1
-		}).then(() => {
-			window.opener.location.reload();
-			window.close();
-		});
-};
+//function workCreate(i) {
+//	document.getElementById("searchResult"+i+"").action = "work_create";
+//	document.getElementById("searchResult"+i+"").submit();
+//};
+//function workCreateAction() {
+//	document.getElementById("work_create").action = "work_create_action";
+//	document.getElementById("work_create").submit();
+//	swal({
+//		   title: "작품등록성공",
+//		   text: "버튼을 클릭해주세요!",
+//		   icon: "success" // "info,success,warning,error" 중 택1
+//		}).then(() => {
+//			window.opener.location.reload();
+//			window.close();
+//		});
+//};
 /** ***********상품 일반*************** */
 function product_update() {
 	document.getElementById("product_detail").action = "product_update";
@@ -225,7 +225,8 @@ $(function() {
 /** *****작품 펑션 시작********** */	
 $(function() {
 		$(document).on('click','#wUpdateBtn', function(e) {
-					  var params = $('#work_update').serializeArray();
+				 var params = $('#work_update').serializeArray();
+				 console.log(params,'loglog');
 				  $.ajax({
 					url: 'work_update',
 					data: params,
@@ -237,10 +238,9 @@ $(function() {
 								   title: "업데이트성공",
 								   text: "버튼을 클릭해주세요!",
 								   icon: "success" // "info,success,warning,error"
-														// 중 택1
 								}).then(() => {
-									window.opener.location.reload();
-									window.close();
+									opener.document.location.reload();
+									self.close();
 								});
 					     }else{
 					          swal({

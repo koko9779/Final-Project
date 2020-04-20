@@ -108,13 +108,12 @@ public class AdminServiceImpl implements AdminService{
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public boolean updateProduct(Product product) throws Exception {
 		boolean update = false ; 
-		boolean updateOk = adminMapper.updateProduct(product);
-		if (updateOk) {
-			adminMapper.updateProductDetail(product);
-			update = true;
-		}else {
-			throw new FailCreateException("업데이트에 실패하였습니다.");
-		}
+		update = adminMapper.updateProduct(product);
+//		if (updateOk) {
+//			adminMapper.updateProductDetail(product);
+//		}else {
+//			throw new FailCreateException("업데이트에 실패하였습니다.");
+//		}
 		return update;
 	}
 
