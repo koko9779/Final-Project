@@ -41,7 +41,18 @@ function fileRecord (oid, ofile){
 
 GUUpload.prototype.AddFiles = function (files) {
 	if (this.fileCount+files.length> this.settings.maxFileCount) {
-		alert( MSG_MAXFILECOUNT.format(this.settings.maxFileCount) );
+		//alert( MSG_MAXFILECOUNT.format(this.settings.maxFileCount) );
+		swal({
+			title: MSG_MAXFILECOUNT.format(this.settings.maxFileCount),
+			icon: "error" //"info,success,warning,error" 중 택1
+		});	
+		
+		//alert( MSG_MAXFILECOUNT.format(this.settings.maxFileCount) );
+		swal({
+			title: MSG_MAXFILECOUNT.format(this.settings.maxFileCount),
+			icon: "error" //"info,success,warning,error" 중 택1
+		});	
+		
 		return;
 	}
 	
@@ -57,7 +68,11 @@ GUUpload.prototype.AddFiles = function (files) {
 
 GUUpload.prototype.AddFile = function (file) {
 	if (this.settings.file_size_limit>0 & file.size > this.settings.file_size_limit){
-		alert( MSG_MAXFILESIZE.format(file.name, this.settings.file_size_limit_str) );
+		//alert( MSG_MAXFILESIZE.format(file.name, this.settings.file_size_limit_str) );
+		swal({
+			   title: MSG_MAXFILESIZE.format(file.name, this.settings.file_size_limit_str),
+			   icon: "error" //"info,success,warning,error" 중 택1
+		});
 		return;
 	}
 	
@@ -205,7 +220,11 @@ function ajaxReadyStateChange() {
 			file.uploaded=2;	//uploaded
 			GUUpload.instances.queueEvent("upload_success_handler", [file, this.responseText]);
 		} else {
-			alert('There was a problem with the request.');
+			//alert('There was a problem with the request.');
+			swal({
+				   title: "문제가 발생했습니다",
+				   icon: "error" //"info,success,warning,error" 중 택1
+			});
 		}
     }
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
+
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/product_create.css"/>
 <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -19,7 +20,7 @@
 	</a>
 	
 	<iframe class="ww"
-			src="https://www.youtube-nocookie.com/embed/obX621oa9RM?autoplay=1&amp;loop=1;&playlist=isls26FGUaA&controls=0&vq=hd1080"
+			src="https://www.youtube-nocookie.com/embed/obX621oa9RM?autoplay=0&amp;loop=1;&playlist=isls26FGUaA&controls=0&vq=hd1080"
 			frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 			allowfullscreen style="position: absolute;left: -0%;width: 100%;height: 100%;top: 0%;"></iframe>
 			
@@ -34,7 +35,42 @@
 	</div>
 
 </div>
-<div style="margin:5%;">
+
+<!-- 모달 -->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="modal fade" id="imageUp" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="myModalLabel">
+								이미지 업로드
+							</h4> 
+						</div>
+ 						<div class="modal-body" id="body">
+ 							<form id="sceneUpload" method="post">
+	 							<div id="uploadScene" style="width: 100%;"></div>
+								<input type="hidden" id="realname" name="realname"/>
+								<input type="hidden" id="filename" name="filename"/>
+								<input type="hidden" id="filesize" name="filesize"/>
+ 							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" id="modal1_click">올리기</button> 
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+<div style="margin:3%;">
 	<div class="left">
 		<div class="wrap" style="height: auto;">
 			<input type="button" class="button_css2" value="작품 검색" onClick="work_search()">
@@ -180,13 +216,9 @@
 								상품이 나온 장면<br>(최대 1장) <span style="color: red;">*</span></label></th>
 						<td class="text-left" style="text-align: left;">
 							<div class="col">
-								<button class="button_css" type="button">이미지 업로드</button>
-								<!--  
-								<div id="uploadScene" style="width: 100%;"></div>
-								<input type="hidden" id="realname" name="realname"/>
-								<input type="hidden" id="filename" name="filename"/>
-								<input type="hidden" id="filesize" name="filesize"/>
-								-->									
+								<button id="modal-746337" type="button" class="button_css" 
+								data-toggle="modal" data-target="#imageUp">이미지 업로드</button>
+								<span id="uploadedScene"></span>
 							</div>
 						</td>
 					</tr>	
@@ -207,7 +239,7 @@
 					</tr>	
 					<tr>
 						<th scope="row" class="bg-light essentia" colspan="2"><label for="pScene">
-								<span style="color: red;">*</span>는 필수 항목입니다.</label></th>
+								<span style="color: red;">*</span>은(는) 필수 항목입니다.</label></th>
 					</tr>
 				</tbody>		
 			</table>
@@ -224,9 +256,9 @@
 	</div>
 </div>
 </body>
+<%@ include file="/WEB-INF/views/include/detail/include_detail_js.jsp"%>
 <script src="${pageContext.request.contextPath}/js/custom_js/detail.js"></script>
 <script>
-
 window.onload = function() {
 	
 	var option = {
@@ -252,6 +284,65 @@ window.onload = function() {
 	guManager2 = new guUploadManager2(option2);
 }
 
+function afterFileTransfer(realname, filename, filesize) {
+
+	var realname9 = document.getElementById('realname');
+	var filename9 = document.getElementById('filename');
+	var filesize9 = document.getElementById('filesize');
+
+	realname9.value = realname;
+	filename9.value = filename;
+	filesize9.value = filesize;
+	
+	$('#imageUp').hide(function() {
+		$("#modal-746337").hide();
+		document.getElementById('uploadedScene').innerHTML = $("#filesize").val() + ".jpg";
+	});
+}
+
+
+$("#modal-746337").click(function() { 	
+    var confirm = $(this);
+    
+    var tr = confirm.parent().parent();
+    var td = tr.children();    
+    
+    var no = td.eq(0).text();
+    var name = td.eq(1).text();
+    var category = td.eq(2).text();
+    var date = td.eq(3).text();
+    var tepisode = td.eq(4).text();
+    var poster = td.eq(5).text();	
+	
+    
+});
+
+$("#modal1_click").on("click", function(e) {
+	guManager.uploadFiles();
+	/*
+	var scene = $("#filesize").val();
+	alert(scene + "이다");
+	$('#imageUp').hide(function(scene) {
+		$("#modal-746337").hide();
+		document.getElementById('uploadedScene').innerHTML = scene + ".jpg";
+	});
+	*/
+	/*
+	$("#imageUp").modal('hide', function() {
+		$("#modal-746337").hide();
+		$("#uploadedScene").val(scene);		
+	})
+	*/
+	
+	/*
+	$('#imageUp').on('hide.bs.modal', function(e) {
+		$("#modal-746337").hide();
+		$("#uploadedScene").val(scene);
+			
+	});
+	*/
+	
+});
 
 </script>
 </html>

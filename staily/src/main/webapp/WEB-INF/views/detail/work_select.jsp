@@ -166,7 +166,7 @@ function modal_click() {
 
 
 </script>
-<%@ include file="/WEB-INF/views/include/include_js.jsp"%>
+<%@ include file="/WEB-INF/views/include/detail/include_detail_js.jsp"%>
 <%@ include file="/WEB-INF/views/detail/include/include_work_select_js.jsp" %>
 
 </body>
