@@ -15,7 +15,7 @@
 	</a>
 	
 	<iframe class="ww"
-			src="https://www.youtube-nocookie.com/embed/isls26FGUaA?autoplay=1&amp;loop=1;&playlist=isls26FGUaA&controls=0&vq=hd1080"
+			src="https://www.youtube-nocookie.com/embed/isls26FGUaA?autoplay=0&amp;loop=1;&playlist=isls26FGUaA&controls=0&vq=hd1080"
 			frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 			allowfullscreen style="position: absolute;left: -0%;width: 100%;height: 100%;top: 0%;"></iframe>
 
@@ -46,8 +46,14 @@
 					onClick='select_bookmark(" + ${userNo} + "," + ${productOne.get(0).getpNo()} + ")'>즐겨찾기 제거</button>
 				</c:when>
 				<c:otherwise>
-					<button type="button" class="btn btn-ghost" id="createBmk" style="margin: 5%; margin-left: 10px;" 
-					onClick='create_bookmark(" + ${userNo} + "," + ${productOne.get(0).getpNo()} + ")'>즐겨찾기 추가</button>
+					<c:choose>
+						<c:when test="${not empty userNo}">
+							<button type="button" class="btn btn-ghost" id="createBmk" style="margin: 5%; margin-left: 10px;" 
+							onClick='create_bookmark(" + ${userNo} + "," + ${productOne.get(0).getpNo()} + ")'>즐겨찾기 추가</button>
+						</c:when>
+						<c:otherwise>
+						</c:otherwise>
+					</c:choose>
 				</c:otherwise>
 			</c:choose>
 			<!-- Section -->
@@ -88,8 +94,8 @@
 										<c:choose>
 											<c:when test="${not empty userNo}">
 												<div class="dropdown-menu" id='searchDropdown'>
-														<a class="dropdown-item" href="#" id="addFriend">친구 추가</a> 
-														<a class="dropdown-item" href="#" id="searchMessage">쪽지 보내기</a>
+														<a class="dropdown-item" href="#" onClick="return false;" id="addFriend">친구 추가</a> 
+														<a class="dropdown-item" href="#" onClick="return false;" id="searchMessage">쪽지 보내기</a>
 													</div>
 											</c:when>
 											<c:otherwise>
@@ -170,8 +176,7 @@
 		</div>
 	</div>
 </div>
-<%@ include
-	file="/WEB-INF/views/detail/include/include_product_detail_js.jsp"%>
+<%@ include file="/WEB-INF/views/detail/include/include_product_detail_js.jsp"%>
 <%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=727c99111bf8164d3824366e553400b6&libraries=services"></script>
 <style>

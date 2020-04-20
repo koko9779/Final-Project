@@ -64,5 +64,9 @@
 		set p_view = p_view + 1
 		where p_no = #{pNo}
 		and p_check = 'Y'
-	</update>	
+	</update>
+	
+	<select id="bookmarkCheck" parameterType="int" resultType="int">
+		select count(*) from bookmark where m_no = #{mNo} and p_no = #{pNo}
+	</select>
 </mapper>
