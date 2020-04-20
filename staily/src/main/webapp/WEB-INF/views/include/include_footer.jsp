@@ -47,10 +47,9 @@
 					</ul>
 				</div>
 			</div>
-			<div class="copyright">
+			<div class="copyright" align="center">
 				<p>
-					2017 &copy; Movie Star / <a href="http://www.klevermedia.co.uk">Web
-						design by Klever media</a>
+					2020 &copy; Staily / <a href="https://github.com/emptyshelter/Final-Project">Itwill Project</a>
 				</p>
 			</div>
 		</div>
