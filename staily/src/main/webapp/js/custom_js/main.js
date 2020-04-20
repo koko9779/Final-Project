@@ -192,6 +192,30 @@ function showLoadingDialog(loadingCheck) {
 
 
 $(document).ready(function(){
+	if($('#sidebar').length){
+		// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+		var floatPosition = parseInt($("#sidebar").css('top'));
+		// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+
+		$(window).scroll(function() {
+			// 현재 스크롤 위치를 가져온다.
+			var scrollTop = $(window).scrollTop();
+			if(scrollTop<407){
+				var newPosition = floatPosition + "px";				
+			}else{
+				var newPosition = scrollTop+ (floatPosition-300) + "px";
+			}
+			/* 애니메이션 없이 바로 따라감
+			 $("#floatMenu").css('top', newPosition);
+			 */
+
+			$("#sidebar").stop().animate({
+				"top" : newPosition
+			}, 500);
+
+		}).scroll();
+	}
+	
 	$('.slick-carousel.newIn').not('.slick-initialized').slick({
 		autoplay: false,
 		autoplaySpeed: 3000,
@@ -514,4 +538,8 @@ function delete_bookmark(bookset){
 function login_advice(){
 	alert('로그인이 필요한 작업입니다.');
 	location.href="../login/login";
+}
+function work_select() {
+	location.href="work_select";
+	//window.open('work_select');
 }

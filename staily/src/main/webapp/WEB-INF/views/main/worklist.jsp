@@ -3,6 +3,7 @@
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/data/201101/IJ12941530138912/jquery-contained-sticky-scroll.js"></script>
 
 <!-- Hero -->
 <div id="content_hero" style="background-image: url(http://via.placeholder.com/1440x435)">

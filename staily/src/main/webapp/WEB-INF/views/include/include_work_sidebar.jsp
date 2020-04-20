@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
-<script type="text/javascript">
-function work_select() {
-	location.href="work_select";
-	//window.open('work_select');
-}
-</script>
-<aside class="col-sm-3 col-sm-pull-1 sidebar">
+<aside class="col-sm-3 col-sm-pull-1 sidebar" id="sidebar">
 	<div class="widget">
 		<form id="work_${w.wNo}" method="post">
 			<input type="hidden" value="${w.wNo}" name="wNo" />
