@@ -31,5 +31,5 @@
 		</form>
 	</div>
 	-->
-	<input type="button" value="상품 등록" onClick="work_select()"/>
+	<input type="button" value="상품 등록" onClick="work_search()"/>
 </aside>
