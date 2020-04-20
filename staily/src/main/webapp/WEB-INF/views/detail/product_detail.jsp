@@ -40,7 +40,16 @@
 			<img
 				src="${pageContext.request.contextPath}/images/product/scene/${productOne.get(0).getpScene()}.jpg"
 				style="padding: 20px; height: 450px; width: 850px;">
-			<button type="button" class="btn btn-ghost" id="createBmk" style="margin: 5%; margin-left: 10px;">즐겨찾기 추가</button>
+			<c:choose>
+				<c:when test="${not empty bmNo}">
+					<button type="button" class="btn btn-ghost" id="createBmk" style="margin: 5%; margin-left: 10px;" 
+					onClick='select_bookmark(" + ${userNo} + "," + ${productOne.get(0).getpNo()} + ")'>즐겨찾기 제거</button>
+				</c:when>
+				<c:otherwise>
+					<button type="button" class="btn btn-ghost" id="createBmk" style="margin: 5%; margin-left: 10px;" 
+					onClick='create_bookmark(" + ${userNo} + "," + ${productOne.get(0).getpNo()} + ")'>즐겨찾기 추가</button>
+				</c:otherwise>
+			</c:choose>
 			<!-- Section -->
 			<h2>상품 사진</h2>
 			<div class="slick-carousel news-carousel" style="height: 280px">

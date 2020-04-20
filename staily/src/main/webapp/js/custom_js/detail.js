@@ -138,6 +138,100 @@ function execDaumPostcode() {
 };
 
 // product_detail.jsp
+$('#workEpisode').change(function(e){
+    console.log('#workEpisode change!!!!!!!!!!');
+    var contextPath = $("option:selected").attr("contextPath");
+    var wNo = $("option:selected").attr("wNo");
+    var wdEpisode = $("option:selected").val();
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var urlcheck = url.searchParams.get("wdEpisode");
+    if(urlcheck!=null){
+       var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode;
+       location.href="episode?"+params;
+    }else{
+       var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode;
+       location.href="../main/worklist_select/episode?"+params;
+    }
+    
+function create_bookmark(userNo, pNo) {
+	//alert('즐겨찾기에 상품이 추가되었습니다.'+event.target);
+	var params = "userNo=" + userNo + "&pNo=" + pNo;
+	var product = "#product_" + pNo;
+//	
+	$.ajax({
+		url : "../main/create_bookmark",
+		method : "POST",
+		data : params,
+		success : function(result) {
+			if(result == 'true') {
+				swal({
+					   title: "즐겨찾기에 추가되었습니다",
+					   icon: "success" //"info,success,warning,error" 중 택1
+				});
+				$('#createBmk').html('즐겨찾기 제거');				
+				$('#createBmk').attr('onClick', 'select_bookmark(' + userNo + ',' + pNo + ');return false;');
+			}
+		}			
+	});
+};
+
+function select_bookmark(userNo, pNo) {
+	var params = "userNo=" + userNo + "&pNo=" + pNo;
+	$.ajax({
+		url : "../main/select_bookmark",
+		method : "POST",
+		data : params,
+		success :function(bookset) {
+			delete_bookmark(bookset);
+		}
+	});
+}
+
+function delete_bookmark(bookset) {
+	var bmNo = "" + bookset;
+	var userNo = 0;
+	var pNo = 0;
+	var product;
+	
+	if(bmNo.indexOf(",") != -1) {
+		var bookset = bookset.split(',');
+		bmNo = bookset[0];
+		userNo = bookset[1];
+		pNo = bookset[2];
+		
+		//alert(bookset + "===" + bmNo + "===" + userNo + "=== "+ pNo);
+	}
+	if(pNo == 0) {
+		product = "#bookmark_" + bmNo;
+	}
+	else {
+		product = "#product_" + pNo;
+	}
+	var params = "bmNo=" + bmNo + "&userNo=" + userNo + "&pNo=" + pNo;
+		$.ajax({
+			url : "../main/delete_bookmark",
+			method : "POST",
+			data : params,
+			success : function(result) {
+				if(result == 'true') {
+					swal({
+						   title: "즐겨찾기에서 제거되었습니다",
+						   icon: "success" //"info,success,warning,error" 중 택1
+					});
+					$('#createBmk').html('즐겨찾기 추가');				
+					$('#createBmk').attr('onClick','create_bookmark(' + userNo + ',' + pNo + ');return false;');
+				}
+				else {
+					swal({
+						   title: "에러 발생",
+						   icon: "error" //"info,success,warning,error" 중 택1
+					});
+				}
+			}
+		});
+};
+
 $("#reply").on("click", function(e) {
 	getReplies();
 });
