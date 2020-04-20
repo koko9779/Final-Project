@@ -137,19 +137,19 @@
 						<td class="text-left">
 							<div class="col" align="center">
 								<img width="auto" height="auto"
-									src="${pageContext.request.contextPath}/images/product/image/${product.pdImage }.jpg">
+									src="${pageContext.request.contextPath}/images/product/image/${product.pdImage}.jpg">
 							</div>
 						</td>
 						<td class="text-left"><button type="button" name="modalBtn"
-								class="modalBtn" onclick="imageUpdate(${product.pdImage })" )>수정하기</button></td>
+								class="modalBtn" onclick="imageUpdate(${product.pdImage})">수정하기</button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		<div class="text-center">
-			<button type="submit" value="submit"
+			<button type="button"
 				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
-				onclick="product_update()">수정</button>
+				id="pUpdate">수정</button>
 			<button type="button"
 				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
 				onclick="product_confirm(${productList[0].pNo})">승인</button>
@@ -159,9 +159,14 @@
 </body>
 <script>
 function sceneUpdate(img) {
-	var param= img;
-	alert(img)
-	window.open("product_update_scene?" + "pScene="+ img,"이미지정보수정",
+	var scene= img;
+	window.open("product_update_scene?" + "pScene="+ scene,"이미지정보수정",
+	"width=500, height=300, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
+};
+function imageUpdate(img) {
+	var image= img;
+	alert(img);
+	window.open("product_update_img?" + "pdImage="+ image,"이미지정보수정",
 	"width=500, height=300, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
 };
 

@@ -3,14 +3,18 @@
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
 <%@ include
 	file="/WEB-INF/views/admin/include/include_top_without_sidebar.jsp"%>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/gu-upload/css/guupload.css"/>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/gu-upload/guuploadManager.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/js/gu-upload/css/guupload.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/gu-upload/guuploadManager.js"></script>
 <style>
 image {
 	margin: auto;
 }
 </style>
-<form id="product_img" name="product_img" method="post" enctype="multipart/form-data">
+<form id="product_img" name="product_img" method="post"
+	enctype="multipart/form-data">
+	<input type="hidden" id="pScene" name="pScene" value="${pScene }">
 	<table class="table table-hover">
 		<tbody>
 			<tr>
@@ -18,10 +22,10 @@ image {
 						변경할 이미지 업로드<br>
 				</label></th>
 				<td class="text-left">
-						<div id="uploadScene" style="width: 100%;"></div>
-						<input type="hidden" id="realname" name="realname" /> <input
-							type="hidden" id="filename" name="filename" /> <input
-							type="hidden" id="filesize" name="filesize" />
+					<div id="uploadScene" style="width: 100%;"></div> <input
+					type="hidden" id="realname" name="realname" /> <input
+					type="hidden" id="filename" name="filename" /> <input
+					type="hidden" id="filesize" name="filesize" />
 				</td>
 			</tr>
 		</tbody>
@@ -29,7 +33,7 @@ image {
 	<div class="text-center">
 		<button type="submit" value="submit"
 			class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
-			onclick="imageUpdate()">수정</button>
+			id="pSceneUpdate">수정</button>
 		<button type="button"
 			class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
 			onclick="window_close()">닫기</button>
@@ -48,7 +52,7 @@ image {
 			afterFileTransfer : afterFileTransfer
 		}
 		guManager = new guUploadManager(option);
-	}
+	};
 	function afterFileTransfer(realname, filename, filesize) {
 
 		var realname9 = document.getElementById('realname');
@@ -71,10 +75,11 @@ image {
 			alert("이미지 파일만 올려주세요");
 		}
 		 */
-	}
-
-	function imageUpdate() {
+	};
+$(function() {
+	$(document).on('click','#pSceneUpdate',function(){
 		guManager.uploadFiles();
-	}
+	});
+});
 </script>
 </html>

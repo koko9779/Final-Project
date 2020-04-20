@@ -85,7 +85,7 @@ image {
 			</tbody>
 		</table>
 		<div class="text-center">
-			<button type="submit" value="submit" id="wUpdateBtn"
+			<button id="wUpdateBtn" type="button"
 				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2" >수정</button>
 			<button type="button" 
 				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2" onclick="window_close()">닫기</button>

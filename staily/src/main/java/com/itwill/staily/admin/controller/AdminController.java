@@ -186,9 +186,20 @@ public class AdminController {
 	}
 
 	@RequestMapping("/product_update_scene")
-	public String productAdminImg(@RequestParam("pScene")String scene,HttpServletRequest request) {
+	public String productAdminScene(@RequestParam("pScene")String scene,HttpServletRequest request, HttpSession session) {
 		try {
-			request.setAttribute("pScene", scene);
+			session.setAttribute("pScene", scene);
+			session.removeAttribute("pdImage");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "admin/product_update_img";
+	}
+	@RequestMapping("/product_update_img")
+	public String productAdminImage(@RequestParam("pdImage")String img,HttpServletRequest request, HttpSession session) {
+		try {
+			session.setAttribute("pdImage", img);
+			session.removeAttribute("pScene");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -198,12 +209,20 @@ public class AdminController {
 	@RequestMapping(value = "/update_img")
 	public void upDate(HttpServletResponse response, HttpServletRequest request,
 			@RequestParam("Filedata") MultipartFile Filedata) {
-		String newfilename = "hitest?";
-//		System.out.println(test+"testtesttestsetestseteste");
-//		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
-//		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
-		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
-		File f = new File("C:\\Users\\shaden\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
+		HttpSession session = request.getSession();
+		String newfilename = "";
+		String path = "";
+		String pScene =(String) session.getAttribute("pScene");
+		String pdImage =(String) session.getAttribute("pdImage");
+		System.out.println("씬="+pScene+"이미지="+pdImage);
+		if(pScene !=null && pScene!="") {
+			newfilename= pScene;
+			path = "scene";
+		}else {
+			newfilename = pdImage;
+			path = "image";
+		}
+		File f = new File("C:\\Users\\shaden\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\"+path+"\\" + newfilename + ".jpg"); 
 		try {
 			Filedata.transferTo(f); 
 			response.getWriter().write(newfilename);
