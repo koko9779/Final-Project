@@ -18,6 +18,7 @@ $(window).on('scroll',function () {
 
 	    }
 	}
+
 });
 
 //다음 게시물을 보이게 하는 함수
@@ -192,6 +193,7 @@ function showLoadingDialog(loadingCheck) {
 
 
 $(document).ready(function(){
+	
 	if($('#sidebar').length){
 		// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
 		var floatPosition = parseInt($("#sidebar").css('top'));
