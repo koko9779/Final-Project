@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -119,7 +120,7 @@ public class ProductDetailController {
 			String pUrl = request.getParameter("pUrl");
 			String pAddress = request.getParameter("pAddress");
 			String pDaddress = request.getParameter("pDaddress");
-			String pScene = request.getParameter("filesize");
+			String pScene = request.getParameter("filesize1");
 			
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		    String pDate = df.format(new Date());
@@ -158,7 +159,8 @@ public class ProductDetailController {
 			@RequestParam("Filedata") MultipartFile Filedata) { 
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
 		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
-		File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
+		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
+		File f = new File("C:\\Users\\Jacob\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
 		//File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
 		
 		try {
@@ -177,7 +179,8 @@ public class ProductDetailController {
 			@RequestParam("Filedata") MultipartFile Filedata) { 
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
 		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
-		File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		File f = new File("C:\\Users\\Jacob\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
 		//File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
 		
 		try {
@@ -194,11 +197,9 @@ public class ProductDetailController {
 	
 	
 	@RequestMapping("/pdImage_create_action")
-	public ModelAndView createProductDetail(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView();
-		
+	@ResponseBody
+	public void createProductDetail(HttpServletRequest request, HttpServletResponse response) {
 		try {		
-			String wNo = request.getParameter("wNo");
 			String pdImage = request.getParameter("filesize2");
 			Pattern p = Pattern.compile(",");
 			Matcher m = p.matcher(pdImage);
@@ -215,16 +216,9 @@ public class ProductDetailController {
 				request.setAttribute("Image" + (i + 1), Image);
 			}
 			
-			Work w = workDetailService.selectWorkOne(Integer.parseInt(wNo));
-			request.setAttribute("workOne", w);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		mv.setViewName("detail/product_create");
-		
-		return mv;		
 	}	
 	
 	/*
