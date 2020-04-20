@@ -227,7 +227,8 @@ function recommend(bNo) {
 				var isOk = confirm("로그인 후 이용 가능합니다\n" +
 					  				"로그인 하시겠습니까?");
 				if(isOk) {
-					document.location.href="../login/login";
+					//document.location.href="../login/login";
+					  window.open("../login/login", "staily 로그인", "width=800, height=700 resizable=yes" );  
 				}
 					
 			} else {

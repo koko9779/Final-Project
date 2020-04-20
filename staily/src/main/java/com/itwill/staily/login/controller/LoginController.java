@@ -214,7 +214,7 @@ public class LoginController {
 	@RequestMapping(value = "/naver", method = { RequestMethod.GET, RequestMethod.POST })
 	public String login(Model model, HttpSession session) {
 		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLogin클래스의 getAuthorizationUrl메소드 호출 */
-		String naverAuthUrl = naverLogin2.getAuthorizationUrl(session);
+		String naverAuthUrl = naverLogin2.getAuthorizationUrl(session); //세션에다가 난수로 생성한 state값을 넣는 작업
 //https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
 //redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
 		System.out.println("네이버:" + naverAuthUrl);
@@ -222,6 +222,9 @@ public class LoginController {
 		model.addAttribute("url", naverAuthUrl);
 		return "login/Naver_login2";
 	}
+	/*
+	 * 콜백 url을 controller 매핑으로 만들어서, 거기에 로그인 사용자의 정보가 있으면 session에 넣어주면 되는건가..
+	 */
 
 //네이버 로그인 성공시 callback호출 메소드
 	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
