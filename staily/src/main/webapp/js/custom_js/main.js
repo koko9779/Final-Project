@@ -40,9 +40,11 @@ function getList(curPage){
 	if(wdEpisode==null){
 		var params = 'wNo='+wNo+'&nextPage='+(curPage+1);
 		var moveUrl = 'worklist_select/detail';
+		var temp = 0;
 	}else{
-		var params = 'wNo='+wNo+'&wdEpisode'+wdEpisode+'&nextPage='+(curPage+1);
-		var moveUrl = 'worklist_select/episode/detail';
+		var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode+'&nextPage='+(curPage+1);
+		var moveUrl = 'episode/detail';
+		var temp = 1;
 	}
     $.ajax({
         type : 'POST',  
@@ -76,7 +78,11 @@ function getList(curPage){
 					html += "<input type='hidden' value='"+pPno+"' name='pNo'>";
 					html += "<div class='movie-poster2'>";
 					html += "<img onclick='productpage("+wNo+","+pPno+")'";
-					html += " src='../images/product/scene/"+pScene+".jpg'";
+					if(temp==0){
+						html += " src='../images/product/scene/"+pScene+".jpg'";
+					}else{
+						html += " src='../../images/product/scene/"+pScene+".jpg'";						
+					}
 					html += " alt='"+pName+"' style='width:850px; height:450px; margin: 0;cursor: pointer;'/>";
 					html += "</div>";
 					html += "<div style='height:35px;'>";
@@ -85,7 +91,12 @@ function getList(curPage){
 						if(bmList=="" || bmList==undefined){
 							html += "<input class='material-icons' type='image'";
 							html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
-							html += " src='../images/emptystar.png'";
+							if(temp==0){
+								html += " src='../images/emptystar.png'";
+							}else{
+								html += " src='../../images/emptystar.png'";
+							}
+							
 							html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>"; 
 						}
 						
@@ -101,12 +112,20 @@ function getList(curPage){
 								if(cnt==1){
 									html += "<input class='material-icons' type='image'"; 
 									html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 제거'";
-									html += " src='../images/star.png'";
+									if(temp==0){
+										html += " src='../images/star.png'";
+									}else{
+										html += " src='../../images/star.png'";										
+									}
 									html += " onclick='select_bookmark("+userNo+","+pPno+");return false;'>";
 								}else{
 									html += "<input class='material-icons' type='image'";
 									html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
-									html += " src='../images/emptystar.png'";
+									if(temp==0){
+										html += " src='../images/emptystar.png'";
+									}else{
+										html += " src='../../images/emptystar.png'";										
+									}
 									html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>";  
 								}
 							
@@ -115,7 +134,11 @@ function getList(curPage){
 					}else{
 						html += "<input class='material-icons' type='image'";
 						html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
-						html += " src='../images/emptystar.png'";
+						if(temp==0){
+							html += " src='../images/emptystar.png'";
+						}else{
+							html += " src='../../images/emptystar.png'";										
+						}
 						html += " onclick='login_advice(); return false;'>";                                     
 					}
 					html += "<div style='float:right;'>";
@@ -150,7 +173,15 @@ function getList(curPage){
 //다음 게시물이 보기전에 생기는 로딩이미지
 function showLoadingDialog(loadingCheck) {
 	if (loadingCheck) {
-		var dialogDivE = "<img class='loading' style='margin: 0 45%; width: 10%;' src='../images/main/Spin-1s-200px.gif'>";
+		var url_string = window.location.href;
+		var url = new URL(url_string);
+		var wdEpisode = url.searchParams.get("wdEpisode");
+		var dialogDivE = "<img class='loading' style='margin: 0 45%; width: 10%;'";
+		if(wdEpisode==null){
+			dialogDivE += " src='../images/main/Spin-1s-200px.gif'>";
+		}else{
+			dialogDivE += " src='../../images/main/Spin-1s-200px.gif'>";			
+		}
 		if(!$('.loading').length){
 			$(".mwListEnd").append(dialogDivE); 			
 		}
@@ -193,10 +224,11 @@ $(document).ready(function(){
 		var urlcheck = url.searchParams.get("wdEpisode");
 		if(urlcheck!=null){
 			var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode;
-			location.href="../worklist_select/episode?"+params;
+			location.href="episode?"+params;
+		}else{
+			var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode;
+			location.href="worklist_select/episode?"+params;
 		}
-		var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode;
-		location.href="worklist_select/episode?"+params;
 	});
 	//ajax
 	//worklist 회차 출력
