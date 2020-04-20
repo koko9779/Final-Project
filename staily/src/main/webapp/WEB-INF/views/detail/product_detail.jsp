@@ -15,7 +15,7 @@
 	</a>
 	
 	<iframe class="ww"
-			src="https://www.youtube-nocookie.com/embed/isls26FGUaA?autoplay=0&amp;loop=1;&playlist=isls26FGUaA&controls=0&vq=hd1080"
+			src="https://www.youtube-nocookie.com/embed/isls26FGUaA?autoplay=1&amp;loop=1;&playlist=isls26FGUaA&controls=0&vq=hd1080"
 			frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 			allowfullscreen style="position: absolute;left: -0%;width: 100%;height: 100%;top: 0%;"></iframe>
 
@@ -177,7 +177,7 @@
 	</div>
 </div>
 <%@ include file="/WEB-INF/views/detail/include/include_product_detail_js.jsp"%>
-<%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
+<%@ include file="/WEB-INF/views/include/detail/include_detail_footer.jsp"%>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=727c99111bf8164d3824366e553400b6&libraries=services"></script>
 <style>
 .iw_inner {

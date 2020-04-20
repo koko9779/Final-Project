@@ -2,18 +2,7 @@
 var guManager = null;
 var guManager2 = null;
 
-function afterFileTransfer(realname, filename, filesize) {
 
-	var realname9 = document.getElementById('realname');
-	var filename9 = document.getElementById('filename');
-	var filesize9 = document.getElementById('filesize');
-
-	realname9.value = realname;
-	filename9.value = filename;
-	filesize9.value = filesize;
-	
-	document.createP.submit();
-}
 
 function afterFileTransfer2(realname2, filename2, filesize2) {
 
@@ -25,7 +14,6 @@ function afterFileTransfer2(realname2, filename2, filesize2) {
 	filename9.value = filename2;
 	filesize9.value = filesize2;
 	
-	document.pdImage.submit();	
 }
 
 $("#pPrice").on("focus", function() {
@@ -59,7 +47,6 @@ function productCreate() {
 		});		
 	}
 	else {
-		guManager.uploadFiles();
 		guManager2.uploadFiles();
 		document.createP.action = "product_create_action";
 		document.createP.method = "POST";
@@ -139,7 +126,7 @@ function execDaumPostcode() {
 
 // product_detail.jsp
 $('#workEpisode').change(function(e) {
-    console.log('#workEpisode change!!!!!!!!!!');
+    console.log('#workEpisode 변경');
     var contextPath = $("option:selected").attr("contextPath");
     var wNo = $("option:selected").attr("wNo");
     var wdEpisode = $("option:selected").val();
@@ -152,7 +139,7 @@ $('#workEpisode').change(function(e) {
     }
     else {
        var params = 'wNo=' + wNo + '&wdEpisode=' + wdEpisode;
-       location.href = "main/worklist_select/episode?" + params;
+       location.href = "../main/worklist_select/episode?" + params;
     }
 });
 
