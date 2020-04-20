@@ -29,4 +29,6 @@ public interface ProductDetailService {
 	
 	public boolean increaseProductView(int pNo) throws Exception;
 	
+	public int bookmarkCheck(@Param("mNo") int mNo, @Param("pNo") int pNo) throws Exception;
+	
 }

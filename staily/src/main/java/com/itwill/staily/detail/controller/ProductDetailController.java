@@ -55,14 +55,16 @@ public class ProductDetailController {
 			if(userNo != null) {
 				List<Bookmark> bmList = mainService.selectByBookmark(userNo);
 				request.setAttribute("bmList", bmList);		
+				
+				if(productDetailService.bookmarkCheck(userNo, Integer.parseInt(pNo)) > 0) {
+					Integer bmNo = (Integer)listService.selectBookmarkNo(userNo, Integer.parseInt(pNo));
+					request.setAttribute("bmNo", bmNo);								
+				}
 			}
-			/*
-			Integer bmNo = listService.selectBookmarkNo(userNo, Integer.parseInt(pNo));
 			
-			if(bmNo != null) {
-				request.setAttribute("bmNo", bmNo);				
-			}
-					   */ 
+			
+			
+					   
 			List<ProductEx> p = productDetailService.selectProductOne(Integer.parseInt(pNo));
 			Work w = workDetailService.selectWorkOne(Integer.parseInt(wNo));
 			productDetailService.increaseProductView(Integer.parseInt(pNo));

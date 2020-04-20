@@ -138,7 +138,7 @@ function execDaumPostcode() {
 };
 
 // product_detail.jsp
-$('#workEpisode').change(function(e){
+$('#workEpisode').change(function(e) {
     console.log('#workEpisode change!!!!!!!!!!');
     var contextPath = $("option:selected").attr("contextPath");
     var wNo = $("option:selected").attr("wNo");
@@ -146,19 +146,20 @@ $('#workEpisode').change(function(e){
     var url_string = window.location.href;
     var url = new URL(url_string);
     var urlcheck = url.searchParams.get("wdEpisode");
-    if(urlcheck!=null){
-       var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode;
+    if(urlcheck != null) {
+       var params = 'wNo=' + wNo + '&wdEpisode=' + wdEpisode;
        location.href="episode?"+params;
-    }else{
-       var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode;
-       location.href="../main/worklist_select/episode?"+params;
     }
-    
+    else {
+       var params = 'wNo=' + wNo + '&wdEpisode=' + wdEpisode;
+       location.href = "main/worklist_select/episode?" + params;
+    }
+});
+
 function create_bookmark(userNo, pNo) {
-	//alert('즐겨찾기에 상품이 추가되었습니다.'+event.target);
 	var params = "userNo=" + userNo + "&pNo=" + pNo;
 	var product = "#product_" + pNo;
-//	
+
 	$.ajax({
 		url : "../main/create_bookmark",
 		method : "POST",
@@ -170,7 +171,7 @@ function create_bookmark(userNo, pNo) {
 					   icon: "success" //"info,success,warning,error" 중 택1
 				});
 				$('#createBmk').html('즐겨찾기 제거');				
-				$('#createBmk').attr('onClick', 'select_bookmark(' + userNo + ',' + pNo + ');return false;');
+				$('#createBmk').attr('onClick', "select_bookmark(" + userNo + ',' + pNo + ");return false;");
 			}
 		}			
 	});
@@ -385,7 +386,7 @@ function incRec(rNo) {
 }
 
 //친구 추가
-$('#searchDropdown a:nth-child(1)').click(function(e){
+$('#searchDropdown a:nth-child(1)').click(function(e) {
 	e.preventDefault();
 	var html = "";
 	var params = {
@@ -457,4 +458,4 @@ $('#searchDropdown a:nth-child(2)').click(function(e){
 	e.preventDefault();
 	var noV = $(this).attr('value');
 	window.open("../mypage/message?mNo="+noV, "_blank","width=750, height=5500, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
-});
+})
