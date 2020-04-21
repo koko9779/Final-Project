@@ -66,8 +66,26 @@ $(function() {
 	if(id === "" || id === undefined) {
 		return;
 	}else {
-		alert("고객님의 아이디는 " + id + "입니다");
-		location.href="login";
+		//alert("고객님의 아이디는 " + id + "입니다");
+		/*
+		swal({
+					   title: "삭제완료",
+					   text: "버튼을 클릭해주세요!",
+					   icon: "success" //"info,success,warning,error" 중 택1
+					}).then(() => {
+						location.reload();
+					});
+		*/
+		
+		/*
+		swal({
+				  title: '<strong>아이디 찾기 성공</strong>',
+				  icon: 'info',
+				  text: '고객님의 아이디는 '+ id + '입니다',
+					}).then(() => {
+						location.reload();
+					});
+		*/
 		return;
 	}
 
