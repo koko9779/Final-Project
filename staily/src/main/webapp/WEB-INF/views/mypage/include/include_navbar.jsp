@@ -6,6 +6,12 @@
 <head>
 <%@ include file="/WEB-INF/views/mypage/include/include_css.jsp" %>
 <%@ include file="/WEB-INF/views/mypage/include/include_js.jsp" %>
+<style type="text/css">
+iframe {
+    width: 100vw;
+    height: calc(100vw/1.77);
+}
+</style>
 </head>
 <body>
 	<!-- Wrapper -->
@@ -25,7 +31,7 @@
 										</a>
 									</c:when>
 									<c:when test="${userNo !=null}">
-										<font color="black">${userId }</font> 님 환영합니다.
+										<font color="orange">${userId }</font> 님 환영합니다.
 										<a href="/staily/login/logout_action"> <i class="material-icons"></i>
 											로그아웃
 										</a>
@@ -57,15 +63,15 @@
 				<div class="navbar-collapse collapse">
 					<ul id="menu-primary" class="nav navbar-nav">
 						<li class="active"><a href="/staily">메인페이지</a></li>
-						<li><a href=#>상품목록</a></li>
-						<li><a href="/staily/detail/product_detail">상품상세</a></li>
-						<li class="dropdown"><a href="/staily/style/style_main_read">게시판</a>
+						<li><a href="/staily/main/productlist_select">상품목록</a></li>
+						<li class="dropdown"><a href="/staily/style/style_main_read">커뮤니티</a>
 							<ul class="dropdown-menu">
-								<li><a href="/staily/style/style_main">스타일제안</a></li>
-								<li><a href="/staily/style/style_main">질문답변</a></li>
-								<li><a href="/staily/style/style_main">영주괴롭히기</a></li>
-								<li><a href="/staily/style/style_main">영주괴롭히기</a></li>
+								<li><a href="/staily/style/style_main_read">자유게시판</a></li>
+								<li><a href="/staily/style/style_main_read">스타일Q&A</a></li>
+								<li><a href="/staily/style/style_main_read">1:1문의</a></li>
+								<li><a href="/staily/style/style_main_read">상품홍보</a></li>
 							</ul></li>
+						<li><a href="/staily/">공지사항</a></li>
 						<c:choose>
 							<c:when test="${userId eq 'admin'}">
 								<li><a href="/staily/admin/main">관리자페이지</a></li>

@@ -24,7 +24,7 @@
 </div>
 
 <!-- Section -->
-<div class="container-fluid">
+<div class="container section news">
 	  
 	<div class="row">
 
@@ -60,7 +60,7 @@
                   	  <td><input type="checkbox" name="member_write_check" value="${product.pNo}"></td>
                       <td style = "cursor:pointer;" 
                       	  onClick = "location.href='../detail/product_detail?pNo=${product.pNo}&wNo=${product.wNo}'">
-                      <img src="${pageContext.request.contextPath}/${product.pScene}" width="50px" height="50px"></td>
+                      <img src="${pageContext.request.contextPath}/images/product/scene/${product.pScene}.jpg" width="100px" height="100px"></td>
                       <td>${product.pName}</td>
                       <td>${product.pDate}</td>
                     </tr>
