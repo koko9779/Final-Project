@@ -66,7 +66,7 @@ $(function() {
 	if(id === "" || id === undefined) {
 		return;
 	}else {
-		//alert("고객님의 아이디는 " + id + "입니다");
+		alert("고객님의 아이디는 " + id + "입니다");
 		/*
 		swal({
 					   title: "삭제완료",
@@ -77,25 +77,17 @@ $(function() {
 					});
 		*/
 		
-		/*
+		
 		swal({
-				  title: '<strong>아이디 찾기 성공</strong>',
+				  title: '아이디 찾기 성공',
 				  icon: 'info',
 				  text: '고객님의 아이디는 '+ id + '입니다',
 					}).then(() => {
 						location.reload();
 					});
-		*/
 		return;
 	}
-
 });
-
-function loginKeyup(){
-	if(event.keyCode == 13) {
-		login_action();
-	}	
-}
 
 </script>
  

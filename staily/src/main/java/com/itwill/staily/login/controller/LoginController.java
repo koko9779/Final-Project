@@ -22,6 +22,7 @@ import com.itwill.staily.login.exception.NoSearchMemberException;
 import com.itwill.staily.login.exception.PasswordMissmatchException;
 import com.itwill.staily.login.service.LoginService;
 import com.itwill.staily.login.service.NaverLogin2;
+import com.itwill.staily.mypage.service.PaymentService;
 import com.itwill.staily.util.Company;
 import com.itwill.staily.util.Member;
 
@@ -30,6 +31,8 @@ import com.itwill.staily.util.Member;
 public class LoginController {
 	@Autowired
 	private LoginService loginService;
+	@Autowired
+	private PaymentService paymentService;
 	
 	public LoginController() {
 		// TODO Auto-generated constructor stub
@@ -56,6 +59,7 @@ public class LoginController {
 	@RequestMapping(value = "/login_action", method = RequestMethod.POST)
 	public String login_action_post(@RequestParam String userId, String userPw, HttpSession session, Model model) {
 		String forwardPath = "";
+		Boolean result = false;
 		Member member = new Member();
 		Member successMember;
 		member.setmId(userId);
@@ -63,12 +67,15 @@ public class LoginController {
 		
 		try {
 			successMember = loginService.login(member);
-			System.out.println(successMember);
+			int mNo = successMember.getmNo();
 			session.setAttribute("userId", successMember.getmId());
-			session.setAttribute("userNo", successMember.getmNo());
+			session.setAttribute("userNo", mNo);
 			session.setAttribute("userType", successMember.getmType());
 			
-			forwardPath = "redirect:/main/index";
+			result = paymentService.checkN(mNo);
+			model.addAttribute("result", result);
+			
+			forwardPath = "forward:/main/index";
 		} catch (NoExistedIdException e) {
 				e.printStackTrace();
 				model.addAttribute("msg", e.getMessage());
