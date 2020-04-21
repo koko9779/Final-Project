@@ -469,8 +469,16 @@ public class MypageController {
 			if(count == -1) {
 				return "mypage/payment_list";
 			}
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			Date day1 = new Date();				
+			Date day2 = null;
 			String endDate = paymentList.get(count).getEndDate();
-			request.setAttribute("endDate", endDate);
+			day2 = dateFormat.parse(endDate);
+			int compare = day2.compareTo(day1);
+			if(compare >= 0) {
+				request.setAttribute("endDate", endDate);
+				
+			}
 			request.setAttribute("data", paymentList);
 			return "mypage/payment_list";
 		} catch (Exception e) {
