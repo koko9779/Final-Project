@@ -59,7 +59,7 @@ public class LoginController {
 	@RequestMapping(value = "/login_action", method = RequestMethod.POST)
 	public String login_action_post(@RequestParam String userId, String userPw, HttpSession session, Model model) {
 		String forwardPath = "";
-		Boolean result = false;
+		int result = -999;
 		Member member = new Member();
 		Member successMember;
 		member.setmId(userId);
