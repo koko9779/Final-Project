@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
 <%@ include
-	file="/WEB-INF/views/admin/include/include_top_without_sidebar.jsp"%>
+	file="/WEB-INF/views/admin/include/include_popup_css.jsp"%>
 <style>
 image {
 	margin: auto;
