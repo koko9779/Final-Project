@@ -35,17 +35,6 @@
 										<input type="hidden" value="${bm.product.pNo}" name="pNo"/>
 										<div class="movie-slide">
 												<div class="movie-poster2">
-													<!-- 커버 -->
-													<!-- 
-													<aside>
-														<div>
-															<input class="material-icons" type="image"
-																style="border: none; width: 50%;" alt="즐겨찾기 제거"
-																src="${pageContext.request.contextPath}/images/emptystar.png"
-																onclick="bookmark_remove(${bm.bmNo})">
-														</div>
-													</aside>
-													-->
 													<a href="#" onclick="bm_productpage(${bm.bmNo},${bm.product.pNo})"> <img
 														src="${pageContext.request.contextPath}/images/product/scene/${bm.product.pScene}.jpg"
 														alt="${bm.product.pName}" style="width:100%; height:150px;" />
