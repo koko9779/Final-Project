@@ -5,7 +5,7 @@
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 
 		<!-- Hero -->
-	<div id="hero">
+	<div id="hero" class="carousel carousel-fade" data-ride="carousel">
 		<iframe class="ww"
 			src="https://www.youtube-nocookie.com/embed/9Dfkx9vEPw0?autoplay=1&amp;loop=1;playlist=9Dfkx9vEPw0&controls=0&vq=hd720"
 			frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -13,7 +13,7 @@
 		<a href="#afterHeader" class="anchor">
 			<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
 		</a>
-
+ 
 	</div>
 	<!-- Indicators -->
 	
