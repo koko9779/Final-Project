@@ -133,7 +133,12 @@
   
 		
 
-
+<style>
+.table-responsive {
+    min-height: .01%;
+    overflow-x: hidden;
+}
+</style>
 <script type="text/javascript">
 //버튼 클릭시 Row에 있는 작품 번호 값 전달
 $(".btnnn").click(function() { 	

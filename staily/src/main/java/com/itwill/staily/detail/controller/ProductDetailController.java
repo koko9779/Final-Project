@@ -62,10 +62,7 @@ public class ProductDetailController {
 					request.setAttribute("bmNo", bmNo);								
 				}
 			}
-			
-			
-			
-					   
+								   
 			List<ProductEx> p = productDetailService.selectProductOne(Integer.parseInt(pNo));
 			Work w = workDetailService.selectWorkOne(Integer.parseInt(wNo));
 			productDetailService.increaseProductView(Integer.parseInt(pNo));
@@ -107,7 +104,7 @@ public class ProductDetailController {
 	}
 	
 	@RequestMapping("/product_create_action")
-	public ModelAndView createProduct(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public ModelAndView product_create_action(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		
 		try {			
@@ -155,12 +152,13 @@ public class ProductDetailController {
 	}	
 	
 	@RequestMapping("/upload")
+	@ResponseBody
 	public void upload(HttpServletResponse response, HttpServletRequest request, 
 			@RequestParam("Filedata") MultipartFile Filedata) { 
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
 		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
-		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
-		File f = new File("C:\\Users\\Jacob\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
+		File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
+		//File f = new File("C:\\Users\\Jacob\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
 		//File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
 		
 		try {
@@ -175,12 +173,13 @@ public class ProductDetailController {
 	}
 	
 	@RequestMapping("/upload2")
+	@ResponseBody
 	public void upload2(HttpServletResponse response, HttpServletRequest request, 
 			@RequestParam("Filedata") MultipartFile Filedata) { 
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
 		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
-		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
-		File f = new File("C:\\Users\\Jacob\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		//File f = new File("C:\\Users\\Jacob\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
 		//File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
 		
 		try {
@@ -193,8 +192,23 @@ public class ProductDetailController {
 		}
 	}
 	
+	@RequestMapping("/pdScene_create")
+	public String pdScene_create() {
+		return "detail/pdScene_create";
+	}
 	
 	
+	@RequestMapping("/pdScene_create_action")
+	@ResponseBody
+	public void pdScene_create_action(HttpServletRequest request, HttpServletResponse response) {
+		try {		
+			String pdScene = request.getParameter("filesize1");
+				request.setAttribute("filesize1", pdScene);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}	
 	
 	@RequestMapping("/pdImage_create_action")
 	@ResponseBody

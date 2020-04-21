@@ -67,19 +67,11 @@ function afterFileTransfer2(realname2, filename2, filesize2) {
 	filename9.value = filename2;
 	filesize9.value = filesize2;
 	
-	document.pdImage.action = "pdImage_create_action";
-	document.pdImage.submit();
-	
-	/*
-	var spl = realname9.value.split('.');
-	console.log(spl);
-	
-	if (spl[1] != "jpg" && spl[1] != "png") {
-		document.form1.submit();
-	} else {
-		alert("이미지 파일만 올려주세요");
-	}
-	*/
+	$.ajax({
+		url : "pdImage_create_action",
+		data : {"filesize2" : filesize2}
+		type
+	});
 }
 
 function ImageCreate() {
