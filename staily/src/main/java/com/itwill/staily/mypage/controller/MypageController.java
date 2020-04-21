@@ -472,12 +472,13 @@ public class MypageController {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			Date day1 = new Date();				
 			Date day2 = null;
-			String endDate = paymentList.get(count).getEndDate();
+			String endDate1 = paymentList.get(count).getEndDate();
+			String endDate = endDate1.substring(0, 10);
 			day2 = dateFormat.parse(endDate);
 			int compare = day2.compareTo(day1);
 			if(compare >= 0) {
 				request.setAttribute("endDate", endDate);
-				
+				System.out.println("$$$$"+endDate);
 			}
 			request.setAttribute("data", paymentList);
 			return "mypage/payment_list";
