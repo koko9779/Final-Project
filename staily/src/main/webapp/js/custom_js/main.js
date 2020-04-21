@@ -58,7 +58,6 @@ function getList(curPage){
 			var bmList = jsonData.bmList;
 			var mwArray = jsonData.list;
 			var endPage = jsonData.endPage;
-			//console.log("현재 페이지"+curPage+",마지막페이지"+endPage);
 			if (curPage<=endPage){ 
 				/**for문 시작*********************************/
 				for (var i = 0; i < mwArray.length; i++) {
@@ -158,15 +157,19 @@ function getList(curPage){
 						showLoadingDialog(false);
 						isVisible=false;
 						page++;
-					}else{
+					}else{ 
+						console.log(pPno);
+						var lastContent = $('#mwList form:last-child').offset().top;
+						$('html').animate({scrollTop: lastContent-150}, 1000);
 						showLoadingDialog(false);
 						isVisible=true;
 					}
-				},2000);
+				},1000);
             }else{
 				$(".mwList").append(html); 
 				isVisible=true;
             }
+
        }
     }); 
 };
