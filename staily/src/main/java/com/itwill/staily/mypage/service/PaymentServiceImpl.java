@@ -54,14 +54,15 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public boolean checkN(int mNo) throws Exception {
-		boolean result = false;
+	public int checkN(int mNo) throws Exception {
+		int result=0;
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date day1 = new Date();				
 		Date day2 = null;
 		List<Payment> paymentList = selectList(mNo);
 		int count = paymentList.size()-1;
 		if(count == -1) {
+			result = 0;
 			return result;
 		}
 		day2 = dateFormat.parse(paymentList.get(count).getEndDate());
@@ -69,9 +70,12 @@ public class PaymentServiceImpl implements PaymentService {
 		if(compare > 0) {
 			updateCompanyN(mNo);
 			updateProductN(mNo);
-			result = true;
+			result = 1;
+			return result;
+		}else {
+			result = 2;
+			return result;
 		}
-		return result;
 	}
 
 	
