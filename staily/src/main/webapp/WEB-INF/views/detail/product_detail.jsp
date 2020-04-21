@@ -8,32 +8,19 @@
 
 
 <!-- Hero -->
-<div id="content_hero">
-	<a href="#afterHeader" class="anchor"> <img
-		src="${pageContext.request.contextPath}/images/scroll-arrow.svg"
-		alt="Scroll down" class="scroll" />
-	</a>
-	
+<div id="content_hero" >
 	<iframe class="ww"
-			src="https://www.youtube-nocookie.com/embed/isls26FGUaA?autoplay=1&amp;loop=1;&playlist=isls26FGUaA&controls=0&vq=hd1080"
+			src="https://www.youtube-nocookie.com/embed/${w.wVideo}?autoplay=1&amp;loop=1;playlist=${w.wVideo}&controls=0&vq=hd720"
 			frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-			allowfullscreen style="position: absolute;left: -0%;width: 100%;height: 100%;top: 0%;"></iframe>
-
-	<!-- Content -->
-	<div class="container">
-		<div class="row blurb scrollme animateme" data-when="exit"
-			data-from="0" data-to="1" data-opacity="0" data-translatey="100">
-			<div class="col-md-9">
-				<span class="title"></span>
-				<h1></h1>
-			</div>
-		</div>
-	</div>
+			allowfullscreen></iframe>
+	<a href="#afterHeader" class="anchor">
+		<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
+	</a>
 </div>
 
 <!-- Section -->
-<div class="container section news" id="afterHeader">
-	<div class="row">
+<div class="container section news totop">
+	<div class="row" id="afterHeader">
 		<%@ include file="/WEB-INF/views/include/include_work_sidebar.jsp"%>
 		<div class="col-sm-9 col-sm-push-1">
 			<h2 style="margin-bottom: 0;">이 상품이 나온 장면</h2>

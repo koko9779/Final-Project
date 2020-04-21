@@ -7,7 +7,7 @@
 <!-- Hero -->
 <div id="content_hero" >
 	<iframe class="ww"
-			src="https://www.youtube-nocookie.com/embed/zicML3KeO4k?autoplay=1&amp;loop=1;playlist=zicML3KeO4k&controls=0&vq=hd720"
+			src="https://www.youtube-nocookie.com/embed/${w.wVideo}?autoplay=1&amp;loop=1;playlist=${w.wVideo}&controls=0&vq=hd720"
 			frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 			allowfullscreen></iframe>
 	<a href="#afterHeader" class="anchor">
@@ -18,9 +18,7 @@
 <!-- Section -->
 <div class="container section news totop">
 	<div class="row"   id="afterHeader">
-	
 	<%@ include file="/WEB-INF/views/include/include_work_sidebar.jsp"%>
-
 		<div class="col-sm-9 col-sm-push-1" id="work_list_main" >
 			<!-- 기업회원 -->					
 			<h2>HOT AD</h2>
