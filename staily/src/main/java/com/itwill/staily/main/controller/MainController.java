@@ -118,20 +118,18 @@ public class MainController {
 			
 			/********************detail***********************/
 			List<Work> cw = listService.selectCProductList(wNo);
+
 			request.setAttribute("cw", cw);
-			
+
 	        // 전체리스트 개수
 	        int listCnt = listService.selectProductCount(wNo);
-			
-	        System.out.println("총 게시물건수:"+listCnt);
-	        
-	        Pagination pagination = new Pagination(listCnt, curPage);
-	        
-	        System.out.println(pagination.getStartIndex()+"~"+pagination.getCurEndIndex());
-	        
-	        List<Work> mw = listService.selectMProductList(wNo,pagination.getStartIndex(),pagination.getCurEndIndex());
-	        
-			request.setAttribute("mw", mw);
+			if(listCnt==0) {
+				request.setAttribute("mw", null);
+			}else {
+		        Pagination pagination = new Pagination(listCnt, curPage);
+		        List<Work> mw = listService.selectMProductList(wNo,pagination.getStartIndex(),pagination.getCurEndIndex());
+				request.setAttribute("mw", mw);
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -199,25 +197,29 @@ public class MainController {
 			// 리스트 개수
 			int listCnt = listService.selectProductCountByEpisode(wNo, wdEpisode);
 			
-			//페이지 구하기
-			Pagination pagination = new Pagination(listCnt, curPage);
-	
-			Map map = new HashMap();
-			map.put("wNo", wNo);
-			map.put("wdEpisode", wdEpisode);
-			map.put("start",pagination.getStartIndex());
-			map.put("end",pagination.getCurEndIndex());
+			if(listCnt==0) {
+				request.setAttribute("mwe", null);
+			}else {
+				//페이지 구하기
+				Pagination pagination = new Pagination(listCnt, curPage);
+		
+				Map map = new HashMap();
+				map.put("wNo", wNo);
+				map.put("wdEpisode", wdEpisode);
+				map.put("start",pagination.getStartIndex());
+				map.put("end",pagination.getCurEndIndex());
+				    
+			    List<Work> mwe = listService.selectMProductListByEpisode(map);
 			    
-		    List<Work> mwe = listService.selectMProductListByEpisode(map);
-		    
-		    System.out.println(pagination.getStartIndex()+"~"+pagination.getCurEndIndex());
-	
-		    int endPage = pagination.getEndPage();
-		    
-			request.setAttribute("mwe", mwe);
-			request.setAttribute("endPage",endPage);
-			request.setAttribute("userNo",userNo);
-			request.setAttribute("bmList",bmList);
+			    System.out.println(pagination.getStartIndex()+"~"+pagination.getCurEndIndex());
+		
+			    int endPage = pagination.getEndPage();
+			    
+				request.setAttribute("mwe", mwe);
+				request.setAttribute("endPage",endPage);
+				request.setAttribute("userNo",userNo);
+				request.setAttribute("bmList",bmList);
+			}
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -238,7 +240,6 @@ public class MainController {
 			
 			// 리스트 개수
 			int listCnt = listService.selectProductCountByEpisode(wNo, wdEpisode);
-
 	        //페이지 구하기
 		    Pagination pagination = new Pagination(listCnt, nextPage);
 		    

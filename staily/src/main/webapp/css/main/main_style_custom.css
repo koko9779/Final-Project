@@ -43,7 +43,7 @@ article .tag:hover {
 #mwList{
 	overflow-y:auto;
 }
-.material-icons .bookmark{
+.bookmark{
 	border: none;
 	width: 10%;
 	float:left;
@@ -86,7 +86,15 @@ article .tag:hover {
 	position:relative;
 	}
 }
-
+#content_hero {
+    overflow: hidden;
+    top: -230px;
+    height: 600px !important;
+}
+.totop{
+	top:-230px;
+	position:relative;
+}
 #hero .scroll, #content_hero .scroll {
 	position: absolute;
 	z-index: 1;
