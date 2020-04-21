@@ -38,6 +38,10 @@
 #dataTable_info{
 	display : none;
 }
+
+.table-responsive {
+    overflow-x: hidden;
+}
 /*
 .dataTables_empty {
 	display : none;

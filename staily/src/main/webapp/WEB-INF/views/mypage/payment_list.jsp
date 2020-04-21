@@ -22,13 +22,18 @@
 </div>
 
 <!-- Section -->
-<div class="container-fluid">
+<div class="container section news">
 	  
 	<div class="row">
 
 		<%@ include file="/WEB-INF/views/mypage/include/include_sidebar.jsp" %>
 
 		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
+		
+		<h1 class="h3 mb-2 text-gray-800">결제종료일</h1>
+		<div>
+		${endDate}
+		</div>
 	
 			<!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">결제내역</h1>

@@ -442,7 +442,7 @@ $(function(){
 
 function leave(){
 	var param = {
-			"mNo" : $('mNo').val()
+			"mNo" : $('#mNo').val()
 	}
 	var delConfirm = confirm('회원탈퇴하시겠습니까?');
 	if(delConfirm){
@@ -457,7 +457,7 @@ function leave(){
 						   text: "버튼을 클릭해주세요!",
 						   icon: "success" //"info,success,warning,error" 중 택1
 						}).then(() => {
-							location.href = 'main/index'
+							location.href = '../main/index'
 						});
 					
 				}else{

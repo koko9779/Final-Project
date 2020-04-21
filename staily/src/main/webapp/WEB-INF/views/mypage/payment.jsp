@@ -23,14 +23,14 @@
 </div>
 
 <!-- Section -->
-<div class="container-fluid">
+<div class="container section news">
 	  
 	<div class="row">
 
 		<%@ include file="/WEB-INF/views/mypage/include/include_sidebar.jsp" %>
 
 		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
-	
+		
 			<!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">결제</h1>
           <!-- DataTales Example -->
@@ -80,15 +80,15 @@
               </div>
             </div>
           </div>
-          <!--  -->
+          <!--  
     
-		 <form id="memberInfoFrm" name="memberInfoFrm" autocomplete="off" action='member_update'>
+		 <form id="memberInfoFrm" name="memberInfoFrm" autocomplete="off">
 			<input type="hidden" name="mNo" id="mNo" value="${member.mNo}">
 			<input type="hidden" name="mId" id="mId" value="${member.mId}">
 			<input type="hidden" name="mType" id="mType" value="${member.mType}"> 
 			<input type="hidden" name="mPhone" id="mPhone" value="${member.mPhone}">
 		</form>
-
+		-->
         </div>
         <!-- /.container-fluid -->
 

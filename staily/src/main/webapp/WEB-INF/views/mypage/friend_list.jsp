@@ -24,7 +24,7 @@
 </div>
 
 <!-- Section -->
-<div class="container-fluid">
+<div class="container section news">
 	  
 	<div class="row">
 
