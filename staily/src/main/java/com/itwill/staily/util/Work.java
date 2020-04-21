@@ -20,6 +20,7 @@ public class Work {
 	private String wPoster;
 	private int wTepisode;
 	private int wView;
+	private String wVideo;
 	//작품상세
 	private int wdNo;
 	private int wdEpisode;
@@ -127,6 +128,11 @@ public class Work {
 	public void setwView(int wView) {
 		this.wView = wView;
 	}
-	
+	public String getwVideo() {
+		return wVideo;
+	}
+	public void setwVideo(String wVideo) {
+		this.wVideo = wVideo;
+	}
 	
 }
