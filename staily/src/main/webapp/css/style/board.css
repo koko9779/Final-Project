@@ -1,13 +1,14 @@
 @charset "UTF-8";
 
-/*
-.btn-ghost:hover {
-    color: #fff;
+.pagination>.active>a , .pagination>.active>a:hover {
+	background-color: #e76115 !important;
+   	border-color: #e76115 !important;
 }
-.btn:focus, .btn:hover {
-    color: #e76115;
+
+.table-responsive {
+   	overflow-x: hidden;
 }
-*/
+	
 .board-top {
 	color: #e76115;
 }
