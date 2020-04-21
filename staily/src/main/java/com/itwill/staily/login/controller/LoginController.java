@@ -258,7 +258,7 @@ public class LoginController {
 //3. 데이터 파싱
 //Top레벨 단계 _response 파싱
 		JSONObject response_obj = (JSONObject) jsonObj.get("response");
-//response의 nickname값 파싱
+//response에서 필요한 데이터 추출
 		String id = (String) response_obj.get("id");
 		System.out.println(id);
 //4.파싱 닉네임 세션으로 저장
@@ -269,7 +269,7 @@ public class LoginController {
 		//jsonObj 의 값 중에 message를 통해 성공했는지 아닌지 판별하여 다른 로직을 실행
 		String message = (String)jsonObj.get("message");
 		if(message.equals("success")) {
-			// 카운터 네이버아이디   타입 N
+			// 카운터 네이버아이디 타입 N
 			int idCount = loginService.naverIdCounter((String)response_obj.get("id"));
 			
 			//1
@@ -284,16 +284,6 @@ public class LoginController {
 		} else {
 			forwardPath = "redirect:/login/login";
 		}
-//		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLogin클래스의 getAuthorizationUrl메소드 호출 */
-//		String naverAuthUrl = naverLogin2.getAuthorizationUrl(session); //세션에다가 난수로 생성한 state값을 넣는 작업
-////https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
-////redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
-//		System.out.println("네이버:" + naverAuthUrl);
-////네이버
-//		model.addAttribute("url", naverAuthUrl);
-		
-		
-		
 		return forwardPath;
 	}
 
