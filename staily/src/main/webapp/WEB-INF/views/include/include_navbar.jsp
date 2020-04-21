@@ -70,7 +70,7 @@ iframe {
 								<li><a href="/staily/style/style_main_read">1:1문의</a></li>
 								<li><a href="/staily/style/style_main_read">상품홍보</a></li>
 							</ul></li>
-						<li><a href="/staily/">공지사항</a></li>
+						<li><a href="/staily/notice/main">공지사항</a></li>
 						<c:choose>
 							<c:when test="${userId eq 'admin'}">
 								<li><a href="/staily/admin/main">관리자페이지</a></li>

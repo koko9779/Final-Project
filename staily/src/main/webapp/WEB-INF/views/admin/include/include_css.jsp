@@ -11,8 +11,8 @@
   <!-- Custom styles for this page -->
   <link href="${pageContext.request.contextPath}/css/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-  <!-- ZIP CODE -->
-  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
   <!-- Slick -->
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/slick.css"/>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/slick-theme.css"/>
+  

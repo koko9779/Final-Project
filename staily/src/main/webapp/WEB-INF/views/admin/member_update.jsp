@@ -2,8 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
-<head>
-<%@ include file="/WEB-INF/views/admin/include/include_top_without_sidebar.jsp"%>
+<%@ include file="/WEB-INF/views/admin/include/include_popup_css.jsp"%>
 <style>
 .text-left {
     text-align: left;
@@ -12,7 +11,7 @@
 	color : #ff0000; 
 }
 </style>
-</head>
+<body>
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">회원정보페이지</h1>
 <!-- DataTales Example -->
@@ -160,7 +159,7 @@
 												<div class="form-row">
 													<div class="col-xs-7">
 														<input type="text" name="mAddress" id="mAddress"
-															onclick="execDaumPostcode()" value="${member.mAddress}"
+															onclick="execDaumPostcode('mAddress')" value="${member.mAddress}"
 															class="form-control" maxlength="20" readonly="readonly">
 													</div>
 
@@ -189,11 +188,7 @@
 			</div>
 		</form>
 	</div>
-
-	<br>
 </div>
-
-
 <!-- DataTales Example -->
 </div>
 <!-- /.container-fluid -->
