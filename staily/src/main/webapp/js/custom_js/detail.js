@@ -20,23 +20,26 @@ function productCreate() {
 	var pName = $('#pName').val();
 	var pPrice = $('#pPrice').val();
 	var pUrl = $('#pUrl').val();
+	var filesize1 = $('#filesize1').val();
+	var filesize2 = $('#filesize2').val();
 	
-	//alert(pName + " === " + pPrice + " === " + pUrl);
+	//alert(pName + " === " + pPrice + " === " + pUrl + " === " + filesize1 + " === " + filesize2);
 	
-	if(pName == '' || pPrice == '' || pUrl == '') {
+	if(pName == '' || pPrice == '' || pUrl == '' || filesize1 == '' || filesize2 == '') {
 		swal({
 			title: "필수 항목을 모두 입력해주세요",
 			icon: "warning" //"info,success,warning,error" 중 택1
 		});		
 	}
 	else {
-		guManager2.uploadFiles();
-		document.createP.action = "product_create_action";
-		document.createP.method = "POST";
-		
 		swal({
 			title: "상품 등록이 완료되었습니다",
 			icon: "success" //"info,success,warning,error" 중 택1
+		})
+		.then(() => {
+			document.createP.action = "product_create_action";
+			document.createP.method = "POST";
+			document.createP.submit();
 		});
 	}
 	

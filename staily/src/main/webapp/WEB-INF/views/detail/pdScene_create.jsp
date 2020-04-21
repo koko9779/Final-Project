@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>이미지 업로드</title>
+<title>Staily</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/product_create.css"/>
 <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/gu-upload/css/guupload.css"/>

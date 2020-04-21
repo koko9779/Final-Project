@@ -121,9 +121,9 @@ public class ProductDetailController {
 			
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		    String pDate = df.format(new Date());
+			
+			String[] pdImage = request.getParameterValues("filesize3");
 						
-			String[] pdImage = request.getParameterValues("filesize2");
-					
 			ProductEx p = new ProductEx(mNo, Integer.parseInt(wNo), 
 					pName, Integer.parseInt(pPrice), pUrl, pAddress, pDaddress, pScene, pDate);
 			
@@ -137,9 +137,7 @@ public class ProductDetailController {
 			}
 				
 			productDetailService.createProductDetail(pdImage);				
-
-			
-			
+		
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -157,8 +155,8 @@ public class ProductDetailController {
 			@RequestParam("Filedata") MultipartFile Filedata) { 
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
 		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
-		File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
-		//File f = new File("C:\\Users\\Jacob\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
+		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
+		File f = new File("C:\\Users\\Jacob\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
 		//File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
 		
 		try {
@@ -178,8 +176,8 @@ public class ProductDetailController {
 			@RequestParam("Filedata") MultipartFile Filedata) { 
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
 		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
-		File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
-		//File f = new File("C:\\Users\\Jacob\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		File f = new File("C:\\Users\\Jacob\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
 		//File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
 		
 		try {
@@ -195,40 +193,31 @@ public class ProductDetailController {
 	@RequestMapping("/pdScene_create")
 	public String pdScene_create() {
 		return "detail/pdScene_create";
-	}
-	
+	}	
 	
 	@RequestMapping("/pdScene_create_action")
 	@ResponseBody
 	public void pdScene_create_action(HttpServletRequest request, HttpServletResponse response) {
 		try {		
 			String pdScene = request.getParameter("filesize1");
-				request.setAttribute("filesize1", pdScene);
+			request.setAttribute("filesize1", pdScene);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}	
+
+	@RequestMapping("/pdImage_create")
+	public String pdImage_create() {
+		return "detail/pdImage_create";
+	}
 	
 	@RequestMapping("/pdImage_create_action")
 	@ResponseBody
 	public void createProductDetail(HttpServletRequest request, HttpServletResponse response) {
 		try {		
 			String pdImage = request.getParameter("filesize2");
-			Pattern p = Pattern.compile(",");
-			Matcher m = p.matcher(pdImage);
-			int cnt = 0;
-			
-			for (int i = 0; m.find(i); i = m.end()) {
-				cnt++;
-			}
-			request.setAttribute("cnt", cnt + 1);
-			
-			for(int i = 0; i < cnt + 1; i++) {
-				String[] filesize2 = pdImage.split(",");
-				String Image = filesize2[i];
-				request.setAttribute("Image" + (i + 1), Image);
-			}
+			request.setAttribute("filesize2", pdImage);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
