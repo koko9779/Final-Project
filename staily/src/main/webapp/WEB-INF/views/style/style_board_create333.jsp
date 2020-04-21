@@ -1,8 +1,33 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/tags.jspf" %>
-<%@ include file="/WEB-INF/views/login/include/include_top_login.jsp" %>
+<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/tags.jspf"%>
+<%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 
-  <div class="container">
+<!-- Hero -->
+<div id="content_hero"
+	style="background-image: url(http://via.placeholder.com/1440x435)">
+
+	<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg"
+		alt="Scroll down" class="scroll" />
+
+	<!-- Content -->
+	<div class="container">
+		<div class="row blurb scrollme animateme" data-when="exit"
+			data-from="0" data-to="1" data-opacity="0" data-translatey="100">
+			<div class="col-md-9">
+				<span class="title">The very latest</span>
+				<h1>Cinema news</h1>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!-- Section -->
+<div class="container-fluid">
+	<div class="row">
+		<div class="container">
 
     <!-- Outer Row -->
     <div class="row justify-content-center">
@@ -34,11 +59,9 @@
                     	 로그인
                     </a>
                     <hr>
-                    <!--  
                     <a href="${url}" class="btn btn-google btn-user btn-block">
                       <i class="fab fa-google fa-fw"></i> Login with Naver
                     </a>
-                    -->
                   </form>
                   <hr>
                   <div class="text-center">
@@ -61,23 +84,13 @@
     </div>
 
   </div>
- <%@ include file="/WEB-INF/views/login/include/include_bottom_login.jsp" %>
-<script type="text/javascript">
-$(function() {
-	var id = $("#findIdE").val();
-	if(id === "" || id === undefined) {
-		return;
-	}else {
-		swal({
-			  title: '아이디 찾기 성공',
-			  icon: 'info',
-			  text: '고객님의 아이디는 '+ id + '입니다',
-			});
-		return;
-	}
-});
-</script>
- 
-   </body>
+		<!-- -->
+		
+	</div>
+</div>
+<%@ include file="/WEB-INF/views/include/include_js.jsp"%>
+<%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
+</body>
 
-</html> 
+
+</html>
