@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/admin/include/include_css.jsp"%>
+<%@ include file="/WEB-INF/views/include/include_css.jsp"%>
 <!DOCTYPE html>
 
 <html>
@@ -10,6 +10,7 @@
 <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/gu-upload/css/guupload2.css"/>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/gu-upload/guuploadManager2.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 	<div style="margin: 5%;">
@@ -22,11 +23,10 @@
 				<tbody>
 					<tr>
 						<th scope="row" class="bg-light essentia"><label for="pdImage">
-								상품 이미지<br>(최대 10장)
-						</label></th>
+								상품 이미지<br>(최대 10장) <span style="color: red;">*</span></label></th>
 						<td class="text-left">
 							<div class="col">
-								<div id="uploadScene2" style="width: 100%;"></div>
+								<div id="uploadImage" style="width: 100%;"></div>
 								<input type="hidden" id="realname2" name="realname2" /> 
 								<input type="hidden" id="filename2" name="filename2" /> 
 								<input type="hidden" id="filesize2" name="filesize2" />
@@ -35,7 +35,6 @@
 					</tr>
 				</tbody>
 			</table>
-			<input type="hidden" id="wNo" name="wNo" value="${wNo}"/>
 			<div class="wrap" style="height: auto;">
 				<button class="button_css" type="button" onClick="ImageCreate()">올리기</button>
 				<button class="button_css" type="button" onClick="javascript:location.href='work_select'">돌아가기</button>
@@ -45,10 +44,12 @@
 </body>
 
 <script type="text/javascript">
+var guManager2 = null;
+
 window.onload = function() {
 	var option2 = {
 		listtype : "thumbnail",
-		fileid : "uploadScene2",
+		fileid : "uploadImage",
 		uploadURL : "upload2",
 		maxFileCount : 10,
 		maxFileSize : 3,
