@@ -35,67 +35,6 @@
 	</div>
 </div>
 
-<!-- 모달 -->
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="modal fade" id="sceneUp" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title" id="myModalLabel">
-								이미지 업로드
-							</h4> 
-						</div>
- 						<div class="modal-body" id="body">
- 							<form id="sceneUpload" method="post">
-	 							<div id="uploadScene" style="width: 100%;"></div>
-								<input type="hidden" id="realname1" name="realname1"/>
-								<input type="hidden" id="filename1" name="filename1"/>
-								<input type="hidden" id="filesize1" name="filesize1"/>
- 							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" id="modal1_click">올리기</button> 
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-						</div>
-					</div>					
-				</div>				
-			</div>			
-		</div>
-	</div>
-</div>
-
-<!-- 모달 -->
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="modal fade" id="imageUp" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h4 class="modal-title" id="myModalLabel">
-								이미지 업로드
-							</h4> 
-						</div>
- 						<div class="modal-body" id="body">
- 							<form id="imageUpload" method="post">
-	 							<div id="uploadImage" style="width: 100%;"></div>
-								<input type="hidden" id="realname2" name="realname2"/>
-								<input type="hidden" id="filename2" name="filename2"/>
-								<input type="hidden" id="filesize2" name="filesize2"/>
- 							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-primary" id="modal2_click">올리기</button> 
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-						</div>
-					</div>					
-				</div>				
-			</div>			
-		</div>
-	</div>
-</div>
 
 <div style="margin:3%;">
 	<div class="left">
@@ -243,9 +182,11 @@
 								상품이 나온 장면<br>(최대 1장) <span style="color: red;">*</span></label></th>
 						<td class="text-left" style="text-align: left;">
 							<div class="col">
-								<button id="modal-scene" type="button" class="button_css" 
-								data-toggle="modal" data-target="#sceneUp">이미지 업로드</button>
+								<button id="scene" type="button" class="button_css" onClick="sceneUp();">이미지 업로드</button>
 								<div id="uploadedScene" style="padding-top: 7px"></div>
+								<input type="hidden" id="realname1" name="realname1" /> 
+								<input type="hidden" id="filename1" name="filename1" /> 
+								<input type="hidden" id="filesize1" name="filesize1" />
 							</div>
 						</td>
 					</tr>	
@@ -283,22 +224,9 @@
 <%@ include file="/WEB-INF/views/include/detail/include_detail_js.jsp"%>
 <script src="${pageContext.request.contextPath}/js/custom_js/detail.js"></script>
 <script>
-var guManager = null;
 var guManager2 = null;
 
 window.onload = function() {
-	
-	var option = {
-		listtype : "thumbnail",
-		fileid : "uploadScene",
-		uploadURL : "upload",
-		maxFileCount : 1,
-		maxFileSize : 3,
-		afterFileTransfer : afterFileTransfer
-	}
-	
-	guManager = new guUploadManager(option);
-	
 	var option2 = {
 			listtype : "thumbnail",
 			fileid : "uploadImage",
@@ -311,20 +239,12 @@ window.onload = function() {
 	guManager2 = new guUploadManager2(option2);
 }
 
-function afterFileTransfer(realname1, filename1, filesize1) {
-
-	var realname9 = document.getElementById('realname1');
-	var filename9 = document.getElementById('filename1');
-	var filesize9 = document.getElementById('filesize1');
-
-	realname9.value = realname1;
-	filename9.value = filename1;
-	filesize9.value = filesize1;
-	
-	$('#sceneUp').hide(function() {
-		$("#modal-scene").hide();
-		document.getElementById('uploadedScene').innerHTML = $("#filename1").val();
-	});
+function sceneUp() {
+	window.open(
+		"pdScene_create",
+		"pdScene_create_frame",
+		"width=700, height = 350"
+	);
 }
 
 $("#modal1_click").on("click", function(e) {
