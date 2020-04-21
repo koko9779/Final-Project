@@ -27,5 +27,5 @@ public interface PaymentService {
 	public boolean updateProductN(int mNo) throws Exception;
 	
 	//결제일 종료 시 N변경
-	public boolean checkN(int mNo) throws Exception;
+	public int checkN(int mNo) throws Exception;
 }
