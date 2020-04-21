@@ -9,6 +9,12 @@ function login_action() {
 	document.f.submit();
 }
 
+function loginKeyup(){
+	if(event.keyCode == 13) {
+		login_action();
+	}	
+}
+
 /********** id_read.jsp ************/
 function find_id() {
 	var name = $("#inputName").val();
@@ -25,6 +31,7 @@ function find_id() {
 }
 
 /***************** member_create.jsp ******************/
+
 
 $(window)
 .on(
