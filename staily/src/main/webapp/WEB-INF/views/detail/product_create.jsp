@@ -16,7 +16,7 @@
 	</a>
 	
 	<iframe class="ww"
-			src="https://www.youtube-nocookie.com/embed/obX621oa9RM?autoplay=0&amp;loop=1;&playlist=isls26FGUaA&controls=0&vq=hd1080"
+			src="https://www.youtube-nocookie.com/embed/obX621oa9RM?autoplay=1&amp;loop=1;&playlist=isls26FGUaA&controls=0&vq=hd1080"
 			frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 			allowfullscreen style="position: absolute;left: -0%;width: 100%;height: 100%;top: 0%;"></iframe>
 			
@@ -191,9 +191,11 @@
 								상품 이미지<br>(최대 10장) <span style="color: red;">*</span></label></th>
 						<td class="text-left" style="text-align: left;">
 							<div class="col">
-								<button id="modal-image" type="button" class="button_css" 
-								data-toggle="modal" data-target="#imageUp">이미지 업로드</button>
+								<button id="image" type="button" class="button_css" onClick="imageUp();">이미지 업로드</button>
 								<div id="uploadedImage" style="padding-top: 7px"></div>
+								<input type="hidden" id="realname2" name="realname2" /> 
+								<input type="hidden" id="filename2" name="filename2" /> 
+								<input type="hidden" id="filesize2" name="filesize2" />
 															
 							</div>
 						</td>
@@ -204,10 +206,14 @@
 					</tr>
 				</tbody>		
 			</table>
+			<!--  
 			<c:forEach var="i" begin="1" end="${cnt}" varStatus="status">
 				<c:set var="a" value="Image${i}"/>
-				<input type="hidden" id="filesize2${i}" name="filesize2" value="${requestScope[a]}"/>
+				<input type="hidden" id="filesize2${i}" name="filesize3" value="${requestScope[a]}"/>
 			</c:forEach>
+			-->
+			<div id="splitspace">
+			</div>
 			<div class="wrap" style="height:auto;">
 				<button class="button_css" type="button" onClick="productCreate()">작성하기</button>
 				<button class="button_css" type="reset">다시 쓰기</button>
@@ -220,7 +226,6 @@
 <%@ include file="/WEB-INF/views/include/detail/include_detail_js.jsp"%>
 <script src="${pageContext.request.contextPath}/js/custom_js/detail.js"></script>
 <script>
-
 function sceneUp() {
 	window.open(
 		"pdScene_create",
@@ -229,49 +234,12 @@ function sceneUp() {
 	);
 }
 
-$("#modal1_click").on("click", function(e) {
-	var check = $('.filerow').val();
-	
-	if(check == null) {
-		swal({
-			title: "이미지를 업로드 해주세요",
-			icon: "warning" //"info,success,warning,error" 중 택1
-		});	
-	}
-	else {
-		guManager.uploadFiles();
-	}
-		
-});
-
-function afterFileTransfer2(realname2, filename2, filesize2) {
-
-	var realname90 = document.getElementById('realname2');
-	var filename90 = document.getElementById('filename2');
-	var filesize90 = document.getElementById('filesize2');
-
-	realname90.value = realname2;
-	filename90.value = filename2;
-	filesize90.value = filesize2;
-	
-	$('#imageUp').hide(function() {
-		document.getElementById('uploadedImage').innerHTML = $("#filename2").val();
-	});
+function imageUp() {
+	window.open(
+		"pdImage_create",
+		"pdImage_create_frame",
+		"width=700, height = 350"
+	);
 }
-
-$("#modal2_click").on("click", function(e) {
-	var check = $('.filerow').val();
-	
-	if(check == null) {
-		swal({
-			title: "이미지를 업로드 해주세요",
-			icon: "warning" //"info,success,warning,error" 중 택1
-		});	
-	}
-	else {
-		guManager2.uploadFiles();
-	}
-		
-});
 </script>
 </html>

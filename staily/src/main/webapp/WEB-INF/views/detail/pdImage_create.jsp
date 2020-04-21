@@ -12,6 +12,23 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/gu-upload/guuploadManager2.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
+<style>
+body {
+    overflow: hidden;
+}
+
+.guFileList2_thumbnail .filerow2 {
+    width: 100px;
+    height: 91%;
+    overflow: hidden;
+    margin: 3px;
+    padding: 1px;
+    border: solid 1px #E8E8E8;
+    background-color: #F7F7F7;
+    display: inline-block;
+    float: left;
+}
+</style>
 <body>
 	<div style="margin: 5%;">
 		<form name="pdImage" method="post">
@@ -36,8 +53,8 @@
 				</tbody>
 			</table>
 			<div class="wrap" style="height: auto;">
-				<button class="button_css" type="button" onClick="ImageCreate()">올리기</button>
-				<button class="button_css" type="button" onClick="javascript:location.href='work_select'">돌아가기</button>
+				<button class="button_css" type="button" id="imageCreate">올리기</button>
+				<button class="button_css" type="button" onClick="javascript:window.close();">닫기</button>
 			</div>
 		</form>
 	</div>
@@ -70,14 +87,38 @@ function afterFileTransfer2(realname2, filename2, filesize2) {
 	
 	$.ajax({
 		url : "pdImage_create_action",
-		data : {"filesize2" : filesize2}
-		type
+		data : {"filesize2" : filesize2},
+		type : "post",
+		success : function() {
+			$(opener.document).find('#filesize2').val(filesize2);
+			$(opener.document).find('#image').hide();
+			
+			var namesplit = filename2.split(',');
+			var sizesplit = filesize2.split(',');
+			
+			for(var i in namesplit) {
+				$(opener.document).find("#uploadedImage").append(namesplit[i] + "<br>");
+				$(opener.document).find("#splitspace").append("<input type='hidden' id='filesize2" + i + "' name='filesize3' value='" + sizesplit[i] + "' />");
+			}
+			
+			self.close();
+		}
 	});
 }
 
-function ImageCreate() {
-	guManager2.uploadFiles();
-}
+$("#imageCreate").click(function(){
+	var check = $('.filerow2').val();
+		
+		if(check == null) {
+			swal({
+				title: "이미지를 업로드 해주세요",
+				icon: "warning" //"info,success,warning,error" 중 택1
+			});	
+		}
+		else {
+			guManager2.uploadFiles();
+		}
+	});
 
 </script>
 </html>
