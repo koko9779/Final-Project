@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/admin/include/include_css.jsp"%>
+<%@ include file="/WEB-INF/views/include/include_css.jsp"%>
 <!DOCTYPE html>
 
 <html>
@@ -17,10 +17,22 @@
 body {
     overflow: hidden;
 }
+
+.guFileList_thumbnail .filerow {
+    width: 100px;
+    height: 91%;
+    overflow: hidden;
+    margin: 3px;
+    padding: 1px;
+    border: solid 1px #E8E8E8;
+    background-color: #F7F7F7;
+    display: inline-block;
+    float: left;
+}
 </style>
 <body>
 	<div style="margin: 5%;">
-		<form name="pdImage" method="post">
+		<form name="pdScene" method="post">
 			<table class="table table=hover">
 				<colgroup>
 					<col class="col_wp25">
@@ -41,7 +53,6 @@ body {
 					</tr>
 				</tbody>
 			</table>
-			<input type="hidden" id="wNo" name="wNo" value="${wNo}"/>
 			<div class="wrap" style="height: auto;">
 				<button class="button_css" type="button" id="sceneCreate">올리기</button>
 				<button class="button_css" type="button" onClick="javascript:window.close();">닫기</button>

@@ -5,10 +5,6 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/product_create.css"/>
 <script src="${pageContext.request.contextPath}/css/admin/vendor/jquery/jquery.min.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/gu-upload/css/guupload.css"/>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/js/gu-upload/css/guupload2.css"/>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/gu-upload/guuploadManager.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/gu-upload/guuploadManager2.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 
@@ -224,20 +220,6 @@
 <%@ include file="/WEB-INF/views/include/detail/include_detail_js.jsp"%>
 <script src="${pageContext.request.contextPath}/js/custom_js/detail.js"></script>
 <script>
-var guManager2 = null;
-
-window.onload = function() {
-	var option2 = {
-			listtype : "thumbnail",
-			fileid : "uploadImage",
-			uploadURL : "upload2",
-			maxFileCount : 10,
-			maxFileSize : 3,
-			afterFileTransfer : afterFileTransfer2
-		}
-	
-	guManager2 = new guUploadManager2(option2);
-}
 
 function sceneUp() {
 	window.open(
