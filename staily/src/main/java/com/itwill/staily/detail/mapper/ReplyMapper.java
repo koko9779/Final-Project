@@ -21,9 +21,25 @@ public interface ReplyMapper {
 	
 	public boolean increaseReport(int rNo);
 	
-	public boolean createFriend(@Param("mNo") int mNo, @Param("fNo") int fNo);
-	
 	public int recommendCheck(@Param("rNo") int rNo, @Param("mNo") int mNo);
 	
 	public int reportCheck(@Param("rNo") int rNo, @Param("mNo") int mNo);
+	
+	public boolean setRecommend(@Param("rNo") int rNo, @Param("mNo") int mNo);
+	
+	public boolean resetRecommend(@Param("rNo") int rNo, @Param("mNo") int mNo);
+	
+	public boolean setReport(@Param("rNo") int rNo, @Param("mNo") int mNo);
+	
+	public boolean resetReport(@Param("rNo") int rNo, @Param("mNo") int mNo);
+		
+	public boolean createRecommend(@Param("rNo") int rNo, @Param("mNo") int mNo);
+	
+	public boolean createReport(@Param("rNo") int rNo, @Param("mNo") int mNo);
+	
+	public boolean decreaseRecommend(@Param("rNo") int rNo);
+	
+	public boolean decreaseReport(@Param("rNo") int rNo);
+	
+	
 }
