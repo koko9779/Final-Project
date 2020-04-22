@@ -135,7 +135,7 @@ function create_bookmark2(userNo, pNo) {
 			if(result == 'true') {
 				$('#createBmk').attr('alt', '즐겨찾기 제거');
 				$('#createBmk').attr('src', '/staily/images/star.png');
-				$('#createBmk').attr('onClick', "select_bookmark2(" + userNo + ',' + pNo + ");return false;");
+				$('#createBmk').attr('onClick', 'select_bookmark2(' + userNo + ',' + pNo + ');return false;');
 			}
 		}			
 	});
@@ -440,7 +440,8 @@ $('#searchword').click(function(e){
 		
 	}
 });
-if($('#sidebar').length){
+
+if($('#sidebar').length) {
 	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
 	var floatPosition = parseInt($("#sidebar").css('top'));
 	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
@@ -450,7 +451,8 @@ if($('#sidebar').length){
 		var scrollTop = $(window).scrollTop();
 		if(scrollTop<407){
 			var newPosition = floatPosition + "px";				
-		}else{
+		}
+		else {
 			var newPosition = scrollTop+ (floatPosition-400) + "px";
 		}
 		/* 애니메이션 없이 바로 따라감
@@ -463,6 +465,7 @@ if($('#sidebar').length){
 
 	}).scroll();
 }
+
 //쪽지 보내기
 $('#searchDropdown a:nth-child(2)').click(function(e){
 	e.preventDefault();
