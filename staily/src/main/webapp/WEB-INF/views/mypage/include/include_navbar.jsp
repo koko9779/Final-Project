@@ -51,17 +51,9 @@ iframe {
 						src="${pageContext.request.contextPath}/images/8.png"
 						alt="Craft Beer HTML Template">
 					</a>
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-						data-target=".navbar-collapse">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar top-bar"></span> <span
-							class="icon-bar middle-bar"></span> <span
-							class="icon-bar bottom-bar"></span>
-					</button>
 				</div>
-				<br>
 				<div class="navbar-collapse collapse">
-					<ul id="menu-primary" class="nav navbar-nav">
+					<ul id="menu-primary" class="nav navbar-nav" style="margin-top: -36px;">
 						<li class="active"><a href="/staily">메인페이지</a></li>
 						<li><a href="/staily/main/productlist_select">상품목록</a></li>
 						<li class="dropdown"><a href="/staily/style/style_main_read">커뮤니티</a>

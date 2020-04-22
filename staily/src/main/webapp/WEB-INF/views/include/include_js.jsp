@@ -27,4 +27,3 @@
 <script src="${pageContext.request.contextPath}/js/custom_js/detail.js"></script>
 
 <script src="${pageContext.request.contextPath}/js/custom_js/board.js"></script>
-
