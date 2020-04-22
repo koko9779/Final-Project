@@ -56,33 +56,32 @@ public class StyleCoodinationRestController {
 						byte[] bytes = file.getBytes();
 						//workspace에 올리기 위한 경로
 						//String uploadPath = "C:/Users/starthink/git/Final-Project/staily/src/main/webapp/img";
-						String[] uploadPathArray = f.getAbsolutePath().split("\\\\"); //백슬래쉬가 안먹어서 알아보니 정규식 표현으로 써야한다네요^ㅠ
-						String uploadPath = uploadPathArray[0] + "\\" +  uploadPathArray[1] + "\\" + uploadPathArray[2] + 
-											"/git/Final-Project/staily/src/main/webapp/img";
-						System.out.println("업로드 경로(워크스페이스)"+uploadPath);
+						//String[] uploadPathArray = f.getAbsolutePath().split("\\\\"); //백슬래쉬가 안먹어서 알아보니 정규식 표현으로 써야한다네요
+						//String uploadPath = uploadPathArray[0] + "\\" +  uploadPathArray[1] + "\\" + uploadPathArray[2] + 
+						//					"/git/Final-Project/staily/src/main/webapp/img";
+						//System.out.println("업로드 경로(워크스페이스)"+uploadPath);
 						//서버에 올리기 위한 경로
-						String uploadPath2 = req.getSession().getServletContext().getRealPath("/img");
-						System.out.println("서버경로:" + uploadPath2);
 						
-						File uploadFile = new File(uploadPath);
+						
+						String uploadPath2 = req.getSession().getServletContext().getRealPath("/img");
+						String[] uploadPathArray = uploadPath2.split("\\\\");
+						uploadPath2 = uploadPathArray[0] + "\\" +  uploadPathArray[1] + "\\" + uploadPathArray[2] + 
+											"/git/Final-Project/staily/src/main/webapp/img";
+						System.out.println(uploadPath2);
+						
+						File uploadFile = new File(uploadPath2);
 						if(!uploadFile.exists()){
 							uploadFile.mkdirs();
 						}
-							/*
-						 	SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-	   						String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
-	   	
-							File f = new File("C:\\Users\\stu\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename +".jpg");
-							 */
 						
 						// 파일명 생성
 						SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
    						fileName = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
-						uploadPath = uploadPath + "/" + fileName;
+						//uploadPath = uploadPath + "/" + fileName;
 						uploadPath2 = uploadPath2 + "/" + fileName;
 						//파일이 들어갈 경로를 넣고 
-						out = new FileOutputStream(new File(uploadPath));
-                        out.write(bytes);
+						//out = new FileOutputStream(new File(uploadPath));
+                       // out.write(bytes);
                         out2 = new FileOutputStream(new File(uploadPath2));
                         out2.write(bytes);
                         
@@ -105,8 +104,8 @@ public class StyleCoodinationRestController {
                         e.printStackTrace();
                         
                     }finally{
-                        if(out != null){
-                            out.close();
+                        if(out2 != null){
+                            //out.close();
                             out2.close();
                         }
                         if(printWriter != null){
