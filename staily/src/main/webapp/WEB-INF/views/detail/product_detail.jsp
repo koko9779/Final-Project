@@ -193,7 +193,7 @@
 	</div>
 </div>
 <%@ include file="/WEB-INF/views/detail/include/include_product_detail_js.jsp"%>
-<%@ include file="/WEB-INF/views/include/detail/include_detail_footer.jsp"%>
+<%@ include file="/WEB-INF/views/include/detail/include_detail_js.jsp"%>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=727c99111bf8164d3824366e553400b6&libraries=services"></script>
 <style>
 .iw_inner {
