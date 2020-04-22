@@ -68,9 +68,17 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public boolean checkReply(int rNo, int mNo) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+	public int checkReply(int rNo, int mNo) throws Exception {
+		int check = 0;
+		
+		if(replyMapper.checkReply(rNo, mNo) > 0) {
+			check = 1;
+		}
+		else {
+			check = 0;
+		}
+		
+		return check;
 	}
 
 	@Override
