@@ -35,7 +35,7 @@
                <div class="movie-poster2">
                   <img onclick="productpage(${pList.product[0].pNo})"
                      src="${pageContext.request.contextPath}/images/product/scene/${pList.product[0].pScene}.jpg"
-                     alt="${pList.product[0].pName}" style="width:410px; height:220px; margin: 0;cursor: pointer;"/>
+                     alt="${pList.product[0].pName}" style="width:456px; height:241px; margin: 0;cursor: pointer;"/>
                </div>
                <div style="height:100px;">
                   <c:choose>
