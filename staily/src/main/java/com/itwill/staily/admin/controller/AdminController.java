@@ -10,41 +10,27 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionEvent;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.github.scribejava.core.model.OAuth2AccessToken;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
+import com.itwill.staily.admin.mapper.StatsMapper;
+import com.itwill.staily.admin.model.Stats;
 import com.itwill.staily.admin.service.AdminService;
-import com.itwill.staily.admin.service.NaverLogin;
+import com.itwill.staily.admin.service.StatsService;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
-/************Naver**************/
-import java.io.IOException;
-import javax.servlet.http.HttpSession;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import com.github.scribejava.core.model.OAuth2AccessToken;
 
 @Controller
 @RequestMapping("/admin")
@@ -52,21 +38,31 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
-
+	@Autowired
+	private StatsService statsService;
 	public AdminController() {
 	}
 	/*
 	 * 만들어야할거... 회원 ,작품, 상품 수정 form(아에 form.jsp도 만들어야함) action 삭제 action들
 	 * 
 	 */
+	@RequestMapping("test")
+	public String adminTest(String stTime,HttpServletRequest request) throws Exception {
+		List<Stats> statsList = new ArrayList();
+		stTime ="2020-04-20";
+		statsList= statsService.selectTime(stTime);
+		request.setAttribute("List", statsList);
+		System.out.println(statsList.toString());
+		return "admin/index";
+	}
 	@RequestMapping("/main")
 	public String adminMain() {
 		return "admin/index";
 	}
-//	@RequestMapping("/test")
-//	public String adminTestttest() {
-//		return "admin/test";
-//	}
+	@RequestMapping("/calendar")
+	public String adminCalendar() {
+		return "admin/calendar";
+	}
 
 	@RequestMapping("/upload2")
 	public void upload2(HttpServletResponse response, HttpServletRequest request, 
@@ -186,9 +182,20 @@ public class AdminController {
 	}
 
 	@RequestMapping("/product_update_scene")
-	public String productAdminImg(@RequestParam("pScene")String scene,HttpServletRequest request) {
+	public String productAdminScene(@RequestParam("pScene")String scene,HttpServletRequest request, HttpSession session) {
 		try {
-			request.setAttribute("pScene", scene);
+			session.setAttribute("pScene", scene);
+			session.removeAttribute("pdImage");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "admin/product_update_img";
+	}
+	@RequestMapping("/product_update_img")
+	public String productAdminImage(@RequestParam("pdImage")String img,HttpServletRequest request, HttpSession session) {
+		try {
+			session.setAttribute("pdImage", img);
+			session.removeAttribute("pScene");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -198,12 +205,20 @@ public class AdminController {
 	@RequestMapping(value = "/update_img")
 	public void upDate(HttpServletResponse response, HttpServletRequest request,
 			@RequestParam("Filedata") MultipartFile Filedata) {
-		String newfilename = "hitest?";
-//		System.out.println(test+"testtesttestsetestseteste");
-//		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
-//		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
-		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
-		File f = new File("C:\\Users\\shaden\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
+		HttpSession session = request.getSession();
+		String newfilename = "";
+		String path = "";
+		String pScene =(String) session.getAttribute("pScene");
+		String pdImage =(String) session.getAttribute("pdImage");
+		System.out.println("씬="+pScene+"이미지="+pdImage);
+		if(pScene !=null && pScene!="") {
+			newfilename= pScene;
+			path = "scene";
+		}else {
+			newfilename = pdImage;
+			path = "image";
+		}
+		File f = new File("C:\\Users\\shaden\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\"+path+"\\" + newfilename + ".jpg"); 
 		try {
 			Filedata.transferTo(f); 
 			response.getWriter().write(newfilename);
@@ -345,67 +360,5 @@ public class AdminController {
 			result = "fail";
 		}
 		return result;
-	}
-
-	/***************************************
-	 * Naver
-	 *****************************************/
-	/* NaverLogin */
-	private NaverLogin naverLogin;
-	private String apiResult = null;
-
-	@Autowired
-	private void setNaverLogin(NaverLogin naverLogin) {
-		this.naverLogin = naverLogin;
-	}
-
-//로그인 첫 화면 요청 메소드
-	@RequestMapping(value = "/naver", method = { RequestMethod.GET, RequestMethod.POST })
-	public String login(Model model, HttpSession session) {
-		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLogin클래스의 getAuthorizationUrl메소드 호출 */
-		String naverAuthUrl = naverLogin.getAuthorizationUrl(session);
-//https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
-//redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
-		System.out.println("네이버:" + naverAuthUrl);
-//네이버
-		model.addAttribute("url", naverAuthUrl);
-		return "admin/Naver_login";
-	}
-
-//네이버 로그인 성공시 callback호출 메소드
-	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
-	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
-			throws IOException, ParseException {
-		System.out.println("여기는 callback");
-		OAuth2AccessToken oauthToken;
-		oauthToken = naverLogin.getAccessToken(session, code, state);
-//1. 로그인 사용자 정보를 읽어온다.
-		apiResult = naverLogin.getUserProfile(oauthToken); // String형식의 json데이터
-		/**
-		 * apiResult json 구조 {"resultcode":"00", "message":"success",
-		 * "response":{"id":"33666449","nickname":"shinn****","age":"20-29","gender":"M","email":"sh@naver.com","name":"\uc2e0\ubc94\ud638"}}
-		 **/
-//2. String형식인 apiResult를 json형태로 바꿈
-		JSONParser parser = new JSONParser();
-		Object obj = parser.parse(apiResult);
-		JSONObject jsonObj = (JSONObject) obj;
-//3. 데이터 파싱
-//Top레벨 단계 _response 파싱
-		JSONObject response_obj = (JSONObject) jsonObj.get("response");
-//response의 nickname값 파싱
-		String nickname = (String) response_obj.get("nickname");
-		System.out.println(nickname);
-//4.파싱 닉네임 세션으로 저장
-		session.setAttribute("sessionId", nickname); // 세션 생성
-		model.addAttribute("result", apiResult);
-		return "login";
-	}
-
-//로그아웃
-	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
-	public String logout(HttpSession session) throws IOException {
-		System.out.println("여기는 logout");
-		session.invalidate();
-		return "redirect:index.jsp";
 	}
 }

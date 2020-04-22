@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
 <%@ include
-	file="/WEB-INF/views/admin/include/include_top_without_sidebar.jsp"%>
+	file="/WEB-INF/views/admin/include/include_popup_css.jsp"%>
 <style>
 image {
 	margin: auto;
@@ -26,6 +26,7 @@ image {
 		<input type="hidden" name="wTepisode" id="wTepisode" value="${work.wTepisode}"> 
 		<input type="hidden" name="wView" id="wView" value="${work.wView}"> 
 		<input type="hidden" name="wPoster" id="wPoster" value="${work.wPoster}"> 
+		<input type="hidden" name="wCategory" id="wCategory" value="${work.wCategory}"> 
 		<table class="table table-hover">
 			<colgroup>
 				<col class="col_wp25">
@@ -49,12 +50,10 @@ image {
 					<td class="text-left">
 						<div class="col">
 						<c:if test="${work.wCategory =='D'}">
-							<input type="text" name="wCategory" id="wCategory" class="form-control"
-								value="드라마" maxlength="20">
+							<div class="col"align="left">드라마</div>
 						</c:if>		
 						<c:if test="${work.wCategory =='M'}">
-							<input type="text" name="wCategory" id="wCategory" class="form-control"
-								value="영화" maxlength="20">
+							<div class="col"align="left">영화</div>
 						</c:if>		
 						</div>
 					</td>
@@ -73,20 +72,20 @@ image {
 					<th scope="row" class="bg-light essentia"><label>
 							총회차</label></th>
 					<td class="text-left" align="left">
-						<div class="col">${work.wTepisode}</div>
+						<div class="col" align="left">${work.wTepisode}</div>
 					</td>
 				</tr>
 				<tr>
 					<th scope="row" class="bg-light essentia"><label>
 							조회수</label></th>
 					<td class="text-left" align="left">
-						<div class="col">${work.wView}</div>
+						<div class="col"align="left">${work.wView}</div>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 		<div class="text-center">
-			<button type="submit" value="submit" id="wUpdateBtn"
+			<button id="wUpdateBtn" type="button"
 				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2" >수정</button>
 			<button type="button" 
 				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2" onclick="window_close()">닫기</button>

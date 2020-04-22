@@ -2,48 +2,21 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
 <%@ include
-	file="/WEB-INF/views/admin/include/include_top_without_sidebar.jsp"%>
+	file="/WEB-INF/views/admin/include/include_popup_css.jsp"%>
 <style>
 .text-left {
 	text-align: left;
 }
 </style>
-<div class="modal fade" id="guUpload" role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true" style="width: auto">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel">작품 상세</h4>
-			</div>
-			<div class="modal-body" id="body"></div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary"
-					onClick="modal_click()">선택</button>
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-			</div>
-		</div>
-	</div>
-</div>
+<body>
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">회원정보페이지</h1>
+<!-- DataTales Example -->
+<div class="join-step2">
+	<!--<div class="text-header">기본정보 ( * 필수 입력 항목)</div>-->
+	<div class="border border-secondary">
 <form id="product_detail" name="product_detail" method="post">
 	<div class="container-fluid">
-		<!--  
-		<div class="row">
-			<div class="col-md-12">
-				<div id="slider-div">
-					<div>
-						<img width="400" height="250"
-							src="${pageContext.request.contextPath}${productList[0].pScene }">
-					</div>
-					<c:forEach var="product" items="${productList }">
-						<div>
-							<img width="400" height="250"
-								src="${pageContext.request.contextPath}${product.pdImage }">
-						</div>
-					</c:forEach>
-				</div>
-			</div>
-		</div>
-		-->
 		<input type="hidden" name="pNo" id="pNo" value="${productList[0].pNo}">
 		<input type="hidden" name="mNo" id="mNo" value="${productList[0].mNo}">
 		<input type="hidden" name="wNo" id="wNo" value="${productList[0].wNo}">
@@ -94,11 +67,11 @@
 				</tr>
 				<tr>
 					<th scope="row" class="bg-light essentia" colspan="2"><label
-						for="mAddress">오프라인주소</label></th>
+						for="pAddress">오프라인주소</label></th>
 					<td class="text-left" colspan="2">
 						<div class="col">
 							<input type="text" name="pAddress" id="pAddress"
-								onclick="execDaumPostcode()" value="${productList[0].pAddress }"
+								onclick="execDaumPostcode('pAddress')" value="${productList[0].pAddress }"
 								readonly="readonly" class="form-control">
 						</div>
 					</td>
@@ -137,33 +110,32 @@
 						<td class="text-left">
 							<div class="col" align="center">
 								<img width="auto" height="auto"
-									src="${pageContext.request.contextPath}/images/product/image/${product.pdImage }.jpg">
+									src="${pageContext.request.contextPath}/images/product/image/${product.pdImage}.jpg">
 							</div>
 						</td>
 						<td class="text-left"><button type="button" name="modalBtn"
-								class="modalBtn" onclick="imageUpdate(${product.pdImage })" )>수정하기</button></td>
+								class="modalBtn" onclick="imageUpdate(${product.pdImage})">수정하기</button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		<div class="text-center">
-			<button type="submit" value="submit"
+			<button type="button"
 				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
-				onclick="product_update()">수정</button>
+				id="pUpdate">수정</button>
 			<button type="button"
 				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
 				onclick="product_confirm(${productList[0].pNo})">승인</button>
 		</div>
 </form>
+	</div>
+</div>
+<!-- DataTales Example -->
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
 <%@ include file="/WEB-INF/views/admin/include/include_bottom.jsp"%>
 </body>
-<script>
-function sceneUpdate(img) {
-	var param= img;
-	alert(img)
-	window.open("product_update_scene?" + "pScene="+ img,"이미지정보수정",
-	"width=500, height=300, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
-};
-
-</script>
 </html>
