@@ -15,7 +15,7 @@ public interface ReplyMapper {
 	
 	public boolean deleteReply(@Param("rNo") int rNo, @Param("pNo") int pNo, @Param("mNo") int mNo);
 	
-	public boolean checkReply(@Param("rNo") int rNo, @Param("mNo") int mNo);
+	public int checkReply(@Param("rNo") int rNo, @Param("mNo") int mNo);
 	
 	public boolean increaseRecommend(int rNo);
 	

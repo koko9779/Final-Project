@@ -15,7 +15,7 @@ public interface ReplyService {
 	
 	boolean deleteReply(@Param("rNo") int rNo, @Param("pNo") int pNo, @Param("mNo") int mNo) throws Exception;
 	
-	boolean checkReply(@Param("rNo") int rNo, @Param("mNo") int mNo) throws Exception;
+	int checkReply(@Param("rNo") int rNo, @Param("mNo") int mNo) throws Exception;
 	
 	boolean increaseRecommend(int rNo) throws Exception;
 	

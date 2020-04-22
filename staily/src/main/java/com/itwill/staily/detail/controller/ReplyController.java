@@ -99,8 +99,13 @@ public class ReplyController {
 		try {
 			Integer mNo = (Integer)session.getAttribute("userNo");
 			String rNo = request.getParameter("rNo");
-				
+			
+			if(replyService.checkReply(Integer.parseInt(rNo), mNo) > 0) {
+				//사용자가 추천이나 신고를 눌렀는지 확인
+			}
 			if(replyService.recommendCheck(Integer.parseInt(rNo), mNo) > 0) {
+				//사용자가 추천을 눌렀을 때
+				
 				return true;
 			}
 			else {
