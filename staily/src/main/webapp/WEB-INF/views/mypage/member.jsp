@@ -83,7 +83,7 @@
 											</tr>
 									
 											<tr>
-												<th scope="row" class="bg-light essentia"><label>※결제여부</label></th>
+												<th scope="row" class="bg-light essentia"><label>※ 결제여부</label></th>
 												<td class="text-left">
 												<div class="form-row">
 														<div class="col-xs-5">
@@ -153,7 +153,7 @@
 										</tr>
 										<tr>
 											<th scope="row" class="bg-light essentia"><label
-												for="email1">※이메일</label></th>
+												for="email1">※ 이메일</label></th>
 											<td class="text-left">
 												<div class="form-row">
 													<div class="col-xs-7">
@@ -168,7 +168,7 @@
 										</tr>
 										<tr>
 											<th scope="row" class="bg-light essentia"><label
-												for="mAddress">※주소</label></th>
+												for="mAddress">※ 주소</label></th>
 											<td class="text-left">
 												<div class="form-row">
 													<div class="col-xs-7">
@@ -183,7 +183,7 @@
 										</tr>
 										<tr>
 											<th scope="row" class="bg-light essentia"><label
-												for="daddress">※기타주소</label></th>
+												for="daddress">※ 기타주소</label></th>
 											<td class="text-left">
 												<div class="form-row">
 													<div class="col-xs-7">
@@ -197,8 +197,8 @@
 									</tbody>
 								</table>
 								<div class="text-right">
-									<input type="submit" value="수정" class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"></input>
-									<button type="button" class="btn btn-outline btn-primary pull-right" data-step="2" onclick="leave()">탈퇴</button>
+									<button type="button" class="btn btn-ghost sort" data-step="2" onclick="ss()">수정</button>
+									<button type="button" class="btn btn-ghost sort" data-step="2" onclick="leave()">탈퇴</button>
 								</div>
 							</form>
 						</div>

@@ -47,21 +47,22 @@
                       <td value="1000">1000원</td>
                       <td value="10">10일</td>
                       <td value="A">카카오페이</td>
-                      <td><input type="button" class="paymentBtn" value="결제하기" /></td>
+                      <td><button type="button" class="btn btn-ghost sort paymentBtn">결제하기</button></td>
+                      
                     </tr>
                      <tr id="payment2">
                       <td value="20일 이용권">20일 이용권</td>
                       <td value="2000">2000원</td>
                       <td value="20">20일</td>
                       <td value="A">카카오페이</td>
-                      <td><input type="button" class="paymentBtn" value="결제하기" /></td>
+                      <td><button type="button" class="btn btn-ghost sort paymentBtn">결제하기</button></td>
                     </tr>
                      <tr id="payment3">
                       <td value="30일 이용권">30일 이용권</td>
                       <td value="3000">3000원</td>
                       <td value="30">30일</td>
                       <td value="A">카카오페이</td>
-                      <td><input type="button" class="paymentBtn" value="결제하기" /></td>
+                      <td><button type="button" class="btn btn-ghost sort paymentBtn">결제하기</button></td>
                     </tr>
                     <!--  
                   	<c:forEach var="payment" items="${data }">

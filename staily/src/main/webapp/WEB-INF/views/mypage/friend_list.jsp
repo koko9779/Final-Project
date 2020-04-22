@@ -76,8 +76,7 @@
                   	</c:forEach>
                   </tbody>
                 </table>
-                
-                <input type="button" class="btn btn-outline btn-primary pull-right" value="삭제" id="deleteFriendBtn">
+                <button type="button" class="btn btn-ghost sort" id="deleteFriendBtn" style="float:right;">삭제</button>
               </div>
             </div>
           </div>

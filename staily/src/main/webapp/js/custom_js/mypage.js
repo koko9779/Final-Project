@@ -224,33 +224,28 @@ $(function(){
 			var mId = $('#searchword').val();
 			var html = ""
 		    if(mId !=""){
-		    	var checkConfirm = confirm('찾으신 회원이 맞습니까?');
-		    	if(checkConfirm){
 		    		$.ajax({
 			    		url : "friend_find",
 			    		data : "mId="+mId,
 			    		dataType : "json",
 			    		success : function(result){
 			    			if(result.status == 'success'){
-			    				//$('#results').prepend('<button class="btn btn-primary dropdown-toggle add" data-toggle="dropdown">'
-			    				//							+result.mId+'</button>')	
 			    				$('.add').attr('class','btn btn-primary dropdown-toggle add');
 			    				$('.add').attr('style','display: inline-block;');
 			    				$('.add').text(result.mId);
 			    				$('#searchMessage').attr('value',result.mNo);
 			    				$('#addFriend').attr('value',result.mId);
+			    				$('#searchword').blur();
 			    				
 			    			}else{
-			    				$('#noId').text('회원 아이디를 다시 확인해주세요');	
+			    				$('#noId').text('회원 아이디를 다시 확인해주세요');
+			    				$('#searchword').blur();
 			    			}
 			    		},
 			    		error : function(){
 			    			location.href = '404';
 			    		}
 			    	});
-		    	}else{
-		    		return;
-		    	}
 		    	
 		    }
 		
@@ -339,6 +334,7 @@ $(function(){
 			}
 		},
 		submitHandler:function(f){
+			
 			$.ajax({
 				url: f.action,
 				data: $(f).serialize(),
@@ -441,6 +437,10 @@ $(function(){
    
 });
 /*****************************멤버탈퇴*****************************/
+
+function ss(){
+	$('#memberInfoFrm').trigger('submit');
+}
 
 
 function leave(){
