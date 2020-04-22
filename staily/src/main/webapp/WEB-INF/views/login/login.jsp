@@ -20,7 +20,7 @@
                     <h1 class="h4 text-gray-900 mb-4">환영합니다</h1>
                   </div>
                   <input type="hidden" value="${findId}" id="findIdE">
-                  <form class="user" name="f">
+                  <form class="user" name="f" action="return false;">
                     <div class="margin">
                       <input type="text" class="form-control form-control-user" id="inputId" placeholder="아이디" name="userId" onkeyup="loginKeyup();">
                     </div>
@@ -30,7 +30,7 @@
                     <div class="error_msg" style="padding-top: 20px;" id="error_msg">
                     	<span>${msg}</span>
                     </div>
-                    <a href="javascript:login_action();" role="button" class="btn btn-primary btn-user btn-block">
+                    <a href="javascript:login_action();" class="btn btn-primary btn-user btn-block">
                     	 로그인
                     </a>
                     <!--  
