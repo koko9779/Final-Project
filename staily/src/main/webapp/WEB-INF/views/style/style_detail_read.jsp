@@ -79,9 +79,11 @@
 						<div id="board2">
 						<input type="hidden" id="updateBNo" value="${boardOneList[0].bNo}">
 						<h3 class="board-top p-top-21">스타일 질문</h3>
-						<div class="categories col-md-6 board-title f-s-25" id="board_title_read">${boardOneList[0].bTitle}</div>
+						<div class="b-title-bottom">
+						<div class="categories col-md-6 board-title f-s-25" id="board_title_read"><span class="">${boardOneList[0].bTitle}</span></div>
 						<div class="col-md-6 text-left">
-							<span class="font-small">${boardOneList[0].mId}.${boardOneList[0].bDate}.조회수: ${boardOneList[0].bView}</span>
+							<span class="font-large">${boardOneList[0].mId}.${boardOneList[0].bDate}.조회수: ${boardOneList[0].bView}</span>
+						</div>
 						</div>
 							<div class="p_content m-top-50" id="board_content_read">
 								${boardOneList[0].bContent}
@@ -104,10 +106,9 @@
 						
 						<c:forEach var="board" items="${boardOneList}" begin="1" varStatus="status">
 						<article class="reply reply-delete reply_write" id="board_${board.bNo}">
-								<div class="col-md-12 m-top--40">
-								
+								<div class="col-md-12 m-top--40 b-title-bottom">
 								<div class="categories col-md-6 board-title f-s-25">${board.bTitle}</div>
-								<div class="col-md-6 text-left"><span class="font-small">${board.mId}.${board.bDate}</span></div>
+								<div class="col-md-6 text-left"><span class="font-large">${board.mId}.${board.bDate}</span></div>
 								</div>
 								<div class="p_content m-top-50 m-bottom-30" id="board_content_read">
 									${board.bContent}
@@ -136,7 +137,7 @@
 						</c:forEach>
 						<div>
 						<c:if test="${sessionScope.userNo!=null}">
-							<a href="javascript:reply_write_form();" class="btn btn-ghost sort">
+							<a href="javascript:reply_write_form();" class="btn btn-ghost sort m-top-25">
 									<span>답글 쓰기</span>
 							</a>
 						</c:if>
