@@ -187,7 +187,8 @@ public class ProductDetailController {
 		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
 		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
 		//File f = new File("C:\\Users\\Jacob\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
-		//File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		//File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg");
+		
 		try {
 			String computerName = InetAddress.getLocalHost().getHostName();
 			String[] comName = computerName.split("-");
