@@ -5,27 +5,18 @@
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
   
 <!-- Hero -->
-<div id="content_hero"
-	style="background-image: url(http://via.placeholder.com/1440x435)">
-
-	<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg"
-		alt="Scroll down" class="scroll" />
-
-	<!-- Content -->
-	<div class="container">
-		<div class="row blurb scrollme animateme" data-when="exit"
-			data-from="0" data-to="1" data-opacity="0" data-translatey="100">
-			<div class="col-md-9">
-				<span class="title">The very latest</span>
-				<h1>Cinema news</h1>
-			</div>
-		</div>
-	</div>
-
+<div id="content_hero" >
+	<iframe class="ww"
+			src="https://www.youtube-nocookie.com/embed/YubXq6Fh4S0?autoplay=1&amp;loop=1;playlist=YubXq6Fh4S0&controls=0&vq=hd720"
+			frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+			allowfullscreen></iframe>
+	<a href="#afterHeader" class="anchor">
+		<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
+	</a>
 </div>
 
 <!-- Section -->
-<div class="container-fluid">
+<div class="container-fluid totop">
 	<!--  
 	<div class="row">
 
@@ -34,7 +25,7 @@
 		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
 	-->
 			<!-- Page Heading -->
-			<div class="col-sm-2">
+			<div class="col-sm-2" id="afterHeader">
 					<aside class="col-sm-push-1 sidebar">
 						<div class="widget p-top-21">
 							<h3>Categories</h3>

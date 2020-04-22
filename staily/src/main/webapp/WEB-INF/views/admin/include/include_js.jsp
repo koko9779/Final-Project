@@ -16,6 +16,7 @@
   <script src="${pageContext.request.contextPath}/css/admin/vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="${pageContext.request.contextPath}/css/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
   <script src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/slick.min.js"></script>
   
   <!--  tmdb api -->
   <script type="text/javascript"
