@@ -49,12 +49,13 @@ float:left;
 	margin-right:5px;
 	width: 115px;
    	margin-bottom: 7px;
-  
-.b-title-bottom{
- 	height: 40px;
- 	border-bottom: 1px solid #d8d8d8;
-
 }
+
+.add_btn_detail{
+	
+    background-color: #717171;
+}
+
 .pagination>.active>a , .pagination>.active>a:hover {
 	background-color: #e76115 !important;
    	border-color: #e76115 !important;
@@ -76,8 +77,8 @@ float:left;
 	text-align: right;
 }
 
-.font-large {
-	    font-size: large;
+.font-small {
+	font-size: small;
 }
 
 .sort {
@@ -135,10 +136,6 @@ float:left;
 	font-size: 25px !important;
 }
 
-.m-top-25 {
-    margin-top: 25px;
-}
-
 .m-top-21 {
 	margin-top: 21px;
 } 
@@ -167,7 +164,7 @@ a > img {
 	background-color: #e76115;
     color: white;
 }
-  
+
 .p-b-40 {
     padding-bottom: 40px;
 }
