@@ -4,15 +4,19 @@ package com.itwill.staily.admin.controller;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,18 +51,20 @@ public class AdminController {
 	 * 만들어야할거... 회원 ,작품, 상품 수정 form(아에 form.jsp도 만들어야함) action 삭제 action들
 	 * 
 	 */
-	@RequestMapping("test")
-	public String adminTest(String stTime,HttpServletRequest request) throws Exception {
-		List<Stats> statsList = new ArrayList();
-		stTime ="2020-04-20";
-		statsList= statsService.selectTime(stTime);
-		request.setAttribute("List", statsList);
-		System.out.println(statsList.toString());
-		return "admin/index";
-	}
+	
 	@RequestMapping("/main")
 	public String adminMain() {
 		return "admin/index";
+	}
+	@RequestMapping("/stats")
+	@ResponseBody
+	public JSONObject adminStats(@RequestParam("stTime")String stTime,HttpServletRequest request) throws Exception {
+		Map<String, Object> result = new HashMap<String, Object>();
+		List<Stats> statsList = new ArrayList();
+		statsList= statsService.selectTime(stTime);
+		result.put("result", statsList);
+		JSONObject json = new JSONObject(result);	
+		return json;
 	}
 	@RequestMapping("/calendar")
 	public String adminCalendar() {
@@ -318,7 +324,8 @@ public class AdminController {
 			@RequestParam("wCategory") String wCategory, @RequestParam("wDate") String wDate,
 			@RequestParam("wPoster") String wPoster, @RequestParam("wTepisode") int wTepisode,
 			HttpServletRequest request) {
-		Work work = new Work(0, wName, wCategory, wDate, wPoster, wTepisode, 0);
+		String wVideo= "FWbeu4nVwvg";
+		Work work = new Work(0, wName, wCategory, wDate, wPoster, wTepisode, 0,wVideo);
 		String result = "";
 		try {
 			adminService.createWork(work);
@@ -349,7 +356,8 @@ public class AdminController {
 			@RequestParam("wDate") String wDate, @RequestParam("wPoster") String wPoster,
 			@RequestParam("wTepisode") int wTepisode, @RequestParam("wView") int wView, @RequestParam("wNo") int wNo,
 			HttpServletRequest request) {
-		Work work = new Work(wNo, wName, wCategory, wDate, wPoster, wTepisode, wView);
+		String wVideo= "FWbeu4nVwvg";
+		Work work = new Work(wNo, wName, wCategory, wDate, wPoster, wTepisode, wView,wVideo);
 		String result = "";
 		try {
 			boolean updateWork = adminService.updateWork(work);
