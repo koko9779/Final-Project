@@ -24,7 +24,7 @@
 		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
 	
 			<!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">북마크리스트</h1>
+          <h2 class="h3 mb-2 text-gray-800">북마크리스트</h2>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
            

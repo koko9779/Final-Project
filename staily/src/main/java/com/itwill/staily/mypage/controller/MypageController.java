@@ -5,7 +5,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,7 +56,7 @@ public class MypageController {
 		return "redirect:/404.jsp";
 	}
 	
-	//�쉶�썝�젙蹂댁텧�젰
+	//멤버선택
 	@RequestMapping("/member_select")
 	public String member_select(HttpSession session, Model model, HttpServletRequest request){
 		Member member;
@@ -90,7 +89,7 @@ public class MypageController {
 		
 	}
 	
-	//�쉶�썝�젙蹂댁뾽�뜲�씠�듃[validator]
+	//멤버정보수정[validator]
 	@RequestMapping("/member_update")
 	@ResponseBody
 	public String member_update(HttpSession session,
@@ -150,7 +149,7 @@ public class MypageController {
 	*/
 	
 	
-	//�쉶�썝�깉�눜
+	//멤버삭제(회원탈퇴)
 	@RequestMapping("member_delete")
 	@ResponseBody
 	public String member_delete(@RequestParam("mNo") int mNo, HttpSession session) {
@@ -166,7 +165,7 @@ public class MypageController {
 	}
 	
 	
-	//遺곷쭏�겕由ъ뒪�듃
+	//즐겨찾기 리스트출력
 	@RequestMapping("/bookmark_list")
 	public String bookmark_list(HttpSession session, HttpServletRequest request) {
 		//int mNo = (Integer)request.getAttribute("mNo");
@@ -185,7 +184,7 @@ public class MypageController {
 		}
 	}
 	
-	//遺곷쭏�겕�궘�젣[諛곗뿴]
+	//즐겨찾기삭제
 	@RequestMapping("/bookmark_delete")
 	@ResponseBody
 	public String bookmark_delete(@RequestParam(value="bmNo[]") List<Integer> bmNoList) {
@@ -201,7 +200,7 @@ public class MypageController {
 		return result+"";
 	}
 	
-	//移쒓뎄由ъ뒪�듃
+	//친구리스트 출력
 	@RequestMapping("/friend_list")
 	public String friend_list(HttpServletResponse response, 
 							  HttpServletRequest request,
@@ -224,7 +223,7 @@ public class MypageController {
 		}
 	}
 	
-	//移쒓뎄異붽�
+	//친구추가
 	@RequestMapping("/friend_create")
 	@ResponseBody
 	public Object friend_create(HttpSession session,
@@ -282,7 +281,7 @@ public class MypageController {
 		}
 	}
 	*/
-	//移쒓뎄�궘�젣
+	//친구삭제
 	@RequestMapping("/friend_delete")
 	@ResponseBody
 	public String friend_delete(@RequestParam(value="fPk[]") List<Integer> fPkList) {
@@ -298,7 +297,7 @@ public class MypageController {
 		return result+"";
 	}
 	
-	//移쒓뎄李얘린
+	//회원검색
 	@RequestMapping("/friend_find")
 	@ResponseBody
 	public Object friend_find(@RequestParam(value="mId") String mId) throws Exception {
@@ -316,14 +315,13 @@ public class MypageController {
 		}
 	}
 	
-	/*********************************** 硫붿떆吏� 硫붿냼�뱶 ***********************************/
+	/*********************************** 메시지***********************************/
 	
-	//硫붿떆吏�蹂대궡湲� 李�
+	//메시지
 	@RequestMapping("/message")
 	public String message_selectOne(Model model, HttpSession session, @RequestParam(value= "mNo", defaultValue = "") Integer mNo) throws Exception {
 		//System.out.println("*******"+mNo);
 		session.getAttribute("userNo");
-		//�쉶�썝李얘린
 		if(mNo == null) {
 			return "mypage/message";
 		}
@@ -333,7 +331,7 @@ public class MypageController {
 	}
 	
 	
-	//硫붿떆吏� �깮�꽦
+	//메시지생성
 	@RequestMapping("/message_create")
 	@ResponseBody
 	public String message_create(HttpSession session,
@@ -369,7 +367,7 @@ public class MypageController {
 	}
 	
 	
-	//硫붿떆吏� 由ъ뒪�듃
+	//메시지리스트 출력
 	@RequestMapping("/message_list")
 	public String message_list(HttpSession session, HttpServletRequest request) {
 		int rNo = (Integer)session.getAttribute("userNo");
@@ -385,7 +383,7 @@ public class MypageController {
 		
 	}
 	
-	//硫붿떆吏� �븯�굹 蹂댁뿬二쇨린
+	//메시지 하나 출력
 	@RequestMapping("/message_view")
 	public String message_view(@RequestParam int msNo, HttpServletRequest request, HttpSession session) {
 		int rNo = (Integer)session.getAttribute("userNo");
@@ -400,7 +398,7 @@ public class MypageController {
 		}
 	}
 	
-	//硫붿떆吏��궘�젣
+	//메시지 삭제
 	@RequestMapping(value="/message_delete")
 	@ResponseBody
 	public String message_delete(@RequestParam(value="msNo[]") List<Integer> msNoList){
@@ -417,9 +415,9 @@ public class MypageController {
 		return result+"";
 	}
 	
-	/*********************************** 硫붿떆吏� 硫붿냼�뱶 ***********************************/
+	/*********************************** 내가쓴글목록 ***********************************/
 	
-	//�궡媛��벖湲�由ъ뒪�듃
+	//내가쓴글목록
 	@RequestMapping("/member_write")
 	public String member_write(HttpServletRequest request, 
 							   HttpSession session) {
@@ -439,7 +437,7 @@ public class MypageController {
 		}
 	}
 	
-	//�궡媛��벖湲��궘�젣
+	//내가쓴글삭제(상품)
 	@RequestMapping("/member_write_delete")
 	@ResponseBody
 	public String member_write_delete(@RequestParam(value="pNo[]") List<Integer> pNoList){
@@ -456,7 +454,7 @@ public class MypageController {
 		return result+"";
 	}
 	
-	//寃곗젣由ъ뒪�듃異쒕젰
+	//결제내역
 	@RequestMapping("/payment_list")
 	public String payment_list(HttpServletRequest request, 
 							   HttpServletResponse response,
@@ -488,7 +486,7 @@ public class MypageController {
 		}
 	}
 	
-	//寃곗젣�솕硫�
+	//결제하기
 	@RequestMapping("/payment")
 	public String payment(HttpSession session, HttpServletRequest request) {
 		int mNo = (Integer)session.getAttribute("userNo");
@@ -577,11 +575,6 @@ public class MypageController {
 		}
 		
 	}
-	
-	//�뀒�뒪�듃�솕硫�
-	@RequestMapping("/screen")
-	public String test() {
-		return "mypage/test2";
-	}
+
 		
 }
