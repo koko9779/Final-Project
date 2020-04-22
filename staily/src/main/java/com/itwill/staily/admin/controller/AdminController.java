@@ -66,6 +66,16 @@ public class AdminController {
 		JSONObject json = new JSONObject(result);	
 		return json;
 	}
+	@RequestMapping("/stats_browser")
+	@ResponseBody
+	public JSONObject adminStatsBrowser(HttpServletRequest request) throws Exception {
+		Map<String, Object> browser = new HashMap<String, Object>();
+		List<Stats> statsList = new ArrayList();
+		statsList= statsService.selectBrowser();
+		browser.put("browser", statsList);
+		JSONObject json = new JSONObject(browser);	
+		return json;
+	}
 	@RequestMapping("/calendar")
 	public String adminCalendar() {
 		return "admin/calendar";

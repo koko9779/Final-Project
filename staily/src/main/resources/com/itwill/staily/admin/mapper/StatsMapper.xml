@@ -37,5 +37,11 @@
 		WHERE ROWNUM < 8
 	]]>
     </select>
+    <select id="selectBrowser" resultType="com.itwill.staily.admin.model.Stats">
+    	SELECT count(st_no) cnt, st_agent
+		FROM
+		stats
+		GROUP BY st_agent
+    </select>
 </mapper>
 
