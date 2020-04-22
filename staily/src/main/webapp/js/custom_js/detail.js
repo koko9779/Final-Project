@@ -123,7 +123,7 @@ $('#workEpisode').change(function(e) {
     }
 });
 
-function create_bookmark(userNo, pNo) {
+function create_bookmark2(userNo, pNo) {
 	var params = "userNo=" + userNo + "&pNo=" + pNo;
 	var product = "#product_" + pNo;
 
@@ -133,30 +133,26 @@ function create_bookmark(userNo, pNo) {
 		data : params,
 		success : function(result) {
 			if(result == 'true') {
-				swal({
-					   title: "즐겨찾기에 추가되었습니다",
-					   icon: "success" //"info,success,warning,error" 중 택1
-				});
 				$('#createBmk').html('즐겨찾기 제거');				
-				$('#createBmk').attr('onClick', "select_bookmark(" + userNo + ',' + pNo + ");return false;");
+				$('#createBmk').attr('onClick', "select_bookmark2(" + userNo + ',' + pNo + ");return false;");
 			}
 		}			
 	});
 };
 
-function select_bookmark(userNo, pNo) {
+function select_bookmark2(userNo, pNo) {
 	var params = "userNo=" + userNo + "&pNo=" + pNo;
 	$.ajax({
 		url : "../main/select_bookmark",
 		method : "POST",
 		data : params,
 		success :function(bookset) {
-			delete_bookmark(bookset);
+			delete_bookmark2(bookset);
 		}
 	});
 }
 
-function delete_bookmark(bookset) {
+function delete_bookmark2(bookset) {
 	var bmNo = "" + bookset;
 	var userNo = 0;
 	var pNo = 0;
@@ -183,12 +179,8 @@ function delete_bookmark(bookset) {
 			data : params,
 			success : function(result) {
 				if(result == 'true') {
-					swal({
-						   title: "즐겨찾기에서 제거되었습니다",
-						   icon: "success" //"info,success,warning,error" 중 택1
-					});
 					$('#createBmk').html('즐겨찾기 추가');				
-					$('#createBmk').attr('onClick','create_bookmark(' + userNo + ',' + pNo + ');return false;');
+					$('#createBmk').attr('onClick','create_bookmark2(' + userNo + ',' + pNo + ');return false;');
 				}
 				else {
 					swal({
