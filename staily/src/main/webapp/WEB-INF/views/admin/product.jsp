@@ -51,7 +51,7 @@
 
 </div>
 <!-- End of Main Content -->
-<%@ include file="/WEB-INF/views/admin/include/include_bottom.jsp"%>
+<%@ include file="/WEB-INF/views/admin/include/include_js.jsp"%>
 </body>
 
 </html>

@@ -1,18 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwill.staily.admin.mapper.CalendarMapper">
+<!-- 
+C_ID
+C_TITLE
+C_START
+C_END
+C_DESC
+C_TYPE
+USER_NAME
+BACKGROUND_COLOR
+TEXT_COLOR
+ALL_DAY -->
+<resultMap type="com.itwill.staily.admin.model.Calendar" id="CalendarDTO">
+	<result property="_id" column="c_id"/>
+	<result property="title" column="c_title"/>
+	<result property="start" column="c_start"/>
+	<result property="end" column="c_end"/>
+	<result property="type" column="c_type"/>
+	<result property="description" column="c_desc"/>
+	<result property="username" column="user_name"/>
+	<result property="backgroundColor" column="background_color"/>
+	<result property="textColor" column="text_color"/>
+	<result property="allDay" column="all_day"/>
 
+</resultMap>
 <select id="selectCalendarAll"
-		resultType="com.itwill.staily.admin.model.Calendar">
+		resultMap="CalendarDTO">
 	SELECT
-		EVENT_ID,
-		EDIT_TITLE,
-		EDIT_START,
-		EDIT_END,
-		EDIT_DESC,
-		EDIT_TYPE,
+		C_ID,
+		C_TITLE,
+		C_START,
+		C_END,
+		C_DESC,
+		C_TYPE,
 		USER_NAME,
-		EDIT_COLOR,
+		BACKGROUND_COLOR,
 		TEXT_COLOR,
 		ALL_DAY
 	FROM 
@@ -20,46 +43,46 @@
 </select>
 
 <select id="selectCalendar" parameterType="int"
-		resultType="com.itwill.staily.admin.model.Calendar">
+		resultMap="CalendarDTO">
 	SELECT
-		EVENT_ID,
-		EDIT_TITLE,
-		EDIT_START,
-		EDIT_END,
-		EDIT_DESC,
-		EDIT_TYPE,
+		C_ID,
+		C_TITLE,
+		C_START,
+		C_END,
+		C_DESC,
+		C_TYPE,
 		USER_NAME,
-		EDIT_COLOR,
+		BACKGROUND_COLOR,
 		TEXT_COLOR,
 		ALL_DAY
 	FROM 
 		CALENDAR
-	WHERE event_id=#{eventId}	
+	WHERE C_ID=#{_id}	
 </select>
 
 <insert id="createCalendar"
 		parameterType="com.itwill.staily.admin.model.Calendar">
 
 	INSERT INTO CALENDAR (
-		EVENT_ID,
-		EDIT_TITLE,
-		EDIT_START,
-		EDIT_END,
-		EDIT_DESC,
-		EDIT_TYPE,
+		C_ID,
+		C_TITLE,
+		C_START,
+		C_END,
+		C_DESC,
+		C_TYPE,
 		USER_NAME,
-		EDIT_COLOR,
+		BACKGROUND_COLOR,
 		TEXT_COLOR,
 		ALL_DAY
 	)VALUES(
-		#{eventId},
-		#{editTitle},
-		#{editStart},
-		#{editEnd},
-		#{editDesc},
-		#{editType},
-		#{userName},
-		#{editColor},
+		#{_id},
+		#{title},
+		#{start},
+		#{end},
+		#{description},
+		#{type},
+		#{username},
+		#{backgroundColor},
 		#{textColor},
 		#{allDay}
 	)
@@ -68,19 +91,19 @@
 <update id="updateCalendar"
 		parameterType="com.itwill.staily.admin.model.Calendar">
 	UPDATE CALENDAR SET 
-	edit_title=	#{editTitle},
-	edit_start=	#{editStart},
-	edit_end= #{editEnd},
-	edit_desc= #{editDesc},
-	edit_type= #{editType},
+	c_title=#{title},
+	c_start=#{start},
+	c_end= #{end},
+	c_desc= #{description},
+	c_type= #{type},
 	user_name= #{userName},
-	EDIT_COLOR= #{editColor},
-	text_color=	#{textColor},
+	background_color=#{backgroundColor},
+	EDIT_COLOR= #{textColor},
 	all_day= #{allDay}
-	WHERE event_id= #{eventId}
+	WHERE c_id= #{_id}
 </update>
 <delete id="deleteCalendar" parameterType="int">
-	DELETE FROM CALENDAR WHERE event_id= #{eventId}
+	DELETE FROM CALENDAR WHERE c_id= #{_Id}
 </delete>
 
 </mapper>

@@ -6,8 +6,8 @@ function getDisplayEventDate(event) {
   var displayEventDate;
 
   if (event.allDay == false) {
-    var startTimeEventInfo = moment(event.editStart).format('HH:mm');
-    var endTimeEventInfo = moment(event.editEnd).format('HH:mm');
+    var startTimeEventInfo = moment(event.start).format('HH:mm');
+    var endTimeEventInfo = moment(event.end).format('HH:mm');
     displayEventDate = startTimeEventInfo + " - " + endTimeEventInfo;
   } else {
     displayEventDate = "하루종일";
@@ -20,7 +20,7 @@ function filtering(event) {
   var show_username = true;
   var show_type = true;
 
-  var username = $('input:checkbox.filter:checked').result(function () {
+  var username = $('input:checkbox.filter:checked').map(function () {
     return $(this).val();
   }).get();
   var types = $('#type_filter').val();
@@ -46,11 +46,11 @@ function calDateWhenResize(event) {
   };
 
   if (event.allDay) {
-    newDates.startDate = moment(event.editStart._d).format('YYYY-MM-DD');
-    newDates.endDate = moment(event.editEnd._d).subtract(1, 'days').format('YYYY-MM-DD');
+    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
+    newDates.endDate = moment(event.end._d).subtract(1, 'days').format('YYYY-MM-DD');
   } else {
-    newDates.startDate = moment(event.editStart._d).format('YYYY-MM-DD HH:mm');
-    newDates.endDate = moment(event.editEnd._d).format('YYYY-MM-DD HH:mm');
+    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD HH:mm');
+    newDates.endDate = moment(event.end._d).format('YYYY-MM-DD HH:mm');
   }
 
   return newDates;
@@ -64,26 +64,27 @@ function calDateWhenDragnDrop(event) {
   }
 
   // 날짜 & 시간이 모두 같은 경우
-  if(!event.editEnd) {
-    event.editEnd = event.editStart;
+  if(!event.end) {
+    event.end = event.start;
   }
 
   //하루짜리 all day
-  if (event.allDay && event.editEnd === event.editStart) {
-    newDates.startDate = moment(event.editStart._d).format('YYYY-MM-DD');
+  if (event.allDay && event.end === event.start) {
+    console.log('1111')
+    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
     newDates.endDate = newDates.startDate;
   }
 
   //2일이상 all day
-  else if (event.allDay && event.editEnd !== null) {
-    newDates.startDate = moment(event.editStart._d).format('YYYY-MM-DD');
-    newDates.endDate = moment(event.editEnd._d).subtract(1, 'days').format('YYYY-MM-DD');
+  else if (event.allDay && event.end !== null) {
+    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
+    newDates.endDate = moment(event.end._d).subtract(1, 'days').format('YYYY-MM-DD');
   }
 
   //all day가 아님
   else if (!event.allDay) {
-    newDates.startDate = moment(event.editStart._d).format('YYYY-MM-DD HH:mm');
-    newDates.endDate = moment(event.editEnd._d).format('YYYY-MM-DD HH:mm');
+    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD HH:mm');
+    newDates.endDate = moment(event.end._d).format('YYYY-MM-DD HH:mm');
   }
 
   return newDates;
@@ -105,10 +106,10 @@ var calendar = $('#calendar').fullCalendar({
       }),
       content: $('<div />', {
           class: 'popoverInfoCalendar'
-        }).append('<p><strong>등록자:</strong> ' + event.userName + '</p>')
-        .append('<p><strong>구분:</strong> ' + event.editType + '</p>')
+        }).append('<p><strong>등록자:</strong> ' + event.username + '</p>')
+        .append('<p><strong>구분:</strong> ' + event.type + '</p>')
         .append('<p><strong>시간:</strong> ' + getDisplayEventDate(event) + '</p>')
-        .append('<div class="popoverDescCalendar"><strong>설명:</strong> ' + event.editDesc + '</div>'),
+        .append('<div class="popoverDescCalendar"><strong>설명:</strong> ' + event.description + '</div>'),
       delay: {
         show: "800",
         hide: "50"
@@ -164,21 +165,14 @@ var calendar = $('#calendar').fullCalendar({
    * ************** */
   events: function (start, end, timezone, callback) {
     $.ajax({
-      type: "post",
+      type: "get",
       url: "select_calendar_list",
-      data: getDisplayEventDate
-        // 실제 사용시, 날짜를 전달해 일정기간 데이터만 받아오기를 권장
-      ,
       dataType:"json",
-      headers: {
-          'Content-Type': 'application/json'
-      },
       success: function (response) {
-    	  console.log(response);
-        var fixedDate = response.result(function (array) {
-          if (array.allDay && array.editStart !== array.editEnd) {
+        var fixedDate = response.map(function (array) {
+          if (array.allDay && array.start !== array.end) {
             // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
-            array.editEnd = moment(array.editEnd).add(1, 'days');
+            array.end = moment(array.end).add(1, 'days');
           }
           return array;
         })
