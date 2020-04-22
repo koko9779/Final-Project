@@ -130,35 +130,14 @@ public class StyleCoodinationController {
 		return "style/style_update";
 	}
 	
-	/*
-	@RequestMapping("/style_board_and_reply_update")
-	public String style_board_and_reply_update(@RequestParam String bNo, Model model) {
-		int intBNo = Integer.parseInt(bNo);
-		Board updateBoard;
-		
-		updateBoard = styleCoodinationService.selectUpdateBoard(intBNo);
-		model.addAttribute("updateBoard", updateBoard);
-		
-		return "style/style_update";
-	}
-	*/
-	
-	
-	/*
-	@Override
-	public int modifyBoardAndReply(Board updateBoard) {
-		return boardCommonMapper.updateBoardAndReply(updateBoard);
-	}
-	*/
-	
 	@RequestMapping("/style_board_create")
 	public String style_create(Board board) {
-		return "/style/style_board_create";
+		return "style/style_board_create";
 	}
 	
 	@RequestMapping(value = "/style_board_create_action", method = RequestMethod.GET)
 	public String style_create_action_get(Board board) {
-		return "/style/style_board_create";
+		return "style/style_board_create";
 	}
 	
 	@RequestMapping(value = "/style_create_board_action", method = RequestMethod.POST)

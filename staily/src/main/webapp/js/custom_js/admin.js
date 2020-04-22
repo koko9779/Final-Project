@@ -53,7 +53,14 @@ function product_confirm(pNo) {
 		}
 	});
 };
-
+function sceneUpdate(scn) {
+	window.open("product_update_scene?" + "pScene="+ scn,"이미지정보수정",
+	"width=500, height=300, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
+};
+function imageUpdate(img) {
+	window.open("product_update_img?" + "pdImage="+ img,"이미지정보수정",
+	"width=500, height=300, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
+};
 /** ***********주소 일반*************** */
 
 function execDaumPostcode() {

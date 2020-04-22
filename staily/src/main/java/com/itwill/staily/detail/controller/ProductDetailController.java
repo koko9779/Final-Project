@@ -2,6 +2,7 @@ package com.itwill.staily.detail.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -148,18 +149,44 @@ public class ProductDetailController {
 		
 		return mv;		
 	}	
+
+	@RequestMapping("/product_delete")
+	public ModelAndView product_delete(HttpServletResponse response, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		
+		try {			
+			String pNo = request.getParameter("pNo");
+
+			productDetailService.deleteProduct(Integer.parseInt(pNo));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.setViewName("redirect:..");
+		
+		return mv;		
+	}
 	
 	@RequestMapping("/upload")
 	@ResponseBody
 	public void upload(HttpServletResponse response, HttpServletRequest request, 
-			@RequestParam("Filedata") MultipartFile Filedata) { 
+			@RequestParam("Filedata") MultipartFile Filedata) {
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
 		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
 		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
-		File f = new File("C:\\Users\\Jacob\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
+		//File f = new File("C:\\Users\\Jacob\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
 		//File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
 		
 		try {
+			String computerName = InetAddress.getLocalHost().getHostName();
+			String[] comName = computerName.split("-");
+			
+			String uploadPath = "C:\\Users\\" +  comName[0] + "\\" +  
+					"/git/Final-Project/staily/src/main/webapp/images/product/scene/";
+			
+			File f = new File(uploadPath + newfilename + ".jpg");
+			System.out.println(computerName);
 			
 			Filedata.transferTo(f); 
 			response.getWriter().write(newfilename);
@@ -177,10 +204,18 @@ public class ProductDetailController {
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
 		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
 		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
-		File f = new File("C:\\Users\\Jacob\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
-		//File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		//File f = new File("C:\\Users\\Jacob\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		//File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg");
 		
 		try {
+			String computerName = InetAddress.getLocalHost().getHostName();
+			String[] comName = computerName.split("-");
+			
+			String uploadPath = "C:\\Users\\" +  comName[0] + "\\" +  
+					"/git/Final-Project/staily/src/main/webapp/images/product/image/";
+			
+			File f = new File(uploadPath + newfilename + ".jpg");
+			System.out.println(computerName);
 			
 			Filedata.transferTo(f); 
 			response.getWriter().write(newfilename);

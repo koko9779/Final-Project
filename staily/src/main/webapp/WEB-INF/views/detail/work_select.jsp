@@ -4,35 +4,22 @@
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 
 <!-- Hero -->
-<div id="content_hero">
-	<a href="#afterHeader" class="anchor"> <img
-		src="${pageContext.request.contextPath}/images/scroll-arrow.svg"
-		alt="Scroll down" class="scroll" />
-	</a>
-	
+<div id="content_hero" >
 	<iframe class="ww"
-			src="https://www.youtube-nocookie.com/embed/WEWtyTm2foM?autoplay=1&amp;loop=1;&playlist=isls26FGUaA&controls=0&vq=hd1080"
+			src="https://www.youtube-nocookie.com/embed/J-2AjrypRgw?autoplay=1&amp;loop=1;playlist=J-2AjrypRgw&controls=0&vq=hd720"
 			frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-			allowfullscreen style="position: absolute;left: -0%;width: 100%;height: 100%;top: 0%;"></iframe>
-	
-	<!-- Content -->
-	<div class="container">
-		<div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0" data-translatey="100">
-			<div class="col-md-9">
-				<span class="title"></span>
-				<h1></h1>
-			</div>
-		</div>
-	</div>
-
+			allowfullscreen></iframe>
+	<a href="#afterHeader" class="anchor">
+		<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
+	</a>
 </div>
 
 
-<div class="container-fluid">
-	<div class="row">
+<div class="container-fluid totop">
+	<div class="row" id="afterHeader">
 		<div class="col-md-12">
 			<div class="modal fade" id="work_confirm" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document" style="width: ">
+				<div class="modal-dialog" role="document" style="width: 450px">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h4 class="modal-title" id="myModalLabel">
@@ -138,6 +125,15 @@
     min-height: .01%;
     overflow-x: hidden;
 }
+
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: -77px;
+}
+
 </style>
 <script type="text/javascript">
 //버튼 클릭시 Row에 있는 작품 번호 값 전달
@@ -158,7 +154,8 @@ $(".btnnn").click(function() {
 		var main = document.getElementById("body");
 		
 		main.innerHTML = "이 작품이 맞습니까?<br><br>작품명 : " + name + "<br>카테고리 : " + category + "<br>처음 방영(개봉)일 : " + date +
-		"<br>전체 회차 : " + tepisode + "<br>작품 포스터<br>" + "<img src='https://image.tmdb.org/t/p/w600_and_h900_bestv2/" + poster + "' width='100%'>";
+		"<br>전체 회차 : " + tepisode + "<br>작품 포스터<br>" + "<div id='workimage' style='text-align: center;'>" + 
+		"<img src='https://image.tmdb.org/t/p/w600_and_h900_bestv2/" + poster + "' style='height: 500px'>" + "</div>";
 		
 		$('#wNo').val(no);
 	});

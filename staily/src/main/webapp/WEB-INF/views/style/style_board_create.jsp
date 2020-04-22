@@ -74,5 +74,4 @@
 <%@ include file="/WEB-INF/views/include/include_js.jsp"%>
 <%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
 </body>
-
 </html>

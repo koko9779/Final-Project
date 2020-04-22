@@ -27,24 +27,9 @@
 			<img
 				src="${pageContext.request.contextPath}/images/product/scene/${productOne.get(0).getpScene()}.jpg"
 				style="padding: 20px; height: 450px; width: 850px;">
-			<c:choose>
-				<c:when test="${not empty bmNo}">
-					<button type="button" class="btn btn-ghost" id="createBmk" style="margin: 5%; margin-left: 10px;" 
-					onClick='select_bookmark(" + ${userNo} + "," + ${productOne.get(0).getpNo()} + ")'>즐겨찾기 제거</button>
-				</c:when>
-				<c:otherwise>
-					<c:choose>
-						<c:when test="${not empty userNo}">
-							<button type="button" class="btn btn-ghost" id="createBmk" style="margin: 5%; margin-left: 10px;" 
-							onClick='create_bookmark(" + ${userNo} + "," + ${productOne.get(0).getpNo()} + ")'>즐겨찾기 추가</button>
-						</c:when>
-						<c:otherwise>
-						</c:otherwise>
-					</c:choose>
-				</c:otherwise>
-			</c:choose>
+			
 			<!-- Section -->
-			<h2>상품 사진</h2>
+			<h2 style="margin-top:5%;">상품 사진</h2>
 			<div class="slick-carousel news-carousel" style="height: 280px">
 				<c:forEach var="product" items="${productOne}">
 					<div>
@@ -88,9 +73,53 @@
 											<c:otherwise>
 											</c:otherwise>
 										</c:choose>
+										<c:choose>
+											<c:when test="${userNo eq productOne.get(0).getmNo()}">
+												<button class="btn btn-primary" style="display: inline-block;"
+													onClick="deleteProduct()" value="${productOne.get(0).getmId()}">
+													상품 삭제하기
+												</button>
+											</c:when>
+											<c:otherwise>
+											</c:otherwise>
+										</c:choose>
 									</div>
 								</td>
 							</tr>
+							<c:choose>
+								<c:when test="${not empty bmNo}">
+								<tr>
+									<th scope="row" class="bg-light essentia"><label for="favorite">즐겨찾기</label></th>
+									<td class="text-left" style="text-align: left;">
+										<div class="col">
+											<input class="material-icons bookmark" type="image" alt="즐겨찾기 제거" id="createBmk"
+												src="${pageContext.request.contextPath}/images/star.png" style="width:5%;"
+												onClick='select_bookmark2(" + ${userNo} + "," + ${productOne.get(0).getpNo()} + ");return false;'>
+										</div>
+									</td>
+								</tr>
+									
+								</c:when>
+								<c:otherwise>
+									<c:choose>
+										<c:when test="${not empty userNo}">
+											<tr>
+												<th scope="row" class="bg-light essentia"><label for="favorite">즐겨찾기</label></th>
+												<td class="text-left" style="text-align: left;">
+													<div class="col">
+														<input class="material-icons bookmark" type="image" alt="즐겨찾기 추가" id="createBmk"
+															src="${pageContext.request.contextPath}/images/emptystar.png" style="width:5%;"
+															onClick='create_bookmark2(" + ${userNo} + "," + ${productOne.get(0).getpNo()} + ");return false;'>
+													</div>
+												</td>
+											</tr>
+										
+										</c:when>
+										<c:otherwise>
+										</c:otherwise>
+									</c:choose>
+								</c:otherwise>
+							</c:choose>
 							<tr>
 								<th scope="row" class="bg-light essentia"><label for="pName">상품명</label></th>
 								<td class="text-left" style="text-align: left;">

@@ -93,33 +93,32 @@
 	<insert id="createWork"
 		parameterType="com.itwill.staily.util.Work">
 		INSERT INTO work VALUES
-		(work_no_seq.nextval,#{wName},#{wCategory},#{wDate},#{wPoster},#{wTepisode},0)
+		(work_no_seq.nextval,#{wName},#{wCategory},#{wDate},#{wPoster},#{wTepisode},0,#{wVideo})
 	</insert>
 	<insert id="createWorkDetail" parameterType="Work">
 		INSERT INTO work_detail VALUES
 		(wd_no_seq.nextval,#{pNo},#{mNo},#{wdEpisode})
 	</insert>
 	<select id="selectWorkAll" resultType="Work">
-		SELECT w_no,w_name,w_category,w_date,w_poster,w_tepisode
+		SELECT w_no,w_name,w_category,w_date,w_poster,w_tepisode,w_view,w_video
 		FROM work
 	</select>
 	
 	<select id="selectWorkOne" parameterType="int" resultType="Work">
-		SELECT w_no,w_name,w_category,w_date,w_poster,w_tepisode
+		SELECT w_no,w_name,w_category,w_date,w_poster,w_tepisode,w_view,w_video
 		FROM work
 		WHERE w_no=#{wNo}		
 	</select>
 		
 	<update id="updateWork" parameterType="Work">
-		UPDATE work SET w_name=#{wName},w_category=#{wCategory},w_date=#{wDate},w_poster=#{wPoster},w_tepisode=#{wTepisode}
+		UPDATE work SET w_name=#{wName},w_category=#{wCategory},w_date=#{wDate},w_poster=#{wPoster},w_tepisode=#{wTepisode},
+		w_video=#{wVideo}
 		WHERE w_no=#{wNo}
 	</update>
 	
 	<delete id="deleteWork" parameterType="int">
 		DELETE work WHERE w_no=#{wNo}
 	</delete>
-
-
 
 
 </mapper>
