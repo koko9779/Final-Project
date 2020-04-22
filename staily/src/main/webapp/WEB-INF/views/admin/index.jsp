@@ -57,14 +57,20 @@
 <%@ include file="/WEB-INF/views/admin/include/include_bottom.jsp"%>
 </body>
 <script>
-document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);;
-	function calendar() {
-		window
-				.open(
-						"calendar",
-						"일정표",
-						"width=690, height=750, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no");
-	}
+var now = document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);;
+var nowTime = "stTime="+now
+
+$(function() {
+	var statsData;
+	$.ajax({
+		url: "stats",
+		data: nowTime,
+		dataType:"json",
+		async:false,
+		success:function(result){
+				statsData = result
+			}
+	});
 	// 우선 컨텍스트를 가져옵니다. 
 	var ctx = document.getElementById("dayChart").getContext('2d');
 	var cty = document.getElementById("browserChart").getContext('2d');
@@ -73,7 +79,7 @@ document.getElementById('currentDate').value = new Date().toISOString().substrin
 	 - ctx를 첫번째 argument로 넘겨주고, 
 	 - 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
 	 */
-
+	console.log(statsData,'찍혀라 제발...');
 	var browserChart = new Chart(cty, {
 		type : 'pie',
 		data : {
@@ -159,5 +165,15 @@ document.getElementById('currentDate').value = new Date().toISOString().substrin
 			}
 		}
 	});
+});
+
+	function calendar() {
+		window
+				.open(
+						"calendar",
+						"일정표",
+						"width=690, height=750, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no");
+	}
+	
 </script>
 </html>

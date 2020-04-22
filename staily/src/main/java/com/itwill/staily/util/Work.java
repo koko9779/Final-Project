@@ -12,7 +12,7 @@ W_TEPISODE	NUMBER	Yes		6	작품전체회차
 W_VIEW	NUMBER	Yes		7	작품조회수
 */
 public class Work {
-	//작품
+	// 작품
 	private int wNo;
 	private String wName;
 	private String wCategory;
@@ -21,15 +21,15 @@ public class Work {
 	private int wTepisode;
 	private int wView;
 	private String wVideo;
-	//작품상세
+	// 작품상세
 	private int wdNo;
 	private int wdEpisode;
 	private List<Product> product;
-	
+
 	public Work() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public Work(int wNo, String wName, String wCategory, String wDate, String wPoster, int wTepisode, int wView) {
 		super();
 		this.wNo = wNo;
@@ -55,12 +55,27 @@ public class Work {
 		this.wdEpisode = wdEpisode;
 		this.product = product;
 	}
+	
+	public Work(int wNo, String wName, String wCategory, String wDate, String wPoster, int wTepisode, int wView,
+			String wVideo) {
+		super();
+		this.wNo = wNo;
+		this.wName = wName;
+		this.wCategory = wCategory;
+		this.wDate = wDate;
+		this.wPoster = wPoster;
+		this.wTepisode = wTepisode;
+		this.wView = wView;
+		this.wVideo = wVideo;
+	}
+
 	public int getWdNo() {
 		return wdNo;
 	}
+
 	public void setWdNo(int wdNo) {
 		this.wdNo = wdNo;
-	}	
+	}
 
 	public List<Product> getProduct() {
 		return product;
@@ -70,7 +85,6 @@ public class Work {
 		this.product = product;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Work [wNo=" + wNo + ", wName=" + wName + ", wCategory=" + wCategory + ", wDate=" + wDate + ", wPoster="
@@ -78,61 +92,76 @@ public class Work {
 				+ wdEpisode + ", product=" + product + "]";
 	}
 
-	
-
 	public int getWdEpisode() {
 		return wdEpisode;
 	}
+
 	public void setWdEpisode(int wdEpisode) {
 		this.wdEpisode = wdEpisode;
 	}
+
 	public int getwNo() {
 		return wNo;
 	}
+
 	public void setwNo(int wNo) {
 		this.wNo = wNo;
 	}
+
 	public String getwName() {
 		return wName;
 	}
+
 	public void setwName(String wName) {
 		this.wName = wName;
 	}
+
 	public String getwCategory() {
 		return wCategory;
 	}
+
 	public void setwCategory(String wCategory) {
 		this.wCategory = wCategory;
 	}
+
 	public String getwDate() {
 		return wDate;
 	}
+
 	public void setwDate(String wDate) {
 		this.wDate = wDate;
 	}
+
 	public String getwPoster() {
 		return wPoster;
 	}
+
 	public void setwPoster(String wPoster) {
 		this.wPoster = wPoster;
 	}
+
 	public int getwTepisode() {
 		return wTepisode;
 	}
+
 	public void setwTepisode(int wTepisode) {
 		this.wTepisode = wTepisode;
 	}
+
 	public int getwView() {
 		return wView;
 	}
+
 	public void setwView(int wView) {
 		this.wView = wView;
 	}
+
 	public String getwVideo() {
 		return wVideo;
 	}
+
 	public void setwVideo(String wVideo) {
 		this.wVideo = wVideo;
 	}
-	
+
 }
