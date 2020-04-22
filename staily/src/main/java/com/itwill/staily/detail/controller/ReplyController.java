@@ -114,30 +114,5 @@ public class ReplyController {
 		}
 	}
 	
-	/*
-	@RequestMapping("/detailtest")
-	public ModelAndView createFriend(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView();
-		
-		try {
-			List<Friend> fL = friendService.selectList(1);
-			request.setAttribute("friendList", fL);
-			
-			String m_no = request.getParameter("mNo");
-			String f_no = request.getParameter("fNo");
-			
-			boolean create = replyService.createFriend(Integer.parseInt(m_no), Integer.parseInt(f_no));
-			
-			if(create) {
-				mv.setViewName("detailtest");
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	
-		return mv;
-	}
-	*/
 	
 }

@@ -117,7 +117,7 @@
 						<td class="text-left" style="text-align: left;">
 							<div class="col">
 								<input type="text" name="pName" id="pName" class="form-control"
-									maxlength="20">
+									maxlength="100">
 							</div>
 						</td>
 					</tr>
@@ -137,7 +137,7 @@
 						<td class="text-left" style="text-align: left;">
 							<div class="col">
 								<input type="text" name="pUrl" id="pUrl" class="form-control"
-									maxlength="20">
+									maxlength="300">
 							</div>
 						</td>
 					</tr>

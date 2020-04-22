@@ -28,6 +28,11 @@
 		where r_no = #{rNo} and p_no = #{pNo} and m_no = #{mNo}
 	</delete>
 	
+	<select id="checkReply" parameterType="int" resultType="int">
+		select count(*) from reply_detail
+		where r_no = #{rNo} and m_no = #{mNo}
+	</select>
+	
 	<update id="increaseRecommend" parameterType="com.itwill.staily.detail.model.dto.Reply">
 		update reply set r_recommend = r_recommend + 1 where r_no = #{rNo}
 	</update>
@@ -36,9 +41,23 @@
 		update reply set r_report = r_report + 1 where r_no = #{rNo}
 	</update>
 	
-	<insert id="createFriend" parameterType="int">
-		insert into friend (f_pk, m_no, f_no)
-		values (friend_no_seq.nextval, #{mNo}, #{fNo})
-		
+	<select id="recommendCheck" parameterType="int" resultType="int">
+		select count(*) from reply_detail
+		where r_no = #{rNo} and m_no = #{mNo} and r_recommend = 1	
+	</select>
+	
+	<select id="reportCheck" parameterType="int" resultType="int">
+		select count(*) from reply_detail
+		where r_no = #{rNo} and m_no = #{mNo} and r_report = 1	
+	</select>
+	
+	<insert id="createRecommend" parameterType="int">
+		select count(*) from reply_detail
+		where r_no = #{rNo} and m_no = #{mNo} and r_recommend = 1		
+	</insert>
+	
+	<insert id="createReport" parameterType="int">
+		select count(*) from reply_detail
+		where r_no = #{rNo} and m_no = #{mNo} and r_report = 1		
 	</insert>
 </mapper>
