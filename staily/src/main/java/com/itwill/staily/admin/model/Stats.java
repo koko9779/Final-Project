@@ -1,3 +1,4 @@
+
 package com.itwill.staily.admin.model;
 
 public class Stats {
@@ -57,3 +58,4 @@ public class Stats {
 	}
 	
 }
+

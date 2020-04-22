@@ -1,3 +1,4 @@
+
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 <!-- Hero -->
 <div id="content_hero"
