@@ -25,7 +25,7 @@
 		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
 		
 			<!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">결제</h1>
+          <h2 class="h3 mb-2 text-gray-800">결제</h2>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             
@@ -73,15 +73,12 @@
               </div>
             </div>
           </div>
-          <!--  
-    
-		 <form id="memberInfoFrm" name="memberInfoFrm" autocomplete="off">
-			<input type="hidden" name="mNo" id="mNo" value="${member.mNo}">
-			<input type="hidden" name="mId" id="mId" value="${member.mId}">
-			<input type="hidden" name="mType" id="mType" value="${member.mType}"> 
-			<input type="hidden" name="mPhone" id="mPhone" value="${member.mPhone}">
-		</form>
-		-->
+		 
+		<input type="hidden" name="mId" id="mId" value="${member.mId}">
+		<input type="hidden" name="mPhone" id="mPhone" value="${member.mPhone}">
+		<input type="hidden" name="mEmail" id="mEmail" value="${member.mEmail}">
+	
+		
         </div>
         <!-- /.container-fluid -->
 

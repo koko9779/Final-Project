@@ -24,7 +24,7 @@
 	
 			<!-- Page Heading -->
           <!-- 친구찾기 -->
-          <h1 class="h3 mb-2 text-gray-800">친구찾기</h1>
+          <h2 class="h3 mb-2 text-gray-800">친구찾기</h2>
 
 			<div id="search" class="tab_content">
 				<input type="text" id="searchword" style="width:300px;" value="아이디를 입력하세요" >
@@ -45,7 +45,7 @@
 			<br>
 			<br>	          
           <!-- 친구찾기 -->
-          <h1 class="h3 mb-2 text-gray-800">친구리스트</h1>
+          <h2 class="h3 mb-2 text-gray-800">친구리스트</h2>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-body">

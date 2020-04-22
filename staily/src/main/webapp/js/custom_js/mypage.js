@@ -164,7 +164,7 @@ $(function(){
 						   text: "버튼을 클릭해주세요!",
 						   icon: "success" //"info,success,warning,error" 중 택1
 						}).then(() => {
-							html += '<tr>'
+								html += '<tr>'
 								html += "<td><input type='checkbox' name='friend_check' value='"+result.fPk+"'>"+"</td>"
 			                    html += '<td >'
 			                    html += '<div class="dropdown">'
@@ -199,7 +199,7 @@ $(function(){
 			
 		});
 	});
-	
+
 	
 	/************************검색한 친구 쪽지보내기************************/
 	$('#searchDropdwon a:nth-child(2)').click(function(e){
@@ -379,6 +379,9 @@ $(function(){
 		var pyPrice = td.eq(1).attr('value');
 		var pyPeriod = td.eq(2).attr('value');
 		var pyType = td.eq(3).attr('value');	
+		var mId = $('#mId').val();
+		var mEmail = $('#mEmail').val();
+		var mPhone = $('#mPhone').val();
 
 		
 	    IMP.init('imp62215959'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -390,9 +393,9 @@ $(function(){
 	        merchant_uid : 'merchant_' + new Date().getTime(),
 	        name : pyName,
 	        amount : pyPrice,
-	        buyer_email : 'hiphopmy@naver.com',
-	        buyer_name : 'samsung',
-	        buyer_tel : '01011111111',
+	        buyer_email : mEmail,
+	        buyer_name : mId,
+	        buyer_tel : mPhone,
 	        vat : pyPeriod,		//vat의 값을 pyPeriod의 값으로 대체한다
 	        buyer_postcode : '123-456',
 	    }, function(rsp) {
