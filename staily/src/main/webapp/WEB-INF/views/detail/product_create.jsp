@@ -9,31 +9,19 @@
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 
 <!-- Hero -->
-<div id="content_hero">
-	<a href="#afterHeader" class="anchor"> <img
-		src="${pageContext.request.contextPath}/images/scroll-arrow.svg"
-		alt="Scroll down" class="scroll" />
-	</a>
-	
+<div id="content_hero" >
 	<iframe class="ww"
-			src="https://www.youtube-nocookie.com/embed/obX621oa9RM?autoplay=1&amp;loop=1;&playlist=isls26FGUaA&controls=0&vq=hd1080"
+			src="https://www.youtube-nocookie.com/embed/4_iiM-hftZc?autoplay=1&amp;loop=1;playlist=4_iiM-hftZc&controls=0&vq=hd720"
 			frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-			allowfullscreen style="position: absolute;left: -0%;width: 100%;height: 100%;top: 0%;"></iframe>
-			
-	<!-- Content -->
-	<div class="container">
-		<div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0" data-translatey="100">
-			<div class="col-md-9">
-				<span class="title"></span>
-				<h1></h1>
-			</div>
-		</div>
-	</div>
+			allowfullscreen></iframe>
+	<a href="#afterHeader" class="anchor">
+		<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
+	</a>
 </div>
 
 
-<div style="margin:3%;">
-	<div class="left">
+<div class="totop" id="afterHeader">
+	<div class="left" style="margin-top: -50px;">
 		<div class="wrap" style="height: auto;">
 			<input type="button" class="button_css2" value="작품 검색" onClick="work_search()">
 		</div>
@@ -101,7 +89,7 @@
 		</form>
 	</div>
 	
-	<div class="right">
+	<div class="right" style="margin-top: -50px;">
 		<form name="createP" method="post">
 			<input type="hidden" id="wNo" name="wNo" value="${workOne.wNo}">
 			<table class="table table=hover">
@@ -206,12 +194,6 @@
 					</tr>
 				</tbody>		
 			</table>
-			<!--  
-			<c:forEach var="i" begin="1" end="${cnt}" varStatus="status">
-				<c:set var="a" value="Image${i}"/>
-				<input type="hidden" id="filesize2${i}" name="filesize3" value="${requestScope[a]}"/>
-			</c:forEach>
-			-->
 			<div id="splitspace">
 			</div>
 			<div class="wrap" style="height:auto;">
