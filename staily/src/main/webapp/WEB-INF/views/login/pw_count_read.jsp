@@ -57,8 +57,14 @@
 	if(msg2E === "" || msg2E === undefined) {
 		return;
 	}else {
-		alert(msg2E);
-		location.href="pw_count_read";
+		//alert(msg2E);
+		swal({
+			  title: '에러 메세지',
+			  icon: 'error',
+			  text: msg2E,
+			}).then(() => {
+				location.href="pw_count_read";
+			});
 		return;
 	}
 });

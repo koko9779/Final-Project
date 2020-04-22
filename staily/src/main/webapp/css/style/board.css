@@ -1,5 +1,21 @@
 @charset "UTF-8";
 
+.title_detail{
+	margin-bottom: 15px;
+}
+
+.custom-select{
+float:left;
+	margin-right:5px;
+	width: 115px;
+   	margin-bottom: 7px;
+}
+
+.add_btn_detail{
+	
+    background-color: #717171;
+}
+
 .pagination>.active>a , .pagination>.active>a:hover {
 	background-color: #e76115 !important;
    	border-color: #e76115 !important;
