@@ -14,11 +14,13 @@
 <script type="text/javascript" src="http://www.inven.co.kr/common/lib/js/layer.js?v=20151023"></script>
 <script type="text/javascript" src="http://www.inven.co.kr/common/lib/js/booster.js"></script>
 <script type="text/javascript" src="http://www.inven.co.kr/common/lib/js/browser.js?v=20140702a"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <style>
 #noteWrap {
 	background-image: url('');
 }
+
 </style>
 
 </head>

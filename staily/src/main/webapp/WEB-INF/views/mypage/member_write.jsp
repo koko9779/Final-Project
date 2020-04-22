@@ -31,7 +31,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">내가쓴글목록</h1>
+          <h2 class="h3 mb-2 text-gray-800">내가쓴글목록</h2>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-body">
@@ -51,7 +51,7 @@
                   	  <td><input type="checkbox" name="member_write_check" value="${product.pNo}"></td>
                       <td style = "cursor:pointer;" 
                       	  onClick = "location.href='../detail/product_detail?pNo=${product.pNo}&wNo=${product.wNo}'">
-                      <img src="${pageContext.request.contextPath}/images/product/scene/${product.pScene}.jpg" width="100px" height="100px"></td>
+                      <img src="${pageContext.request.contextPath}/images/product/scene/${product.pScene}.jpg" width="100px" height="100px" alt="이미지없음"></td>
                       <td>${product.pName}</td>
                       <td>${product.pDate}</td>
                     </tr>

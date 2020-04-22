@@ -25,7 +25,7 @@
 		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
 	
 			<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">회원정보</h1>
+					<h2 class="h3 mb-2 text-gray-800">회원정보</h2>
 					<!-- DataTales Example -->
 					<div class="join-step2">
 						<div class="border border-secondary">
@@ -81,6 +81,17 @@
 													</div>
 												</td>
 											</tr>
+									
+											<tr>
+												<th scope="row" class="bg-light essentia"><label>※결제여부</label></th>
+												<td class="text-left">
+												<div class="form-row">
+														<div class="col-xs-5">
+															${member.mCompany.coCheck}
+														</div>
+													</div>
+												</td>
+											</tr>
 										</c:if>
 										<tr>
 											<th scope="row" class="bg-light essentia"><label
@@ -109,19 +120,7 @@
 												</div>
 											</td>
 										</tr>
-										<c:if test="${member.mType =='C'}">
-									
-										<tr>
-											<th scope="row" class="bg-light essentia"><label>※결제여부</label></th>
-											<td class="text-left">
-											<div class="form-row">
-													<div class="col-xs-5">
-														${member.mCompany.coCheck}
-													</div>
-												</div>
-											</td>
-										</tr>
-										</c:if>
+										
 										<tr>
 											<th scope="row" class="bg-light essentia"><label
 												for="phnno1N1">※ 휴대폰</label></th>

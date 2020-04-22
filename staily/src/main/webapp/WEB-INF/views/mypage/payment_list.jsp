@@ -23,17 +23,17 @@
 
 		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
 		
-		<h1 class="h3 mb-2 text-gray-800">결제종료일</h1>
-		<div>
-		${endDate}
-		</div>
-	
+		<h2 class="h3 mb-2 text-gray-800">결제종료일</h2>
+		<div>${endDate}</div>
+		<br>
+		<br>
 			<!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">결제내역</h1>
+          <h2 class="h3 mb-2 text-gray-800">결제내역</h2>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-body">
               <div class="table-responsive">
+              <div id= "myPaymentList">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
@@ -45,7 +45,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                  	<c:forEach var="payment" items="${data }">
+                  	<c:forEach var="payment" items="${data}">
                   	 <tr>
 	                      <td>${payment.pyName}</td>
 	                      <td>${payment.pyPrice}원</td>
@@ -56,6 +56,7 @@
                   	</c:forEach>
                   </tbody>
                 </table>
+                </div>
               </div>
             </div>
           </div>
