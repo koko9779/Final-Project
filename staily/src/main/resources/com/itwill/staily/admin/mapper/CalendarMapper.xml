@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.staily.admin.mapper.CalendarMapper">
+
+<select id="selectCalendarAll"
+		resultType="com.itwill.staily.admin.model.Calendar">
+	SELECT
+		EVENT_ID,
+		EDIT_TITLE,
+		EDIT_START,
+		EDIT_END,
+		EDIT_DESC,
+		EDIT_TYPE,
+		USER_NAME,
+		EDIT_COLOR,
+		TEXT_COLOR,
+		ALL_DAY
+	FROM 
+		CALENDAR	
+</select>
+
+<select id="selectCalendar" parameterType="int"
+		resultType="com.itwill.staily.admin.model.Calendar">
+	SELECT
+		EVENT_ID,
+		EDIT_TITLE,
+		EDIT_START,
+		EDIT_END,
+		EDIT_DESC,
+		EDIT_TYPE,
+		USER_NAME,
+		EDIT_COLOR,
+		TEXT_COLOR,
+		ALL_DAY
+	FROM 
+		CALENDAR
+	WHERE event_id=#{eventId}	
+</select>
+
+<insert id="createCalendar"
+		parameterType="com.itwill.staily.admin.model.Calendar">
+
+	INSERT INTO CALENDAR (
+		EVENT_ID,
+		EDIT_TITLE,
+		EDIT_START,
+		EDIT_END,
+		EDIT_DESC,
+		EDIT_TYPE,
+		USER_NAME,
+		EDIT_COLOR,
+		TEXT_COLOR,
+		ALL_DAY
+	)VALUES(
+		#{eventId},
+		#{editTitle},
+		#{editStart},
+		#{editEnd},
+		#{editDesc},
+		#{editType},
+		#{userName},
+		#{editColor},
+		#{textColor},
+		#{allDay}
+	)
+	
+</insert>
+<update id="updateCalendar"
+		parameterType="com.itwill.staily.admin.model.Calendar">
+	UPDATE CALENDAR SET 
+	edit_title=	#{editTitle},
+	edit_start=	#{editStart},
+	edit_end= #{editEnd},
+	edit_desc= #{editDesc},
+	edit_type= #{editType},
+	user_name= #{userName},
+	EDIT_COLOR= #{editColor},
+	text_color=	#{textColor},
+	all_day= #{allDay}
+	WHERE event_id= #{eventId}
+</update>
+<delete id="deleteCalendar" parameterType="int">
+	DELETE FROM CALENDAR WHERE event_id= #{eventId}
+</delete>
+
+</mapper>
