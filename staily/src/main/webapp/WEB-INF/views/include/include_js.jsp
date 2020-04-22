@@ -7,10 +7,14 @@
 <script src="${pageContext.request.contextPath}/js/slick.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/venobox.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <!--  
 <script src="https://use.fontawesome.com/4dfd2d448a.js"></script>
 -->
+<!-- font awesome -->
+<script src="https://kit.fontawesome.com/c225860675.js" crossorigin="anonymous"></script>
+
 <script src="${pageContext.request.contextPath}/js/custom.js"></script>
 
 <!-- custom Javs Script File -->

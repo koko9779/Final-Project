@@ -34,14 +34,31 @@ function post_to_url(path, params, method) {
 function board_delete(bNo) {
 	var replyArray = document.querySelectorAll(".reply");
 	if(replyArray.length > 0) {
-		var isOk = confirm("게시글을 지우면 댓글들도 모두 지워집니다 정말 지우시겠습니까?");
-		
-		if(isOk) {
-			post_to_url("style_board_delete_action", {"bNo" : bNo});
-		}
-	}else {
+		//confirm("게시글을 지우면 댓글들도 모두 지워집니다 정말 지우시겠습니까?");
+		swal({
+			  title: "게시글을 지우면 댓글들도 모두 지워집니다 정말 지우시겠습니까?",
+			  icon: 'warning',
+			  buttons: true,
+			  dangerMode: true
+			}).then((willDelete) => { 
+				if(willDelete) {
+					post_to_url("style_board_delete_action", {"bNo" : bNo});
+				}
+			});
+	} else {
 		post_to_url("style_board_delete_action", {"bNo" : bNo});
 	}
+	
+	swal({
+		  title: "댓글을 삭제하시겠습니까?",
+		  icon: 'warning',
+		  buttons: true,
+		  dangerMode: true,
+		}).then((willDelete) => {
+			if(willDelete) {
+				
+			}
+		});
 }
 function reply_write_form() {
 	
@@ -131,7 +148,7 @@ function cancel_board_update(bNo) {
 				$("#board").html("<div id='board2'>'" + 
 						"<input type='hidden' id='updateBNo' value='" + bNo + "'>" +
 						"<h3 class='board-top'>스타일 질문</h3>" +
-						"<div class='categories col-md-6 board-title f-s-25' id='board_title_read'>"+ boardJson.bTitle + "</div>" +
+						"<div class='categories col-md-6 board-title f-s-25' id='board_title_read'><i class='fas fa-question-circle'></i>"+ boardJson.bTitle + "</div>" +
 						"<div class='col-md-6 text-left'>" +
 							"<span class='font-small'>" + boardJson.mId + "." + boardJson.bDate + ".조회수: " + boardJson.bView + "</span>" +
 						"</div>" +
@@ -191,7 +208,7 @@ function reply_write() {
 										$("#reply-top").after(
 										"<article class='reply reply-delete reply_write' id='board_" + replyBoard.bNo + "' style='display: none;'>" +
 												"<div class='col-md-12 m-top--40'>" +
-												"<div class='categories col-md-6 board-title f-s-25'>" + replyBoard.bTitle +"</div>" +
+												"<div class='categories col-md-6 board-title f-s-25'><i class='far fa-comment-dots'></i>" + replyBoard.bTitle +"</div>" +
 												"<div class='col-md-6 text-left'><span class='font-small'>" + replyBoard.mId + "." + replyBoard.bDate + "</span></div>" +
 												"</div>" +
 												"<div class='p_content m-top-50 m-bottom-30' id='board_content_read'>" +
@@ -227,8 +244,8 @@ function recommend(bNo) {
 				var isOk = confirm("로그인 후 이용 가능합니다\n" +
 					  				"로그인 하시겠습니까?");
 				if(isOk) {
-					//document.location.href="../login/login";
-					  window.open("../login/login", "staily 로그인", "width=750, height=600 resizable=no scrollbars=yes" );  
+					document.location.href="../login/login";
+					  //window.open("../login/login", "staily 로그인", "width=750, height=600 resizable=no scrollbars=yes" );  
 				}
 					
 			} else {
@@ -321,7 +338,7 @@ function reply_update_action() {
 			success: function(replyBoard) {
 				$("form[name=boardReplyUpdateF]").fadeOut(500, function() {
 					$("form[name=boardReplyUpdateF]").remove();
-					$("#board_"+replyBoard.bNo).find(".board-title").text(replyBoard.bTitle);
+					$("#board_"+replyBoard.bNo).find(".board-title").html("<i class='far fa-comment-dots'></i>    "+replyBoard.bTitle);
 					$("#board_"+replyBoard.bNo).find(".p_content").html(replyBoard.bContent);
 					$("#board_"+replyBoard.bNo).fadeIn(500);
 				});
@@ -410,7 +427,7 @@ function board_and_reply_modify_action() {
 			dataType: "json",
 			success: function(updateBoard) {
 				console.log(updateBoard);
-				clone.find("#board_title_read").html(updateBoard.bTitle);
+				clone.find("#board_title_read").html("<i class='fas fa-question-circle'></i>    " + updateBoard.bTitle);
 				clone.find("#board_content_read").html(updateBoard.bContent);
 				$('#board').fadeOut( 500, function() {
 					$("#board").empty();

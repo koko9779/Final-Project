@@ -1,63 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<style>
-	.p_content>h1,.p_content> h2,.p_content> h3,.p_content> h4 {
-		
-	line-height: inherit;
-    position: relative;
-    margin: inherit;
-    padding: inherit;
-    border-bottom: inherit;
-    font-size: inherit;
-    font-family: inherit;
-    font-weight: inherit;
-    line-height: inherit;
-    color: inherit;
-    margin: inherit;
-    font-size: inherit;
-    font-weight: normal;
-    line-height: inherit;
 
-    font-size: inherit;
-    margin-block-start: inherit;
-    margin-block-end: inherit;
-    margin-inline-start: inherit;
-    margin-inline-end: inherit;
-    font-weight: inherit;
-		
-	border-bottom: none;
-	background-image: none !important;
-	all:unset;
-	}
-		
-	.p_content>h2:after, .p_content>h3:after, .p_content>h4:after, .p_content>h5:after{
-		background-image: none !important;
-	}
-	</style>
 <link href="${pageContext.request.contextPath}/ckeditor/contents.css" rel="stylesheet">
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 
 			<!-- Hero -->
-			<div id="content_hero" style="background-image: url(http://via.placeholder.com/1440x435)">
-				
-				<img src="/staily/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
-
-				<!-- Content -->
-				<div class="container">
-					<div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0" data-translatey="100">
-						<div class="col-md-9">
-							<span class="title">The very latest</span>
-							<h1>Cinema news</h1>
-						</div>
-					</div>
-				</div>
-
+			<div id="content_hero" >
+				<iframe class="ww"
+						src="https://www.youtube-nocookie.com/embed/YubXq6Fh4S0?autoplay=1&amp;loop=1;playlist=YubXq6Fh4S0&controls=0&vq=hd720"
+						frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+						allowfullscreen></iframe>
+				<a href="#afterHeader" class="anchor">
+					<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
+				</a>
 			</div>
 
 			<!-- Section -->
-			<div class="container-fluid">
-				<div class="row">
+			<div class="container-fluid totop">
+				<div class="row" id="afterHeader">
 				<div class="col-sm-2 p-top-21">
 					<aside class="col-sm-push-1 sidebar">
 						<div class="widget p-top-7">
@@ -79,11 +40,11 @@
 						<div id="board2">
 						<input type="hidden" id="updateBNo" value="${boardOneList[0].bNo}">
 						<h3 class="board-top p-top-21">스타일 질문</h3>
-						<div class="b-title-bottom">
-						<div class="categories col-md-6 board-title f-s-25" id="board_title_read"><span class="">${boardOneList[0].bTitle}</span></div>
-						<div class="col-md-6 text-left">
-							<span class="font-large">${boardOneList[0].mId}.${boardOneList[0].bDate}.조회수: ${boardOneList[0].bView}</span>
-						</div>
+						<div class="b-board-bottom border-b-1-d8d8d8 p-b-40">
+							<div class="categories col-md-6 board-title f-s-25" id="board_title_read"><i class="fas fa-question-circle"></i>    <span class="">${boardOneList[0].bTitle}</span></div>
+							<div class="col-md-6 text-left">
+								<span class="font-large">작성자: ${boardOneList[0].mId} | 작성 날짜: ${boardOneList[0].bDate} | 조회수: ${boardOneList[0].bView}</span>
+							</div>
 						</div>
 							<div class="p_content m-top-50" id="board_content_read">
 								${boardOneList[0].bContent}
@@ -106,9 +67,9 @@
 						
 						<c:forEach var="board" items="${boardOneList}" begin="1" varStatus="status">
 						<article class="reply reply-delete reply_write" id="board_${board.bNo}">
-								<div class="col-md-12 m-top--40 b-title-bottom">
-								<div class="categories col-md-6 board-title f-s-25">${board.bTitle}</div>
-								<div class="col-md-6 text-left"><span class="font-large">${board.mId}.${board.bDate}</span></div>
+								<div class="col-md-12 m-top--40 border-b-1-d8d8d8">
+								<div class="categories col-md-6 board-title f-s-25"><i class="far fa-comment-dots"></i>    ${board.bTitle}</div>
+								<div class="col-md-6 text-left"><span class="font-large">작성자: ${board.mId} | 작성 날짜: ${board.bDate}</span></div>
 								</div>
 								<div class="p_content m-top-50 m-bottom-30" id="board_content_read">
 									${board.bContent}

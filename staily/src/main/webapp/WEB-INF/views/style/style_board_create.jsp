@@ -5,78 +5,73 @@
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 
 <!-- Hero -->
-<div id="content_hero"
-	style="background-image: url(http://via.placeholder.com/1440x435)">
-
-	<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg"
-		alt="Scroll down" class="scroll" />
-
-	<!-- Content -->
-	<div class="container">
-		<div class="row blurb scrollme animateme" data-when="exit"
-			data-from="0" data-to="1" data-opacity="0" data-translatey="100">
-			<div class="col-md-9">
-				<span class="title">The very latest</span>
-				<h1>Cinema news</h1>
-			</div>
-		</div>
-	</div>
-
+<div id="content_hero" >
+	<iframe class="ww"
+			src="https://www.youtube-nocookie.com/embed/YubXq6Fh4S0?autoplay=1&amp;loop=1;playlist=YubXq6Fh4S0&controls=0&vq=hd720"
+			frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+			allowfullscreen></iframe>
+	<a href="#afterHeader" class="anchor">
+		<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
+	</a>
 </div>
+
 
 <!-- Section -->
-<div class="container section news">
-	<div class="row">
+<div class="container-fluid totop">
+	<div class="row" id="afterHeader">
 
-		<%@ include file="/WEB-INF/views/include/include_work_sidebar.jsp"%>
-
-		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
-		<form name="boardWriteF" onSubmit="return false;">
-			<div class="row justify-content-md-center">
-					제목
-					<input type="text" name="bTitle" class="form-control">
-					<select class="custom-select" name="bType" id="inputGroupSelect03">
-						<option selected>분류</option>
-						<option value="Q">문의</option>
-						<option value="S">스타일코디</option>
-					</select>
-			</div>
-			<div class="row justify-content-md-center">
-						<textarea id="contents" name="bContent"></textarea>
-						<script>
-							CKEDITOR.replace('contents',{
-								filebrowserUploadUrl : '/staily/style/ImgUpload'
-							});
-						</script>
-			</div>
-			<div class="row justify-content-md-center">
-				<button type="submit" class="btn btn-outline-secondary"
-					style="width: 20%; font-weight: bold; margin-top: 15px;" onclick="boardCreate();">등 록</button>
-			</div>
-		</form>
+		<!-- -->
+		
+		<div class="col-sm-2" id="board-create-sidebar">
+			<aside class="col-sm-push-1 sidebar m-top-21">
+				<div class="widget">
+					<h3>Categories</h3>
+					<ul style="padding-left: 15px;">
+						<li><a href="style_main_read">전체 보기</a></li>
+						<li><a href="style_main_read_top10">top 10</a></li>
+						<li><a href="style_main_read_category?bCategory=M">영화</a></li>
+						<li><a href="style_main_read_category?bCategory=D">드라마</a></li>
+					</ul>
+				</div>
+			</aside>
 		</div>
+		
+		<div class="col-sm-10">
+			<div class=" col-sm-push-1 m-top-21" style="width: 90%">
+				<form id="boardWriteF" name="boardWriteF" onSubmit="return false;">
+					<div class="row justify-content-md-center">
+							제목
+							<input type="text" name="bTitle" class="form-control title_detail" autocomplete ="off">
+							<span>
+							<select class="custom-select form-control" name="bType" id="inputGroupSelect03">
+								<option value="S">스타일코디</option>
+							</select>
+							<select class="custom-select form-control" name="bCategory" id="inputGroupSelect04">
+								<option selected>카테고리</option>
+								<option value="M">영화</option>
+								<option value="D">드라마</option>
+							</select>
+							</span>
+					</div>
+					<div class="row justify-content-md-center">
+								<textarea id="contents" name="bContent"></textarea>
+								<script>
+									CKEDITOR.replace('contents',{
+										filebrowserUploadUrl : '/staily/style/ImgUpload'
+									});
+								</script>
+					</div>
+					<div class="row justify-content-md-center">
+						<button type="submit" class="btn btn-ghost"
+							style="width: 20%; font-weight: bold; margin-top: 15px;" onclick="board_create();">등 록</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		
 	</div>
 </div>
-<script type="text/javascript">
-function boardCreate() { 
-	CKEDITOR.instances.contents.updateElement(); 
-	if(document.boardWriteF.bTitle.value === "") { 
-		alert("제목을 입력해 주세요"); 
-		return; 
-	}else if(document.boardWriteF.bType.value === "분류") { 
-		alert("분류를 지정해 주세요"); 
-		return; 
-	}else if(document.boardWriteF.bContent.value === "") { 
-		alert("내용을 입력해 주세요"); 
-		return; 
-	}else {
-		document.boardWriteF.action = "${pageContext.request.contextPath}/style/style_create_board_action";
-		document.boardWriteF.method = "POST";
-		document.boardWriteF.submit();	
-	} 
-}
-
-</script>
 <%@ include file="/WEB-INF/views/include/include_js.jsp"%>
+<%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
 </body>
 </html>
