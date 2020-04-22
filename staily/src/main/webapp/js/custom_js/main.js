@@ -541,8 +541,10 @@ function delete_bookmark(bookset){
 
 /**********************************************************/
 function login_advice(){
-	alert('로그인이 필요한 작업입니다.');
+	alert("로그인이 필요한 작업입니다");
 	location.href="../login/login";
+
+	
 }
 function work_select() {
 	location.href="work_select";

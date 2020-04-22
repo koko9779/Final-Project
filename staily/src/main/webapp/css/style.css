@@ -223,9 +223,11 @@ hr.space-40 {
 	margin-top: 30px;
 	color: #fff;
 }
-
+.naviii{
+	margin-top: -36px !important;
+}
 .heading .tel {
-	margin-right: 15px;
+	margin: 27px;
 }
 
 .heading .search {
@@ -529,7 +531,7 @@ hr.space-40 {
 
 .navbar.banner--clone .nav li:after, .navbar.banner--clone .nav li.active a:after
 	{
-	bottom: -11px;
+	bottom: -25px;
 }
 
 .navbar.banner--clone .heading {
@@ -538,7 +540,7 @@ hr.space-40 {
 
 .navbar.banner--clone .logo img {
 	max-height: 40px;
-	margin: 31px 0;
+	margin: 30px 0;
 }
 
 .navbar.banner--clone .nav li a {
