@@ -13,10 +13,10 @@
           <div class="col-lg-7">
             <div class="p-5">  
             <div class="btn-group" role="group">
-				<button class="btn btn-secondary type-button" type="button" onclick="mType_member();">
+				<button class="btn btn-primary" type="button" onclick="mType_member();">
 					일반 회원
 				</button> 
-				<button class="btn btn-secondary type-button" type="button" onclick="mType_company();">
+				<button class="btn btn-primary" type="button" onclick="mType_company();">
 					기업 회원
 				</button> 
 			</div>
@@ -43,7 +43,7 @@
                   <input type="email" class="form-control form-control-user" id="inputEmail" name="mEmail" placeholder="이메일">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="inputAddress" name="mAddress" placeholder="주소" onclick="sample6_execDaumPostcode();">
+                  <input type="text" class="form-control form-control-user" id="inputAddress" name="mAddress" placeholder="주소" readonly onclick="sample6_execDaumPostcode();">
                 </div>
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="inputDaddress" name="mDaddress" placeholder="상세주소">
@@ -55,13 +55,6 @@
                 	오류기입란
                 </div>
                 <input type="submit" class="btn btn-primary btn-user btn-block" value="회원가입">
-                <hr>
-                <a href="index.html" class="btn btn-google btn-user btn-block">
-                  <i class="fab fa-google fa-fw"></i> Register with Google
-                </a>
-                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                  <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                </a>
               </form>
               <hr>
               <div class="text-center">

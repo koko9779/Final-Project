@@ -8,43 +8,44 @@
 
 
 <!-- Hero -->
-<div id="content_hero"
-	style="background-image: url(http://via.placeholder.com/1440x435)">
-	<a href="#afterHeader" class="anchor"> <img
-		src="${pageContext.request.contextPath}/images/scroll-arrow.svg"
-		alt="Scroll down" class="scroll" />
-	</a>
-	
+<div id="content_hero" >
 	<iframe class="ww"
-			src="https://www.youtube-nocookie.com/embed/isls26FGUaA?autoplay=1&amp;loop=1;&playlist=isls26FGUaA&controls=0&vq=hd1080"
+			src="https://www.youtube-nocookie.com/embed/${w.wVideo}?autoplay=1&amp;loop=1;playlist=${w.wVideo}&controls=0&vq=hd720"
 			frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-			allowfullscreen style="position: absolute;left: -0%;width: 100%;height: 100%;top: 0%;"></iframe>
-
-	<!-- Content -->
-	<div class="container">
-		<div class="row blurb scrollme animateme" data-when="exit"
-			data-from="0" data-to="1" data-opacity="0" data-translatey="100">
-			<div class="col-md-9">
-				<span class="title"></span>
-				<h1></h1>
-			</div>
-		</div>
-	</div>
+			allowfullscreen></iframe>
+	<a href="#afterHeader" class="anchor">
+		<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
+	</a>
 </div>
 
 <!-- Section -->
-<div class="container section news" id="afterHeader">
-	<div class="row">
+<div class="container section news totop">
+	<div class="row" id="afterHeader">
 		<%@ include file="/WEB-INF/views/include/include_work_sidebar.jsp"%>
 		<div class="col-sm-9 col-sm-push-1">
 			<h2 style="margin-bottom: 0;">이 상품이 나온 장면</h2>
 			<img
 				src="${pageContext.request.contextPath}/images/product/scene/${productOne.get(0).getpScene()}.jpg"
-				height="450px" width="850px" style="padding: 20px;">
-			<button type="button" class="btn btn-ghost" id="createBmk" style="margin: 5%; margin-left: 10px;">즐겨찾기 추가</button>
+				style="padding: 20px; height: 450px; width: 850px;">
+			<c:choose>
+				<c:when test="${not empty bmNo}">
+					<button type="button" class="btn btn-ghost" id="createBmk" style="margin: 5%; margin-left: 10px;" 
+					onClick='select_bookmark(" + ${userNo} + "," + ${productOne.get(0).getpNo()} + ")'>즐겨찾기 제거</button>
+				</c:when>
+				<c:otherwise>
+					<c:choose>
+						<c:when test="${not empty userNo}">
+							<button type="button" class="btn btn-ghost" id="createBmk" style="margin: 5%; margin-left: 10px;" 
+							onClick='create_bookmark(" + ${userNo} + "," + ${productOne.get(0).getpNo()} + ")'>즐겨찾기 추가</button>
+						</c:when>
+						<c:otherwise>
+						</c:otherwise>
+					</c:choose>
+				</c:otherwise>
+			</c:choose>
 			<!-- Section -->
 			<h2>상품 사진</h2>
-			<div class="slick-carousel news-carousel" style="height: 260px">
+			<div class="slick-carousel news-carousel" style="height: 280px">
 				<c:forEach var="product" items="${productOne}">
 					<div>
 						<img src="${pageContext.request.contextPath}/images/product/image/${product.pdImage}.jpg">
@@ -54,7 +55,7 @@
 
 			<!-- Section -->
 			<div class="row">
-				<div class="tabs">
+				<div class="tabs" style="margin-top: 60px;">
 					<ul>
 						<li><a href="#one">상품 정보</a></li>
 						<c:if test="${not empty productOne.get(0).getpAddress()}">
@@ -80,8 +81,8 @@
 										<c:choose>
 											<c:when test="${not empty userNo}">
 												<div class="dropdown-menu" id='searchDropdown'>
-														<a class="dropdown-item" href="#" id="addFriend">친구 추가</a> 
-														<a class="dropdown-item" href="#" id="searchMessage">쪽지 보내기</a>
+														<a class="dropdown-item" href="#" onClick="return false;" id="addFriend">친구 추가</a> 
+														<a class="dropdown-item" href="#" onClick="return false;" id="searchMessage">쪽지 보내기</a>
 													</div>
 											</c:when>
 											<c:otherwise>
@@ -162,9 +163,8 @@
 		</div>
 	</div>
 </div>
-<%@ include
-	file="/WEB-INF/views/detail/include/include_product_detail_js.jsp"%>
-<%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
+<%@ include file="/WEB-INF/views/detail/include/include_product_detail_js.jsp"%>
+<%@ include file="/WEB-INF/views/include/detail/include_detail_footer.jsp"%>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=727c99111bf8164d3824366e553400b6&libraries=services"></script>
 <style>
 .iw_inner {
@@ -249,10 +249,10 @@ geocoder.addressSearch(address1, function(result, status) {
 		            '            </div>' + 
 		            '            <div class="toolbar" style="text-align: center;">' + 
 		            '           	 <div class="roadview" style="float: left;width: 50%;padding: 4%">' + 
-		            '           	 	<a href="' + roadview + '">로드뷰</a>' + 
+		            '           	 	<a href="' + roadview + '" target="_blank">로드뷰</a>' + 
 		            '           	 </div>' + 
 		            '           	 <div class="direction" style="float: left;width: 50%;padding: 4%">' + 
-		            '           	 	<a href="' + direction + '">길찾기</a>' + 
+		            '           	 	<a href="' + direction + '" target="_blank">길찾기</a>' + 
 		            '           	 </div>' + 
 		            '            </div>' + 
 		            '        </div>' + 

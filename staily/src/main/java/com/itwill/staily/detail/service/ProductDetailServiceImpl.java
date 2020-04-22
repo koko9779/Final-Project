@@ -168,4 +168,9 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 		return check;
 	}
 
+	@Override
+	public int bookmarkCheck(int mNo, int pNo) throws Exception {
+		return productDetailMapper.bookmarkCheck(mNo, pNo);
+	}
+
 }

@@ -482,7 +482,7 @@ hr.space-40 {
 
 #content_hero:before {
 	top: auto;
-	height: 70%;
+	height: 0;
 }
 
 #content_hero .container .blurb {

@@ -63,14 +63,14 @@ iframe {
 					<ul id="menu-primary" class="nav navbar-nav">
 						<li class="active"><a href="/staily">메인페이지</a></li>
 						<li><a href="/staily/main/productlist_select">상품목록</a></li>
-						<li><a href="/staily/detail/product_detail">상품상세</a></li>
-						<li class="dropdown"><a href="/staily/style/style_main_read">게시판</a>
+						<li class="dropdown"><a href="/staily/style/style_main_read">커뮤니티</a>
 							<ul class="dropdown-menu">
-								<li><a href="/staily/style/style_main_read">스타일제안</a></li>
-								<li><a href="/staily/style/style_main">질문답변</a></li>
-								<li><a href="/staily/style/style_main">영주괴롭히기</a></li>
-								<li><a href="/staily/style/style_main">영주괴롭히기</a></li>
+								<li><a href="/staily/style/style_main_read">자유게시판</a></li>
+								<li><a href="/staily/style/style_main_read">스타일Q&A</a></li>
+								<li><a href="/staily/style/style_main_read">1:1문의</a></li>
+								<li><a href="/staily/style/style_main_read">상품홍보</a></li>
 							</ul></li>
+						<li><a href="/staily/notice/main">공지사항</a></li>
 						<c:choose>
 							<c:when test="${userId eq 'admin'}">
 								<li><a href="/staily/admin/main">관리자페이지</a></li>

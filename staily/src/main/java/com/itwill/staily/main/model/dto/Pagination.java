@@ -36,7 +36,6 @@ public class Pagination {
         setCurEndIndex(curPage);
     	setEndIndex(listCnt);
     	setEndPage(pageCnt);
-        
     }
  
 	public int getPageSize() {
@@ -68,7 +67,7 @@ public class Pagination {
 	}
 
     public void setPageCnt(int listCnt) {
-        this.pageCnt = (int) Math.ceil(listCnt*1.0/pageSize);
+        this.pageCnt = listCnt/pageSize +1;
     }
 
 	public int getStartPage() {

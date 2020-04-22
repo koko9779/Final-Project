@@ -1,33 +1,49 @@
 //product_create.jsp
-var guManager = null;
-var guManager2 = null;
-
-
-function afterFileTransfer(realname, filename, filesize) {
-
-	var realname9 = document.getElementById('realname');
-	var filename9 = document.getElementById('filename');
-	var filesize9 = document.getElementById('filesize');
-
-	realname9.value = realname;
-	filename9.value = filename;
-	filesize9.value = filesize;
-	
-	document.createP.submit();
-}
+$("#pPrice").on("focus", function() {
+    var x = $(this).val();
+    x = removeCommas(x);
+    $(this).val(x);
+}).on("focusout", function() {
+    var x = $(this).val();
+    if(x && x.length > 0) {
+        if(!$.isNumeric(x)) {
+            x = x.replace(/[^0-9]/g,"");
+        }
+        x = addCommas(x);
+        $(this).val(x);
+    }
+}).on("keyup", function() {
+    $(this).val($(this).val().replace(/[^0-9]/g,""));
+});
 
 function productCreate() {
-	guManager.uploadFiles();
-	document.createP.action = "product_create_action";
-	document.createP.method = "POST";
-	alert("상품 등록이 완료되었습니다.");	
+	var pName = $('#pName').val();
+	var pPrice = $('#pPrice').val();
+	var pUrl = $('#pUrl').val();
+	var filesize1 = $('#filesize1').val();
+	var filesize2 = $('#filesize2').val();
+	
+	//alert(pName + " === " + pPrice + " === " + pUrl + " === " + filesize1 + " === " + filesize2);
+	
+	if(pName == '' || pPrice == '' || pUrl == '' || filesize1 == '' || filesize2 == '') {
+		swal({
+			title: "필수 항목을 모두 입력해주세요",
+			icon: "warning" //"info,success,warning,error" 중 택1
+		});		
+	}
+	else {
+		swal({
+			title: "상품 등록이 완료되었습니다",
+			icon: "success" //"info,success,warning,error" 중 택1
+		})
+		.then(() => {
+			document.createP.action = "product_create_action";
+			document.createP.method = "POST";
+			document.createP.submit();
+		});
+	}
+	
 };
-
-function pdImageCreate() {
-	document.createP.action = "pdImage_create";
-	document.createP.method = "post";
-}
-
 
 
 function work_search() {
@@ -78,6 +94,10 @@ function execDaumPostcode() {
 			// 우편번호와 주소 정보를 해당 필드에 넣는다.
 			document.getElementById("pAddress").value = addr;
 
+			//상세 주소 입력창을 연다.
+			$('#pDaddress').attr('readonly', false);
+			$('#pDaddress').attr('placeholder', '상세 주소를 입력하세요');
+			
 			// 커서를 상세주소 필드로 이동한다.
 			document.getElementById("pDaddress").focus();
 		}
@@ -85,12 +105,108 @@ function execDaumPostcode() {
 };
 
 // product_detail.jsp
+$('#workEpisode').change(function(e) {
+    console.log('#workEpisode 변경');
+    var contextPath = $("option:selected").attr("contextPath");
+    var wNo = $("option:selected").attr("wNo");
+    var wdEpisode = $("option:selected").val();
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var urlcheck = url.searchParams.get("wdEpisode");
+    if(urlcheck != null) {
+       var params = 'wNo=' + wNo + '&wdEpisode=' + wdEpisode;
+       location.href="episode?"+params;
+    }
+    else {
+       var params = 'wNo=' + wNo + '&wdEpisode=' + wdEpisode;
+       location.href = "../main/worklist_select/episode?" + params;
+    }
+});
+
+function create_bookmark(userNo, pNo) {
+	var params = "userNo=" + userNo + "&pNo=" + pNo;
+	var product = "#product_" + pNo;
+
+	$.ajax({
+		url : "../main/create_bookmark",
+		method : "POST",
+		data : params,
+		success : function(result) {
+			if(result == 'true') {
+				swal({
+					   title: "즐겨찾기에 추가되었습니다",
+					   icon: "success" //"info,success,warning,error" 중 택1
+				});
+				$('#createBmk').html('즐겨찾기 제거');				
+				$('#createBmk').attr('onClick', "select_bookmark(" + userNo + ',' + pNo + ");return false;");
+			}
+		}			
+	});
+};
+
+function select_bookmark(userNo, pNo) {
+	var params = "userNo=" + userNo + "&pNo=" + pNo;
+	$.ajax({
+		url : "../main/select_bookmark",
+		method : "POST",
+		data : params,
+		success :function(bookset) {
+			delete_bookmark(bookset);
+		}
+	});
+}
+
+function delete_bookmark(bookset) {
+	var bmNo = "" + bookset;
+	var userNo = 0;
+	var pNo = 0;
+	var product;
+	
+	if(bmNo.indexOf(",") != -1) {
+		var bookset = bookset.split(',');
+		bmNo = bookset[0];
+		userNo = bookset[1];
+		pNo = bookset[2];
+		
+		//alert(bookset + "===" + bmNo + "===" + userNo + "=== "+ pNo);
+	}
+	if(pNo == 0) {
+		product = "#bookmark_" + bmNo;
+	}
+	else {
+		product = "#product_" + pNo;
+	}
+	var params = "bmNo=" + bmNo + "&userNo=" + userNo + "&pNo=" + pNo;
+		$.ajax({
+			url : "../main/delete_bookmark",
+			method : "POST",
+			data : params,
+			success : function(result) {
+				if(result == 'true') {
+					swal({
+						   title: "즐겨찾기에서 제거되었습니다",
+						   icon: "success" //"info,success,warning,error" 중 택1
+					});
+					$('#createBmk').html('즐겨찾기 추가');				
+					$('#createBmk').attr('onClick','create_bookmark(' + userNo + ',' + pNo + ');return false;');
+				}
+				else {
+					swal({
+						   title: "에러 발생",
+						   icon: "error" //"info,success,warning,error" 중 택1
+					});
+				}
+			}
+		});
+};
+
 $("#reply").on("click", function(e) {
 	getReplies();
 });
 
 function getReplies() {
 var pNo = $('#pNo').val();
+var myNo = $('#mNo').val();
 
 	$.ajax({
 		url : "reply_list",
@@ -103,7 +219,9 @@ var pNo = $('#pNo').val();
 			for (i = 0; i < data.length; i++) {
 				a += "<div class='row'>";
 				a += "<h4 class='no-underline'>" + data[i].mId;
-				a += "<button onClick='deleteReply(" + data[i].rNo + ", " + data[i].mNo + ")' class='btn btn-ghost' style='float: right;'>삭제</button></h4>";
+				if(data[i].mNo == myNo) {
+					a += "<button onClick='deleteReply(" + data[i].rNo + ", " + data[i].mNo + ")' class='btn btn-ghost' style='float: right;'>삭제</button></h4>";
+				}
 				a += "<p>" + data[i].rContent + "</p>";
 				a += "<button onClick='incReport(" + data[i].rNo + ")' class='btn btn-ghost' style='float: right;'>신고 " + data[i].rReport + "</button>";
 				a += "<button onClick='incRec(" + data[i].rNo + ")' class='btn btn-ghost' style='float: right;' value='" + data[i].rNo + "'>추천 " + data[i].rRecommend + "</button>";
@@ -124,26 +242,36 @@ $('#createreply').on("click", function(e) {
 
 	//alert(pNo + ' : ' + mNo + ' : ' + rContent + ' : ' + wNo);
 
-	$.ajax({
-		url : "reply_create",
-		type : "post",
-		dataType : "text",
-		data : {
-			"mNo" : mNo,
-			"wNo" : wNo,
-			"pNo" : pNo,
-			"rContent" : rContent
-		},
-		error : function(request, error) {
-	    	 alert("fail");
-	 			// error 발생 이유를 알려준다.
-	 		 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	 	},
-		success : function(data) {			
-			getReplies();
-			$('#rContent').val('');
-		}
-	});
+	if(rContent == '') {
+		swal({
+			   title: "내용을 입력해주세요",
+			   icon: "error" //"info,success,warning,error" 중 택1
+		});
+	}
+	else {
+		$.ajax({
+			url : "reply_create",
+			type : "post",
+			dataType : "text",
+			data : {
+				"mNo" : mNo,
+				"wNo" : wNo,
+				"pNo" : pNo,
+				"rContent" : rContent
+			},
+			error : function(request, error) {
+				swal({
+					title: "실패",
+					text: "code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error,
+					icon: "error" //"info,success,warning,error" 중 택1
+				});
+			},
+			success : function(data) {			
+				getReplies();
+				$('#rContent').val('');
+			}
+		});
+	}
 });
 
 function deleteReply(rNo, mNo) {
@@ -155,41 +283,58 @@ function deleteReply(rNo, mNo) {
 	//alert(rNo + " " + pNo + " " + mNo);
 	//alert("나 : " + myNo + " 댓글 작성자 : " + memNo);
 	
-	if(confirm("댓글을 삭제하시겠습니까?") == true) {
-		if(myNo == memNo) {
-			$.ajax({
-				url : "reply_delete",
-				data : {"rNo" : replyNo, "pNo" : pNo, "mNo" : myNo},
-				type : "post",
-				dataType : "json",
-				success : function(data) {
-					if(data == 1) {
-						alert("댓글이 삭제되었습니다.");
-						getReplies();
-					}
-					else {
-						alert("오류가 발생했습니다.");
-						getReplies();
-					}
+	swal({
+		  title: "댓글을 삭제하시겠습니까?",
+		  icon: 'warning',
+		  buttons: true,
+		  dangerMode: true,
+		}).then((willDelete) => {
+			if(willDelete) {
+				if(myNo == memNo) {
+					$.ajax({
+						url : "reply_delete",
+						data : {"rNo" : replyNo, "pNo" : pNo, "mNo" : myNo},
+						type : "post",
+						dataType : "json",
+						success : function(data) {
+							if(data == 1) {
+								swal({
+									title: "댓글이 삭제되었습니다",
+									icon: "success" //"info,success,warning,error" 중 택1
+								});
+								getReplies();
+							}
+							else {
+								swal({
+									title: "오류가 발생했습니다",
+									icon: "error" //"info,success,warning,error" 중 택1
+								});
+								getReplies();
+							}
+						}
+					});
 				}
-			});
-		}
-		else {
-			alert("다른 사람의 댓글은 삭제할 수 없습니다.");
-		}
-		
-	}
-	else {
-		return false;
-	}
-	
+				else {
+					swal({
+						title: "다른 사람의 댓글은 삭제할 수 없습니다.",
+						icon: "error" //"info,success,warning,error" 중 택1
+					});
+				}				
+			}
+			else {
+				return false;
+			}
+		})		
 }
 
 function incReport(rNo) {
 	var myNo = $('#mNo').val();
 	
 	if(myNo == '') {
-		alert("신고하려면 로그인하세요.");
+		swal({
+			   title: "신고하려면 로그인하세요",
+			   icon: "warning" //"info,success,warning,error" 중 택1
+		});
 	}
 	else {
 		
@@ -200,7 +345,10 @@ function incRec(rNo) {
 	var myNo = $('#mNo').val();
 	
 	if(myNo == '') {
-		alert("추천하려면 로그인하세요.");
+		swal({
+			   title: "추천하려면 로그인하세요",
+			   icon: "warning" //"info,success,warning,error" 중 택1
+		});
 	}
 	else {
 		
@@ -208,7 +356,7 @@ function incRec(rNo) {
 }
 
 //친구 추가
-$('#searchDropdown a:nth-child(1)').click(function(e){
+$('#searchDropdown a:nth-child(1)').click(function(e) {
 	e.preventDefault();
 	var html = "";
 	var params = {
@@ -224,21 +372,18 @@ $('#searchDropdown a:nth-child(1)').click(function(e){
 		success : function(result){
 			if(result.status == 'success'){
 				swal({
-				   title: "친구 추가 성공",
-				   text: "친구 추가가 성공했습니다",
-				   icon: "success" //"info,success,warning,error" 중 택1
+					title: "친구 추가가 성공했습니다",
+					icon: "success" //"info,success,warning,error" 중 택1
 				});
 			}else if(result.status == 'D'){
 				swal({
-				   title: "친구 추가 불가",
-				   text: "이미 친구 추가된 회원입니다",
-				   icon: "error" //"info,success,warning,error" 중 택1
+					title: "이미 친구 추가된 회원입니다",
+					icon: "error" //"info,success,warning,error" 중 택1
 				});
 			}else if(result.status == 'M'){
 				swal({
-				   title: "친구 추가 불가",
-				   text: "본인은 친구로 추가할 수 없습니다",
-				   icon: "error" //"info,success,warning,error" 중 택1
+					title: "본인은 친구로 추가할 수 없습니다",
+					icon: "error" //"info,success,warning,error" 중 택1
 				});
 			};
 			
@@ -255,9 +400,8 @@ $('#searchword').click(function(e){
 	
 	if(myNo == '') {
 		swal({
-		   title: "친구 기능 이용 불가",
-		   text: "이 기능을 이용하려면 로그인하세요",
-		   icon: "warning" //"info,success,warning,error" 중 택1
+			title: "이 기능을 이용하려면 로그인하세요",
+			icon: "warning" //"info,success,warning,error" 중 택1
 		});
 	}
 	else {
@@ -284,4 +428,4 @@ $('#searchDropdown a:nth-child(2)').click(function(e){
 	e.preventDefault();
 	var noV = $(this).attr('value');
 	window.open("../mypage/message?mNo="+noV, "_blank","width=750, height=5500, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
-});
+})

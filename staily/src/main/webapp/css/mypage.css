@@ -38,6 +38,15 @@
 #dataTable_info{
 	display : none;
 }
+
+.table-responsive {
+    overflow-x: hidden;
+}
+.pagination>.active>a , .pagination>.active>a:hover {
+   background-color: #e76115 !important;
+    border-color: #e76115 !important;
+
+}
 /*
 .dataTables_empty {
 	display : none;

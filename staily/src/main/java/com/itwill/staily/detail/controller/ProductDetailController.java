@@ -16,12 +16,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.staily.detail.model.dto.ProductEx;
 import com.itwill.staily.detail.service.ProductDetailService;
 import com.itwill.staily.detail.service.WorkDetailService;
+import com.itwill.staily.main.service.ListService;
+import com.itwill.staily.main.service.MainService;
+import com.itwill.staily.mypage.model.dto.Bookmark;
 import com.itwill.staily.util.Work;
  
 @Controller
@@ -31,6 +35,10 @@ public class ProductDetailController {
 	private WorkDetailService workDetailService;
 	@Autowired
 	private ProductDetailService productDetailService;
+	@Autowired
+	private MainService mainService;
+	@Autowired
+	private ListService listService;
 	
 	@RequestMapping("/product_detail")
 	public String selectProductOne(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
@@ -44,7 +52,17 @@ public class ProductDetailController {
 			
 			String pNo = request.getParameter("pNo");
 			String wNo = request.getParameter("wNo");
-					    
+			
+			if(userNo != null) {
+				List<Bookmark> bmList = mainService.selectByBookmark(userNo);
+				request.setAttribute("bmList", bmList);		
+				
+				if(productDetailService.bookmarkCheck(userNo, Integer.parseInt(pNo)) > 0) {
+					Integer bmNo = (Integer)listService.selectBookmarkNo(userNo, Integer.parseInt(pNo));
+					request.setAttribute("bmNo", bmNo);								
+				}
+			}
+								   
 			List<ProductEx> p = productDetailService.selectProductOne(Integer.parseInt(pNo));
 			Work w = workDetailService.selectWorkOne(Integer.parseInt(wNo));
 			productDetailService.increaseProductView(Integer.parseInt(pNo));
@@ -64,10 +82,29 @@ public class ProductDetailController {
 		
 		
 	}	
-	
+
+	@RequestMapping("/product_create")
+	public ModelAndView product_create(HttpServletResponse response, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		
+		try {			
+			String wNo = request.getParameter("wNo");
+
+			Work w = workDetailService.selectWorkOne(Integer.parseInt(wNo));
+			
+			request.setAttribute("workOne", w);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.setViewName("detail/product_create");
+		
+		return mv;		
+	}
 	
 	@RequestMapping("/product_create_action")
-	public ModelAndView createProduct(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public ModelAndView product_create_action(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		
 		try {			
@@ -80,13 +117,13 @@ public class ProductDetailController {
 			String pUrl = request.getParameter("pUrl");
 			String pAddress = request.getParameter("pAddress");
 			String pDaddress = request.getParameter("pDaddress");
-			String pScene = request.getParameter("filesize");
+			String pScene = request.getParameter("filesize1");
 			
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		    String pDate = df.format(new Date());
+			
+			String[] pdImage = request.getParameterValues("filesize3");
 						
-			String[] pdImage = request.getParameterValues("filesize2");
-					
 			ProductEx p = new ProductEx(mNo, Integer.parseInt(wNo), 
 					pName, Integer.parseInt(pPrice), pUrl, pAddress, pDaddress, pScene, pDate);
 			
@@ -100,9 +137,7 @@ public class ProductDetailController {
 			}
 				
 			productDetailService.createProductDetail(pdImage);				
-
-			
-			
+		
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -115,12 +150,14 @@ public class ProductDetailController {
 	}	
 	
 	@RequestMapping("/upload")
+	@ResponseBody
 	public void upload(HttpServletResponse response, HttpServletRequest request, 
 			@RequestParam("Filedata") MultipartFile Filedata) { 
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
 		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
 		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
-		File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
+		File f = new File("C:\\Users\\Jacob\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
+		//File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
 		
 		try {
 			
@@ -134,12 +171,14 @@ public class ProductDetailController {
 	}
 	
 	@RequestMapping("/upload2")
+	@ResponseBody
 	public void upload2(HttpServletResponse response, HttpServletRequest request, 
 			@RequestParam("Filedata") MultipartFile Filedata) { 
 		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
 		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
 		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
-		File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		File f = new File("C:\\Users\\Jacob\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
+		//File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
 		
 		try {
 			
@@ -151,60 +190,38 @@ public class ProductDetailController {
 		}
 	}
 	
+	@RequestMapping("/pdScene_create")
+	public String pdScene_create() {
+		return "detail/pdScene_create";
+	}	
 	
-	@RequestMapping("/pdImage_create")
-	public ModelAndView pdImage_create(HttpServletResponse response, HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView();
-		
-		try {			
-			String wNo = request.getParameter("wNo");
-			String pNo = request.getParameter("pNo");
-			
-			request.setAttribute("pNo", pNo);
-			request.setAttribute("wNo", wNo);
+	@RequestMapping("/pdScene_create_action")
+	@ResponseBody
+	public void pdScene_create_action(HttpServletRequest request, HttpServletResponse response) {
+		try {		
+			String pdScene = request.getParameter("filesize1");
+			request.setAttribute("filesize1", pdScene);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		mv.setViewName("detail/pdImage_create");
-		
-		return mv;		
+	}	
+
+	@RequestMapping("/pdImage_create")
+	public String pdImage_create() {
+		return "detail/pdImage_create";
 	}
 	
-	
 	@RequestMapping("/pdImage_create_action")
-	public ModelAndView createProductDetail(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mv = new ModelAndView();
-		
+	@ResponseBody
+	public void createProductDetail(HttpServletRequest request, HttpServletResponse response) {
 		try {		
-			String wNo = request.getParameter("wNo");
 			String pdImage = request.getParameter("filesize2");
-			Pattern p = Pattern.compile(",");
-			Matcher m = p.matcher(pdImage);
-			int cnt = 0;
-			
-			for (int i = 0; m.find(i); i = m.end()) {
-				cnt++;
-			}
-			request.setAttribute("cnt", cnt + 1);
-			
-			for(int i = 0; i < cnt + 1; i++) {
-				String[] filesize2 = pdImage.split(",");
-				String Image = filesize2[i];
-				request.setAttribute("Image" + (i + 1), Image);
-			}
-			
-			Work w = workDetailService.selectWorkOne(Integer.parseInt(wNo));
-			request.setAttribute("workOne", w);
+			request.setAttribute("filesize2", pdImage);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		mv.setViewName("detail/product_create");
-		
-		return mv;		
 	}	
 	
 	/*

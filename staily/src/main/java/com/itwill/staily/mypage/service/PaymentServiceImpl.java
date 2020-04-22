@@ -1,5 +1,7 @@
 package com.itwill.staily.mypage.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class PaymentServiceImpl implements PaymentService {
 
 	@Override
 	public boolean createPayment(Payment payment) throws Exception {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		String pyDate = df.format(new Date());
+		payment.setPyDate(pyDate);
 		return paymentMapper.createPayment(payment);
 	}
 
@@ -46,6 +51,31 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public boolean updateProductN(int mNo) throws Exception {
 		return paymentMapper.updateProductN(mNo);
+	}
+
+	@Override
+	public int checkN(int mNo) throws Exception {
+		int result=0;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date day1 = new Date();				
+		Date day2 = null;
+		List<Payment> paymentList = selectList(mNo);
+		int count = paymentList.size()-1;
+		if(count == -1) {
+			result = 0;
+			return result;
+		}
+		day2 = dateFormat.parse(paymentList.get(count).getEndDate());
+		int compare = day1.compareTo(day2);
+		if(compare > 0) {
+			updateCompanyN(mNo);
+			updateProductN(mNo);
+			result = 1;
+			return result;
+		}else {
+			result = 2;
+			return result;
+		}
 	}
 
 	

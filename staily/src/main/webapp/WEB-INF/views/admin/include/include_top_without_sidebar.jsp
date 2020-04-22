@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,4 +17,5 @@
 <!-- Slick -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/slick.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/slick-theme.css"/>
+
 </head>

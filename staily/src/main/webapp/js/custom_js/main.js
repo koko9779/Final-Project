@@ -18,6 +18,7 @@ $(window).on('scroll',function () {
 
 	    }
 	}
+
 });
 
 //다음 게시물을 보이게 하는 함수
@@ -40,9 +41,11 @@ function getList(curPage){
 	if(wdEpisode==null){
 		var params = 'wNo='+wNo+'&nextPage='+(curPage+1);
 		var moveUrl = 'worklist_select/detail';
+		var temp = 0;
 	}else{
-		var params = 'wNo='+wNo+'&wdEpisode'+wdEpisode+'&nextPage='+(curPage+1);
-		var moveUrl = 'worklist_select/episode/detail';
+		var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode+'&nextPage='+(curPage+1);
+		var moveUrl = 'episode/detail';
+		var temp = 1;
 	}
     $.ajax({
         type : 'POST',  
@@ -55,7 +58,6 @@ function getList(curPage){
 			var bmList = jsonData.bmList;
 			var mwArray = jsonData.list;
 			var endPage = jsonData.endPage;
-			//console.log("현재 페이지"+curPage+",마지막페이지"+endPage);
 			if (curPage<=endPage){ 
 				/**for문 시작*********************************/
 				for (var i = 0; i < mwArray.length; i++) {
@@ -76,7 +78,11 @@ function getList(curPage){
 					html += "<input type='hidden' value='"+pPno+"' name='pNo'>";
 					html += "<div class='movie-poster2'>";
 					html += "<img onclick='productpage("+wNo+","+pPno+")'";
-					html += " src='../images/product/scene/"+pScene+".jpg'";
+					if(temp==0){
+						html += " src='../images/product/scene/"+pScene+".jpg'";
+					}else{
+						html += " src='../../images/product/scene/"+pScene+".jpg'";						
+					}
 					html += " alt='"+pName+"' style='width:850px; height:450px; margin: 0;cursor: pointer;'/>";
 					html += "</div>";
 					html += "<div style='height:35px;'>";
@@ -85,7 +91,12 @@ function getList(curPage){
 						if(bmList=="" || bmList==undefined){
 							html += "<input class='material-icons' type='image'";
 							html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
-							html += " src='../images/emptystar.png'";
+							if(temp==0){
+								html += " src='../images/emptystar.png'";
+							}else{
+								html += " src='../../images/emptystar.png'";
+							}
+							
 							html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>"; 
 						}
 						
@@ -101,12 +112,20 @@ function getList(curPage){
 								if(cnt==1){
 									html += "<input class='material-icons' type='image'"; 
 									html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 제거'";
-									html += " src='../images/star.png'";
+									if(temp==0){
+										html += " src='../images/star.png'";
+									}else{
+										html += " src='../../images/star.png'";										
+									}
 									html += " onclick='select_bookmark("+userNo+","+pPno+");return false;'>";
 								}else{
 									html += "<input class='material-icons' type='image'";
 									html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
-									html += " src='../images/emptystar.png'";
+									if(temp==0){
+										html += " src='../images/emptystar.png'";
+									}else{
+										html += " src='../../images/emptystar.png'";										
+									}
 									html += " onclick='create_bookmark("+userNo+","+pPno+");return false;'>";  
 								}
 							
@@ -115,7 +134,11 @@ function getList(curPage){
 					}else{
 						html += "<input class='material-icons' type='image'";
 						html += " style='border: none; width: 4%; float:left; padding: 0px;' alt='즐겨찾기 등록'";
-						html += " src='../images/emptystar.png'";
+						if(temp==0){
+							html += " src='../images/emptystar.png'";
+						}else{
+							html += " src='../../images/emptystar.png'";										
+						}
 						html += " onclick='login_advice(); return false;'>";                                     
 					}
 					html += "<div style='float:right;'>";
@@ -134,15 +157,19 @@ function getList(curPage){
 						showLoadingDialog(false);
 						isVisible=false;
 						page++;
-					}else{
+					}else{ 
+						console.log(pPno);
+						var lastContent = $('#mwList form:last-child').offset().top;
+						$('html').animate({scrollTop: lastContent-150}, 1000);
 						showLoadingDialog(false);
 						isVisible=true;
 					}
-				},2000);
+				},1000);
             }else{
 				$(".mwList").append(html); 
 				isVisible=true;
             }
+
        }
     }); 
 };
@@ -150,7 +177,15 @@ function getList(curPage){
 //다음 게시물이 보기전에 생기는 로딩이미지
 function showLoadingDialog(loadingCheck) {
 	if (loadingCheck) {
-		var dialogDivE = "<img class='loading' style='margin: 0 45%; width: 10%;' src='../images/main/Spin-1s-200px.gif'>";
+		var url_string = window.location.href;
+		var url = new URL(url_string);
+		var wdEpisode = url.searchParams.get("wdEpisode");
+		var dialogDivE = "<img class='loading' style='margin: 0 45%; width: 10%;'";
+		if(wdEpisode==null){
+			dialogDivE += " src='../images/main/Spin-1s-200px.gif'>";
+		}else{
+			dialogDivE += " src='../../images/main/Spin-1s-200px.gif'>";			
+		}
 		if(!$('.loading').length){
 			$(".mwListEnd").append(dialogDivE); 			
 		}
@@ -161,6 +196,31 @@ function showLoadingDialog(loadingCheck) {
 
 
 $(document).ready(function(){
+	
+	if($('#sidebar').length){
+		// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+		var floatPosition = parseInt($("#sidebar").css('top'));
+		// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+
+		$(window).scroll(function() {
+			// 현재 스크롤 위치를 가져온다.
+			var scrollTop = $(window).scrollTop();
+			if(scrollTop<407){
+				var newPosition = floatPosition + "px";				
+			}else{
+				var newPosition = scrollTop+ (floatPosition-300) + "px";
+			}
+			/* 애니메이션 없이 바로 따라감
+			 $("#floatMenu").css('top', newPosition);
+			 */
+
+			$("#sidebar").stop().animate({
+				"top" : newPosition
+			}, 500);
+
+		}).scroll();
+	}
+	
 	$('.slick-carousel.newIn').not('.slick-initialized').slick({
 		autoplay: false,
 		autoplaySpeed: 3000,
@@ -193,10 +253,11 @@ $(document).ready(function(){
 		var urlcheck = url.searchParams.get("wdEpisode");
 		if(urlcheck!=null){
 			var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode;
-			location.href="../worklist_select/episode?"+params;
+			location.href="episode?"+params;
+		}else{
+			var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode;
+			location.href="worklist_select/episode?"+params;
 		}
-		var params = 'wNo='+wNo+'&wdEpisode='+wdEpisode;
-		location.href="worklist_select/episode?"+params;
 	});
 	//ajax
 	//worklist 회차 출력
@@ -482,4 +543,8 @@ function delete_bookmark(bookset){
 function login_advice(){
 	alert('로그인이 필요한 작업입니다.');
 	location.href="../login/login";
+}
+function work_select() {
+	location.href="work_select";
+	//window.open('work_select');
 }

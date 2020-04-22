@@ -12,8 +12,8 @@
         <div class="card o-hidden border-0 shadow-lg my-5">
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
-            <div class="row">
-              <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
+            <div class="row">  
+              <div class="col-lg-6 d-none d-lg-block bg-id-image"></div>
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
@@ -55,15 +55,21 @@
  <script type="text/javascript">
  $(function() {
 	var msgE = $("#msgE").val();
-	if(msgE === "" || msg === undefined) {
+	if(msgE === "" || msgE === undefined) {
 		return;
 	}else {
-		alert(msgE);
-		location.href = "id_read"
+		//alert(msgE);
+			swal({
+			  title: '에러 메세지',
+			  icon: 'error',
+			  text: msgE,
+			}).then(() => {
+				location.href = "id_read";
+			});
 		return;
 	}
 });
  </script>
    </body>
-
+  
 </html> 

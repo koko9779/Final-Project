@@ -1,8 +1,18 @@
+/************ navbar **************/
+function login_click() {
+	 window.open("/staily/login/login", "staily 로그인", "width=750, height=600 resizable=no scrollbars=yes" );  
+}
 /*********** login.jsp ************/
 function login_action() {
 	document.f.action="login_action";
 	document.f.method="POST";
 	document.f.submit();
+}
+
+function loginKeyup(){
+	if(event.keyCode == 13) {
+		login_action();
+	}	
 }
 
 /********** id_read.jsp ************/
@@ -21,6 +31,7 @@ function find_id() {
 }
 
 /***************** member_create.jsp ******************/
+
 
 $(window)
 .on(

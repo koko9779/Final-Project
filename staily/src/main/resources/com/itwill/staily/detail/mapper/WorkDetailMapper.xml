@@ -3,13 +3,13 @@
 <mapper namespace="com.itwill.staily.detail.mapper.WorkDetailMapper">
 	<select id="selectWorkOne" parameterType="int"
 		resultType="com.itwill.staily.util.Work">
-		select w_no, w_name, w_category, w_date, w_poster, w_tepisode, w_view
+		select w_no, w_name, w_category, w_date, w_poster, w_tepisode, w_view, w_video
 		from work
 		where w_no = #{wNo}
 	</select>
 	
 	<select id="selectWorkAll" resultType="com.itwill.staily.util.Work">
-		select w_no, w_name, w_poster, w_date, w_tepisode, w_category
+		select w_no, w_name, w_poster, w_date, w_tepisode, w_category, w_video
 		from work
 	</select>
 	

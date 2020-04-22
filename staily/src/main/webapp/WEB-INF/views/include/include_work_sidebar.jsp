@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf" %>
-<script type="text/javascript">
-function work_select() {
-	location.href="work_select";
-	//window.open('work_select');
-}
-</script>
-<aside class="col-sm-3 col-sm-pull-1 sidebar">
+<aside class="col-sm-3 col-sm-pull-1 sidebar" id="sidebar">
 	<div class="widget">
 		<form id="work_${w.wNo}" method="post">
 			<input type="hidden" value="${w.wNo}" name="wNo" />
@@ -17,8 +11,15 @@ function work_select() {
 	</div>
 	<div class="widget">
 		<select class="form-control" id="workEpisode">
-			<c:forEach begin="1" end="${tepisode}" step="1" varStatus="status">
-	 			<option value="${status.current}" wNo="${w.wNo}" contextPath = "${pageContext.request.contextPath}">${status.current}회</option>
+			<c:forEach begin="0" end="${tepisode}" step="1" varStatus="status">
+				<c:choose>
+					<c:when test="${status.current eq 0}">
+		 				<option value="${status.current}" wNo="${w.wNo}" contextPath = "${pageContext.request.contextPath}">회차 선택하기</option>					
+					</c:when>
+					<c:otherwise>
+	 					<option value="${status.current}" wNo="${w.wNo}" contextPath = "${pageContext.request.contextPath}">${status.current}회</option>
+	 				</c:otherwise>
+ 				</c:choose>
 			</c:forEach>
 		</select>
 	</div>	
@@ -30,5 +31,5 @@ function work_select() {
 		</form>
 	</div>
 	-->
-	<input type="button" value="상품 등록" onClick="work_select()"/>
+	<input type="button" value="상품 등록" onClick="work_search()"/>
 </aside>

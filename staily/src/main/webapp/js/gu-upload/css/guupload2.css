@@ -19,7 +19,7 @@
 }
  
 /* -- gu-upload Styles ------------------------------- */
-.guFileList2 .filerow {  /* SWFUpload: progressWrapper+ progressContainer*/ 
+.guFileList2 .filerow2 {  /* SWFUpload: progressWrapper+ progressContainer*/ 
 	overflow: hidden;
 	margin: 1px;
 	padding: 3px;
@@ -27,7 +27,7 @@
 	background-color: #F7F7F7;
 }
 
-.guFileList2_thumbnail .filerow {
+.guFileList2_thumbnail .filerow2 {
 	width: 100px;
 	height: 91%;
 	overflow: hidden;
@@ -65,32 +65,32 @@
 	background-position:center;
 }
 
-.guFileList2 .filerow .filesizeContainer { /*SWFUpload: progressBarStatus*/
+.guFileList2 .filerow2 .filesizeContainer { /*SWFUpload: progressBarStatus*/
 	float: right;
 	width: 110px;
 	white-space: nowrap;
 	text-align: right;
 }
-.guFileList2_thumbnail .filerow .filesizeContainer { /*SWFUpload: progressBarStatus*/
+.guFileList2_thumbnail .filerow2 .filesizeContainer { /*SWFUpload: progressBarStatus*/
 	margin-top: 2px;
 	width: 100%;
 	white-space: nowrap;
 }
 
-.guFileList2 .filerow .filesize { 
+.guFileList2 .filerow2 .filesize { 
 	margin-right: 20px;
 	width: auto;
 	text-align: right;
 }
 
-.guFileList2_thumbnail .filerow .filesize { 
+.guFileList2_thumbnail .filerow2 .filesize { 
 	margin-right: 20px;
 	width: auto;
 	text-align: center;
 	overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
 }
 
-.filerow .fileremove {	/*SWFUpload: a.progressCancel*/
+.filerow2 .fileremove {	/*SWFUpload: a.progressCancel*/
 	float: right;
 	height: 14px;
 	width: 14px;
@@ -99,7 +99,7 @@
 	margin-top: 3px;
 }
 
-.filerow .progressBar {
+.filerow2 .progressBar {
 	width: 0%; 
 	background-color: #337ab7;
 }

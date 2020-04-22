@@ -1,6 +1,7 @@
 package com.itwill.staily.mypage.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -152,10 +153,11 @@ public class MypageController {
 	//�쉶�썝�깉�눜
 	@RequestMapping("member_delete")
 	@ResponseBody
-	public String member_delete(@RequestParam("mNo") int mNo) {
+	public String member_delete(@RequestParam("mNo") int mNo, HttpSession session) {
 		boolean result = false;
 		try {
 			result = mypageService.deleteMember(mNo);
+			session.invalidate();
 			return result+"";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -462,10 +464,22 @@ public class MypageController {
 		List<Payment> paymentList;
 		try {
 			Integer mNo = (Integer)session.getAttribute("userNo");
-			if(mNo==null) {
-				mNo = 7;
-			}
 			paymentList = paymentService.selectList(mNo);
+			int count = paymentList.size()-1;
+			if(count == -1) {
+				return "mypage/payment_list";
+			}
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			Date day1 = new Date();				
+			Date day2 = null;
+			String endDate1 = paymentList.get(count).getEndDate();
+			String endDate = endDate1.substring(0, 10);
+			day2 = dateFormat.parse(endDate);
+			int compare = day2.compareTo(day1);
+			if(compare >= 0) {
+				request.setAttribute("endDate", endDate);
+				System.out.println("$$$$"+endDate);
+			}
 			request.setAttribute("data", paymentList);
 			return "mypage/payment_list";
 		} catch (Exception e) {
@@ -488,6 +502,17 @@ public class MypageController {
 		return "mypage/payment";
 	}
 	
+	/*
+	 * SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date day1 = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(day1);
+		cal.add(Calendar.DATE, 2);
+		System.out.println(cal.getTime());
+		
+		String endDate = dateFormat.format(cal.getTime());
+	 */
+	
 	//결제완료
 	@RequestMapping("/payment_complete")
 	@ResponseBody
@@ -499,26 +524,53 @@ public class MypageController {
 		int mNo = (Integer)session.getAttribute("userNo");
 		boolean result = false;
 		List<Payment> paymentList;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date day1 = new Date();				// 오늘날짜(결제당일 날짜)
+		Date day2 = null;					
+		Calendar cal = Calendar.getInstance();
 		Payment payment = new Payment(mNo, pyPrice, pyName, pyPeriod, pyType);
-		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ( "yyyy.MM.dd HH:mm:ss", Locale.KOREA );
-		Date currentTime = new Date ();
-		String mTime = mSimpleDateFormat.format ( currentTime );
-		System.out.println ( mTime );
-
-
-		출처: https://includestdio.tistory.com/4 [includestdio]
 		try {
-			result = paymentService.createPayment(payment);
-		
 			paymentList = paymentService.selectList(mNo);
-			for (Payment pay : paymentList) {
-				String r = pay.getEndDate();
-				System.out.println("eeeeee"+r);
+			int count = paymentList.size()-1;
+			System.out.println("$$$$$"+1);
+			if(paymentList.size() == 0) {
+				System.out.println("$$$$$"+0);
+				cal.setTime(day1);
+				cal.add(Calendar.DATE, pyPeriod);
+				payment.setEndDate(dateFormat.format(cal.getTime()));
+				result = paymentService.createPayment(payment);
+				paymentService.updateCompanyY(mNo);
+				paymentService.updateProductY(mNo);
+				return result+"";
 			}
-			String b = payment.getPyDate();
-			System.out.println("bbbbb"+b);
+			System.out.println("$$$$$"+2);
+			day2 = dateFormat.parse(paymentList.get(count).getEndDate());
+			if(day2==null) {
+				day2=day1;
+				System.out.println("$$$$$"+3);
+			}
+			cal.setTime(day2);
+			int compare = day2.compareTo(day1);				//결제일 당일(오늘날짜)와 결제리스트의 결제종료일을 비교
+			if(compare >= 0) {								//결제 종료일이 더 클 경우 새로 만들어지는 
+				System.out.println("$$$$$"+4);
+				cal.add(Calendar.DATE, pyPeriod);			//결제종료일은 기존 결제종료일에 기간을 더한 날짜가 된다
+				payment.setEndDate(dateFormat.format(cal.getTime()));
+				result = paymentService.createPayment(payment);
+				paymentService.updateCompanyY(mNo);
+				paymentService.updateProductY(mNo);
+				return result+"";
+				
+			}else {											//결제종료일보다 오늘 날짜가 더 큰 경우
+				System.out.println("$$$$$"+5);
+				cal.setTime(day1);
+				cal.add(Calendar.DATE, pyPeriod);
+				payment.setEndDate(dateFormat.format(cal.getTime()));
+				result = paymentService.createPayment(payment);
+				paymentService.updateCompanyY(mNo);
+				paymentService.updateProductY(mNo);
+				return result+"";
+			}
 			
-			return result+"";
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "N";

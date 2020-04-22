@@ -13,7 +13,7 @@
 <!-- (2) LoginWithNaverId Javscript 설정 정보 및 초기화 -->
 	var naverLogin = new naver.LoginWithNaverId(
 		{
-			clientId: "9haYlINI5aPRP4BXrUuO",
+			clientId: "8Rkjj564JeJTdppnYdz_",
 			callbackUrl: "http://127.0.0.1/staily/main/index",
 			isPopup: false, /* 팝업을 통한 연동처리 여부 */
 			loginButton: {color: "green", type: 3, height: 60} /* 로그인 버튼의 타입을 지정 */

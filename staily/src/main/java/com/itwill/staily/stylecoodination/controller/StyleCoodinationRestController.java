@@ -215,17 +215,4 @@ public class StyleCoodinationRestController {
 	}
 	
 	
-	
-	/*
-	@PostMapping(value = "style_recommend", produces = "application/json;charset=UTF-8")
-	public Board style_recommend() {
-		
-		return replyCreateB;
-	}
-	*/
-	
-	
-
-	
-	
 }

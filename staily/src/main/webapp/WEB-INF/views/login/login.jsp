@@ -34,12 +34,11 @@
                     	 로그인
                     </a>
                     <hr>
-                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                      <i class="fab fa-google fa-fw"></i> Login with Google
+                    <!--  
+                    <a href="${url}" class="btn btn-google btn-user btn-block">
+                      <i class="fab fa-google fa-fw"></i> Login with Naver
                     </a>
-                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                    </a>
+                    -->
                   </form>
                   <hr>
                   <div class="text-center">
@@ -69,19 +68,14 @@ $(function() {
 	if(id === "" || id === undefined) {
 		return;
 	}else {
-		alert("고객님의 아이디는 " + id + "입니다");
-		location.href="login";
+		swal({
+			  title: '아이디 찾기 성공',
+			  icon: 'info',
+			  text: '고객님의 아이디는 '+ id + '입니다',
+			});
 		return;
 	}
-
 });
-
-function loginKeyup(){
-	if(event.keyCode == 13) {
-		login_action();
-	}	
-}
-
 </script>
  
    </body>
