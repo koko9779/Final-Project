@@ -208,7 +208,7 @@ $(document).ready(function(){
 			if(scrollTop<407){
 				var newPosition = floatPosition + "px";				
 			}else{
-				var newPosition = scrollTop+ (floatPosition-300) + "px";
+				var newPosition = scrollTop+ (floatPosition-400) + "px";
 			}
 			/* 애니메이션 없이 바로 따라감
 			 $("#floatMenu").css('top', newPosition);
