@@ -27,13 +27,12 @@
                     <div>
                       <input type="password" class="form-control form-control-user" id="inputPw" placeholder="비밀번호" name="userPw" onkeyup="loginKeyup();">
                     </div>
-                    <div class="error_msg" id="error_msg">
-                    	${msg}
+                    <div class="error_msg" style="padding-top: 20px;" id="error_msg">
+                    	<span>${msg}</span>
                     </div>
                     <a href="javascript:login_action();" role="button" class="btn btn-primary btn-user btn-block">
                     	 로그인
                     </a>
-                    <hr>
                     <!--  
                     <a href="${url}" class="btn btn-google btn-user btn-block">
                       <i class="fab fa-google fa-fw"></i> Login with Naver
@@ -49,6 +48,9 @@
                   </div>
                   <div class="text-center">
                     <a class="small" href="member_create">회원가입을 하고 싶으신가요?</a>
+                  </div>
+                  <div class="text-center">
+                    <a class="small" href="../main/index">메인화면으로 이동</a>
                   </div>
                 </div>
               </div>
