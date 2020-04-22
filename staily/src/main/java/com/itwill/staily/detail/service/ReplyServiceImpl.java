@@ -129,5 +129,117 @@ public class ReplyServiceImpl implements ReplyService {
 		return check;
 	}
 
+	@Override
+	public boolean setRecommend(int rNo, int mNo) throws Exception {
+		boolean check = false;
+		
+		if(replyMapper.resetRecommend(rNo, mNo)) {
+			check = true;
+		}
+		else {
+			check = false;
+		}
+		
+		return check;
+	}
+
+	@Override
+	public boolean resetRecommend(int rNo, int mNo) throws Exception {
+		boolean check = false;
+
+		if(replyMapper.resetRecommend(rNo, mNo)) {
+			check = true;
+		}
+		else {
+			check = false;
+		}
+		
+		return check;
+	}
+
+	@Override
+	public boolean setReport(int rNo, int mNo) throws Exception {
+		boolean check = false;
+
+		if(replyMapper.resetReport(rNo, mNo)) {
+			check = true;
+		}
+		else {
+			check = false;
+		}
+		
+		return check;
+	}
+
+	@Override
+	public boolean resetReport(int rNo, int mNo) throws Exception {
+		boolean check = false;
+
+		if(replyMapper.resetReport(rNo, mNo)) {
+			check = true;
+		}
+		else {
+			check = false;
+		}
+		
+		return check;
+	}
+
+	@Override
+	public boolean createRecommend(int rNo, int mNo) throws Exception {
+		boolean check = false;
+
+		if(replyMapper.createRecommend(rNo, mNo)) {
+			check = true;
+		}
+		else {
+			check = false;
+		}
+		
+		return check;
+	}
+
+	@Override
+	public boolean createReport(int rNo, int mNo) throws Exception {
+		boolean check = false;
+
+		if(replyMapper.createReport(rNo, mNo)) {
+			check = true;
+		}
+		else {
+			check = false;
+		}
+		
+		return check;
+	}
+
+	@Override
+	public boolean decreaseRecommend(int rNo) throws Exception {
+		boolean check = false;
+
+		if(replyMapper.decreaseRecommend(rNo)) {
+			check = true;
+		}
+		else {
+			check = false;
+		}
+		
+		return check;
+	}
+
+	@Override
+	public boolean decreaseReport(int rNo) throws Exception {
+		boolean check = false;
+
+		if(replyMapper.decreaseReport(rNo)) {
+			check = true;
+		}
+		else {
+			check = false;
+		}
+		
+		return check;
+	}
+
 
 }

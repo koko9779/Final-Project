@@ -47,7 +47,7 @@ function productCreate() {
 
 
 function work_search() {
-	location.href = 'work_select';
+	location.href = '../detail/work_select';
 };
 
 function execDaumPostcode() {

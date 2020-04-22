@@ -37,7 +37,7 @@ public class ReplyController {
 	}
 	
 	@RequestMapping("/reply_list")
-	public List<Reply> selectReplyList(HttpServletRequest request, HttpServletResponse response, String pNo) throws Exception {
+	public List<Reply> reply_list(HttpServletRequest request, HttpServletResponse response, String pNo) throws Exception {
 		
 		List<Reply> rL = replyService.selectReplyList(Integer.parseInt(pNo));
 		request.setAttribute("replyList", rL);
@@ -47,7 +47,7 @@ public class ReplyController {
 		
 	
 	@RequestMapping("/reply_create")
-	public Reply replyCreate(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public Reply reply_create(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		try {			
 			String pNo = request.getParameter("pNo");
 			String wNo = request.getParameter("wNo");
@@ -71,7 +71,7 @@ public class ReplyController {
 	
 	
 	@RequestMapping("/reply_delete")
-	public int deleteReply(HttpServletRequest request, HttpServletResponse response) {
+	public int reply_delete(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			String rNo = request.getParameter("rNo");
 			String pNo = request.getParameter("pNo");
@@ -93,24 +93,23 @@ public class ReplyController {
 	}
 	
 	
-	@RequestMapping("/reply_increasereport")
-	public int increaseReport(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping("/reply_recommend")
+	@ResponseBody
+	public boolean increaseReport(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		try {
+			Integer mNo = (Integer)session.getAttribute("userNo");
 			String rNo = request.getParameter("rNo");
-						
-			
-			boolean inc = replyService.increaseReport(Integer.parseInt(rNo));
-			
-			if(inc) {
-				return 1;
+				
+			if(replyService.recommendCheck(Integer.parseInt(rNo), mNo) > 0) {
+				return true;
 			}
 			else {
-				return 0;
+				return false;
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			return 0;
+			return false;
 		}
 	}
 	

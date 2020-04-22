@@ -24,4 +24,20 @@ public interface ReplyService {
 	int recommendCheck(@Param("rNo") int rNo, @Param("mNo") int mNo) throws Exception;
 	
 	int reportCheck(@Param("rNo") int rNo, @Param("mNo") int mNo) throws Exception;
+
+	boolean setRecommend(@Param("rNo") int rNo, @Param("mNo") int mNo) throws Exception;
+	
+	boolean resetRecommend(@Param("rNo") int rNo, @Param("mNo") int mNo) throws Exception;
+	
+	boolean setReport(@Param("rNo") int rNo, @Param("mNo") int mNo) throws Exception;
+	
+	boolean resetReport(@Param("rNo") int rNo, @Param("mNo") int mNo) throws Exception;
+		
+	boolean createRecommend(@Param("rNo") int rNo, @Param("mNo") int mNo) throws Exception;
+	
+	boolean createReport(@Param("rNo") int rNo, @Param("mNo") int mNo) throws Exception;
+	
+	boolean decreaseRecommend(@Param("rNo") int rNo) throws Exception;
+	
+	boolean decreaseReport(@Param("rNo") int rNo) throws Exception;
 }
