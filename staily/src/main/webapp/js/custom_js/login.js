@@ -1,10 +1,53 @@
-/************ navbar **************/
+
 
 /*********** login.jsp ************/
 function login_action() {
-	document.f.action="login_action";
-	document.f.method="POST";
-	document.f.submit();
+	var params = $("form[name=f]").serialize();
+	$.ajax({
+		url: "login_action",
+		type: 'POST',
+		data: params,
+		async : false,
+		dataType: "json",
+		success: function(resultObject) {
+					if(resultObject.success === "success") {
+						//기업회원
+						if(resultObject.mType === "C") {
+							if(resultObject.result === 1) {
+								swal({
+									title: '결제만료 공지',
+									icon: 'info',
+									text: '결제기한이 만료되었습니다 추가 결제를 진행하시겠습니까?',
+								}).then((willDelete) => {
+									if(willDelete) {
+										location.href = '../mypage/payment'
+									}else {
+										location.href = '../main/index';
+									}
+								});
+							}else {
+								location.href = '../main/index';
+							}
+						//기업이 아닌 일반회원이나 관리자
+						}else {
+							location.href='../main/index';
+						}
+					//로그인 실패 시
+					}else {
+						var errorMsg = resultObject.msg;
+						swal({
+							title: '로그인 실패',
+							icon: 'error',
+							text: errorMsg,
+						}).then((willDelete) => {
+							location.reload();
+						});
+					}
+				}
+	
+		
+	});
+	
 }
 
 function loginKeyup(){

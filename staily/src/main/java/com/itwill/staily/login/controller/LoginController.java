@@ -31,8 +31,7 @@ import com.itwill.staily.util.Member;
 public class LoginController {
 	@Autowired
 	private LoginService loginService;
-	@Autowired
-	private PaymentService paymentService;
+
 	
 	public LoginController() {
 		// TODO Auto-generated constructor stub
@@ -50,7 +49,7 @@ public class LoginController {
 		return "login/login";
 	}
 	
-	
+	/*
 	@RequestMapping(value = "/login_action", method = RequestMethod.GET)
 	public String login_action_get() {
 		return "login/login";
@@ -90,6 +89,8 @@ public class LoginController {
 		}
 		return forwardPath;
 	}
+	*/
+	
 	
 	@RequestMapping(value = "/logout_action")
 	public String logout_action(HttpSession session) {
