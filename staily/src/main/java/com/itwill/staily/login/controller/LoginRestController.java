@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.staily.login.exception.NoExistedIdException;
+import com.itwill.staily.login.exception.NoSearchMemberException;
 import com.itwill.staily.login.exception.PasswordMissmatchException;
 import com.itwill.staily.login.service.LoginService;
 import com.itwill.staily.mypage.service.PaymentService;
@@ -31,8 +32,7 @@ public class LoginRestController {
 	@PostMapping(value = "/login_action", produces = "application/json")
 	public Map<String, Object> login_action_post(@RequestParam String userId, 
 												  String userPw, 
-												  HttpSession session, 
-												  Model model) {
+												  HttpSession session) {
 		int result = -999;
 		Member member = new Member();
 		Member successMember;
@@ -65,6 +65,32 @@ public class LoginRestController {
 			map.put("msg", e.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	@PostMapping(value = "/id_read_action", produces = "application/json")
+	public Map find_id_action_post(@RequestParam String name, String phone) {
+		String findId = "";
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			
+			findId = loginService.findId(phone, name);
+			map.put("success", "success");
+			map.put("id", findId);
+			
+			//forwardPath = "login/login";
+		} catch(NoSearchMemberException e) {
+			e.printStackTrace();
+			map.put("success", "fail");
+			map.put("customError", true);
+			map.put("msg", e.getMessage());
+			//forwardPath = "login/id_read";
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put("success", "fail");
+			map.put("customError", false);
+			//forwardPath = "redirect:/404.jsp";
 		}
 		return map;
 	}

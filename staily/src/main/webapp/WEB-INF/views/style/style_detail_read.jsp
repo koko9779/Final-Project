@@ -17,23 +17,8 @@
 			</div>
 
 			<!-- Section -->
-			<div class="container-fluid totop">
-				<div class="row" id="afterHeader">
-				<div class="col-sm-2 p-top-21">
-					<aside class="col-sm-push-1 sidebar">
-						<div class="widget p-top-7">
-							<h3>Categories</h3>
-							<ul style="padding-left: 15px;">
-								<li><a href="style_main_read">전체 보기</a></li>
-								<li><a href="style_main_read_top10">top 10</a></li>
-								<li><a href="style_main_read_category?bCategory=M">영화</a></li>
-								<li><a href="style_main_read_category?bCategory=D">드라마</a></li>
-							</ul>
-						</div>
-						
-					</aside>
-				</div>
-					
+				<div class="m-t--120">	
+					<%@ include file="/WEB-INF/views/style/include/include_board_sidebar.jsp"%>
 				
 					<div class="col-sm-10">
 						<article id="board" style="border-bottom: none;">
@@ -133,7 +118,7 @@
 												</div>
 										</form>
 					</div>
-					
+					</div>
 				</div>
 			</div>
 

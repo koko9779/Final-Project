@@ -66,9 +66,37 @@ function find_id() {
 		return;
 	}
 	
-	document.forgotIdF.action = "id_read_action";
-	document.forgotIdF.method= "POST";
-	document.forgotIdF.submit();
+	$.ajax({
+		url: "id_read_action",
+		type: 'POST',
+		data: {name: name,
+			   phone: phone},
+		async : false,
+		dataType: "json",
+		success: function(findId) {
+			if(findId.success === "success") {
+				swal({
+					  title: '아이디 찾기 성공',
+					  icon: 'info',
+					  text: '고객님의 아이디는 '+ findId.id + '입니다',
+					}).then(() => {
+						location.href='login';
+					});
+			}else {
+				if(findId.customError === true) {
+					swal({
+						  title: '에러 메세지',
+						  icon: 'error',
+						  text: findId.msg,
+						}).then(() => {
+							location.href = "id_read";
+						});
+				}
+				
+			}
+		}
+		
+	});
 }
 
 /***************** member_create.jsp ******************/
