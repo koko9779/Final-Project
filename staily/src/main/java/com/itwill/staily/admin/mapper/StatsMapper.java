@@ -12,5 +12,8 @@ import com.itwill.staily.admin.model.Stats;
 @Repository("statsMapper")
 public interface StatsMapper {
 	public int createStats(Stats stats);
+	
 	public List<Stats>selectTime(String stTime);
+	
+	public List<Stats>selectBrowser();
 }

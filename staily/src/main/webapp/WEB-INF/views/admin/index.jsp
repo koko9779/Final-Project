@@ -26,7 +26,7 @@
 						<input type="date" id="currentDate">
 					</p>
 					<p>
-						<input type="submit" value="기준날짜설정">
+						<button type="button" onclick="changeTime()">기준날짜설정</button>
 					</p>
 				</form>
 			</div>
@@ -71,6 +71,16 @@ $(function() {
 				statsData = result
 			}
 	});
+
+	var browserData;
+	$.ajax({
+		url: "stats_browser",
+		async:false,
+		dataType:"json",
+		success:function(browser){
+			browserData = browser
+			}
+	});
 	// 우선 컨텍스트를 가져옵니다. 
 	var ctx = document.getElementById("dayChart").getContext('2d');
 	var cty = document.getElementById("browserChart").getContext('2d');
@@ -79,46 +89,28 @@ $(function() {
 	 - ctx를 첫번째 argument로 넘겨주고, 
 	 - 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
 	 */
-	console.log(statsData,'찍혀라 제발...');
-	var browserChart = new Chart(cty, {
-		type : 'pie',
-		data : {
-			labels : [ "크롬", "MSIE", "파이어폭스", "안드로이드", "사파리" ],
-			datasets : [ {
-				label : '일자별 접속자 수',
-				data : [ 12, 31, 3, 5, 2 ],
-				backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
-						'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)',
-						'rgba(75, 192, 192, 0.2)', 'rgba(255, 159, 64, 0.2)' ],
-				borderColor : [
-				//'rgba(255, 99, 132, 0.2)', 빨강
-				'rgba(54, 162, 235, 0.2)'
-				//'rgba(255, 206, 86, 0.2)', 노랑
-				//'rgba(75, 192, 192, 0.2)', 초록
-				//'rgba(153, 102, 255, 0.2)' 
-				//'rgba(255, 159, 64, 0.2)' 오렌지
-				],
-				borderWidth : 1
-			} ],
-		},
-		options : {
-			maintainAspectRatio : true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
-			scales : {
-				yAxes : [ {
-					ticks : {
-						beginAtZero : true
-					}
-				} ]
-			}
-		}
-	});
+	
+	var date7 = statsData.result[0].stTime
+	var date6 = statsData.result[1].stTime
+	var date5 = statsData.result[2].stTime
+	var date4 = statsData.result[3].stTime
+	var date3 = statsData.result[4].stTime
+	var date2 = statsData.result[5].stTime
+	var date1 = statsData.result[6].stTime
+	var cnt7  = statsData.result[0].cnt
+	var cnt6  = statsData.result[1].cnt
+	var cnt5  = statsData.result[2].cnt
+	var cnt4  = statsData.result[3].cnt
+	var cnt3  = statsData.result[4].cnt
+	var cnt2  = statsData.result[5].cnt
+	var cnt1  = statsData.result[6].cnt
 	var dayChart = new Chart(ctx, {
 		type : 'line',
 		data : {
-			labels : [ "4월20일", "4월21일", "4월22일", "4월23일", "4월24일", "4월25일" ],
+			labels : [ date1, date2, date3, date4, date5,date6, date7 ],
 			datasets : [ {
 				label : '일자별 접속자 수',
-				data : [ 12, 199, 3, 5, 2, 3 ],
+				data : [ cnt1, cnt2,cnt3 , cnt4, cnt5,cnt6,cnt7 ],
 				backgroundColor : [
 				//'rgba(255, 99, 132, 0.2)', 빨강
 				//'rgba(54, 162, 235, 0.2)', 파랑
@@ -165,14 +157,52 @@ $(function() {
 			}
 		}
 	});
+	var browser1 = browserData.browser[0].stAgent;
+	var browser2 = browserData.browser[1].stAgent;
+	var browser3 = browserData.browser[2].stAgent;
+	var browser4 = browserData.browser[3].stAgent;
+	var browser5 = browserData.browser[4].stAgent;
+	var bCnt1 = browserData.browser[0].cnt;
+	var bCnt2 = browserData.browser[1].cnt;
+	var bCnt3 = browserData.browser[2].cnt;
+	var bCnt4 = browserData.browser[3].cnt;
+	var bCnt5 = browserData.browser[4].cnt;
+	var browserChart = new Chart(cty, {
+		type : 'pie',
+		data : {
+			labels : [ browser1, browser2, browser3, browser4, browser5 ],
+			datasets : [ {
+				label : '브라우저별 접속자 수',
+				data : [ bCnt1, bCnt2, bCnt3, bCnt4, bCnt5 ],
+				backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
+						'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)',
+						'rgba(75, 192, 192, 0.2)', 'rgba(255, 159, 64, 0.2)' ],
+				borderColor : [
+				//'rgba(255, 99, 132, 0.2)', 빨강
+				'rgba(54, 162, 235, 0.2)'
+				//'rgba(255, 206, 86, 0.2)', 노랑
+				//'rgba(75, 192, 192, 0.2)', 초록
+				//'rgba(153, 102, 255, 0.2)' 
+				//'rgba(255, 159, 64, 0.2)' 오렌지
+				],
+				borderWidth : 1
+			} ],
+		},
+		options : {
+			maintainAspectRatio : true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+			scales : {
+				yAxes : [ {
+					ticks : {
+						beginAtZero : true
+					}
+				} ]
+			}
+		}
+	});
 });
-
-	function calendar() {
-		window
-				.open(
-						"calendar",
-						"일정표",
-						"width=690, height=750, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no");
+function calendar() {
+	window.open("calendar","일정표",
+				"width=690, height=750, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no");
 	}
 	
 </script>

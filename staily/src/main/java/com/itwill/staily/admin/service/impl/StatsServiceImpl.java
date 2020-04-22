@@ -21,5 +21,9 @@ public class StatsServiceImpl implements StatsService {
 	public List<Stats> selectTime(String stTime) throws Exception {
 		return statsMapper.selectTime(stTime);
 	}
+	@Override
+	public List<Stats> selectBrowser() throws Exception {
+		return statsMapper.selectBrowser();
+	}
 
 }
