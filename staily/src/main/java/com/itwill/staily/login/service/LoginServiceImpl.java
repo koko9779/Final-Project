@@ -44,10 +44,10 @@ public class LoginServiceImpl implements LoginService {
 				member.setmType(MnoMtype.getmType());
 				return member;
 			}else {
-				throw new PasswordMissmatchException("비밀번호가 일치하지 않습니다");
+				throw new PasswordMissmatchException("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
 			}
  		}else {
-			throw new NoExistedIdException("아이디가 존재하지 않습니다.");
+			throw new NoExistedIdException("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
 		}
 	}
 	

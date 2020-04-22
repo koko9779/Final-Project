@@ -96,13 +96,12 @@
 								</c:if>
 						</article>
 						</c:forEach>
-						<div>
 						<c:if test="${sessionScope.userNo!=null}">
 							<a href="javascript:reply_write_form();" class="btn btn-ghost sort m-top-25">
 									<span>답글 쓰기</span>
 							</a>
 						</c:if>
-						</div>
+						
 						<form name='boardReplyWriteF' id="boardReplyWriteF" onSubmit='return false;' class="dispaly_none" style="margin-top: 100px;">
 												<input type="hidden" name="bGroupNo" value="${boardOneList[0].bNo}">
 												<div class='row justify-content-md-center'>

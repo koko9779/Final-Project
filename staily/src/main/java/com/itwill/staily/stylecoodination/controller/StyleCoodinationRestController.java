@@ -46,7 +46,6 @@ public class StyleCoodinationRestController {
 		PrintWriter printWriter = null;
 		OutputStream out = null;
 		OutputStream out2 = null;
-		File f = new File("임시.jpg"); // img폴더 경로를 구하기 위한 작업
 		MultipartFile file = multiFile.getFile("upload");
 		if(file != null){
 			if(file.getSize() > 0 ){
@@ -62,14 +61,17 @@ public class StyleCoodinationRestController {
 						//System.out.println("업로드 경로(워크스페이스)"+uploadPath);
 						//서버에 올리기 위한 경로
 						
-						
+						//서버에 올릴 경로
+						String uploadPath = req.getSession().getServletContext().getRealPath("/img");
+//						
+						//워크스페이스에 올리는 경로
 						String uploadPath2 = req.getSession().getServletContext().getRealPath("/img");
 						String[] uploadPathArray = uploadPath2.split("\\\\");
 						uploadPath2 = uploadPathArray[0] + "\\" +  uploadPathArray[1] + "\\" + uploadPathArray[2] + 
 											"/git/Final-Project/staily/src/main/webapp/img";
 						System.out.println(uploadPath2);
 						
-						File uploadFile = new File(uploadPath2);
+						File uploadFile = new File(uploadPath);
 						if(!uploadFile.exists()){
 							uploadFile.mkdirs();
 						}
@@ -77,11 +79,11 @@ public class StyleCoodinationRestController {
 						// 파일명 생성
 						SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
    						fileName = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
-						//uploadPath = uploadPath + "/" + fileName;
+						uploadPath = uploadPath + "/" + fileName;
 						uploadPath2 = uploadPath2 + "/" + fileName;
 						//파일이 들어갈 경로를 넣고 
-						//out = new FileOutputStream(new File(uploadPath));
-                       // out.write(bytes);
+						out = new FileOutputStream(new File(uploadPath));
+                        out.write(bytes);
                         out2 = new FileOutputStream(new File(uploadPath2));
                         out2.write(bytes);
                         
@@ -90,7 +92,6 @@ public class StyleCoodinationRestController {
                         String fileUrl = req.getContextPath() + "/img/" + fileName;
                         
                         System.out.println(fileUrl);
-                        //String fileUrl = uploadPath;
                         
                         // json 데이터로 등록
                         // {"uploaded" : 1, "fileName" : "test.jpg", "url" : "/img/test.jpg"}
