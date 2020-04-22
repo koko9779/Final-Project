@@ -30,13 +30,13 @@
 			<c:choose>
 				<c:when test="${not empty bmNo}">
 					<button type="button" class="btn btn-ghost" id="createBmk" style="margin: 5%; margin-left: 10px;" 
-					onClick='select_bookmark(" + ${userNo} + "," + ${productOne.get(0).getpNo()} + ")'>즐겨찾기 제거</button>
+					onClick='select_bookmark2(" + ${userNo} + "," + ${productOne.get(0).getpNo()} + ")'>즐겨찾기 제거</button>
 				</c:when>
 				<c:otherwise>
 					<c:choose>
 						<c:when test="${not empty userNo}">
 							<button type="button" class="btn btn-ghost" id="createBmk" style="margin: 5%; margin-left: 10px;" 
-							onClick='create_bookmark(" + ${userNo} + "," + ${productOne.get(0).getpNo()} + ")'>즐겨찾기 추가</button>
+							onClick='create_bookmark2(" + ${userNo} + "," + ${productOne.get(0).getpNo()} + ")'>즐겨찾기 추가</button>
 						</c:when>
 						<c:otherwise>
 						</c:otherwise>

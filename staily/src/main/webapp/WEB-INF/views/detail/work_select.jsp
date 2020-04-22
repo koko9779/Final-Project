@@ -158,7 +158,8 @@ $(".btnnn").click(function() {
 		var main = document.getElementById("body");
 		
 		main.innerHTML = "이 작품이 맞습니까?<br><br>작품명 : " + name + "<br>카테고리 : " + category + "<br>처음 방영(개봉)일 : " + date +
-		"<br>전체 회차 : " + tepisode + "<br>작품 포스터<br>" + "<img src='https://image.tmdb.org/t/p/w600_and_h900_bestv2/" + poster + "' width='100%'>";
+		"<br>전체 회차 : " + tepisode + "<br>작품 포스터<br>" + "<div id='workimage' style='text-align: center;'>" + 
+		"<img src='https://image.tmdb.org/t/p/w600_and_h900_bestv2/" + poster + "' style='height: 500px'>" + "</div>";
 		
 		$('#wNo').val(no);
 	});
