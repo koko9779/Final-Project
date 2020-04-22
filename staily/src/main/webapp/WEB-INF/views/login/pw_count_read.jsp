@@ -34,10 +34,16 @@
                   </form>
                   <hr>
                   <div class="text-center">
+                    <a class="small" href="id_read">아이디를 잊어버리셨나요?</a>
+                  </div>
+                  <div class="text-center">
                     <a class="small" href="member_create">회원가입을 하고 싶으신가요?</a>
                   </div>
                   <div class="text-center">
                     <a class="small" href="login">계정이 있으신가요? 로그인하러 갑시다!</a>
+                  </div>
+                  <div class="text-center">
+                    <a class="small" href="../main/index">메인화면으로 이동</a>
                   </div>
                 </div>
               </div>
@@ -51,23 +57,6 @@
 
   </div>
  <%@ include file="/WEB-INF/views/login/include/include_bottom_login.jsp" %>
- <script type="text/javascript">
- $(function() {
-	var msg2E = $("#msg2E").val();
-	if(msg2E === "" || msg2E === undefined) {
-		return;
-	}else {
-		//alert(msg2E);
-		swal({
-			  title: '에러 메세지',
-			  icon: 'error',
-			  text: msg2E,
-			}).then(() => {
-				location.href="pw_count_read";
-			});
-		return;
-	}
-});
 </script>
    </body>
 

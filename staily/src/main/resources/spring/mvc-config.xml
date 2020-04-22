@@ -9,6 +9,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<!-- Interceptor Bean -->
 	<beans:bean id="LoginCheckInterceptor" class="com.itwill.staily.login.interceptor.LoginCheckInterceptor"/>
+	<beans:bean id="AdminCheckInterceptor" class="com.itwill.staily.login.interceptor.AdminCheckInterceptor"/>
 	<beans:bean id="VisitTimeInterceptor" class="com.itwill.staily.login.interceptor.VisitTimeInterceptor"/>
 	<!-- Annotation Bean -->
 	<context:annotation-config />
@@ -17,17 +18,17 @@
 	<mvc:interceptors> 
 		<mvc:interceptor>
 			<mvc:mapping path="/mypage/**"/>
-			<mvc:mapping path="/admin/**"/>
 			<mvc:mapping path="/detail/work_request"/>
 			<mvc:mapping path="/detail/work_select"/>
 			<mvc:mapping path="/style/style_board_create"/>
-			<!-- style폴더에서 로그인 막을 url 생각해보기 -->
-			<!--  
-			<mvc:mapping path="/board/"/>
-			<mvc:exclude-mapping path="/login/**"/> 
-			-->
 			<beans:ref bean="LoginCheckInterceptor"/> 
 		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**"/>
+			<beans:ref bean="AdminCheckInterceptor"/> 
+		</mvc:interceptor>
+		
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<beans:ref bean="VisitTimeInterceptor"/> 

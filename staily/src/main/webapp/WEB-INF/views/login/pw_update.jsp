@@ -33,18 +33,12 @@
                     	${msg}
                     </div>
                     <a href="javascript:update_pw_action();" role="button" class="btn btn-primary btn-user btn-block">
-                      비밀번호 수정
+                     	 비밀번호 수정
                     </a>
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="id_read">아이디를 잊어버리셨나요?</a>
-                  </div>
-                  <div class="text-center">
-                    <a class="small" href="pw_count_read">비밀번호를 잊어버리셨나요?</a>
-                  </div>
-                  <div class="text-center">
-                    <a class="small" href="member_create">회원가입을 하고 싶으신가요?</a>
+                    <a class="small" href="../main/index">메인화면으로 이동</a>
                   </div>
                 </div>
               </div>

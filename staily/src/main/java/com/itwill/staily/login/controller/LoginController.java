@@ -49,48 +49,6 @@ public class LoginController {
 		return "login/login";
 	}
 	
-	/*
-	@RequestMapping(value = "/login_action", method = RequestMethod.GET)
-	public String login_action_get() {
-		return "login/login";
-	}
-	
-	@RequestMapping(value = "/login_action", method = RequestMethod.POST)
-	public String login_action_post(@RequestParam String userId, String userPw, HttpSession session, Model model) {
-		String forwardPath = "";
-		int result = -999;
-		Member member = new Member();
-		Member successMember;
-		member.setmId(userId);
-		member.setmPw(userPw);
-		
-		try {
-			successMember = loginService.login(member);
-			int mNo = successMember.getmNo();
-			session.setAttribute("userId", successMember.getmId());
-			session.setAttribute("userNo", mNo);
-			session.setAttribute("userType", successMember.getmType());
-			
-			result = paymentService.checkN(mNo);
-			model.addAttribute("result", result);
-			
-			forwardPath = "forward:/main/index";
-		} catch (NoExistedIdException e) {
-				e.printStackTrace();
-				model.addAttribute("msg", e.getMessage());
-				forwardPath = "login/login";
-		} catch (PasswordMissmatchException e) {
-			e.printStackTrace();
-			model.addAttribute("msg", e.getMessage());
-			forwardPath = "login/login";
-		} catch (Exception e) {
-			e.printStackTrace();
-			forwardPath = "redirect:/404.jsp";
-		}
-		return forwardPath;
-	}
-	*/
-	
 	
 	@RequestMapping(value = "/logout_action")
 	public String logout_action(HttpSession session) {
@@ -103,30 +61,6 @@ public class LoginController {
 		return "login/id_read";
 	}
 	
-	@RequestMapping(value = "/id_read_action", method = RequestMethod.GET)
-	public String id_read_action_get() {
-		return "login/id_read";
-	}
-	
-	@RequestMapping(value = "/id_read_action", method = RequestMethod.POST)
-	public String find_id_action_post(@RequestParam String name, String phone, Model model) {
-		String forwardPath = "";
-		String findId = "";
-		try {
-			findId = loginService.findId(phone, name);
-			model.addAttribute("findId", findId);
-			
-			forwardPath = "login/login";
-		} catch(NoSearchMemberException e) {
-			e.printStackTrace();
-			model.addAttribute("msg", e.getMessage());
-			forwardPath = "login/id_read";
-		} catch (Exception e) {
-			e.printStackTrace();
-			forwardPath = "redirect:/404.jsp";
-		}
-		return forwardPath;
-	}
 	
 	@RequestMapping(value = "/pw_count_read")
 	public String pw_read() {

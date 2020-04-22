@@ -34,10 +34,16 @@
                   </form>
                   <hr>
                   <div class="text-center">
+                    <a class="small" href="pw_count_read">비밀번호를 잊어버리셨나요?</a>
+                  </div>
+                  <div class="text-center">
                     <a class="small" href="member_create">회원가입을 하고 싶으신가요?</a>
                   </div>
                   <div class="text-center">
                     <a class="small" href="login">계정이 있으신가요? 로그인하러 갑시다!</a>
+                  </div>
+                  <div class="text-center">
+                    <a class="small" href="../main/index">메인화면으로 이동</a>
                   </div>
                 </div>
               </div>
