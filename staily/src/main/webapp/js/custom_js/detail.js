@@ -133,7 +133,8 @@ function create_bookmark2(userNo, pNo) {
 		data : params,
 		success : function(result) {
 			if(result == 'true') {
-				$('#createBmk').html('즐겨찾기 제거');				
+				$('#createBmk').attr('alt', '즐겨찾기 제거');
+				$('#createBmk').attr('src', '/staily/images/star.png');
 				$('#createBmk').attr('onClick', "select_bookmark2(" + userNo + ',' + pNo + ");return false;");
 			}
 		}			
@@ -179,7 +180,8 @@ function delete_bookmark2(bookset) {
 			data : params,
 			success : function(result) {
 				if(result == 'true') {
-					$('#createBmk').html('즐겨찾기 추가');				
+					$('#createBmk').attr('alt', '즐겨찾기 추가');
+					$('#createBmk').attr('src', '/staily/images/emptystar.png');
 					$('#createBmk').attr('onClick','create_bookmark2(' + userNo + ',' + pNo + ');return false;');
 				}
 				else {
@@ -191,6 +193,30 @@ function delete_bookmark2(bookset) {
 			}
 		});
 };
+
+function deleteProduct() {
+	swal({
+		  title: "등록한 상품을 삭제하시겠습니까?",
+		  icon: 'warning',
+		  buttons: true,
+		  dangerMode: true,
+		}).then((willDelete) => {
+			if(willDelete) {
+				swal({
+					title: "상품 삭제가 완료되었습니다",
+					icon: "success" //"info,success,warning,error" 중 택1
+				})
+				.then(() => {
+					document.pNo_request.action = "product_delete";
+					document.pNo_request.method = "post";
+					document.pNo_request.submit();
+				});
+			}				
+			else {
+				return false;
+			}
+		});	
+}
 
 $("#reply").on("click", function(e) {
 	getReplies();

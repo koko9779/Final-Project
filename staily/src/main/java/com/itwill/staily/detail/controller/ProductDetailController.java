@@ -149,6 +149,24 @@ public class ProductDetailController {
 		
 		return mv;		
 	}	
+
+	@RequestMapping("/product_delete")
+	public ModelAndView product_delete(HttpServletResponse response, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		
+		try {			
+			String pNo = request.getParameter("pNo");
+
+			productDetailService.deleteProduct(Integer.parseInt(pNo));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		mv.setViewName("redirect:..");
+		
+		return mv;		
+	}
 	
 	@RequestMapping("/upload")
 	@ResponseBody
