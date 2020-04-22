@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -54,7 +53,7 @@
 </div>
 <!-- End of Main Content -->
 
-<%@ include file="/WEB-INF/views/admin/include/include_bottom.jsp"%>
+<%@ include file="/WEB-INF/views/admin/include/include_js.jsp"%>
 </body>
 <script>
 var now = document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);;

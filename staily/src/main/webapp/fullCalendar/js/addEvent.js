@@ -1,4 +1,5 @@
 var eventModal = $('#eventModal');
+
 var modalTitle = $('.modal-title');
 var editAllDay = $('#edit-allDay');
 var editTitle = $('#edit-title');
@@ -39,24 +40,24 @@ var newEvent = function (start, end, eventType) {
     $('#save-event').on('click', function () {
 
         var eventData = {
-           eventId: eventId,
-           editTitle: editTitle.val(),
-           editStart: editStart.val(),
-           editEnd: editEnd.val(),
-           editDesc: editDesc.val(),
-           editType: editType.val(),
-           userName: '관리자',
-           editColor: editColor.val(),
-           textColor: '#ffffff',
-           allDay: false
+            _id: eventId,
+            title: editTitle.val(),
+            start: editStart.val(),
+            end: editEnd.val(),
+            description: editDesc.val(),
+            type: editType.val(),
+            username: '관리자',
+            backgroundColor: editColor.val(),
+            textColor: '#ffffff',
+            allDay: false
         };
 
-        if (eventData.editStart > eventData.editEnd) {
+        if (eventData.start > eventData.end) {
             alert('끝나는 날짜가 앞설 수 없습니다.');
             return false;
         }
 
-        if (eventData.editTitle == '') {
+        if (eventData.title === '') {
             alert('일정명은 필수입니다.');
             return false;
         }
@@ -64,11 +65,11 @@ var newEvent = function (start, end, eventType) {
         var realEndDay;
 
         if (editAllDay.is(':checked')) {
-            eventData.start = moment(eventData.editStart).format('YYYY-MM-DD');
+            eventData.start = moment(eventData.start).format('YYYY-MM-DD');
             //render시 날짜표기수정
-            eventData.end = moment(eventData.editEnd).add(1, 'days').format('YYYY-MM-DD');
+            eventData.end = moment(eventData.end).add(1, 'days').format('YYYY-MM-DD');
             //DB에 넣을때(선택)
-            realEndDay = moment(eventData.editEnd).format('YYYY-MM-DD');
+            realEndDay = moment(eventData.end).format('YYYY-MM-DD');
 
             eventData.allDay = true;
         }
@@ -78,19 +79,15 @@ var newEvent = function (start, end, eventType) {
         editAllDay.prop('checked', false);
         eventModal.modal('hide');
 
-        
-        console.log("eventData : " + JSON.stringify(eventData));
         //새로운 일정 저장
-        console.log($("#edit-title").val());
         $.ajax({
-            type: "post",
+            type: "get",
             url: "create_calendar",
-            data:  eventData,
+            data: eventData,
             success: function (response) {
-               alert(response.result);
                 //DB연동시 중복이벤트 방지를 위한
-                //$('#calendar').fullCalendar('removeEvents');
-                //$('#calendar').fullCalendar('refetchEvents');
+                $('#calendar').fullCalendar('removeEvents');
+                $('#calendar').fullCalendar('refetchEvents');
             }
         });
     });

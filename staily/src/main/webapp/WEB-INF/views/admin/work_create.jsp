@@ -1,7 +1,5 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/tags.jspf"%>
 <%@ include
 	file="/WEB-INF/views/admin/include/include_popup_css.jsp"%>
 <style>
@@ -87,7 +85,7 @@
 		</div>
 </form>
 
-<%@ include file="/WEB-INF/views/admin/include/include_bottom.jsp"%>
+<%@ include file="/WEB-INF/views/admin/include/include_js.jsp"%>
 </body>
 </html>
 

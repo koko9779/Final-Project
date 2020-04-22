@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
 import com.itwill.staily.admin.model.Calendar;
 import com.itwill.staily.admin.service.CalendarService;
 
@@ -23,15 +24,19 @@ public class CalendarController {
 	private CalendarService calendarService;
 	
 	@RequestMapping(value = "/select_calendar_list")
-	public JSONObject selectCalendarList(HttpServletRequest request,HttpServletResponse response,Calendar calendar) throws Exception {
-		Map<String, Object> result = new HashMap<String, Object>();
-		 
+	public String selectCalendarList(HttpServletRequest request,HttpServletResponse response,Calendar calendar) throws Exception {
+		Gson gson = new Gson();
 		List<Calendar> list= calendarService.selectCalendarAll(); 
+		String result = gson.toJson(list);
+		System.out.println(result);
+		/*
+		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("result", list);
 		JSONObject json = new JSONObject(result);
 		response.setHeader("Content-Type", "application/json;charset=utf-8");
 		response.setHeader("Accept", "application/json");
-		return json;
+		*/
+		return result;
 	}
 	@RequestMapping("/select_calendar")
 	public Calendar selectCalendar(int cNo) throws Exception {
@@ -42,6 +47,7 @@ public class CalendarController {
 	public String createCalendar (Calendar calendar) {
 		
 		String result = "";
+		System.out.println(calendar);
 		try {
 			calendarService.createCalendar(calendar);
 			result = "success";
