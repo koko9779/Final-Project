@@ -15,9 +15,13 @@ public interface ReplyService {
 	
 	boolean deleteReply(@Param("rNo") int rNo, @Param("pNo") int pNo, @Param("mNo") int mNo) throws Exception;
 	
+	boolean checkReply(@Param("rNo") int rNo, @Param("mNo") int mNo) throws Exception;
+	
 	boolean increaseRecommend(int rNo) throws Exception;
 	
 	boolean increaseReport(int rNo) throws Exception;	
 	
-	boolean createFriend(@Param("mNo") int mNo, @Param("fNo") int fNo) throws Exception;
+	int recommendCheck(@Param("rNo") int rNo, @Param("mNo") int mNo) throws Exception;
+	
+	int reportCheck(@Param("rNo") int rNo, @Param("mNo") int mNo) throws Exception;
 }

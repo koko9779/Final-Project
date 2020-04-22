@@ -204,6 +204,8 @@ function calendar() {
 	window.open("calendar","일정표",
 				"width=690, height=750, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no");
 	}
+function name() {
 	
+}
 </script>
 </html>

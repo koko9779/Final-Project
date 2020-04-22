@@ -68,6 +68,12 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
+	public boolean checkReply(int rNo, int mNo) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
 	public boolean increaseRecommend(int rNo) throws Exception {
 		boolean check = false;
 		
@@ -96,17 +102,32 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public boolean createFriend(int mNo, int fNo) throws Exception {
-		boolean check = false;
+	public int recommendCheck(int rNo, int mNo) throws Exception {
+		int check = 0;
 		
-		if(replyMapper.createFriend(mNo, fNo)) {
-			check = true;			
+		if(replyMapper.recommendCheck(rNo, mNo) == 0) {
+			check = 0;
 		}
-		else{
-			check = false;
+		else {
+			check = 1;
 		}
 		
 		return check;
 	}
+
+	@Override
+	public int reportCheck(int rNo, int mNo) throws Exception {
+		int check = 0;
+		
+		if(replyMapper.reportCheck(rNo, mNo) == 0) {
+			check = 0;
+		}
+		else {
+			check = 1;
+		}
+		
+		return check;
+	}
+
 
 }
