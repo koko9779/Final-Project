@@ -66,9 +66,9 @@
 									</c:forEach>
 								</tbody>
 							</table>
-							<a href="style_board_create" class="btn btn-ghost sort">
-												<span>쓰기</span>
-											</a>
+								<a href="javascript:required_login(${userNo});" class="btn btn-ghost sort">
+									<span>쓰기</span>
+								</a>
 							<div id="msg">
 							</div>
 						</div>

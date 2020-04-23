@@ -46,9 +46,6 @@
 						<c:if test="${fn:length(boardOneList) > 1}">
 							<h3 class="board-top reply-delete m-top-50" id="reply-top">스타일 답변</h3>
 						</c:if>
-						
-						
-						
 						<c:forEach var="board" items="${boardOneList}" begin="1" varStatus="status">
 						<article class="reply reply-delete reply_write" id="board_${board.bNo}">
 								<div class="col-md-12 m-top--40 border-b-1-d8d8d8">
@@ -82,14 +79,28 @@
 						</c:forEach>
 						<c:choose>
 							<c:when test="${fn:length(boardOneList) == 1}">
-								<a href="javascript:reply_write_form();" id="replyWirteFormB" class="btn btn-ghost sort only-one-board">
-										<span>답글 쓰기</span>
-								</a>
+								<c:if test="${userNo == null || userNo == undefined}">
+									<a href="javascript:required_login();" id="replyWirteFormB" class="btn btn-ghost sort">
+											<span>답글 쓰기</span>
+									</a>
+								</c:if>
+								<c:if test="${userNo != null}">
+									<a href="javascript:reply_write_form();" id="replyWirteFormB" class="btn btn-ghost sort only-one-board">
+											<span>답글 쓰기</span>
+									</a>
+								</c:if>
 							</c:when>
 							<c:otherwise>
-								<a href="javascript:reply_write_form();" id="replyWirteFormB" class="btn btn-ghost sort m-top-25">
-										<span>답글 쓰기</span>
-								</a>
+								<c:if test="${userNo == null || userNo == undefined}">
+									<a href="javascript:required_login();" id="replyWirteFormB" class="btn btn-ghost sort m-top-25">
+											<span>답글 쓰기</span>
+									</a>
+								</c:if>
+								<c:if test="${userNo != null}">
+									<a href="javascript:reply_write_form();" id="replyWirteFormB" class="btn btn-ghost sort m-top-25">
+											<span>답글 쓰기</span>
+									</a>
+								</c:if>
 							</c:otherwise>
 						</c:choose>
 						<form name='boardReplyWriteF' id="boardReplyWriteF" onSubmit='return false;' class="dispaly_none" style="margin-top: 100px;">

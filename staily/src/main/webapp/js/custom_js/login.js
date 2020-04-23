@@ -18,11 +18,22 @@ function login_action() {
 									title: '결제만료 공지',
 									icon: 'info',
 									text: '결제기한이 만료되었습니다 추가 결제를 진행하시겠습니까?',
-								}).then((willDelete) => {
-									if(willDelete) {
+									closeOnClickOutside: false,
+									buttons : {
+										cancle: {
+											text: "메인으로 이동",
+											value: false
+										},
+										confirm : {
+											text: "결제하기",
+											value: true
+										}
+									}
+								}).then((result) => {
+									if(result) {
 										location.href = '../mypage/payment'
 									}else {
-										location.href = '../main/index';
+										location.href = '../main/index'; 
 									}
 								});
 							}else {
@@ -47,7 +58,6 @@ function login_action() {
 	
 		
 	});
-	
 }
 
 function loginKeyup(){
@@ -62,7 +72,11 @@ function find_id() {
 	var phone = $("#inputPhone").val();
 	
 	if(name == "" || phone == "" ){
-		alert("이름과 번호를 입력해주세요");
+		swal({
+			   title: "아이디 찾기",
+			   text: "이름과 번호를 입력해주세요",
+			   icon: "warning" //"info,success,warning,error" 중 택1
+			});
 		return;
 	}
 	
@@ -219,7 +233,13 @@ $(window)
 				document.getElementById("registerF").action = "member_create_action";
 				document.getElementById("registerF").method = "POST";
 				document.getElementById("registerF").submit();
-				alert("가입 성공");
+				swal({
+					  title: '가입 성공',
+					  icon: 'success',
+					  text: "회원가입에 성공하였습니다",
+					}).then(() => {
+						location.href = "id_read";
+					});
 			}
 		});
 
@@ -275,7 +295,13 @@ function find_pw() {
 	
 	
 	if(id == "" || phone == ""){
-		alert("아이디와 번호를 입력해주세요");
+		swal({
+			  title: '비밀번호 변경',
+			  icon: 'warning',
+			  text: "아이디와 번호를 입력해주세요",
+			}).then(() => {
+				location.reload();
+			});
 		return;
 	}
 	
@@ -287,10 +313,15 @@ function find_pw() {
 /******************* pw_update.jsp ********************/
 function update_pw_action() {
 		
-		if($("#inputPw").val() != $("#inputRepeatPw").val()) {
-			alert("비밀번호가 일치하지 않습니다");
-			return;
-		}
+//		if($("#inputPw").val() != $("#inputRepeatPw").val()) {
+//			//alert("비밀번호가 일치하지 않습니다");
+//			swal({
+//				   title: "비밀번호 찾기",
+//				   text: "비밀번호가 일치하지 않습니다",
+//				   icon: "warning" //"info,success,warning,error" 중 택1
+//				})
+//			return;
+//		}
 		document.f.action="pw_update";
 		document.f.method="POST";
 		document.f.submit();
@@ -338,6 +369,13 @@ $(window)
 			function member_pw_update() {
 				document.getElementById("pwUpdateF").action = "pw_update";
 				document.getElementById("pwUpdateF").submit();
-				alert("비밀번호 수정 성공");
+				//alert("비밀번호 수정 성공");
+				swal({
+					   title: "비밀번호 수정",
+					   text: "비밀번호 수정 성공",
+					   icon: "success" //"info,success,warning,error" 중 택1
+					}).then(() => {
+						location.href= "login";
+					});
 			}
 		});

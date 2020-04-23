@@ -31,6 +31,34 @@ function post_to_url(path, params, method) {
     form.submit();
 }
 
+//(공용함수)로그인된 회원만 가능하도록 로그인창으로 보내는 함수
+function required_login (userNo) {
+	if(userNo === undefined || userNo === "") {
+		swal({
+			title: '로그인이 필요한 서비스입니다',
+			icon: 'info',
+			text: '로그인 하시겠습니까?',
+			closeOnClickOutside: false,
+			buttons : {
+				cancle: {
+					text: "취소",
+					value: false
+				},
+				confirm : {
+					text: "로그인",
+					value: true
+				}
+			}
+		}).then((result) => {
+			if(result) {
+				location.href="../login/login";
+			}
+		});
+	}else {
+		
+	}
+}
+
 function board_delete(bNo) {
 	var replyArray = document.querySelectorAll(".reply");
 	if(replyArray.length > 0) {
@@ -48,18 +76,8 @@ function board_delete(bNo) {
 	} else {
 		post_to_url("style_board_delete_action", {"bNo" : bNo});
 	}
-	
-	swal({
-		  title: "댓글을 삭제하시겠습니까?",
-		  icon: 'warning',
-		  buttons: true,
-		  dangerMode: true,
-		}).then((willDelete) => {
-			if(willDelete) {
-				
-			}
-		});
 }
+
 function reply_write_form() {
 	
 		$("#boardReplyWriteF").fadeOut(500);

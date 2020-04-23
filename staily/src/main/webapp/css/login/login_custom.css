@@ -1,6 +1,6 @@
 @charset "UTF-8";
-.m-20 {
-	margin: 20px;
+.m--20 {
+	margin: -20px;
 }
 
 a {
@@ -29,8 +29,6 @@ label.error_msg {
 	background-repeat : no-repeat;
     background-position: center;
     background-size: cover;
-    background-position : center;
-	background-size : contain; 
 }
 
 .bg-login-image {
