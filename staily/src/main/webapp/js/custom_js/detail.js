@@ -253,21 +253,44 @@ var myNo = $('#mNo').val();
 				//추천, 신고 눌렀는지 확인해 아이콘 변경
 				var rNo = data[i].rNo;
 				
+				a += "<input type='image' src='../images/siren.png' id='reportIcon" + i + "' onClick='chkReport(" + data[i].rNo + ");return false;' style='float: right; width: 30px; height: 30px;'/><span style='float: right; margin: 4px'>" + data[i].rReport + "</span>";
+				a += "<input type='image' src='../images/like.png' id='recommandIcon" + i + "' onClick='chkRec(" + data[i].rNo + ");return false;' style='float: right; width: 30px; height: 30px;' value='" + data[i].rNo + "'><span style='float: right; margin: 4px'>" + data[i].rRecommend + "</span>";
+				a += "</div>";
+				
+				$('#reply_space').html(a);
+				
+			
+			
+				//var recommandIcon = "'#recommandIcon" + i + "'";
+				//var reportIcon = "'#reportIcon" + i + "'";
+				
+				/*
 				$.ajax({
 					url : "reply_check",
 					type : "post",
 					data : {"rNo" : rNo, "mNo" : myNo},
+					dataType : "json",
 					success : function(data) {
-						var division = data;						
+						if(data == 0) {
+							$("'#recommandIcon" + i + "'").attr('src', '../images/like.png');
+							$("'#reportIcon" + i + "'").attr('src', '../images/siren.png');
+						}					
+						else if(data == 1) {
+							$("'#recommandIcon" + i + "'").attr('src', '../images/like.png');
+							$("'#reportIcon" + i + "'").attr('src', '../images/emptysiren.png');
+						}
+						else if(data == 2) {
+							$("'#recommandIcon" + i + "'").attr('src', '../images/emptylike.png');
+							$("'#reportIcon" + i + "'").attr('src', '../images/siren.png');
+						}
+						else if(data == 3) {
+							$("'#recommandIcon" + i + "'").attr('src', '../images/emptylike.png');
+							$("'#reportIcon" + i + "'").attr('src', '../images/emptysiren.png');
+						}
 					}
 				});
-					a += "<input type='image' src='../images/like.png' name='recommandIcon' onClick='chkRec(" + data[i].rNo + ");return false;' style='float: right; width: 30px; height: 30px;' value='" + data[i].rNo + "'><span style='float: right; margin: 4px'>" + data[i].rRecommend + "</span>";
-					a += "<input type='image' src='../images/siren.png' name='reportIcon' onClick='chkReport(" + data[i].rNo + ");return false;' style='float: right; width: 30px; height: 30px;'/><span style='float: right; margin: 4px'>" + data[i].rReport + "</span>";
-				a += "</div>";
-				
+				*/
 			}
-			$('#reply_space').html(a);
-			
 		}
 	});
 };
