@@ -18,7 +18,6 @@
             WHERE ROWNUM &lt;= 10
             ORDER BY b_view ASC) Y
     ORDER BY b_idx DESC
-	<!-- 10보다 작거나 같다 -->
 </select>
 
 <select id="selectBoardAll" resultType="Board">

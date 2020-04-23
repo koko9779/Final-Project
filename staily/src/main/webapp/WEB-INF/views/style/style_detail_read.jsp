@@ -15,16 +15,17 @@
 					<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
 				</a>
 			</div>
-
+			<div class="m-t--120">
+			<%@ include file="/WEB-INF/views/style/include/include_board_sidebar.jsp"%>
 			<!-- Section -->
-				<div class="m-t--120">	
+				
 					<div class="col-sm-10">
 						<article id="board" style="border-bottom: none;">
 						<div id="board2">
 						<input type="hidden" id="updateBNo" value="${boardOneList[0].bNo}">
 						<h3 class="board-top p-top-21">스타일 질문</h3>
 						<div class="b-board-bottom border-b-1-d8d8d8 p-b-40">
-							<div class="categories col-md-6 board-title f-s-25" id="board_title_read"><i class="fas fa-question-circle"></i>    <span class="">${boardOneList[0].bTitle}</span></div>
+							<div class="categories col-md-6 board-title f-s-25" id="board_title_read"><span class="">${boardOneList[0].bTitle}</span></div>
 							<div class="col-md-6 text-left">
 								<span class="font-large">작성자: ${boardOneList[0].mId} | 작성 날짜: ${boardOneList[0].bDate} | 조회수: ${boardOneList[0].bView}</span>
 							</div>
@@ -51,7 +52,7 @@
 						<c:forEach var="board" items="${boardOneList}" begin="1" varStatus="status">
 						<article class="reply reply-delete reply_write" id="board_${board.bNo}">
 								<div class="col-md-12 m-top--40 border-b-1-d8d8d8">
-								<div class="categories col-md-6 board-title f-s-25"><i class="far fa-comment-dots"></i>    ${board.bTitle}</div>
+								<div class="categories col-md-6 board-title f-s-25">${board.bTitle}</div>
 								<div class="col-md-6 text-left"><span class="font-large">작성자: ${board.mId} | 작성 날짜: ${board.bDate}</span></div>
 								</div>
 								<div class="p_content m-top-50 m-bottom-30" id="board_content_read">
@@ -79,12 +80,18 @@
 								</c:if>
 						</article>
 						</c:forEach>
-						<c:if test="${sessionScope.userNo!=null}">
-							<a href="javascript:reply_write_form();" class="btn btn-ghost sort m-top-25">
-									<span>답글 쓰기</span>
-							</a>
-						</c:if>
-						
+						<c:choose>
+							<c:when test="${fn:length(boardOneList) == 1}">
+								<a href="javascript:reply_write_form();" id="replyWirteFormB" class="btn btn-ghost sort only-one-board">
+										<span>답글 쓰기</span>
+								</a>
+							</c:when>
+							<c:otherwise>
+								<a href="javascript:reply_write_form();" id="replyWirteFormB" class="btn btn-ghost sort m-top-25">
+										<span>답글 쓰기</span>
+								</a>
+							</c:otherwise>
+						</c:choose>
 						<form name='boardReplyWriteF' id="boardReplyWriteF" onSubmit='return false;' class="dispaly_none" style="margin-top: 100px;">
 												<input type="hidden" name="bGroupNo" value="${boardOneList[0].bNo}">
 												<div class='row justify-content-md-center'>

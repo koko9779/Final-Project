@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
-<%@ include file="/WEB-INF/views/style/include/style_include_css.jsp"%>
+<%@ include file="/WEB-INF/views/style/include/include_style_css.jsp"%>
 </head>
 <body>
 	<!-- Wrapper -->
