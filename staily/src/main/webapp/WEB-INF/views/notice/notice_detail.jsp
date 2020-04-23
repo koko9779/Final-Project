@@ -78,7 +78,7 @@
 							<textarea rows="2" name="rContent" id="rContent"></textarea>
 						</div>
 						<div class="form-group right-align" style="text-align: right;">
-							<button type="button" class="btn btn-ghost" id="createreply"style="margin-top: 40px">작성하기</button>
+							<button type="button" class="btn btn-ghost" id="createreply" style="margin-top: 40px">작성하기</button>
 						</div>
 					</c:when>
 					<c:otherwise>
@@ -97,6 +97,110 @@
 <%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
 </body>
 <script>
+$(document).ready(function() {
+	getReplies();
+})
+
+function getReplies() {
+	var myNo = $('#mNo').val();
+
+		$.ajax({
+			url : "../notice/reply_select",
+			type : "POST",
+			dataType : "json",
+			success : function(data) {
+				var a = '';
+
+				for (i = 0; i < data.length; i++) {
+					a += "<div class='row'>";
+					a += "<h4 class='no-underline'>" + data[i].mId;
+					if(data[i].mNo == myNo) {
+						a += "<button onClick='deleteReply(" + data[i].mNo + ")' class='btn btn-ghost' style='float: right;'>삭제</button></h4>";
+					}
+					a += "<p>" + data[i].nrContent + "</p>";
+					a += "</div>";
+					
+					$('#reply_space').html(a);
+					
+				}
+			}
+		});
+	};
+
+$('#createreply').on("click", function() {
+	var mNo = $('#mNo').val();
+	var rContent = $('#rContent').val();
 	
+	if(rContent == '') {
+		swal({
+			   title: "내용을 입력해주세요",
+			   icon: "error" //"info,success,warning,error" 중 택1
+		});
+	}
+	else {
+		$.ajax({
+			url : "../notice/reply_create",
+			data : {"mNo" : mNo, "rContent" : rContent},
+			dataType : "json",
+			type : "post",
+			success : function(data) {
+				getReplies();
+				$('#rContent').val('');
+			}
+		});
+	}
+});
+
+function deleteReply(rNo, mNo) {
+	var replyNo = rNo;
+	var myNo = $('#mNo').val();
+	var memNo = mNo;
+	
+	//alert(rNo + " " + pNo + " " + mNo);
+	//alert("나 : " + myNo + " 댓글 작성자 : " + memNo);
+	
+	swal({
+		  title: "댓글을 삭제하시겠습니까?",
+		  icon: 'warning',
+		  buttons: true,
+		  dangerMode: true,
+		}).then((willDelete) => {
+			if(willDelete) {
+				if(myNo == memNo) {
+					$.ajax({
+						url : "reply_delete",
+						data : {"rNo" : replyNo, "pNo" : pNo, "mNo" : myNo},
+						type : "post",
+						dataType : "json",
+						success : function(data) {
+							if(data == 1) {
+								swal({
+									title: "댓글이 삭제되었습니다",
+									icon: "success" //"info,success,warning,error" 중 택1
+								});
+								getReplies();
+							}
+							else {
+								swal({
+									title: "오류가 발생했습니다",
+									icon: "error" //"info,success,warning,error" 중 택1
+								});
+								getReplies();
+							}
+						}
+					});
+				}
+				else {
+					swal({
+						title: "다른 사람의 댓글은 삭제할 수 없습니다.",
+						icon: "error" //"info,success,warning,error" 중 택1
+					});
+				}				
+			}
+			else {
+				return false;
+			}
+		})		
+}
 </script>
 </html>
