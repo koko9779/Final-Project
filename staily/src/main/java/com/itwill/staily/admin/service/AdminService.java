@@ -2,6 +2,7 @@ package com.itwill.staily.admin.service;
 
 import java.util.List;
 
+import com.itwill.staily.util.Board;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
@@ -57,5 +58,11 @@ public interface AdminService {
 	public List<Product> selectUnconfirmProduct() throws Exception;
 	
 	// 상품 승인
-	public boolean productConfirm(int pNo);
+	public boolean productConfirm(int pNo)throws Exception;
+	
+	//공지사항 전체 출력 
+	public List<Board>selectBoardAll() throws Exception;
+	
+	//공지사항 하나 출력 
+	public Board selectBoardOne(int bNo) throws Exception;
 }

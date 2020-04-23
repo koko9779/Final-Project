@@ -9,7 +9,7 @@
 </style>
 <body>
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">회원정보페이지</h1>
+<h1 class="h3 mb-2 text-gray-800">상품정보페이지</h1>
 <!-- DataTales Example -->
 <div class="join-step2">
 	<!--<div class="text-header">기본정보 ( * 필수 입력 항목)</div>-->
@@ -100,7 +100,7 @@
 						alt="${productList[0].pScene }"> <input type="hidden"
 						value="${productList[0].pScene }"></td>
 					<td class="text-left"><button type="button" name="modalBtn"
-							class="modalBtn" onclick="sceneUpdate(${productList[0].pScene })">수정하기</button></td>
+							class="btn btn-outline btn-primary pull-right" onclick="sceneUpdate(${productList[0].pScene })">수정하기</button></td>
 				</tr>
 				<c:forEach var="product" items="${productList }">
 					<tr>
@@ -113,7 +113,7 @@
 							</div>
 						</td>
 						<td class="text-left"><button type="button" name="modalBtn"
-								class="modalBtn" onclick="imageUpdate(${product.pdImage})">수정하기</button></td>
+								class="btn btn-outline btn-primary pull-right" onclick="imageUpdate(${product.pdImage})">수정하기</button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -135,7 +135,7 @@
 
 </div>
 <!-- End of Main Content -->
-<%@ include file="/WEB-INF/views/admin/include/include_bottom.jsp"%>
+<%@ include file="/WEB-INF/views/admin/include/include_js.jsp"%>
 </body>
 </html>
 

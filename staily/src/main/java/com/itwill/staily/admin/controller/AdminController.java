@@ -3,6 +3,8 @@ package com.itwill.staily.admin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -221,13 +223,14 @@ public class AdminController {
 
 	@RequestMapping(value = "/update_img")
 	public void upDate(HttpServletResponse response, HttpServletRequest request,
-			@RequestParam("Filedata") MultipartFile Filedata) {
+			@RequestParam("Filedata") MultipartFile Filedata) throws Exception {
 		HttpSession session = request.getSession();
 		String newfilename = "";
 		String path = "";
 		String pScene =(String) session.getAttribute("pScene");
 		String pdImage =(String) session.getAttribute("pdImage");
-		System.out.println("씬="+pScene+"이미지="+pdImage);
+		String computerName = InetAddress.getLocalHost().getHostName();
+		String[] comName = computerName.split("-");
 		if(pScene !=null && pScene!="") {
 			newfilename= pScene;
 			path = "scene";
@@ -235,7 +238,7 @@ public class AdminController {
 			newfilename = pdImage;
 			path = "image";
 		}
-		File f = new File("C:\\Users\\shaden\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\"+path+"\\" + newfilename + ".jpg"); 
+		File f = new File("C:\\Users\\"+comName[0]+"\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\"+path+"\\" + newfilename + ".jpg"); 
 		try {
 			Filedata.transferTo(f); 
 			response.getWriter().write(newfilename);

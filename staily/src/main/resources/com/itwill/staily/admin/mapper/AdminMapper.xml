@@ -119,7 +119,37 @@
 	<delete id="deleteWork" parameterType="int">
 		DELETE work WHERE w_no=#{wNo}
 	</delete>
-
+	<!-- 공지 사항 -->
+	<select id="selectBoardAll" resultType="Board">
+	SELECT 	
+		B_NO,
+		M_NO,
+		B_TITLE,
+		B_CONTENT,
+		B_GROUPNO,
+		B_STEP,
+		B_VIEW,
+		B_TYPE,
+		B_DATE,
+		B_CATEGORY
+	FROM BOARD
+	WHERE b_TYPE='A'
+	</select>
+	<select id="selectBoardOne" resultType="Board" parameterType="int">
+	SELECT 	
+		B_NO,
+		M_NO,
+		B_TITLE,
+		B_CONTENT,
+		B_GROUPNO,
+		B_STEP,
+		B_VIEW,
+		B_TYPE,
+		B_DATE,
+		B_CATEGORY
+	FROM BOARD
+	WHERE b_no=#{bNo}
+	</select>
 
 </mapper>
 

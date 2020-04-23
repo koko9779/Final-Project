@@ -42,7 +42,8 @@
 								<c:if test="${member.mType =='A'}">
 									<td>갓리자</td>
 								</c:if>
-								<td><input type="button" class="mCheckBtn" value="수정" /></td>
+								<td><button type="button" class="btn btn-default btn-lg io-data io-fn-nextStep"
+								id="mCheckBtn">수정</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>

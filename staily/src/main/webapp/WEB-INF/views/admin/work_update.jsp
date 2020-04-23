@@ -90,7 +90,7 @@ image {
 				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2" onclick="window_close()">닫기</button>
 		</div>
 </form>
-<%@ include file="/WEB-INF/views/admin/include/include_bottom.jsp"%>
 </body>
+<%@ include file="/WEB-INF/views/admin/include/include_js.jsp"%>
 </html>
 

@@ -34,7 +34,8 @@
 								<td>${product.pDaddress}</td>
 								<td>${product.pView}</td>
 								<td>${product.pCheck}</td>
-								<td><input type="button" class="pCheckBtn" value="보기" /></td>
+								<td><button type="button" class="btn btn-default btn-lg io-data io-fn-nextStep"
+								id="pCheckBtn">수정</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>

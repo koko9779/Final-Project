@@ -38,7 +38,8 @@
 								</c:choose>
 								<td>${work.wDate}</td>
 								<td>${work.wTepisode}</td>
-								<td><input type="button" class="wCheckBtn" value="클릭" /></td>
+								<td><button type="button" class="btn btn-default btn-lg io-data io-fn-nextStep"
+								id="wCheckBtn">수정</button></td>
 							</tr>
 						</c:forEach>
 					</tbody>
