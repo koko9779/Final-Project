@@ -39,6 +39,6 @@
 		select w_no,w_category,w_poster
 		from work
 		where w_category=#{wCategory}
-		orderby w_no desc
+		order by w_no desc
 	</select>	
 </mapper>
