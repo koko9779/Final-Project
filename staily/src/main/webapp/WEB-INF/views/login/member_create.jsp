@@ -26,18 +26,18 @@
               <form name="registerF" id="registerF" class="user" action="return false;">
               <input type="hidden" id="inputType" name="mType" value="M">
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="inputId" name="mId" placeholder="아이디">
+                  <input type="text" class="form-control form-control-user" id="inputId" name="mId" placeholder="아이디" maxlength="15">
                 </div>
                  <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" id="inputPw" name="mPw" placeholder="패스워드">
+                    <input type="password" class="form-control form-control-user" id="inputPw" name="mPw" placeholder="패스워드" maxlength="15">
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="repeatPw" name="repeatPw" placeholder="패스워드 확인">
+                    <input type="password" class="form-control form-control-user" id="repeatPw" name="repeatPw" placeholder="패스워드 확인" maxlength="15">
                   </div>
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="inputName" name="mName" placeholder="이름">
+                  <input type="text" class="form-control form-control-user" id="inputName" name="mName" placeholder="이름" maxlength="10">
                 </div>
                 <div class="form-group">
                   <input type="email" class="form-control form-control-user" id="inputEmail" name="mEmail" placeholder="이메일">
@@ -49,7 +49,7 @@
                   <input type="text" class="form-control form-control-user" id="inputDaddress" name="mDaddress" placeholder="상세주소">
                 </div>
                 <div class="form-group" id="phoneGroupE">
-                  <input type="text" class="form-control form-control-user" id="inputPhone" name="mPhone" placeholder="'-'  없이 핸드폰번호 입력해주세요">
+                  <input type="text" class="form-control form-control-user" id="inputPhone" name="mPhone" placeholder="'-'  없이 핸드폰번호 입력해주세요" maxlength="11">
                 </div>
                 <div class="check_register" id="check_register">
                 	오류기입란

@@ -10,7 +10,7 @@
       <div class="col-xl-10 col-lg-12 col-md-9">
 
         <div class="card o-hidden border-0 shadow-lg my-5">
-          <div class="card-body p-0">
+          <div class="card-body m-20">
             <!-- Nested Row within Card Body -->
             <div class="row">  
               <div class="col-lg-6 d-none d-lg-block bg-id-image"></div>
@@ -58,24 +58,7 @@
   </div>
 
  <%@ include file="/WEB-INF/views/login/include/include_bottom_login.jsp" %>
- <script type="text/javascript">
- $(function() {
-	var msgE = $("#msgE").val();
-	if(msgE === "" || msgE === undefined) {
-		return;
-	}else {
-		//alert(msgE);
-			swal({
-			  title: '에러 메세지',
-			  icon: 'error',
-			  text: msgE,
-			}).then(() => {
-				location.href = "id_read";
-			});
-		return;
-	}
-});
- </script>
+ 
    </body>
   
 </html> 
