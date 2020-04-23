@@ -263,6 +263,13 @@ public class ReplyServiceImpl implements ReplyService {
 		return check;
 	}
 
+	@Override
+	public Reply checkRecAndRep(int rNo, int mNo) throws Exception {
+		Reply reply = replyMapper.checkRecAndRep(rNo, mNo);
+		
+		return reply;
+	}
+
 
 
 }

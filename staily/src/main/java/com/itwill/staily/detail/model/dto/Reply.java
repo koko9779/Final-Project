@@ -44,6 +44,12 @@ public class Reply {
 		this.rNo = rNo;
 	}
 	
+	public Reply(int rNo, int mNo) {
+		super();
+		this.mNo = mNo;
+		this.rNo = rNo;
+	}
+	
 	public int getmNo() {
 		return mNo;
 	}
