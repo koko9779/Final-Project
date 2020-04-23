@@ -148,7 +148,7 @@ function searchItemM(item) {
 };
 /** *****멤버 펑션 시작********** */
 $(function() {
-	$(document).on('click','.mCheckBtn',function(e) {
+	$(document).on('click','#mCheckBtn',function(e) {
 		var checkBtn = $(this);
 		var tr = checkBtn.parent().parent();
 		var td = tr.children();
@@ -183,7 +183,7 @@ $(function() {
 });
 /** *****상품 펑션 시작********** */
 $(function() {
-	$(document).on('click','.pCheckBtn',function() {
+	$(document).on('click','#pCheckBtn',function() {
 					var checkBtn = $(this);
 					var tr = checkBtn.parent().parent();
 					var td = tr.children();
@@ -303,7 +303,7 @@ $(function() {
 });	
 
 $(function() {
-	$(document).on('click','.wCheckBtn',function(e) {
+	$(document).on('click','#wCheckBtn',function(e) {
 			var checkBtn = $(this);
 			var tr = checkBtn.parent().parent();
 			var td = tr.children();

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.staily.admin.mapper.AdminMapper;
 import com.itwill.staily.admin.service.AdminService;
+import com.itwill.staily.util.Board;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
@@ -144,6 +145,20 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public List<Product> selectUnconfirmProduct() throws Exception {
 		return adminMapper.selectUnconfirmProduct();
+	}
+
+
+
+	@Override
+	public List<Board> selectBoardAll() throws Exception {
+		return adminMapper.selectBoardAll();
+	}
+
+
+
+	@Override
+	public Board selectBoardOne(int bNo) throws Exception {
+		return adminMapper.selectBoardOne(bNo);
 	}
 
 
