@@ -1,8 +1,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Staily</title>
-<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/favicon.png" />
+<title>STAILY</title>
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/images/s.png" />
 <link href="${pageContext.request.contextPath}/css/slick.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/venobox.css" rel="stylesheet">
