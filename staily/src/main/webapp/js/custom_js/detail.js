@@ -241,8 +241,8 @@ var myNo = $('#mNo').val();
 					a += "<button onClick='deleteReply(" + data[i].rNo + ", " + data[i].mNo + ")' class='btn btn-ghost' style='float: right;'>삭제</button></h4>";
 				}
 				a += "<p>" + data[i].rContent + "</p>";
-				a += "<button onClick='incReport(" + data[i].rNo + ")' class='btn btn-ghost' style='float: right;'>신고 " + data[i].rReport + "</button>";
-				a += "<button onClick='incRec(" + data[i].rNo + ")' class='btn btn-ghost' style='float: right;' value='" + data[i].rNo + "'>추천 " + data[i].rRecommend + "</button>";
+				a += "<button onClick='chkReport(" + data[i].rNo + ")' class='btn btn-ghost' style='float: right;'>신고 " + data[i].rReport + "</button>";
+				a += "<button onClick='chkRec(" + data[i].rNo + ")' class='btn btn-ghost' style='float: right;' value='" + data[i].rNo + "'>추천 " + data[i].rRecommend + "</button>";
 				a += "</div>";
 			}
 			
@@ -345,8 +345,37 @@ function deleteReply(rNo, mNo) {
 		})		
 }
 
-function incReport(rNo) {
+function chkRec(rNo) {
 	var myNo = $('#mNo').val();
+	
+	if(myNo == '') {
+		swal({
+			title: "추천하려면 로그인하세요",
+			icon: "warning" //"info,success,warning,error" 중 택1
+		});
+	}
+	else {
+		$.ajax({
+			url : "reply_recommend",
+			data : {"mNo" : myNo, "rNo" : rNo},
+			type : "post",
+			dataType : "json",
+			success : function(data) {
+				getReplies();
+			},
+			error : function() {
+				swal({
+					title: "실패",
+					icon: "error" //"info,success,warning,error" 중 택1
+				});
+			}
+		});
+	}
+}
+
+function chkReport(rNo) {
+	var myNo = $('#mNo').val();
+	var pNo = $('#pNoo').val();
 	
 	if(myNo == '') {
 		swal({
@@ -355,21 +384,31 @@ function incReport(rNo) {
 		});
 	}
 	else {
-		
-	}
-}
-
-function incRec(rNo) {
-	var myNo = $('#mNo').val();
-	
-	if(myNo == '') {
-		swal({
-			   title: "추천하려면 로그인하세요",
-			   icon: "warning" //"info,success,warning,error" 중 택1
+		$.ajax({
+			url : "reply_report",
+			data : {"mNo" : myNo, "rNo" : rNo, "pNo" : pNo},
+			type : "post",
+			dataType : "json",
+			success : function(data) {
+				if(data == 2) {
+					//alert(myNo + "----" + pNo + "----" + rNo);
+					swal({
+						title: "신고가 누적되어 댓글이 삭제되었습니다",
+						icon: "warning" //"info,success,warning,error" 중 택1
+					});
+					getReplies();
+				}
+				else {
+					getReplies();
+				}
+			},
+			error : function() {
+				swal({
+					title: "실패",
+					icon: "error" //"info,success,warning,error" 중 택1
+				});
+			}
 		});
-	}
-	else {
-		
 	}
 }
 

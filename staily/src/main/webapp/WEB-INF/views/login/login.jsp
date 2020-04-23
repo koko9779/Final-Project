@@ -59,22 +59,7 @@
 
   </div>
  <%@ include file="/WEB-INF/views/login/include/include_bottom_login.jsp" %>
-<script type="text/javascript">
-$(function() {
-	var id = $("#findIdE").val();
-	if(id === "" || id === undefined) {
-		return;
-	}else {
-		swal({
-			  title: '아이디 찾기 성공',
-			  icon: 'info',
-			  text: '고객님의 아이디는 '+ id + '입니다',
-			});
-		return;
-	}
-});
-</script>
- 
+
    </body>
 
 </html> 

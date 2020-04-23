@@ -14,6 +14,8 @@ public interface ReplyService {
 	boolean createReply(Reply reply) throws Exception;
 	
 	boolean deleteReply(@Param("rNo") int rNo, @Param("pNo") int pNo, @Param("mNo") int mNo) throws Exception;
+
+	boolean deleteReport(@Param("rNo") int rNo, @Param("pNo") int pNo) throws Exception;
 	
 	int checkReply(@Param("rNo") int rNo, @Param("mNo") int mNo) throws Exception;
 	

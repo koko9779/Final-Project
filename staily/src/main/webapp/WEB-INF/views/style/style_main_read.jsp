@@ -25,6 +25,7 @@
 		<div class="col-sm-9 col-sm-push-1" style="width: 70%">
 	-->
 			<!-- Page Heading -->
+			<%@ include file="/WEB-INF/views/style/include/include_board_sidebar.jsp"%>
 			
 			<div class="col-sm-10">
 				<h1 class="h3 mb-2 text-gray-800">스타일코디 페이지</h1>

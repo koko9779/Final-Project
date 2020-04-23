@@ -68,6 +68,20 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
+	public boolean deleteReport(int rNo, int pNo) throws Exception {
+		boolean check = false;
+		
+		if(replyMapper.deleteReport(rNo, pNo)) {
+			check = true;			
+		}
+		else{
+			check = false;
+		}
+		
+		return check;
+	}
+
+	@Override
 	public int checkReply(int rNo, int mNo) throws Exception {
 		int check = 0;
 		
@@ -141,7 +155,7 @@ public class ReplyServiceImpl implements ReplyService {
 	public boolean setRecommend(int rNo, int mNo) throws Exception {
 		boolean check = false;
 		
-		if(replyMapper.resetRecommend(rNo, mNo)) {
+		if(replyMapper.setRecommend(rNo, mNo)) {
 			check = true;
 		}
 		else {
@@ -169,7 +183,7 @@ public class ReplyServiceImpl implements ReplyService {
 	public boolean setReport(int rNo, int mNo) throws Exception {
 		boolean check = false;
 
-		if(replyMapper.resetReport(rNo, mNo)) {
+		if(replyMapper.setReport(rNo, mNo)) {
 			check = true;
 		}
 		else {
@@ -248,6 +262,7 @@ public class ReplyServiceImpl implements ReplyService {
 		
 		return check;
 	}
+
 
 
 }

@@ -28,6 +28,11 @@
 		where r_no = #{rNo} and p_no = #{pNo} and m_no = #{mNo}
 	</delete>
 	
+	<delete id="deleteReport" parameterType="com.itwill.staily.detail.model.dto.Reply">
+		delete from reply
+		where r_no = #{rNo} and p_no = #{pNo}
+	</delete>
+	
 	<select id="checkReply" parameterType="int" resultType="int">
 		select count(*) from reply_detail
 		where r_no = #{rNo} and m_no = #{mNo}

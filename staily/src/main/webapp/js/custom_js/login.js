@@ -112,7 +112,7 @@ $(window)
 						required: true,
 						idCk: true,
 						isIdExisted: true,
-						rangelength: [8, 15]
+						rangelength: [8, 15],
 					},
 					mPw:{
 						required: true,
