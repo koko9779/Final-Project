@@ -5,23 +5,18 @@
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
 
 <!-- Hero -->
-<div id="content_hero"
-	style="background-image: url(http://via.placeholder.com/1440x435)">
-
-	<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg"
-		alt="Scroll down" class="scroll" />
-
-	<!-- Content -->
-	<div class="container">
-		<div class="row blurb scrollme animateme" data-when="exit"
-			data-from="0" data-to="1" data-opacity="0" data-translatey="100">
-		</div>
-	</div>
-
+<div id="content_hero" >
+	<iframe class="ww"
+			src="https://www.youtube-nocookie.com/embed/-Jvx0uqn3Zc?autoplay=1&amp;loop=1;playlist=-Jvx0uqn3Zc&controls=0&vq=hd720"
+			frameborder="0"	allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+			allowfullscreen></iframe>
+	<a href="#afterHeader" class="anchor">
+		<img src="${pageContext.request.contextPath}/images/scroll-arrow.svg" alt="Scroll down" class="scroll" />
+	</a>
 </div>
 
 <!-- Section -->
-<div class="container-fluid">
+<div class="container news section">
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
 		<div class="card-body">
@@ -32,7 +27,6 @@
 						<tr>
 							<th>번호</th>
 							<th>제목</th>
-							<th>글쓴이</th>
 							<th>조회수</th>
 							<th>작성 날짜</th>
 						</tr>
@@ -41,24 +35,18 @@
 						<c:forEach var="board" items="${data}">
 							<tr>
 								<td>${board.bIdx}</td>
-								<td><a href="style_detail_read?bNo=${board.bNo}">
+								<td><a href="detail?bNo=${board.bNo}">
 										${board.bTitle} </a></td>
-								<td>${board.mId}</td>
 								<td>${board.bView}</td>
 								<td>${board.bDate}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-				<a href="style_board_create" class="btn btn-ghost sort"> <span>쓰기</span>
-				</a>
-				<div id="msg"></div>
 			</div>
 		</div>
 	</div>
 </div>
-
-
 </div>
 <!-- /.container-fluid -->
 

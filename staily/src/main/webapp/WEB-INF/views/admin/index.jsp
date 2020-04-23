@@ -5,8 +5,7 @@
 
 <!-- Page Heading -->
 <div class="col-lg-10">
-	<h1 class="h3 mb-2 text-gray-800">임시로 메인씁네다</h1>
-	<button type="button" onclick="calendar()">달력테스트</button>
+	<h1 class="h3 mb-2 text-gray-800">관리자페이지</h1>
 	<div class="row">
 		<div class="col-xl-6 col-lg-6"
 			style="float: left; margin-right: 10px;">

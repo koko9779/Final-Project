@@ -718,12 +718,12 @@ hr.space-40 {
 
 /** Buttons **/
 .btn {
-	font-size: 13px;
+	font-size: 12px;
 	font-weight: normal;
 	position: relative;
 	overflow: hidden;
 	width: auto;
-	padding: 12px 24px;
+	padding: 10px 10px;
 	letter-spacing: 4px;
 	text-transform: uppercase;
 	color: #fff;

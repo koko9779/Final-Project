@@ -1,7 +1,15 @@
 @charset "UTF-8";
+.m-20 {
+	margin: 20px;
+}
+
 a {
     color: black;
     background-color: transparent;
+}
+
+label.error_msg {
+	left: 15px;
 }
 
 .bg-password-image {
@@ -18,8 +26,11 @@ a {
 
 .bg-register-image {
     background: url(/staily/images/work/poster/1.jpg);
+	background-repeat : no-repeat;
     background-position: center;
     background-size: cover;
+    background-position : center;
+	background-size : contain; 
 }
 
 .bg-login-image {
@@ -54,7 +65,6 @@ a {
     font-size: 12px;
     color: red;
     position: relative;
-    left: 10px;
   }
   
  .margin {
