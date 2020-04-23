@@ -6,7 +6,9 @@ $(function(){
 	/***************************내가쓴글 삭제***************************/
    $('#deleteWriteBtn').click(function(e){
       var noArray = [];
-      
+      if(noArray.length ==0){
+			return;
+		}
       $('input[name="member_write_check"]:checked').each(function(i){
          noArray.push($(this).val());
       })
@@ -45,7 +47,9 @@ $(function(){
 	$('#deleteBtn').click(function(e){
 		//배열선언
 		var noArray = [];
-		
+		if(noArray.length ==0){
+			return;
+		}
 		//배열에 값 채우기
 		$('input[name="book_check"]:checked').each(function(i){
 			noArray.push($(this).val());
@@ -81,11 +85,13 @@ $(function(){
 	$('#deleteFriendBtn').click(function(e){
 		//데이터를 받을 배열 선언
 		var noArray = [];
-		
+		if(noArray.length ==0){
+			return;
+		}
 		//배열에 데이터 넣기
 		$('input[name="friend_check"]:checked').each(function(i){
 			noArray.push($(this).val());
-		})
+		});
 		
 		var params = {
 			"fPk" : noArray
@@ -105,7 +111,11 @@ $(function(){
 							location.reload();
 						});
 				}else{
-					location.href = '404';
+					swal({
+						   title: "삭제실패",
+						   text: "버튼을 클릭해주세요!",
+						   icon: "error" //"info,success,warning,error" 중 택1
+						});
 				}
 			},
 			error : function(){
@@ -120,13 +130,13 @@ $(function(){
 	$('.addFriendDiv').on("click","a:nth-child(1)",function(e){
 		e.preventDefault();
 		var no = $(this).attr('value');	
-		window.open("message?mNo="+no, "_blank","width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		window.open("message?mNo="+no, "_blank","width=750, height=500, left=900, top=100, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 	});
 	
 	//메시지보관함 [동적이벤트추가]
 	$('.addFriendDiv').on("click","a:nth-child(2)",function(e){
 		e.preventDefault();
-		window.open("message_list", "_blank", "width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		window.open("message_list", "_blank", "width=750, height=500, left=900, top=100, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 	});
 
 	/************************쪽지보내기 시작******************************
@@ -205,7 +215,7 @@ $(function(){
 	$('#searchDropdwon a:nth-child(2)').click(function(e){
 		e.preventDefault();
 		var noV = $(this).attr('value');
-		window.open("message?mNo="+noV, "_blank","width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		window.open("message?mNo="+noV, "_blank","width=750, height=500, left=900, top=100, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 	});
 	
 	/************************친구검색 function 시작******************************/
@@ -256,7 +266,7 @@ $(function(){
 	
 	$('#sideCheck li:nth-child(5)').click(function(e){
 		e.preventDefault();
-		window.open("message_list", "_blank", "width=800, height=700, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		window.open("message_list", "_blank", "width=750, height=500, left=900, top=100, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 		
 	});
 		
