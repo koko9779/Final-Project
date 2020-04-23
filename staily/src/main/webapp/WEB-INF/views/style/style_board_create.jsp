@@ -19,7 +19,6 @@
 <!-- Section -->
 <div class="container-fluid totop">
 	<div class="row" id="afterHeader">
-	<%@ include file="/WEB-INF/views/style/include/include_board_sidebar.jsp"%>
 		<!-- 
 		<div class="col-sm-2" id="board-create-sidebar">
 			<aside class="col-sm-push-1 sidebar m-top-21">
