@@ -1,3 +1,8 @@
+.p_name{
+	text-align: left;
+	margin: 2% 0px;
+	float:left;
+}
 .product_form_size{
 	width:30%;
 	display:inline-block;

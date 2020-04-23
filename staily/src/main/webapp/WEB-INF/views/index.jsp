@@ -44,7 +44,7 @@
 												<input class="material-icons bookmark" type="image" alt="즐겨찾기 제거"
 													src="${pageContext.request.contextPath}/images/star.png"
 													onclick="delete_bookmark(${bm.bmNo});">
-												<span class="no-underline" style="margin: 2% 0px;float:left;">${bm.product.pName}</span>
+												<span class="no-underline p_name" style="width: 80%;">${bm.product.pName}</span>
 											</div>
 										</div>
 									</form>
@@ -77,7 +77,7 @@
 											alt="${hot.pName}" style="width:100%; height:150px;" />
 										</a>
 									</div>
-									<h4 class="no-underline">${hot.pName}</h4>
+									<h4 class="no-underline p_name">${hot.pName}</h4>
 									<div>조회수: ${hot.pView}</div>
 								</div>
 							</form>
