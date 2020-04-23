@@ -47,7 +47,15 @@ function productCreate() {
 
 
 function work_search() {
-	location.href = '../detail/work_select';
+	var url_string = window.location.href;
+	var url = new URL(url_string);
+	var wdEpisode = url.searchParams.get("wdEpisode");
+	if(wdEpisode==null) {
+		location.href="../detail/work_select";
+	}
+	else {
+		location.href="../../detail/work_select";
+	}
 };
 
 function execDaumPostcode() {
@@ -241,12 +249,25 @@ var myNo = $('#mNo').val();
 					a += "<button onClick='deleteReply(" + data[i].rNo + ", " + data[i].mNo + ")' class='btn btn-ghost' style='float: right;'>삭제</button></h4>";
 				}
 				a += "<p>" + data[i].rContent + "</p>";
-				a += "<button onClick='chkReport(" + data[i].rNo + ")' class='btn btn-ghost' style='float: right;'>신고 " + data[i].rReport + "</button>";
-				a += "<button onClick='chkRec(" + data[i].rNo + ")' class='btn btn-ghost' style='float: right;' value='" + data[i].rNo + "'>추천 " + data[i].rRecommend + "</button>";
+				$('#reply_space').html(a);
+				//추천, 신고 눌렀는지 확인해 아이콘 변경
+				var rNo = data[i].rNo;
+				
+				$.ajax({
+					url : "reply_check",
+					type : "post",
+					data : {"rNo" : rNo, "mNo" : myNo},
+					success : function(data) {
+						var division = data;						
+					}
+				});
+					a += "<input type='image' src='../images/like.png' name='recommandIcon' onClick='chkRec(" + data[i].rNo + ");return false;' style='float: right; width: 30px; height: 30px;' value='" + data[i].rNo + "'><span style='float: right; margin: 4px'>" + data[i].rRecommend + "</span>";
+					a += "<input type='image' src='../images/siren.png' name='reportIcon' onClick='chkReport(" + data[i].rNo + ");return false;' style='float: right; width: 30px; height: 30px;'/><span style='float: right; margin: 4px'>" + data[i].rReport + "</span>";
 				a += "</div>";
+				
 			}
-			
 			$('#reply_space').html(a);
+			
 		}
 	});
 };

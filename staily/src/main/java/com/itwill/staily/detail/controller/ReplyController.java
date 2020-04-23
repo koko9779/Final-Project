@@ -44,7 +44,6 @@ public class ReplyController {
 				
 		return rL;			
 	}
-		
 	
 	@RequestMapping("/reply_create")
 	public Reply reply_create(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
@@ -108,14 +107,14 @@ public class ReplyController {
 					replyService.decreaseRecommend(Integer.parseInt(rNo));
 					replyService.resetRecommend(Integer.parseInt(rNo), mNo);
 					//System.out.println(replyService.selectReplyOne(Integer.parseInt(rNo)).toString() + " 1번");
-					return 1;
+					return 1; //1번
 				}
 				else {
 					//추천을 증가시키고 컬럼을 1로 설정
 					replyService.increaseRecommend(Integer.parseInt(rNo));
 					replyService.setRecommend(Integer.parseInt(rNo), mNo);
 					//System.out.println(replyService.selectReplyOne(Integer.parseInt(rNo)).toString() + " 2번");
-					return 1;
+					return 2; //2번
 				}					
 			}
 			else {
@@ -126,12 +125,12 @@ public class ReplyController {
 				replyService.increaseRecommend(Integer.parseInt(rNo));
 				replyService.setRecommend(Integer.parseInt(rNo), mNo);
 				//System.out.println(replyService.selectReplyOne(Integer.parseInt(rNo)).toString() + " 3번");
-				return 1;						
+				return 3; //3번						
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			return 0;
+			return 0; //실패
 		}
 	}
 	
@@ -188,4 +187,41 @@ public class ReplyController {
 	}
 
 
+	@RequestMapping("/reply_check")
+	public int reply_check(HttpServletRequest request, HttpServletResponse response, String pNo) throws Exception {
+		int check = 0;
+		
+		try {
+			String rNo = request.getParameter("rNo");
+			String mNo = request.getParameter("mNo");
+			
+			Reply reply = replyService.checkRecAndRep(Integer.parseInt(rNo), Integer.parseInt(mNo));
+			
+			if(reply.getrRecommend() > 0) {
+				if(reply.getrReport() > 0) {
+					//사용자가 추천과 신고를 눌렀을 경우
+					check = 0;
+				}
+				else {
+					//사용자가 추천은 눌렀지만 신고를 누르지 않은 경우
+					check = 1;
+				}
+			}
+			else {
+				if(reply.getrReport() > 0) {
+					//사용자가 추천은 누르지 않았지만 신고를 누른 경우
+					check = 2;
+				}
+				else {
+					//사용자가 추천과 신고를 둘 다 누르지 않은 경우
+					check = 3;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			check = 4; //에러
+		}
+				
+		return check;			
+	}
 }

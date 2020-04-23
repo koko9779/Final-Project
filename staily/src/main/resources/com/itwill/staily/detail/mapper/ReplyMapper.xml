@@ -94,5 +94,9 @@
 		update reply set r_report = r_report - 1 where r_no = #{rNo}
 	</update>
 	
-	
+	<select id="checkRecAndRep" parameterType="int" resultType="com.itwill.staily.detail.model.dto.Reply">
+		select r_recommend, r_report
+		from reply_detail
+		where r_no = #{rNo} and m_no = #{mNo}
+	</select>
 </mapper>

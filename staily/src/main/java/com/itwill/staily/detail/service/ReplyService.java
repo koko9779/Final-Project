@@ -42,4 +42,6 @@ public interface ReplyService {
 	boolean decreaseRecommend(@Param("rNo") int rNo) throws Exception;
 	
 	boolean decreaseReport(@Param("rNo") int rNo) throws Exception;
+	
+	Reply checkRecAndRep(@Param("rNo") int rNo, @Param("mNo") int mNo) throws Exception;
 }
