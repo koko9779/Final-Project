@@ -2,6 +2,8 @@ package com.itwill.staily.admin.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.itwill.staily.admin.model.Stats;
 import com.itwill.staily.util.Board;
 import com.itwill.staily.util.Member;
@@ -81,5 +83,5 @@ public interface AdminService {
 	public List<Stats>selectNoticeReply() throws Exception;
 	
 	//공지사항 댓글 삭제
-	public boolean deleteNoticeReply(int nrNo) throws Exception;
+	public boolean deleteNoticeReply(@Param("nrNo") int nrNo, @Param("mNo") int mNo) throws Exception;
 }

@@ -115,7 +115,7 @@ function getReplies() {
 					a += "<div class='row'>";
 					a += "<h4 class='no-underline'>" + data[i].mId;
 					if(data[i].mNo == myNo) {
-						a += "<button onClick='deleteReply(" + data[i].mNo + ")' class='btn btn-ghost' style='float: right;'>삭제</button></h4>";
+						a += "<button onClick='deleteReply(" + data[i].nrNo + "," + data[i].mNo + ")' class='btn btn-ghost' style='float: right;'>삭제</button></h4>";
 					}
 					a += "<p>" + data[i].nrContent + "</p>";
 					a += "</div>";
@@ -152,11 +152,10 @@ $('#createreply').on("click", function() {
 });
 
 function deleteReply(rNo, mNo) {
-	var replyNo = rNo;
 	var myNo = $('#mNo').val();
 	var memNo = mNo;
 	
-	//alert(rNo + " " + pNo + " " + mNo);
+	//alert(rNo + "==" + "==" + memNo);
 	//alert("나 : " + myNo + " 댓글 작성자 : " + memNo);
 	
 	swal({
@@ -168,8 +167,8 @@ function deleteReply(rNo, mNo) {
 			if(willDelete) {
 				if(myNo == memNo) {
 					$.ajax({
-						url : "reply_delete",
-						data : {"rNo" : replyNo, "pNo" : pNo, "mNo" : myNo},
+						url : "../notice/reply_delete",
+						data : {"nrNo" : rNo, "mNo" : myNo},
 						type : "post",
 						dataType : "json",
 						success : function(data) {
@@ -180,7 +179,7 @@ function deleteReply(rNo, mNo) {
 								});
 								getReplies();
 							}
-							else {
+ 							else {
 								swal({
 									title: "오류가 발생했습니다",
 									icon: "error" //"info,success,warning,error" 중 택1

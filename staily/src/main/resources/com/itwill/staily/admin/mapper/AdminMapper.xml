@@ -195,7 +195,7 @@
 		FROM
 		notice_reply
 		WHERE
-		nr_no=#{nrNo}	
+		nr_no = #{nrNo}	and m_no = #{mNo}
 	</delete>
 </mapper>
 

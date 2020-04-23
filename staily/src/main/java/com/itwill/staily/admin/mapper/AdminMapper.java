@@ -3,6 +3,7 @@ package com.itwill.staily.admin.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.itwill.staily.admin.model.Stats;
@@ -74,7 +75,7 @@ public interface AdminMapper {
 	
 	public List<Stats>selectNoticeReply();
 	
-	public boolean deleteNoticeReply(int nrNo);
+	public boolean deleteNoticeReply(@Param("nrNo") int nrNo, @Param("mNo") int mNo);
 	
 	
 }
