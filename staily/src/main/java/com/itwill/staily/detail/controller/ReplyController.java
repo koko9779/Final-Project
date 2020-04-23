@@ -143,7 +143,7 @@ public class ReplyController {
 			
 			//신고 수가 누적되면 댓글 삭제
 			int reportCnt = replyService.selectReplyOne(Integer.parseInt(rNo)).getrReport();
-			System.out.println(reportCnt);
+			//System.out.println(reportCnt);
 			if(reportCnt >= 2) {
 				replyService.deleteReport(Integer.parseInt(rNo), Integer.parseInt(pNo));
 				return 2;
@@ -197,25 +197,30 @@ public class ReplyController {
 			
 			Reply reply = replyService.checkRecAndRep(Integer.parseInt(rNo), Integer.parseInt(mNo));
 			
-			if(reply.getrRecommend() > 0) {
-				if(reply.getrReport() > 0) {
-					//사용자가 추천과 신고를 눌렀을 경우
-					check = 0;
+			if(replyService.checkReply(Integer.parseInt(rNo), Integer.parseInt(mNo)) > 0) {
+				if(reply.getrRecommend() > 0) {
+					if(reply.getrReport() > 0) {
+						//사용자가 추천과 신고를 눌렀을 경우
+						check = 0;
+					}
+					else {
+						//사용자가 추천은 눌렀지만 신고를 누르지 않은 경우
+						check = 1;
+					}
 				}
 				else {
-					//사용자가 추천은 눌렀지만 신고를 누르지 않은 경우
-					check = 1;
+					if(reply.getrReport() > 0) {
+						//사용자가 추천은 누르지 않았지만 신고를 누른 경우
+						check = 2;
+					}
+					else {
+						//사용자가 추천과 신고를 둘 다 누르지 않은 경우
+						check = 3;
+					}
 				}
 			}
 			else {
-				if(reply.getrReport() > 0) {
-					//사용자가 추천은 누르지 않았지만 신고를 누른 경우
-					check = 2;
-				}
-				else {
-					//사용자가 추천과 신고를 둘 다 누르지 않은 경우
-					check = 3;
-				}
+				check = 3;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
