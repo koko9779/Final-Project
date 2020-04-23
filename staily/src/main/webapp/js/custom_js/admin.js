@@ -20,19 +20,7 @@ function workCreate(i) {
 	document.getElementById("searchResult"+i+"").action = "work_create";
 	document.getElementById("searchResult"+i+"").submit();
 };
-// function workCreateAction() {
-// document.getElementById("work_create").action = "work_create_action";
-// document.getElementById("work_create").submit();
-// swal({
-// title: "작품등록성공",
-// text: "버튼을 클릭해주세요!",
-// icon: "success" // "info,success,warning,error" 중 택1
-// }).then(() => {
-// window.opener.location.reload();
-// window.close();
-// });
-// };
-/** ***********상품 일반*************** */
+
 function product_confirm(pNo) {
 	var no = "pNo="+pNo;
 	console.log(pNo);
@@ -169,15 +157,17 @@ $(function() {
 					$.ajax({
 						url : 'member_delete',
 						data : mNo,
-						method : 'POST'
+						method : 'POST',
+						success:function(){
+							swal({
+								title: "회원삭제성공",
+								text: "버튼을 클릭해주세요!",
+								icon: "success" // "info,success,warning,error" 중 택1
+							}).then(() => {
+								location.reload();
+							});
+						}
 					});
-				});
-				swal({
-					title: "회원삭제성공",
-					text: "버튼을 클릭해주세요!",
-					icon: "success" // "info,success,warning,error" 중 택1
-				}).then(() => {
-					location.reload();
 				});
 	});
 });
@@ -245,14 +235,16 @@ $(function() {
 			$.ajax({
 				url : 'product_delete',
 				data : pNo,
-				method : 'POST'
-			});
-			swal({
-				title: "상품삭제성공",
-				text: "버튼을 클릭해주세요!",
-				icon: "success" // "info,success,warning,error" 중 택1
-			}).then(() => {
-				location.reload();
+				method : 'POST',
+				success:function(){
+					swal({
+						title: "상품삭제성공",
+						text: "버튼을 클릭해주세요!",
+						icon: "success" // "info,success,warning,error" 중 택1
+					}).then(() => {
+						location.reload();
+					});
+				}
 			});
 		});
 	});
@@ -360,21 +352,22 @@ $(function() {
 		var checkbox = $("input[name=work_CheckBox]:checked");
 		var tdArray = new Array();
 		checkbox.each(function(i) {
-			var tr = checkbox.parent().parent()
-			.eq(i);
+			var tr = checkbox.parent().parent().eq(i);
 			var td = tr.children();
-			var pNo = 'wNo='+td.eq(0).text();
+			var wNo = 'wNo='+td.eq(1).text();
 			$.ajax({
-				url : 'product_delete',
-				data : pNo,
-				method : 'POST'
-			});
-			swal({
-				title: "상품삭제성공",
-				text: "버튼을 클릭해주세요!",
-				icon: "success" // "info,success,warning,error" 중 택1
-			}).then(() => {
-				location.reload();
+				url : 'work_delete',
+				data : wNo,
+				method : 'POST',
+				success: function() {
+					swal({
+						title: "작품삭제성공",
+						text: "버튼을 클릭해주세요!",
+						icon: "success" // "info,success,warning,error" 중 택1
+					}).then(() => {
+						location.reload();
+					});
+				}	
 			});
 		});
 	});
@@ -387,11 +380,30 @@ $(function() {
 		var checkBtn = $(this);
 		var tr = checkBtn.parent().parent();
 		var td = tr.children();
-		var nNo = td.eq(0).text();
+		var nNo = td.eq(1).text();
 		window.open("notice_detail?" + "bNo="+ nNo,"공지수정",
 		"width=800, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
 	});
 });
+
+function createNotice() {
+	location.href='notice_create';
+}
+
+function createNoticeAction() { 
+	CKEDITOR.instances.contents.updateElement(); 
+	if(document.noticeWriteF.bTitle.value === "") { 
+		alert("제목을 입력해 주세요"); 
+		return; 
+	}else if(document.noticeWriteF.bContent.value === "") { 
+		alert("내용을 입력해 주세요"); 
+		return; 
+	}else {
+		document.noticeWriteF.action = "notice_create_action";
+		document.noticeWriteF.method = "POST";
+		document.noticeWriteF.submit();
+	} 
+}
 /** **********document ready 이벤트***************** */
 $(document).ready(function() {
 	/** *****멤버 validate 시작********** */

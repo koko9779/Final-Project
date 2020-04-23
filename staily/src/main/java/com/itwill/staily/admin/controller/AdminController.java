@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSessionEvent;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -385,6 +386,7 @@ public class AdminController {
 		return result;
 	}
 	@RequestMapping("/work_delete")
+	@ResponseBody
 	public String workAdminDelete(HttpServletRequest request, @RequestParam("wNo")int wNo) throws Exception {
 		String result = "";
 		try {
@@ -407,6 +409,19 @@ public class AdminController {
 	@RequestMapping("/notice_create")
 	public String noticeCreate(HttpServletRequest request)throws Exception{
 		return "admin/notice/notice_create";
+	}
+	@RequestMapping(value = "/notice_create_action", method = RequestMethod.POST)
+	public String style_create_action_post(@ModelAttribute Board board, HttpSession session) {
+		String forwardPath = "";
+		try {
+			board.setmNo(1);
+			adminService.createNotice(board);
+			forwardPath = "redirect:/admin/notice";
+		} catch (Exception e) {
+			e.printStackTrace();
+			forwardPath = "redirect:/404.jsp";
+		}
+		return forwardPath;
 	}
 	@RequestMapping("/notice_detail")
 	public String noticeDetail(HttpServletRequest request,@RequestParam("bNo")int bNo) throws Exception {
