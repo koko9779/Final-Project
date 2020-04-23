@@ -47,6 +47,8 @@ public class StyleCoodinationRestController {
 		OutputStream out = null;
 		OutputStream out2 = null;
 		MultipartFile file = multiFile.getFile("upload");
+		File f = new File("임시.jpg");
+		
 		if(file != null){
 			if(file.getSize() > 0 ){
 				if(file.getContentType().toLowerCase().startsWith("image/")){
@@ -63,13 +65,15 @@ public class StyleCoodinationRestController {
 						
 						//서버에 올릴 경로
 						String uploadPath = req.getSession().getServletContext().getRealPath("/img");
-//						
+						System.out.println("서버:"+uploadPath);
+						
 						//워크스페이스에 올리는 경로
-						String uploadPath2 = req.getSession().getServletContext().getRealPath("/img");
+						String uploadPath2 = f.getAbsolutePath();
+						System.out.println("워크스페이스에 올릴 절대경로:" + uploadPath2);
 						String[] uploadPathArray = uploadPath2.split("\\\\");
 						uploadPath2 = uploadPathArray[0] + "\\" +  uploadPathArray[1] + "\\" + uploadPathArray[2] + 
 											"/git/Final-Project/staily/src/main/webapp/img";
-						System.out.println(uploadPath2);
+						System.out.println("워크스페이스 붙이기한 경로:"+uploadPath2);
 						
 						File uploadFile = new File(uploadPath);
 						if(!uploadFile.exists()){
