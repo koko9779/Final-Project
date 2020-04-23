@@ -67,14 +67,20 @@ public class NoticeController {
 	}
 	@RequestMapping("/reply_delete")
 	@ResponseBody
-	public boolean noticeReplyDelete(@RequestParam("mNo")int nrNo) throws Exception {
-		boolean deleteOk = false;
+	public int noticeReplyDelete(HttpServletRequest request) throws Exception {
 		try {
-			deleteOk=adminService.deleteNoticeReply(nrNo);
+			String nrNo = request.getParameter("nrNo");
+			String mNo = request.getParameter("mNo");
+			if(adminService.deleteNoticeReply(Integer.parseInt(nrNo), Integer.parseInt(mNo))) {
+				return 1;
+			}
+			else {
+				return 0;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			return 0;
 		}
-		return deleteOk;
 	}
 	
 }

@@ -4,6 +4,7 @@ package com.itwill.staily.admin.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -204,8 +205,8 @@ public class AdminServiceImpl implements AdminService{
 
 
 	@Override
-	public boolean deleteNoticeReply(int nrNo) throws Exception {
-		boolean deleteOk = adminMapper.deleteNoticeReply(nrNo);
+	public boolean deleteNoticeReply(@Param("nrNo") int nrNo, @Param("mNo") int mNo) throws Exception {
+		boolean deleteOk = adminMapper.deleteNoticeReply(nrNo, mNo);
 		return deleteOk;
 	}
 
