@@ -93,7 +93,7 @@
 									<td class="text-left" style="text-align: left;">
 										<div class="col">
 											<input class="material-icons bookmark" type="image" alt="즐겨찾기 제거" id="createBmk"
-												src="${pageContext.request.contextPath}/images/star.png" style="width:5%;"
+												src="${pageContext.request.contextPath}/images/star.png" style="width : 4%;"
 												onClick='select_bookmark2(" + ${userNo} + "," + ${productOne.get(0).getpNo()} + ");return false;'>
 										</div>
 									</td>
@@ -108,7 +108,7 @@
 												<td class="text-left" style="text-align: left;">
 													<div class="col">
 														<input class="material-icons bookmark" type="image" alt="즐겨찾기 추가" id="createBmk"
-															src="${pageContext.request.contextPath}/images/emptystar.png" style="width:5%;"
+															src="${pageContext.request.contextPath}/images/emptystar.png" style="width: 4%;"
 															onClick='create_bookmark2(" + ${userNo} + "," + ${productOne.get(0).getpNo()} + ");return false;'>
 													</div>
 												</td>
@@ -197,12 +197,12 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=727c99111bf8164d3824366e553400b6&libraries=services"></script>
 <style>
 .iw_inner {
-	padding:10px
+	padding:10px;
 }
 
 .iw_inner h3 {
 	font-size: 18px; 
-	padding-bottom: 7px
+	padding-bottom: 7px;
 }
 
 .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 15px;font-family: 'arita';line-height: 1.5;src:url(fonts/GodoM.ttf)}

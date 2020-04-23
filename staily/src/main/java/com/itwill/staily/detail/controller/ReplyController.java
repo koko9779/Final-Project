@@ -77,6 +77,8 @@ public class ReplyController {
 			String pNo = request.getParameter("pNo");
 			String mNo = request.getParameter("mNo");
 			
+			System.out.println(rNo + "---" + pNo + "---" + mNo);
+			
 			boolean delete = replyService.deleteReply(Integer.parseInt(rNo), Integer.parseInt(pNo), Integer.parseInt(mNo));
 			
 			if(delete) {
@@ -90,33 +92,100 @@ public class ReplyController {
 			e.printStackTrace();
 			return 0;
 		}
-	}
-	
+	}	
 	
 	@RequestMapping("/reply_recommend")
-	@ResponseBody
-	public boolean increaseReport(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public int reply_recommend(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		try {
 			Integer mNo = (Integer)session.getAttribute("userNo");
 			String rNo = request.getParameter("rNo");
 			
 			if(replyService.checkReply(Integer.parseInt(rNo), mNo) > 0) {
-				//사용자가 추천이나 신고를 눌렀는지 확인
-			}
-			if(replyService.recommendCheck(Integer.parseInt(rNo), mNo) > 0) {
-				//사용자가 추천을 눌렀을 때
-				
-				return true;
+				//사용자가 추천을 눌렀는지 확인(DB에 있는지)
+				//있으면 추천 컬럼 확인
+				if(replyService.recommendCheck(Integer.parseInt(rNo), mNo) > 0) {
+					//추천을 감소시키고 컬럼을 0으로 설정
+					replyService.decreaseRecommend(Integer.parseInt(rNo));
+					replyService.resetRecommend(Integer.parseInt(rNo), mNo);
+					//System.out.println(replyService.selectReplyOne(Integer.parseInt(rNo)).toString() + " 1번");
+					return 1;
+				}
+				else {
+					//추천을 증가시키고 컬럼을 1로 설정
+					replyService.increaseRecommend(Integer.parseInt(rNo));
+					replyService.setRecommend(Integer.parseInt(rNo), mNo);
+					//System.out.println(replyService.selectReplyOne(Integer.parseInt(rNo)).toString() + " 2번");
+					return 1;
+				}					
 			}
 			else {
-				return false;
+				//없으면 DB에 생성
+				replyService.createRecommend(Integer.parseInt(rNo), mNo);
+				
+				//추천을 증가시키고 컬럼을 1로 설정
+				replyService.increaseRecommend(Integer.parseInt(rNo));
+				replyService.setRecommend(Integer.parseInt(rNo), mNo);
+				//System.out.println(replyService.selectReplyOne(Integer.parseInt(rNo)).toString() + " 3번");
+				return 1;						
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			return 0;
 		}
 	}
 	
-	
+	@RequestMapping("/reply_report")
+	public int reply_report(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		try {
+			Integer mNo = (Integer)session.getAttribute("userNo");
+			String pNo = request.getParameter("pNo");
+			String rNo = request.getParameter("rNo");
+			
+			//신고 수가 누적되면 댓글 삭제
+			int reportCnt = replyService.selectReplyOne(Integer.parseInt(rNo)).getrReport();
+			System.out.println(reportCnt);
+			if(reportCnt >= 2) {
+				replyService.deleteReport(Integer.parseInt(rNo), Integer.parseInt(pNo));
+				return 2;
+			}
+			
+			if(replyService.checkReply(Integer.parseInt(rNo), mNo) > 0) {
+				//사용자가 추천을 눌렀는지 확인(DB에 있는지)
+				//있으면 추천 컬럼 확인
+				if(replyService.reportCheck(Integer.parseInt(rNo), mNo) > 0) {
+					//추천을 감소시키고 컬럼을 0으로 설정
+					replyService.decreaseReport(Integer.parseInt(rNo));
+					replyService.resetReport(Integer.parseInt(rNo), mNo);
+					//System.out.println(replyService.selectReplyOne(Integer.parseInt(rNo)).toString() + " 1번");
+					return 1;
+				}
+				else {
+					//추천을 증가시키고 컬럼을 1로 설정
+					replyService.increaseReport(Integer.parseInt(rNo));
+					replyService.setReport(Integer.parseInt(rNo), mNo);
+					//System.out.println(replyService.selectReplyOne(Integer.parseInt(rNo)).toString() + " 2번");
+					return 1;
+				}					
+			}
+			else {
+				//없으면 DB에 생성
+				replyService.createReport(Integer.parseInt(rNo), mNo);
+				
+				//추천을 증가시키고 컬럼을 1로 설정
+				replyService.increaseReport(Integer.parseInt(rNo));
+				replyService.setReport(Integer.parseInt(rNo), mNo);
+				//System.out.println(replyService.selectReplyOne(Integer.parseInt(rNo)).toString() + " 3번");
+				return 1;						
+			}
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
+
 }
