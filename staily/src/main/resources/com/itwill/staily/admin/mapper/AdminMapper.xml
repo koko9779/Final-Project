@@ -183,12 +183,12 @@
 	</insert>
 	
 	<select id="selectNoticeReply" resultType="com.itwill.staily.admin.model.Stats">
-		SELECT 
-		nr_no,
-		m_no,
-		nr_content
+		SELECT n.nr_no, n.m_no,	n.nr_content, m.m_id
 		FROM 
-		notice_reply
+		notice_reply n
+		inner join member m
+		on n.m_no = m.m_no
+		order by n.nr_no desc
 	</select>
 	<delete id="deleteNoticeReply" parameterType="int">
 		DELETE

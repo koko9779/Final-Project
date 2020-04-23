@@ -12,6 +12,7 @@ public class Stats {
 	
 	private int nrNo;
 	private int mNo;
+	private String mId;
 	private String nrContent;
 	
 	public int getNrNo() {
@@ -32,9 +33,8 @@ public class Stats {
 	public void setNrContent(String nrContent) {
 		this.nrContent = nrContent;
 	}
-	public Stats(int nrNo, int mNo, String nrContent) {
+	public Stats(int mNo, String nrContent) {
 		super();
-		this.nrNo = nrNo;
 		this.mNo = mNo;
 		this.nrContent = nrContent;
 	}
@@ -84,6 +84,12 @@ public class Stats {
 	}
 	public void setStAgent(String stAgent) {
 		this.stAgent = stAgent;
+	}
+	public String getmId() {
+		return mId;
+	}
+	public void setmId(String mId) {
+		this.mId = mId;
 	}
 	
 }

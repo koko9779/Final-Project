@@ -36,14 +36,21 @@ public class NoticeController {
 	
 	@RequestMapping("/reply_create")
 	@ResponseBody
-	public boolean noticeReplyCreate(Stats stats) throws Exception {
+	public boolean noticeReplyCreate(HttpServletRequest request) throws Exception {
 		boolean createOk = false;
+		
+		String mNo = request.getParameter("mNo");
+		String rContent = request.getParameter("rContent");
+		
+		Stats stats = new Stats(Integer.parseInt(mNo), rContent);
+		
 		try {
-			createOk=adminService.createNoticeReply(stats);
+			createOk = adminService.createNoticeReply(stats);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return createOk;
 	}
 	@RequestMapping("/reply_select")
