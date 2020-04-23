@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/include/tags.jspf"%>    
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/tags.jspf"%>
 <!DOCTYPE html>
 <html>
 <%@ include
@@ -20,7 +20,7 @@
 		</ul>
 	</div>
 
-	<div id="wrapper" style=" height:auto; ,width:auto">
+	<div id="wrapper" style="height: auto; , width: auto">
 		<div id="loading"></div>
 		<div id="calendar"></div>
 	</div>
@@ -68,7 +68,7 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<label class="col-xs-4" for="edit-type">구분</label> <select
-								class="inputModal"  name="edit-type" id="edit-type">
+								class="inputModal" name="edit-type" id="edit-type">
 								<option value="영화">영화</option>
 								<option value="드라마">드라마</option>
 								<option value="이벤트일정">이벤트일정</option>
@@ -129,8 +129,24 @@
 					</select>
 				</div>
 			</div>
+			<div class="col-lg-6">
+				<label for="calendar_view">등록자별</label>
+				<div class="input-group">
+					<label class="checkbox-inline"><input class='filter'
+						type="checkbox" value="민태" checked>민태</label> <label
+						class="checkbox-inline"><input class='filter'
+						type="checkbox" value="은정" checked>은정</label> <label
+						class="checkbox-inline"><input class='filter'
+						type="checkbox" value="상수" checked>상수</label> <label
+						class="checkbox-inline"><input class='filter'
+						type="checkbox" value="영주" checked>영주</label> <label
+						class="checkbox-inline"><input class='filter'
+						type="checkbox" value="정연" checked>정연</label>
+				</div>
+			</div>
 		</div>
-		</div>
+	</div>
 </body>
-<%@ include file="/WEB-INF/views/admin/include/calendar/include_calendar_js.jsp"%>
+<%@ include
+	file="/WEB-INF/views/admin/include/calendar/include_calendar_js.jsp"%>
 </html>

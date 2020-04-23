@@ -1,7 +1,9 @@
 
 package com.itwill.staily.admin.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -69,6 +71,9 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public boolean createWork(Work work) throws Exception {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		String wDate = df.format(new Date());
+		work.setwDate(wDate);
 		boolean create = adminMapper.createWork(work);
 		return create;
 	}
@@ -166,6 +171,10 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public boolean createNotice(Board board) throws Exception {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		String bDate = df.format(new Date());
+		board.setbDate(bDate);
+		board.setbCategory("N");
 		boolean createOk = adminMapper.createNotice(board);
 		return createOk;
 	}

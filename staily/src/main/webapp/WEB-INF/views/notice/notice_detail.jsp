@@ -90,8 +90,9 @@
 					value="${productOne.get(0).getpNo()}"> <input type="hidden"
 					name="wNo" id="wNo" value="${wNo}">
 			</form>
+			<div id="reply_space">
+			</div>
 		</div>
-		<div id="reply_space"></div>
 	</div>
 </div>
 <%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
@@ -112,12 +113,12 @@ function getReplies() {
 				var a = '';
 
 				for (i = 0; i < data.length; i++) {
-					a += "<div class='row'>";
+					a += "<div class='col-sm-12'>";
 					a += "<h4 class='no-underline'>" + data[i].mId;
 					if(data[i].mNo == myNo) {
 						a += "<button onClick='deleteReply(" + data[i].nrNo + "," + data[i].mNo + ")' class='btn btn-ghost' style='float: right;'>삭제</button></h4>";
 					}
-					a += "<p>" + data[i].nrContent + "</p>";
+					a += "<p style='padding-bottom: 15px'>" + data[i].nrContent + "</p>";
 					a += "</div>";
 					
 					$('#reply_space').html(a);
