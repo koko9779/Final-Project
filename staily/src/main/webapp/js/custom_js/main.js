@@ -425,8 +425,15 @@ function bm_productpage(bmNo,pNo){
 };
 /************Controller productpage*******************/
 function productpage(pNo){
+	var url_string = window.location.href;
+	var url = new URL(url_string);
+	var wdEpisode = url.searchParams.get("wdEpisode");
 	var product_form = document.getElementById('product_'+pNo);
-	product_form.action = "../detail/product_detail";
+	if(wdEpisode==null){
+		product_form.action = "../detail/product_detail";	
+	}else{
+		product_form.action = "../../detail/product_detail";	
+	}
 	product_form.submit();
 };
 /************Controller workpage*******************/
@@ -543,10 +550,4 @@ function delete_bookmark(bookset){
 function login_advice(){
 	alert("로그인이 필요한 작업입니다");
 	location.href="../login/login";
-
-	
-}
-function work_select() {
-	location.href="work_select";
-	//window.open('work_select');
 }
