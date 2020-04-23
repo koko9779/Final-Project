@@ -9,6 +9,35 @@ public class Stats {
 	private String stRefer;
 	private String stAgent;
 	private int cnt;
+	
+	private int nrNo;
+	private int mNo;
+	private String nrContent;
+	
+	public int getNrNo() {
+		return nrNo;
+	}
+	public void setNrNo(int nrNo) {
+		this.nrNo = nrNo;
+	}
+	public int getmNo() {
+		return mNo;
+	}
+	public void setmNo(int mNo) {
+		this.mNo = mNo;
+	}
+	public String getNrContent() {
+		return nrContent;
+	}
+	public void setNrContent(String nrContent) {
+		this.nrContent = nrContent;
+	}
+	public Stats(int nrNo, int mNo, String nrContent) {
+		super();
+		this.nrNo = nrNo;
+		this.mNo = mNo;
+		this.nrContent = nrContent;
+	}
 	public Stats() {
 		// TODO Auto-generated constructor stub
 	}

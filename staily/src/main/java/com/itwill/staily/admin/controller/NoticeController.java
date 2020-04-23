@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwill.staily.admin.model.Stats;
 import com.itwill.staily.admin.service.AdminService;
 import com.itwill.staily.util.Board;
 
@@ -31,4 +33,41 @@ public class NoticeController {
 		request.setAttribute("board", board);
 		return"notice/notice_detail";
 	}
+	
+	@RequestMapping("/reply_create")
+	@ResponseBody
+	public boolean noticeReplyCreate(Stats stats) throws Exception {
+		boolean createOk = false;
+		try {
+			createOk=adminService.createNoticeReply(stats);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return createOk;
+	}
+	@RequestMapping("/reply_select")
+	@ResponseBody
+	public List<Stats> noticeReplySelect() throws Exception {
+		List<Stats> replyList = new ArrayList();
+		try {
+			replyList = adminService.selectNoticeReply();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return replyList;
+	}
+	@RequestMapping("/reply_delete")
+	@ResponseBody
+	public boolean noticeReplyDelete(@RequestParam("mNo")int nrNo) throws Exception {
+		boolean deleteOk = false;
+		try {
+			deleteOk=adminService.deleteNoticeReply(nrNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return deleteOk;
+	}
+	
 }
