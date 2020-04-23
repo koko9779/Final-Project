@@ -45,12 +45,6 @@ public class MypageController {
 	@Autowired
 	private PaymentService paymentService;
 	
-	
-	@RequestMapping("/mypage")
-	public String mypageTest() {
-		return "mypage/index";
-	}
-	
 	@RequestMapping("404")
 	public String error() {
 		return "redirect:/404.jsp";
@@ -111,43 +105,6 @@ public class MypageController {
 		result = mypageService.updateMember(member);
 		return result+"";
 	}
-	/*
-	//�쉶�썝�젙蹂댁뾽�뜲�씠�듃
-	@RequestMapping("/member_update")
-	public String member_update(HttpServletResponse response, 
-								HttpServletRequest request, 
-								Model model,
-								HttpSession session) throws Exception {
-		//Integer mNo =(Integer)request.getAttribute("mNo");
-		String mNoStr = request.getParameter("mNo");
-		
-		String phn1 = request.getParameter("phn1");
-		String phn2 = request.getParameter("phn2");
-		String phn3 = request.getParameter("phn3");
-		String mPhone = phn1 + phn2 + phn3;
-		Integer mNo = Integer.parseInt(mNoStr);
-		System.out.println(mNo);
-		Member member = new Member(mNo, 
-									request.getParameter("mId"), 
-									request.getParameter("mPw"), 
-									request.getParameter("mName"), 
-									request.getParameter("mAddress"), 
-									request.getParameter("mDaddress"), 
-									request.getParameter("mEmail"), 
-									request.getParameter("mType"), 
-									mPhone);
-		
-		boolean result = mypageService.updateMember(member);
-		request.setAttribute("result", result);
-		request.setAttribute("phn1", phn1);
-		request.setAttribute("phn2", phn2);
-		request.setAttribute("phn3", phn3);
-		request.setAttribute("mNo", mNo);
-		session.setAttribute("mNo", mNo);
-		return "forward:/mypage/member_select";
-	}
-	*/
-	
 	
 	//멤버삭제(회원탈퇴)
 	@RequestMapping("member_delete")
@@ -205,7 +162,6 @@ public class MypageController {
 	public String friend_list(HttpServletResponse response, 
 							  HttpServletRequest request,
 							  HttpSession session) {
-		//int mNo = (Integer)request.getAttribute("mNo");
 		List<Friend> friendList;
 		try {
 			Integer mNo = (Integer)session.getAttribute("userNo");
@@ -215,7 +171,6 @@ public class MypageController {
 			}
 			friendList = friendService.selectList(mNo);
 			request.setAttribute("data", friendList);
-			//System.out.println("@@@"+friendList);
 			return "mypage/friend_list";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -254,33 +209,7 @@ public class MypageController {
 		}
 		
 	}
-	
-	
-	//移쒓뎄異붽�
-	/*
-	@RequestMapping("/friend_create")
-	@ResponseBody
-	public String friend_create( HttpSession session,
-								 @RequestParam("mNo") int fNo,
-								 @RequestParam("mId") String mId) throws Exception {
-		Integer mNo = (Integer)session.getAttribute("userNo");
-		String checkMid = (String)session.getAttribute("userId");
-		boolean result = false;
-		if(checkMid.equals(mId)) {
-			return "D";
-			
-		}else {
-			int check = friendService.duplicateFriendNo(mNo,fNo);
-			if(check == 0) {
-				result = friendService.createFriend(fNo,mNo);
-			}else {
-				return result+"";
-			}
-			return result+"";
-			
-		}
-	}
-	*/
+
 	//친구삭제
 	@RequestMapping("/friend_delete")
 	@ResponseBody
