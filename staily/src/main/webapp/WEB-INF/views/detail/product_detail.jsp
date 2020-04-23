@@ -183,7 +183,6 @@
 						</div>
 					</div>
 				</div>
-
 				<form name="pNo_request" method="POST">
 					<input type="hidden" id="pNo" name="pNo"
 						value="${productOne.get(0).getpNo()}">

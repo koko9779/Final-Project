@@ -43,5 +43,5 @@ public interface ReplyMapper {
 	
 	public boolean decreaseReport(@Param("rNo") int rNo);
 	
-	
+	public Reply checkRecAndRep(@Param("rNo") int rNo, @Param("mNo") int mNo);
 }

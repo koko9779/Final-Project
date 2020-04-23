@@ -15,7 +15,7 @@
 <script type="text/javascript" src="http://www.inven.co.kr/common/lib/js/booster.js"></script>
 <script type="text/javascript" src="http://www.inven.co.kr/common/lib/js/browser.js?v=20140702a"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+<script src="${pageContext.request.contextPath}/js/custom_js/message.js"></script>
 <style>
 #noteWrap {
 	background-image: url('');

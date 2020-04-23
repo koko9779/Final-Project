@@ -51,34 +51,6 @@
 </div>
 
 </div>
-<script type="text/javascript">
-$(function(){
-	$('#aNoteDelete').click(function(e){
-		var msNo = $('#aNoteDelete').attr('value');
-		var noArray = [];
-		noArray.push(msNo);
-		var params = {
-				"msNo" : noArray
-		};
-		e.preventDefault();
-		$.ajax({
-			url : 'message_delete',
-			data : params,
-			dataType : 'text',
-			success : function(result){
-				if(result == 'true'){
-					location.href = 'message_list';
-				}
-			}
-		})
-		
-	})
-})
-</script>
 
-<div id="comFloatAlert" style="display: none;">
-<ul class="textlist">
-</ul>
-</div>
 </body>
 </html>

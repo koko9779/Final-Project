@@ -62,59 +62,6 @@
 		</div>
 
 	</div>
-	<script type="text/javascript">
-		$(function() {
-			$('#aNoteSave').click(function(e){
-				e.preventDefault();
-				var mId = $('#mId').val();
-				var msTitle = $('#msTitle').val();
-				var msContent = $('#msContent').val();
 
-				if(mId ==""){
-					alert('아이디를 입력하세요');
-					return;
-				}
-				
-				if (msTitle == "") {
-					alert('제목을 입력하세요');
-					return;
-				}
-				if (msContent == "") {
-					alert('내용을 입력하세요');
-					return;
-				}
-				
-				$.ajax({
-					url : 'message_create',
-					data : $('#fmNoteWrite').serializeArray(),
-					dataType : 'text',
-					success : function(result){
-						if(result == 'true'){
-							alert('보내기 완료');
-							location.href = 'message_list';
-						}else if(result == 'N'){
-							alert('정확한 아이디를 입력해주세요');
-							return;
-						}
-					},
-					error : function(){
-						location.href = 'message';
-					}
-				})
-			});
-			
-			
-			$('#aNoteCancel').click(function(e) {
-				window.close();
-				e.preventDefault();
-			});
-
-		})
-	</script>
-
-	<div id="comFloatAlert" style="display: none;">
-		<ul class="textlist">
-		</ul>
-	</div>
 </body>
 </html>
