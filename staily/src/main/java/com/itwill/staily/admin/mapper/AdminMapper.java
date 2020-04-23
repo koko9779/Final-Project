@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.itwill.staily.admin.model.Stats;
 import com.itwill.staily.util.Board;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
@@ -58,7 +59,22 @@ public interface AdminMapper {
 	public boolean productConfirm(int pNo);
 	
 	/* 공지사항 */
+	//공지사항 작성
+	public boolean createNotice(Board board);
 	//공지사항 출력 
 	public List<Board>selectBoardAll();
+	//공지사항 하나 출력
 	public Board selectBoardOne(int bNo);
+	//공지사항 삭제 
+	public boolean deleteNotice(int bNo);
+	//공지사항 수정
+	public boolean updateNotice(Board board);
+	//공지사항 댓글
+	public boolean createNoticeReply(Stats stats);
+	
+	public List<Stats>selectNoticeReply();
+	
+	public boolean deleteNoticeReply(int nrNo);
+	
+	
 }

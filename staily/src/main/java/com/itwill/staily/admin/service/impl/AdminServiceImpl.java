@@ -1,9 +1,9 @@
 
 package com.itwill.staily.admin.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.aop.ThrowsAdvice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -11,12 +11,12 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwill.staily.admin.mapper.AdminMapper;
+import com.itwill.staily.admin.model.Stats;
 import com.itwill.staily.admin.service.AdminService;
 import com.itwill.staily.util.Board;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
-import com.itwill.staily.util.exception.FailCreateException;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -159,6 +159,54 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public Board selectBoardOne(int bNo) throws Exception {
 		return adminMapper.selectBoardOne(bNo);
+	}
+
+
+
+	@Override
+	public boolean createNotice(Board board) throws Exception {
+		boolean createOk = adminMapper.createNotice(board);
+		return createOk;
+	}
+
+
+
+	@Override
+	public boolean deleteNotice(int bNo) throws Exception {
+		boolean deleteOk= adminMapper.deleteNotice(bNo);
+		return deleteOk;
+	}
+
+
+
+	@Override
+	public boolean updateNotice(Board board) throws Exception {
+		boolean updateOk = adminMapper.updateNotice(board);
+		return updateOk;
+	}
+
+
+
+	@Override
+	public boolean createNoticeReply(Stats stats) throws Exception {
+		return adminMapper.createNoticeReply(stats);
+	}
+
+
+
+	@Override
+	public List<Stats> selectNoticeReply() throws Exception {
+		List<Stats>replyList = new ArrayList();
+		replyList = adminMapper.selectNoticeReply();
+		return replyList;
+	}
+
+
+
+	@Override
+	public boolean deleteNoticeReply(int nrNo) throws Exception {
+		boolean deleteOk = adminMapper.deleteNoticeReply(nrNo);
+		return deleteOk;
 	}
 
 

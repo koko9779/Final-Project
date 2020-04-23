@@ -2,6 +2,7 @@ package com.itwill.staily.admin.service;
 
 import java.util.List;
 
+import com.itwill.staily.admin.model.Stats;
 import com.itwill.staily.util.Board;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
@@ -65,4 +66,20 @@ public interface AdminService {
 	
 	//공지사항 하나 출력 
 	public Board selectBoardOne(int bNo) throws Exception;
+	
+	//공지사항 작성
+	public boolean createNotice(Board board) throws Exception;
+	//공지사항 삭제 
+	public boolean deleteNotice(int bNo)throws Exception;
+	//공지사항 수정
+	public boolean updateNotice(Board board) throws Exception;
+	
+	//공지사항 댓글 작성
+	public boolean createNoticeReply(Stats stats) throws Exception;
+	
+	//공지사항 댓글 리스트
+	public List<Stats>selectNoticeReply() throws Exception;
+	
+	//공지사항 댓글 삭제
+	public boolean deleteNoticeReply(int nrNo) throws Exception;
 }

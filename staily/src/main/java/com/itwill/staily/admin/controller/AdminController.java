@@ -35,6 +35,7 @@ import com.itwill.staily.admin.mapper.StatsMapper;
 import com.itwill.staily.admin.model.Stats;
 import com.itwill.staily.admin.service.AdminService;
 import com.itwill.staily.admin.service.StatsService;
+import com.itwill.staily.util.Board;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
@@ -382,6 +383,36 @@ public class AdminController {
 			result = "fail";
 		}
 		return result;
+	}
+	@RequestMapping("/work_delete")
+	public String workAdminDelete(HttpServletRequest request, @RequestParam("wNo")int wNo) throws Exception {
+		String result = "";
+		try {
+			boolean deleteOk = adminService.deleteWork(wNo);
+			result ="success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			result ="fail";
+		}
+		return result;
+	}
+	/*********************************기타*************************************/
+	@RequestMapping("/notice")
+	public String noticeMain(HttpServletRequest request)throws Exception{
+		List<Board>noticeList = new ArrayList();
+		noticeList = adminService.selectBoardAll();
+		request.setAttribute("data", noticeList);
+		return "admin/notice/notice_read";
+	}
+	@RequestMapping("/notice_create")
+	public String noticeCreate(HttpServletRequest request)throws Exception{
+		return "admin/notice/notice_create";
+	}
+	@RequestMapping("/notice_detail")
+	public String noticeDetail(HttpServletRequest request,@RequestParam("bNo")int bNo) throws Exception {
+		Board board = adminService.selectBoardOne(bNo);
+		request.setAttribute("board", board);
+		return"admin/notice/notice_detail";
 	}
 }
 

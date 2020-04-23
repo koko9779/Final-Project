@@ -25,7 +25,7 @@
 					<tbody>
 						<c:forEach var="work" items="${data }">
 							<tr valign="middle" align="center">
-								<td><input type="checkbox" name="user_CheckBox"></td>
+								<td><input type="checkbox" name="work_CheckBox"></td>
 								<td hidden="wNo2">${work.wNo}</td>
 								<td>${work.wName}</td>
 								<c:choose>
@@ -45,7 +45,7 @@
 					</tbody>
 				</table>
 				<button type="button" class="btn btn-outline btn-primary pull-right"
-					id="selectBtn">선택삭제</button>
+					id="wSelectBtn">선택삭제</button>
 				<button type="button" class="btn btn-outline btn-primary pull-right"
 					id="createtBtn" onclick="searchWork()">작품등록</button>
 			</div>

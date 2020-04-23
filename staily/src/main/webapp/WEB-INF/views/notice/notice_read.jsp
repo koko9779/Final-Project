@@ -16,8 +16,9 @@
 </div>
 
 <!-- Section -->
-<div class="container news section">
+<div class="container news section totop">
 	<!-- DataTales Example -->
+	<h1>공지사항</h1>
 	<div class="card shadow mb-4">
 		<div class="card-body">
 			<div class="table-responsive">
@@ -25,7 +26,6 @@
 					cellspacing="0">
 					<thead>
 						<tr>
-							<th>번호</th>
 							<th>제목</th>
 							<th>조회수</th>
 							<th>작성 날짜</th>
@@ -34,11 +34,10 @@
 					<tbody>
 						<c:forEach var="board" items="${data}">
 							<tr>
-								<td>${board.bIdx}</td>
-								<td><a href="detail?bNo=${board.bNo}">
+								<td align="center"><a href="detail?bNo=${board.bNo}">
 										${board.bTitle} </a></td>
-								<td>${board.bView}</td>
-								<td>${board.bDate}</td>
+								<td align="center">${board.bView}</td>
+								<td align="center">${board.bDate}</td>
 							</tr>
 						</c:forEach>
 					</tbody>

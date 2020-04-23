@@ -355,7 +355,43 @@ $(function() {
 			  });					
 });	
 
+$(function() {
+	$(document).on('click','#wSelectBtn',function() {
+		var checkbox = $("input[name=work_CheckBox]:checked");
+		var tdArray = new Array();
+		checkbox.each(function(i) {
+			var tr = checkbox.parent().parent()
+			.eq(i);
+			var td = tr.children();
+			var pNo = 'wNo='+td.eq(0).text();
+			$.ajax({
+				url : 'product_delete',
+				data : pNo,
+				method : 'POST'
+			});
+			swal({
+				title: "상품삭제성공",
+				text: "버튼을 클릭해주세요!",
+				icon: "success" // "info,success,warning,error" 중 택1
+			}).then(() => {
+				location.reload();
+			});
+		});
+	});
+});
 
+
+/** **********공지사항펑션 이벤트***************** */
+$(function() {
+	$(document).on('click','#nCheckBtn',function(e) {
+		var checkBtn = $(this);
+		var tr = checkBtn.parent().parent();
+		var td = tr.children();
+		var nNo = td.eq(0).text();
+		window.open("notice_detail?" + "bNo="+ nNo,"공지수정",
+		"width=800, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
+	});
+});
 /** **********document ready 이벤트***************** */
 $(document).ready(function() {
 	/** *****멤버 validate 시작********** */

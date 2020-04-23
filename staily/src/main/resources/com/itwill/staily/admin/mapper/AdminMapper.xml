@@ -120,36 +120,82 @@
 		DELETE work WHERE w_no=#{wNo}
 	</delete>
 	<!-- 공지 사항 -->
+	<insert id="createNotice" parameterType="Board">
+		INSERT INTO board 
+		(b_no, m_no, b_title, b_content, b_groupno, b_step, 
+         b_view, b_recommend, b_type, b_date, b_choice, b_category) 
+		VALUES
+		(#{bNo}, #{mNo}, #{bTitle}, #{bContent}, 
+       	 #{bNo}, 1, 0, null, #{bType}, #{bDate}, null, #{bCategory})
+	</insert>
 	<select id="selectBoardAll" resultType="Board">
-	SELECT 	
-		B_NO,
-		M_NO,
-		B_TITLE,
-		B_CONTENT,
-		B_GROUPNO,
-		B_STEP,
-		B_VIEW,
-		B_TYPE,
-		B_DATE,
-		B_CATEGORY
-	FROM BOARD
-	WHERE b_TYPE='A'
+		SELECT 	
+			B_NO,
+			M_NO,
+			B_TITLE,
+			B_CONTENT,
+			B_GROUPNO,
+			B_STEP,
+			B_VIEW,
+			B_TYPE,
+			B_DATE,
+			B_CATEGORY
+		FROM BOARD
+		WHERE b_TYPE='A'
 	</select>
 	<select id="selectBoardOne" resultType="Board" parameterType="int">
-	SELECT 	
-		B_NO,
-		M_NO,
-		B_TITLE,
-		B_CONTENT,
-		B_GROUPNO,
-		B_STEP,
-		B_VIEW,
-		B_TYPE,
-		B_DATE,
-		B_CATEGORY
-	FROM BOARD
-	WHERE b_no=#{bNo}
+		SELECT 	
+			B_NO,
+			M_NO,
+			B_TITLE,
+			B_CONTENT,
+			B_GROUPNO,
+			B_STEP,
+			B_VIEW,
+			B_TYPE,
+			B_DATE,
+			B_CATEGORY
+		FROM BOARD
+		WHERE b_no=#{bNo}
 	</select>
-
+	<delete id="deleteNotice" parameterType="int">
+		DELETE 
+		FROM
+		BOARD
+		WHERE
+		B_NO=#[bNo]
+	</delete>
+	<update id="updateNotice" parameterType="Board">
+		UPDATE 
+		BOARD 
+		SET 
+		b_content=#{bContent},
+		b_title=#{bTitle}
+		WHERE 
+		b_no=#{bNo}
+	</update>
+	<insert id="createNoticeReply" parameterType="com.itwill.staily.admin.model.Stats">
+		INSERT 
+		INTO 
+		notice_reply 
+		VALUES 
+		(nr_no_seq.nextval,#{mNo},#{nrContent})
+	</insert>
+	
+	<select id="selectNoticeReply" resultType="com.itwill.staily.admin.model.Stats">
+		SELECT 
+		nr_no,
+		m_no,
+		nr_content
+		FROM 
+		notice_reply
+	</select>
+	<delete id="deleteNoticeReply" parameterType="int">
+		DELETE
+		FROM
+		notice_reply
+		WHERE
+		nr_no=#{nrNo}	
+	</delete>
 </mapper>
 
