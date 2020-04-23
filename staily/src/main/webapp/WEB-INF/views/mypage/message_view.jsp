@@ -54,11 +54,16 @@
 <script type="text/javascript">
 $(function(){
 	$('#aNoteDelete').click(function(e){
-		e.preventDefault();
 		var msNo = $('#aNoteDelete').attr('value');
+		var noArray = [];
+		noArray.push(msNo);
+		var params = {
+				"msNo" : noArray
+		};
+		e.preventDefault();
 		$.ajax({
 			url : 'message_delete',
-			data : 'msNo='+msNo,
+			data : params,
 			dataType : 'text',
 			success : function(result){
 				if(result == 'true'){
