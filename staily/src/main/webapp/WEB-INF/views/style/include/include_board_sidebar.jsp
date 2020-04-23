@@ -16,7 +16,6 @@
                      <ul style="padding-left: 15px;">
                         <li><a href="#">자유 게시판</a></li>
                         <li><a href="#">일대일 문의</a></li>
-                        <li><a href="#">상품 홍보</a></li>
                      </ul>
                   </div>
                </aside>
