@@ -14,6 +14,7 @@
 		join product p
 		on b.p_no=p.p_no
 		where b.m_no = #{mNo}
+		orderby b.p_no desc
 	</select>
 	<!-- 2. HOT 상품 출력 -->
 	<select id="selectByView" resultType="Product">
@@ -38,5 +39,6 @@
 		select w_no,w_category,w_poster
 		from work
 		where w_category=#{wCategory}
+		orderby w_no desc
 	</select>	
 </mapper>
