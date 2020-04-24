@@ -232,7 +232,6 @@ $(window)
 			function member_create() {
 				
 				var params = $("#registerF").serialize();
-				alert(params);
 				
 				$.ajax({
 					url: "member_create_action",

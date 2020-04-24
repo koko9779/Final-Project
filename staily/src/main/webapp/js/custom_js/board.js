@@ -32,8 +32,7 @@ function post_to_url(path, params, method) {
 }
 
 //(공용함수)로그인된 회원만 가능하도록 로그인창으로 보내는 함수
-function required_login (userNo) {
-	if(userNo === undefined || userNo === "") {
+function required_login () {
 		swal({
 			title: '로그인이 필요한 서비스입니다',
 			icon: 'info',
@@ -54,9 +53,10 @@ function required_login (userNo) {
 				location.href="../login/login";
 			}
 		});
-	}else {
-		
-	}
+}
+
+function move_style_board_create() {
+	location.href="style_board_create";
 }
 
 function board_delete(bNo) {

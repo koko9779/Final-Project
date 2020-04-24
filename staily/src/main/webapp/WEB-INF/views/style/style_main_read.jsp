@@ -34,7 +34,7 @@
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
 						<div>
-							총 질문 수: ${boardCount} / 총 댓글 수: ${replyCount}
+							총 질문 수: ${boardCount} / 총 답글 수: ${replyCount}
 						</div>
 					</div>
 					<div class="card-body">
@@ -66,9 +66,18 @@
 									</c:forEach>
 								</tbody>
 							</table>
-								<a href="javascript:required_login(${userNo});" class="btn btn-ghost sort">
-									<span>쓰기</span>
-								</a>
+								<c:choose>
+									<c:when test="${userNo == '' || userNo == undefined || userNo == null}">
+										<a href="javascript:required_login();" class="btn btn-ghost sort">
+											<span>쓰기</span>
+										</a>
+									</c:when>
+									<c:otherwise>
+										<a href="javascript:move_style_board_create();" class="btn btn-ghost sort">
+											<span>쓰기</span>
+										</a>
+									</c:otherwise>
+								</c:choose>
 							<div id="msg">
 							</div>
 						</div>
