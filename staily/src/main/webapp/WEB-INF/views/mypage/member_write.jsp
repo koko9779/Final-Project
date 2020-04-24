@@ -30,7 +30,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h2 class="h3 mb-2 text-gray-800">내가쓴글목록</h2>
+          <h2 class="h3 mb-2 text-gray-800">내상품목록</h2>
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-body">
@@ -41,6 +41,7 @@
                       <th></th>
                       <th>상품화면</th>
                       <th>상품이름</th>
+                      <th>승인여부</th>
                       <th>작성일</th>
                     </tr>
                   </thead>
@@ -52,6 +53,7 @@
                       	  onClick = "location.href='../detail/product_detail?pNo=${product.pNo}&wNo=${product.wNo}'">
                       <img src="${pageContext.request.contextPath}/images/product/scene/${product.pScene}.jpg" width="100px" height="100px" alt="이미지없음"></td>
                       <td>${product.pName}</td>
+                      <td>${product.pCheck}</td>
                       <td>${product.pDate}</td>
                     </tr>
                   	</c:forEach>

@@ -9,7 +9,7 @@
 				<li><a href="member_select">회원정보수정</a></li>
 				<li><a href="friend_list">친구리스트</a></li>
 				<li><a href="bookmark_list">즐겨찾기</a></li>
-				<li><a href="member_write">내가쓴글목록</a></li>
+				<li><a href="member_write">내상품목록</a></li>
 				<li><a href="#">메시지보관함</a></li>
 			</ul>
 		</div>
