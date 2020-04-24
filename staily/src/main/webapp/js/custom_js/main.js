@@ -77,7 +77,7 @@ function getList(curPage){
 					html += "<input type='hidden' value='"+wNo+"' name='wNo'>";
 					html += "<input type='hidden' value='"+pPno+"' name='pNo'>";
 					html += "<div class='movie-poster2'>";
-					html += "<img onclick='productpage("+wNo+","+pPno+")'";
+					html += "<img onclick='productpage("+pPno+")'";
 					if(temp==0){
 						html += " src='../images/product/scene/"+pScene+".jpg'";
 					}else{
@@ -484,14 +484,29 @@ function create_bookmark(userNo,pNo){
 	//alert('즐겨찾기에 상품이 추가되었습니다.'+event.target);
 	var params= "userNo="+userNo+"&pNo="+pNo;
 	var product = "#product_"+pNo;
+	var url_string = window.location.href;
+	var url = new URL(url_string);
+	var wdEpisode = url.searchParams.get("wdEpisode");
+	if(wdEpisode==null){
+		var moveUrl="create_bookmark";
+		var temp=0;
+	}else{
+		var moveUrl="../create_bookmark";
+		var temp=1;
+	}
 	$.ajax({
-		url: "create_bookmark",
+		url: moveUrl,
 		method:"POST",
 		data: params,
 		success:function(result){
+			console.log('라ㅏ?');
 			if(result=='true'){
 				//console.log($(product).find('.material-icons').attr('src')+"------------->");
-				$(product).find('.material-icons').attr('src','../images/star.png');
+				if(temp==0){
+					$(product).find('.material-icons').attr('src','../images/star.png');
+				}else{
+					$(product).find('.material-icons').attr('src','../../images/star.png');					
+				}
 				$(product).find('.material-icons').attr('alt','즐겨찾기 제거');				
 				$(product).find('.material-icons').attr('onclick','select_bookmark('+userNo+','+pNo+');return false;');
 			}
@@ -502,8 +517,16 @@ function create_bookmark(userNo,pNo){
 function select_bookmark(userNo,pNo){
 	//alert("즐겨찾기에서 상품이 제거됐습니다");
 	var params= "userNo="+userNo+"&pNo="+pNo;
+	var url_string = window.location.href;
+	var url = new URL(url_string);
+	var wdEpisode = url.searchParams.get("wdEpisode");
+	if(wdEpisode==null){
+		var moveUrl="select_bookmark";
+	}else{
+		var moveUrl="../select_bookmark";
+	}
 	$.ajax({
-		url: "select_bookmark",
+		url: moveUrl,
 		method: "POST",
 		data: params,
 		success:function(bookset){
@@ -518,6 +541,16 @@ function delete_bookmark(bookset){
 	var userNo = 0;
 	var pNo = 0;
 	var product;
+	var url_string = window.location.href;
+	var url = new URL(url_string);
+	var wdEpisode = url.searchParams.get("wdEpisode");
+	if(wdEpisode==null){
+		var moveUrl= "delete_bookmark";
+		var temp=0;
+	}else{
+		var moveUrl= "../delete_bookmark";
+		var temp=1;
+	}
 	
 	if(bmNo.indexOf(",")!=-1){
 		var bookset = bookset.split(',');
@@ -532,13 +565,17 @@ function delete_bookmark(bookset){
 	}
 	var params= "bmNo="+bmNo+"&userNo="+userNo+"&pNo="+pNo;
 		$.ajax({
-			url: "delete_bookmark",
+			url: moveUrl,
 			method:"POST",
 			data: params,
 			success:function(result){
 				if(result=='true'){
 					//console.log($(product).find('.material-icons').attr('src')+"------------->");
-					$(product).find('.material-icons').attr('src','../images/emptystar.png');
+					if(temp=0){
+						$(product).find('.material-icons').attr('src','../images/emptystar.png');
+					}else{
+						$(product).find('.material-icons').attr('src','../../images/emptystar.png');						
+					}
 					$(product).find('.material-icons').attr('alt','즐겨찾기 등록');				
 					$(product).find('.material-icons').attr('onclick','create_bookmark('+userNo+','+pNo+');return false;');
 				}
@@ -548,6 +585,14 @@ function delete_bookmark(bookset){
 
 /**********************************************************/
 function login_advice(){
-	alert("로그인이 필요한 작업입니다");
-	location.href="../login/login";
+	var url_string = window.location.href;
+	var url = new URL(url_string);
+	var wdEpisode = url.searchParams.get("wdEpisode");
+	if(wdEpisode==null){
+		alert("로그인이 필요한 작업입니다");
+		location.href="../login/login";
+	}else{
+		alert("로그인이 필요한 작업입니다");
+		location.href="../../login/login";
+	}
 }
