@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +19,7 @@ import com.itwill.staily.login.exception.NoSearchMemberException;
 import com.itwill.staily.login.exception.PasswordMissmatchException;
 import com.itwill.staily.login.service.LoginService;
 import com.itwill.staily.mypage.service.PaymentService;
+import com.itwill.staily.util.Company;
 import com.itwill.staily.util.Member;
 
 @RestController
@@ -103,6 +104,28 @@ public class LoginRestController {
 	@RequestMapping(value = "/email_check", produces = "application/json")
 	public int email_check(@RequestParam String mEmail) throws Exception {
 		return loginService.isEmailExist(mEmail);
+	}
+	
+	@RequestMapping(value = "/member_create_action", method = RequestMethod.POST)
+	public int member_create_action_post(@ModelAttribute Member signupMember, String coNo, Model model) {
+		int resultCount = -99;
+		
+		try {
+			if(signupMember.getmType().equals("M")) {
+				resultCount = loginService.signUpMember(signupMember);
+			}else if(signupMember.getmType().equals("C")) {
+				Company com = new Company();
+				int intCoNo = Integer.parseInt(coNo);
+				com.setCoNo(intCoNo);
+				
+				signupMember.setmCompany(com);
+				resultCount = loginService.signUpCompany(signupMember);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			resultCount = 0;
+		}
+		return resultCount; 
 	}
 	
 	
