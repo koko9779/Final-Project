@@ -47,13 +47,14 @@ $(function(){
 	$('#deleteBtn').click(function(e){
 		//배열선언
 		var noArray = [];
-		if(noArray.length ==0){
-			return;
-		}
+		
 		//배열에 값 채우기
 		$('input[name="book_check"]:checked').each(function(i){
 			noArray.push($(this).val());
 		});
+		if(noArray.length ==0){
+			return;
+		}
 		
 		var params = {
 				"bmNo" : noArray 
@@ -85,13 +86,15 @@ $(function(){
 	$('#deleteFriendBtn').click(function(e){
 		//데이터를 받을 배열 선언
 		var noArray = [];
-		if(noArray.length ==0){
-			return;
-		}
+		
+		
 		//배열에 데이터 넣기
 		$('input[name="friend_check"]:checked').each(function(i){
 			noArray.push($(this).val());
 		});
+		if(noArray.length ==0){
+			return;
+		}
 		
 		var params = {
 			"fPk" : noArray
