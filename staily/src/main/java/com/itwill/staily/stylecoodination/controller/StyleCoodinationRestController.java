@@ -68,12 +68,13 @@ public class StyleCoodinationRestController {
 						System.out.println("서버:"+uploadPath);
 						
 						//워크스페이스에 올리는 경로
-						String uploadPath2 = f.getAbsolutePath();
-						System.out.println("워크스페이스에 올릴 절대경로:" + uploadPath2);
-						String[] uploadPathArray = uploadPath2.split("\\\\");
-						uploadPath2 = uploadPathArray[0] + "\\" +  uploadPathArray[1] + "\\" + uploadPathArray[2] + 
-											"/git/Final-Project/staily/src/main/webapp/img";
-						System.out.println("워크스페이스 붙이기한 경로:"+uploadPath2);
+//						String uploadPath2 = f.getAbsolutePath();
+//						System.out.println("워크스페이스에 올릴 절대경로:" + uploadPath2);
+//						String[] uploadPathArray = uploadPath2.split("\\\\");
+//						uploadPath2 = uploadPathArray[0] + "\\" +  uploadPathArray[1] + "\\" + uploadPathArray[2] + 
+//											"/git/Final-Project/staily/src/main/webapp/img";
+//						System.out.println("워크스페이스 붙이기한 경로:"+uploadPath2);
+						String uploadPath2 = "C:/Users/user/git/Final-Project/staily/src/main/webapp/img";
 						
 						File uploadFile = new File(uploadPath);
 						if(!uploadFile.exists()){
