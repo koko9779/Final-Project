@@ -31,5 +31,5 @@
 		</form>
 	</div>
 	-->
-	<input type="button" value="상품 등록" onClick="work_search()"/>
+	<button type="button" class="btn btn-ghost" onClick="work_search()">상품 등록</button>
 </aside>
