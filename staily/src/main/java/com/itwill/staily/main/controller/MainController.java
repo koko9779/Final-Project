@@ -158,9 +158,11 @@ public class MainController {
 			
 			// 리스트 개수
 			int listCnt = listService.selectProductCountByEpisode(wNo, wdEpisode);
+			System.out.println(listCnt);
 			
 			if(listCnt==0) {
 				request.setAttribute("mwe", null);
+				System.out.println("호호");
 			}else {
 				//페이지 구하기
 				Pagination pagination = new Pagination(listCnt, curPage);
@@ -170,8 +172,11 @@ public class MainController {
 				map.put("wdEpisode", wdEpisode);
 				map.put("start",pagination.getStartIndex());
 				map.put("end",pagination.getCurEndIndex());
+				System.out.println(wdEpisode+"회차");
 				    
 			    List<Work> mwe = listService.selectMProductListByEpisode(map);
+			    System.out.println(mwe);
+			    
 			    
 			    System.out.println(pagination.getStartIndex()+"~"+pagination.getCurEndIndex());
 		

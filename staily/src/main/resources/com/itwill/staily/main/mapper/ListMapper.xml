@@ -104,24 +104,20 @@
 	<select id="selectProductCount" parameterType="int" resultType="int">
 		select count(*)
 		from product p
-		join member m
-		on p.m_no = m.m_no
 		where p.p_check='Y' 
-		and p.w_no=#{wNo} and m.m_type='M'
+		and p.w_no=#{wNo}
 	</select>
 	<!-- 10.에피소드별 게시물 총 건수 -->
 	<select id="selectProductCountByEpisode" parameterType="int" resultType="int">
-	select count(*) 
-	from (select *
-	        from product p
-	        join work_detail wd
-	        on p.p_no = wd.p_no
-	        join member m
-	        on p.p_no = m.m_no
-	        where p.p_check='Y'
-	        and p.w_no=#{wNo}
-	        and wd.wd_episode=#{wdEpisode}
-    )
+		select count(*) 
+		from (select *
+		        from product p
+		        join work_detail wd
+		        on p.p_no = wd.p_no
+		        where p.p_check='Y'
+		        and p.w_no=#{wNo}
+		        and wd.wd_episode=#{wdEpisode}
+		)
 	</select>
 	<!-- 11.전체 상품 리스트 -->
 	<select id="selectProductList" resultMap="fourTableResultMap">	
