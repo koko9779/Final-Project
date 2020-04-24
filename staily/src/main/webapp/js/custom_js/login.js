@@ -230,16 +230,34 @@ $(window)
 				}
 			});
 			function member_create() {
-				document.getElementById("registerF").action = "member_create_action";
-				document.getElementById("registerF").method = "POST";
-				document.getElementById("registerF").submit();
-				swal({
-					  title: '가입 성공',
-					  icon: 'success',
-					  text: "회원가입에 성공하였습니다",
-					}).then(() => {
-						location.href = "id_read";
-					});
+				
+				var params = $("#registerF").serialize();
+				alert(params);
+				
+				$.ajax({
+					url: "member_create_action",
+					method: 'POST',
+					data: params,
+					dataType: "json",
+					async : false,
+					success: function(resultCount) {
+								if(resultCount === 1) {
+									swal({
+										  title: '가입 성공',
+										  icon: 'success',
+										  text: "회원가입에 성공하였습니다",
+										}).then(() => {
+											location.href = "login";
+										});
+								}else {
+									swal({
+										  title: '가입 실패',
+										  icon: 'success',
+										  text: "회원가입에 실패하였습니다",
+										});
+								}
+							}
+				});
 			}
 		});
 

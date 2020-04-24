@@ -119,34 +119,6 @@ public class LoginController {
 		return "login/member_create";
 	}
 	
-	@RequestMapping(value = "/member_create_action", method = RequestMethod.GET)
-	public String member_create_action_get() {
-		return "login/member_create";
-	}
-	
-	@RequestMapping(value = "/member_create_action", method = RequestMethod.POST)
-	public String member_create_action_post(@ModelAttribute Member signupMember, String coNo, Model model) {
-		String forwardPath = "";
-		
-		try {
-			if(signupMember.getmType().equals("M")) {
-				loginService.signUpMember(signupMember);
-			}else if(signupMember.getmType().equals("C")) {
-				Company com = new Company();
-				int intCoNo = Integer.parseInt(coNo);
-				com.setCoNo(intCoNo);
-				
-				signupMember.setmCompany(com);
-				loginService.signUpCompany(signupMember);
-			}
-			forwardPath = "login/login";
-		}catch(Exception e) {
-			e.printStackTrace();
-			forwardPath = "redirect:/404.jsp";
-		}
-		return forwardPath; 
-	}
-	
 	/***************************************
 	 * Naver
 	 *****************************************/

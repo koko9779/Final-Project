@@ -85,7 +85,7 @@
 									</a>
 								</c:if>
 								<c:if test="${userNo != null}">
-									<a href="javascript:reply_write_form();" id="replyWirteFormB" class="btn btn-ghost sort only-one-board">
+									<a href="javascript:reply_write_form();" id="replyWirteFormB" class="btn btn-ghost sort">
 											<span>답글 쓰기</span>
 									</a>
 								</c:if>
