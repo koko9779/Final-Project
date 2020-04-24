@@ -226,7 +226,7 @@ function reply_write() {
 										$("#reply-top").after(
 										"<article class='reply reply-delete reply_write' id='board_" + replyBoard.bNo + "' style='display: none;'>" +
 												"<div class='col-md-12 m-top--40'>" +
-												"<div class='categories col-md-6 board-title f-s-25'><i class='far fa-comment-dots'></i>" + replyBoard.bTitle +"</div>" +
+												"<div class='categories col-md-6 board-title f-s-25'>" + replyBoard.bTitle +"</div>" +
 												"<div class='col-md-6 text-left'><span class='font-small'>" + replyBoard.mId + "." + replyBoard.bDate + "</span></div>" +
 												"</div>" +
 												"<div class='p_content m-top-50 m-bottom-30' id='board_content_read'>" +
@@ -356,7 +356,7 @@ function reply_update_action() {
 			success: function(replyBoard) {
 				$("form[name=boardReplyUpdateF]").fadeOut(500, function() {
 					$("form[name=boardReplyUpdateF]").remove();
-					$("#board_"+replyBoard.bNo).find(".board-title").html("<i class='far fa-comment-dots'></i>    "+replyBoard.bTitle);
+					$("#board_"+replyBoard.bNo).find(".board-title").text(replyBoard.bTitle);
 					$("#board_"+replyBoard.bNo).find(".p_content").html(replyBoard.bContent);
 					$("#board_"+replyBoard.bNo).fadeIn(500);
 				});
@@ -445,7 +445,7 @@ function board_and_reply_modify_action() {
 			dataType: "json",
 			success: function(updateBoard) {
 				console.log(updateBoard);
-				clone.find("#board_title_read").html("<i class='fas fa-question-circle'></i>    " + updateBoard.bTitle);
+				clone.find("#board_title_read").text(updateBoard.bTitle);
 				clone.find("#board_content_read").html(updateBoard.bContent);
 				$('#board').fadeOut( 500, function() {
 					$("#board").empty();
