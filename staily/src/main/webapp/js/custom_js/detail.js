@@ -553,5 +553,5 @@ if($('#sidebar').length) {
 $('#searchDropdown a:nth-child(2)').click(function(e){
 	e.preventDefault();
 	var noV = $(this).attr('value');
-	window.open("../mypage/message?mNo="+noV, "_blank","width=750, height=5500, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+	window.open("../mypage/message?mNo="+noV, "_blank","width=750, height=550, left=1000, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 })
