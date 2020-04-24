@@ -51,7 +51,7 @@
 								<option value="D">드라마</option>
 							</select>
 							</span>
-					</div>
+					 </div>
 					<div class="row justify-content-md-center">
 								<textarea id="contents" name="bContent"></textarea>
 								<script>

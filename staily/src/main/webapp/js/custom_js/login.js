@@ -290,7 +290,7 @@ function mType_company() {
 	if(document.getElementById("inputCono")==null) {
 		$("#inputType").attr("value", "C");
 		$("<div class='form-group'>" +
-                "<input type='text' class='form-control form-control-user' id='inputCono' name='coNo' placeholder=\"'-'  없이 사업자등록번호 입력해주세요\">" +
+                "<input type='text' class='form-control form-control-user' id='inputCono' name='coNo' placeholder=\"'-'  없이 사업자등록번호 입력해주세요\" maxlength='10'>" +
           "</div>").insertAfter(phoneGroupE);
 		return;
 	}

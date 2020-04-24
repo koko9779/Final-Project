@@ -47,7 +47,6 @@ public class StyleCoodinationRestController {
 		OutputStream out = null;
 		OutputStream out2 = null;
 		MultipartFile file = multiFile.getFile("upload");
-		File f = new File("임시.jpg");
 		
 		if(file != null){
 			if(file.getSize() > 0 ){
@@ -55,25 +54,16 @@ public class StyleCoodinationRestController {
 					try{
 						String fileName = file.getName();
 						byte[] bytes = file.getBytes();
-						//workspace에 올리기 위한 경로
-						//String uploadPath = "C:/Users/starthink/git/Final-Project/staily/src/main/webapp/img";
-						//String[] uploadPathArray = f.getAbsolutePath().split("\\\\"); //백슬래쉬가 안먹어서 알아보니 정규식 표현으로 써야한다네요
-						//String uploadPath = uploadPathArray[0] + "\\" +  uploadPathArray[1] + "\\" + uploadPathArray[2] + 
-						//					"/git/Final-Project/staily/src/main/webapp/img";
-						//System.out.println("업로드 경로(워크스페이스)"+uploadPath);
-						//서버에 올리기 위한 경로
 						
 						//서버에 올릴 경로
 						String uploadPath = req.getSession().getServletContext().getRealPath("/img");
-						System.out.println("서버:"+uploadPath);
 						
-						//워크스페이스에 올리는 경로
-//						String uploadPath2 = f.getAbsolutePath();
-//						System.out.println("워크스페이스에 올릴 절대경로:" + uploadPath2);
-//						String[] uploadPathArray = uploadPath2.split("\\\\");
-//						uploadPath2 = uploadPathArray[0] + "\\" +  uploadPathArray[1] + "\\" + uploadPathArray[2] + 
-//											"/git/Final-Project/staily/src/main/webapp/img";
-//						System.out.println("워크스페이스 붙이기한 경로:"+uploadPath2);
+						/*
+						    [ 워크스페이스에 집어넣는 작업 ]
+							여기 각자의 로컬 깃프로젝트 위치를 지정해주세요!~
+							예를 들면 C:/Users/user/git/Final-Project/staily/src/main/webapp/img 에서
+							두번째 / 뒤의 사용자명이 다 다를거에요~
+						 */
 						String uploadPath2 = "C:/Users/user/git/Final-Project/staily/src/main/webapp/img";
 						
 						File uploadFile = new File(uploadPath);
