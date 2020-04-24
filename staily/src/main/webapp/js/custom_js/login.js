@@ -386,7 +386,7 @@ $(window)
 			function member_pw_update() {
 				document.getElementById("pwUpdateF").action = "pw_update";
 				document.getElementById("pwUpdateF").submit();
-				//alert("비밀번호 수정 성공");
+				
 				swal({
 					   title: "비밀번호 수정",
 					   text: "비밀번호 수정 성공",
