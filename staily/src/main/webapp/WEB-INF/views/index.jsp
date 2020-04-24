@@ -78,7 +78,6 @@
 										</a>
 									</div>
 									<h4 class="no-underline p_name">${hot.pName}</h4>
-									<div>조회수: ${hot.pView}</div>
 								</div>
 							</form>
 						</c:forEach>
