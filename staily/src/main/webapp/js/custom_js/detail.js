@@ -233,15 +233,15 @@ $("#reply").on("click", function(e) {
 function getReplies() {
 var pNo = $('#pNo').val();
 var myNo = $('#mNo').val();
-
+	
 	$.ajax({
 		url : "reply_list",
 		type : "POST",
 		data : {"pNo" : pNo},
 		dataType : "json",
+		async : false,
 		success : function(data) {
 			var a = '';
-
 			for (i = 0; i < data.length; i++) {
 				a += "<div class='row'>";
 				a += "<h4 class='no-underline'>" + data[i].mId;
@@ -249,47 +249,52 @@ var myNo = $('#mNo').val();
 					a += "<button onClick='deleteReply(" + data[i].rNo + ", " + data[i].mNo + ")' class='btn btn-ghost' style='float: right;'>삭제</button></h4>";
 				}
 				a += "<p>" + data[i].rContent + "</p>";
-				$('#reply_space').html(a);
 				//추천, 신고 눌렀는지 확인해 아이콘 변경
 				var rNo = data[i].rNo;
+				var rRecommend = data[i].rRecommend;
+				var rReport = data[i].rReport;
 				
-				a += "<input type='image' src='../images/siren.png' id='reportIcon" + i + "' onClick='chkReport(" + data[i].rNo + ");return false;' style='float: right; width: 30px; height: 30px;'/><span style='float: right; margin: 4px'>" + data[i].rReport + "</span>";
-				a += "<input type='image' src='../images/like.png' id='recommandIcon" + i + "' onClick='chkRec(" + data[i].rNo + ");return false;' style='float: right; width: 30px; height: 30px;' value='" + data[i].rNo + "'><span style='float: right; margin: 4px'>" + data[i].rRecommend + "</span>";
+				
+				a += "<input type='image' src='../images/emptysiren.png' id='reportIcon" + i + "' name='reportIcon" + i + "' onClick='chkReport(" + data[i].rNo + ");return false;' style='float: right; width: 30px; height: 30px;'/><span style='float: right; margin: 4px'>" + data[i].rReport + "</span>";
+				a += "<input type='image' src='../images/emptylike.png' id='recommandIcon" + i + "' name='recommandIcon" + i + "' onClick='chkRec(" + data[i].rNo + ");return false;' style='float: right; width: 30px; height: 30px;' value='" + data[i].rNo + "'><span style='float: right; margin: 4px'>" + data[i].rRecommend + "</span>";
 				a += "</div>";
 				
 				$('#reply_space').html(a);
 				
 			
-			
-				//var recommandIcon = "'#recommandIcon" + i + "'";
-				//var reportIcon = "'#reportIcon" + i + "'";
+				(function(i) {
+					$.ajax({
+						url : "reply_check",
+						type : "post",
+						data : {"rNo" : rNo, "mNo" : myNo},
+						dataType : "json",
+						async : true,
+						success : function(data) {
+							var temp = i;
+							//alert("data : " + data + ", temp :" + temp);
+							
+							if(data == '0') {
+								$("#recommandIcon" + temp).attr('src', '../images/like.png');
+								$("#reportIcon" + temp).attr('src', '../images/siren.png');
+							}					
+							else if(data =='1') {
+								$("#recommandIcon" + temp).attr('src', '../images/like.png');
+								$("#reportIcon" + temp).attr('src', '../images/emptysiren.png');
+							}
+							else if(data == '2') {
+								$("#recommandIcon" + temp).attr('src', '../images/emptylike.png');
+								$("#reportIcon" + temp).attr('src', '../images/siren.png');
+							}
+							else if(data == '3') {								
+								$("#recommandIcon" + temp).attr('src', '../images/emptylike.png');
+								$("#reportIcon" + temp).attr('src', '../images/emptysiren.png');
+							}
+						}
+					});
+					
+				})(i);
 				
-				/*
-				$.ajax({
-					url : "reply_check",
-					type : "post",
-					data : {"rNo" : rNo, "mNo" : myNo},
-					dataType : "json",
-					success : function(data) {
-						if(data == 0) {
-							$("'#recommandIcon" + i + "'").attr('src', '../images/like.png');
-							$("'#reportIcon" + i + "'").attr('src', '../images/siren.png');
-						}					
-						else if(data == 1) {
-							$("'#recommandIcon" + i + "'").attr('src', '../images/like.png');
-							$("'#reportIcon" + i + "'").attr('src', '../images/emptysiren.png');
-						}
-						else if(data == 2) {
-							$("'#recommandIcon" + i + "'").attr('src', '../images/emptylike.png');
-							$("'#reportIcon" + i + "'").attr('src', '../images/siren.png');
-						}
-						else if(data == 3) {
-							$("'#recommandIcon" + i + "'").attr('src', '../images/emptylike.png');
-							$("'#reportIcon" + i + "'").attr('src', '../images/emptysiren.png');
-						}
-					}
-				});
-				*/
+				
 			}
 		}
 	});
