@@ -419,7 +419,6 @@ public class AdminController {
 			forwardPath = "redirect:/admin/notice";
 		} catch (Exception e) {
 			e.printStackTrace();
-			forwardPath = "redirect:/404.jsp";
 		}
 		return forwardPath;
 	}
@@ -428,6 +427,19 @@ public class AdminController {
 		Board board = adminService.selectBoardOne(bNo);
 		request.setAttribute("board", board);
 		return"admin/notice/notice_detail";
+	}
+	@RequestMapping("/notice_delete")
+	@ResponseBody
+	public String noticeDelete(HttpServletRequest request,@RequestParam("bNo")int bNo) {
+		String result ="";
+		try {
+			adminService.deleteNotice(bNo);
+			result = "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = "fail";
+		}
+		return result;
 	}
 }
 

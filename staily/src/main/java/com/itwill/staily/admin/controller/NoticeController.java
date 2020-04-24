@@ -41,12 +41,9 @@ public class NoticeController {
 		
 		String mNo = request.getParameter("mNo");
 		String rContent = request.getParameter("rContent");
-		
 		Stats stats = new Stats(Integer.parseInt(mNo), rContent);
-		
 		try {
 			createOk = adminService.createNoticeReply(stats);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

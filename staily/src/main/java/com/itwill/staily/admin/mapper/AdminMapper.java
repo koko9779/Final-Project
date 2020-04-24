@@ -70,6 +70,8 @@ public interface AdminMapper {
 	public boolean deleteNotice(int bNo);
 	//공지사항 수정
 	public boolean updateNotice(Board board);
+	//공지사항 조회수 증가
+	public boolean updateView(int bNo);
 	//공지사항 댓글
 	public boolean createNoticeReply(Stats stats);
 	

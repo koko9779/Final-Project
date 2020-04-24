@@ -78,7 +78,7 @@
 							<textarea rows="2" name="rContent" id="rContent"></textarea>
 						</div>
 						<div class="form-group right-align" style="text-align: right;">
-							<button type="button" class="btn btn-ghost" id="createreply" style="margin-top: 40px">작성하기</button>
+							<button type="button" class="btn btn-ghost" id="wCreatereply" style="margin-top: 40px">작성하기</button>
 						</div>
 					</c:when>
 					<c:otherwise>
@@ -128,28 +128,29 @@ function getReplies() {
 		});
 	};
 
-$('#createreply').on("click", function() {
+$('#wCreatereply').on("click", function() {
 	var mNo = $('#mNo').val();
 	var rContent = $('#rContent').val();
-	
+	/*
 	if(rContent == '') {
 		swal({
 			   title: "내용을 입력해주세요",
 			   icon: "error" //"info,success,warning,error" 중 택1
 		});
 	}
-	else {
+	else {}
+	*/
 		$.ajax({
-			url : "../notice/reply_create",
+			url : "reply_create",
 			data : {"mNo" : mNo, "rContent" : rContent},
 			dataType : "json",
 			type : "post",
 			success : function(data) {
+				alert('게을러치타');
 				getReplies();
 				$('#rContent').val('');
 			}
 		});
-	}
 });
 
 function deleteReply(rNo, mNo) {

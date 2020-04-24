@@ -10,6 +10,22 @@ function window_close() {
 function window_back() {
 	location.href = document.referrer;
 };
+
+/** ***********통계 일반*************** */
+function timeChange() {
+		var changeTime = $('#currentDate').val();
+		var choiceTime = "stTime="+changeTime
+		console.log(choiceTime);
+			$.ajax({
+				url: "stats",
+				data: choiceTime,
+				dataType:"json",
+				async:true,
+				success:function(result){
+					statsData = result
+				}
+		});
+}
 /** ***********작품 일반*************** */
 
 function searchWork() {
@@ -389,7 +405,31 @@ $(function() {
 function createNotice() {
 	location.href='notice_create';
 }
-
+$(function() {
+	$(document).on('click','#nDeleteBtn',function() {
+		var checkbox = $("input[name=notice_CheckBox]:checked");
+		var tdArray = new Array();
+		checkbox.each(function(i) {
+			var tr = checkbox.parent().parent().eq(i);
+			var td = tr.children();
+			var bNo = 'bNo='+td.eq(1).text();
+			$.ajax({
+				url : 'notice_delete',
+				data : bNo,
+				method : 'POST',
+				success: function() {
+					swal({
+						title: "공지삭제성공",
+						text: "버튼을 클릭해주세요!",
+						icon: "success" // "info,success,warning,error" 중 택1
+					}).then(() => {
+						location.reload();
+					});
+				}	
+			});
+		});
+	});
+});
 function createNoticeAction() { 
 	CKEDITOR.instances.contents.updateElement(); 
 	if(document.noticeWriteF.bTitle.value === "") { 
