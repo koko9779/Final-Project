@@ -251,7 +251,7 @@ $(window)
 								}else {
 									swal({
 										  title: '가입 실패',
-										  icon: 'success',
+										  icon: 'error',
 										  text: "회원가입에 실패하였습니다",
 										});
 								}

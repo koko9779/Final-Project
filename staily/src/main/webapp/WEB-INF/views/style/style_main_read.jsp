@@ -28,7 +28,7 @@
 			<%@ include file="/WEB-INF/views/style/include/include_board_sidebar.jsp"%>
 			
 			<div class="col-sm-10">
-				<h1 class="h3 mb-2 text-gray-800">스타일코디 페이지</h1>
+				<h1 class="h3 mb-2 text-gray-800">스타일 Q & A 페이지</h1>
 
 <!-- DataTales Example -->
 				<div class="card shadow mb-4">
