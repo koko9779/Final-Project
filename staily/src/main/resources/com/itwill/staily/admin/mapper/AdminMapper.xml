@@ -121,6 +121,9 @@
 	</delete>
 	<!-- 공지 사항 -->
 	<insert id="createNotice" parameterType="Board">
+		<selectKey order="BEFORE" keyProperty="bNo" resultType="int">
+			select board_no_seq.NEXTVAL from dual
+		</selectKey>
 		INSERT INTO board 
 		(b_no, m_no, b_title, b_content, b_groupno, b_step, 
          b_view, b_recommend, b_type, b_date, b_choice, b_category) 
@@ -163,7 +166,7 @@
 		FROM
 		BOARD
 		WHERE
-		B_NO=#[bNo]
+		B_NO=#{bNo}
 	</delete>
 	<update id="updateNotice" parameterType="Board">
 		UPDATE 
@@ -173,6 +176,11 @@
 		b_title=#{bTitle}
 		WHERE 
 		b_no=#{bNo}
+	</update>
+	<update id="updateView" parameterType="int">
+		UPDATE board 
+		SET b_view = b_view + 1
+		WHERE b_no = #{bNo}
 	</update>
 	<insert id="createNoticeReply" parameterType="com.itwill.staily.admin.model.Stats">
 		INSERT 
@@ -197,5 +205,6 @@
 		WHERE
 		nr_no = #{nrNo}	and m_no = #{mNo}
 	</delete>
+	
 </mapper>
 

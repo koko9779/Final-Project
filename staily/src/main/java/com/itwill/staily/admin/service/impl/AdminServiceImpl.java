@@ -163,7 +163,9 @@ public class AdminServiceImpl implements AdminService{
 
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED , isolation = Isolation.READ_COMMITTED)
 	public Board selectBoardOne(int bNo) throws Exception {
+		adminMapper.updateView(bNo);
 		return adminMapper.selectBoardOne(bNo);
 	}
 
@@ -218,6 +220,8 @@ public class AdminServiceImpl implements AdminService{
 		boolean deleteOk = adminMapper.deleteNoticeReply(nrNo, mNo);
 		return deleteOk;
 	}
+
+
 
 
 

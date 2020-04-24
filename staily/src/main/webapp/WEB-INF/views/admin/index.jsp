@@ -7,6 +7,54 @@
 <div class="col-lg-10">
 	<h1 class="h3 mb-2 text-gray-800">관리자페이지</h1>
 	<div class="row">
+	 <!-- 승인대기상품 -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">승인대기 상품</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">6건</div>
+                    </div>
+                    <div>
+                      <button class="btn btn-default btn-lg io-data io-fn-nextStep" type="button" onclick="timeChange()">바로가기</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+	<!-- 인기상품 Card  -->
+	<div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">인기작품</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">나쁜사랑</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+	<!-- 인기작품 Card  -->
+	<div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">인기상품</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">원피스</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 		<div class="col-xl-6 col-lg-6"
 			style="float: left; margin-right: 10px;">
 			<!-- Area Chart -->
@@ -21,10 +69,10 @@
 				</div>
 				<form>
 					<p>
-						<input type="date" id="currentDate">
+					<input type="date" id="currentDate">
 					</p>
 					<p>
-						<button type="button" onclick="changeTime()">기준날짜설정</button>
+						<button class="btn btn-default btn-lg io-data io-fn-nextStep" type="button" onclick="timeChange()">기준날짜설정</button>
 					</p>
 				</form>
 			</div>
@@ -57,9 +105,9 @@
 <script>
 var now = document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);;
 var nowTime = "stTime="+now
+var statsData;
 
 $(function() {
-	var statsData;
 	$.ajax({
 		url: "stats",
 		data: nowTime,
@@ -69,8 +117,6 @@ $(function() {
 				statsData = result
 			}
 	});
-
-	var browserData;
 	$.ajax({
 		url: "stats_browser",
 		async:false,
