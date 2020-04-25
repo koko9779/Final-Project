@@ -26,7 +26,7 @@
 			<div class="slick-carousel newIn" >
 
 				<c:forEach var="cw" items="${cw}">
-					<form id="product_${cw.product[0].pNo}">
+					<form id="product_${cw.product[0].pNo}" method="post">
 						<input type="hidden" value="${userNo}" name="userNo">
 						<input type="hidden" value="${cw.product[0].wNo}" name="wNo">
 						<input type="hidden" value="${cw.product[0].pNo}" name="pNo">
@@ -81,7 +81,7 @@
 			<c:choose>
 				<c:when test="${mw ne null}">
 					<c:forEach var="mw" items="${mw}">
-						<form id="product_${mw.product[0].pNo}" style='margin:7% 0;'>
+						<form id="product_${mw.product[0].pNo}" style='margin:7% 0;' method="post">
 							<h2 value="상품이름" >${mw.product[0].pName}</h2>
 							<input type="hidden" value="${userNo}" name="userNo">
 							<input type="hidden" class="wNoo" value="${mw.product[0].wNo}" name="wNo">

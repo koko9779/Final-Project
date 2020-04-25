@@ -29,7 +29,7 @@
 				style="padding: 20px; height: 450px; width: 850px;">
 			
 			<!-- Section -->
-			<h2 style="margin-top:5%;">상품 사진</h2>
+			<h2 style="margin-top:5%;">상품 이미지</h2>
 			<div class="slick-carousel news-carousel" style="height: 280px">
 				<c:forEach var="product" items="${productOne}">
 					<div>
