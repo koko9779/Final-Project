@@ -6,7 +6,7 @@
                      <h3>Style Q & A</h3>
                      <ul style="padding-left: 15px;">
                         <li><a href="style_main_read">전체 보기</a></li>
-                        <li><a href="style_main_read_top10">top 10</a></li>
+                        <li><a href="style_main_read_top10">Top 10</a></li>
                         <li><a href="style_main_read_category?bCategory=M">영화</a></li>
                         <li><a href="style_main_read_category?bCategory=D">드라마</a></li>
                      </ul>
