@@ -4,9 +4,25 @@
 	file="/WEB-INF/views/include/detail/include_css_product_detail.jsp"%>
 <%@ include file="/WEB-INF/views/include/tags.jspf"%>
 <%@ include file="/WEB-INF/views/include/include_navbar.jsp"%>
-
-
-
+<style>
+.scale {
+  transform: scale(1);
+  -webkit-transform: scale(1);	/*크롬*/
+  -moz-transform: scale(1); /*fire fox*/
+  -ms-transform: scale(1); /*익스플로러*/
+  -o-transform: scale(1); /*opera*/
+  transition: all 0.3s ease-in-out;   /* 부드러운 모션을 위해 추가*/
+}
+.scale:hover {
+  width: 600px;
+  hight: 400px;
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+}
+</style>
 <!-- Hero -->
 <div id="content_hero" >
 	<iframe class="ww"
@@ -32,8 +48,8 @@
 			<h2 style="margin-top:5%;">상품 이미지</h2>
 			<div class="slick-carousel news-carousel" style="height: 280px">
 				<c:forEach var="product" items="${productOne}">
-					<div>
-						<img src="${pageContext.request.contextPath}/images/product/image/${product.pdImage}.jpg">
+					<div > 
+						<img class="scale" src="${pageContext.request.contextPath}/images/product/image/${product.pdImage}.jpg">
 					</div>
 				</c:forEach>
 			</div>
