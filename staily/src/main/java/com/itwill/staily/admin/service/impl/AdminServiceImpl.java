@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.itwill.staily.admin.mapper.AdminMapper;
 import com.itwill.staily.admin.model.Stats;
 import com.itwill.staily.admin.service.AdminService;
+import com.itwill.staily.mypage.model.dto.Message;
 import com.itwill.staily.util.Board;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
@@ -220,6 +221,41 @@ public class AdminServiceImpl implements AdminService{
 		boolean deleteOk = adminMapper.deleteNoticeReply(nrNo, mNo);
 		return deleteOk;
 	}
+
+
+
+	@Override
+	public boolean rejectMessage(Message message) {
+		return adminMapper.rejectMessage(message);
+	}
+
+
+
+	@Override
+	public List<Product> selectPopProduct() {
+		return adminMapper.popularProduct();
+	}
+
+
+
+	@Override
+	public List<Work> selectPopWork() {
+		return adminMapper.popularWork();
+	}
+
+	@Override
+	public int countUnconfirm() {
+		return adminMapper.countUncofirm();
+	}
+
+
+
+	@Override
+	public List<Board> popularBoard() throws Exception {
+		return adminMapper.popularBoard();
+	}
+
+
 
 
 

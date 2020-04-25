@@ -5,14 +5,21 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.itwill.staily.admin.model.Stats;
+import com.itwill.staily.mypage.model.dto.Message;
 import com.itwill.staily.util.Board;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
 import com.itwill.staily.util.Work;
 
 public interface AdminService {
-	public List<Member> selectMemberAll();
-
+	/* 메인화면 */
+	public List<Product> selectPopProduct() throws Exception;
+	public List<Work> selectPopWork() throws Exception;
+	public int countUnconfirm() throws Exception;
+	public List<Board>popularBoard() throws Exception;
+	// 회원 전체출력
+	public List<Member> selectMemberAll() throws Exception;
+	
 	// 회원 개별출력
 	public Member selectMemberOne(int mNo) throws Exception;
 
@@ -26,8 +33,6 @@ public interface AdminService {
 	// 작품 입력
 	public boolean createWork(Work work) throws Exception;
 
-	// 작품상세 입력
-//	public boolean createWorkDetail(Work work) throws Exception;
 	// 작품 전체 출력
 	public List<Work> selectWorkAll() throws Exception;
 
@@ -63,6 +68,9 @@ public interface AdminService {
 	// 상품 승인
 	public boolean productConfirm(int pNo)throws Exception;
 	
+	//승인 거부
+	public boolean rejectMessage(Message message);
+		
 	//공지사항 전체 출력 
 	public List<Board>selectBoardAll() throws Exception;
 	

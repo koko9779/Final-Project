@@ -14,10 +14,10 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">승인대기 상품</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">6건</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">${count }건</div>
                     </div>
                     <div>
-                      <button class="btn btn-default btn-lg io-data io-fn-nextStep" type="button" onclick="timeChange()">바로가기</button>
+                      <button class="btn btn-default btn-lg io-data io-fn-nextStep" type="button" onclick="location.href='product'">바로가기</button>
                     </div>
                   </div>
                 </div>
@@ -30,7 +30,9 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">인기작품</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">나쁜사랑</div>
+                       <c:forEach items="${workList }" var="work">
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">${work.wName}</div>
+                      </c:forEach>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -46,7 +48,27 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">인기상품</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">원피스</div>
+                      <c:forEach items="${productList }" var="product">
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">${product.pName }</div>
+                      </c:forEach>	
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+    <!-- 인기게시글 Card  -->
+	<div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">인기게시글</div>
+                      <c:forEach items="${boardList }" var="board">
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">${board.bTitle }</div>
+                      </c:forEach>	
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
