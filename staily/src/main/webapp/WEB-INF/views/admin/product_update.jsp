@@ -6,6 +6,22 @@
 .text-left {
 	text-align: left;
 }
+
+.scale {
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transition: all 0.3s ease-in-out;   /* 부드러운 모션을 위해 추가*/
+}
+.scale:hover {
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+}
 </style>
 <body>
 <!-- Page Heading -->
@@ -95,7 +111,7 @@
 				<tr>
 					<th scope="row" class="bg-light essentia" colspan="2"><label
 						for="pCheck">장면이미지변경</label></th>
-					<td class="text-left"><img width="auto" height="auto"
+					<td class="text-left"><img class="scale" width="auto" height="auto"
 						src="${pageContext.request.contextPath}/images/product/scene/${productList[0].pScene }.jpg"
 						alt="${productList[0].pScene }"> <input type="hidden"
 						value="${productList[0].pScene }"></td>
@@ -108,8 +124,8 @@
 							for="pCheck">상품이미지변경</label></th>
 						<td class="text-left">
 							<div class="col" align="center">
-								<img width="auto" height="auto"
-									src="${pageContext.request.contextPath}/images/product/image/${product.pdImage}.jpg">
+								<img class="scale" width="auto" height="auto"
+									src="${pageContext.request.contextPath}/images/product/image/${product.pdImage}.jpg" >
 							</div>
 						</td>
 						<td class="text-left"><button type="button" name="modalBtn"
