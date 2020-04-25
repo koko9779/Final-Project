@@ -36,6 +36,7 @@ import com.itwill.staily.admin.mapper.StatsMapper;
 import com.itwill.staily.admin.model.Stats;
 import com.itwill.staily.admin.service.AdminService;
 import com.itwill.staily.admin.service.StatsService;
+import com.itwill.staily.mypage.model.dto.Message;
 import com.itwill.staily.util.Board;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
@@ -57,7 +58,15 @@ public class AdminController {
 	 */
 	
 	@RequestMapping("/main")
-	public String adminMain() {
+	public String adminMain(HttpServletRequest request) throws Exception {
+		List<Product>productList= adminService.selectPopProduct();
+		List<Work>workList=adminService.selectPopWork();
+		List<Board>boardList=adminService.popularBoard();
+		int count = adminService.countUnconfirm();
+		request.setAttribute("productList", productList);
+		request.setAttribute("workList", workList);
+		request.setAttribute("boardList", boardList);
+		request.setAttribute("count", count);
 		return "admin/index";
 	}
 	@RequestMapping("/stats")
@@ -279,6 +288,26 @@ public class AdminController {
 		try {
 			boolean confirmOk = adminService.productConfirm(pNo);
 			if (confirmOk) {
+				result = "success";
+			} else {
+				result = "fail";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = "fail";
+		}
+		return result;
+	}
+	
+	@RequestMapping(value = "/product_reject", method = { RequestMethod.POST,
+			RequestMethod.GET }, produces = "text/plain; charset=UTF-8")
+	@ResponseBody
+	public String productAdminReject(@RequestParam("rNo") int rNo, HttpServletRequest request) {
+		String result = "";
+		try {
+			Message message = new Message(1, "상품승인이 거부되었습니다", "부적합한 상품으로 확인되어 상품 등록이 거절되었습니다.", rNo);
+			boolean rejectOk= adminService.rejectMessage(message);
+			if (rejectOk) {
 				result = "success";
 			} else {
 				result = "fail";

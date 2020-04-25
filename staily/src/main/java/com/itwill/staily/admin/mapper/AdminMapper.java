@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.itwill.staily.admin.model.Stats;
+import com.itwill.staily.mypage.model.dto.Message;
 import com.itwill.staily.util.Board;
 import com.itwill.staily.util.Member;
 import com.itwill.staily.util.Product;
@@ -15,6 +16,11 @@ import com.itwill.staily.util.Work;
 @Repository("adminMapper")
 @Mapper
 public interface AdminMapper {
+	/* 메인화면 */
+	public List<Product>popularProduct();
+	public List<Work>popularWork();
+	public List<Board>popularBoard();
+	public int countUncofirm();
 	/* 회원 */
 	
 	//회원 전체출력
@@ -58,6 +64,8 @@ public interface AdminMapper {
 	public boolean deleteProduct(int pNo);
 	//상품 승인 
 	public boolean productConfirm(int pNo);
+	//승인 거부
+	public boolean rejectMessage(Message message);
 	
 	/* 공지사항 */
 	//공지사항 작성

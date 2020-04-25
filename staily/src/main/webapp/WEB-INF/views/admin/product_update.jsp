@@ -125,6 +125,9 @@
 			<button type="button"
 				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
 				onclick="product_confirm(${productList[0].pNo})">승인</button>
+			<button type="button"
+				class="btn btn-default btn-lg io-data io-fn-nextStep" data-step="2"
+				onclick="product_reject(${productList[0].mNo})">거부</button>
 		</div>
 </form>
 	</div>

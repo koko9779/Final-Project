@@ -57,6 +57,25 @@ function product_confirm(pNo) {
 		}
 	});
 };
+function product_reject(rNo) {
+	var no = "rNo="+rNo;
+	$.ajax({
+		url: 'product_reject',
+		data: no,
+		method: 'POST',
+		dataType: 'text',
+		success: function() {
+			swal({
+				title: "상품이 승인이 거부되었습니다.",
+				text: "버튼을 클릭해주세요!",
+				icon: "warning" // "info,success,warning,error" 중 택1
+			}).then(() => {
+				window.opener.location.reload();
+				window.close();
+			});
+		}
+	});
+};
 function sceneUpdate(scn) {
 	window.open("product_update_scene?" + "pScene="+ scn,"이미지정보수정",
 	"width=500, height=300, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no")
