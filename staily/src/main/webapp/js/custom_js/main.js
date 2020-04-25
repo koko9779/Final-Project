@@ -572,9 +572,9 @@ function delete_bookmark(bookset){
 				if(result=='true'){
 					//console.log($(product).find('.material-icons').attr('src')+"------------->");
 					if(temp=0){
-						$(product).find('.material-icons').attr('src','../images/emptystar.png');
+						$(product).find('.material-icons').attr('src','images/emptystar.png');
 					}else{
-						$(product).find('.material-icons').attr('src','../../images/emptystar.png');						
+						$(product).find('.material-icons').attr('src','../images/emptystar.png');						
 					}
 					$(product).find('.material-icons').attr('alt','즐겨찾기 등록');				
 					$(product).find('.material-icons').attr('onclick','create_bookmark('+userNo+','+pNo+');return false;');
