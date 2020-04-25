@@ -8,8 +8,9 @@
 			<ul>
 				<li><a href="notice">공지사항</a></li>
 				<li><a href="member">회원관리</a></li>
-				<li><a href="work">작품관리</a></li>
 				<li><a href="product">상품관리</a></li>
+				<li><a href="work">작품관리</a></li>
+				<li><a href='javascript:void(0);' onClick='messagePopup(); return false'>전체메세지</a></li>
 			</ul>
 		</div>
 	</aside>

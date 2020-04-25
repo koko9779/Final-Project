@@ -4,19 +4,19 @@ package com.itwill.staily.admin.controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionEvent;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +26,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.itwill.staily.admin.mapper.StatsMapper;
 import com.itwill.staily.admin.model.Stats;
 import com.itwill.staily.admin.service.AdminService;
 import com.itwill.staily.admin.service.StatsService;
@@ -50,7 +45,10 @@ public class AdminController {
 	private AdminService adminService;
 	@Autowired
 	private StatsService statsService;
+	@Autowired
+	ServletContext servletContext;
 	public AdminController() {
+		
 	}
 	/*
 	 * 만들어야할거... 회원 ,작품, 상품 수정 form(아에 form.jsp도 만들어야함) action 삭제 action들
@@ -185,7 +183,32 @@ public class AdminController {
 		}
 		return result;
 	}
-
+	@RequestMapping("/create_message")
+	public String messageAdmin() {
+		return "admin/create_message";
+	}
+	@RequestMapping("/create_message_action")
+	@ResponseBody
+	public String messageAdminAction(@RequestParam("msTitle")String msTitle,@RequestParam("msContent")String msContent,
+									  HttpServletRequest request) throws Exception {
+		String result = "";
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		String msDate = df.format(new Date());
+		List<Member> memberNo= adminService.selectMemberAll();
+		try {
+			for (Member member : memberNo) {
+				int rNo = member.getmNo();
+				Message message = new Message(1, msTitle, msContent,msDate, rNo);
+				adminService.createMessage(message);
+			}
+			result="success";
+		} catch (Exception e) {
+			e.printStackTrace();
+			result="fail";
+		}
+		return result;
+	}
+	
 	// 상품
 	@RequestMapping("/product")
 	public String productAdminForm(HttpServletRequest request) {

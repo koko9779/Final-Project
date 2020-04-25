@@ -48,8 +48,8 @@
 			<article id="board" style="border-bottom: none;">
 				<div id="board2">
 					<input type="hidden" id="updateBNo" value="${board.bNo}">
-					<h2 class="board-top p-top-40">${board.bTitle}</h2>
-					<div class="p_content m-top-50" id="board_content_read">
+					<h2 class="board-top p-top-40"><b>${board.bTitle}</b></h2>
+					<div class="p_content m-top-50" id="board_content_read" style="font-size: 14px">
 						${board.bContent}</div>
 				</div>
 			</article>

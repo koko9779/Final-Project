@@ -31,7 +31,8 @@ public interface AdminMapper {
 	public boolean updateMember(Member member);
 	//회원삭제
 	public boolean deleteMember(int mNo);
-	
+	//쪽지
+	public boolean createMessage(Message message);
 	/* 작품 */
 	//작품 입력
 	public boolean createWork(Work work);

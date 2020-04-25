@@ -28,6 +28,9 @@ public interface AdminService {
 
 	// 회원삭제
 	public boolean deleteMember(int mNo) throws Exception;
+	
+	//쪽지
+	public boolean createMessage(Message message) throws Exception;
 
 	/* 작품 */
 	// 작품 입력

@@ -61,7 +61,10 @@
 		m_daddress=#{mDaddress},m_email=#{mEmail},m_type=#{mType},m_phone=#{mPhone}
 		WHERE m_no=#{mNo}
 	</update>
-	
+	<insert id="createMessage" parameterType="com.itwill.staily.mypage.model.dto.Message">
+		insert into message (ms_no, m_no, ms_title, ms_content, ms_date, r_no) 
+        values (MESSAGE_NO_SEQ.nextval,#{mNo},#{msTitle},#{msContent},#{msDate},#{rNo})
+	</insert>
 	<!-- 상품 -->
 	
 	<select id="selectProductAll" resultType="Product">
@@ -122,7 +125,7 @@
 	<insert id="rejectMessage"
 		parameterType="com.itwill.staily.mypage.model.dto.Message">
 	insert into message (ms_no, m_no, ms_title, ms_content, ms_date, r_no) 
-        		 values (MESSAGE_NO_SEQ.nextval,#{mNo},#{msTitle},#{msContent},sysdate,#{rNo})		
+        		 values (MESSAGE_NO_SEQ.nextval,#{mNo},#{msTitle},#{msContent},#{msDate},#{rNo})		
 
 	</insert>
 	<delete id="deleteProduct" parameterType="int">
