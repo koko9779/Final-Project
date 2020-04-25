@@ -205,10 +205,16 @@ function reply_write() {
 
 	var boardBNo = $("#updateBNo").val();
 	if(document.boardReplyWriteF.bTitle.value === "") { 
-		alert("제목을 입력해 주세요"); 
+		swal({
+			title: "제목을 입력해 주세요",
+			icon: "warning" //"info,success,warning,error" 중 택1
+		});
 		return; 
 	}else if(document.boardReplyWriteF.bContent.value === "") { 
-		alert("내용을 입력해 주세요"); 
+		swal({
+			title: "내용을 입력해 주세요",
+			icon: "warning" //"info,success,warning,error" 중 택1
+		});
 		return; 
 	}else {
 		$.ajax({
@@ -263,7 +269,6 @@ function recommend(bNo) {
 					  				"로그인 하시겠습니까?");
 				if(isOk) {
 					document.location.href="../login/login";
-					  //window.open("../login/login", "staily 로그인", "width=750, height=600 resizable=no scrollbars=yes" );  
 				}
 					
 			} else {
@@ -341,10 +346,16 @@ function reply_update_action() {
 	 var queryString = $("form[name=boardReplyUpdateF]").serialize();
 
 	if(document.boardReplyUpdateF.bTitle.value === "") { 
-		alert("제목을 입력해 주세요"); 
+		swal({
+			title: "제목을 입력해 주세요",
+			icon: "warning" 
+		});
 		return; 
 	}else if(document.boardReplyUpdateF.bContent.value === "") { 
-		alert("내용을 입력해 주세요"); 
+		swal({
+			title: "내용을 입력해 주세요",
+			icon: "warning" 
+		});
 		return; 
 	}else {
 		$.ajax({
@@ -376,7 +387,10 @@ function reply_delete(bNo) {
 		dataType: "json",
 		success: function(isDelete) {
 			if(isDelete === false) {
-				alert("댓글 삭제에 실패하였습니다");
+				swal({
+					title: "댓글 삭제에 실패하였습니다",
+					icon: "error" 
+				});
 			}else {
 				if(replyCount === 1) {
 					$(".reply-delete").fadeOut(500, function() {
@@ -396,16 +410,28 @@ function reply_delete(bNo) {
 function board_create() { 
 	CKEDITOR.instances.contents.updateElement(); 
 	if(document.boardWriteF.bTitle.value === "") { 
-		alert("제목을 입력해 주세요"); 
+		swal({
+			title: "제목을 입력해 주세요",
+			icon: "warning" 
+		});
 		return; 
 	}else if(document.boardWriteF.bType.value === "분류") { 
-		alert("분류를 지정해 주세요"); 
+		swal({
+			title: "분류를 지정해 주세요",
+			icon: "warning" 
+		});
 		return; 
 	}else if(document.boardWriteF.bContent.value === "") { 
-		alert("내용을 입력해 주세요"); 
+		swal({
+			title: "내용을 입력해 주세요",
+			icon: "warning" 
+		});
 		return; 
 	}else if(document.boardWriteF.bCategory.value === "카테고리") { 
-		alert("카테고리를 지정해 주세요"); 
+		swal({
+			title: "카테고리를 지정해 주세요",
+			icon: "warning" 
+		});
 		return; 
 	}else {
 		document.boardWriteF.action = "style_create_board_action";
@@ -425,13 +451,22 @@ function board_and_reply_modify_action() {
 
 
 	if(document.boardWriteF.bTitle.value === "") { 
-		alert("제목을 입력해 주세요"); 
+		swal({
+			title: "제목을 입력해 주세요",
+			icon: "warning" 
+		});
 		return; 
 	}else if(document.boardWriteF.bContent.value === "") { 
-		alert("내용을 입력해 주세요"); 
+		swal({
+			title: "내용을 입력해 주세요",
+			icon: "warning" 
+		});
 		return; 
 	}else if(document.boardWriteF.bCategory.value === "카테고리") { 
-		alert("카테고리를 지정해 주세요"); 
+		swal({
+			title: "카테고리를 지정해 주세요",
+			icon: "warning" 
+		});
 		return; 
 	}else {
 		$.ajax({
