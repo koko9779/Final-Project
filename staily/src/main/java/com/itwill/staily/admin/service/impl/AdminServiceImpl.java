@@ -257,6 +257,13 @@ public class AdminServiceImpl implements AdminService{
 
 
 
+	@Override
+	public boolean createMessage(Message message) throws Exception {
+		return adminMapper.createMessage(message);
+	}
+
+
+
 
 
 

@@ -7,82 +7,96 @@
 <div class="col-lg-10">
 	<h1 class="h3 mb-2 text-gray-800">관리자페이지</h1>
 	<div class="row">
-	 <!-- 승인대기상품 -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">승인대기 상품</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">${count }건</div>
-                    </div>
-                    <div>
-                      <button class="btn btn-default btn-lg io-data io-fn-nextStep" type="button" onclick="location.href='product'">바로가기</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-	<!-- 인기상품 Card  -->
-	<div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">인기작품</div>
-                       <c:forEach items="${workList }" var="work">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">${work.wName}</div>
-                      </c:forEach>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-	<!-- 인기작품 Card  -->
-	<div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">인기상품</div>
-                      <c:forEach items="${productList }" var="product">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">${product.pName }</div>
-                      </c:forEach>	
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-    <!-- 인기게시글 Card  -->
-	<div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">인기게시글</div>
-                      <c:forEach items="${boardList }" var="board">
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">${board.bTitle }</div>
-                      </c:forEach>	
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+		<!-- 승인대기상품 -->
+		<div class="col-xl-3 col-md-6 mb-4">
+			<div class="card border-left-primary shadow h-100 py-2">
+				<div class="card-body">
+					<div class="align-items-center">
+						<div class="col mr-2">
+							<div
+								class="text-xs font-weight-bold text-primary text-uppercase mb-1">승인대기
+								상품</div>
+							<div class="h5 mb-0 font-weight-bold text-gray-800">${count }건</div>
+						</div>
+						<div>
+							<button class="btn btn-default btn-lg io-data io-fn-nextStep"
+								type="button" onclick="location.href='product'">바로가기</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 인기작품 Card  -->
+		<div class="col-xl-3 col-md-6 mb-4">
+			<div class="card border-left-success shadow h-100 py-2">
+				<div class="card-body">
+					<div class="row no-gutters align-items-center">
+						<div class="col mr-2">
+							<div
+								class="text-xs font-weight-bold text-success text-uppercase mb-1">인기작품</div>
+							<c:forEach items="${workList }" var="work">
+								<div class="h5 mb-0 font-weight-bold text-gray-800">
+									<a href='javascript:void(0);'
+										onClick='openWork(${work.wNo}); return false'>${work.wName}</a>
+								</div>
+							</c:forEach>
+						</div>
+						<div class="col-auto">
+							<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 인기상품 Card  -->
+		<div class="col-xl-3 col-md-6 mb-4">
+			<div class="card border-left-success shadow h-100 py-2">
+				<div class="card-body">
+					<div class="align-items-center">
+						<div class="col mr-2">
+							<div
+								class="text-xs font-weight-bold text-success text-uppercase mb-1">인기상품</div>
+							<c:forEach items="${productList }" var="product">
+								<div class="h5 mb-0 font-weight-bold text-gray-800">
+									<a href='javascript:void(0);'
+										onClick='openProduct(${product.pNo}); return false'>${product.pName }</a>
+								</div>
+							</c:forEach>
+						</div>
+						<div class="col-auto">
+							<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 인기게시글 Card  -->
+		<div class="col-xl-3 col-md-6 mb-4">
+			<div class="card border-left-success shadow h-100 py-2">
+				<div class="card-body">
+					<div class="row no-gutters align-items-center">
+						<div class="col mr-2">
+							<div
+								class="text-xs font-weight-bold text-success text-uppercase mb-1">인기게시글</div>
+							<c:forEach items="${boardList }" var="board">
+								<div class="h5 mb-0 font-weight-bold text-gray-800">
+									<a href="../style/style_detail_read?bNo=${board.bNo }">${board.bTitle }</a>
+								</div>
+							</c:forEach>
+						</div>
+						<div class="col-auto">
+							<i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="col-xl-6 col-lg-6"
 			style="float: left; margin-right: 10px;">
 			<!-- Area Chart -->
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">일별 접속자</h6>
+					<h3 style="color: rgba(0, 140, 170, 0.5)">일별 접속자</h3>
 				</div>
 				<div class="card-body">
 					<div class="chart-area">
@@ -91,10 +105,11 @@
 				</div>
 				<form>
 					<p>
-					<input type="date" id="currentDate">
+						<input type="date" id="currentDate">
 					</p>
 					<p>
-						<button class="btn btn-default btn-lg io-data io-fn-nextStep" type="button" onclick="timeChange()">기준날짜설정</button>
+						<button class="btn btn-default btn-lg io-data io-fn-nextStep"
+							type="button" onclick="timeChange()">기준날짜설정</button>
 					</p>
 				</form>
 			</div>
@@ -104,7 +119,9 @@
 			<div class="card shadow mb-4">
 				<!-- Card Header - Dropdown -->
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">브라우저별 접속자</h6>
+					<div class="card-header py-3">
+					<h3 style="color: rgba(0, 140, 170, 0.5)">브라우저별 접속자</h3>
+				</div>
 				</div>
 				<!-- Card Body -->
 				<div class="card-body">
@@ -240,9 +257,8 @@ $(function() {
 			datasets : [ {
 				label : '브라우저별 접속자 수',
 				data : [ bCnt1, bCnt2, bCnt3, bCnt4, bCnt5 ],
-				backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
-						'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)',
-						'rgba(75, 192, 192, 0.2)', 'rgba(255, 159, 64, 0.2)' ],
+				backgroundColor : [
+					"#f79546", "#9bba57", "#4f81bb", "#5f497a", "#a94069"],
 				borderColor : [
 				//'rgba(255, 99, 132, 0.2)', 빨강
 				'rgba(54, 162, 235, 0.2)'
@@ -262,7 +278,11 @@ $(function() {
 						beginAtZero : true
 					}
 				} ]
-			}
+			},
+			pieceLabel: { mode:"label", 
+							position:"outside", 
+								fontSize: 11, 
+									fontStyle: 'bold' }
 		}
 	});
 });
@@ -270,8 +290,5 @@ function calendar() {
 	window.open("calendar","일정표",
 				"width=690, height=750, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no");
 	}
-function name() {
-	
-}
 </script>
 </html>

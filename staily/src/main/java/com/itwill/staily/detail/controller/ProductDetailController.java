@@ -176,14 +176,14 @@ public class ProductDetailController {
 		//File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\scene\\" + newfilename + ".jpg"); 
 		
 		try {
-			String computerName = InetAddress.getLocalHost().getHostName();
-			String[] comName = computerName.split("-");
+			//String computerName = InetAddress.getLocalHost().getHostName();
+			//String[] comName = computerName.split("-");
+			String path = System.getProperty("user.name");
 			
-			String uploadPath = "C:\\Users\\" +  comName[0] + "\\" +  
+			String uploadPath = "C:\\Users\\" +  path + "\\" +  
 					"/git/Final-Project/staily/src/main/webapp/images/product/scene/";
 			
 			File f = new File(uploadPath + newfilename + ".jpg");
-			System.out.println(computerName);
 			
 			Filedata.transferTo(f); 
 			response.getWriter().write(newfilename);
@@ -205,15 +205,13 @@ public class ProductDetailController {
 		//File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg");
 		
 		try {
-			String computerName = InetAddress.getLocalHost().getHostName();
-			String[] comName = computerName.split("-");
-			
-			String uploadPath = "C:\\Users\\" +  comName[0] + "\\" +  
+			//String computerName = InetAddress.getLocalHost().getHostName();
+			//String[] comName = computerName.split("-");
+			String path = System.getProperty("user.name");
+
+			String uploadPath = "C:\\Users\\" +  path + "\\" +  
 					"/git/Final-Project/staily/src/main/webapp/images/product/image/";
-			
 			File f = new File(uploadPath + newfilename + ".jpg");
-			System.out.println(computerName);
-			
 			Filedata.transferTo(f); 
 			response.getWriter().write(newfilename);
 		} 

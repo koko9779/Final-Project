@@ -16,6 +16,15 @@ public class Message {
 	public Message() {
 		
 	}
+	
+	public Message(int mNo, String msTitle, String msContent, String msDate, int rNo) {
+		super();
+		this.mNo = mNo;
+		this.msTitle = msTitle;
+		this.msContent = msContent;
+		this.msDate = msDate;
+		this.rNo = rNo;
+	}
 
 	public Message(int msNo, int mNo, String msTitle, String msContent, String msDate, int rNo) {
 		super();
