@@ -120,8 +120,8 @@
 				<!-- Card Header - Dropdown -->
 				<div class="card-header py-3">
 					<div class="card-header py-3">
-					<h3 style="color: rgba(0, 140, 170, 0.5)">브라우저별 접속자</h3>
-				</div>
+						<h3 style="color: rgba(0, 140, 170, 0.5)">브라우저별 접속자</h3>
+					</div>
 				</div>
 				<!-- Card Body -->
 				<div class="card-body">
@@ -145,150 +145,141 @@
 var now = document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);;
 var nowTime = "stTime="+now
 var statsData;
-
-$(function() {
+var browserData;
+$.ajax({
+	url: "stats",
+	data: nowTime,
+	dataType:"json",
+	async:false,
+	success:function(result){
+			statsData = result
+		}
+});
+$.ajax({
+	url: "stats_browser",
+	async:false,
+	dataType:"json",
+	success:function(browser){
+		browserData = browser
+		}
+});
+function timeChange() {
+	var changeTime = $('#currentDate').val();
+	var choiceTime = "stTime="+changeTime
 	$.ajax({
 		url: "stats",
-		data: nowTime,
+		data: choiceTime,
 		dataType:"json",
 		async:false,
 		success:function(result){
 				statsData = result
 			}
 	});
-	$.ajax({
-		url: "stats_browser",
-		async:false,
-		dataType:"json",
-		success:function(browser){
-			browserData = browser
-			}
-	});
-	// 우선 컨텍스트를 가져옵니다. 
-	var ctx = document.getElementById("dayChart").getContext('2d');
-	var cty = document.getElementById("browserChart").getContext('2d');
-	/*
-	 - Chart를 생성하면서, 
-	 - ctx를 첫번째 argument로 넘겨주고, 
-	 - 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
-	 */
-	
-	var date7 = statsData.result[0].stTime
-	var date6 = statsData.result[1].stTime
-	var date5 = statsData.result[2].stTime
-	var date4 = statsData.result[3].stTime
-	var date3 = statsData.result[4].stTime
-	var date2 = statsData.result[5].stTime
-	var date1 = statsData.result[6].stTime
-	var cnt7  = statsData.result[0].cnt
-	var cnt6  = statsData.result[1].cnt
-	var cnt5  = statsData.result[2].cnt
-	var cnt4  = statsData.result[3].cnt
-	var cnt3  = statsData.result[4].cnt
-	var cnt2  = statsData.result[5].cnt
-	var cnt1  = statsData.result[6].cnt
-	var dayChart = new Chart(ctx, {
-		type : 'line',
-		data : {
-			labels : [ date1, date2, date3, date4, date5,date6, date7 ],
-			datasets : [ {
-				label : '일자별 접속자 수',
-				data : [ cnt1, cnt2,cnt3 , cnt4, cnt5,cnt6,cnt7 ],
-				backgroundColor : [
-				//'rgba(255, 99, 132, 0.2)', 빨강
-				//'rgba(54, 162, 235, 0.2)', 파랑
-				//'rgba(255, 206, 86, 0.2)', 노랑
-				//'rgba(75, 192, 192, 0.2)', 초록
-				'rgba(153, 102, 255, 0.2)'
-				//'rgba(255, 159, 64, 0.2)' 오렌지
-				],
-				datasets : [ {
-					fill : 'origin'
-				}, // 0: fill to 'origin'
-				{
-					fill : '+2'
-				}, // 1: fill to dataset 3
-				{
-					fill : 1
-				}, // 2: fill to dataset 1
-				{
-					fill : false
-				}, // 3: no fill
-				{
-					fill : '-2'
-				} // 4: fill to dataset 2
-				],
-				borderColor : [
-				//'rgba(255, 99, 132, 0.2)', 빨강
-				'rgba(54, 162, 235, 0.2)'
-				//'rgba(255, 206, 86, 0.2)', 노랑
-				//'rgba(75, 192, 192, 0.2)', 초록
-				//'rgba(153, 102, 255, 0.2)' 
-				//'rgba(255, 159, 64, 0.2)' 오렌지
-				],
-				borderWidth : 1
-			} ],
-		},
-		options : {
-			maintainAspectRatio : true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
-			scales : {
-				yAxes : [ {
-					ticks : {
-						beginAtZero : true
-					}
-				} ]
-			}
+};
+// 우선 컨텍스트를 가져옵니다. 
+var ctx = document.getElementById("dayChart").getContext('2d');
+var cty = document.getElementById("browserChart").getContext('2d');
+/*
+ - Chart를 생성하면서, 
+ - ctx를 첫번째 argument로 넘겨주고, 
+ - 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
+ */
+
+var date7 = statsData.result[0].stTime
+var date6 = statsData.result[1].stTime
+var date5 = statsData.result[2].stTime
+var date4 = statsData.result[3].stTime
+var date3 = statsData.result[4].stTime
+var date2 = statsData.result[5].stTime
+var date1 = statsData.result[6].stTime
+var cnt7  = statsData.result[0].cnt
+var cnt6  = statsData.result[1].cnt
+var cnt5  = statsData.result[2].cnt
+var cnt4  = statsData.result[3].cnt
+var cnt3  = statsData.result[4].cnt
+var cnt2  = statsData.result[5].cnt
+var cnt1  = statsData.result[6].cnt
+var dayChart = new Chart(ctx, {
+	type : 'line',
+	data : {
+		labels : [ date1, date2, date3, date4, date5,date6, date7 ],
+		datasets : [ {
+			label : '일자별 접속자 수',
+			data : [ cnt1, cnt2,cnt3 , cnt4, cnt5,cnt6,cnt7 ],
+			backgroundColor : [
+			//'rgba(255, 99, 132, 0.2)', 빨강
+			//'rgba(54, 162, 235, 0.2)', 파랑
+			//'rgba(255, 206, 86, 0.2)', 노랑
+			//'rgba(75, 192, 192, 0.2)', 초록
+			'rgba(54, 162, 235, 0.2)'
+			//'rgba(255, 159, 64, 0.2)' 오렌지
+			],
+			borderColor : [
+			//'rgba(255, 99, 132, 0.2)', 빨강
+			'rgba(54, 162, 235, 0.2)'
+			//'rgba(255, 206, 86, 0.2)', 노랑
+			//'rgba(75, 192, 192, 0.2)', 초록
+			//'rgba(153, 102, 255, 0.2)' 
+			//'rgba(255, 159, 64, 0.2)' 오렌지
+			],
+			borderWidth : 1
+		} ],
+	},
+	options : {
+		maintainAspectRatio : true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+		scales : {
+			yAxes : [ {
+				ticks : {
+					beginAtZero : true
+				}
+			} ]
 		}
-	});
-	var browser1 = browserData.browser[0].stAgent;
-	var browser2 = browserData.browser[1].stAgent;
-	var browser3 = browserData.browser[2].stAgent;
-	var browser4 = browserData.browser[3].stAgent;
-	var browser5 = browserData.browser[4].stAgent;
-	var bCnt1 = browserData.browser[0].cnt;
-	var bCnt2 = browserData.browser[1].cnt;
-	var bCnt3 = browserData.browser[2].cnt;
-	var bCnt4 = browserData.browser[3].cnt;
-	var bCnt5 = browserData.browser[4].cnt;
-	var browserChart = new Chart(cty, {
-		type : 'pie',
-		data : {
-			labels : [ browser1, browser2, browser3, browser4, browser5 ],
-			datasets : [ {
-				label : '브라우저별 접속자 수',
-				data : [ bCnt1, bCnt2, bCnt3, bCnt4, bCnt5 ],
-				backgroundColor : [
-					"#f79546", "#9bba57", "#4f81bb", "#5f497a", "#a94069"],
-				borderColor : [
-				//'rgba(255, 99, 132, 0.2)', 빨강
-				'rgba(54, 162, 235, 0.2)'
-				//'rgba(255, 206, 86, 0.2)', 노랑
-				//'rgba(75, 192, 192, 0.2)', 초록
-				//'rgba(153, 102, 255, 0.2)' 
-				//'rgba(255, 159, 64, 0.2)' 오렌지
-				],
-				borderWidth : 1
-			} ],
-		},
-		options : {
-			maintainAspectRatio : true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
-			scales : {
-				yAxes : [ {
-					ticks : {
-						beginAtZero : true
-					}
-				} ]
-			},
-			pieceLabel: { mode:"label", 
-							position:"outside", 
-								fontSize: 11, 
-									fontStyle: 'bold' }
-		}
-	});
-});
-function calendar() {
-	window.open("calendar","일정표",
-				"width=690, height=750, toolbar=no, menubar=no, scrollbars=no, resizable=no ,status=no");
 	}
+});
+
+var browser1 = browserData.browser[0].stAgent;
+var browser2 = browserData.browser[1].stAgent;
+var browser3 = browserData.browser[2].stAgent;
+var browser4 = browserData.browser[3].stAgent;
+var browser5 = browserData.browser[4].stAgent;
+var bCnt1 = browserData.browser[0].cnt;
+var bCnt2 = browserData.browser[1].cnt;
+var bCnt3 = browserData.browser[2].cnt;
+var bCnt4 = browserData.browser[3].cnt;
+var bCnt5 = browserData.browser[4].cnt;
+var browserData = []; // 받아올 데이터를 저장할  배열 선언
+var browserChart = new Chart(cty, {
+	type : 'pie',
+	data : {
+		labels : [ browser1, browser2, browser3, browser4, browser5 ],
+		datasets : [ {
+			label : '브라우저별 접속자 수',
+			data : [ bCnt1, bCnt2, bCnt3, bCnt4, bCnt5 ],
+			backgroundColor : [
+				"#f79546", "#9bba57", "#4f81bb", "#5f497a", "#a94069"],
+			borderColor : [
+			//'rgba(255, 99, 132, 0.2)', 빨강
+			'rgba(54, 162, 235, 0.2)'
+			//'rgba(255, 206, 86, 0.2)', 노랑
+			//'rgba(75, 192, 192, 0.2)', 초록
+			//'rgba(153, 102, 255, 0.2)' 
+			//'rgba(255, 159, 64, 0.2)' 오렌지
+			],
+			borderWidth : 1
+		} ],
+	},
+	options : {
+		maintainAspectRatio : true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+		scales : {
+			yAxes : [ {
+				ticks : {
+					beginAtZero : true
+				}
+			} ]
+		}
+	}
+});
+
+
 </script>
 </html>

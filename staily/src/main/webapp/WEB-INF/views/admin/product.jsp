@@ -29,7 +29,8 @@
 								<td><input type="checkbox" name="product_CheckBox"></td>
 								<td hidden="pNo2">${product.pNo}</td>
 								<td>${product.pName}</td>
-								<td>${product.pPrice}</td>
+								<td style="text-align: right"><fmt:formatNumber value="${product.pPrice}" pattern="#,###" />
+원</td>
 								<td>${product.pAddress}</td>
 								<td>${product.pDaddress}</td>
 								<td>${product.pView}</td>

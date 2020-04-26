@@ -20,7 +20,7 @@
 									.replace(
 											'contents',
 											{
-												filebrowserUploadUrl : '/staily/style/ImgUpload'
+												filebrowserUploadUrl : '/staily/admin/imgUpload'
 											});
 						</script>
 					</div>
