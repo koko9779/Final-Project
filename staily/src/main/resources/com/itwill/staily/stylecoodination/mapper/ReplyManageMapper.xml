@@ -17,7 +17,7 @@
 	INSERT INTO board (b_no, m_no, b_title, b_content, b_groupno, b_step, 
                    b_view, b_recommend, b_type, b_date, b_choice)
 	VALUES (#{bNo}, #{mNo}, #{bTitle}, #{bContent}, #{bGroupNo}, 2,
-       		 0, 0, 'S', SYSDATE, 'N')
+       		 0, 0, 'S', #{bDate}, 'N')
 </insert>
 
 <delete id="deleteReply" parameterType="int">

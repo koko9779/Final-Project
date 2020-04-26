@@ -55,15 +55,22 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 		int mNo = 0;
 		int createCount;
 		Board writeReplyB = new Board();
+		SimpleDateFormat df;
+		String bDate = "";
 		
 		// 1. 기존 댓글들의 step 1씩 증가
 		replyManageMapper.updateStep(replyBoard.getbGroupNo());
 		// 2. mNo를 구하기 위한 작업
 		mNo = boardCommonMapper.selectMNo(mId);
 		replyBoard.setmNo(mNo);
-		// 3. 댓글 작성
+		
+		// 3. 날짜를 String으로 가공하기
+		df = new SimpleDateFormat("yyyy-MM-dd");
+		bDate = df.format(new Date());
+		replyBoard.setbDate(bDate);
+		// 4. 댓글 작성
 		createCount = replyManageMapper.createReply(replyBoard);
-		// 4. 작성이 잘 되었으면 board 반환
+		// 5. 작성이 잘 되었으면 board 반환
 		if(createCount == 1) {
 			writeReplyB = boardCommonMapper.selectBoardOrReply(replyBoard.getbGroupNo());
 		}

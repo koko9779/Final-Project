@@ -65,7 +65,7 @@ public class StyleCoodinationController {
 	// 스타일 Q&A 카테고리별
 	@RequestMapping("/style_main_read_category")
 	public String style_main_category(Board b,Model model) {
-		
+		String bType = "S";
 		List<Board> data = new ArrayList<Board>();
 		//int boardCount = 0;
 		int replyCount = 0;
@@ -77,6 +77,7 @@ public class StyleCoodinationController {
 		model.addAttribute("data", data);
 		model.addAttribute("boardCount", data.size());
 		model.addAttribute("replyCount", replyCount);
+		model.addAttribute("bType", bType);
 		
 		return "style/style_main_read";
 	}
@@ -85,7 +86,7 @@ public class StyleCoodinationController {
 	// Top 10 
 	@RequestMapping("/style_main_read_top10")
 	public String style_main_top10(Model model) {
-		
+		String bType = "S";
 		List<Board> data = new ArrayList<Board>();
 		int replyCount = 0;
 		
@@ -95,6 +96,7 @@ public class StyleCoodinationController {
 		model.addAttribute("data", data);
 		model.addAttribute("boardCount", data.size());
 		model.addAttribute("replyCount", replyCount);
+		model.addAttribute("bType", bType);
 		
 		return "style/style_main_read";
 	}
@@ -117,7 +119,6 @@ public class StyleCoodinationController {
 			styleCoodinationService.updateViewCount(intBNo);
 			boardOneList = styleCoodinationService.findBoardOne(intBNo, userNo);
 			model.addAttribute("boardOneList", boardOneList);
-			System.out.println(boardOneList);
 			forwardPath = "style/style_detail_read";
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -181,43 +182,7 @@ public class StyleCoodinationController {
 		return forwardPath;
 	}
 	
-	/*
 	
-	@Override
-	public int writeReply(Board replyBoard, String mId) {
-		int mNo = 0;
-		
-		// 1. 기존 댓글들의 step 1씩 증가
-		replyManageMapper.updateStep(replyBoard.getbGroupNo());
-		// 2. mNo를 구하기 위한 작업
-		mNo = boardCommonMapper.selectMNo(mId);
-		replyBoard.setmNo(mNo);
-		// 3. 댓글 작성
-		return replyManageMapper.createReply(replyBoard);
-	}
-	
-	@Override
-	public int checkChoice(int bNo) {
-		//업데이트 안되면 0인 상태로 controller에서 
-		//ui에 영향을 미칠 데이터를 작업하자
-		return replyManageMapper.updateChoice(bNo);
-	}
-	
-	@Override
-	public int checkRecommend(int bNo) {
-		//업데이트 안되면 0인 상태로 controller에서 
-		//ui에 영향을 미칠 데이터 작업
-		return replyManageMapper.updateRecommend(bNo);
-	}
-
-	@Override
-	public int findBoardReplyCount() {
-		return viewMapper.selectBoardReplyCount();
-	}
-	
-}
-	 */
-
 
 	
 }

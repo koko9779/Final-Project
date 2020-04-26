@@ -64,7 +64,8 @@ public class StyleCoodinationRestController {
 							예를 들면 C:/Users/user/git/Final-Project/staily/src/main/webapp/img 에서
 							두번째 / 뒤의 사용자명이 다 다를거에요~
 						 */
-						String uploadPath2 = "C:/Users/user/git/Final-Project/staily/src/main/webapp/img";
+						//String uploadPath2 = "C:/Users/user/git/Final-Project/staily/src/main/webapp/img";
+						String uploadPath2 = "C:/Users/starthink/git/Final-Project/staily/src/main/webapp/img";
 						
 						File uploadFile = new File(uploadPath);
 						if(!uploadFile.exists()){
@@ -86,7 +87,6 @@ public class StyleCoodinationRestController {
                         resp.setContentType("text/html");
                         String fileUrl = req.getContextPath() + "/img/" + fileName;
                         
-                        System.out.println(fileUrl);
                         
                         // json 데이터로 등록
                         // {"uploaded" : 1, "fileName" : "test.jpg", "url" : "/img/test.jpg"}
