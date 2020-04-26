@@ -2,7 +2,10 @@
 package com.itwill.staily.admin.controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -27,7 +30,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.google.gson.JsonObject;
 import com.itwill.staily.admin.model.Stats;
 import com.itwill.staily.admin.service.AdminService;
 import com.itwill.staily.admin.service.StatsService;
@@ -90,24 +95,6 @@ public class AdminController {
 	@RequestMapping("/calendar")
 	public String adminCalendar() {
 		return "admin/calendar";
-	}
-
-	@RequestMapping("/upload2")
-	public void upload2(HttpServletResponse response, HttpServletRequest request, 
-			@RequestParam("Filedata") MultipartFile Filedata) { 
-		SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS"); 
-		String newfilename = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
-		//File f = new File("C:\\Users\\STU\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
-		File f = new File("C:\\Users\\Home\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\image\\" + newfilename + ".jpg"); 
-		
-		try {
-			
-			Filedata.transferTo(f); 
-			response.getWriter().write(newfilename);
-		} 
-		catch (IllegalStateException | IOException e) { 
-			e.printStackTrace(); 
-		}
 	}
 	// 회원
 	@RequestMapping("/member")
@@ -263,8 +250,7 @@ public class AdminController {
 		String path = "";
 		String pScene =(String) session.getAttribute("pScene");
 		String pdImage =(String) session.getAttribute("pdImage");
-		String computerName = InetAddress.getLocalHost().getHostName();
-		String[] comName = computerName.split("-");
+		String userName = System.getProperty("user.name");
 		if(pScene !=null && pScene!="") {
 			newfilename= pScene;
 			path = "scene";
@@ -272,7 +258,7 @@ public class AdminController {
 			newfilename = pdImage;
 			path = "image";
 		}
-		File f = new File("C:\\Users\\"+comName[0]+"\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\"+path+"\\" + newfilename + ".jpg"); 
+		File f = new File("C:\\Users\\"+userName+"\\git\\Final-Project\\staily\\src\\main\\webapp\\images\\product\\"+path+"\\" + newfilename + ".jpg"); 
 		try {
 			Filedata.transferTo(f); 
 			response.getWriter().write(newfilename);
@@ -493,5 +479,73 @@ public class AdminController {
 		}
 		return result;
 	}
+	@RequestMapping(value="/imgUpload")
+	public void fileUpload(HttpServletRequest req, HttpServletResponse resp, 
+                 MultipartHttpServletRequest multiFile) throws Exception {
+		JsonObject json = new JsonObject();
+		PrintWriter printWriter = null;
+		OutputStream out = null;
+		OutputStream out2 = null;
+		MultipartFile file = multiFile.getFile("upload");
+		
+		if(file != null){
+			if(file.getSize() > 0 ){
+				if(file.getContentType().toLowerCase().startsWith("image/")){
+					try{
+						String fileName = file.getName();
+						byte[] bytes = file.getBytes();
+						
+						//서버에 올릴 경로
+						String uploadPath = req.getSession().getServletContext().getRealPath("/img");
+						
+						//workspace 경로
+						String userName = System.getProperty("user.name");
+						String uploadPath2 = "C:/Users/"+userName+"/git/Final-Project/staily/src/main/webapp/img";
+						
+						File uploadFile = new File(uploadPath);
+						if(!uploadFile.exists()){
+							uploadFile.mkdirs();
+						}
+						
+						// 파일명 생성
+						SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+   						fileName = df.format(new Date()) + Integer.toString((int) (Math.random()*10));
+						uploadPath = uploadPath + "/" + fileName;
+						uploadPath2 = uploadPath2 + "/" + fileName;
+						//파일이 들어갈 경로를 넣고 
+						out = new FileOutputStream(new File(uploadPath));
+                        out.write(bytes);
+                        out2 = new FileOutputStream(new File(uploadPath2));
+                        out2.write(bytes);
+                        
+                        printWriter = resp.getWriter();
+                        resp.setContentType("text/html");
+                        String fileUrl = req.getContextPath() + "/img/" + fileName;
+                        
+                        System.out.println(fileUrl);
+                        
+                        // json 데이터로 등록
+                        // {"uploaded" : 1, "fileName" : "test.jpg", "url" : "/img/test.jpg"}
+                        // 이런 형태로 리턴이 나가야함.
+                        json.addProperty("uploaded", 1);
+                        json.addProperty("fileName", fileName);
+                        json.addProperty("url", fileUrl);
+                        
+                        printWriter.println(json);
+                    }catch(IOException e){
+                        e.printStackTrace();
+                        
+                    }finally{
+                    	 if(out2 != null){
+                             out2.close();
+                         }
+                        if(printWriter != null){
+                            printWriter.close();
+                        }
+					}
+				}
+			}
+		}
+	}	
 }
 

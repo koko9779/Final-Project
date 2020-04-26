@@ -12,20 +12,7 @@ function window_back() {
 };
 
 /** ***********통계 일반*************** */
-function timeChange() {
-		var changeTime = $('#currentDate').val();
-		var choiceTime = "stTime="+changeTime
-		console.log(choiceTime);
-			$.ajax({
-				url: "stats",
-				data: choiceTime,
-				dataType:"json",
-				async:true,
-				success:function(result){
-					statsData = result
-				}
-		});
-}
+
 /** ***********작품 일반*************** */
 
 function searchWork() {
@@ -667,7 +654,7 @@ $(document).ready(function() {
        });
 });	
 
-//차트 플러그인 
+/*차트 플러그인 
 (function () {
   'use strict';
 
@@ -1150,6 +1137,6 @@ $(document).ready(function() {
     }
   });
 })();
-
+*/
 
 
