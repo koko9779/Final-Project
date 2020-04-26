@@ -57,10 +57,9 @@ iframe {
 						<li><a href="/staily/main/productlist_select">상품목록</a></li>
 						<li class="dropdown"><a href="/staily/style/style_main_read">커뮤니티</a>
 							<ul class="dropdown-menu">
-								<li><a href="/staily/style/style_main_read">자유게시판</a></li>
 								<li><a href="/staily/style/style_main_read">스타일Q&A</a></li>
-								<li><a href="/staily/style/style_main_read">1:1문의</a></li>
-								<li><a href="/staily/style/style_main_read">상품홍보</a></li>
+								<li><a href="/staily/style/style_main_read?bType=F">자유게시판</a></li>
+								<li><a href="/staily/style/style_main_read?bType=Q">1:1문의</a></li>
 							</ul></li>
 						<li><a href="/staily/notice/main">공지사항</a></li>
 						<c:choose>
