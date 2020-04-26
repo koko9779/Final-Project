@@ -24,7 +24,7 @@ public interface StyleCoodinationService {
 
 	public List<Board> findBoardTop10();
 
-	public List<Board> findBoardAll();
+	public List<Board> findBoardAll(String bType);
 	
 	public List<Board> findBoardOne(int bNo, int userNo);
 	
@@ -32,7 +32,7 @@ public interface StyleCoodinationService {
 
 	public int findBoardCount();
 
-	public int findBoardReplyCount();
+	public int findBoardReplyCount(String bType);
 
 	public int updateViewCount(int bNo) throws Exception;
 	

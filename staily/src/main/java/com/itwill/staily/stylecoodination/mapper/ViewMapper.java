@@ -11,7 +11,7 @@ public interface ViewMapper {
 	
 	public List<Board> selectBoardTop10();
 	
-	public List<Board> selectBoardAll();
+	public List<Board> selectBoardAll(String bType);
 	
 	public List<Board> selectBoardOne(Board b);
 	
@@ -22,7 +22,7 @@ public interface ViewMapper {
 	public int selectBoardCount();
 	
 	//누적 답변 수 
-	public int selectBoardReplyCount();
+	public int selectBoardReplyCount(String bType);
 	
 	//조회수 올리기
 	public int updateView(int bNo) throws Exception;

@@ -18,7 +18,7 @@
 			<div class="m-t--120">
 			<%@ include file="/WEB-INF/views/style/include/include_board_sidebar.jsp"%>
 			<!-- Section -->
-				
+					<input type="hidden" id="board_type" value="${boardOneList[0].bType}">
 					<div class="col-sm-10">
 						<article id="board" style="border-bottom: none;">
 						<div id="board2">
