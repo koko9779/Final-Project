@@ -228,13 +228,13 @@ function reply_write() {
 	if(document.boardReplyWriteF.bTitle.value === "") { 
 		swal({
 			title: "제목을 입력해 주세요",
-			icon: "warning" //"info,success,warning,error" 중 택1
+			icon: "warning" 
 		});
 		return; 
 	}else if(document.boardReplyWriteF.bContent.value === "") { 
 		swal({
 			title: "내용을 입력해 주세요",
-			icon: "warning" //"info,success,warning,error" 중 택1
+			icon: "warning" 
 		});
 		return; 
 	}else {
@@ -252,9 +252,9 @@ function reply_write() {
 										}
 										$("#reply-top").after(
 										"<article class='reply reply-delete reply_write' id='board_" + replyBoard.bNo + "' style='display: none;'>" +
-												"<div class='col-md-12 m-top--40'>" +
+												"<div class='col-md-12 m-top--40 border-b-1-d8d8d8'>" +
 												"<div class='categories col-md-6 board-title f-s-25'>" + replyBoard.bTitle +"</div>" +
-												"<div class='col-md-6 text-left'><span class='font-small'>" + replyBoard.mId + "." + replyBoard.bDate + "</span></div>" +
+												"<div class='col-md-6 text-left'><span class='font-large'>작성자: " + replyBoard.mId + " | 작성 날짜: " + replyBoard.bDate + "</span></div>" +
 												"</div>" +
 												"<div class='p_content m-top-50 m-bottom-30' id='board_content_read'>" +
 													replyBoard.bContent +
