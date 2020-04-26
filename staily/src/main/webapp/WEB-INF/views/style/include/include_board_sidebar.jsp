@@ -14,8 +14,8 @@
                   <div class="widget p-top-21">
                      <h3>Other Community</h3>
                      <ul style="padding-left: 15px;">
-                        <li><a href="#">자유 게시판</a></li>
-                        <li><a href="#">일대일 문의</a></li>
+                        <li><a href="style_main_read?bType=F">자유 게시판</a></li>
+                        <li><a href="style_main_read?bType=Q">1 : 1 문의</a></li>
                      </ul>
                   </div>
                </aside>

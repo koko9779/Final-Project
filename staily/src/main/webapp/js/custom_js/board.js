@@ -1,10 +1,12 @@
 var clone;
 var h3ReplyHeader;
 var $replyF;
+var boardType;
 
 $(function() {
 	clone = $("#board2").clone();
 	h3ReplyHeader = $("<h3 class='board-top reply-delete m-top-50' id='reply-top'>스타일 답변</h3>");
+	boardType = $("#board_type").val();
 });
 
 /*
@@ -55,8 +57,12 @@ function required_login () {
 		});
 }
 
-function move_style_board_create() {
-	location.href="style_board_create";
+function move_style_board_create(bType) {
+	if(!(bType == 'S' || bType == 'Q' || bType == 'F')) {
+		return;
+	}
+	
+	location.href="style_board_create?bType=" + bType;
 }
 
 function board_delete(bNo) {
@@ -100,6 +106,15 @@ function reply_write_form() {
 }
 
 function board_and_reply_modify(bNo) {
+	var q = "스타일 질문";
+	var r = "<option selected value='S'>스타일코디</option>";
+	var selectBox = "<select class='custom-select form-control' name='bCategory' id='bCategory'>" + 
+						"<option selected value=''>카테고리</option>" +
+						"<option value='M'>영화</option>" +
+						"<option value='D'>드라마</option>" +
+					"</select>";
+	
+	
 	$.ajax({
 		url: "board_one_for_udate_read",
 		type: 'get',
@@ -108,20 +123,26 @@ function board_and_reply_modify(bNo) {
 		dataType: "json",
 		success: function(boardJson) {
 							$('#board').fadeOut(500, function() {
-								$("#board").html("<h3 class='board-top p-top-21'>스타일 질문</h3>" +
+								if(boardType === "Q") {
+									q = "1 : 1 문의";
+									r = "<option selected value='Q'>1:1 문의</option>";
+									selectBox = "";
+								}else if(boardType === "F") {
+									q = "자유게시판";
+									r = "<option selected value='F'>자유게시판</option>";
+									selectBox = "";
+								}
+								
+								$("#board").html("<h3 class='board-top p-top-21'>" + q + "</h3>" +
 										 "<form name='boardWriteF' onSubmit='return false;'>" +
 										 			"<input type='hidden' id='bNo' name='bNo' value='" + bNo + "'>" +
 													"<div class='row justify-content-md-center'>" +
 														"제목" +
 														"<input type='text' id='bTitle' name='bTitle' class='form-control title_detail' value='" + boardJson.bTitle + "'>" +
 														"<select class='custom-select form-control' name='bType' id='inputGroupSelect03'>" +
-														"<option selected value='S'>스타일코디</option>" +
+															r +
 														"</select>" +
-														"<select class='custom-select form-control' name='bCategory' id='bCategory'>" + 
-														"<option selected>카테고리</option>" +
-														"<option value='M'>영화</option>" +
-														"<option value='D'>드라마</option>" +
-														"</select>"	+
+															selectBox+
 													"</div>" +
 													"<div class='row justify-content-md-center'>" +
 														"<textarea id='contents' name='bContent'>" + boardJson.bContent + "</textarea>" +
@@ -152,7 +173,7 @@ function board_and_reply_modify(bNo) {
 }
 
 function cancel_board_update(bNo) {
-	$('#board').fadeOut(500, function() {
+		$('#board').fadeOut(500, function() {
 		$('#board').find('.title_detail').val("");
 		CKEDITOR.instances.recContents.setData("");
 		
@@ -166,9 +187,9 @@ function cancel_board_update(bNo) {
 				$("#board").html("<div id='board2'>'" + 
 						"<input type='hidden' id='updateBNo' value='" + bNo + "'>" +
 						"<h3 class='board-top'>스타일 질문</h3>" +
-						"<div class='categories col-md-6 board-title f-s-25' id='board_title_read'><i class='fas fa-question-circle'></i>"+ boardJson.bTitle + "</div>" +
+						"<div class='categories col-md-6 board-title f-s-25' id='board_title_read'>"+ boardJson.bTitle + "</div>" +
 						"<div class='col-md-6 text-left'>" +
-							"<span class='font-small'>" + boardJson.mId + "." + boardJson.bDate + ".조회수: " + boardJson.bView + "</span>" +
+							"<span class='font-large'>작성자: " + boardJson.mId + " | 작성 날짜: " + boardJson.bDate + " | 조회수: " + boardJson.bView + "</span>" +
 						"</div>" +
 						"<div class='p_content m-top-50' id='board_content_read'>" +
 							boardJson.bContent +
@@ -415,12 +436,6 @@ function board_create() {
 			icon: "warning" 
 		});
 		return; 
-	}else if(document.boardWriteF.bType.value === "분류") { 
-		swal({
-			title: "분류를 지정해 주세요",
-			icon: "warning" 
-		});
-		return; 
 	}else if(document.boardWriteF.bContent.value === "") { 
 		swal({
 			title: "내용을 입력해 주세요",
@@ -430,6 +445,27 @@ function board_create() {
 	}else if(document.boardWriteF.bCategory.value === "카테고리") { 
 		swal({
 			title: "카테고리를 지정해 주세요",
+			icon: "warning" 
+		});
+		return; 
+	}else {
+		document.boardWriteF.action = "style_create_board_action";
+		document.boardWriteF.method = "POST";
+		document.boardWriteF.submit();
+	} 
+}
+
+function board_create_other() {
+	CKEDITOR.instances.contents.updateElement(); 
+	if(document.boardWriteF.bTitle.value === "") { 
+		swal({
+			title: "제목을 입력해 주세요",
+			icon: "warning" 
+		});
+		return;
+	}else if(document.boardWriteF.bContent.value === "") { 
+		swal({
+			title: "내용을 입력해 주세요",
 			icon: "warning" 
 		});
 		return; 

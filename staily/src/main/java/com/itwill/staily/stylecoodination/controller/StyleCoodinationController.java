@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,51 +36,57 @@ public class StyleCoodinationController {
 	@Autowired
 	 private StyleCoodinationService styleCoodinationService;
 	
+	//스타일 Q&A 전체보기, 자유게시판, 1:1 문의 모두 들어가는 컨트롤러
 	@RequestMapping("/style_main_read")
-	public String style_main_all(Model model) {
-		
+	public String style_main_all(HttpServletRequest request , Model model) {
+		String bType = "";
 		List<Board> data = new ArrayList<Board>();
-		int boardCount = 0;
+		//int boardCount = 0;
 		int replyCount = 0;
 		
-		data = styleCoodinationService.findBoardAll();
-		boardCount = styleCoodinationService.findBoardCount();
-		replyCount = styleCoodinationService.findBoardReplyCount();
+		bType = request.getParameter("bType");
+		if(bType == null) {
+			bType = "S";
+		}
+		
+		data = styleCoodinationService.findBoardAll(bType);
+		//boardCount = styleCoodinationService.findBoardCount();
+		replyCount = styleCoodinationService.findBoardReplyCount(bType);
 		
 		model.addAttribute("data", data);
-		model.addAttribute("boardCount", boardCount);
+		model.addAttribute("boardCount", data.size());
 		model.addAttribute("replyCount", replyCount);
+		model.addAttribute("bType", bType);
 		
 		return "style/style_main_read";
 	}
 	
 	
+	// 스타일 Q&A 카테고리별
 	@RequestMapping("/style_main_read_category")
 	public String style_main_category(Board b,Model model) {
 		
-		
-		
 		List<Board> data = new ArrayList<Board>();
-		int boardCount = 0;
+		//int boardCount = 0;
 		int replyCount = 0;
 		
 		data = styleCoodinationService.findBoardCategory(b);
-		boardCount = styleCoodinationService.findBoardCategoryCount(b);
+		//boardCount = styleCoodinationService.findBoardCategoryCount(b);
 		replyCount = styleCoodinationService.findBoardReplyCategoryCount(b);
 		
 		model.addAttribute("data", data);
-		model.addAttribute("boardCount", boardCount);
+		model.addAttribute("boardCount", data.size());
 		model.addAttribute("replyCount", replyCount);
 		
 		return "style/style_main_read";
 	}
 	
 	
+	// Top 10 
 	@RequestMapping("/style_main_read_top10")
 	public String style_main_top10(Model model) {
 		
 		List<Board> data = new ArrayList<Board>();
-		int boardCount = 0;
 		int replyCount = 0;
 		
 		data = styleCoodinationService.findBoardTop10();
@@ -135,11 +142,6 @@ public class StyleCoodinationController {
 		return "style/style_board_create";
 	}
 	
-	@RequestMapping(value = "/style_board_create_action", method = RequestMethod.GET)
-	public String style_create_action_get(Board board) {
-		return "style/style_board_create";
-	}
-	
 	@RequestMapping(value = "/style_create_board_action", method = RequestMethod.POST)
 	public String style_create_action_post(@ModelAttribute Board board, HttpSession session) {
 		String forwardPath = "";
@@ -148,7 +150,14 @@ public class StyleCoodinationController {
 			userNo = (int)session.getAttribute("userNo");
 			board.setmNo(userNo);
 			styleCoodinationService.writeBoard(board);
-			forwardPath = "redirect:/style/style_main_read";
+			
+			if(board.getbType().equals("S")) {
+				forwardPath = "redirect:/style/style_main_read";
+			} else if(board.getbType().equals("F")) {
+				forwardPath = "redirect:/style/style_main_read?bType=F";
+			} else if(board.getbType().equals("Q")) {
+				forwardPath = "redirect:/style/style_main_read?bType=Q";
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			forwardPath = "redirect:/404.jsp";
@@ -156,10 +165,6 @@ public class StyleCoodinationController {
 		return forwardPath;
 	}
 	
-	@RequestMapping(value="/style_board_delete_action", method = RequestMethod.GET)
-	public String style_board_delete_action_get() {
-		return "redirect:/style/style_main_read";
-	}
 	
 	@RequestMapping(value="/style_board_delete_action", method = RequestMethod.POST)
 	public String style_board_delete_action_post(@RequestParam String bNo) {

@@ -28,8 +28,17 @@
 			<%@ include file="/WEB-INF/views/style/include/include_board_sidebar.jsp"%>
 			
 			<div class="col-sm-10">
-				<h1 class="h3 mb-2 text-gray-800">스타일 Q & A 페이지</h1>
-
+				<c:choose>
+				<c:when test="${bType eq 'F'}">
+					<h1 class="h3 mb-2 text-gray-800">자유 게시판</h1>
+				</c:when>
+				<c:when test="${bType eq 'Q'}">
+					<h1 class="h3 mb-2 text-gray-800">1 : 1 문의</h1>
+				</c:when>
+				<c:otherwise>
+					<h1 class="h3 mb-2 text-gray-800">스타일 Q & A</h1>
+				</c:otherwise>
+				</c:choose>
 <!-- DataTales Example -->
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
@@ -73,7 +82,7 @@
 										</a>
 									</c:when>
 									<c:otherwise>
-										<a href="javascript:move_style_board_create();" class="btn btn-ghost sort">
+										<a href="javascript:move_style_board_create('${bType}');" class="btn btn-ghost sort">
 											<span>쓰기</span>
 										</a>
 									</c:otherwise>

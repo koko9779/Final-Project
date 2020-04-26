@@ -91,8 +91,8 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 	}
 	
 	@Override
-	public List<Board> findBoardAll() {
-		return viewMapper.selectBoardAll();
+	public List<Board> findBoardAll(String bType) {
+		return viewMapper.selectBoardAll(bType);
 	}
 	
 	@Override
@@ -112,8 +112,8 @@ public class StyleCoodinationServiceImpl implements StyleCoodinationService {
 	}
 	
 	@Override
-	public int findBoardReplyCount() {
-		return viewMapper.selectBoardReplyCount();
+	public int findBoardReplyCount(String bType) {
+		return viewMapper.selectBoardReplyCount(bType);
 	}
 	
 	@Override
