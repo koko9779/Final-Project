@@ -58,14 +58,8 @@ public class StyleCoodinationRestController {
 						//서버에 올릴 경로
 						String uploadPath = req.getSession().getServletContext().getRealPath("/img");
 						
-						/*
-						    [ 워크스페이스에 집어넣는 작업 ]
-							여기 각자의 로컬 깃프로젝트 위치를 지정해주세요!~
-							예를 들면 C:/Users/user/git/Final-Project/staily/src/main/webapp/img 에서
-							두번째 / 뒤의 사용자명이 다 다를거에요~
-						 */
-						//String uploadPath2 = "C:/Users/user/git/Final-Project/staily/src/main/webapp/img";
-						String uploadPath2 = "C:/Users/starthink/git/Final-Project/staily/src/main/webapp/img";
+						String userName = System.getProperty("user.name");
+						String uploadPath2 = "C:/Users/"+userName+"/git/Final-Project/staily/src/main/webapp/img";
 						
 						File uploadFile = new File(uploadPath);
 						if(!uploadFile.exists()){
