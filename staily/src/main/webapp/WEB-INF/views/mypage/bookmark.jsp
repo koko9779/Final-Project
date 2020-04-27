@@ -45,8 +45,10 @@
                   	  <td style = "cursor:pointer;" 
                   	  	  onClick = "location.href='../detail/product_detail?pNo=${bookmark.product.pNo}&wNo=${bookmark.product.wNo}'">
                   	  <img src="${pageContext.request.contextPath}/images/product/scene/${bookmark.product.pScene}.jpg" width="100px" height="100px"> </td>
-                      <td>${bookmark.product.pName}</td>
-                      <td>${bookmark.member.mId}</td>
+                      <td style = "cursor:pointer;" 
+                  	  	  onClick = "location.href='../detail/product_detail?pNo=${bookmark.product.pNo}&wNo=${bookmark.product.wNo}'">${bookmark.product.pName}</td>
+                      <td style = "cursor:pointer;" 
+                  	  	  onClick = "location.href='../detail/product_detail?pNo=${bookmark.product.pNo}&wNo=${bookmark.product.wNo}'">${bookmark.member.mId}</td>
                     </tr>
                   	</c:forEach>
                   </tbody>
