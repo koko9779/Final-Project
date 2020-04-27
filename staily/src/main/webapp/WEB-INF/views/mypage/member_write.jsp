@@ -52,9 +52,12 @@
                       <td style = "cursor:pointer;" 
                       	  onClick = "location.href='../detail/product_detail?pNo=${product.pNo}&wNo=${product.wNo}'">
                       <img src="${pageContext.request.contextPath}/images/product/scene/${product.pScene}.jpg" width="100px" height="100px" alt="이미지없음"></td>
-                      <td>${product.pName}</td>
-                      <td>${product.pCheck}</td>
-                      <td>${product.pDate}</td>
+                      <td style = "cursor:pointer;" 
+                      	  onClick = "location.href='../detail/product_detail?pNo=${product.pNo}&wNo=${product.wNo}'">${product.pName}</td>
+                      <td style = "cursor:pointer;" 
+                      	  onClick = "location.href='../detail/product_detail?pNo=${product.pNo}&wNo=${product.wNo}'">${product.pCheck}</td>
+                      <td style = "cursor:pointer;" 
+                      	  onClick = "location.href='../detail/product_detail?pNo=${product.pNo}&wNo=${product.wNo}'">${product.pDate}</td>
                     </tr>
                   	</c:forEach>
                   </tbody>
