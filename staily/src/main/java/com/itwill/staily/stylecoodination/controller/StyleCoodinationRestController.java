@@ -58,6 +58,7 @@ public class StyleCoodinationRestController {
 						//서버에 올릴 경로
 						String uploadPath = req.getSession().getServletContext().getRealPath("/img");
 						
+						//워크스페이스 경로
 						String userName = System.getProperty("user.name");
 						String uploadPath2 = "C:/Users/"+userName+"/git/Final-Project/staily/src/main/webapp/img";
 						
