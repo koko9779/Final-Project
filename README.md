@@ -11,3 +11,4 @@ itwill/ class5/ team [final=sangsoo]'s/ project
 
 프로젝트 참가인원: 5명
 
+http://54.180.104.151:8080/staily/
